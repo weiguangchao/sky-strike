@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#091b28">
+  <meta name="description" content="苍穹突袭 Sky Strike，一款支持电脑与手机的竖版肉鸽弹幕射击游戏。驾驶战机、躲避弹幕、构筑你的专属火力。">
+  <title>苍穹突袭 · Sky Strike</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-plane" viewBox="0 0 24 24"><path d="m12 2 3 8 6 5v3l-7-3v5l2 2-4-1-4 1 2-2v-5l-7 3v-3l6-5z"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5zm5 5 6 6m0-6-6 6"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m14 2-9 12h7l-2 8 9-12h-7z"/></symbol>
+    <symbol id="i-crosshair" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 1v6m0 10v6M1 12h6m10 0h6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 4v7c0 4-8 9-8 9s-8-5-8-9V6z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 3h10v7a5 5 0 0 1-10 0zm0 2H3v3a4 4 0 0 0 4 4m10-7h4v3a4 4 0 0 1-4 4M12 15v6m-5 0h10"/></symbol>
+    <symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5C8 2 3 3 3 3v16s5-1 9 2c4-3 9-2 9-2V3s-5-1-9 2zm0 0v16"/></symbol>
+  </defs></svg>
+
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="苍穹突袭首页"><span class="brand-mark"><svg><use href="#i-plane"/></svg></span><span>SKY<span class="brand-light">STRIKE</span><small>苍穹突袭</small></span></a>
+    <div class="header-right"><span class="system-online"><i></i> 飞行系统已就绪</span><button class="text-button" id="help-button"><svg><use href="#i-book"/></svg>作战手册</button><span class="header-divider"></span><button class="icon-button sound-button" aria-label="开启声音" title="开启声音"><svg><use href="#i-mute"/></svg></button><button class="icon-button" id="fullscreen-button" aria-label="全屏游戏" title="全屏游戏"><svg><use href="#i-fullscreen"/></svg></button></div>
+  </header>
+
+  <main class="hangar">
+    <aside class="briefing">
+      <div class="chapter-label"><span class="small-rule"></span> 空中作战 · ROGUELITE</div>
+      <h1>每一次升空，<br>都是新的战局<span>。</span></h1>
+      <p class="intro">穿越密集弹幕，组合随机强化。<br>在最后一道防线，成为王牌。</p>
+      <div class="mission-card"><div class="mission-top"><span class="status-light"></span><span>当前作战任务</span><span class="mission-index">01 / 02</span></div><div class="mission-name">破晓海域<svg><use href="#i-arrow"/></svg></div><p>突破敌机编队，摧毁空中堡垒。</p><div class="mission-meta"><span>10 波攻势</span><span>2 场首领战</span><span>随机强化</span></div></div>
+      <div class="flight-record"><div><svg><use href="#i-trophy"/></svg><span>个人最高纪录</span></div><strong id="best-score">000000</strong><span class="record-note" id="record-note">你的王牌之路，从这里开始</span></div>
+      <div class="difficulty"><span>飞行模式</span><div class="segmented" aria-label="飞行难度"><button class="active" data-difficulty="normal" aria-pressed="true">标准</button><button data-difficulty="easy" aria-pressed="false">休闲</button></div><p id="difficulty-description">经典弹幕挑战，完整作战体验</p></div>
+      <div class="local-note"><span class="tiny-diamond"></span> 无需下载 · 随时起飞 · 纪录保存在本机</div>
+    </aside>
+
+    <section class="game-section" aria-label="游戏战场">
+      <div class="frame-top"><span><i></i> LIVE FLIGHT</span><span id="sector-label">第 01 航区 · 破晓海域</span><span class="signal-bars"><i></i><i></i><i></i><i></i></span></div>
+      <div class="battlefield" id="battlefield">
+        <canvas id="game-canvas" width="480" height="760" aria-label="竖版射击战场，方向键或 WASD 移动，空格释放震荡炸弹" tabindex="0"></canvas>
+        <div class="game-hud" id="game-hud" hidden><div class="hud-top"><div><span class="hud-label">作战积分</span><strong id="score">000000</strong></div><div class="wave-display"><span id="wave">01</span><small>/ 10 波</small></div><button class="hud-pause icon-button" id="pause-button" aria-label="暂停游戏"><svg><use href="#i-pause"/></svg></button></div><div class="health-row"><span id="health" aria-label="生命"></span><span class="level-badge">LV.<b id="level">1</b></span></div><div class="xp-track"><span id="xp-fill"></span></div></div>
+        <div class="boss-hud" id="boss-hud" hidden><div><span id="boss-name">空中堡垒 · 玄鲸</span><span id="boss-percent">100%</span></div><div class="boss-track"><i id="boss-fill"></i></div></div>
+        <div class="wave-announcement" id="wave-announcement" aria-live="polite"></div>
+
+        <div class="start-screen overlay" id="start-screen">
+          <div class="start-heading"><span class="operation-tag"><i></i> OPERATION DAYBREAK</span><h2>苍穹突袭</h2><div class="start-en-title">SKY STRIKE</div><p>你的下一次传奇，现在起飞。</p></div>
+          <div class="aircraft-caption"><span class="caption-line"></span><span id="hero-craft-caption">F-01 游隼 / 多用途战机</span><span class="caption-line"></span></div>
+          <div class="launch-area"><button class="launch-button" id="start-button"><svg><use href="#i-plane"/></svg><span>开始出击<small>START MISSION</small></span><svg class="launch-arrow"><use href="#i-arrow"/></svg></button><div class="start-control-hint"><span class="desktop-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / 方向键移动</span><span class="mobile-hint">按住屏幕拖动战机</span><span class="hint-dot">·</span><span>武器自动开火</span></div></div>
+          <span class="start-version">每局随机成长 · 每一次都不一样</span>
+        </div>
+
+        <div class="pause-screen overlay dialog-overlay" id="pause-screen" hidden><div class="dialog-content"><span class="dialog-kicker">FLIGHT PAUSED</span><h2>稍作整备</h2><p>战机已悬停，随时重返天空。</p><button class="primary-button" id="resume-button">继续作战 <svg><use href="#i-arrow"/></svg></button><button class="secondary-button" id="pause-restart">重新出击</button><button class="quiet-button" id="quit-button">返回机库</button></div></div>
+
+        <div class="upgrade-screen overlay dialog-overlay" id="upgrade-screen" hidden><div class="upgrade-heading"><span class="dialog-kicker">SYSTEM UPGRADE</span><h2>火力，再进化。</h2><p>选择一项强化，构筑你的专属战机</p></div><div class="upgrade-options" id="upgrade-options"></div><span class="upgrade-hint">按 1 / 2 / 3 快速选择</span></div>
+
+        <div class="result-screen overlay dialog-overlay" id="result-screen" hidden><div class="dialog-content"><span class="result-emblem"><svg><use href="#i-plane"/></svg></span><span class="dialog-kicker" id="result-kicker">MISSION COMPLETE</span><h2 id="result-title">天空会记住你</h2><p id="result-subtitle">整备战机，下一次飞得更远。</p><strong class="result-score" id="result-score">000000</strong><span class="result-best" id="result-best"></span><div class="result-stats"><div><strong id="result-kills">0</strong><span>击落敌机</span></div><div><strong id="result-wave">01</strong><span>抵达波次</span></div><div><strong id="result-time">00:00</strong><span>作战时间</span></div></div><button class="primary-button" id="retry-button">再次出击 <svg><use href="#i-arrow"/></svg></button><button class="quiet-button" id="result-home">返回机库</button></div></div>
+
+        <div class="battle-bottom" id="battle-bottom" hidden><div class="weapon-label"><span id="weapon-level">双联机炮</span><small>自动射击中</small></div><button class="bomb-button" id="bomb-button" aria-label="释放震荡炸弹"><span class="bomb-icon"><svg><use href="#i-bolt"/></svg></span><span>震荡炸弹<small><kbd>SPACE</kbd> <b id="bomb-count">× 3</b></small></span></button></div>
+      </div>
+      <div class="frame-bottom"><span><span class="tiny-diamond"></span> <span id="flight-status">等待飞行员就位</span></span><span>F-01 <span class="frame-coordinates">24°N 122°E</span></span></div>
+    </section>
+
+    <aside class="loadout-panel">
+      <div class="panel-heading"><h2>出击机库</h2><span>选择你的座驾</span></div>
+      <div class="craft-tabs" role="tablist" aria-label="战机选择"><button class="active" role="tab" aria-selected="true" data-craft="falcon">游隼</button><button role="tab" aria-selected="false" data-craft="swift">雨燕</button><button role="tab" aria-selected="false" data-craft="turtle">玄武</button></div>
+      <div class="craft-illustration"><div class="craft-grid"></div><canvas id="craft-canvas" width="480" height="300" aria-label="当前战机预览"></canvas><span id="craft-code">F-01</span><span class="craft-cross">+</span></div>
+      <div class="craft-name"><h3 id="craft-name">游隼</h3><span id="craft-role">均衡型战机</span></div><p class="craft-description" id="craft-description">可靠的双联机炮与均衡性能。<br>每一位王牌的起点。</p>
+      <div class="craft-stats"><div><span>火力</span><div class="stat-bars" id="stat-power"></div></div><div><span>机动</span><div class="stat-bars" id="stat-speed"></div></div><div><span>装甲</span><div class="stat-bars" id="stat-armor"></div></div></div>
+      <div class="loadout-divider"></div><div class="feature-heading"><svg><use href="#i-bolt"/></svg><h3>越战，越强。</h3></div><p class="feature-description">收集能量，升级时三选一。<br>散射、僚机、追踪导弹……<br>让每一次出击都有新的可能。</p>
+      <div class="upgrade-preview"><span title="散射弹幕"><svg><use href="#i-crosshair"/></svg></span><span title="能量护盾"><svg><use href="#i-shield"/></svg></span><span title="极速射击"><svg><use href="#i-bolt"/></svg></span><span class="more-upgrades">+9</span></div>
+      <div class="run-build" id="run-build" hidden><span>本次强化</span><div id="build-list">等待首次升级</div></div>
+      <div class="pilot-tip"><span>飞行员小贴士</span><p>子弹擦过机翼也别慌。<br>只有机身中央的光点才会受伤。</p></div>
+    </aside>
+  </main>
+  <footer class="site-footer"><span>为每一位不肯降落的飞行员而造。</span><span class="footer-controls"><span><kbd>P</kbd> 暂停</span><span><kbd>SPACE</kbd> 震荡炸弹</span><span><kbd>M</kbd> 声音</span></span><span>SKY STRIKE <span class="footer-version">v1.0</span></span></footer>
+
+  <dialog id="help-dialog" aria-labelledby="help-title"><button class="dialog-close icon-button" id="close-help" aria-label="关闭作战手册"><svg><use href="#i-close"/></svg></button><span class="dialog-kicker">PILOT HANDBOOK</span><h2 id="help-title">准备好，飞行员。</h2><p class="help-intro">自动开火，专注走位。消灭敌机，收集蓝色能量，打造你的专属火力。</p><div class="help-controls"><div><span>电脑操作</span><p><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 或方向键移动<br><kbd>SPACE</kbd> / <kbd>B</kbd> 震荡炸弹<br><kbd>P</kbd> / <kbd>ESC</kbd> 暂停 · <kbd>M</kbd> 声音</p></div><div><span>手机操作</span><p>在战场内按住并拖动，战机跟随手指移动。<br>点击右下角炸弹按钮，清除敌方弹幕。<br>点击右上角按钮暂停。</p></div></div><div class="help-notes"><p><b>随机成长</b> 收集能量升级，每次从三项随机强化中选择一项。每局重新构筑。</p><p><b>作战目标</b> 突破 10 波攻势，第 5、10 波迎战首领。进入后台自动暂停。</p><p><b>判定光点</b> 战机中央的白色光点是受击判定。受击后短暂无敌，炸弹也能保护你。</p><p><b>本地纪录</b> 最高分与飞行偏好保存在当前浏览器；无须登录。</p></div><button class="primary-button" id="help-ready">明白，准备出击 <svg><use href="#i-arrow"/></svg></button></dialog>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
