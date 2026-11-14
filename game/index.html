@@ -46,6 +46,7 @@
     <section class="game-section" aria-label="游戏战场">
       <div class="frame-top"><span><i></i> LIVE FLIGHT</span><span id="sector-label">第 01 航区 · 破晓海域</span><span class="signal-bars"><i></i><i></i><i></i><i></i></span></div>
       <div class="battlefield" id="battlefield">
+        <div class="battle-stage">
         <canvas id="game-canvas" width="480" height="760" aria-label="竖版射击战场，方向键或 WASD 移动，空格投放高爆航弹" tabindex="0"></canvas>
         <div class="game-hud" id="game-hud" hidden><div class="hud-top"><div><span class="hud-label">作战积分</span><strong id="score">000000</strong></div><div class="wave-display"><span id="wave">01</span><small>/ 10 波</small></div><button class="hud-pause icon-button" id="pause-button" aria-label="暂停游戏"><svg><use href="#i-pause"/></svg></button></div><div class="health-row"><span id="health" aria-label="生命"></span><span class="level-badge">LV.<b id="level">1</b></span></div><div class="xp-track"><span id="xp-fill"></span></div></div>
         <div class="boss-hud" id="boss-hud" hidden><div><span id="boss-name">空中堡垒 · 玄鲸</span><span id="boss-percent">100%</span></div><div class="boss-track"><i id="boss-fill"></i></div></div>
@@ -65,6 +66,7 @@
         <div class="result-screen overlay dialog-overlay" id="result-screen" hidden><div class="dialog-content"><span class="result-emblem"><svg><use href="#i-plane"/></svg></span><span class="dialog-kicker" id="result-kicker">MISSION COMPLETE</span><h2 id="result-title">天空会记住你</h2><p id="result-subtitle">整备战机，下一次飞得更远。</p><strong class="result-score" id="result-score">000000</strong><span class="result-best" id="result-best"></span><div class="result-stats"><div><strong id="result-kills">0</strong><span>击落敌机</span></div><div><strong id="result-wave">01</strong><span>抵达波次</span></div><div><strong id="result-time">00:00</strong><span>作战时间</span></div></div><button class="primary-button" id="retry-button">再次出击 <svg><use href="#i-arrow"/></svg></button><button class="quiet-button" id="result-home">返回机库</button></div></div>
 
         <div class="battle-bottom" id="battle-bottom" hidden><div class="weapon-label"><span id="weapon-level">双联机炮</span><small>红弹躲避 · 补给拾取</small></div><button class="bomb-button" id="bomb-button" aria-label="投放高爆航弹"><span class="bomb-icon"><svg><use href="#i-bolt"/></svg></span><span>高爆航弹<small><kbd>SPACE</kbd> <b id="bomb-count">× 3</b></small></span></button></div>
+        </div>
       </div>
       <div class="frame-bottom"><span><span class="tiny-diamond"></span> <span id="flight-status">等待飞行员就位</span></span><span>F-01 <span class="frame-coordinates">24°N 122°E</span></span></div>
     </section>

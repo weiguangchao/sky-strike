@@ -96,6 +96,7 @@ h1 > span { color: var(--orange); }
 .signal-bars i:nth-child(3) { height: 9px; }
 .signal-bars i:nth-child(4) { height: 12px; }
 .battlefield { position: relative; width: 100%; aspect-ratio: 480/760; isolation: isolate; overflow: hidden; background: #063d66; touch-action: none; user-select: none; -webkit-user-select: none; }
+.battle-stage { position: relative; width: 100%; height: 100%; container-type: inline-size; }
 .battlefield::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 4; box-shadow: none; }
 #game-canvas { display: block; width: 100%; height: 100%; touch-action: none; outline: none; image-rendering: auto; }
 .overlay { position: absolute; inset: 0; display: flex; align-items: center; flex-direction: column; z-index: 5; }
@@ -281,11 +282,8 @@ dialog .dialog-kicker { font-size: 14px; }
 .help-notes b { font-weight: 500; color: var(--text); display: inline-block; margin-right: 8px; }
 dialog .primary-button { font-size: 12px; }
 
-.battlefield:fullscreen { height: 100dvh; width: 100vw; aspect-ratio: auto; background: var(--bg); }
-.battlefield:fullscreen #game-canvas { max-width: calc(100dvh * 480 / 760); margin: 0 auto; object-fit: contain; }
-.battlefield:fullscreen .game-hud, .battlefield:fullscreen .battle-bottom, .battlefield:fullscreen .boss-hud { max-width: 480px; margin-inline: auto; }
-.battlefield:fullscreen .game-hud { width: 100%; }
-.battlefield:fullscreen .battle-bottom { left: 20px; right: 20px; }
+.battlefield:fullscreen { height: 100dvh; width: 100vw; aspect-ratio: auto; background: var(--bg); display: grid; place-items: center; }
+.battlefield:fullscreen .battle-stage { width: min(100vw, calc(100dvh * 480 / 760)); height: min(100dvh, calc(100vw * 760 / 480)); }
 .battlefield:fullscreen .launch-area { max-width: 330px; }
 .battlefield:fullscreen .dialog-content { max-width: 350px; }
 .battlefield:fullscreen .upgrade-options { max-width: 400px; }

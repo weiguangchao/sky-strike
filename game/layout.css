@@ -298,6 +298,13 @@ h1 {
 
 /* Overlay contents shrink with the actual playfield, including short windows. */
 @container (max-width: 320px) {
+  .battlefield:fullscreen .hud-top { padding-right: 36px; line-height: 1; }
+  .battlefield:fullscreen .hud-label { display: none; }
+  .battlefield:fullscreen .hud-top strong, .battlefield:fullscreen .wave-display > span { font-size: clamp(12px, 6cqw, 20px); }
+  .battlefield:fullscreen .hud-pause { position: absolute; top: 2cqw; right: 3cqw; width: 28px; height: 28px; }
+  .battlefield:fullscreen .health-row { margin-top: 2px; padding-right: 36px; }
+  .battlefield:fullscreen .level-badge { font-size: 12px; }
+  .battlefield:fullscreen .xp-track { margin-top: 2px; }
   .dialog-overlay { padding: 16px; }
   .dialog-kicker { font-size: 9px; letter-spacing: 2px; }
   .dialog-content h2, .upgrade-heading h2 { font-size: 22px; margin: 8px 0; }
