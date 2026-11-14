@@ -1,31 +1,62 @@
+import type { CraftId, Craft, Difficulty, Upgrade, GameStatus, Player, Enemy, EnemyPlane, Boss, Bullet, EnemyBullet, Pickup, Input, Point, GameEvent, EventMap, EmptyEvent, DataEvent } from './types.ts';
+
 export const WIDTH = 480;
 export const HEIGHT = 760;
 
-export const CRAFTS = {
-  falcon: { name: '游隼', code: 'F-01', role: '均衡型战机', description: '可靠的双联机炮与均衡性能。<br>每一位王牌的起点。', power: 4, speed: 4, armor: 4, hp: 5, damage: 9, rate: .22, move: 305, color: '#a5e2e8' },
-  swift: { name: '雨燕', code: 'S-02', role: '高速型战机', description: '轻量机身，极速连发。<br>在弹幕之间，留下一道残影。', power: 4, speed: 6, armor: 2, hp: 4, damage: 7, rate: .16, move: 375, color: '#edc69b' },
-  turtle: { name: '玄武', code: 'H-03', role: '重装型战机', description: '重型装甲与大口径机炮。<br>稳住航线，正面突破。', power: 5, speed: 2, armor: 6, hp: 7, damage: 13, rate: .28, move: 250, color: '#bad3be' },
+export const CRAFTS: Record<CraftId, Craft> = {
+  falcon: { name: '游隼', code: 'F-01', role: '均衡型战机', description: '椭圆翼、单发螺旋桨与双联机炮。<br>可靠的前线主力战斗机。', power: 4, speed: 4, armor: 4, hp: 5, damage: 9, rate: .22, move: 305, color: '#a5e2e8' },
+  swift: { name: '雨燕', code: 'S-02', role: '高速型战机', description: '海军蓝涂装，轻型螺旋桨战机。<br>高速机动，穿过敌方防线。', power: 4, speed: 6, armor: 2, hp: 4, damage: 7, rate: .16, move: 375, color: '#edc69b' },
+  turtle: { name: '玄武', code: 'H-03', role: '重装型战机', description: '双发动机、双尾撑与重型装甲。<br>以大口径机炮为编队护航。', power: 5, speed: 2, armor: 6, hp: 7, damage: 13, rate: .28, move: 250, color: '#bad3be' },
 };
 
-export const UPGRADES = [
+export const UPGRADES: Upgrade[] = [
   { id: 'spread', name: '交叉火力', description: '增加一组侧向弹道，弹幕覆盖更广。', icon: 'crosshair', max: 3, rare: true },
-  { id: 'rapid', name: '超频机炮', description: '射击间隔缩短 18%，火力持续倾泻。', icon: 'bolt', max: 5 },
+  { id: 'rapid', name: '急速供弹', description: '射击间隔缩短 18%，火力持续倾泻。', icon: 'bolt', max: 5 },
   { id: 'power', name: '高爆弹头', description: '所有武器伤害提升 25%。', icon: 'crosshair', max: 5 },
   { id: 'drone', name: '护航僚机', description: '增加一架僚机，协同发射机炮。', icon: 'plane', max: 2, rare: true },
-  { id: 'missile', name: '猎隼导弹', description: '自动发射追踪导弹，锁定最近敌机。', icon: 'bolt', max: 3, rare: true },
+  { id: 'missile', name: '追踪火箭', description: '自动发射追踪火箭，锁定最近敌机。', icon: 'bolt', max: 3, rare: true },
   { id: 'repair', name: '战地维修', description: '立刻回复 2 点装甲，重返战场。', icon: 'shield', max: Infinity },
   { id: 'armor', name: '复合装甲', description: '装甲上限 +1，并回复 2 点装甲。', icon: 'shield', max: 3 },
-  { id: 'magnet', name: '能量牵引', description: '能量吸取范围 +85，经验获取 +15%。', icon: 'crosshair', max: 2 },
-  { id: 'shield', name: '相位护盾', description: '获得护盾，每 15 秒抵挡一次伤害。', icon: 'shield', max: 2, rare: true },
-  { id: 'bomb', name: '震荡补给', description: '补充 2 枚炸弹，炸弹伤害提升 20%。', icon: 'bolt', max: Infinity },
+  { id: 'magnet', name: '补给回收', description: '补给回收范围 +85，经验获取 +15%。', icon: 'crosshair', max: 2 },
+  { id: 'shield', name: '应急装甲', description: '获得护盾，每 15 秒抵挡一次伤害。', icon: 'shield', max: 2, rare: true },
+  { id: 'bomb', name: '航弹补给', description: '补充 2 枚炸弹，炸弹伤害提升 20%。', icon: 'bolt', max: Infinity },
   { id: 'critical', name: '致命校准', description: '暴击率 +15%，暴击造成双倍伤害。', icon: 'crosshair', max: 4 },
-  { id: 'speed', name: '矢量推进', description: '移动速度 +15%，受击无敌时间 +0.3 秒。', icon: 'plane', max: 3 },
+  { id: 'speed', name: '高辛烷燃油', description: '移动速度 +15%，受击无敌时间 +0.3 秒。', icon: 'plane', max: 3 },
 ];
 
-const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-const distance2 = (a, b) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
+const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
+const distance2 = (a: Point, b: Point) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
 
 export class Game {
+  readonly random: () => number;
+  events: GameEvent[] = [];
+  status: GameStatus = 'menu';
+  craft!: CraftId;
+  difficulty!: Difficulty;
+  time!: number;
+  score!: number;
+  kills!: number;
+  wave!: number;
+  waveTime!: number;
+  spawnTimer!: number;
+  fireTimer!: number;
+  missileTimer!: number;
+  level!: number;
+  xp!: number;
+  nextXp!: number;
+  bombs!: number;
+  stacks: Partial<Record<Upgrade['id'], number>> = {};
+  choices: Upgrade[] = [];
+  enemies: Enemy[] = [];
+  bullets: Bullet[] = [];
+  enemyBullets: EnemyBullet[] = [];
+  pickups: Pickup[] = [];
+  boss: Boss | null = null;
+  bossDefeated!: boolean;
+  bossDelay!: number;
+  shieldTimer!: number;
+  player!: Player;
+
   constructor(random = Math.random) {
     this.random = random;
     this.events = [];
@@ -34,10 +65,12 @@ export class Game {
     this.events = [];
   }
 
-  emit(type, data = {}) { this.events.push({ type, ...data }); }
+  emit(type: EmptyEvent): void;
+  emit<K extends DataEvent>(type: K, data: EventMap[K]): void;
+  emit(type: keyof EventMap, data?: EventMap[DataEvent]): void { this.events.push({ type, ...data } as GameEvent); }
   drainEvents() { return this.events.splice(0); }
 
-  start(craft = 'falcon', difficulty = 'normal') {
+  start(craft: CraftId = 'falcon', difficulty: Difficulty = 'normal') {
     this.craft = CRAFTS[craft] ? craft : 'falcon';
     this.difficulty = difficulty;
     const spec = CRAFTS[this.craft];
@@ -77,14 +110,14 @@ export class Game {
   resume() { if (this.status === 'paused') { this.status = 'playing'; this.emit('resume'); } }
   menu() { this.status = 'menu'; this.emit('menu'); }
 
-  move(dx, dy, dt) {
+  move(dx: number, dy: number, dt: number) {
     const length = Math.hypot(dx, dy);
     if (!length) return;
     this.player.x = clamp(this.player.x + dx / length * this.movementSpeed * dt, 24, WIDTH - 24);
     this.player.y = clamp(this.player.y + dy / length * this.movementSpeed * dt, 100, HEIGHT - 45);
   }
 
-  step(dt, input = {}) {
+  step(dt: number, input: Input = {}) {
     if (this.status !== 'playing') return;
     dt = Math.min(Math.max(dt, 0), .05);
     this.time += dt;
@@ -117,7 +150,7 @@ export class Game {
   fire() {
     const p = this.player, critical = this.random() < .15 * (this.stacks.critical || 0);
     const damage = this.damage * (critical ? 2 : 1);
-    const bullet = (x, y, angle = 0, scale = 1) => this.bullets.push({ x, y, vx: Math.sin(angle) * 690, vy: -Math.cos(angle) * 690, damage: damage * scale, radius: 4, critical, kind: 'laser', dead: false });
+    const bullet = (x: number, y: number, angle = 0, scale = 1) => this.bullets.push({ x, y, vx: Math.sin(angle) * 690, vy: -Math.cos(angle) * 690, damage: damage * scale, radius: 4, critical, kind: 'laser', dead: false });
     bullet(p.x - 8, p.y - 24); bullet(p.x + 8, p.y - 24);
     for (let i = 1; i <= (this.stacks.spread || 0); i++) { bullet(p.x - 12, p.y - 16, -.15 * i, .72); bullet(p.x + 12, p.y - 16, .15 * i, .72); }
     for (let i = 0; i < (this.stacks.drone || 0); i++) bullet(p.x + (i === 0 ? -43 : 43), p.y + 5, 0, .85);
@@ -125,10 +158,10 @@ export class Game {
   }
 
   fireMissile() {
-    for (let i = 0; i < this.stacks.missile; i++) this.bullets.push({ x: this.player.x + (i - (this.stacks.missile - 1) / 2) * 17, y: this.player.y - 15, vx: (i - .5) * 35, vy: -280, damage: this.damage * 4, radius: 7, kind: 'missile', dead: false });
+    for (let i = 0; i < (this.stacks.missile || 0); i++) this.bullets.push({ x: this.player.x + (i - ((this.stacks.missile || 0) - 1) / 2) * 17, y: this.player.y - 15, vx: (i - .5) * 35, vy: -280, damage: this.damage * 4, radius: 7, kind: 'missile', dead: false });
   }
 
-  updateWaves(dt) {
+  updateWaves(dt: number) {
     if (this.wave % 5 === 0) {
       if (!this.boss && !this.bossDefeated) this.spawnBoss();
       if (this.bossDefeated) {
@@ -161,10 +194,10 @@ export class Game {
     this.emit('wave', { wave: this.wave });
   }
 
-  spawnEnemy(type, x, y) {
+  spawnEnemy(type: EnemyPlane['type'], x: number, y: number) {
     const gunship = type === 'gunship', dart = type === 'dart';
     const scale = 1 + (this.wave - 1) * .11;
-    const e = { type, x, y, originX: x, age: 0, phase: this.random() * Math.PI * 2, hp: (gunship ? 75 : dart ? 24 : 21) * scale, maxHp: (gunship ? 75 : dart ? 24 : 21) * scale, radius: gunship ? 23 : 16, speed: (gunship ? 54 : dart ? 145 : 90) + this.wave * 4, fireTimer: 1 + this.random() * 1.8, dead: false };
+    const e: EnemyPlane = { type, x, y, originX: x, age: 0, phase: this.random() * Math.PI * 2, hp: (gunship ? 75 : dart ? 24 : 21) * scale, maxHp: (gunship ? 75 : dart ? 24 : 21) * scale, radius: gunship ? 23 : 16, speed: (gunship ? 54 : dart ? 145 : 90) + this.wave * 4, fireTimer: 1 + this.random() * 1.8, dead: false };
     this.enemies.push(e);
     return e;
   }
@@ -176,7 +209,7 @@ export class Game {
     this.emit('boss', { final });
   }
 
-  updateEnemies(dt) {
+  updateEnemies(dt: number) {
     for (const e of this.enemies) {
       if (e.dead) continue;
       e.age += dt;
@@ -217,17 +250,17 @@ export class Game {
     this.enemies = this.enemies.filter(e => !e.dead);
   }
 
-  enemyShot(x, y, dx, dy, speed, color = 'orange') {
+  enemyShot(x: number, y: number, dx: number, dy: number, speed: number, color: EnemyBullet['color'] = 'orange') {
     const factor = this.difficulty === 'easy' ? .72 : 1;
     this.enemyBullets.push({ x, y, vx: dx * speed * factor, vy: dy * speed * factor, radius: 4, color, dead: false });
   }
 
-  aimedSpread(x, y, count, gap, speed) {
+  aimedSpread(x: number, y: number, count: number, gap: number, speed: number) {
     const angle = Math.atan2(this.player.y - y, this.player.x - x);
     for (let i = 0; i < count; i++) { const a = angle + (i - (count - 1) / 2) * gap; this.enemyShot(x, y, Math.cos(a), Math.sin(a), speed); }
   }
 
-  updateBullets(dt) {
+  updateBullets(dt: number) {
     for (const b of this.bullets) {
       if (b.kind === 'missile') {
         let target, nearest = Infinity;
@@ -247,7 +280,7 @@ export class Game {
     this.enemyBullets = this.enemyBullets.filter(b => !b.dead && b.y > -80 && b.y < HEIGHT + 30 && b.x > -30 && b.x < WIDTH + 30);
   }
 
-  damageEnemy(e, damage) {
+  damageEnemy(e: Enemy, damage: number) {
     if (e.dead) return;
     e.hp -= damage; e.hitFlash = .08;
     if (e.hp > 0) return;
@@ -269,7 +302,7 @@ export class Game {
     }
   }
 
-  updatePickups(dt) {
+  updatePickups(dt: number) {
     for (const item of this.pickups) {
       const distance = Math.sqrt(distance2(item, this.player));
       if (distance < 110 + (this.stacks.magnet || 0) * 85 || item.magnetized) {
@@ -278,7 +311,7 @@ export class Game {
       } else item.y += (item.type === 'xp' ? 88 : 65) * dt;
       if (distance2(item, this.player) < 23 ** 2) {
         item.dead = true;
-        if (item.type === 'xp') { this.xp += item.amount * (1 + .15 * (this.stacks.magnet || 0)); this.score += 10; }
+        if (item.type === 'xp') { this.xp += (item.amount || 0) * (1 + .15 * (this.stacks.magnet || 0)); this.score += 10; }
         if (item.type === 'health') { this.player.hp = Math.min(this.player.maxHp, this.player.hp + 1); this.emit('pickup', { text: '装甲 +1' }); }
         if (item.type === 'bomb') { this.bombs = Math.min(5, this.bombs + 1); this.emit('pickup', { text: '炸弹 +1' }); }
       }
@@ -324,7 +357,7 @@ export class Game {
     this.emit('upgrade', { choices: this.choices, level: this.level });
   }
 
-  chooseUpgrade(index) {
+  chooseUpgrade(index: number) {
     if (this.status !== 'upgrade' || !Number.isInteger(index) || !this.choices[index]) return false;
     const upgrade = this.choices[index];
     this.stacks[upgrade.id] = (this.stacks[upgrade.id] || 0) + 1;
@@ -339,7 +372,7 @@ export class Game {
     return true;
   }
 
-  finish(victory) {
+  finish(victory: boolean) {
     if (this.status !== 'playing') return;
     this.status = victory ? 'victory' : 'gameover';
     if (victory) this.score += 5000 + this.player.hp * 300;

@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "sky-strike",
+  "compatibility_date": "2026-11-14",
+  "workers_dev": true,
+  "build": {
+    "command": "npm run build"
+  },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "none"
+  },
+  "account_id": "ac83875e6d6bf0e3b8baf0d0a7f96009"
+}

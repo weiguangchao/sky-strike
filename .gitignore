@@ -4,3 +4,11 @@ test-results/
 playwright-report/
 .DS_Store
 .openai/*.tar.gz
+*.blend1
+*.blend2
+.wrangler/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+.artifacts/

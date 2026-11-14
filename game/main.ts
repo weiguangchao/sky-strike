@@ -1,63 +1,69 @@
-import { Game, CRAFTS, UPGRADES, WIDTH, HEIGHT } from './engine.js';
-import { Renderer, drawAircraft } from './render.js';
-import { Sound } from './audio.js';
+import type { CraftId, Difficulty, Point, Result } from './types.ts';
+import { Game, CRAFTS, UPGRADES, WIDTH, HEIGHT } from './engine.ts';
+import { Renderer } from './render.ts';
+import { Sound } from './audio.ts';
+import { VISUAL_SIGNALS } from './visual-style.ts';
 
-const $ = id => document.getElementById(id);
-const storage = {
-  read(key, fallback) { try { return JSON.parse(localStorage.getItem(`sky-strike:${key}`)) ?? fallback; } catch { return fallback; } },
-  write(key, value) { try { localStorage.setItem(`sky-strike:${key}`, JSON.stringify(value)); } catch { /* Play remains available without storage. */ } },
+for (const [name, signal] of Object.entries(VISUAL_SIGNALS)) document.documentElement.style.setProperty(`--${name}`, signal.color);
+
+const $ = <T extends HTMLElement = HTMLElement>(id: string): T => {
+  const element = document.getElementById(id);
+  if (!element) throw new Error(`Missing interface element: ${id}`);
+  return element as T;
 };
-let selectedCraft = storage.read('craft', 'falcon');
+const storage = {
+  read<T>(key: string, fallback: T): T { try { return JSON.parse(localStorage.getItem(`sky-strike:${key}`) ?? 'null') ?? fallback; } catch { return fallback; } },
+  write(key: string, value: unknown) { try { localStorage.setItem(`sky-strike:${key}`, JSON.stringify(value)); } catch { /* Play remains available without storage. */ } },
+};
+let selectedCraft = storage.read<CraftId>('craft', 'falcon');
 if (!CRAFTS[selectedCraft]) selectedCraft = 'falcon';
-let difficulty = storage.read('difficulty', 'normal');
+let difficulty = storage.read<Difficulty>('difficulty', 'normal');
 if (!['normal', 'easy'].includes(difficulty)) difficulty = 'normal';
 let bestScore = Number(storage.read('best', 0)) || 0;
 let flights = Number(storage.read('flights', 0)) || 0;
 export const game = new Game();
 game.craft = selectedCraft;
-const renderer = new Renderer($('game-canvas'), game);
+const renderer = new Renderer($<HTMLCanvasElement>('game-canvas'), $<HTMLCanvasElement>('craft-canvas'), game);
 const sound = new Sound(Boolean(storage.read('sound', false)));
 const keys = new Set();
-let pointer = null;
+let pointer: { id: number; position: Point; target: Point } | null = null;
 let announcementTimer = 0;
 let announcementText = '';
 let healthKey = '';
 let uiTimer = 0;
 let helpPaused = false;
 let previousStatus = '';
-const pad = n => String(Math.floor(n)).padStart(6, '0');
-const waveNum = n => String(n).padStart(2, '0');
-const elapsed = seconds => `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
+const pad = (n: number) => String(Math.floor(n)).padStart(6, '0');
+const waveNum = (n: number) => String(n).padStart(2, '0');
+const elapsed = (seconds: number) => `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 
 function updateRecord() {
   $('best-score').textContent = pad(bestScore);
   $('record-note').textContent = flights ? `已完成 ${flights} 次出击 · 下一次，飞得更远` : '你的王牌之路，从这里开始';
 }
 
-function selectCraft(id) {
+function selectCraft(id: CraftId) {
   if (game.status !== 'menu' || !CRAFTS[id]) return;
   selectedCraft = id;
   game.craft = id;
   storage.write('craft', id);
   const c = CRAFTS[id];
-  document.querySelectorAll('[data-craft]').forEach(button => { const active = button.dataset.craft === id; button.classList.toggle('active', active); button.setAttribute('aria-selected', String(active)); });
+  document.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach(button => { const active = button.dataset.craft === id; button.classList.toggle('active', active); button.setAttribute('aria-selected', String(active)); });
   $('craft-name').textContent = c.name;
   $('craft-role').textContent = c.role;
   $('craft-code').textContent = c.code;
   $('craft-description').innerHTML = c.description;
   $('hero-craft-caption').textContent = `${c.code} ${c.name} / ${c.role}`;
-  document.querySelector('.frame-bottom>span:last-child').firstChild.textContent = `${c.code} `;
-  for (const [stat, value] of [['power', c.power], ['speed', c.speed], ['armor', c.armor]]) $('stat-' + stat).innerHTML = Array.from({ length: 6 }, (_, i) => `<i class="${i < value ? 'filled' : ''}"></i>`).join('');
-  const ctx = $('craft-canvas').getContext('2d');
-  ctx.clearRect(0, 0, 480, 300);
-  drawAircraft(ctx, 242, 150, 2.1, id, 0, -.24, false);
+  document.querySelector('.frame-bottom>span:last-child')!.firstChild!.textContent = `${c.code} `;
+  for (const [stat, value] of [['power', c.power], ['speed', c.speed], ['armor', c.armor]] as const) $('stat-' + stat).innerHTML = Array.from({ length: 6 }, (_, i) => `<i class="${i < value ? 'filled' : ''}"></i>`).join('');
+  renderer.selectCraft(id);
 }
 
-function setDifficulty(mode) {
+function setDifficulty(mode: Difficulty) {
   if (game.status !== 'menu') return;
   difficulty = mode;
   storage.write('difficulty', mode);
-  document.querySelectorAll('[data-difficulty]').forEach(button => { const active = button.dataset.difficulty === mode; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
+  document.querySelectorAll<HTMLButtonElement>('[data-difficulty]').forEach(button => { const active = button.dataset.difficulty === mode; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
   $('difficulty-description').textContent = mode === 'easy' ? '额外装甲，较慢弹速，轻松享受飞行' : '经典弹幕挑战，完整作战体验';
 }
 
@@ -92,7 +98,7 @@ function togglePause() {
   processEvents(); syncState();
 }
 
-function announce(top, title, boss = false, duration = 2.4) {
+function announce(top: string, title: string, boss = false, duration = 2.4) {
   const html = `<span>${top}</span><strong>${title}</strong>`;
   if (html !== announcementText) { $('wave-announcement').innerHTML = html; announcementText = html; }
   $('wave-announcement').classList.add('visible');
@@ -104,13 +110,13 @@ function upgradeChoices() {
   $('upgrade-options').replaceChildren(...game.choices.map((upgrade, index) => {
     const button = document.createElement('button');
     button.className = `upgrade-card${upgrade.rare ? ' rare' : ''}`;
-    button.innerHTML = `<span class="upgrade-icon"><svg><use href="#i-${upgrade.icon}"/></svg></span><span class="upgrade-card-content"><strong>${upgrade.name}<small>${upgrade.rare ? '稀有' : '强化'}${game.stacks[upgrade.id] ? ` · ${game.stacks[upgrade.id] + 1} 级` : ''}</small></strong><p>${upgrade.description}</p></span><span class="upgrade-number">${index + 1}</span>`;
+    button.innerHTML = `<span class="upgrade-icon"><svg><use href="#i-${upgrade.icon}"/></svg></span><span class="upgrade-card-content"><strong>${upgrade.name}<small>${upgrade.rare ? '稀有' : '强化'}${game.stacks[upgrade.id] ? ` · ${(game.stacks[upgrade.id] || 0) + 1} 级` : ''}</small></strong><p>${upgrade.description}</p></span><span class="upgrade-number">${index + 1}</span>`;
     button.addEventListener('click', () => chooseUpgrade(index));
     return button;
   }));
 }
 
-function chooseUpgrade(index) {
+function chooseUpgrade(index: number) {
   if (!game.chooseUpgrade(index)) return;
   sound.unlock(); keys.clear(); pointer = null;
   processEvents(); syncState(); syncHud();
@@ -128,11 +134,11 @@ function syncState() {
   $('upgrade-screen').hidden = state !== 'upgrade';
   $('result-screen').hidden = state !== 'gameover' && state !== 'victory';
   $('boss-hud').hidden = !game.boss || state === 'menu';
-  $('flight-status').textContent = { menu: '等待飞行员就位', playing: '航线已锁定 · 作战进行中', paused: '作战已暂停', upgrade: '能量充足 · 选择强化', gameover: '任务结束 · 等待再次出击', victory: '作战完成 · 制空权已夺回' }[state];
-  document.querySelectorAll('[data-craft], [data-difficulty]').forEach(button => { button.disabled = inRun; });
+  $('flight-status').textContent = { menu: '等待飞行员就位', playing: '航线已锁定 · 作战进行中', paused: '作战已暂停', upgrade: '补给充足 · 选择强化', gameover: '任务结束 · 等待再次出击', victory: '作战完成 · 制空权已夺回' }[state];
+  document.querySelectorAll<HTMLButtonElement>('[data-craft], [data-difficulty]').forEach(button => { button.disabled = inRun; });
   if (state !== previousStatus) {
     if (state === 'paused') $('resume-button').focus({ preventScroll: true });
-    if (state === 'upgrade') $('upgrade-options').firstElementChild?.focus({ preventScroll: true });
+    if (state === 'upgrade') ($('upgrade-options').firstElementChild as HTMLElement | null)?.focus({ preventScroll: true });
     if (state === 'gameover' || state === 'victory') $('retry-button').focus({ preventScroll: true });
     previousStatus = state;
   }
@@ -141,10 +147,10 @@ function syncState() {
 function syncHud() {
   $('score').textContent = pad(game.score);
   $('wave').textContent = waveNum(game.wave);
-  $('level').textContent = game.level;
+  $('level').textContent = String(game.level);
   $('xp-fill').style.width = `${Math.min(100, game.xp / game.nextXp * 100)}%`;
   $('bomb-count').textContent = `× ${game.bombs}`;
-  $('bomb-button').disabled = game.bombs === 0;
+  $<HTMLButtonElement>('bomb-button').disabled = game.bombs === 0;
   const currentHealth = `${game.player.hp}/${game.player.maxHp}`;
   if (healthKey !== currentHealth) {
     healthKey = currentHealth;
@@ -162,7 +168,7 @@ function syncHud() {
   }
 }
 
-function showResults(event) {
+function showResults(event: Result) {
   flights++;
   storage.write('flights', flights);
   const isBest = event.score > bestScore;
@@ -172,7 +178,7 @@ function showResults(event) {
   $('result-subtitle').textContent = event.victory ? '敌方防线已突破。王牌，欢迎归航。' : '每一次坠落，都是下一场传奇的起点。';
   $('result-score').textContent = pad(event.score);
   $('result-best').textContent = isBest ? 'NEW RECORD · 刷新个人最高纪录' : `个人最高纪录 ${pad(bestScore)}`;
-  $('result-kills').textContent = event.kills;
+  $('result-kills').textContent = String(event.kills);
   $('result-wave').textContent = `${waveNum(event.wave)}/10`;
   $('result-time').textContent = elapsed(event.time);
   updateRecord();
@@ -189,7 +195,7 @@ function processEvents() {
     if (event.type === 'bossDefeated') announce('TARGET DESTROYED', event.final ? '制空权已夺回' : '首领已击破', false, 2.4);
     if (event.type === 'upgrade') { keys.clear(); pointer = null; upgradeChoices(); }
     if (event.type === 'upgraded') {
-      $('build-list').innerHTML = Object.entries(game.stacks).map(([id, count]) => `<span class="build-chip">${UPGRADES.find(u => u.id === id).name}${count > 1 ? ` ×${count}` : ''}</span>`).join('');
+      $('build-list').innerHTML = Object.entries(game.stacks).map(([id, count]) => `<span class="build-chip">${UPGRADES.find(u => u.id === id)!.name}${count > 1 ? ` ×${count}` : ''}</span>`).join('');
     }
     if (event.type === 'pickup') announce('SUPPLY COLLECTED', event.text, false, 1.4);
     if (event.type === 'end') { keys.clear(); pointer = null; showResults(event); announcementTimer = 0; $('wave-announcement').classList.remove('visible'); }
@@ -203,10 +209,10 @@ function toggleSound() {
   syncSound();
 }
 function syncSound() {
-  document.querySelectorAll('.sound-button').forEach(button => {
+  document.querySelectorAll<HTMLButtonElement>('.sound-button').forEach(button => {
     const label = sound.enabled ? '关闭声音' : '开启声音';
     button.setAttribute('aria-label', label); button.title = label;
-    button.querySelector('use').setAttribute('href', sound.enabled ? '#i-sound' : '#i-mute');
+    button.querySelector('use')!.setAttribute('href', sound.enabled ? '#i-sound' : '#i-mute');
   });
 }
 
@@ -216,7 +222,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) autoP
 window.addEventListener('blur', autoPause);
 window.addEventListener('resize', () => renderer.resize());
 window.addEventListener('keydown', event => {
-  if ($('help-dialog').open || event.ctrlKey || event.metaKey || event.altKey) return;
+  if ($<HTMLDialogElement>('help-dialog').open || event.ctrlKey || event.metaKey || event.altKey) return;
   const key = event.key.toLowerCase();
   if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'w', 'a', 's', 'd', ' '].includes(key) && game.status === 'playing') event.preventDefault();
   if (event.repeat && [' ', 'b', 'p', 'escape', 'm'].includes(key)) return;
@@ -228,8 +234,8 @@ window.addEventListener('keydown', event => {
 });
 window.addEventListener('keyup', event => keys.delete(event.key.toLowerCase()));
 
-const canvas = $('game-canvas');
-function pointerPosition(event) {
+const canvas = $<HTMLCanvasElement>('game-canvas');
+function pointerPosition(event: PointerEvent) {
   const rect = canvas.getBoundingClientRect(), scale = Math.min(rect.width / WIDTH, rect.height / HEIGHT);
   return { x: (event.clientX - rect.left - (rect.width - WIDTH * scale) / 2) / scale, y: (event.clientY - rect.top - (rect.height - HEIGHT * scale) / 2) / scale };
 }
@@ -246,7 +252,7 @@ canvas.addEventListener('pointermove', event => {
   pointer.target.y = Math.max(100, Math.min(HEIGHT - 45, pointer.target.y + (position.y - pointer.position.y) * 1.12));
   pointer.position = position;
 });
-const releasePointer = event => { if (pointer?.id === event.pointerId) pointer = null; };
+const releasePointer = (event: PointerEvent) => { if (pointer?.id === event.pointerId) pointer = null; };
 canvas.addEventListener('pointerup', releasePointer);
 canvas.addEventListener('pointercancel', releasePointer);
 canvas.addEventListener('lostpointercapture', releasePointer);
@@ -260,9 +266,9 @@ $('resume-button').addEventListener('click', togglePause);
 $('quit-button').addEventListener('click', goHome);
 $('result-home').addEventListener('click', goHome);
 $('bomb-button').addEventListener('click', () => { sound.unlock(); game.bomb(); processEvents(); syncHud(); });
-document.querySelectorAll('[data-craft]').forEach(button => button.addEventListener('click', () => selectCraft(button.dataset.craft)));
-document.querySelectorAll('[data-difficulty]').forEach(button => button.addEventListener('click', () => setDifficulty(button.dataset.difficulty)));
-document.querySelectorAll('.sound-button').forEach(button => button.addEventListener('click', toggleSound));
+document.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach(button => button.addEventListener('click', () => selectCraft(button.dataset.craft as CraftId)));
+document.querySelectorAll<HTMLButtonElement>('[data-difficulty]').forEach(button => button.addEventListener('click', () => setDifficulty(button.dataset.difficulty as Difficulty)));
+document.querySelectorAll<HTMLButtonElement>('.sound-button').forEach(button => button.addEventListener('click', toggleSound));
 $('fullscreen-button').addEventListener('click', async () => {
   try {
     if (document.fullscreenElement) await document.exitFullscreen();
@@ -270,14 +276,16 @@ $('fullscreen-button').addEventListener('click', async () => {
     else { $('fullscreen-button').title = '当前浏览器使用竖屏模式即可畅玩'; announce('FLIGHT READY', '竖屏就绪，直接出击', false, 2); }
   } catch { $('fullscreen-button').title = '请在浏览器中允许全屏'; }
 });
-$('help-button').addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); $('help-dialog').showModal(); });
-$('close-help').addEventListener('click', () => $('help-dialog').close());
-$('help-ready').addEventListener('click', () => $('help-dialog').close());
-$('help-dialog').addEventListener('close', () => { if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
+$('help-button').addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); $<HTMLDialogElement>('help-dialog').showModal(); });
+$('close-help').addEventListener('click', () => $<HTMLDialogElement>('help-dialog').close());
+$('help-ready').addEventListener('click', () => $<HTMLDialogElement>('help-dialog').close());
+$<HTMLDialogElement>('help-dialog').addEventListener('close', () => { if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
 
+await renderer.init();
 selectCraft(selectedCraft); setDifficulty(difficulty); updateRecord(); syncSound(); syncState();
+$<HTMLButtonElement>('start-button').disabled = false;
 let lastTime = performance.now();
-function frame(now) {
+function frame(now: number) {
   const dt = Math.min((now - lastTime) / 1000, .05); lastTime = now;
   const x = Number(keys.has('d') || keys.has('arrowright')) - Number(keys.has('a') || keys.has('arrowleft'));
   const y = Number(keys.has('s') || keys.has('arrowdown')) - Number(keys.has('w') || keys.has('arrowup'));

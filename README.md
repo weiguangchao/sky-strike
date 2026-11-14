@@ -1,54 +1,69 @@
 # 苍穹突袭 · Sky Strike
 
-一个支持电脑和手机浏览器的竖版肉鸽弹幕射击游戏。使用原生 Canvas 2D、JavaScript 和 Web Audio，无运行时框架依赖。
+支持电脑与手机浏览器的二战复古竖版肉鸽空战游戏。使用 **TypeScript + Vite + Three.js** 开发，飞机、首领、航母与海岛在 **Blender** 中建模，浏览器加载本地 GLB 实时渲染。
 
-## 开始游戏
+在线试玩：[sky-strike.tabuxiangma.workers.dev](https://sky-strike.tabuxiangma.workers.dev)。
+
+完整产品说明见 [dcos/feature/](dcos/feature/README.md)，开发约定见 [AGENTS.md](AGENTS.md)。
+
+## 本地运行
 
 ```sh
 npm install
 npm run dev
 ```
 
-打开 http://localhost:5173。手机与电脑处于同一局域网时，在手机浏览器打开 `http://电脑的局域网IP:5173`。
+打开 http://localhost:5173。手机与电脑在同一局域网时，打开 `http://电脑的局域网IP:5173`。字体、模型和音效均在本地提供，不依赖外部资源服务。
+
+电脑使用 WASD／方向键移动、空格投放高爆航弹、P 暂停；手机按住战场拖动，点击右下角按钮投弹。机库和战斗始终适应当前窗口，不产生页面滚动。
+
+## Blender 模型
+
+可编辑源文件：[sky-strike-ww2.blend](assets/blender/sky-strike-ww2.blend)。模型生成与导出脚本位于 [scripts/blender/build_models.py](scripts/blender/build_models.py)。
 
 ```sh
-npm run build  # 输出可部署的静态网站到 dist/
+npm run models:build
 ```
 
-将 `dist/` 部署到任意静态网站服务即可游玩。使用 HTTP 服务打开页面，ES Modules 无法直接通过 `file://` 加载。字体随游戏提供，中文使用系统字体，游戏不依赖外部资源。
+macOS 默认使用已安装的 Blender；其他环境从 PATH 查找 `blender`，也可用 `BLENDER_PATH` 指定路径。命令会重新生成模型源文件和游戏 GLB。坐标、螺旋桨节点、模型清单和手工修改流程见 [模型文档](dcos/feature/models.md)。正常开发或构建直接使用已生成的模型，无须每次启动 Blender。
 
-## 玩法
-
-- 三架战机：均衡型「游隼」、高速型「雨燕」、重装型「玄武」。
-- 两个航区、10 波攻势，第 5 和第 10 波迎战首领。
-- 自动开火，击落敌机收集能量，升级时从三项随机强化中选择一项。
-- 12 种强化：散射、超频、高爆、僚机、追踪导弹、维修、装甲、能量牵引、护盾、炸弹、暴击、推进。
-- 震荡炸弹清除弹幕、打击敌机，并提供短暂无敌。
-- 标准、休闲两种模式；最高分、出击次数、战机与声音偏好保存在当前浏览器。
-
-| 操作 | 电脑 | 手机 |
-| --- | --- | --- |
-| 移动 | WASD、方向键，或按住鼠标拖动 | 在战场按住拖动 |
-| 炸弹 | 空格 / B | 点击右下角炸弹按钮 |
-| 暂停 | P / Esc，或右上角按钮 | 点击右上角按钮 |
-| 强化 | 点击，或数字键 1 / 2 / 3 | 点击强化卡片 |
-| 声音 | M，或顶部声音按钮 | 点击顶部声音按钮 |
-
-切换标签页或进入后台时自动暂停。战机中心白点为受击判定，机翼不参与碰撞。
-
-## 验证
+## 验证与发布
 
 ```sh
-npm test          # 战斗逻辑与完整通关模拟
-npm run test:e2e  # 电脑键盘、手机真实触摸、纪录和作战手册
+npm run typecheck  # 严格检查应用、脚本、配置与测试的 TypeScript 类型
+npm test          # 战斗逻辑、完整通关模拟与 Blender 导出模型验证
+npm run test:e2e  # 电脑操作、手机触摸、模型加载和 11 种窗口尺寸
+npm run build     # 类型检查后构建到 dist/
+npm run preview   # 预览构建结果
 ```
 
-浏览器测试在 macOS 上优先使用已安装的 Google Chrome。其他环境先运行 `npx playwright install chromium`。
+浏览器测试在 macOS 上优先使用 Google Chrome；其他环境可运行 `npx playwright install chromium`。将 `dist/` 部署到静态网站服务即可游玩。
 
-## 源码
+部署到 Cloudflare Workers：
 
-- `game/engine.js`：可独立测试的战斗、波次、首领和成长逻辑。
-- `game/render.js`：程序化海面、岛屿、航母、战机和战斗特效。
-- `game/main.js`：键盘、鼠标、触摸、界面及本地存储。
-- `game/audio.js`：实时合成音效，默认静音。
-- `game/style.css`：响应式机库、竖屏战场与界面。
+```sh
+npx wrangler login
+npm run deploy:check
+npm run deploy
+```
+
+无需数据库或运行时环境变量。部署命令会先构建，再发布 `dist/` 中的资源。配置、授权方式与验证步骤见 [部署文档](dcos/feature/deployment.md)。
+
+## 产品文档
+
+- [游戏玩法](dcos/feature/gameplay.md)：战机、波次、首领、随机改装与计分。
+- [功能清单](dcos/feature/features.md)：界面、操作、暂停、记录与窗口适配。
+- [产品特点与画风](dcos/feature/characteristics.md)：二战航空氛围、材质、场景与界面。
+- [Blender 模型流程](dcos/feature/models.md)：源文件、生成、导出与运行时约定。
+
+## 代码结构
+
+- `game/engine.ts`：独立于渲染的战斗与成长逻辑。
+- `game/types.ts`：状态、输入、战机、敌机、武器和事件类型。
+- `game/render.ts`：Three.js 顶视战场、投影、压翼、螺旋桨与实例化特效。
+- `game/models.ts`：本地 GLB 载入、共享资源与模型实例。
+- `game/main.ts`：界面、输入、本地存储和游戏循环。
+- `game/audio.ts`：Web Audio 合成音效。
+- `game/style.css`、`game/layout.css`：二战复古组件外观与窗口适配。
+- `game/public/assets/models/`：Blender 导出模型及生成清单。
+- `assets/blender/`：可编辑 Blender 模型库。

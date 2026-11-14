@@ -1,9 +1,10 @@
 import test from 'node:test';
+import type { Input } from '../game/types.ts';
 import assert from 'node:assert/strict';
-import { Game, UPGRADES, WIDTH, HEIGHT } from '../game/engine.js';
+import { Game, UPGRADES, WIDTH, HEIGHT } from '../game/engine.ts';
 
 function random(seed = 42) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
-function advance(game, seconds, input = {}) { for (let i = 0; i < seconds * 60; i++) game.step(1 / 60, input); }
+function advance(game: Game, seconds: number, input: Input = {}) { for (let i = 0; i < seconds * 60; i++) game.step(1 / 60, input); }
 
 test('keyboard movement is normalized, bounded, and stops while paused', () => {
   const game = new Game(random()); game.start();
@@ -21,9 +22,9 @@ test('keyboard movement is normalized, bounded, and stops while paused', () => {
 test('only central hitbox takes damage, then invulnerability prevents repeated hits', () => {
   const game = new Game(random()); game.start(); game.spawnTimer = 99; game.player.invincible = 0;
   const hp = game.player.hp;
-  game.enemyBullets.push({ x: game.player.x + 22, y: game.player.y, vx: 0, vy: 0, radius: 4 });
+  game.enemyBullets.push({ x: game.player.x + 22, y: game.player.y, vx: 0, vy: 0, radius: 4, color: 'orange' });
   game.step(.01); assert.equal(game.player.hp, hp);
-  game.enemyBullets.push({ x: game.player.x, y: game.player.y, vx: 0, vy: 0, radius: 4 });
+  game.enemyBullets.push({ x: game.player.x, y: game.player.y, vx: 0, vy: 0, radius: 4, color: 'orange' });
   game.step(.01); assert.equal(game.player.hp, hp - 1);
   game.hurt(); assert.equal(game.player.hp, hp - 1);
 });
@@ -42,7 +43,7 @@ test('energy levels up once, offers unique upgrades, and freezes combat until se
 
 test('bomb removes bullets and regular enemies, damages boss, and grants safety', () => {
   const game = new Game(random()); game.start(); game.wave = 5; game.spawnBoss();
-  const boss = game.boss; const hp = boss.hp;
+  const boss = game.boss!; const hp = boss.hp;
   game.spawnEnemy('gunship', 100, 150);
   game.enemyShot(250, 200, 0, 1, 100);
   assert.equal(game.bomb(), true);
@@ -55,11 +56,11 @@ test('bomb removes bullets and regular enemies, damages boss, and grants safety'
 
 test('shield absorbs a hit, regenerates, and armor repair respects maximum health', () => {
   const game = new Game(random()); game.start(); game.spawnTimer = 999; game.status = 'upgrade';
-  game.choices = [UPGRADES.find(u => u.id === 'shield')]; game.chooseUpgrade(0);
+  game.choices = [UPGRADES.find(u => u.id === 'shield')!]; game.chooseUpgrade(0);
   game.player.invincible = 0; const hp = game.player.hp; game.hurt();
   assert.equal(game.player.hp, hp); assert.equal(game.player.shield, false);
   advance(game, 15.1); assert.equal(game.player.shield, true);
-  game.status = 'upgrade'; game.choices = [UPGRADES.find(u => u.id === 'armor')]; game.chooseUpgrade(0);
+  game.status = 'upgrade'; game.choices = [UPGRADES.find(u => u.id === 'armor')!]; game.chooseUpgrade(0);
   assert.equal(game.player.maxHp, hp + 1); assert.equal(game.player.hp, hp + 1);
 });
 

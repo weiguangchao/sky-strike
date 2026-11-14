@@ -1,0 +1,444 @@
+/* Reserve the window's chrome first, then fit the portrait battlefield. */
+:root {
+  --header-height: clamp(56px, 9dvh, 88px);
+  --footer-height: clamp(26px, 5dvh, 44px);
+  --stage-inset: clamp(8px, 2dvh, 22px);
+  --column-gap: clamp(18px, 3vw, 46px);
+  --frame-top-height: 35px;
+  --frame-bottom-height: 31px;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  --battle-height: calc(100dvh - var(--header-height) - var(--footer-height) - var(--stage-inset) * 2 - var(--frame-top-height) - var(--frame-bottom-height) - 2px);
+  --battle-width: min(480px, calc(var(--battle-height) * 480 / 760));
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: var(--header-height) minmax(0, 1fr) var(--footer-height);
+}
+
+.site-header {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 54px);
+  min-width: 0;
+}
+
+.hangar {
+  width: 100%;
+  max-width: 1390px;
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto;
+  padding: var(--stage-inset) clamp(16px, 4vw, 54px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--battle-width)) minmax(0, .86fr);
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: var(--column-gap);
+  align-items: center;
+}
+
+.briefing,
+.loadout-panel {
+  min-width: 0;
+  padding-top: 0;
+}
+
+h1 {
+  font-size: clamp(24px, 2.3vw, 33px);
+}
+
+.game-section {
+  container-type: inline-size;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-width: none;
+  justify-self: center;
+  align-self: center;
+}
+
+.frame-top {
+  height: var(--frame-top-height);
+}
+
+.frame-bottom {
+  height: var(--frame-bottom-height);
+}
+
+.battlefield {
+  container-type: inline-size;
+}
+
+.start-heading h2 {
+  font-size: clamp(24px, 10.5cqw, 49px);
+  margin: 3.5cqw 0 1.7cqw;
+  letter-spacing: 1.5cqw;
+}
+
+.operation-tag {
+  font-size: clamp(7px, 2.5cqw, 11px);
+  letter-spacing: .7cqw;
+}
+
+.start-en-title {
+  font-size: clamp(14px, 5.2cqw, 23px);
+  letter-spacing: 2.5cqw;
+  padding-left: 2.5cqw;
+}
+
+.start-heading p {
+  font-size: clamp(8px, 2.3cqw, 10px);
+  margin-top: 4cqw;
+  letter-spacing: .4cqw;
+}
+
+.launch-button {
+  height: clamp(44px, 15.5cqw, 68px);
+}
+
+.site-footer {
+  width: 100%;
+  max-width: 1390px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 54px);
+}
+
+.battle-active .loadout-divider,
+.battle-active .feature-heading,
+.battle-active .feature-description,
+.battle-active .upgrade-preview {
+  display: none;
+}
+
+/* Compress supporting information before sacrificing battlefield space. */
+@media (max-height: 900px) {
+  h1 { line-height: 1.5; margin: 14px 0 12px; }
+  .intro { margin-bottom: 20px; line-height: 2; }
+  .mission-card { padding-block: 12px; }
+  .mission-name { margin-top: 8px; }
+  .mission-card p { margin-bottom: 10px; }
+  .flight-record { margin-top: 18px; }
+  .flight-record > strong { font-size: 34px; margin-top: 6px; }
+  .difficulty { margin-top: 18px; gap: 6px; }
+  .local-note { margin-top: 18px; }
+  .craft-tabs { margin-top: 10px; }
+  .craft-tabs button { padding-block: 7px; }
+  .craft-illustration { height: 110px; margin-top: 10px; }
+  .craft-description { margin: 6px 0 12px; line-height: 1.8; }
+  .craft-stats { gap: 8px; }
+  .loadout-divider { margin: 18px 0 14px; }
+  .feature-description { font-size: 10px; line-height: 1.8; margin: 8px 0 12px; }
+  .pilot-tip { margin-top: 18px; }
+  .run-build { margin-top: 14px; }
+}
+
+@media (max-width: 1100px) {
+  .header-right { gap: 12px; }
+  .system-online { margin-right: 10px; }
+  .intro, .craft-description { font-size: 11px; }
+  .chapter-label { font-size: 9px; letter-spacing: .8px; }
+  .mission-name { font-size: 17px; }
+  .mission-meta { font-size: 8px; gap: 5px; }
+  .mission-meta span + span::before { margin-right: 5px; }
+  .local-note { font-size: 8px; white-space: normal; }
+  .craft-name { gap: 7px; }
+  .craft-name h3 { font-size: 19px; }
+  .craft-name > span { font-size: 8px; }
+  .panel-heading > span { font-size: 8px; }
+}
+
+@media (max-width: 1000px) {
+  .system-online, .briefing { display: none; }
+  .hangar {
+    max-width: 1000px;
+    grid-template-columns: minmax(0, var(--battle-width)) minmax(0, 230px);
+    column-gap: clamp(18px, 3vw, 28px);
+    justify-content: center;
+  }
+  .game-section { grid-column: 1; }
+  .loadout-panel { grid-column: 2; grid-row: 1; }
+  .footer-controls { gap: 14px; }
+  .site-footer > span:first-child { display: none; }
+}
+
+@media (max-height: 740px) {
+  .intro, .local-note, .pilot-tip, .loadout-divider,
+  .feature-heading, .feature-description, .upgrade-preview { display: none; }
+  h1 { margin: 10px 0 16px; font-size: 25px; }
+  .craft-illustration { height: 86px; }
+  .craft-description { display: none; }
+  .craft-stats { margin-top: 12px; }
+}
+
+@media (max-height: 560px) {
+  :root { --header-height: 48px; --footer-height: 0px; --stage-inset: 6px; }
+  .site-footer, .chapter-label, .record-note,
+  .craft-illustration, .craft-stats { display: none; }
+  h1 { font-size: 21px; margin: 0 0 12px; }
+  .mission-card p { display: none; }
+  .flight-record { margin-top: 12px; }
+  .difficulty { margin-top: 10px; }
+  .panel-heading { margin-bottom: 12px; }
+  .craft-name { margin-top: 14px; }
+}
+
+/* On phones the aircraft selector is a small dock, not another page section. */
+@media (max-width: 700px) {
+  :root {
+    --header-height: 56px;
+    --footer-height: 0px;
+    --stage-inset: 8px;
+    --dock-height: 64px;
+    --dock-gap: 8px;
+    --frame-top-height: 26px;
+    --frame-bottom-height: 22px;
+  }
+  body {
+    --battle-height: calc(100dvh - var(--header-height) - var(--stage-inset) * 2 - var(--dock-height) - var(--dock-gap) - var(--frame-top-height) - var(--frame-bottom-height) - 2px);
+    --battle-width: min(calc(100vw - 24px), calc(var(--battle-height) * 480 / 760), 480px);
+    background: var(--bg);
+  }
+  .site-header { padding-inline: 16px; }
+  .brand { font-size: 23px; gap: 10px; }
+  .brand-mark { width: 35px; height: 35px; }
+  .brand-mark svg { width: 24px; height: 24px; }
+  .brand small { font-size: 8px; letter-spacing: 4px; margin-top: 5px; }
+  .header-right { gap: 7px; }
+  .text-button { font-size: 10px; gap: 6px; padding: 5px; }
+  .text-button svg { width: 15px; }
+  .header-right .icon-button { width: 27px; height: 30px; }
+  .header-right .icon-button svg { width: 17px; height: 17px; }
+  .hangar {
+    max-width: 520px;
+    padding: var(--stage-inset) 12px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) var(--dock-height);
+    gap: var(--dock-gap);
+  }
+  .game-section { grid-column: 1; grid-row: 1; width: var(--battle-width); }
+  .frame-top { padding-inline: 12px; font-size: 8px; }
+  .frame-top > span:first-child { font-size: 9px; }
+  .frame-bottom { font-size: 7px; }
+  .frame-coordinates { font-size: 9px; }
+  .aircraft-caption { font-size: 7px; }
+  .start-control-hint { font-size: 8px; gap: 8px; }
+  .desktop-hint { display: none; }
+  .mobile-hint { display: inline; }
+  .start-version { font-size: 7px; letter-spacing: 1.5px; }
+  .launch-button { padding-inline: 20px; gap: 14px; }
+  .launch-button > span { font-size: 17px; }
+  .loadout-panel {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    max-width: 440px;
+    justify-self: center;
+    height: var(--dock-height);
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .loadout-panel .panel-heading, .loadout-panel .craft-illustration,
+  .loadout-panel .craft-description, .loadout-panel .craft-stats,
+  .loadout-divider, .feature-heading, .feature-description,
+  .upgrade-preview, .pilot-tip, .run-build, .site-footer { display: none; }
+  .craft-tabs { grid-column: 2; grid-row: 1; margin: 0; border-bottom: 0; }
+  .craft-tabs button { padding: 10px 0; font-size: 12px; }
+  .craft-name { grid-column: 1; grid-row: 1; margin: 0; flex-direction: column; align-items: flex-start; gap: 0; }
+  .craft-name h3 { font-size: 18px; }
+  .craft-name > span { font-size: 8px; border: 0; padding: 0; }
+  .game-hud { padding: 2cqw 3cqw 4cqw; }
+  .hud-top { padding-right: 44px; }
+  .hud-label { display: none; }
+  .hud-top strong { font-size: clamp(18px, 6cqw, 26px); }
+  .wave-display > span { font-size: clamp(18px, 6cqw, 24px); }
+  .hud-pause { position: absolute; top: 2cqw; right: 3cqw; width: 36px; height: 36px; }
+  .health-row { margin-top: 3px; padding-right: 44px; }
+  .xp-track { margin-top: 3px; }
+  .battle-bottom { bottom: 13px; left: 14px; right: 14px; }
+  .bomb-button { min-height: 44px; padding: 7px 9px; }
+  .bomb-button kbd { display: none; }
+  .bomb-button > span:last-child { font-size: 9px; }
+  .upgrade-hint { display: none; }
+  dialog { padding: 30px 24px; }
+  .help-controls { grid-template-columns: 1fr; gap: 13px; margin: 18px 0; padding: 14px 0; }
+  .help-controls p { margin: 4px 0; }
+  .battle-active { --dock-height: 0px; --dock-gap: 0px; }
+  .battle-active .hangar { grid-template-rows: minmax(0, 1fr); }
+  .battle-active .loadout-panel { display: none; }
+}
+
+@media (max-width: 700px) and (max-height: 650px) {
+  :root { --header-height: 48px; --stage-inset: 6px; --dock-height: 48px; }
+  .battle-active { --dock-height: 0px; }
+}
+
+@media (max-width: 360px) {
+  .site-header { padding-inline: 12px; }
+  .header-right { gap: 3px; }
+  .brand { font-size: 21px; gap: 8px; }
+  .brand-mark { width: 31px; height: 31px; }
+}
+
+/* Overlay contents shrink with the actual playfield, including short windows. */
+@container (max-width: 320px) {
+  .dialog-overlay { padding: 16px; }
+  .dialog-kicker { font-size: 9px; letter-spacing: 2px; }
+  .dialog-content h2, .upgrade-heading h2 { font-size: 22px; margin: 8px 0; }
+  .dialog-content > p, .upgrade-heading p { font-size: 9px; margin-bottom: 16px; }
+  .primary-button { padding: 11px 15px; font-size: 12px; }
+  .secondary-button { padding: 10px; margin-top: 9px; font-size: 11px; }
+  .quiet-button { padding: 10px; margin-top: 3px; }
+  .result-emblem { width: 36px; height: 36px; margin-bottom: 14px; }
+  .result-emblem svg { width: 24px; height: 24px; }
+  .result-screen .dialog-content h2 { font-size: 21px; }
+  .result-screen .dialog-content > p { font-size: 9px; margin-bottom: 9px; }
+  .result-score { font-size: 44px; }
+  .result-best { font-size: 8px; min-height: 18px; margin-top: 4px; letter-spacing: 1px; }
+  .result-stats { padding: 10px 2px; margin: 4px 0 12px; }
+  .result-stats strong { font-size: 20px; }
+  .result-stats span { font-size: 8px; }
+  .upgrade-options { gap: 8px; }
+  .upgrade-card { min-height: 52px; padding: 10px; gap: 9px; }
+  .upgrade-icon { width: 30px; height: 30px; }
+  .upgrade-icon svg { width: 18px; height: 18px; }
+  .upgrade-card-content strong { font-size: 11px; gap: 5px; }
+  .upgrade-card-content strong small { font-size: 7px; padding-inline: 3px; }
+  .upgrade-card-content p { font-size: 8px; }
+  .upgrade-number { font-size: 13px; }
+  .upgrade-hint { display: none; }
+  .launch-button { padding-inline: 12px; gap: 9px; }
+  .launch-button > span { font-size: 15px; letter-spacing: 2px; }
+  .launch-button > svg:first-child { width: 23px; height: 23px; }
+  .launch-button .launch-arrow { width: 18px; }
+  .launch-button small { font-size: 8px; letter-spacing: 1.5px; }
+  .start-control-hint { font-size: 7px; gap: 5px; margin-top: 9px; }
+  .aircraft-caption { font-size: 6px; gap: 5px; }
+  .caption-line { width: 15px; }
+  .frame-coordinates { display: none; }
+}
+
+@container (max-width: 240px) {
+  .dialog-overlay { padding: 12px; }
+  .dialog-content h2, .result-screen .dialog-content h2, .upgrade-heading h2 { font-size: 18px; }
+  .result-emblem, .result-screen .dialog-content > p { display: none; }
+  .result-screen .dialog-content h2 { font-size: 14px; letter-spacing: 0; line-height: 1.3; margin: 6px 0; }
+  .result-score { font-size: 32px; }
+  .result-best { font-size: 7px; letter-spacing: 0; min-height: 0; margin-top: 2px; }
+  .result-stats { margin-block: 5px 8px; padding-block: 7px; }
+  .result-stats strong { font-size: 16px; }
+  .primary-button { font-size: 10px; gap: 10px; padding: 9px 12px; }
+  .quiet-button { font-size: 10px; padding: 7px; }
+  .upgrade-screen { padding: 8px; }
+  .upgrade-heading .dialog-kicker { font-size: 8px; letter-spacing: 1px; }
+  .upgrade-heading h2 { font-size: 16px; margin: 4px 0; line-height: 1.3; }
+  .upgrade-heading p { font-size: 8px; line-height: 1.35; margin-bottom: 8px; }
+  .upgrade-options { gap: 6px; }
+  .upgrade-card { min-height: 44px; padding: 6px; }
+  .upgrade-icon, .upgrade-number { display: none; }
+  .upgrade-card-content strong { font-size: 10px; line-height: 1.35; }
+  .upgrade-card-content strong small { display: none; }
+  .upgrade-card-content p { margin-top: 2px; line-height: 1.35; }
+  .launch-button { gap: 6px; padding-inline: 10px; }
+  .launch-button > span { font-size: 13px; letter-spacing: 1px; }
+  .launch-button small, .launch-button .launch-arrow, .start-version { display: none; }
+  .start-control-hint { font-size: 6px; }
+  .desktop-hint kbd, .aircraft-caption, .frame-coordinates { display: none; }
+  .frame-top { padding-inline: 8px; }
+  .frame-top > span:first-child { font-size: 8px; letter-spacing: .5px; white-space: nowrap; }
+  #sector-label { min-width: 0; margin-inline: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .frame-bottom { padding-inline: 8px; }
+  .frame-bottom > span:first-child { min-width: 0; white-space: nowrap; overflow: hidden; }
+  .hud-top { gap: 5px; }
+  .hud-top strong { font-size: 20px; letter-spacing: 1px; }
+  .wave-display > span { font-size: 20px; }
+  .wave-display small { font-size: 7px; }
+  .game-hud { padding: 2cqw 3cqw 4cqw; }
+  .health-point { width: 10px; height: 4px; }
+  .battle-bottom { bottom: 8px; left: 9px; right: 9px; }
+  .weapon-label { font-size: 8px; }
+  .weapon-label > small { font-size: 6px; }
+  .bomb-button { gap: 5px; padding: 5px 7px; }
+  .bomb-icon { width: 22px; height: 22px; }
+  .bomb-button > span:last-child { font-size: 7px; letter-spacing: 0; }
+  .wave-announcement strong { font-size: 16px; letter-spacing: 2px; }
+  .wave-announcement span { font-size: 9px; letter-spacing: 2px; }
+}
+
+@media (pointer: coarse) {
+  .desktop-hint { display: none; }
+  .mobile-hint { display: inline; }
+  .upgrade-hint, .bomb-button kbd { display: none; }
+}
+
+/* Keep the handbook's controls, legend and exit button in the visible window. */
+#help-dialog {
+  width: min(calc(100vw - 24px), 590px);
+  max-height: calc(100dvh - 24px);
+  padding: clamp(16px, 4vw, 30px);
+}
+#help-dialog h2 { line-height: 1.3; margin: 8px 0; }
+#help-dialog .help-intro { line-height: 1.7; margin: 8px 0 16px; }
+#help-dialog .help-controls { gap: 12px 18px; margin: 14px 0; padding: 12px 0; }
+#help-dialog .help-controls p { line-height: 1.7; margin: 6px 0 0; }
+#help-dialog .handbook-signals { gap: 8px; margin: 12px 0; padding: 10px; }
+#help-dialog .help-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; margin: 14px 0 18px; }
+#help-dialog .help-notes p { margin: 0; line-height: 1.7; }
+#help-dialog .help-notes b { display: block; margin: 0; color: var(--aqua); }
+#help-dialog .primary-button { min-height: 44px; padding: 10px 14px; }
+
+@media (max-width: 700px) {
+  #help-dialog .help-controls { grid-template-columns: 1fr 1fr; }
+  #help-dialog h2 { font-size: 22px; }
+  #help-dialog .dialog-kicker { font-size: 12px; }
+  #help-dialog .help-intro { font-size: 11px; }
+  #help-dialog .help-notes { gap: 8px 12px; }
+}
+
+@media (max-height: 700px) {
+  #help-dialog { padding: 16px 20px; }
+  #help-dialog .dialog-kicker, #help-dialog .help-intro { display: none; }
+  #help-dialog h2 { font-size: 21px; margin: 0 0 10px; }
+  #help-dialog .help-controls { margin: 10px 0; padding: 8px 0; }
+  #help-dialog .handbook-signals { margin: 10px 0; padding: 8px; }
+  #help-dialog .help-notes { margin: 10px 0 14px; gap: 6px 12px; }
+}
+
+@media (max-height: 450px) {
+  #help-dialog { padding: 12px 20px; }
+  #help-dialog h2 { font-size: 19px; margin-bottom: 6px; }
+  #help-dialog .help-controls { margin: 6px 0; padding: 6px 0; }
+  #help-dialog .handbook-signals { margin: 6px 0; padding: 6px 8px; gap: 6px; }
+  #help-dialog .help-notes { margin: 8px 0 10px; gap: 4px 12px; }
+}
+
+@media (max-height: 380px) and (min-width: 540px) {
+  #help-dialog { padding: 8px 12px; }
+  #help-dialog h2 { margin-bottom: 4px; }
+  #help-dialog .help-controls { padding-block: 4px; }
+  #help-dialog .help-controls p { line-height: 1.5; margin-top: 4px; }
+  #help-dialog .handbook-signals { grid-template-columns: repeat(4, 1fr); padding-block: 4px; }
+  #help-dialog .help-notes { margin-block: 6px; }
+  #help-dialog .help-notes p { line-height: 1.5; }
+  #help-dialog .help-notes b { display: inline; margin-right: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
