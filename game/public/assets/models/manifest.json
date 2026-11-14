@@ -1,0 +1,96 @@
+{
+  "generator": "Blender 5.2.2 LTS",
+  "source": "assets/blender/sky-strike-ww2.blend",
+  "models": [
+    {
+      "id": "falcon",
+      "file": "falcon.glb",
+      "polygons": 627,
+      "bytes": 76280
+    },
+    {
+      "id": "swift",
+      "file": "swift.glb",
+      "polygons": 627,
+      "bytes": 75336
+    },
+    {
+      "id": "turtle",
+      "file": "turtle.glb",
+      "polygons": 1071,
+      "bytes": 107640
+    },
+    {
+      "id": "scout",
+      "file": "scout.glb",
+      "polygons": 627,
+      "bytes": 76284
+    },
+    {
+      "id": "dart",
+      "file": "dart.glb",
+      "polygons": 883,
+      "bytes": 87704
+    },
+    {
+      "id": "gunship",
+      "file": "gunship.glb",
+      "polygons": 1047,
+      "bytes": 104328
+    },
+    {
+      "id": "boss",
+      "file": "boss.glb",
+      "polygons": 1972,
+      "bytes": 158960
+    },
+    {
+      "id": "boss-final",
+      "file": "boss-final.glb",
+      "polygons": 2556,
+      "bytes": 199880
+    },
+    {
+      "id": "carrier",
+      "file": "carrier.glb",
+      "polygons": 424,
+      "bytes": 70456
+    },
+    {
+      "id": "island",
+      "file": "island.glb",
+      "polygons": 1590,
+      "bytes": 244588
+    },
+    {
+      "id": "pickup-xp",
+      "file": "pickup-xp.glb",
+      "polygons": 38,
+      "bytes": 8500
+    },
+    {
+      "id": "pickup-health",
+      "file": "pickup-health.glb",
+      "polygons": 42,
+      "bytes": 9764
+    },
+    {
+      "id": "pickup-bomb",
+      "file": "pickup-bomb.glb",
+      "polygons": 48,
+      "bytes": 10872
+    },
+    {
+      "id": "enemy-round",
+      "file": "enemy-round.glb",
+      "polygons": 402,
+      "bytes": 23788
+    },
+    {
+      "id": "enemy-aimed",
+      "file": "enemy-aimed.glb",
+      "polygons": 24,
+      "bytes": 6392
+    }
+  ]
+}
