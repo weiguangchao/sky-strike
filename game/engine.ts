@@ -1,7 +1,11 @@
-import type { CraftId, Craft, Difficulty, Upgrade, GameStatus, Player, Enemy, EnemyPlane, Boss, Bullet, EnemyBullet, Pickup, Input, Point, GameEvent, EventMap, EmptyEvent, DataEvent } from './types.ts';
+import type { CraftId, Craft, Difficulty, Upgrade, GameStatus, Player, Enemy, EnemyPlane, Boss, Ship, ShipKind, PartId, Bullet, EnemyBullet, Pickup, Input, Point, GameEvent, EventMap, EmptyEvent, DataEvent, Wreck, SurfaceTorpedo, Convoy } from './types.ts';
+import { HULLS, WAVES } from './campaign.ts';
+import { DEFAULT_FLEET, historicalShip, navalShape } from './naval-history.ts';
+import type { FleetSelection, NavalHull } from './naval-history.ts';
 
 export const WIDTH = 480;
 export const HEIGHT = 760;
+export const TAKEOFF_DURATION = 2.4;
 
 export const CRAFTS: Record<CraftId, Craft> = {
   falcon: { name: '游隼', code: 'F-01', role: '均衡型战机', description: '椭圆翼、单发螺旋桨与双联机炮。<br>可靠的前线主力战斗机。', power: 4, speed: 4, armor: 4, hp: 5, damage: 9, rate: .22, move: 305, color: '#a5e2e8' },
@@ -28,6 +32,7 @@ const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(ma
 const distance2 = (a: Point, b: Point) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
 
 export class Game {
+  fleetAppearance:FleetSelection={...DEFAULT_FLEET};
   readonly random: () => number;
   events: GameEvent[] = [];
   status: GameStatus = 'menu';
@@ -41,6 +46,7 @@ export class Game {
   spawnTimer!: number;
   fireTimer!: number;
   missileTimer!: number;
+  ordnanceTimer!: number;
   level!: number;
   xp!: number;
   nextXp!: number;
@@ -51,15 +57,19 @@ export class Game {
   bullets: Bullet[] = [];
   enemyBullets: EnemyBullet[] = [];
   pickups: Pickup[] = [];
+  wrecks: Wreck[] = [];
+  surfaceTorpedoes: SurfaceTorpedo[] = [];
+  convoy: Convoy | null = null;
   boss: Boss | null = null;
   bossDefeated!: boolean;
   bossDelay!: number;
   shieldTimer!: number;
   player!: Player;
+  private nextId = 0;
+  private milestones = new Set<number>();
 
   constructor(random = Math.random) {
     this.random = random;
-    this.events = [];
     this.start('falcon', 'normal');
     this.status = 'menu';
     this.events = [];
@@ -75,15 +85,12 @@ export class Game {
     this.difficulty = difficulty;
     const spec = CRAFTS[this.craft];
     this.status = 'playing';
-    this.time = 0;
-    this.score = 0;
-    this.kills = 0;
-    this.wave = 1;
-    this.waveTime = 0;
+    this.time = this.score = this.kills = this.waveTime = 0;
+    this.wave = this.level = 1;
     this.spawnTimer = 1;
     this.fireTimer = 0;
     this.missileTimer = 1;
-    this.level = 1;
+    this.ordnanceTimer = .4;
     this.xp = 0;
     this.nextXp = 42;
     this.bombs = 3;
@@ -93,16 +100,22 @@ export class Game {
     this.bullets = [];
     this.enemyBullets = [];
     this.pickups = [];
+    this.wrecks = [];
+    this.surfaceTorpedoes = [];
+    this.convoy = null;
     this.boss = null;
     this.bossDefeated = false;
-    this.bossDelay = 0;
-    this.shieldTimer = 0;
-    this.player = { x: WIDTH / 2, y: HEIGHT - 135, hp: spec.hp + (difficulty === 'easy' ? 2 : 0), maxHp: spec.hp + (difficulty === 'easy' ? 2 : 0), radius: 6, invincible: 2, shield: false };
+    this.bossDelay = this.shieldTimer = 0;
+    this.nextId = 0;
+    this.milestones.clear();
+    const hp = spec.hp + (difficulty === 'easy' ? 2 : 0);
+    this.player = { x: WIDTH / 2, y: HEIGHT - 135, hp, maxHp: hp, radius: 6, invincible: TAKEOFF_DURATION, shield: false };
     this.events = [];
     this.emit('start');
     this.emit('wave', { wave: this.wave });
   }
 
+  get takingOff() { return this.wave === 1 && this.time < TAKEOFF_DURATION; }
   get damage() { return CRAFTS[this.craft].damage * (1 + .25 * (this.stacks.power || 0)); }
   get movementSpeed() { return CRAFTS[this.craft].move * (1 + .15 * (this.stacks.speed || 0)); }
   get fireRate() { return CRAFTS[this.craft].rate * (.82 ** (this.stacks.rapid || 0)); }
@@ -119,7 +132,7 @@ export class Game {
 
   step(dt: number, input: Input = {}) {
     if (this.status !== 'playing') return;
-    dt = Math.min(Math.max(dt, 0), .05);
+    dt = clamp(dt, 0, .05);
     this.time += dt;
     this.waveTime += dt;
     const p = this.player;
@@ -134,15 +147,20 @@ export class Game {
       this.shieldTimer -= dt;
       if (this.shieldTimer <= 0) p.shield = true;
     }
-    this.fireTimer -= dt;
-    if (this.fireTimer <= 0) { this.fire(); this.fireTimer = this.fireRate; }
-    if (this.stacks.missile) {
-      this.missileTimer -= dt;
-      if (this.missileTimer <= 0 && this.enemies.length) { this.fireMissile(); this.missileTimer = 1.35; }
+    if (!this.takingOff) {
+      this.fireTimer -= dt;
+      if (this.fireTimer <= 0) { this.fire(); this.fireTimer = this.fireRate; }
+      if (this.stacks.missile) {
+        this.missileTimer -= dt;
+        if (this.missileTimer <= 0 && this.enemies.some(e => e.layer === 'air' && !e.dead)) { this.fireMissile(); this.missileTimer = 1.35; }
+      }
+      this.ordnanceTimer -= dt;
+      if (this.ordnanceTimer <= 0 && this.fireOrdnance()) this.ordnanceTimer = .78 * (.9 ** (this.stacks.rapid || 0));
+      this.updateWaves(dt);
     }
-    this.updateWaves(dt);
     this.updateEnemies(dt);
     this.updateBullets(dt);
+    this.updateSea(dt);
     this.updatePickups(dt);
     this.checkLevel();
   }
@@ -161,97 +179,199 @@ export class Game {
     for (let i = 0; i < (this.stacks.missile || 0); i++) this.bullets.push({ x: this.player.x + (i - ((this.stacks.missile || 0) - 1) / 2) * 17, y: this.player.y - 15, vx: (i - .5) * 35, vy: -280, damage: this.damage * 4, radius: 7, kind: 'missile', dead: false });
   }
 
+  /** A separate automatic weapon: aligning with a ship does not spend manual bombs. */
+  fireOrdnance() {
+    const p = this.player;
+    let target: Point | undefined, targetShip: Ship | undefined, nearest = Infinity;
+    for (const e of this.enemies) {
+      if (e.dead || e.layer !== 'surface' || e.y + e.halfLength < 15 || e.y > p.y + e.halfLength) continue;
+      const aligned = e.parts.filter(part => part.hp > 0 && Math.abs(e.x + part.x - p.x) < 20 && e.y + part.y < p.y - 25);
+      const part = aligned.sort((a, b) => Math.abs(e.x + a.x - p.x) - Math.abs(e.x + b.x - p.x))[0];
+      const point = part ? { x: e.x + part.x, y: e.y + part.y } : Math.abs(e.x - p.x) < e.halfWidth + 8 ? { x: p.x, y: clamp(e.y, 20, p.y - 30) } : undefined;
+      if (point && point.y >= 10 && p.y - point.y < nearest) { target = point; targetShip = e; nearest = p.y - point.y; }
+    }
+    if (!target) return false;
+    const duration = clamp(nearest / 620, .35, 1.05);
+    if (targetShip) {
+      target.y += targetShip.type === 'boss' ? Math.min(218-targetShip.y, targetShip.speed*duration) : targetShip.speed*duration;
+      if (targetShip.type === 'boss') target.x += Math.cos(targetShip.age*.23)*42*.23*duration;
+    }
+    this.bullets.push({ x: p.x, y: p.y - 12, vx: (target.x - p.x) / duration, vy: (target.y - (p.y - 12)) / duration, targetX: target.x, targetY: target.y, flight: 0, duration, radius: 17, damage: this.damage * 10, kind: 'ordnance', dead: false });
+    return true;
+  }
+
   updateWaves(dt: number) {
     if (this.wave % 5 === 0) {
       if (!this.boss && !this.bossDefeated) this.spawnBoss();
       if (this.bossDefeated) {
         this.bossDelay -= dt;
-        if (this.bossDelay <= 0) {
-          if (this.wave === 10) this.finish(true);
-          else this.nextWave();
-        }
+        if (this.bossDelay <= 0) { if (this.wave === 10) this.finish(true); else this.nextWave(); }
       }
       return;
     }
-    const duration = 15 + this.wave * .8;
-    this.spawnTimer -= dt;
-    if (this.waveTime < duration && this.spawnTimer <= 0 && this.enemies.length < 17) {
-      const formation = this.random() < .42;
-      const type = this.wave > 1 && this.random() < .28 ? 'gunship' : this.wave > 2 && this.random() < .3 ? 'dart' : 'scout';
-      const count = formation ? 3 : 1, center = 95 + this.random() * (WIDTH - 190);
-      for (let i = 0; i < count; i++) this.spawnEnemy(type, clamp(center + (i - (count - 1) / 2) * 60, 35, WIDTH - 35), -30 - i * 28);
-      this.spawnTimer = Math.max(.44, 1.15 - this.wave * .065) + this.random() * .4;
+    const plan = WAVES[this.wave - 1];
+    const duration = 17 + this.wave * .6;
+    if (!this.milestones.has(0)) {
+      this.milestones.add(0);
+      plan.sea.forEach((kind, i) => this.spawnShip(kind, plan.sea.length === 1 ? 240 : 100 + i * 140, -70 - i * 105));
+      if (this.wave === 3) this.convoy = { x: 355, y: 600, hp: 3, maxHp: 3, saved: false, dead: false };
+      if (this.wave === 3 || this.wave === 8) { const elite = this.spawnEnemy('heavy-bomber', 240, -75); elite.variant = this.wave === 8; }
     }
-    if (this.waveTime > duration && (this.enemies.length === 0 || this.waveTime > duration + 6)) this.nextWave();
+    if (this.waveTime > 9 && !this.milestones.has(1)) {
+      this.milestones.add(1);
+      if (plan.sea.length) this.spawnShip(plan.sea[0], 110 + this.random() * 260, -85);
+    }
+    this.spawnTimer -= dt;
+    if (this.waveTime < duration && this.spawnTimer <= 0 && this.enemies.filter(e => e.layer === 'air').length < 15) {
+      const type = plan.air[Math.floor(this.random() * plan.air.length)];
+      const count = type === 'scout' && this.random() < .5 ? 3 : 1;
+      const center = 90 + this.random() * 300;
+      for (let i = 0; i < count; i++) this.spawnEnemy(type, clamp(center + (i - (count - 1) / 2) * 58, 35, WIDTH - 35), -35 - i * 35);
+      this.spawnTimer = Math.max(.72, 1.35 - this.wave * .05) + this.random() * .35;
+    }
+    if (this.waveTime > duration && (!this.enemies.some(e => !e.dead) || this.waveTime > duration + 7)) this.nextWave();
   }
 
   nextWave() {
+    if (this.convoy && !this.convoy.dead && !this.convoy.saved) this.resolveEscort(true);
     this.wave++;
     this.waveTime = 0;
-    this.spawnTimer = 1.5;
+    this.spawnTimer = 1.2;
+    this.milestones.clear();
     this.bossDefeated = false;
-    if (this.wave === 6) { this.player.hp = Math.min(this.player.maxHp, this.player.hp + 2); this.bombs = Math.min(5, this.bombs + 1); }
+    if (this.wave === 6) { this.player.hp = Math.min(this.player.maxHp, this.player.hp + 2); this.bombs = Math.min(5, this.bombs + 1); this.emit('pickup', { text: '舰队补给 · 装甲 +2 / 航弹 +1' }); }
     this.emit('wave', { wave: this.wave });
   }
 
   spawnEnemy(type: EnemyPlane['type'], x: number, y: number) {
-    const gunship = type === 'gunship', dart = type === 'dart';
-    const scale = 1 + (this.wave - 1) * .11;
-    const e: EnemyPlane = { type, x, y, originX: x, age: 0, phase: this.random() * Math.PI * 2, hp: (gunship ? 75 : dart ? 24 : 21) * scale, maxHp: (gunship ? 75 : dart ? 24 : 21) * scale, radius: gunship ? 23 : 16, speed: (gunship ? 54 : dart ? 145 : 90) + this.wave * 4, fireTimer: 1 + this.random() * 1.8, dead: false };
+    const heavy = type === 'heavy-bomber', gunship = type === 'gunship';
+    const health = (heavy ? 430 : gunship ? 75 : type === 'torpedo' ? 52 : 24) * (1 + (this.wave - 1) * .09);
+    const direction = this.random() < .5 ? 1 : -1;
+    const e: EnemyPlane = { id: this.nextId++, type, layer: 'air', x: type === 'interceptor' ? (direction > 0 ? -35 : WIDTH + 35) : x, y: type === 'interceptor' ? 100 + this.random() * 180 : y, originX: x, age: 0, phase: this.random() * Math.PI * 2, hp: health, maxHp: health, radius: heavy ? 42 : gunship ? 23 : 16, speed: (heavy ? 34 : gunship ? 54 : type === 'dart' ? 145 : type === 'torpedo' ? 66 : 90) + this.wave * 3, fireTimer: 1 + this.random() * 1.8, dead: false, heading: Math.PI, direction, action: 'cruise', actionTime: 0, lockedX: x, variant: false };
     this.enemies.push(e);
     return e;
   }
 
+  spawnShip(hull: ShipKind, x: number, y: number, boss = false): Ship {
+    const spec = HULLS[hull];
+    const health = spec.hp * (boss ? 1 : 1 + this.wave * .035);
+    const ship: Ship = { id: this.nextId++, type: boss ? 'boss' : hull, hull, layer: 'surface', x, y, originX: x, hp: health, maxHp: health, radius: spec.halfWidth, halfWidth: spec.halfWidth, halfLength: spec.halfLength, speed: spec.speed, age: 0, fireTimer: 2, phase: 0, heading: 0, dead: false, parts: [], launchTimer: 7, salvoTimer: 4, final: hull === 'fleet-carrier' };
+    if(Object.hasOwn(DEFAULT_FLEET,hull))ship.appearance=this.fleetAppearance[hull as NavalHull];
+    const reference=ship.appearance&&historicalShip(ship.appearance);
+    const shape=reference?navalShape(reference):undefined;
+    const add = (id: PartId, name: string, px: number, py: number, hp: number, radius = 17) => {
+      const point=shape?.parts[id];
+      ship.parts.push({ id, name, x:point?point.x*spec.scale*shape!.combatStretch:px, y:point?point.y*spec.scale:py, hp, maxHp:hp, radius, fireTimer:1.8+this.random() });
+    };
+    if (hull !== 'oil-depot' && hull !== 'transport') {
+      add('aa-port', '左舷防空炮', -spec.halfWidth * .63, spec.halfLength * .15, boss ? 390 : hull === 'patrol-boat' ? 70 : 130, boss ? 21 : 15);
+      if (hull !== 'patrol-boat' && hull !== 'coastal-battery') add('aa-starboard', '右舷防空炮', spec.halfWidth * .63, spec.halfLength * .15, boss ? 390 : 130, boss ? 21 : 15);
+      if (hull !== 'coastal-battery' && hull !== 'patrol-boat') add('bridge', '舰桥', hull === 'fleet-carrier' ? spec.halfWidth * .68 : 0, -spec.halfLength * .37, boss ? 510 : 160, boss ? 23 : 16);
+    }
+    if (hull === 'fleet-carrier') add('flight-deck', '飞行甲板', 0, spec.halfLength * .34, 720, 32);
+    this.enemies.push(ship);
+    return ship;
+  }
+
   spawnBoss() {
     const final = this.wave === 10;
-    this.boss = { type: 'boss', x: WIDTH / 2, y: -120, age: 0, hp: final ? 4700 : 2500, maxHp: final ? 4700 : 2500, radius: 64, fireTimer: 2.5, pattern: 0, phase: 0, dead: false, final };
-    this.enemies.push(this.boss);
+    this.boss = this.spawnShip(final ? 'fleet-carrier' : 'battleship', WIDTH / 2, -170, true) as Boss;
     this.emit('boss', { final });
+    return this.boss;
   }
 
   updateEnemies(dt: number) {
-    for (const e of this.enemies) {
+    for (const e of [...this.enemies]) {
       if (e.dead) continue;
       e.age += dt;
-      if (e.type === 'boss') {
-        e.y = Math.min(153, e.y + 56 * dt);
-        e.x = WIDTH / 2 + Math.sin(e.age * .55) * 108;
-        if (e.y < 95) continue;
-        e.fireTimer -= dt;
-        if (e.fireTimer <= 0) {
-          const enraged = e.hp < e.maxHp * .45;
-          if (e.pattern % 3 === 0) {
-            const count = enraged ? 17 : 13;
-            for (let i = 0; i < count; i++) { const a = Math.PI * i / (count - 1); this.enemyShot(e.x + Math.cos(a) * 40, e.y + 27, Math.cos(a), Math.sin(a), enraged ? 143 : 116, 'pink'); }
-          } else if (e.pattern % 3 === 1) {
-            for (const offset of [-42, 42]) this.aimedSpread(e.x + offset, e.y + 32, enraged ? 7 : 5, .16, 165);
-          } else {
-            for (let i = 0; i < 22; i++) { const a = i * Math.PI * 2 / 22 + e.age * .3; this.enemyShot(e.x, e.y + 25, Math.cos(a), Math.sin(a), 102, 'orange'); }
-          }
-          e.pattern++;
-          e.fireTimer = (enraged ? .86 : 1.22) * (e.final ? .8 : 1);
-        }
-      } else {
-        e.y += e.speed * dt;
-        e.x = e.originX + Math.sin(e.age * (e.type === 'dart' ? 2.2 : 1.1) + e.phase) * (e.type === 'gunship' ? 15 : 38);
-        e.fireTimer -= dt;
-        if (e.fireTimer <= 0 && e.y > 25 && e.y < HEIGHT - 160) {
-          if (e.type === 'gunship') this.aimedSpread(e.x, e.y + 15, 3 + (this.wave > 6 ? 2 : 0), .2, 120 + this.wave * 3);
-          else this.aimedSpread(e.x, e.y + 13, 1, 0, 105 + this.wave * 4);
-          e.fireTimer = e.type === 'dart' ? 3.5 : 2 + this.random();
-        }
+      e.hitFlash = Math.max(0, (e.hitFlash || 0) - dt);
+      if (e.layer === 'surface') this.updateShip(e, dt);
+      else {
+        this.updatePlane(e, dt);
+        if (this.player.invincible <= 0 && distance2(e, this.player) < (e.radius + this.player.radius) ** 2) { this.hurt(); this.damageEnemy(e, 99999); }
       }
-      if (this.player.invincible <= 0 && distance2(e, this.player) < (e.radius + this.player.radius) ** 2) {
-        this.hurt();
-        if (e.type !== 'boss') this.damageEnemy(e, 99999);
-      }
-      if (e.y > HEIGHT + 70) e.dead = true;
+      if (e.y > HEIGHT + (e.layer === 'surface' ? e.halfLength + 30 : 70) || e.x < -100 || e.x > WIDTH + 100) e.dead = true;
     }
     this.enemies = this.enemies.filter(e => !e.dead);
   }
 
+  private updatePlane(e: EnemyPlane, dt: number) {
+    if (e.launchAge !== undefined && e.launchAge < 2.2) {
+      e.launchAge += dt;
+      e.heading = clamp(e.launchAge - 1.2, 0, 1) * Math.PI;
+      e.x += Math.sin(e.heading) * 100 * dt;
+      e.y -= Math.cos(e.heading) * 100 * dt;
+      e.originX = e.x;
+      e.phase = -e.age * 1.1;
+      return;
+    }
+    if(e.action !== 'dive') e.heading = Math.PI;
+    if (e.type === 'interceptor') { e.x += e.direction * 155 * dt; e.y += 21 * dt; e.heading = e.direction > 0 ? Math.PI / 2 : -Math.PI / 2; }
+    else if (e.type === 'diver') {
+      e.actionTime += dt;
+      if (e.action === 'cruise') {
+        e.y += 65 * dt;
+        if (e.y > 150) { e.action = 'warning'; e.actionTime = 0; e.lockedX = this.player.x; }
+      } else if (e.action === 'warning') {
+        if (e.actionTime >= .85) { e.action = 'dive'; e.actionTime = 0; e.heading = Math.PI - Math.atan2(e.lockedX - e.x, HEIGHT - e.y); }
+      } else { e.x += Math.sin(e.heading) * 340 * dt; e.y -= Math.cos(e.heading) * 340 * dt; }
+    } else {
+      e.y += e.speed * dt;
+      e.x = e.originX + Math.sin(e.age * (e.type === 'dart' ? 2.2 : 1.1) + e.phase) * (e.type === 'heavy-bomber' ? 42 : e.type === 'gunship' ? 15 : 30);
+    }
+    e.fireTimer -= dt;
+    if (e.fireTimer <= 0 && e.y > 25 && e.y < HEIGHT - 160 && e.action !== 'warning') {
+      if (e.type === 'torpedo') {
+        const target = this.convoy && !this.convoy.dead && !this.convoy.saved ? this.convoy : { x: e.x + 70 * e.direction, y: HEIGHT + 100 };
+        const angle = Math.atan2(target.y - e.y, target.x - e.x);
+        this.surfaceTorpedoes.push({ x: e.x, y: e.y, vx: Math.cos(angle) * 125, vy: Math.sin(angle) * 125, age: 0, dead: false });
+        this.aimedSpread(e.x, e.y, 1, 0, 110);
+      } else this.aimedSpread(e.x, e.y + 15, e.type === 'heavy-bomber' ? 7 : e.type === 'gunship' ? 3 : 1, .18, 110 + this.wave * 3);
+      e.fireTimer = e.type === 'torpedo' ? 3.2 : e.type === 'heavy-bomber' ? 2.1 : 2.8 + this.random();
+    }
+  }
+
+  private updateShip(e: Ship, dt: number) {
+    if (e.type === 'boss') {
+      e.y = Math.min(218, e.y + e.speed * dt);
+      e.x = e.originX + Math.sin(e.age * .23) * 42;
+    } else e.y += e.speed * dt;
+    if (e.y < 20) return;
+    const bridge = e.parts.find(p => p.id === 'bridge');
+    const disrupted = bridge && bridge.hp <= 0 ? 1.65 : 1;
+    for (const part of e.parts) {
+      if (part.hp <= 0 || !part.id.startsWith('aa-')) continue;
+      part.fireTimer -= dt;
+      if (part.fireTimer > 0) continue;
+      const count = e.type === 'boss' ? (e.hp < e.maxHp * .45 ? 5 : 3) : e.hull === 'cruiser' ? 3 : 1;
+      this.aimedSpread(e.x + part.x, e.y + part.y, count, .19, e.type === 'boss' ? 140 : 115);
+      part.fireTimer = (e.type === 'boss' ? 1.7 : 2.6) * disrupted * (e.hull === 'fleet-carrier' ? .9 : 1);
+    }
+    e.fireTimer -= dt;
+    if (e.type === 'boss' && bridge && bridge.hp > 0 && e.fireTimer <= 0) {
+      const count = e.final ? 13 : 11;
+      for (let i = 0; i < count; i++) { const angle = .2 + i * (Math.PI - .4) / (count - 1); this.enemyShot(e.x, e.y - 30, Math.cos(angle), Math.sin(angle), 110, 'pink'); }
+      e.fireTimer = e.hp < e.maxHp * .45 ? 2.2 : 3.1;
+    }
+    if (e.hull === 'fleet-carrier' && e.parts.some(p => p.id === 'flight-deck' && p.hp > 0)) {
+      e.launchTimer -= dt;
+      if (e.launchTimer <= 0 && this.enemies.filter(a => a.layer === 'air').length < 10) {
+        for (const offset of [-24, 24]) {
+          const plane = this.spawnEnemy(e.phase % 2 === 0 ? 'scout' : 'torpedo', clamp(e.x + offset, 35, WIDTH - 35), e.y - 45);
+          plane.launchAge = 0;
+          plane.heading = 0;
+        }
+        e.phase++;
+        e.launchTimer = 6 * disrupted;
+      }
+    }
+    e.salvoTimer -= dt;
+    if ((e.hull === 'battleship' || e.hull === 'destroyer') && e.salvoTimer <= 0) { this.emit('navalSalvo', { x: e.x, y: e.y - e.halfLength * .6 }); e.salvoTimer = 5.5; }
+  }
+
   enemyShot(x: number, y: number, dx: number, dy: number, speed: number, color: EnemyBullet['color'] = 'orange') {
     const factor = this.difficulty === 'easy' ? .72 : 1;
+    if (this.enemyBullets.length >= 520) return;
     this.enemyBullets.push({ x, y, vx: dx * speed * factor, vy: dy * speed * factor, radius: 4, color, dead: false });
   }
 
@@ -264,12 +384,20 @@ export class Game {
     for (const b of this.bullets) {
       if (b.kind === 'missile') {
         let target, nearest = Infinity;
-        for (const e of this.enemies) { const d = distance2(b, e); if (!e.dead && d < nearest) { target = e; nearest = d; } }
+        for (const e of this.enemies) { const d = distance2(b, e); if (!e.dead && e.layer === 'air' && d < nearest) { target = e; nearest = d; } }
         if (target) { const a = Math.atan2(target.y - b.y, target.x - b.x); b.vx += (Math.cos(a) * 400 - b.vx) * Math.min(1, dt * 5); b.vy += (Math.sin(a) * 400 - b.vy) * Math.min(1, dt * 5); }
       }
       b.x += b.vx * dt; b.y += b.vy * dt;
+      if (b.kind === 'ordnance') {
+        b.flight = (b.flight || 0) + dt;
+        if (b.flight >= (b.duration || 1)) {
+          b.dead = true;
+          this.impactOrdnance({ x: b.targetX ?? b.x, y: b.targetY ?? b.y }, b.damage);
+        }
+        continue;
+      }
       for (const e of this.enemies) {
-        if (!e.dead && distance2(b, e) < (b.radius + e.radius) ** 2) { b.dead = true; this.damageEnemy(e, b.damage); this.emit('hit', { x: b.x, y: b.y, critical: b.critical }); break; }
+        if (!e.dead && e.layer === 'air' && distance2(b, e) < (b.radius + e.radius) ** 2) { b.dead = true; this.damageEnemy(e, b.damage); this.emit('hit', { x: b.x, y: b.y, critical: b.critical }); break; }
       }
     }
     this.bullets = this.bullets.filter(b => !b.dead && b.y > -40 && b.y < HEIGHT + 30 && b.x > -40 && b.x < WIDTH + 40);
@@ -280,26 +408,77 @@ export class Game {
     this.enemyBullets = this.enemyBullets.filter(b => !b.dead && b.y > -80 && b.y < HEIGHT + 30 && b.x > -30 && b.x < WIDTH + 30);
   }
 
+  impactOrdnance(point: Point, damage: number) {
+    this.emit('ordnance', point);
+    for (const e of this.enemies) {
+      if (e.dead || e.layer !== 'surface' || Math.abs(point.x - e.x) > e.halfWidth + 13 || Math.abs(point.y - e.y) > e.halfLength + 13) continue;
+      const part = e.parts.find(p => p.hp > 0 && distance2(point, { x: e.x + p.x, y: e.y + p.y }) < (p.radius + 12) ** 2);
+      if (part) this.damagePart(e, part.id, damage);
+      this.damageEnemy(e, damage * (part ? .75 : 1));
+      break;
+    }
+  }
+
+  damagePart(ship: Ship, id: PartId, damage: number) {
+    const part = ship.parts.find(p => p.id === id);
+    if (ship.dead || !part || part.hp <= 0) return;
+    part.hp = Math.max(0, part.hp - damage);
+    if (part.hp === 0) { this.score += 120; this.emit('partDestroyed', { x: ship.x + part.x, y: ship.y + part.y, name: part.name }); }
+  }
+
   damageEnemy(e: Enemy, damage: number) {
     if (e.dead) return;
     e.hp -= damage; e.hitFlash = .08;
     if (e.hp > 0) return;
+    e.hp = 0;
     e.dead = true;
     this.kills++;
-    const isBoss = e.type === 'boss';
-    this.score += isBoss ? 3500 : e.type === 'gunship' ? 220 : e.type === 'dart' ? 120 : 100;
-    this.emit('explosion', { x: e.x, y: e.y, size: isBoss ? 4 : e.type === 'gunship' ? 1.5 : 1 });
-    if (isBoss) {
-      this.boss = null; this.bossDefeated = true; this.bossDelay = 2.6;
+    const isBoss = e.type === 'boss', heavy = e.type === 'heavy-bomber';
+    this.score += e.layer === 'surface' ? HULLS[e.hull].score : heavy ? 700 : e.type === 'gunship' ? 220 : e.type === 'dart' ? 120 : 100;
+    this.emit('explosion', { x: e.x, y: e.y, size: isBoss ? 4 : e.layer === 'surface' || heavy ? 2 : 1, layer: e.layer });
+    if (e.layer === 'surface') {
+      this.wrecks.push({ x: e.x, y: e.y, hull: e.hull, heading: e.heading, age: 0, scale: HULLS[e.hull].scale, appearance:e.appearance });
+      if (e.hull === 'oil-depot') {
+        this.enemyBullets = this.enemyBullets.filter(b => distance2(b, e) > 150 ** 2);
+        for (const nearby of this.enemies) if (nearby !== e && !nearby.dead && distance2(e, nearby) < 140 ** 2) this.damageEnemy(nearby, 240);
+      }
+    }
+    if (isBoss && e.layer === 'surface') {
+      this.boss = null; this.bossDefeated = true; this.bossDelay = 3;
       this.enemyBullets = [];
       this.xp += 65;
       this.emit('bossDefeated', { final: e.final });
     } else {
-      this.pickups.push({ x: e.x, y: e.y, type: 'xp', amount: e.type === 'gunship' ? 17 : 9, radius: 11, dead: false });
+      this.pickups.push({ x: e.x, y: e.y, type: 'xp', amount: e.layer === 'surface' ? 24 : heavy ? 45 : e.type === 'gunship' ? 17 : 9, radius: 11, dead: false });
       const chance = this.random();
-      if (chance < .035) this.pickups.push({ x: e.x + 15, y: e.y - 10, type: 'health', radius: 13, dead: false });
+      if (e.type === 'transport' || chance < .035) this.pickups.push({ x: e.x + 15, y: e.y - 10, type: 'health', radius: 13, dead: false });
       else if (chance > .986) this.pickups.push({ x: e.x + 15, y: e.y - 10, type: 'bomb', radius: 13, dead: false });
     }
+  }
+
+  private updateSea(dt: number) {
+    for (const wreck of this.wrecks) { wreck.age += dt; wreck.y += 12 * dt; }
+    this.wrecks = this.wrecks.filter(w => w.age < 3.2);
+    const convoy = this.convoy;
+    if (convoy && !convoy.dead && !convoy.saved) { convoy.y -= 18 * dt; if (convoy.y < 75) this.resolveEscort(true); }
+    for (const torpedo of this.surfaceTorpedoes) {
+      torpedo.age += dt; torpedo.x += torpedo.vx * dt; torpedo.y += torpedo.vy * dt;
+      if (convoy && !convoy.dead && !convoy.saved && Math.abs(torpedo.x - convoy.x) < 27 && Math.abs(torpedo.y - convoy.y) < 62) {
+        torpedo.dead = true; convoy.hp--;
+        this.emit('ordnance', { x: torpedo.x, y: torpedo.y });
+        if (convoy.hp <= 0) this.resolveEscort(false);
+      }
+    }
+    this.surfaceTorpedoes = this.surfaceTorpedoes.filter(t => !t.dead && t.age < 8 && t.y < HEIGHT + 80 && t.x > -40 && t.x < WIDTH + 40);
+  }
+
+  private resolveEscort(saved: boolean) {
+    if (!this.convoy || this.convoy.saved || this.convoy.dead) return;
+    this.convoy.saved = saved;
+    this.convoy.dead = !saved;
+    if (saved) { this.score += 600; this.pickups.push({ x: this.player.x, y: this.player.y - 50, type: 'bomb', radius: 13, dead: false }); }
+    else { this.wrecks.push({ x: this.convoy.x, y: this.convoy.y, hull: 'transport', heading: 0, age: 0, scale: HULLS.transport.scale }); this.emit('explosion', { ...this.convoy, size: 2, layer: 'surface' }); }
+    this.emit('escort', { saved });
   }
 
   updatePickups(dt: number) {
@@ -338,8 +517,15 @@ export class Game {
     if (this.status !== 'playing' || this.bombs <= 0) return false;
     this.bombs--;
     this.enemyBullets = [];
+    this.surfaceTorpedoes = [];
     this.player.invincible = Math.max(this.player.invincible, 2);
-    for (const e of this.enemies) this.damageEnemy(e, e.type === 'boss' ? 460 * (1 + .2 * (this.stacks.bomb || 0)) : 99999);
+    const damage = 460 * (1 + .2 * (this.stacks.bomb || 0));
+    for (const e of [...this.enemies]) {
+      if (e.layer === 'surface') {
+        for (const part of e.parts) this.damagePart(e, part.id, damage * .8);
+        this.damageEnemy(e, damage);
+      } else this.damageEnemy(e, e.type === 'heavy-bomber' ? damage : 99999);
+    }
     for (const p of this.pickups) p.magnetized = true;
     this.emit('bomb', { x: this.player.x, y: this.player.y });
     return true;

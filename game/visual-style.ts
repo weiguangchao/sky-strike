@@ -1,3 +1,10 @@
+// Fixed raster sizes keep the arcade pixels consistent across screens and DPRs.
+// The simulation and input coordinates remain 480 × 760.
+export const PIXEL_RASTER = {
+  battlefield: { width: 240, height: 380 },
+  preview: { width: 160, height: 100 },
+} as const;
+
 // Shared with the HUD; Blender exports the same colors as unlit marker materials.
 export const VISUAL_SIGNALS = {
   danger: { model: 'enemy-round', color: '#ff384b', size: 9.5, label: '敌弹', shape: 'round' },

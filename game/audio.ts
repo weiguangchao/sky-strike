@@ -18,6 +18,9 @@ export class Sound {
     if (!this.enabled) return;
     if (type === 'shoot') { const now = performance.now(); if (now - this.lastShot < 110) return; this.lastShot = now; this.tone(820, 350, .055, .012, 'triangle'); }
     if (type === 'explosion') { this.tone(130, 28, .22, .065, 'sawtooth'); this.tone(60, 25, .3, .06); }
+    if (type === 'ordnance') this.tone(180, 45, .14, .025, 'triangle');
+    if (type === 'partDestroyed') this.tone(100, 28, .3, .05, 'sawtooth');
+    if (type === 'navalSalvo') this.tone(70, 23, .4, .035);
     if (type === 'hurt') this.tone(220, 55, .22, .09, 'square');
     if (type === 'bomb') { this.tone(90, 22, .8, .16, 'sawtooth'); this.tone(280, 25, .7, .07); }
     if (type === 'upgrade' || type === 'upgraded') [440, 554, 660].forEach((note, i) => this.tone(note, note * 1.01, .2, .06, 'sine', i * .09));
