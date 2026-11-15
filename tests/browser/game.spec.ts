@@ -1,3 +1,4 @@
+import { MODEL_IDS } from '../../game/models.ts';
 import { test, expect } from '@playwright/test';
 
 test('desktop sortie: selection, keyboard, bomb, pause, upgrade, results and record', async ({ page }) => {
@@ -94,14 +95,14 @@ test('boss HUD, stage resupply and final victory resolve correctly', async ({ pa
     game.emit('wave', { wave: 5 });
   });
   await expect(page.locator('#boss-hud')).toBeVisible();
-  await expect(page.locator('#boss-name')).toContainText('玄鲸');
+  await expect(page.locator('#boss-name')).toContainText('铁岳');
   await page.evaluate(async () => { const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src); game.damageEnemy(game.boss, 99999); game.xp = 0; });
   await expect(page.locator('#wave')).toHaveText('06', { timeout: 6000 });
   await expect(page.locator('#sector-label')).toContainText('风暴防线');
   await page.evaluate(async () => { const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src); game.wave = 10; game.enemies = []; game.bossDefeated = false; });
-  await expect(page.locator('#boss-name')).toContainText('赤霄');
+  await expect(page.locator('#boss-name')).toContainText('赤潮');
   await page.evaluate(async () => { const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src); game.damageEnemy(game.boss, 99999); });
-  await expect(page.locator('#result-title')).toHaveText('这片天空，属于你。', { timeout: 6000 });
+  await expect(page.locator('#result-title')).toHaveText('作战胜利', { timeout: 6000 });
   await expect(page.locator('#result-wave')).toHaveText('10/10');
 });
 
@@ -113,8 +114,8 @@ test('Blender models load locally before takeoff and both canvases use WebGL', a
   });
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
-  expect(loaded.size).toBe(15);
-  expect([...loaded.values()]).toEqual(Array(15).fill(200));
+  expect(loaded.size).toBe(MODEL_IDS.length);
+  expect([...loaded.values()]).toEqual(Array(MODEL_IDS.length).fill(200));
   const contexts = await page.evaluate(() => {
     const main = document.querySelector<HTMLCanvasElement>('#game-canvas')!.getContext('webgl2');
     const preview = document.querySelector<HTMLCanvasElement>('#craft-canvas')!.getContext('webgl2');

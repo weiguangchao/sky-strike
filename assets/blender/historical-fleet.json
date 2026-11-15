@@ -1,0 +1,5636 @@
+{
+  "version": 1,
+  "ships": [
+    {
+      "id": "iowa",
+      "name": "衣阿华",
+      "navy": "us",
+      "year": 1944,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/usa/us_bb_iowa.htm",
+      "feature": "修长舰艏 · 三座三联主炮 · 双烟囱",
+      "geometry": {
+        "length": 270.4,
+        "beam": 33,
+        "calibre": 406,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.06,
+          -0.26
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.29,
+        "catapults": 2,
+        "secondary": [
+          {
+            "barrels": 2,
+            "y": 0.24,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": 0.07,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.1,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.27,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.43,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": 0.24,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": 0.07,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.1,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.27,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.43,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          }
+        ]
+      },
+      "modelId": "historic-iowa",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.40947000612119977,
+        "combatStretch": 2.1002759350960787,
+        "parts": {
+          "aa-port": {
+            "x": -0.2989131044684758,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.2989131044684758,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.695
+          }
+        }
+      }
+    },
+    {
+      "id": "south-dakota",
+      "name": "南达科他",
+      "navy": "us",
+      "year": 1942,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/usa/us_bb_sdakota.htm",
+      "feature": "紧凑宽舰体 · 三联主炮 · 单烟囱",
+      "geometry": {
+        "length": 207.3,
+        "beam": 33,
+        "calibre": 406,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.12
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.25,
+        "catapults": 2,
+        "secondary": [
+          {
+            "barrels": 2,
+            "y": 0.22,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": 0.04,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.17,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.37,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": 0.22,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": 0.04,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.17,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.37,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          }
+        ]
+      },
+      "modelId": "historic-south-dakota",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.5341084884475273,
+        "combatStretch": 1.6101597682892645,
+        "parts": {
+          "aa-port": {
+            "x": -0.38989919656669497,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.38989919656669497,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5991379310344828
+          }
+        }
+      }
+    },
+    {
+      "id": "arizona",
+      "name": "亚利桑那",
+      "navy": "us",
+      "year": 1941,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/usa/us_bb_pennsylvania.htm",
+      "feature": "四座三联主炮 · 三脚桅 · 单烟囱",
+      "geometry": {
+        "length": 185.3,
+        "beam": 32.4,
+        "calibre": 356,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.1
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.27,
+        "catapults": 2
+      },
+      "modelId": "historic-arizona",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.5866572380296629,
+        "combatStretch": 1.4659326507048334,
+        "parts": {
+          "aa-port": {
+            "x": -0.42825978376165386,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.42825978376165386,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6470689655172415
+          }
+        }
+      }
+    },
+    {
+      "id": "enterprise",
+      "name": "企业 CV-6",
+      "navy": "us",
+      "year": 1942,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/usa/us_cv_yorktown.htm",
+      "feature": "直通木甲板 · 右舷舰岛 · 三部升降机",
+      "geometry": {
+        "length": 251.4,
+        "beam": 33.4,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.1
+        ],
+        "bridge": "island",
+        "bridgeY": 0.16,
+        "lifts": [
+          [
+            0,
+            0.57
+          ],
+          [
+            0,
+            -0.02
+          ],
+          [
+            0,
+            -0.61
+          ]
+        ],
+        "islandSide": 1
+      },
+      "modelId": "historic-enterprise",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.5482058367876731,
+        "combatStretch": 1.8164517902969577,
+        "parts": {
+          "aa-port": {
+            "x": -0.40019026085500137,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.40019026085500137,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.43308261106226176,
+            "y": -0.47157894736842104
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "essex",
+      "name": "埃塞克斯",
+      "navy": "us",
+      "year": 1944,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/usa/us_cv_essex.htm",
+      "feature": "直通甲板 · 左舷舷侧升降机 · 大舰岛",
+      "geometry": {
+        "length": 265.8,
+        "beam": 45,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.02
+        ],
+        "bridge": "island",
+        "bridgeY": 0.19,
+        "lifts": [
+          [
+            0,
+            0.57
+          ],
+          [
+            -0.83,
+            0.04
+          ],
+          [
+            0,
+            -0.62
+          ]
+        ],
+        "islandSide": 1
+      },
+      "modelId": "historic-essex",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.6985861946061541,
+        "combatStretch": 1.4254353741496602,
+        "parts": {
+          "aa-port": {
+            "x": -0.5099679220624925,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.5099679220624925,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.5518830937388618,
+            "y": -0.5599999999999999
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "fletcher",
+      "name": "弗莱彻",
+      "navy": "us",
+      "year": 1942,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/usa/us_dd_fletcher.htm",
+      "feature": "五座单装炮 · 双烟囱 · 两组鱼雷管",
+      "geometry": {
+        "length": 114.7,
+        "beam": 12.1,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.74,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.3,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.15,
+          -0.08
+        ],
+        "bridge": "low",
+        "bridgeY": 0.38,
+        "torpedoes": 2,
+        "deck": "steel"
+      },
+      "modelId": "destroyer",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.3035842293906809,
+        "combatStretch": 2.2033057851239675,
+        "parts": {
+          "aa-port": {
+            "x": -0.22161648745519708,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.22161648745519708,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7811111111111111
+          }
+        }
+      }
+    },
+    {
+      "id": "cleveland",
+      "name": "克利夫兰",
+      "navy": "us",
+      "year": 1943,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/usa/us_cr_cleveland.htm",
+      "feature": "四座三联炮 · 双烟囱 · 舰艉弹射器",
+      "geometry": {
+        "length": 186,
+        "beam": 20.2,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.06,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.29,
+        "catapults": 2
+      },
+      "modelId": "cruiser",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.32827468230694035,
+        "combatStretch": 2.2625176803394624,
+        "parts": {
+          "aa-port": {
+            "x": -0.23964051808406645,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23964051808406645,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6261363636363636
+          }
+        }
+      }
+    },
+    {
+      "id": "brooklyn",
+      "name": "布鲁克林",
+      "navy": "us",
+      "year": 1942,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/usa/us_cr_brooklyn.htm",
+      "feature": "前三后二共五座三联炮 · 双烟囱",
+      "geometry": {
+        "length": 185.4,
+        "beam": 18.8,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.83,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.64,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.43,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.55,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.04,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.12,
+        "catapults": 2
+      },
+      "modelId": "historic-brooklyn",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.30651171913307834,
+        "combatStretch": 2.4231610942249238,
+        "parts": {
+          "aa-port": {
+            "x": -0.2237535549671472,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2237535549671472,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.2590909090909091
+          }
+        }
+      }
+    },
+    {
+      "id": "pt-109",
+      "name": "PT-109",
+      "navy": "us",
+      "year": 1943,
+      "kind": "鱼雷艇",
+      "hull": "patrol-boat",
+      "source": "https://www.navypedia.org/ships/usa/us_pt_pt103.htm",
+      "feature": "低矮驾驶舱 · 四根鱼雷管 · 艉部机炮",
+      "geometry": {
+        "length": 24.4,
+        "beam": 6.3,
+        "calibre": 20,
+        "guns": [],
+        "funnels": [],
+        "bridge": "low",
+        "bridgeY": 0.28,
+        "torpedoes": 4,
+        "deck": "steel"
+      },
+      "modelId": "patrol-boat",
+      "shape": {
+        "halfLength": 1.625,
+        "halfBeam": 0.5873975409836065,
+        "combatStretch": 1.1590673876388162,
+        "parts": {
+          "aa-port": {
+            "x": 0,
+            "y": 1.17
+          }
+        }
+      }
+    },
+    {
+      "id": "john-w-brown",
+      "name": "约翰·布朗",
+      "navy": "us",
+      "year": 1944,
+      "kind": "武装运输船",
+      "hull": "transport",
+      "source": "https://www.ssjohnwbrown.org/history",
+      "feature": "自由轮 · 中部驾驶台 · 五货舱与吊杆",
+      "geometry": {
+        "length": 134.6,
+        "beam": 17.3,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": -0.85,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.08
+        ],
+        "bridge": "low",
+        "bridgeY": 0.12,
+        "deck": "steel"
+      },
+      "modelId": "transport",
+      "shape": {
+        "halfLength": 2.0625,
+        "halfBeam": 0.37112741456166415,
+        "combatStretch": 1.810362084928559,
+        "parts": {}
+      }
+    },
+    {
+      "id": "missouri",
+      "name": "密苏里",
+      "navy": "us",
+      "year": 1945,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/usa/us_bb_iowa.htm",
+      "feature": "衣阿华级 · 三座三联406毫米炮 · 双烟囱",
+      "geometry": {
+        "length": 270.4,
+        "beam": 33,
+        "calibre": 406,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.06,
+          -0.26
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.29,
+        "catapults": 2,
+        "secondary": [
+          {
+            "barrels": 2,
+            "y": 0.24,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": 0.07,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.1,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.27,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.43,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": 0.24,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": 0.07,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.1,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.27,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          },
+          {
+            "barrels": 2,
+            "y": -0.43,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 127
+          }
+        ]
+      },
+      "modelId": "historic-missouri",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.40947000612119977,
+        "combatStretch": 2.1002759350960787,
+        "parts": {
+          "aa-port": {
+            "x": -0.2989131044684758,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.2989131044684758,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.695
+          }
+        }
+      }
+    },
+    {
+      "id": "baltimore",
+      "name": "巴尔的摩",
+      "navy": "us",
+      "year": 1944,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/usa/us_cr_baltimore.htm",
+      "feature": "三座三联203毫米炮 · 双烟囱 · 艉部机库",
+      "geometry": {
+        "length": 205.3,
+        "beam": 21.6,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.04,
+          -0.24
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.29,
+        "catapults": 2
+      },
+      "modelId": "historic-baltimore",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.31802683434441836,
+        "combatStretch": 2.33542328042328,
+        "parts": {
+          "aa-port": {
+            "x": -0.2321595890714254,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2321595890714254,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6261363636363636
+          }
+        }
+      }
+    },
+    {
+      "id": "warspite",
+      "name": "厌战",
+      "navy": "gb",
+      "year": 1942,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_queen_elizabeth.htm",
+      "feature": "四座双联主炮 · 重建塔桥 · 单烟囱",
+      "geometry": {
+        "length": 196.8,
+        "beam": 31.7,
+        "calibre": 381,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.12
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.26,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0,
+            -0.31,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-warspite",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.5404418979534622,
+        "combatStretch": 1.5912903926520796,
+        "parts": {
+          "aa-port": {
+            "x": -0.3945225855060274,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.3945225855060274,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6231034482758621
+          }
+        }
+      }
+    },
+    {
+      "id": "king-george-v",
+      "name": "乔治五世",
+      "navy": "gb",
+      "year": 1941,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_king_george_v.htm",
+      "feature": "前四联加双联、后四联 · 双烟囱",
+      "geometry": {
+        "length": 227.1,
+        "beam": 31.4,
+        "calibre": 356,
+        "guns": [
+          {
+            "barrels": 4,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.44,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 4,
+            "y": -0.65,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.03,
+          -0.25
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "catapults": 1,
+        "secondary": [
+          {
+            "barrels": 2,
+            "y": 0.24,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 133
+          },
+          {
+            "barrels": 2,
+            "y": 0.06,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 133
+          },
+          {
+            "barrels": 2,
+            "y": -0.14,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 133
+          },
+          {
+            "barrels": 2,
+            "y": -0.34,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 133
+          },
+          {
+            "barrels": 2,
+            "y": 0.24,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 133
+          },
+          {
+            "barrels": 2,
+            "y": 0.06,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 133
+          },
+          {
+            "barrels": 2,
+            "y": -0.14,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 133
+          },
+          {
+            "barrels": 2,
+            "y": -0.34,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 133
+          }
+        ],
+        "catapultStations": [
+          [
+            0,
+            -0.1,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-king-george-v",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.4639031871118601,
+        "combatStretch": 1.853835075706496,
+        "parts": {
+          "aa-port": {
+            "x": -0.33864932659165786,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.33864932659165786,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6710344827586208
+          }
+        }
+      }
+    },
+    {
+      "id": "hood",
+      "name": "胡德",
+      "navy": "gb",
+      "year": 1941,
+      "kind": "战列巡洋舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_hood.htm",
+      "feature": "长舰体 · 四座双联炮 · 分隔双烟囱",
+      "geometry": {
+        "length": 262.1,
+        "beam": 31.7,
+        "calibre": 381,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.05,
+          -0.24
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.29
+      },
+      "modelId": "historic-hood",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.4057953663381967,
+        "combatStretch": 2.1192947759863316,
+        "parts": {
+          "aa-port": {
+            "x": -0.29623061742688356,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.29623061742688356,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.695
+          }
+        }
+      }
+    },
+    {
+      "id": "rodney",
+      "name": "罗德尼",
+      "navy": "gb",
+      "year": 1941,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_nelson.htm",
+      "feature": "三座三联炮全部前置 · 后置塔桥",
+      "geometry": {
+        "length": 216.4,
+        "beam": 32.3,
+        "calibre": 406,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.25,
+            "x": 0,
+            "raised": 0,
+            "bearing": 60
+          }
+        ],
+        "funnels": [
+          -0.43
+        ],
+        "bridge": "tower",
+        "bridgeY": -0.06,
+        "secondary": [
+          {
+            "barrels": 2,
+            "y": -0.34,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 152
+          },
+          {
+            "barrels": 2,
+            "y": -0.55,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 152
+          },
+          {
+            "barrels": 2,
+            "y": -0.74,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 152
+          },
+          {
+            "barrels": 2,
+            "y": -0.34,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 152
+          },
+          {
+            "barrels": 2,
+            "y": -0.55,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 152
+          },
+          {
+            "barrels": 2,
+            "y": -0.74,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 152
+          }
+        ]
+      },
+      "modelId": "historic-rodney",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.5007951430938874,
+        "combatStretch": 1.7172690507479025,
+        "parts": {
+          "aa-port": {
+            "x": -0.36558045445853776,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.36558045445853776,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": 0.14379310344827587
+          }
+        }
+      }
+    },
+    {
+      "id": "ark-royal",
+      "name": "皇家方舟",
+      "navy": "gb",
+      "year": 1941,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/uk/brit_cv1_ark_royal.htm",
+      "feature": "圆弧舰艏 · 右舷舰岛 · 三部升降机",
+      "geometry": {
+        "length": 243.8,
+        "beam": 29,
+        "calibre": 114,
+        "guns": [],
+        "funnels": [
+          -0.01
+        ],
+        "bridge": "island",
+        "bridgeY": 0.16,
+        "lifts": [
+          [
+            0,
+            0.57
+          ],
+          [
+            0,
+            0.03
+          ],
+          [
+            0,
+            -0.58
+          ]
+        ],
+        "islandSide": 1
+      },
+      "modelId": "historic-ark-royal",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.49082509390786233,
+        "combatStretch": 2.0288071780436314,
+        "parts": {
+          "aa-port": {
+            "x": -0.3583023185527395,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.3583023185527395,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.38775182418721127,
+            "y": -0.47157894736842104
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "illustrious",
+      "name": "光辉",
+      "navy": "gb",
+      "year": 1940,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/uk/brit_cv1_illustrious.htm",
+      "feature": "装甲直通甲板 · 两部升降机 · 右舷舰岛",
+      "geometry": {
+        "length": 229.6,
+        "beam": 32.5,
+        "calibre": 114,
+        "guns": [],
+        "funnels": [
+          -0.01
+        ],
+        "bridge": "island",
+        "bridgeY": 0.18,
+        "lifts": [
+          [
+            0,
+            0.54
+          ],
+          [
+            0,
+            -0.59
+          ]
+        ],
+        "islandSide": 1,
+        "deck": "armoured"
+      },
+      "modelId": "historic-illustrious",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.5840821566110397,
+        "combatStretch": 1.7048791208791212,
+        "parts": {
+          "aa-port": {
+            "x": -0.42637997432605895,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.42637997432605895,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.4614249037227214,
+            "y": -0.5305263157894736
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "cossack",
+      "name": "哥萨克",
+      "navy": "gb",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/uk/brit_dd_tribal.htm",
+      "feature": "部族级 · 四座双联主炮 · 双烟囱",
+      "geometry": {
+        "length": 114.9,
+        "beam": 11.1,
+        "calibre": 120,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.13,
+          -0.13
+        ],
+        "bridge": "low",
+        "bridgeY": 0.36,
+        "torpedoes": 1,
+        "deck": "steel"
+      },
+      "modelId": "historic-cossack",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.27800986364955027,
+        "combatStretch": 2.4059897735573417,
+        "parts": {
+          "aa-port": {
+            "x": -0.2029472004641717,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2029472004641717,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7399999999999999
+          }
+        }
+      }
+    },
+    {
+      "id": "belfast",
+      "name": "贝尔法斯特",
+      "navy": "gb",
+      "year": 1943,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/uk/brit_cr_edinburgh.htm",
+      "feature": "四座三联152毫米炮 · 双烟囱 · 中部航空区",
+      "geometry": {
+        "length": 187,
+        "beam": 20.2,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.09,
+          -0.25
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.3,
+        "torpedoes": 2,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0,
+            -0.07,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-belfast",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.32651920272241125,
+        "combatStretch": 2.274681753889675,
+        "parts": {
+          "aa-port": {
+            "x": -0.2383590179873602,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2383590179873602,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6477272727272727
+          }
+        }
+      }
+    },
+    {
+      "id": "renown",
+      "name": "声望",
+      "navy": "gb",
+      "year": 1944,
+      "kind": "战列巡洋舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_renown16.htm",
+      "feature": "长舰体 · 三座双联381毫米炮 · 双烟囱",
+      "geometry": {
+        "length": 242,
+        "beam": 31.3,
+        "calibre": 381,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.06,
+          -0.25
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28
+      },
+      "modelId": "historic-renown",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.43395411798233113,
+        "combatStretch": 1.9817763315591252,
+        "parts": {
+          "aa-port": {
+            "x": -0.31678650612710174,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.31678650612710174,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6710344827586208
+          }
+        }
+      }
+    },
+    {
+      "id": "yamato",
+      "name": "大和",
+      "navy": "jp",
+      "year": 1945,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/japan/jap_bb_yamato.htm",
+      "feature": "三座三联巨炮 · 塔式舰桥 · 后部航空甲板",
+      "geometry": {
+        "length": 263,
+        "beam": 36.9,
+        "calibre": 460,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.1
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.06,
+        "catapults": 2,
+        "secondary": [
+          {
+            "barrels": 3,
+            "y": 0.23,
+            "x": 0,
+            "raised": 0.4,
+            "bearing": 0,
+            "calibre": 155
+          },
+          {
+            "barrels": 3,
+            "y": -0.35,
+            "x": 0,
+            "raised": 0.25,
+            "bearing": 180,
+            "calibre": 155
+          }
+        ]
+      },
+      "modelId": "battleship",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.4707447226956863,
+        "combatStretch": 1.826892492974262,
+        "parts": {
+          "aa-port": {
+            "x": -0.343643647567851,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.343643647567851,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.14379310344827587
+          }
+        }
+      }
+    },
+    {
+      "id": "nagato",
+      "name": "长门",
+      "navy": "jp",
+      "year": 1944,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/japan/jap_bb_nagato.htm",
+      "feature": "四座双联炮 · 高耸舰桥 · 单烟囱",
+      "geometry": {
+        "length": 224.9,
+        "beam": 33,
+        "calibre": 410,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.09
+        ],
+        "bridge": "pagoda",
+        "bridgeY": 0.28,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0,
+            -0.31,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-nagato",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.49231075880467945,
+        "combatStretch": 1.746864119094335,
+        "parts": {
+          "aa-port": {
+            "x": -0.359386853927416,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.359386853927416,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6710344827586208
+          }
+        }
+      }
+    },
+    {
+      "id": "kongo",
+      "name": "金刚",
+      "navy": "jp",
+      "year": 1944,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/japan/jap_bb_kongo.htm",
+      "feature": "修长高速舰体 · 四座双联炮 · 双烟囱",
+      "geometry": {
+        "length": 222.1,
+        "beam": 29.3,
+        "calibre": 356,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.04,
+          -0.25
+        ],
+        "bridge": "pagoda",
+        "bridgeY": 0.28,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0.5,
+            -0.36,
+            -70,
+            1
+          ]
+        ]
+      },
+      "modelId": "historic-kongo",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.44262292536757286,
+        "combatStretch": 1.9429630746889568,
+        "parts": {
+          "aa-port": {
+            "x": -0.3231147355183282,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.3231147355183282,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6710344827586208
+          }
+        }
+      }
+    },
+    {
+      "id": "akagi",
+      "name": "赤城",
+      "navy": "jp",
+      "year": 1942,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_akagi.htm",
+      "feature": "左舷舰岛 · 右舷下弯烟道 · 三部升降机",
+      "geometry": {
+        "length": 260.7,
+        "beam": 31.3,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0
+        ],
+        "bridge": "island",
+        "bridgeY": 0.05,
+        "lifts": [
+          [
+            0,
+            0.57
+          ],
+          [
+            0,
+            -0.02
+          ],
+          [
+            0,
+            -0.62
+          ]
+        ],
+        "islandSide": -1,
+        "funnelStyle": "side"
+      },
+      "modelId": "fleet-carrier",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.4954111400480487,
+        "combatStretch": 2.010026406728826,
+        "parts": {
+          "aa-port": {
+            "x": -0.3616501322350755,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.3616501322350755,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": -0.3913748006379585,
+            "y": -0.14736842105263157
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "kaga",
+      "name": "加贺",
+      "navy": "jp",
+      "year": 1942,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_kaga.htm",
+      "feature": "宽阔木甲板 · 右舷舰岛 · 下弯烟道",
+      "geometry": {
+        "length": 248.6,
+        "beam": 32.5,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          -0.08
+        ],
+        "bridge": "island",
+        "bridgeY": 0.24,
+        "lifts": [
+          [
+            0,
+            0.57
+          ],
+          [
+            0,
+            -0.02
+          ],
+          [
+            0,
+            -0.62
+          ]
+        ],
+        "islandSide": 1,
+        "funnelStyle": "side"
+      },
+      "modelId": "historic-kaga",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.5394419274251598,
+        "combatStretch": 1.8459623233908948,
+        "parts": {
+          "aa-port": {
+            "x": -0.39379260702036667,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.39379260702036667,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.4261591226658763,
+            "y": -0.7073684210526315
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "shokaku",
+      "name": "翔鹤",
+      "navy": "jp",
+      "year": 1942,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_shokaku.htm",
+      "feature": "细长甲板 · 小舰岛 · 右舷双烟道",
+      "geometry": {
+        "length": 257.5,
+        "beam": 29,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          -0.02,
+          -0.22
+        ],
+        "bridge": "island",
+        "bridgeY": 0.28,
+        "lifts": [
+          [
+            0,
+            0.55
+          ],
+          [
+            0,
+            -0.04
+          ],
+          [
+            0,
+            -0.61
+          ]
+        ],
+        "islandSide": 1,
+        "funnelStyle": "side"
+      },
+      "modelId": "historic-shokaku",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.4647112927950945,
+        "combatStretch": 2.1428131597466575,
+        "parts": {
+          "aa-port": {
+            "x": -0.33923924374041897,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.33923924374041897,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.36712192130812465,
+            "y": -0.8252631578947369
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "mogami",
+      "name": "最上",
+      "navy": "jp",
+      "year": 1941,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/japan/jap_cr_mogami.htm",
+      "feature": "改装后五座双联203毫米炮 · 集中舰桥",
+      "geometry": {
+        "length": 200.6,
+        "beam": 19,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.83,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.64,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 2,
+            "y": 0.44,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.56,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.02,
+          -0.22
+        ],
+        "bridge": "pagoda",
+        "bridgeY": 0.24,
+        "torpedoes": 4,
+        "catapults": 2,
+        "funnelStyle": "trunked",
+        "deck": "linoleum",
+        "catapultStations": [
+          [
+            -0.5,
+            -0.35,
+            90,
+            1
+          ],
+          [
+            0.5,
+            -0.35,
+            -90,
+            1
+          ]
+        ]
+      },
+      "modelId": "historic-mogami",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.2863001903380767,
+        "combatStretch": 2.594225563909774,
+        "parts": {
+          "aa-port": {
+            "x": -0.20899913894679598,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.20899913894679598,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5181818181818182
+          }
+        }
+      }
+    },
+    {
+      "id": "fubuki",
+      "name": "吹雪",
+      "navy": "jp",
+      "year": 1941,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/japan/jap_dd_fubuki.htm",
+      "feature": "前一后二的三座双联炮 · 三组鱼雷管",
+      "geometry": {
+        "length": 118.4,
+        "beam": 10.4,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.52,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.21,
+          -0.05
+        ],
+        "bridge": "low",
+        "bridgeY": 0.43,
+        "torpedoes": 3,
+        "deck": "linoleum"
+      },
+      "modelId": "historic-fubuki",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2527777777777777,
+        "combatStretch": 2.646153846153847,
+        "parts": {
+          "aa-port": {
+            "x": -0.18452777777777774,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.18452777777777774,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.8838888888888888
+          }
+        }
+      }
+    },
+    {
+      "id": "hiryu",
+      "name": "飞龙",
+      "navy": "jp",
+      "year": 1942,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_hiryu.htm",
+      "feature": "左舷舰岛 · 右舷双烟道 · 三部升降机",
+      "geometry": {
+        "length": 227.4,
+        "beam": 27,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.02,
+          -0.18
+        ],
+        "bridge": "island",
+        "bridgeY": 0.15,
+        "lifts": [
+          [
+            0,
+            0.55
+          ],
+          [
+            0,
+            -0.02
+          ],
+          [
+            0,
+            -0.59
+          ]
+        ],
+        "islandSide": -1,
+        "funnelStyle": "side"
+      },
+      "modelId": "historic-hiryu",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.48993195389529226,
+        "combatStretch": 2.032505668934241,
+        "parts": {
+          "aa-port": {
+            "x": -0.35765032634356336,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.35765032634356336,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": -0.3870462435772809,
+            "y": -0.4421052631578947
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "soryu",
+      "name": "苍龙",
+      "navy": "jp",
+      "year": 1942,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_soryu.htm",
+      "feature": "右舷前置小舰岛 · 右舷双烟道",
+      "geometry": {
+        "length": 227.5,
+        "beam": 26,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          -0.01,
+          -0.21
+        ],
+        "bridge": "island",
+        "bridgeY": 0.31,
+        "lifts": [
+          [
+            0,
+            0.56
+          ],
+          [
+            0,
+            -0.02
+          ],
+          [
+            0,
+            -0.59
+          ]
+        ],
+        "islandSide": 1,
+        "funnelStyle": "side"
+      },
+      "modelId": "historic-soryu",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.47157894736842093,
+        "combatStretch": 2.1116071428571437,
+        "parts": {
+          "aa-port": {
+            "x": -0.34425263157894725,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.34425263157894725,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.37254736842105257,
+            "y": -0.9136842105263158
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "shinano",
+      "name": "信浓",
+      "navy": "jp",
+      "year": 1944,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_shinano.htm",
+      "feature": "大和级船体改装 · 装甲甲板 · 大型右舷舰岛",
+      "geometry": {
+        "length": 266,
+        "beam": 41.5,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          -0.02
+        ],
+        "bridge": "island",
+        "bridgeY": 0.18,
+        "lifts": [
+          [
+            0,
+            0.53
+          ],
+          [
+            0,
+            -0.58
+          ]
+        ],
+        "islandSide": 1,
+        "funnelStyle": "trunked",
+        "deck": "armoured"
+      },
+      "modelId": "historic-shinano",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.6437673130193905,
+        "combatStretch": 1.5468158347676422,
+        "parts": {
+          "aa-port": {
+            "x": -0.46995013850415507,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.46995013850415507,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.5085761772853186,
+            "y": -0.5305263157894736
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "musashi",
+      "name": "武藏",
+      "navy": "jp",
+      "year": 1944,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/japan/jap_bb_yamato.htm",
+      "feature": "大和级 · 三座三联460毫米炮 · 宽阔航空艉甲板",
+      "geometry": {
+        "length": 263,
+        "beam": 36.9,
+        "calibre": 460,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.1
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.06,
+        "catapults": 2,
+        "secondary": [
+          {
+            "barrels": 3,
+            "y": 0.23,
+            "x": 0,
+            "raised": 0.4,
+            "bearing": 0,
+            "calibre": 155
+          },
+          {
+            "barrels": 3,
+            "y": -0.35,
+            "x": 0,
+            "raised": 0.25,
+            "bearing": 180,
+            "calibre": 155
+          }
+        ]
+      },
+      "modelId": "historic-musashi",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.4707447226956863,
+        "combatStretch": 1.826892492974262,
+        "parts": {
+          "aa-port": {
+            "x": -0.343643647567851,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.343643647567851,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.14379310344827587
+          }
+        }
+      }
+    },
+    {
+      "id": "bismarck",
+      "name": "俾斯麦",
+      "navy": "de",
+      "year": 1941,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/germany/ger_bb_bismarck.htm",
+      "feature": "前后各两座双联主炮 · 单粗烟囱",
+      "geometry": {
+        "length": 250,
+        "beam": 36,
+        "calibre": 380,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.09
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.27,
+        "catapults": 2,
+        "secondary": [
+          {
+            "barrels": 2,
+            "y": 0.25,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": -0.07,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": -0.36,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": 0.25,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": -0.07,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": -0.36,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 149
+          }
+        ],
+        "catapultStations": [
+          [
+            -0.36,
+            -0.24,
+            90,
+            0.7
+          ],
+          [
+            0.36,
+            -0.24,
+            90,
+            0.7
+          ]
+        ]
+      },
+      "modelId": "historic-bismarck",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.4831448275862069,
+        "combatStretch": 1.780004567774352,
+        "parts": {
+          "aa-port": {
+            "x": -0.35269572413793104,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.35269572413793104,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6470689655172415
+          }
+        }
+      }
+    },
+    {
+      "id": "scharnhorst",
+      "name": "沙恩霍斯特",
+      "navy": "de",
+      "year": 1943,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/germany/ger_bb_scharnhorst.htm",
+      "feature": "三座三联283毫米炮 · 单烟囱 · 飞剪艏",
+      "geometry": {
+        "length": 234.9,
+        "beam": 30,
+        "calibre": 283,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.08
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0,
+            -0.31,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-scharnhorst",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.4285022239837935,
+        "combatStretch": 2.0069907502569375,
+        "parts": {
+          "aa-port": {
+            "x": -0.31280662350816923,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.31280662350816923,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6710344827586208
+          }
+        }
+      }
+    },
+    {
+      "id": "graf-spee",
+      "name": "斯佩伯爵",
+      "navy": "de",
+      "year": 1939,
+      "kind": "装甲舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/germany/ger_cr_deutschland.htm",
+      "feature": "前后两座三联283毫米炮 · 高大塔桥",
+      "geometry": {
+        "length": 186,
+        "beam": 21.7,
+        "calibre": 283,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.14
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.36,
+        "catapults": 1,
+        "torpedoes": 2,
+        "catapultStations": [
+          [
+            0,
+            -0.34,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-graf-spee",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3526515151515151,
+        "combatStretch": 2.1061224489795918,
+        "parts": {
+          "aa-port": {
+            "x": -0.257435606060606,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.257435606060606,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7772727272727272
+          }
+        }
+      }
+    },
+    {
+      "id": "prinz-eugen",
+      "name": "欧根亲王",
+      "navy": "de",
+      "year": 1941,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/germany/ger_cr_eugen.htm",
+      "feature": "四座双联炮 · 单烟囱 · 艉部机库",
+      "geometry": {
+        "length": 207.7,
+        "beam": 21.7,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.05
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "catapults": 1,
+        "torpedoes": 4,
+        "catapultStations": [
+          [
+            0,
+            -0.23,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-prinz-eugen",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.31580732700135683,
+        "combatStretch": 2.3518367346938778,
+        "parts": {
+          "aa-port": {
+            "x": -0.2305393487109905,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2305393487109905,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "tirpitz",
+      "name": "提尔皮茨",
+      "navy": "de",
+      "year": 1943,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/germany/ger_bb_bismarck.htm",
+      "feature": "俾斯麦级 · 四座双联主炮 · 单粗烟囱",
+      "geometry": {
+        "length": 253.6,
+        "beam": 36,
+        "calibre": 380,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.09
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.27,
+        "catapults": 2,
+        "secondary": [
+          {
+            "barrels": 2,
+            "y": 0.25,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": -0.07,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": -0.36,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": 0.25,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": -0.07,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 149
+          },
+          {
+            "barrels": 2,
+            "y": -0.36,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 149
+          }
+        ],
+        "catapultStations": [
+          [
+            -0.36,
+            -0.24,
+            90,
+            0.7
+          ],
+          [
+            0.36,
+            -0.24,
+            90,
+            0.7
+          ]
+        ]
+      },
+      "modelId": "historic-tirpitz",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.47628630479712825,
+        "combatStretch": 1.8056366335503027,
+        "parts": {
+          "aa-port": {
+            "x": -0.3476890025019036,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.3476890025019036,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6470689655172415
+          }
+        }
+      }
+    },
+    {
+      "id": "littorio",
+      "name": "利托里奥",
+      "navy": "it",
+      "year": 1942,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/italy/it_bb_vittorio_veneto.htm",
+      "feature": "三座三联381毫米炮 · 双烟囱 · 识别条纹艏",
+      "geometry": {
+        "length": 237.8,
+        "beam": 32.8,
+        "calibre": 381,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.05,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.29,
+        "catapults": 1,
+        "bowStripes": true,
+        "secondary": [
+          {
+            "barrels": 3,
+            "y": 0.22,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 152
+          },
+          {
+            "barrels": 3,
+            "y": -0.4,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 152
+          },
+          {
+            "barrels": 3,
+            "y": 0.22,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 152
+          },
+          {
+            "barrels": 3,
+            "y": -0.4,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 152
+          }
+        ]
+      },
+      "modelId": "historic-littorio",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.462782401902497,
+        "combatStretch": 1.8583247687564237,
+        "parts": {
+          "aa-port": {
+            "x": -0.3378311533888228,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.3378311533888228,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.695
+          }
+        }
+      }
+    },
+    {
+      "id": "giulio-cesare",
+      "name": "朱利奥·凯撒",
+      "navy": "it",
+      "year": 1940,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/italy/it_bb_giulio_cesare.htm",
+      "feature": "重建舰艏 · 三联与双联混合炮塔 · 双烟囱",
+      "geometry": {
+        "length": 186.4,
+        "beam": 28.6,
+        "calibre": 320,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.54,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.52,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.77,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.05,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28
+      },
+      "modelId": "historic-giulio-cesare",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.5147957673523753,
+        "combatStretch": 1.6705654058172044,
+        "parts": {
+          "aa-port": {
+            "x": -0.375800910167234,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.375800910167234,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6710344827586208
+          }
+        }
+      }
+    },
+    {
+      "id": "zara",
+      "name": "扎拉",
+      "navy": "it",
+      "year": 1941,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/italy/it_cr_zara.htm",
+      "feature": "四座双联203毫米炮 · 双烟囱 · 艏部弹射器",
+      "geometry": {
+        "length": 182.8,
+        "beam": 20.6,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.06,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "catapults": 1,
+        "bowStripes": true
+      },
+      "modelId": "historic-zara",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3406355679331609,
+        "combatStretch": 2.1804160887656034,
+        "parts": {
+          "aa-port": {
+            "x": -0.24866396459120746,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.24866396459120746,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "maestrale",
+      "name": "西北风",
+      "navy": "it",
+      "year": 1940,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/italy/it_dd_maestrale.htm",
+      "feature": "前后双联炮 · 双烟囱 · 两组三联鱼雷管",
+      "geometry": {
+        "length": 106.7,
+        "beam": 10.2,
+        "calibre": 120,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.18,
+          -0.11
+        ],
+        "bridge": "low",
+        "bridgeY": 0.42,
+        "torpedoes": 2,
+        "deck": "steel"
+      },
+      "modelId": "historic-maestrale",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.27510153077163374,
+        "combatStretch": 2.43142554319025,
+        "parts": {
+          "aa-port": {
+            "x": -0.20082411746329262,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.20082411746329262,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.8633333333333332
+          }
+        }
+      }
+    },
+    {
+      "id": "roma",
+      "name": "罗马",
+      "navy": "it",
+      "year": 1943,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/italy/it_bb_vittorio_veneto.htm",
+      "feature": "利托里奥级 · 三座三联主炮 · 加长舰艏",
+      "geometry": {
+        "length": 240.7,
+        "beam": 32.8,
+        "calibre": 381,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.05,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.29,
+        "catapults": 1,
+        "bowStripes": true,
+        "secondary": [
+          {
+            "barrels": 3,
+            "y": 0.22,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 152
+          },
+          {
+            "barrels": 3,
+            "y": -0.4,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 152
+          },
+          {
+            "barrels": 3,
+            "y": 0.22,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 152
+          },
+          {
+            "barrels": 3,
+            "y": -0.4,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 152
+          }
+        ]
+      },
+      "modelId": "historic-roma",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.4572067103133103,
+        "combatStretch": 1.88098726593638,
+        "parts": {
+          "aa-port": {
+            "x": -0.3337608985287165,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.3337608985287165,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.695
+          }
+        }
+      }
+    },
+    {
+      "id": "richelieu",
+      "name": "黎塞留",
+      "navy": "fr",
+      "year": 1940,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/france/fr_bb_richelieu.htm",
+      "feature": "两座四联主炮全部前置 · 烟囱与后桅合一",
+      "geometry": {
+        "length": 247.9,
+        "beam": 33,
+        "calibre": 380,
+        "guns": [
+          {
+            "barrels": 4,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 4,
+            "y": 0.43,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.16,
+        "catapults": 2,
+        "funnelStyle": "trunked",
+        "secondary": [
+          {
+            "barrels": 3,
+            "y": -0.48,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 152
+          },
+          {
+            "barrels": 3,
+            "y": -0.48,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 152
+          },
+          {
+            "barrels": 3,
+            "y": -0.74,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180,
+            "calibre": 152
+          }
+        ]
+      },
+      "modelId": "historic-richelieu",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.44663448832259944,
+        "combatStretch": 1.925511850260052,
+        "parts": {
+          "aa-port": {
+            "x": -0.3260431764754976,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.3260431764754976,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.383448275862069
+          }
+        }
+      }
+    },
+    {
+      "id": "dunkerque",
+      "name": "敦刻尔克",
+      "navy": "fr",
+      "year": 1940,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/france/fr_bb_dunkerque.htm",
+      "feature": "两座前置四联330毫米炮 · 长后甲板",
+      "geometry": {
+        "length": 215.1,
+        "beam": 31.1,
+        "calibre": 330,
+        "guns": [
+          {
+            "barrels": 4,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 4,
+            "y": 0.43,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          -0.26
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.16,
+        "catapults": 1,
+        "secondary": [
+          {
+            "barrels": 4,
+            "y": -0.48,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 130
+          },
+          {
+            "barrels": 4,
+            "y": -0.48,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 130
+          },
+          {
+            "barrels": 4,
+            "y": -0.74,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180,
+            "calibre": 130
+          },
+          {
+            "barrels": 2,
+            "y": -0.1,
+            "x": -0.61,
+            "raised": 0,
+            "bearing": 90,
+            "calibre": 130
+          },
+          {
+            "barrels": 2,
+            "y": -0.1,
+            "x": 0.61,
+            "raised": 0,
+            "bearing": -90,
+            "calibre": 130
+          }
+        ]
+      },
+      "modelId": "historic-dunkerque",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.48510396126901684,
+        "combatStretch": 1.7728158676549801,
+        "parts": {
+          "aa-port": {
+            "x": -0.35412589172638226,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.35412589172638226,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.383448275862069
+          }
+        }
+      }
+    },
+    {
+      "id": "algerie",
+      "name": "阿尔及利亚",
+      "navy": "fr",
+      "year": 1939,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/france/fr_cr_algerie.htm",
+      "feature": "四座双联炮 · 方形塔桥 · 单烟囱",
+      "geometry": {
+        "length": 186.2,
+        "beam": 20,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.1
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "torpedoes": 2,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            -0.55,
+            -0.04,
+            90,
+            0.85
+          ]
+        ]
+      },
+      "modelId": "historic-algerie",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.32467532467532473,
+        "combatStretch": 2.2875999999999994,
+        "parts": {
+          "aa-port": {
+            "x": -0.23701298701298704,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23701298701298704,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "le-fantasque",
+      "name": "空想",
+      "navy": "fr",
+      "year": 1940,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/france/fr_dd_le_fantasque.htm",
+      "feature": "五座单装炮 · 两根大烟囱 · 三组鱼雷管",
+      "geometry": {
+        "length": 132.4,
+        "beam": 12.5,
+        "calibre": 139,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.74,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.3,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.16,
+          -0.08
+        ],
+        "bridge": "low",
+        "bridgeY": 0.39,
+        "torpedoes": 3,
+        "openGuns": true,
+        "deck": "steel"
+      },
+      "modelId": "historic-le-fantasque",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.27169352131587776,
+        "combatStretch": 2.4619243243243245,
+        "parts": {
+          "aa-port": {
+            "x": -0.19833627056059075,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.19833627056059075,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.8016666666666666
+          }
+        }
+      }
+    },
+    {
+      "id": "marat",
+      "name": "马拉",
+      "navy": "su",
+      "year": 1940,
+      "kind": "战列舰",
+      "hull": "battleship",
+      "source": "https://www.navypedia.org/ships/russia/ru_bb_sevastopol.htm",
+      "feature": "四座平甲板三联炮 · 双烟囱 · 前桅塔桥",
+      "geometry": {
+        "length": 184.9,
+        "beam": 27.3,
+        "calibre": 305,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.22,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 3,
+            "y": -0.3,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.39,
+          -0.1
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.57
+      },
+      "modelId": "historic-marat",
+      "shape": {
+        "halfLength": 2.396551724137931,
+        "halfBeam": 0.49538240614684537,
+        "combatStretch": 1.736032586803399,
+        "parts": {
+          "aa-port": {
+            "x": -0.3616291564871971,
+            "y": 0.3594827586206896
+          },
+          "aa-starboard": {
+            "x": 0.3616291564871971,
+            "y": 0.3594827586206896
+          },
+          "bridge": {
+            "x": 0,
+            "y": -1.3660344827586206
+          }
+        }
+      }
+    },
+    {
+      "id": "kirov",
+      "name": "基洛夫",
+      "navy": "su",
+      "year": 1941,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/russia/ru_cr_kirov.htm",
+      "feature": "三座三联180毫米炮 · 双烟囱 · 四脚前桅",
+      "geometry": {
+        "length": 191.3,
+        "beam": 17.7,
+        "calibre": 180,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.06,
+          -0.24
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.28,
+        "torpedoes": 2,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0,
+            -0.09,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-kirov",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.2796773273772751,
+        "combatStretch": 2.6556577885391444,
+        "parts": {
+          "aa-port": {
+            "x": -0.2041644489854108,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2041644489854108,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "tashkent",
+      "name": "塔什干",
+      "navy": "su",
+      "year": 1942,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/russia/ru_dd_tashkent.htm",
+      "feature": "蓝灰舰体 · 三座双联炮 · 双烟囱",
+      "geometry": {
+        "length": 139.8,
+        "beam": 13.7,
+        "calibre": 130,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.54,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.15,
+          -0.11
+        ],
+        "bridge": "low",
+        "bridgeY": 0.41,
+        "torpedoes": 3,
+        "deck": "steel"
+      },
+      "modelId": "historic-tashkent",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2820139882371641,
+        "combatStretch": 2.3718287630696397,
+        "parts": {
+          "aa-port": {
+            "x": -0.2058702114131298,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2058702114131298,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.8427777777777776
+          }
+        }
+      }
+    },
+    {
+      "id": "ning-hai",
+      "name": "宁海",
+      "navy": "cn",
+      "year": 1937,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/china/ch_cr_ning_hai.htm",
+      "feature": "三座双联140毫米炮 · 双烟囱 · 小型机库",
+      "geometry": {
+        "length": 109.7,
+        "beam": 11.9,
+        "calibre": 140,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.52,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.14,
+          -0.15
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.42,
+        "torpedoes": 2
+      },
+      "modelId": "historic-ning-hai",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3278984005966686,
+        "combatStretch": 2.2651140456182475,
+        "parts": {
+          "aa-port": {
+            "x": -0.23936583243556805,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23936583243556805,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.9068181818181819
+          }
+        }
+      }
+    },
+    {
+      "id": "yat-sen",
+      "name": "逸仙",
+      "navy": "cn",
+      "year": 1937,
+      "kind": "炮舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/china/ch_of_i_hsien.htm",
+      "feature": "艏艉单装大炮 · 低矮上层建筑 · 单烟囱",
+      "geometry": {
+        "length": 83.8,
+        "beam": 10.5,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.06
+        ],
+        "bridge": "low",
+        "bridgeY": 0.34,
+        "openGuns": true
+      },
+      "modelId": "historic-yat-sen",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.36058074781225136,
+        "combatStretch": 1.8550321750321752,
+        "parts": {
+          "aa-port": {
+            "x": -0.26322394590294346,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.26322394590294346,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6988888888888889
+          }
+        }
+      }
+    },
+    {
+      "id": "de-ruyter",
+      "name": "德鲁伊特",
+      "navy": "nl",
+      "year": 1942,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/netherlands/nl_cr_de_ruyter.htm",
+      "feature": "三座双联加一座单装炮 · 高塔桥 · 双烟囱",
+      "geometry": {
+        "length": 170.8,
+        "beam": 15.7,
+        "calibre": 149,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.54,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.05,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0,
+            -0.36,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-de-ruyter",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.27785022354694483,
+        "combatStretch": 2.6731210191082804,
+        "parts": {
+          "aa-port": {
+            "x": -0.20283066318926973,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.20283066318926973,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "java",
+      "name": "爪哇",
+      "navy": "nl",
+      "year": 1942,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/netherlands/nl_cr_java.htm",
+      "feature": "十座单装炮 · 舷侧炮列 · 双烟囱",
+      "geometry": {
+        "length": 155.3,
+        "beam": 16,
+        "calibre": 149,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.83,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.61,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.59,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.82,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": 0.36,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.02,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.32,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.36,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 1,
+            "y": 0.02,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 1,
+            "y": -0.32,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.15,
+          -0.17
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.43,
+        "openGuns": true
+      },
+      "modelId": "historic-java",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.31142071064801263,
+        "combatStretch": 2.3849642857142856,
+        "parts": {
+          "aa-port": {
+            "x": -0.2273371187730492,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2273371187730492,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.928409090909091
+          }
+        }
+      }
+    },
+    {
+      "id": "kortenaer",
+      "name": "科特纳尔",
+      "navy": "nl",
+      "year": 1942,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/netherlands/nl_dd_van_ghent.htm",
+      "feature": "四座单装炮 · 双烟囱 · 两组鱼雷管",
+      "geometry": {
+        "length": 98.2,
+        "beam": 9.53,
+        "calibre": 120,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.13,
+          -0.12
+        ],
+        "bridge": "low",
+        "bridgeY": 0.36,
+        "torpedoes": 2,
+        "openGuns": true,
+        "deck": "steel"
+      },
+      "modelId": "historic-kortenaer",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2792792486988006,
+        "combatStretch": 2.39505402569411,
+        "parts": {
+          "aa-port": {
+            "x": -0.20387385155012444,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.20387385155012444,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7399999999999999
+          }
+        }
+      }
+    },
+    {
+      "id": "blyskawica",
+      "name": "闪电",
+      "navy": "pl",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/poland/pl_dd_grom.htm",
+      "feature": "七门120毫米炮 · 前单装与双联混合 · 双烟囱",
+      "geometry": {
+        "length": 114,
+        "beam": 11.3,
+        "calibre": 120,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.82,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.56,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.54,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.13,
+          -0.12
+        ],
+        "bridge": "low",
+        "bridgeY": 0.35,
+        "torpedoes": 2,
+        "deck": "steel"
+      },
+      "modelId": "historic-blyskawica",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.28525341130604287,
+        "combatStretch": 2.3448935661325043,
+        "parts": {
+          "aa-port": {
+            "x": -0.2082349902534113,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2082349902534113,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7194444444444443
+          }
+        }
+      }
+    },
+    {
+      "id": "piorun",
+      "name": "雷电",
+      "navy": "pl",
+      "year": 1941,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/poland/pl_dd_piorun.htm",
+      "feature": "三座双联主炮 · 单烟囱 · 五联鱼雷管",
+      "geometry": {
+        "length": 108.7,
+        "beam": 10.9,
+        "calibre": 120,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.69,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.41,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.58,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.04
+        ],
+        "bridge": "low",
+        "bridgeY": 0.29,
+        "torpedoes": 1,
+        "deck": "steel"
+      },
+      "modelId": "historic-piorun",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2885720126750485,
+        "combatStretch": 2.3179271014133405,
+        "parts": {
+          "aa-port": {
+            "x": -0.2106575692527854,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2106575692527854,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.596111111111111
+          }
+        }
+      }
+    },
+    {
+      "id": "haida",
+      "name": "海达人",
+      "navy": "ca",
+      "year": 1943,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/canada/can_dd_iroquois.htm",
+      "feature": "部族级 · 三座120毫米双联主炮 · 双烟囱",
+      "geometry": {
+        "length": 114.9,
+        "beam": 11.4,
+        "calibre": 120,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.54,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.13,
+          -0.12
+        ],
+        "bridge": "low",
+        "bridgeY": 0.34,
+        "torpedoes": 1,
+        "deck": "steel"
+      },
+      "modelId": "historic-haida",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2855236437481868,
+        "combatStretch": 2.342674253200569,
+        "parts": {
+          "aa-port": {
+            "x": -0.20843225993617634,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.20843225993617634,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6988888888888889
+          }
+        }
+      }
+    },
+    {
+      "id": "sackville",
+      "name": "萨克维尔",
+      "navy": "ca",
+      "year": 1942,
+      "kind": "护卫舰",
+      "hull": "patrol-boat",
+      "source": "https://www.navypedia.org/ships/canada/can_es_flower.htm",
+      "feature": "花级护航舰 · 艏部单装炮 · 艉部深弹架",
+      "geometry": {
+        "length": 62.5,
+        "beam": 10.1,
+        "calibre": 102,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          -0.08
+        ],
+        "bridge": "low",
+        "bridgeY": 0.3,
+        "openGuns": true,
+        "deck": "steel"
+      },
+      "modelId": "historic-sackville",
+      "shape": {
+        "halfLength": 1.625,
+        "halfBeam": 0.3676399999999999,
+        "combatStretch": 1.8519022231893523,
+        "parts": {
+          "aa-port": {
+            "x": 0,
+            "y": 1.17
+          }
+        }
+      }
+    },
+    {
+      "id": "sydney",
+      "name": "悉尼 II",
+      "navy": "au",
+      "year": 1941,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/australia/aus_cr_sydney.htm",
+      "feature": "四座双联炮 · 分隔双烟囱 · 中部弹射器",
+      "geometry": {
+        "length": 171.4,
+        "beam": 17.3,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.1,
+          -0.28
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.3,
+        "torpedoes": 2,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0,
+            -0.07,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-sydney",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.30509440967433965,
+        "combatStretch": 2.434417836498761,
+        "parts": {
+          "aa-port": {
+            "x": -0.22271891906226793,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.22271891906226793,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6477272727272727
+          }
+        }
+      }
+    },
+    {
+      "id": "australia",
+      "name": "澳大利亚 II",
+      "navy": "au",
+      "year": 1943,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/australia/aus_cv_australia.htm",
+      "feature": "郡级 · 四座双联203毫米炮 · 三烟囱",
+      "geometry": {
+        "length": 192.9,
+        "beam": 20.8,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.13,
+          -0.06,
+          -0.25
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.32,
+        "torpedoes": 2,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0,
+            -0.35,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-australia",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3259343041613648,
+        "combatStretch": 2.2787637362637363,
+        "parts": {
+          "aa-port": {
+            "x": -0.2379320420377963,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2379320420377963,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6909090909090909
+          }
+        }
+      }
+    },
+    {
+      "id": "achilles",
+      "name": "阿基里斯",
+      "navy": "nz",
+      "year": 1942,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/new_zealand/nz_cr_achilles.htm",
+      "feature": "利安德级 · 四座双联炮 · 单粗烟囱",
+      "geometry": {
+        "length": 169,
+        "beam": 17,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.09
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "torpedoes": 2,
+        "catapults": 1,
+        "catapultStations": [
+          [
+            0,
+            -0.29,
+            90
+          ]
+        ]
+      },
+      "modelId": "historic-achilles",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.30406132329209246,
+        "combatStretch": 2.4426890756302524,
+        "parts": {
+          "aa-port": {
+            "x": -0.22196476600322748,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.22196476600322748,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "stord",
+      "name": "斯托尔德",
+      "navy": "no",
+      "year": 1943,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/norway/no_dd_stord.htm",
+      "feature": "四座单装炮 · 单烟囱 · 两组四联鱼雷管",
+      "geometry": {
+        "length": 110.6,
+        "beam": 10.9,
+        "calibre": 120,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.04
+        ],
+        "bridge": "low",
+        "bridgeY": 0.29,
+        "torpedoes": 2,
+        "deck": "steel"
+      },
+      "modelId": "historic-stord",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.28361462728551334,
+        "combatStretch": 2.3584428465162413,
+        "parts": {
+          "aa-port": {
+            "x": -0.20703867791842473,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.20703867791842473,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.596111111111111
+          }
+        }
+      }
+    },
+    {
+      "id": "averof",
+      "name": "阿韦罗夫",
+      "navy": "gr",
+      "year": 1941,
+      "kind": "装甲巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/greece/gr_cr_averof.htm",
+      "feature": "艏艉双联234毫米炮 · 四座舷侧双联炮 · 三烟囱",
+      "geometry": {
+        "length": 140.8,
+        "beam": 21,
+        "calibre": 234,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": 0.33,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 2,
+            "y": -0.33,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 2,
+            "y": 0.33,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 2,
+            "y": -0.33,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.18,
+          -0.04,
+          -0.26
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.48
+      },
+      "modelId": "historic-averof",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.45083290289256195,
+        "combatStretch": 1.6474557823129252,
+        "parts": {
+          "aa-port": {
+            "x": -0.3291080191115702,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.3291080191115702,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -1.0363636363636364
+          }
+        }
+      }
+    },
+    {
+      "id": "dubrovnik",
+      "name": "杜布罗夫尼克",
+      "navy": "yu",
+      "year": 1941,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/yugoslavia/yu_dd_dubrovnik.htm",
+      "feature": "四座单装140毫米炮 · 双烟囱 · 长艏楼",
+      "geometry": {
+        "length": 113.2,
+        "beam": 10.7,
+        "calibre": 140,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.46,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.72,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.12,
+          -0.14
+        ],
+        "bridge": "low",
+        "bridgeY": 0.35,
+        "torpedoes": 2,
+        "openGuns": true,
+        "deck": "steel"
+      },
+      "modelId": "historic-dubrovnik",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.27201609736945415,
+        "combatStretch": 2.459004799191716,
+        "parts": {
+          "aa-port": {
+            "x": -0.19857175107970151,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.19857175107970151,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7194444444444443
+          }
+        }
+      }
+    },
+    {
+      "id": "ilmarinen",
+      "name": "伊尔马里宁",
+      "navy": "fi",
+      "year": 1941,
+      "kind": "岸防舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/finland/fi_bb_vainamoinen.htm",
+      "feature": "短宽舰体 · 艏艉双联254毫米炮 · 高观测桅",
+      "geometry": {
+        "length": 93,
+        "beam": 16.9,
+        "calibre": 254,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.13
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.3
+      },
+      "modelId": "historic-ilmarinen",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.5492913000977516,
+        "combatStretch": 1.3521555367709215,
+        "parts": {
+          "aa-port": {
+            "x": -0.40098264907135867,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.40098264907135867,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6477272727272727
+          }
+        }
+      }
+    },
+    {
+      "id": "regele-ferdinand",
+      "name": "费迪南德国王",
+      "navy": "ro",
+      "year": 1941,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/romania/ro_dd_regele_ferdinand.htm",
+      "feature": "五座单装炮 · 双烟囱 · 两组三联鱼雷管",
+      "geometry": {
+        "length": 102,
+        "beam": 9.6,
+        "calibre": 120,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.74,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.3,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.16,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.13,
+          -0.1
+        ],
+        "bridge": "low",
+        "bridgeY": 0.37,
+        "torpedoes": 2,
+        "openGuns": true,
+        "deck": "steel"
+      },
+      "modelId": "historic-regele-ferdinand",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2708496732026143,
+        "combatStretch": 2.469594594594595,
+        "parts": {
+          "aa-port": {
+            "x": -0.19772026143790847,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.19772026143790847,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7605555555555554
+          }
+        }
+      }
+    },
+    {
+      "id": "thonburi",
+      "name": "吞武里",
+      "navy": "th",
+      "year": 1941,
+      "kind": "岸防舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/thailand/th_bb_sri_ayuthia.htm",
+      "feature": "短宽舰体 · 艏艉双联203毫米炮 · 单烟囱",
+      "geometry": {
+        "length": 76.5,
+        "beam": 14.4,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.71,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.14
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28
+      },
+      "modelId": "historic-thonburi",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.5689839572192513,
+        "combatStretch": 1.3053571428571429,
+        "parts": {
+          "aa-port": {
+            "x": -0.41535828877005343,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.41535828877005343,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "bahia",
+      "name": "巴伊亚",
+      "navy": "br",
+      "year": 1944,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/brazil/br_cr_bahia.htm",
+      "feature": "十座单装炮 · 舷侧炮列 · 改装后三烟囱",
+      "geometry": {
+        "length": 122.4,
+        "beam": 11.9,
+        "calibre": 120,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.81,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.81,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": 0.49,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.49,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 1,
+            "y": 0.16333333333333333,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.16333333333333333,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 1,
+            "y": -0.16333333333333333,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.16333333333333333,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 1,
+            "y": -0.49,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.49,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.21,
+          0,
+          -0.21
+        ],
+        "bridge": "low",
+        "bridgeY": 0.46,
+        "torpedoes": 2,
+        "openGuns": true
+      },
+      "modelId": "historic-bahia",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.2938762626262626,
+        "combatStretch": 2.5273469387755103,
+        "parts": {
+          "aa-port": {
+            "x": -0.2145296717171717,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2145296717171717,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.9931818181818183
+          }
+        }
+      }
+    },
+    {
+      "id": "bengal",
+      "name": "孟加拉",
+      "navy": "in",
+      "year": 1942,
+      "kind": "扫雷护航舰",
+      "hull": "patrol-boat",
+      "source": "https://www.navypedia.org/ships/india/in_ms_punjab.htm",
+      "feature": "巴瑟斯特级 · 艏部单装炮 · 扫雷深弹艉甲板",
+      "geometry": {
+        "length": 56.7,
+        "beam": 9.5,
+        "calibre": 76,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          -0.08
+        ],
+        "bridge": "low",
+        "bridgeY": 0.3,
+        "openGuns": true,
+        "deck": "steel"
+      },
+      "modelId": "historic-bengal",
+      "shape": {
+        "halfLength": 1.625,
+        "halfBeam": 0.38117283950617276,
+        "combatStretch": 1.7861538461538464,
+        "parts": {
+          "aa-port": {
+            "x": 0,
+            "y": 1.17
+          }
+        }
+      }
+    },
+    {
+      "id": "natal",
+      "name": "纳塔尔",
+      "navy": "za",
+      "year": 1945,
+      "kind": "护卫舰",
+      "hull": "destroyer",
+      "source": "https://www.navypedia.org/ships/south_africa/saf_es_good_hope.htm",
+      "feature": "湖级护卫舰 · 艏部单装炮 · 艉部反潜装具",
+      "geometry": {
+        "length": 93.6,
+        "beam": 11.8,
+        "calibre": 102,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          -0.12
+        ],
+        "bridge": "low",
+        "bridgeY": 0.31,
+        "openGuns": true,
+        "deck": "steel"
+      },
+      "modelId": "historic-natal",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.36279677113010445,
+        "combatStretch": 1.8437013284470911,
+        "parts": {
+          "aa-port": {
+            "x": -0.26484164292497625,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.26484164292497625,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6372222222222221
+          }
+        }
+      }
+    },
+    {
+      "id": "niels-juel",
+      "name": "尼尔斯·尤尔",
+      "navy": "dk",
+      "year": 1943,
+      "kind": "岸防舰",
+      "hull": "cruiser",
+      "source": "https://www.navypedia.org/ships/denmark/dk_bb_niels_iuel.htm",
+      "feature": "十座单装150毫米炮 · 高塔桅 · 单烟囱",
+      "geometry": {
+        "length": 90,
+        "beam": 16.3,
+        "calibre": 150,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.81,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.81,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": 0.49,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.49,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 1,
+            "y": 0.16333333333333333,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.16333333333333333,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 1,
+            "y": -0.16333333333333333,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.16333333333333333,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 1,
+            "y": -0.49,
+            "x": -0.68,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.49,
+            "x": 0.68,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          -0.2
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.36,
+        "openGuns": true
+      },
+      "modelId": "historic-niels-juel",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.5474494949494949,
+        "combatStretch": 1.3567046450482034,
+        "parts": {
+          "aa-port": {
+            "x": -0.39963813131313125,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.39963813131313125,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7772727272727272
+          }
+        }
+      }
+    }
+  ]
+}

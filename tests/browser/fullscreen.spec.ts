@@ -15,7 +15,13 @@ test('fullscreen HUD follows the fitted portrait canvas instead of the window wi
   });
   for (const [width,height] of [[1920,1080],[1366,768],[1280,720],[1024,600],[960,540],[844,390],[568,320],[390,844]]) {
     await page.setViewportSize({width,height});
-    await page.locator('#fullscreen-button').click();
+    await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+    if(await page.locator('#fullscreen-button').isVisible()) await page.locator('#fullscreen-button').click();
+    else {
+      await page.locator('#pause-button').click();
+      await page.locator('#pause-fullscreen').click();
+      await page.locator('#resume-button').click();
+    }
     await expect.poll(()=>page.evaluate(()=>document.fullscreenElement?.id)).toBe('battlefield');
     await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
     const layout=await page.evaluate(()=>{

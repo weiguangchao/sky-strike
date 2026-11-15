@@ -139,7 +139,7 @@ test('combat overlays leave incoming shots visible on desktop and small phones',
     for (const boss of [false,true]) {
       const banner=page.locator('#wave-announcement');
       const shots=await banner.evaluate((element,boss)=>{
-        element.innerHTML=boss?'<span>WARNING · BOSS APPROACHING</span><strong>敌方首领接近</strong>':'<span>WAVE 03</span><strong>敌机编队接近</strong>';
+        element.innerHTML=boss?'<strong>敌方首领接近</strong>':'<strong>敌机编队接近</strong>';
         element.classList.add('visible');
         element.classList.toggle('boss-warning',boss);
         element.style.visibility='hidden';
@@ -199,4 +199,91 @@ test('combat overlays leave incoming shots visible on desktop and small phones',
       await expect(banner).toHaveCSS('opacity','0.6');
     }
   }
+});
+
+test.describe('retina pixel rendering', () => {
+  test.use({ deviceScaleFactor: 2 });
+
+  test('keeps a crisp raster and readable combat signals after resizing', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#start-button')).toBeEnabled();
+    await page.evaluate(() => document.fonts.ready);
+    expect(await page.evaluate(() => document.fonts.check('16px "Flight Arcade"'))).toBe(true);
+
+    for (const [width, height] of [[1440, 1000], [390, 844], [320, 568]]) {
+      await page.setViewportSize({ width, height });
+      await fixture(page, true);
+      const raster = await page.locator('#game-canvas').evaluate((canvas: HTMLCanvasElement) => ({
+        width: canvas.width, height: canvas.height,
+        antialias: canvas.getContext('webgl2')!.getContextAttributes()!.antialias,
+        scaling: getComputedStyle(canvas).imageRendering,
+      }));
+      // Check the real drawing buffer: CSS alone can disguise a full-resolution render.
+      expect(raster).toEqual({ width: 240, height: 380, antialias: false, scaling: 'pixelated' });
+      const preview = await page.locator('#craft-canvas').evaluate((canvas: HTMLCanvasElement) => ({
+        width: canvas.width, height: canvas.height, scaling: getComputedStyle(canvas).imageRendering,
+      }));
+      expect(preview).toEqual({ width: 160, height: 100, scaling: 'pixelated' });
+      await expectCombatDetails(page);
+      const image = PNG.sync.read(await page.locator('#game-canvas').screenshot());
+      for (const [key, x] of [['xp', 120], ['health', 240], ['bomb', 360]] as const) {
+        expect(coloredPixels(image, x, 360, VISUAL_SIGNALS[key].color, 15), `${key} at DPR 2`).toBeGreaterThan(8);
+      }
+    }
+  });
+});
+
+test('naval hulls and damaged parts keep enemy shots, supplies and the aircraft hit point visible', async({page})=>{
+  await page.goto('/'); await expect(page.locator('#start-button')).toBeEnabled();
+  for(const [width,height] of [[1440,1000],[390,844],[320,568]]) {
+    await page.setViewportSize({width,height});
+    await fixture(page,true);
+    await page.evaluate(async()=>{
+      const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+      game.boss.x=240;game.boss.y=240;
+      game.damagePart(game.boss,'aa-port',99999);
+      game.events=[];game.player.x=240;game.player.y=240;game.player.invincible=0;
+      game.pickups=[{type:'xp',x:240,y:310,amount:9,radius:11,dead:false}];
+      game.enemyBullets=[{x:240,y:190,vx:0,vy:0,radius:4,color:'orange',dead:false},{x:240,y:280,vx:0,vy:0,radius:4,color:'pink',dead:false}];
+      game.bullets=[];
+    });
+    await settleFrame(page);
+    const image=PNG.sync.read(await page.locator('#game-canvas').screenshot());
+    expect(coloredPixels(image,240,190,VISUAL_SIGNALS.danger.color,8)).toBeGreaterThan(1);
+    expect(coloredPixels(image,240,280,VISUAL_SIGNALS.aimed.color,8)).toBeGreaterThan(1);
+    expect(coloredPixels(image,240,310,VISUAL_SIGNALS.xp.color,15)).toBeGreaterThan(5);
+    expect(coloredPixels(image,240,240,'#fff1cb',5),'aircraft hit point above a carrier').toBeGreaterThan(0);
+    await page.screenshot({path:`${output}/naval-layers-${width}x${height}.png`});
+  }
+});
+
+test('sinking keeps the tilted hull visible before it submerges completely',async({page})=>{
+  await page.setViewportSize({width:1440,height:1000});
+  await page.goto('/');await expect(page.locator('#start-button')).toBeEnabled();
+  await fixture(page,true);
+  await page.evaluate(async()=>{
+    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+    game.boss.y=240;game.boss.x=240;
+    game.damageEnemy(game.boss,99999);game.events=[];game.enemyBullets=[];game.bullets=[];game.pickups=[];
+  });
+  const deckPixels=async()=>{
+    await settleFrame(page);
+    const image=PNG.sync.read(await page.locator('#game-canvas').screenshot());
+    let count=0;const scale=image.width/480;
+    for(let y=Math.floor(60*scale);y<430*scale;y++) for(let x=Math.floor(150*scale);x<330*scale;x++) {
+      const i=(y*image.width+x)*4;
+      if(image.data[i]>image.data[i+1]*1.15&&image.data[i+1]>image.data[i+2]*1.2)count++;
+    }
+    return count;
+  };
+  const afloat=await deckPixels();expect(afloat).toBeGreaterThan(1000);
+  await page.evaluate(async()=>{
+    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);game.wrecks[0].age=1;
+  });
+  expect(await deckPixels(),'partly submerged deck remains visible at one second').toBeGreaterThan(afloat*.2);
+  await page.screenshot({path:`${output}/carrier-sinking.png`});
+  await page.evaluate(async()=>{
+    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);game.wrecks[0].age=3.15;
+  });
+  expect(await deckPixels(),'the hull eventually passes below the sea surface').toBeLessThan(afloat*.1);
 });

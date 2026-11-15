@@ -1,8 +1,12 @@
 import type { CraftId, Difficulty, Point, Result } from './types.ts';
 import { Game, CRAFTS, UPGRADES, WIDTH, HEIGHT } from './engine.ts';
+import { UNIT_INFO, WAVES } from './campaign.ts';
 import { Renderer } from './render.ts';
 import { Sound } from './audio.ts';
+import { trackViewport } from './viewport.ts';
 import { VISUAL_SIGNALS } from './visual-style.ts';
+import { NAVIES, HISTORICAL_SHIPS, DEFAULT_FLEET, fleetSelection, historicalShip } from './naval-history.ts';
+import type { HistoricalEntry, FleetSelection, NavalHull } from './naval-history.ts';
 
 for (const [name, signal] of Object.entries(VISUAL_SIGNALS)) document.documentElement.style.setProperty(`--${name}`, signal.color);
 
@@ -21,9 +25,10 @@ let difficulty = storage.read<Difficulty>('difficulty', 'normal');
 if (!['normal', 'easy'].includes(difficulty)) difficulty = 'normal';
 let bestScore = Number(storage.read('best', 0)) || 0;
 let flights = Number(storage.read('flights', 0)) || 0;
+let selectedFleet:FleetSelection=fleetSelection(storage.read('fleet',null));
 export const game = new Game();
 game.craft = selectedCraft;
-const renderer = new Renderer($<HTMLCanvasElement>('game-canvas'), $<HTMLCanvasElement>('craft-canvas'), game);
+const renderer = new Renderer($<HTMLCanvasElement>('game-canvas'), $<HTMLCanvasElement>('craft-canvas'), game, $<HTMLCanvasElement>('intel-canvas'));
 const sound = new Sound(Boolean(storage.read('sound', false)));
 const keys = new Set();
 let pointer: { id: number; position: Point; target: Point } | null = null;
@@ -39,7 +44,6 @@ const elapsed = (seconds: number) => `${String(Math.floor(seconds / 60)).padStar
 
 function updateRecord() {
   $('best-score').textContent = pad(bestScore);
-  $('record-note').textContent = flights ? `已完成 ${flights} 次出击 · 下一次，飞得更远` : '你的王牌之路，从这里开始';
 }
 
 function selectCraft(id: CraftId) {
@@ -50,11 +54,7 @@ function selectCraft(id: CraftId) {
   const c = CRAFTS[id];
   document.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach(button => { const active = button.dataset.craft === id; button.classList.toggle('active', active); button.setAttribute('aria-selected', String(active)); });
   $('craft-name').textContent = c.name;
-  $('craft-role').textContent = c.role;
-  $('craft-code').textContent = c.code;
-  $('craft-description').innerHTML = c.description;
-  $('hero-craft-caption').textContent = `${c.code} ${c.name} / ${c.role}`;
-  document.querySelector('.frame-bottom>span:last-child')!.firstChild!.textContent = `${c.code} `;
+  $('craft-role').textContent = c.role.replace('战机', '');
   for (const [stat, value] of [['power', c.power], ['speed', c.speed], ['armor', c.armor]] as const) $('stat-' + stat).innerHTML = Array.from({ length: 6 }, (_, i) => `<i class="${i < value ? 'filled' : ''}"></i>`).join('');
   renderer.selectCraft(id);
 }
@@ -64,12 +64,12 @@ function setDifficulty(mode: Difficulty) {
   difficulty = mode;
   storage.write('difficulty', mode);
   document.querySelectorAll<HTMLButtonElement>('[data-difficulty]').forEach(button => { const active = button.dataset.difficulty === mode; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
-  $('difficulty-description').textContent = mode === 'easy' ? '额外装甲，较慢弹速，轻松享受飞行' : '经典弹幕挑战，完整作战体验';
 }
 
 function start() {
   sound.unlock();
   keys.clear(); pointer = null;
+  game.fleetAppearance={...selectedFleet};
   game.start(selectedCraft, difficulty);
   $('build-list').textContent = '等待首次升级';
   $('run-build').hidden = false;
@@ -80,9 +80,13 @@ function start() {
   $('game-canvas').focus({ preventScroll: true });
 }
 
-function goHome() {
+async function goHome() {
   keys.clear(); pointer = null;
+  if(document.fullscreenElement) {
+    try { await document.exitFullscreen(); } catch { /* The browser may already be leaving fullscreen. */ }
+  }
   game.menu();
+  $('sector-label').textContent = '破晓海域';
   announcementTimer = 0;
   $('wave-announcement').classList.remove('visible');
   $('run-build').hidden = true;
@@ -98,8 +102,8 @@ function togglePause() {
   processEvents(); syncState();
 }
 
-function announce(top: string, title: string, boss = false, duration = 2.4) {
-  const html = `<span>${top}</span><strong>${title}</strong>`;
+function announce(title: string, boss = false, duration = 2.4) {
+  const html = `<strong>${title}</strong>`;
   if (html !== announcementText) { $('wave-announcement').innerHTML = html; announcementText = html; }
   $('wave-announcement').classList.add('visible');
   $('wave-announcement').classList.toggle('boss-warning', boss);
@@ -110,7 +114,8 @@ function upgradeChoices() {
   $('upgrade-options').replaceChildren(...game.choices.map((upgrade, index) => {
     const button = document.createElement('button');
     button.className = `upgrade-card${upgrade.rare ? ' rare' : ''}`;
-    button.innerHTML = `<span class="upgrade-icon"><svg><use href="#i-${upgrade.icon}"/></svg></span><span class="upgrade-card-content"><strong>${upgrade.name}<small>${upgrade.rare ? '稀有' : '强化'}${game.stacks[upgrade.id] ? ` · ${(game.stacks[upgrade.id] || 0) + 1} 级` : ''}</small></strong><p>${upgrade.description}</p></span><span class="upgrade-number">${index + 1}</span>`;
+    const rank = game.stacks[upgrade.id] ? `<span class="upgrade-rank">${(game.stacks[upgrade.id] || 0) + 1} 级</span>` : '';
+    button.innerHTML = `<span class="upgrade-icon"><svg><use href="#i-${upgrade.icon}"/></svg></span><span class="upgrade-card-content"><strong>${upgrade.name}${rank}</strong><p>${upgrade.description}</p></span><span class="upgrade-number">${index + 1}</span>`;
     button.addEventListener('click', () => chooseUpgrade(index));
     return button;
   }));
@@ -134,7 +139,6 @@ function syncState() {
   $('upgrade-screen').hidden = state !== 'upgrade';
   $('result-screen').hidden = state !== 'gameover' && state !== 'victory';
   $('boss-hud').hidden = !game.boss || state === 'menu';
-  $('flight-status').textContent = { menu: '等待飞行员就位', playing: '航线已锁定 · 作战进行中', paused: '作战已暂停', upgrade: '补给充足 · 选择强化', gameover: '任务结束 · 等待再次出击', victory: '作战完成 · 制空权已夺回' }[state];
   document.querySelectorAll<HTMLButtonElement>('[data-craft], [data-difficulty]').forEach(button => { button.disabled = inRun; });
   if (state !== previousStatus) {
     if (state === 'paused') $('resume-button').focus({ preventScroll: true });
@@ -157,14 +161,19 @@ function syncHud() {
     $('health').innerHTML = Array.from({ length: game.player.maxHp }, (_, i) => `<i class="health-point${i >= game.player.hp ? ' empty' : ''}"></i>`).join('');
     $('health').setAttribute('aria-label', `装甲 ${game.player.hp} / ${game.player.maxHp}`);
   }
-  $('weapon-level').textContent = game.stacks.spread ? `${2 + game.stacks.spread * 2} 联散射机炮` : '双联机炮';
-  $('sector-label').textContent = game.wave > 5 ? '第 02 航区 · 风暴防线' : '第 01 航区 · 破晓海域';
+  const escort = game.convoy && !game.convoy.dead && !game.convoy.saved;
+  $('weapon-level').textContent = escort ? `护航 ${game.convoy!.hp}/${game.convoy!.maxHp} · 自动对舰` : '机炮对空 · 自动对舰';
+  $('sector-label').textContent = game.wave>5?'风暴防线':'破晓海域';
   $('boss-hud').hidden = !game.boss;
   if (game.boss) {
     const percent = Math.max(0, game.boss.hp / game.boss.maxHp * 100);
     $('boss-fill').style.width = `${percent}%`;
     $('boss-percent').textContent = `${Math.ceil(percent)}%`;
-    $('boss-name').textContent = game.boss.final ? '终极防线 · 赤霄' : '空中堡垒 · 玄鲸';
+    const prototype=game.boss.appearance&&historicalShip(game.boss.appearance);
+    $('boss-name').textContent = `${game.boss.final?'赤潮':'铁岳'}${prototype?' · '+prototype.name:''}`;
+    const names = { 'aa-port':'左炮', 'aa-starboard':'右炮', bridge:'舰桥', 'flight-deck':'甲板' };
+    const html = game.boss.parts.map(part=>`<span class="${part.hp<=0?'destroyed':''}" aria-label="${part.name}${part.hp<=0?'已摧毁':'可攻击'}">${part.hp<=0?'×':'◇'} ${names[part.id]}</span>`).join('');
+    if($('boss-parts').innerHTML!==html) $('boss-parts').innerHTML=html;
   }
 }
 
@@ -173,11 +182,9 @@ function showResults(event: Result) {
   storage.write('flights', flights);
   const isBest = event.score > bestScore;
   if (isBest) { bestScore = event.score; storage.write('best', bestScore); }
-  $('result-kicker').textContent = event.victory ? 'MISSION COMPLETE' : 'FLIGHT ENDED';
-  $('result-title').textContent = event.victory ? '这片天空，属于你。' : '下一次，飞得更远。';
-  $('result-subtitle').textContent = event.victory ? '敌方防线已突破。王牌，欢迎归航。' : '每一次坠落，都是下一场传奇的起点。';
+  $('result-title').textContent = event.victory ? '作战胜利' : '出击结束';
   $('result-score').textContent = pad(event.score);
-  $('result-best').textContent = isBest ? 'NEW RECORD · 刷新个人最高纪录' : `个人最高纪录 ${pad(bestScore)}`;
+  $('result-best').hidden = !isBest;
   $('result-kills').textContent = String(event.kills);
   $('result-wave').textContent = `${waveNum(event.wave)}/10`;
   $('result-time').textContent = elapsed(event.time);
@@ -188,16 +195,18 @@ function processEvents() {
   for (const event of game.drainEvents()) {
     renderer.event(event); sound.play(event.type);
     if (event.type === 'wave') {
-      if (event.wave % 5 === 0) announce('WARNING · BOSS APPROACHING', '敌方首领接近', true, 3.3);
-      else if (event.wave === 6) announce('SECTOR 02 · STORM FRONT', '风暴防线 · 补给抵达', false, 3);
-      else announce(`WAVE ${waveNum(event.wave)} / 10`, event.wave === 1 ? '破晓海域 · 出击' : '新一波敌机来袭');
+      if (event.wave % 5 === 0) announce('敌方首领接近', true, 3.3);
+      else if (event.wave === 6) announce('风暴防线 · 补给抵达', false, 3);
+      else announce(event.wave === 1 ? '友军航母 · 起飞' : event.wave === 2 ? '对准舰船 · 自动投弹' : WAVES[event.wave-1].name);
     }
-    if (event.type === 'bossDefeated') announce('TARGET DESTROYED', event.final ? '制空权已夺回' : '首领已击破', false, 2.4);
+    if (event.type === 'bossDefeated') announce(event.final ? '赤潮已击沉' : '铁岳已击沉', false, 2.4);
     if (event.type === 'upgrade') { keys.clear(); pointer = null; upgradeChoices(); }
     if (event.type === 'upgraded') {
       $('build-list').innerHTML = Object.entries(game.stacks).map(([id, count]) => `<span class="build-chip">${UPGRADES.find(u => u.id === id)!.name}${count > 1 ? ` ×${count}` : ''}</span>`).join('');
     }
-    if (event.type === 'pickup') announce('SUPPLY COLLECTED', event.text, false, 1.4);
+    if (event.type === 'partDestroyed') announce(`${event.name}已摧毁`, false, 1.5);
+    if (event.type === 'escort') announce(event.saved ? '护航完成 · 航弹补给' : '运输船损失 · 继续作战', false, 2);
+    if (event.type === 'pickup') announce(event.text, false, 1.4);
     if (event.type === 'end') { keys.clear(); pointer = null; showResults(event); announcementTimer = 0; $('wave-announcement').classList.remove('visible'); }
   }
 }
@@ -269,19 +278,151 @@ $('bomb-button').addEventListener('click', () => { sound.unlock(); game.bomb(); 
 document.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach(button => button.addEventListener('click', () => selectCraft(button.dataset.craft as CraftId)));
 document.querySelectorAll<HTMLButtonElement>('[data-difficulty]').forEach(button => button.addEventListener('click', () => setDifficulty(button.dataset.difficulty as Difficulty)));
 document.querySelectorAll<HTMLButtonElement>('.sound-button').forEach(button => button.addEventListener('click', toggleSound));
-$('fullscreen-button').addEventListener('click', async () => {
+function syncFullscreen() {
+  const label=document.fullscreenElement?'退出全屏':'全屏游戏';
+  document.querySelectorAll<HTMLButtonElement>('[data-fullscreen]').forEach(button=>{
+    button.hidden=!document.fullscreenEnabled;
+    button.setAttribute('aria-label',label); button.title=label;
+  });
+}
+document.querySelectorAll<HTMLButtonElement>('[data-fullscreen]').forEach(button=>button.addEventListener('click',async()=>{
   try {
-    if (document.fullscreenElement) await document.exitFullscreen();
-    else if ($('battlefield').requestFullscreen) await $('battlefield').requestFullscreen();
-    else { $('fullscreen-button').title = '当前浏览器使用竖屏模式即可畅玩'; announce('FLIGHT READY', '竖屏就绪，直接出击', false, 2); }
-  } catch { $('fullscreen-button').title = '请在浏览器中允许全屏'; }
+    if(document.fullscreenElement) await document.exitFullscreen();
+    else await $('battlefield').requestFullscreen();
+  } catch { button.title='浏览器暂未允许全屏'; }
+}));
+document.addEventListener('fullscreenchange',syncFullscreen);
+syncFullscreen();
+let intelIndex = 0;
+let campaignIndex = 0;
+let activeHelp='controls';
+let fleetIndex=0;
+let fleetEntries:readonly HistoricalEntry[]=HISTORICAL_SHIPS;
+let fleetRequest=0,fleetReady=false,fleetFailed=false;
+const ordinaryHelpReady=$('help-ready').innerHTML;
+for(const navy of NAVIES) {
+  const option=document.createElement('option');option.value=navy.id;option.textContent=navy.name;
+  $('fleet-country').append(option);
+}
+function fleetActionLabel():void {
+  const button=$<HTMLButtonElement>('help-ready');
+  button.disabled=!fleetReady&&!fleetFailed;
+  button.textContent=fleetFailed?'重试加载':!fleetReady?'载入模型…':selectedFleet[fleetEntries[fleetIndex].hull]===fleetEntries[fleetIndex].id?'已选用 · 返回':game.status==='menu'?'使用本舰':'下次出击使用';
+}
+async function showFleet(index:number):Promise<void> {
+  fleetIndex=(index+fleetEntries.length)%fleetEntries.length;
+  const ship=fleetEntries[fleetIndex],request=++fleetRequest;
+  fleetReady=false;fleetFailed=false;fleetActionLabel();
+  $('fleet-name').textContent=ship.name;
+  $('fleet-role').textContent=`${NAVIES.find(navy=>navy.id===ship.navy)!.name} ${ship.year}`;
+  $('fleet-count').textContent=`${waveNum(fleetIndex+1)} / ${fleetEntries.length}`;
+  $('fleet-kind').textContent=ship.kind;
+  $('fleet-shape').textContent=ship.feature;
+  $<HTMLAnchorElement>('fleet-source').href=ship.source;
+  $('fleet-source').setAttribute('aria-label',`${ship.name}的历史资料，打开新标签页`);
+  $('fleet-status').textContent='模型载入中';
+  $('fleet-illustration').classList.add('loading');
+  try {
+    await renderer.loadHistorical(ship.id);
+    if(request!==fleetRequest||activeHelp!=='fleet')return;
+    renderer.selectHistorical(ship.id);
+    $('intel-canvas').setAttribute('aria-label',`${ship.name} ${ship.year}年像素模型`);
+    fleetReady=true;$('fleet-status').textContent='';
+    $('fleet-illustration').classList.remove('loading');
+  } catch {
+    if(request!==fleetRequest||activeHelp!=='fleet')return;
+    fleetFailed=true;$('fleet-status').textContent='模型加载失败，请重试';
+  }
+  fleetActionLabel();
+}
+function showIntel(index: number) {
+  intelIndex = (index + UNIT_INFO.length) % UNIT_INFO.length;
+  const unit=UNIT_INFO[intelIndex];
+  $('intel-name').textContent=unit.name;
+  $('intel-role').textContent=unit.role;
+  $('intel-shape').textContent=unit.silhouette;
+  $('intel-tactic').textContent=unit.tactic;
+  $('intel-count').textContent=`${waveNum(intelIndex+1)} / ${UNIT_INFO.length}`;
+  renderer.selectIntel(unit.id);
+}
+function showCampaign(index: number) {
+  campaignIndex=(index+WAVES.length)%WAVES.length;
+  const wave=WAVES[campaignIndex];
+  $('campaign-stage').textContent=campaignIndex===4||campaignIndex===9?'旗舰攻坚':'空海联合作战';
+  $('campaign-name').textContent=wave.name;
+  $('campaign-objective').textContent=wave.objective;
+  const ids=[...wave.air,...wave.sea];
+  if(campaignIndex===2||campaignIndex===7) ids.push('heavy-bomber');
+  $('campaign-roster').textContent=ids.map(id=>UNIT_INFO.find(unit=>unit.id===id)!.name).join(' / ');
+  $('campaign-count').textContent=`${waveNum(campaignIndex+1)} / 10 波`;
+}
+function showHelpPanel(id: string) {
+  activeHelp=id;
+  $('help-dialog').classList.toggle('fleet-open',id==='fleet');
+  if(id!=='fleet') {
+    fleetRequest++;
+    $<HTMLButtonElement>('help-ready').disabled=false;
+    $('help-ready').innerHTML=ordinaryHelpReady;
+  }
+  for(const tab of document.querySelectorAll<HTMLButtonElement>('[data-help]')) {
+    const active=tab.dataset.help===id;
+    tab.setAttribute('aria-selected',String(active));
+    tab.tabIndex=active?0:-1;
+    $(`help-${tab.dataset.help}-panel`).hidden=!active;
+  }
+  if(id==='intel') {
+    $('intel-illustration').append($('intel-canvas'));
+    $('intel-canvas').setAttribute('aria-label','舰机三维预览');
+    showIntel(intelIndex);
+  }
+  if(id==='campaign') showCampaign(campaignIndex);
+  if(id==='fleet') {$('fleet-illustration').append($('intel-canvas'));void showFleet(fleetIndex);}
+}
+const helpTabs=[...document.querySelectorAll<HTMLButtonElement>('[data-help]')];
+helpTabs.forEach((tab,index)=>{
+  tab.addEventListener('click',()=>showHelpPanel(tab.dataset.help!));
+  tab.addEventListener('keydown',event=>{
+    if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    event.preventDefault();
+    const next=event.key==='Home'?0:event.key==='End'?helpTabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+helpTabs.length)%helpTabs.length;
+    showHelpPanel(helpTabs[next].dataset.help!); helpTabs[next].focus();
+  });
 });
-$('help-button').addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); $<HTMLDialogElement>('help-dialog').showModal(); });
+$('intel-prev').addEventListener('click',()=>showIntel(intelIndex-1));
+$('intel-next').addEventListener('click',()=>showIntel(intelIndex+1));
+$('campaign-prev').addEventListener('click',()=>showCampaign(campaignIndex-1));
+$('campaign-next').addEventListener('click',()=>showCampaign(campaignIndex+1));
+$('fleet-prev').addEventListener('click',()=>{void showFleet(fleetIndex-1);});
+$('fleet-next').addEventListener('click',()=>{void showFleet(fleetIndex+1);});
+$('fleet-country').addEventListener('change',()=>{
+  const country=$<HTMLSelectElement>('fleet-country').value;
+  fleetEntries=HISTORICAL_SHIPS.filter(ship=>country==='all'||ship.navy===country);
+  if(!fleetEntries.length)fleetEntries=HISTORICAL_SHIPS;
+  void showFleet(0);
+});
+document.querySelectorAll<HTMLButtonElement>('[data-open-help]').forEach(button=>button.addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); showHelpPanel('controls'); $<HTMLDialogElement>('help-dialog').showModal(); }));
 $('close-help').addEventListener('click', () => $<HTMLDialogElement>('help-dialog').close());
-$('help-ready').addEventListener('click', () => $<HTMLDialogElement>('help-dialog').close());
+$('help-ready').addEventListener('click', () => {
+  if(activeHelp==='fleet') {
+    if(fleetFailed){void showFleet(fleetIndex);return;}
+    if(!fleetReady)return;
+    const ship=fleetEntries[fleetIndex];selectedFleet[ship.hull]=ship.id;
+    storage.write('fleet',selectedFleet);
+    if(game.status==='menu')game.fleetAppearance={...selectedFleet};
+  }
+  $<HTMLDialogElement>('help-dialog').close();
+});
 $<HTMLDialogElement>('help-dialog').addEventListener('close', () => { if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
 
+const stopViewportTracking=trackViewport(clearInput);
+import.meta.hot?.dispose(stopViewportTracking);
+
 await renderer.init();
+await Promise.all((Object.keys(selectedFleet) as NavalHull[]).map(async hull=>{
+  try {await renderer.loadHistorical(selectedFleet[hull]);}
+  catch {selectedFleet[hull]=DEFAULT_FLEET[hull];}
+}));
+game.fleetAppearance={...selectedFleet};
 selectCraft(selectedCraft); setDifficulty(difficulty); updateRecord(); syncSound(); syncState();
 $<HTMLButtonElement>('start-button').disabled = false;
 let lastTime = performance.now();

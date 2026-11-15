@@ -6,91 +6,553 @@
       "id": "falcon",
       "file": "falcon.glb",
       "polygons": 627,
-      "bytes": 76280
+      "bytes": 74948
     },
     {
       "id": "swift",
       "file": "swift.glb",
       "polygons": 627,
-      "bytes": 75336
+      "bytes": 74004
     },
     {
       "id": "turtle",
       "file": "turtle.glb",
       "polygons": 1071,
-      "bytes": 107640
+      "bytes": 104872
     },
     {
       "id": "scout",
       "file": "scout.glb",
       "polygons": 627,
-      "bytes": 76284
+      "bytes": 74952
     },
     {
       "id": "dart",
       "file": "dart.glb",
       "polygons": 883,
-      "bytes": 87704
+      "bytes": 86360
     },
     {
       "id": "gunship",
       "file": "gunship.glb",
       "polygons": 1047,
-      "bytes": 104328
+      "bytes": 101536
     },
     {
       "id": "boss",
       "file": "boss.glb",
       "polygons": 1972,
-      "bytes": 158960
+      "bytes": 153188
     },
     {
       "id": "boss-final",
       "file": "boss-final.glb",
       "polygons": 2556,
-      "bytes": 199880
+      "bytes": 191172
     },
     {
       "id": "carrier",
       "file": "carrier.glb",
-      "polygons": 424,
-      "bytes": 70456
+      "polygons": 981,
+      "bytes": 80160
     },
     {
       "id": "island",
       "file": "island.glb",
       "polygons": 1590,
-      "bytes": 244588
+      "bytes": 244596
     },
     {
       "id": "pickup-xp",
       "file": "pickup-xp.glb",
       "polygons": 38,
-      "bytes": 8500
+      "bytes": 8508
     },
     {
       "id": "pickup-health",
       "file": "pickup-health.glb",
       "polygons": 42,
-      "bytes": 9764
+      "bytes": 9776
     },
     {
       "id": "pickup-bomb",
       "file": "pickup-bomb.glb",
       "polygons": 48,
-      "bytes": 10872
+      "bytes": 10884
     },
     {
       "id": "enemy-round",
       "file": "enemy-round.glb",
       "polygons": 402,
-      "bytes": 23788
+      "bytes": 23800
     },
     {
       "id": "enemy-aimed",
       "file": "enemy-aimed.glb",
       "polygons": 24,
-      "bytes": 6392
+      "bytes": 6404
+    },
+    {
+      "id": "interceptor",
+      "file": "interceptor.glb",
+      "polygons": 540,
+      "bytes": 63380
+    },
+    {
+      "id": "diver",
+      "file": "diver.glb",
+      "polygons": 824,
+      "bytes": 79932
+    },
+    {
+      "id": "torpedo",
+      "file": "torpedo.glb",
+      "polygons": 692,
+      "bytes": 73308
+    },
+    {
+      "id": "patrol-boat",
+      "file": "patrol-boat.glb",
+      "polygons": 677,
+      "bytes": 58876
+    },
+    {
+      "id": "destroyer",
+      "file": "destroyer.glb",
+      "polygons": 1199,
+      "bytes": 98788
+    },
+    {
+      "id": "cruiser",
+      "file": "cruiser.glb",
+      "polygons": 1341,
+      "bytes": 107412
+    },
+    {
+      "id": "battleship",
+      "file": "battleship.glb",
+      "polygons": 1495,
+      "bytes": 116024
+    },
+    {
+      "id": "fleet-carrier",
+      "file": "fleet-carrier.glb",
+      "polygons": 1151,
+      "bytes": 96212
+    },
+    {
+      "id": "coastal-battery",
+      "file": "coastal-battery.glb",
+      "polygons": 115,
+      "bytes": 27416
+    },
+    {
+      "id": "oil-depot",
+      "file": "oil-depot.glb",
+      "polygons": 187,
+      "bytes": 38296
+    },
+    {
+      "id": "transport",
+      "file": "transport.glb",
+      "polygons": 602,
+      "bytes": 48104
+    },
+    {
+      "id": "historic-iowa",
+      "file": "historic-iowa.glb",
+      "polygons": 2223,
+      "bytes": 169416
+    },
+    {
+      "id": "historic-south-dakota",
+      "file": "historic-south-dakota.glb",
+      "polygons": 1983,
+      "bytes": 152592
+    },
+    {
+      "id": "historic-arizona",
+      "file": "historic-arizona.glb",
+      "polygons": 1319,
+      "bytes": 106044
+    },
+    {
+      "id": "historic-enterprise",
+      "file": "historic-enterprise.glb",
+      "polygons": 1121,
+      "bytes": 92980
+    },
+    {
+      "id": "historic-essex",
+      "file": "historic-essex.glb",
+      "polygons": 1121,
+      "bytes": 92484
+    },
+    {
+      "id": "historic-brooklyn",
+      "file": "historic-brooklyn.glb",
+      "polygons": 1469,
+      "bytes": 116296
+    },
+    {
+      "id": "historic-missouri",
+      "file": "historic-missouri.glb",
+      "polygons": 2223,
+      "bytes": 169588
+    },
+    {
+      "id": "historic-baltimore",
+      "file": "historic-baltimore.glb",
+      "polygons": 1203,
+      "bytes": 98084
+    },
+    {
+      "id": "historic-warspite",
+      "file": "historic-warspite.glb",
+      "polygons": 1185,
+      "bytes": 95700
+    },
+    {
+      "id": "historic-king-george-v",
+      "file": "historic-king-george-v.glb",
+      "polygons": 2029,
+      "bytes": 157132
+    },
+    {
+      "id": "historic-hood",
+      "file": "historic-hood.glb",
+      "polygons": 1219,
+      "bytes": 98372
+    },
+    {
+      "id": "historic-rodney",
+      "file": "historic-rodney.glb",
+      "polygons": 1747,
+      "bytes": 135980
+    },
+    {
+      "id": "historic-ark-royal",
+      "file": "historic-ark-royal.glb",
+      "polygons": 1115,
+      "bytes": 92560
+    },
+    {
+      "id": "historic-illustrious",
+      "file": "historic-illustrious.glb",
+      "polygons": 1041,
+      "bytes": 86808
+    },
+    {
+      "id": "historic-cossack",
+      "file": "historic-cossack.glb",
+      "polygons": 1181,
+      "bytes": 95940
+    },
+    {
+      "id": "historic-belfast",
+      "file": "historic-belfast.glb",
+      "polygons": 1405,
+      "bytes": 113300
+    },
+    {
+      "id": "historic-renown",
+      "file": "historic-renown.glb",
+      "polygons": 1093,
+      "bytes": 88872
+    },
+    {
+      "id": "historic-nagato",
+      "file": "historic-nagato.glb",
+      "polygons": 1277,
+      "bytes": 102128
+    },
+    {
+      "id": "historic-kongo",
+      "file": "historic-kongo.glb",
+      "polygons": 1313,
+      "bytes": 104984
+    },
+    {
+      "id": "historic-kaga",
+      "file": "historic-kaga.glb",
+      "polygons": 1151,
+      "bytes": 96312
+    },
+    {
+      "id": "historic-shokaku",
+      "file": "historic-shokaku.glb",
+      "polygons": 1181,
+      "bytes": 99560
+    },
+    {
+      "id": "historic-mogami",
+      "file": "historic-mogami.glb",
+      "polygons": 1555,
+      "bytes": 124352
+    },
+    {
+      "id": "historic-fubuki",
+      "file": "historic-fubuki.glb",
+      "polygons": 1201,
+      "bytes": 99056
+    },
+    {
+      "id": "historic-hiryu",
+      "file": "historic-hiryu.glb",
+      "polygons": 1181,
+      "bytes": 99616
+    },
+    {
+      "id": "historic-soryu",
+      "file": "historic-soryu.glb",
+      "polygons": 1181,
+      "bytes": 99616
+    },
+    {
+      "id": "historic-shinano",
+      "file": "historic-shinano.glb",
+      "polygons": 1099,
+      "bytes": 90872
+    },
+    {
+      "id": "historic-musashi",
+      "file": "historic-musashi.glb",
+      "polygons": 1495,
+      "bytes": 116152
+    },
+    {
+      "id": "historic-bismarck",
+      "file": "historic-bismarck.glb",
+      "polygons": 1813,
+      "bytes": 140300
+    },
+    {
+      "id": "historic-scharnhorst",
+      "file": "historic-scharnhorst.glb",
+      "polygons": 1151,
+      "bytes": 94516
+    },
+    {
+      "id": "historic-graf-spee",
+      "file": "historic-graf-spee.glb",
+      "polygons": 1087,
+      "bytes": 91000
+    },
+    {
+      "id": "historic-prinz-eugen",
+      "file": "historic-prinz-eugen.glb",
+      "polygons": 1345,
+      "bytes": 108352
+    },
+    {
+      "id": "historic-tirpitz",
+      "file": "historic-tirpitz.glb",
+      "polygons": 1813,
+      "bytes": 140296
+    },
+    {
+      "id": "historic-littorio",
+      "file": "historic-littorio.glb",
+      "polygons": 1723,
+      "bytes": 133680
+    },
+    {
+      "id": "historic-giulio-cesare",
+      "file": "historic-giulio-cesare.glb",
+      "polygons": 1251,
+      "bytes": 102240
+    },
+    {
+      "id": "historic-zara",
+      "file": "historic-zara.glb",
+      "polygons": 1245,
+      "bytes": 100268
+    },
+    {
+      "id": "historic-maestrale",
+      "file": "historic-maestrale.glb",
+      "polygons": 997,
+      "bytes": 83228
+    },
+    {
+      "id": "historic-roma",
+      "file": "historic-roma.glb",
+      "polygons": 1729,
+      "bytes": 133992
+    },
+    {
+      "id": "historic-richelieu",
+      "file": "historic-richelieu.glb",
+      "polygons": 1491,
+      "bytes": 120160
+    },
+    {
+      "id": "historic-dunkerque",
+      "file": "historic-dunkerque.glb",
+      "polygons": 1735,
+      "bytes": 134636
+    },
+    {
+      "id": "historic-algerie",
+      "file": "historic-algerie.glb",
+      "polygons": 1259,
+      "bytes": 101860
+    },
+    {
+      "id": "historic-le-fantasque",
+      "file": "historic-le-fantasque.glb",
+      "polygons": 1223,
+      "bytes": 102484
+    },
+    {
+      "id": "historic-marat",
+      "file": "historic-marat.glb",
+      "polygons": 1303,
+      "bytes": 105036
+    },
+    {
+      "id": "historic-kirov",
+      "file": "historic-kirov.glb",
+      "polygons": 1281,
+      "bytes": 105436
+    },
+    {
+      "id": "historic-tashkent",
+      "file": "historic-tashkent.glb",
+      "polygons": 1149,
+      "bytes": 94120
+    },
+    {
+      "id": "historic-ning-hai",
+      "file": "historic-ning-hai.glb",
+      "polygons": 1187,
+      "bytes": 97032
+    },
+    {
+      "id": "historic-yat-sen",
+      "file": "historic-yat-sen.glb",
+      "polygons": 867,
+      "bytes": 74520
+    },
+    {
+      "id": "historic-de-ruyter",
+      "file": "historic-de-ruyter.glb",
+      "polygons": 1189,
+      "bytes": 98332
+    },
+    {
+      "id": "historic-java",
+      "file": "historic-java.glb",
+      "polygons": 1531,
+      "bytes": 125800
+    },
+    {
+      "id": "historic-kortenaer",
+      "file": "historic-kortenaer.glb",
+      "polygons": 1109,
+      "bytes": 93748
+    },
+    {
+      "id": "historic-blyskawica",
+      "file": "historic-blyskawica.glb",
+      "polygons": 1195,
+      "bytes": 99000
+    },
+    {
+      "id": "historic-piorun",
+      "file": "historic-piorun.glb",
+      "polygons": 1033,
+      "bytes": 85088
+    },
+    {
+      "id": "historic-haida",
+      "file": "historic-haida.glb",
+      "polygons": 1069,
+      "bytes": 87972
+    },
+    {
+      "id": "historic-sackville",
+      "file": "historic-sackville.glb",
+      "polygons": 543,
+      "bytes": 49296
+    },
+    {
+      "id": "historic-sydney",
+      "file": "historic-sydney.glb",
+      "polygons": 1295,
+      "bytes": 104728
+    },
+    {
+      "id": "historic-australia",
+      "file": "historic-australia.glb",
+      "polygons": 1331,
+      "bytes": 107628
+    },
+    {
+      "id": "historic-achilles",
+      "file": "historic-achilles.glb",
+      "polygons": 1259,
+      "bytes": 101864
+    },
+    {
+      "id": "historic-stord",
+      "file": "historic-stord.glb",
+      "polygons": 1081,
+      "bytes": 90280
+    },
+    {
+      "id": "historic-averof",
+      "file": "historic-averof.glb",
+      "polygons": 1439,
+      "bytes": 113860
+    },
+    {
+      "id": "historic-dubrovnik",
+      "file": "historic-dubrovnik.glb",
+      "polygons": 1109,
+      "bytes": 93748
+    },
+    {
+      "id": "historic-ilmarinen",
+      "file": "historic-ilmarinen.glb",
+      "polygons": 939,
+      "bytes": 77912
+    },
+    {
+      "id": "historic-regele-ferdinand",
+      "file": "historic-regele-ferdinand.glb",
+      "polygons": 1183,
+      "bytes": 99532
+    },
+    {
+      "id": "historic-thonburi",
+      "file": "historic-thonburi.glb",
+      "polygons": 939,
+      "bytes": 77908
+    },
+    {
+      "id": "historic-bahia",
+      "file": "historic-bahia.glb",
+      "polygons": 1611,
+      "bytes": 131712
+    },
+    {
+      "id": "historic-bengal",
+      "file": "historic-bengal.glb",
+      "polygons": 543,
+      "bytes": 49276
+    },
+    {
+      "id": "historic-natal",
+      "file": "historic-natal.glb",
+      "polygons": 751,
+      "bytes": 66180
+    },
+    {
+      "id": "historic-niels-juel",
+      "file": "historic-niels-juel.glb",
+      "polygons": 1475,
+      "bytes": 120416
     }
   ]
 }
