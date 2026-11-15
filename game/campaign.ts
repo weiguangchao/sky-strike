@@ -13,7 +13,7 @@ export const UNIT_INFO: UnitInfo[] = [
   { id: 'destroyer', name: '驱逐舰', role: '海面 · 双舷防空', tactic: '对准两侧炮位投弹，可逐一压制火力。', silhouette: '修长舰体 / 双烟囱' },
   { id: 'cruiser', name: '防空巡洋舰', role: '海面 · 密集交错弹', tactic: '先拆一侧防空炮，为下一轮进攻打开通道。', silhouette: '宽甲板 / 多座高射炮' },
   { id: 'battleship', name: '铁岳', role: '第 5 波首领 · 战列舰', tactic: '拆防空炮减少弹幕，摧毁舰桥减慢齐射。舰体始终可攻击。', silhouette: '三联装主炮 / 厚重舰桥' },
-  { id: 'fleet-carrier', name: '赤潮', role: '第 10 波首领 · 航母', tactic: '摧毁飞行甲板停止新机起飞，已升空敌机仍需拦截。', silhouette: '全通飞行甲板 / 右舷舰岛' },
+  { id: 'fleet-carrier', name: '赤潮', role: '第 10 波首领 · 航母', tactic: '摧毁飞行甲板停止新机起飞，已升空敌机仍需拦截。', silhouette: '全通飞行甲板 / 左舷舰岛' },
   { id: 'coastal-battery', name: '海岛炮台', role: '岸防 · 固定防空阵地', tactic: '对准炮位自动投弹，摧毁后不再射击。', silhouette: '沙地工事 / 双联炮管' },
   { id: 'oil-depot', name: '港口油库', role: '岸防 · 连锁爆炸', tactic: '击破油罐能打击附近敌军并清除局部敌弹。', silhouette: '储油罐 / 港口栈桥' },
   { id: 'transport', name: '敌方运输船', role: '海面 · 补给目标', tactic: '击沉获得额外补给；蓝旗运输船则是友军。', silhouette: '货箱 / 吊杆 / 小型舰桥' },
