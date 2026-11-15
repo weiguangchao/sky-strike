@@ -384,6 +384,8 @@
         ],
         "islandSide": 1
       },
+      "classId": "yorktown",
+      "className": "约克城级",
       "modelId": "historic-enterprise",
       "shape": {
         "halfLength": 2.9473684210526314,
@@ -444,6 +446,8 @@
         ],
         "islandSide": 1
       },
+      "classId": "essex",
+      "className": "埃塞克斯级",
       "modelId": "historic-essex",
       "shape": {
         "halfLength": 2.9473684210526314,
@@ -526,8 +530,11 @@
         "bridge": "low",
         "bridgeY": 0.38,
         "torpedoes": 2,
+        "torpedoTubes": 5,
         "deck": "steel"
       },
+      "classId": "fletcher",
+      "className": "弗莱彻级",
       "modelId": "destroyer",
       "shape": {
         "halfLength": 2.0555555555555554,
@@ -600,6 +607,8 @@
         "bridgeY": 0.29,
         "catapults": 2
       },
+      "classId": "cleveland",
+      "className": "克利夫兰级",
       "modelId": "cruiser",
       "shape": {
         "halfLength": 2.159090909090909,
@@ -679,6 +688,8 @@
         "bridgeY": 0.12,
         "catapults": 2
       },
+      "classId": "brooklyn",
+      "className": "布鲁克林级",
       "modelId": "historic-brooklyn",
       "shape": {
         "halfLength": 2.159090909090909,
@@ -961,6 +972,8 @@
         "bridgeY": 0.29,
         "catapults": 2
       },
+      "classId": "baltimore",
+      "className": "巴尔的摩级",
       "modelId": "historic-baltimore",
       "shape": {
         "halfLength": 2.159090909090909,
@@ -5628,6 +5641,5525 @@
           "bridge": {
             "x": 0,
             "y": -0.7772727272727272
+          }
+        }
+      }
+    },
+    {
+      "id": "lexington",
+      "name": "列克星敦级",
+      "navy": "us",
+      "year": 1942,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Lexington-class_aircraft_carrier",
+      "feature": "战巡船体 · 巨型右舷烟囱 · 直通甲板",
+      "geometry": {
+        "length": 270.7,
+        "beam": 32.3,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          -0.06
+        ],
+        "bridge": "island",
+        "bridgeY": 0.28,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.5
+          ],
+          [
+            0,
+            -0.42
+          ]
+        ],
+        "funnelStyle": "trunked"
+      },
+      "classId": "lexington",
+      "className": "列克星敦级",
+      "modelId": "historic-lexington",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.4923531584780199,
+        "combatStretch": 2.0225105831806407,
+        "parts": {
+          "aa-port": {
+            "x": -0.35941780568895454,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.35941780568895454,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.38895899519763577,
+            "y": -0.8252631578947369
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "ranger",
+      "name": "突击者级",
+      "navy": "us",
+      "year": 1942,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/USS_Ranger_(CV-4)",
+      "feature": "紧凑舰岛 · 六根舷侧烟囱 · 三部升降机",
+      "geometry": {
+        "length": 222.5,
+        "beam": 33.4,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.18,
+          0,
+          -0.18,
+          0.18,
+          0,
+          -0.18
+        ],
+        "bridge": "island",
+        "bridgeY": 0.3,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.52
+          ],
+          [
+            0,
+            0.02
+          ],
+          [
+            0,
+            -0.55
+          ]
+        ]
+      },
+      "classId": "ranger",
+      "className": "突击者级",
+      "modelId": "historic-ranger",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.6194109994086338,
+        "combatStretch": 1.6076393132103146,
+        "parts": {
+          "aa-port": {
+            "x": -0.45217002956830266,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.45217002956830266,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.48933468953282067,
+            "y": -0.8842105263157894
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "wasp-cv7",
+      "name": "胡蜂级 CV-7",
+      "navy": "us",
+      "year": 1942,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/USS_Wasp_(CV-7)",
+      "feature": "小型舰队航母 · 舷侧升降平台 · 右舷小舰岛",
+      "geometry": {
+        "length": 226.1,
+        "beam": 33.2,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.04
+        ],
+        "bridge": "island",
+        "bridgeY": 0.24,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.53
+          ],
+          [
+            0,
+            -0.42
+          ],
+          [
+            -0.84,
+            0.13
+          ]
+        ]
+      },
+      "classId": "wasp-cv7",
+      "className": "胡蜂级 CV-7",
+      "modelId": "historic-wasp-cv7",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.6058986475476617,
+        "combatStretch": 1.6434918244406198,
+        "parts": {
+          "aa-port": {
+            "x": -0.442306012709793,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.442306012709793,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.47865993156265274,
+            "y": -0.7073684210526315
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "essex-long",
+      "name": "埃塞克斯级 · 长舰艏",
+      "navy": "us",
+      "year": 1945,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Essex-class_aircraft_carrier",
+      "feature": "长舰艏亚型 · 前伸飞剪艏 · 三部升降机",
+      "geometry": {
+        "length": 270.7,
+        "beam": 45,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.01
+        ],
+        "bridge": "island",
+        "bridgeY": 0.2,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.58
+          ],
+          [
+            -0.83,
+            0.03
+          ],
+          [
+            0,
+            -0.61
+          ]
+        ],
+        "hullStyle": "forecastle"
+      },
+      "classId": "essex-long",
+      "className": "埃塞克斯级 · 长舰艏",
+      "modelId": "historic-essex-long",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.6859409328641144,
+        "combatStretch": 1.4517131519274378,
+        "parts": {
+          "aa-port": {
+            "x": -0.5007368809908035,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.5007368809908035,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.5418933369626504,
+            "y": -0.5894736842105263
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "independence",
+      "name": "独立级",
+      "navy": "us",
+      "year": 1944,
+      "kind": "轻型航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Independence-class_aircraft_carrier",
+      "feature": "轻型航母 · 细长巡洋舰船体 · 四根右舷烟囱",
+      "geometry": {
+        "length": 189.7,
+        "beam": 33.3,
+        "calibre": 40,
+        "guns": [],
+        "funnels": [
+          0.24,
+          0.08,
+          -0.08,
+          -0.24
+        ],
+        "bridge": "island",
+        "bridgeY": 0.37,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.52
+          ],
+          [
+            0,
+            -0.52
+          ]
+        ]
+      },
+      "classId": "independence",
+      "className": "独立级",
+      "modelId": "historic-independence",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.7243348222955912,
+        "combatStretch": 1.37476404976405,
+        "parts": {
+          "aa-port": {
+            "x": -0.5287644202757815,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.5287644202757815,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.5722245096135171,
+            "y": -1.0905263157894736
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "saipan",
+      "name": "塞班级",
+      "navy": "us",
+      "year": 1948,
+      "kind": "轻型航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Saipan-class_aircraft_carrier",
+      "feature": "重巡船体轻航母 · 两部升降机 · 右舷紧凑舰岛",
+      "geometry": {
+        "length": 208.5,
+        "beam": 35.1,
+        "calibre": 40,
+        "guns": [],
+        "funnels": [
+          0.08
+        ],
+        "bridge": "island",
+        "bridgeY": 0.22,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.48
+          ],
+          [
+            0,
+            -0.53
+          ]
+        ]
+      },
+      "classId": "saipan",
+      "className": "塞班级",
+      "modelId": "historic-saipan",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.6946459674365769,
+        "combatStretch": 1.4335208442351304,
+        "parts": {
+          "aa-port": {
+            "x": -0.5070915562287012,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.5070915562287012,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.5487703142748958,
+            "y": -0.6484210526315789
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "midway",
+      "name": "中途岛级",
+      "navy": "us",
+      "year": 1991,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Midway-class_aircraft_carrier",
+      "feature": "改装斜角甲板 · 大型舷侧升降机 · 喷气舰载机",
+      "geometry": {
+        "length": 306.6,
+        "beam": 75.5,
+        "calibre": 20,
+        "guns": [],
+        "funnels": [
+          0.03
+        ],
+        "bridge": "island",
+        "bridgeY": 0.19,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0.88,
+            0.48
+          ],
+          [
+            0.88,
+            -0.39
+          ],
+          [
+            -0.9,
+            -0.29
+          ]
+        ],
+        "deck": "steel",
+        "flightDeck": "angled",
+        "aviation": "jet"
+      },
+      "classId": "midway",
+      "className": "中途岛级",
+      "modelId": "historic-midway",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 1.0161018985820713,
+        "combatStretch": 0.9800094607379378,
+        "parts": {
+          "aa-port": {
+            "x": -0.741754385964912,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.741754385964912,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.8027204998798364,
+            "y": -0.5599999999999999
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "forrestal",
+      "name": "福莱斯特级",
+      "navy": "us",
+      "year": 1960,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Forrestal-class_aircraft_carrier",
+      "feature": "首代超级航母 · 左舷前置升降机 · 右舷一前两后",
+      "geometry": {
+        "length": 325,
+        "beam": 72.5,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.03
+        ],
+        "bridge": "island",
+        "bridgeY": 0.2,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0.88,
+            0.53
+          ],
+          [
+            0.88,
+            -0.15
+          ],
+          [
+            0.88,
+            -0.55
+          ],
+          [
+            -0.91,
+            0.2
+          ]
+        ],
+        "deck": "steel",
+        "flightDeck": "angled",
+        "aviation": "jet"
+      },
+      "classId": "forrestal",
+      "className": "福莱斯特级",
+      "modelId": "historic-forrestal",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.920485829959514,
+        "combatStretch": 1.081808585503167,
+        "parts": {
+          "aa-port": {
+            "x": -0.6719546558704452,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.6719546558704452,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.7271838056680161,
+            "y": -0.5894736842105263
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "kitty-hawk",
+      "name": "小鹰级",
+      "navy": "us",
+      "year": 1985,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Kitty_Hawk-class_aircraft_carrier",
+      "feature": "后移舰岛 · 三右一左升降机 · 大斜角甲板",
+      "geometry": {
+        "length": 323.8,
+        "beam": 76.8,
+        "calibre": 20,
+        "guns": [],
+        "funnels": [
+          -0.05
+        ],
+        "bridge": "island",
+        "bridgeY": 0.08,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0.88,
+            0.56
+          ],
+          [
+            0.88,
+            0.25
+          ],
+          [
+            0.88,
+            -0.53
+          ],
+          [
+            -0.92,
+            -0.48
+          ]
+        ],
+        "deck": "steel",
+        "flightDeck": "angled",
+        "aviation": "jet"
+      },
+      "classId": "kitty-hawk",
+      "className": "小鹰级",
+      "modelId": "historic-kitty-hawk",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.9786938005916582,
+        "combatStretch": 1.0174678465136056,
+        "parts": {
+          "aa-port": {
+            "x": -0.7144464744319104,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.7144464744319104,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.7731681024674101,
+            "y": -0.23578947368421052
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "enterprise-nuclear",
+      "name": "企业级 CVN-65",
+      "navy": "us",
+      "year": 1964,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/USS_Enterprise_(CVN-65)",
+      "feature": "核动力无烟囱 · 方形雷达舰岛 · 四部舷侧升降机",
+      "geometry": {
+        "length": 342.3,
+        "beam": 78.4,
+        "calibre": 20,
+        "guns": [],
+        "funnels": [],
+        "bridge": "island",
+        "bridgeY": 0.09,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0.88,
+            0.55
+          ],
+          [
+            0.88,
+            0.23
+          ],
+          [
+            0.88,
+            -0.53
+          ],
+          [
+            -0.92,
+            -0.46
+          ]
+        ],
+        "deck": "steel",
+        "flightDeck": "angled",
+        "aviation": "jet",
+        "radar": "planar"
+      },
+      "classId": "enterprise-nuclear",
+      "className": "企业级 CVN-65",
+      "modelId": "historic-enterprise-nuclear",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.9450866429878375,
+        "combatStretch": 1.053648870262391,
+        "parts": {
+          "aa-port": {
+            "x": -0.6899132493811214,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.6899132493811214,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.7466184479603917,
+            "y": -0.2652631578947368
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "john-f-kennedy",
+      "name": "约翰·肯尼迪级 CV-67",
+      "navy": "us",
+      "year": 1985,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/USS_John_F._Kennedy_(CV-67)",
+      "feature": "独舰成级 · 外倾烟囱 · 斜角飞行甲板",
+      "geometry": {
+        "length": 320.6,
+        "beam": 76.8,
+        "calibre": 20,
+        "guns": [],
+        "funnels": [
+          -0.05
+        ],
+        "bridge": "island",
+        "bridgeY": 0.11,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0.88,
+            0.56
+          ],
+          [
+            0.88,
+            0.25
+          ],
+          [
+            0.88,
+            -0.51
+          ],
+          [
+            -0.92,
+            -0.46
+          ]
+        ],
+        "deck": "steel",
+        "flightDeck": "angled",
+        "aviation": "jet",
+        "funnelStyle": "trunked",
+        "funnelCant": 26
+      },
+      "classId": "john-f-kennedy",
+      "className": "约翰·肯尼迪级 CV-67",
+      "modelId": "historic-john-f-kennedy",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.9884624224316247,
+        "combatStretch": 1.0074125744047622,
+        "parts": {
+          "aa-port": {
+            "x": -0.721577568375086,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.721577568375086,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.7808853137209836,
+            "y": -0.32421052631578945
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "nimitz",
+      "name": "尼米兹级",
+      "navy": "us",
+      "year": 2005,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Nimitz-class_aircraft_carrier",
+      "feature": "核动力超级航母 · 四部舷侧升降机 · 双桅舰岛",
+      "geometry": {
+        "length": 332.8,
+        "beam": 76.8,
+        "calibre": 20,
+        "guns": [],
+        "funnels": [],
+        "bridge": "island",
+        "bridgeY": 0.13,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0.88,
+            0.55
+          ],
+          [
+            0.88,
+            0.25
+          ],
+          [
+            0.88,
+            -0.52
+          ],
+          [
+            -0.92,
+            -0.45
+          ]
+        ],
+        "deck": "steel",
+        "flightDeck": "angled",
+        "aviation": "jet",
+        "radar": "lattice"
+      },
+      "classId": "nimitz",
+      "className": "尼米兹级",
+      "modelId": "historic-nimitz",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.9522267206477731,
+        "combatStretch": 1.045748299319728,
+        "parts": {
+          "aa-port": {
+            "x": -0.6951255060728744,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.6951255060728744,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.7522591093117408,
+            "y": -0.3831578947368421
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "gerald-ford",
+      "name": "杰拉尔德·福特级",
+      "navy": "us",
+      "year": 2017,
+      "kind": "航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Gerald_R._Ford-class_aircraft_carrier",
+      "feature": "后置小舰岛 · 三部升降机 · 电磁弹射轨道",
+      "geometry": {
+        "length": 337,
+        "beam": 78,
+        "calibre": 20,
+        "guns": [],
+        "funnels": [],
+        "bridge": "island",
+        "bridgeY": -0.13,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0.88,
+            0.52
+          ],
+          [
+            0.88,
+            0.22
+          ],
+          [
+            -0.92,
+            -0.43
+          ]
+        ],
+        "deck": "steel",
+        "flightDeck": "angled",
+        "aviation": "jet",
+        "radar": "aegis"
+      },
+      "classId": "gerald-ford",
+      "className": "杰拉尔德·福特级",
+      "modelId": "historic-gerald-ford",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.955052319225363,
+        "combatStretch": 1.0426543694400838,
+        "parts": {
+          "aa-port": {
+            "x": -0.697188193034515,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.697188193034515,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.7544913321880369,
+            "y": 0.3831578947368421
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "long-island",
+      "name": "长岛级",
+      "navy": "us",
+      "year": 1942,
+      "kind": "护航航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Long_Island-class_escort_carrier",
+      "feature": "商船改装护航航母 · 无舰岛 · 单部升降机",
+      "geometry": {
+        "length": 150,
+        "beam": 21.2,
+        "calibre": 76,
+        "guns": [],
+        "funnels": [],
+        "bridge": "low",
+        "bridgeY": 0.22,
+        "islandless": true,
+        "lifts": [
+          [
+            0,
+            -0.52
+          ]
+        ]
+      },
+      "classId": "long-island",
+      "className": "长岛级",
+      "modelId": "historic-long-island",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.5831859649122806,
+        "combatStretch": 1.7074990373507897,
+        "parts": {
+          "aa-port": {
+            "x": -0.4257257543859648,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.4257257543859648,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.46071691228070166,
+            "y": -0.6484210526315789
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "charger",
+      "name": "军马级",
+      "navy": "us",
+      "year": 1943,
+      "kind": "护航航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/USS_Charger_(CVE-30)",
+      "feature": "美军军马／英军复仇者舰型 · 无舰岛 · 短飞行甲板",
+      "geometry": {
+        "length": 150,
+        "beam": 21.2,
+        "calibre": 102,
+        "guns": [],
+        "funnels": [],
+        "bridge": "low",
+        "bridgeY": 0.34,
+        "islandless": true,
+        "lifts": [
+          [
+            0,
+            0.42
+          ],
+          [
+            0,
+            -0.49
+          ]
+        ]
+      },
+      "classId": "charger",
+      "className": "军马级",
+      "modelId": "historic-charger",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.5831859649122806,
+        "combatStretch": 1.7074990373507897,
+        "parts": {
+          "aa-port": {
+            "x": -0.4257257543859648,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.4257257543859648,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.46071691228070166,
+            "y": -1.0021052631578948
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "bogue",
+      "name": "博格级",
+      "navy": "us",
+      "year": 1943,
+      "kind": "护航航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Bogue-class_escort_carrier",
+      "feature": "C3商船改装 · 小型右舷舰岛 · 两部升降机",
+      "geometry": {
+        "length": 151.1,
+        "beam": 34,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.06
+        ],
+        "bridge": "island",
+        "bridgeY": 0.3,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.46
+          ],
+          [
+            0,
+            -0.5
+          ]
+        ]
+      },
+      "classId": "bogue",
+      "className": "博格级",
+      "modelId": "historic-bogue",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.9284893239053954,
+        "combatStretch": 1.072483493397359,
+        "parts": {
+          "aa-port": {
+            "x": -0.6777972064509387,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.6777972064509387,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.7335065658852624,
+            "y": -0.8842105263157894
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "sangamon",
+      "name": "桑加蒙级",
+      "navy": "us",
+      "year": 1944,
+      "kind": "护航航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Sangamon-class_escort_carrier",
+      "feature": "油船改装 · 长宽船体 · 后置右舷舰岛",
+      "geometry": {
+        "length": 168.7,
+        "beam": 34.8,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          -0.08
+        ],
+        "bridge": "island",
+        "bridgeY": 0.12,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.45
+          ],
+          [
+            0,
+            -0.48
+          ]
+        ]
+      },
+      "classId": "sangamon",
+      "className": "桑加蒙级",
+      "modelId": "historic-sangamon",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.8511902162044113,
+        "combatStretch": 1.1698788998357967,
+        "parts": {
+          "aa-port": {
+            "x": -0.6213688578292202,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.6213688578292202,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.6724402708014849,
+            "y": -0.35368421052631577
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "casablanca",
+      "name": "卡萨布兰卡级",
+      "navy": "us",
+      "year": 1944,
+      "kind": "护航航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Casablanca-class_escort_carrier",
+      "feature": "量产护航航母 · 紧凑短甲板 · 两部升降机",
+      "geometry": {
+        "length": 156.1,
+        "beam": 32.9,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.07
+        ],
+        "bridge": "island",
+        "bridgeY": 0.28,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.42
+          ],
+          [
+            0,
+            -0.47
+          ]
+        ]
+      },
+      "classId": "casablanca",
+      "className": "卡萨布兰卡级",
+      "modelId": "historic-casablanca",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.869671937691763,
+        "combatStretch": 1.1450173686495877,
+        "parts": {
+          "aa-port": {
+            "x": -0.6348605145149869,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.6348605145149869,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.6870408307764928,
+            "y": -0.8252631578947369
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "commencement-bay",
+      "name": "康门斯门特湾级",
+      "navy": "us",
+      "year": 1945,
+      "kind": "护航航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/Commencement_Bay-class_escort_carrier",
+      "feature": "大型护航航母 · 油船型舰体 · 加长飞行甲板",
+      "geometry": {
+        "length": 170.7,
+        "beam": 32,
+        "calibre": 127,
+        "guns": [],
+        "funnels": [
+          0.02
+        ],
+        "bridge": "island",
+        "bridgeY": 0.24,
+        "islandSide": 1,
+        "lifts": [
+          [
+            0,
+            0.48
+          ],
+          [
+            0,
+            -0.51
+          ]
+        ]
+      },
+      "classId": "commencement-bay",
+      "className": "康门斯门特湾级",
+      "modelId": "historic-commencement-bay",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.7735331298368945,
+        "combatStretch": 1.287326211734694,
+        "parts": {
+          "aa-port": {
+            "x": -0.5646791847809329,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.5646791847809329,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.6110911725711466,
+            "y": -0.7073684210526315
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "wolverine",
+      "name": "狼獾级 IX-64",
+      "navy": "us",
+      "year": 1943,
+      "kind": "训练航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/USS_Wolverine_(IX-64)",
+      "feature": "五大湖训练航母 · 舷侧明轮 · 四根舷外烟囱",
+      "geometry": {
+        "length": 152.4,
+        "beam": 29.9,
+        "calibre": 0,
+        "guns": [],
+        "funnels": [
+          0.35,
+          0.13,
+          -0.09,
+          -0.31
+        ],
+        "bridge": "low",
+        "bridgeY": 0.39,
+        "bridgeWidth": 0.7,
+        "paddleWheels": true,
+        "lifts": []
+      },
+      "classId": "wolverine",
+      "className": "狼獾级 IX-64",
+      "modelId": "historic-wolverine",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.8095593313993644,
+        "combatStretch": 1.230038905194185,
+        "parts": {
+          "aa-port": {
+            "x": -0.590978311921536,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.590978311921536,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.6395518718054979,
+            "y": -1.1494736842105262
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "sable",
+      "name": "黑貂级 IX-81",
+      "navy": "us",
+      "year": 1943,
+      "kind": "训练航空母舰",
+      "hull": "fleet-carrier",
+      "source": "https://en.wikipedia.org/wiki/USS_Sable",
+      "feature": "五大湖训练航母 · 双烟囱明轮船 · 钢制甲板",
+      "geometry": {
+        "length": 163.1,
+        "beam": 30.5,
+        "calibre": 0,
+        "guns": [],
+        "funnels": [
+          0.18,
+          -0.18
+        ],
+        "bridge": "low",
+        "bridgeY": 0.32,
+        "bridgeWidth": 0.7,
+        "paddleWheels": true,
+        "lifts": [],
+        "deck": "steel"
+      },
+      "classId": "sable",
+      "className": "黑貂级 IX-81",
+      "modelId": "historic-sable",
+      "shape": {
+        "halfLength": 2.9473684210526314,
+        "halfBeam": 0.7716286424215043,
+        "combatStretch": 1.2905035128805622,
+        "parts": {
+          "aa-port": {
+            "x": -0.5632889089676981,
+            "y": 0.4421052631578947
+          },
+          "aa-starboard": {
+            "x": 0.5632889089676981,
+            "y": 0.4421052631578947
+          },
+          "bridge": {
+            "x": 0.6095866275129884,
+            "y": -0.9431578947368421
+          },
+          "flight-deck": {
+            "x": 0,
+            "y": 1.0021052631578948
+          }
+        }
+      }
+    },
+    {
+      "id": "omaha",
+      "name": "奥马哈级",
+      "navy": "us",
+      "year": 1942,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Omaha-class_cruiser",
+      "feature": "四烟囱 · 艏艉双联炮 · 舷侧单装炮",
+      "geometry": {
+        "length": 169.3,
+        "beam": 16.9,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": 0.51,
+            "x": -0.67,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.5,
+            "x": -0.67,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.51,
+            "x": 0.67,
+            "raised": 0,
+            "bearing": -90
+          },
+          {
+            "barrels": 1,
+            "y": -0.5,
+            "x": 0.67,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.3,
+          0.1,
+          -0.1,
+          -0.3
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.56,
+        "torpedoes": 2,
+        "catapults": 2
+      },
+      "classId": "omaha",
+      "className": "奥马哈级",
+      "modelId": "historic-omaha",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.30173709928582926,
+        "combatStretch": 2.4615046491969577,
+        "parts": {
+          "aa-port": {
+            "x": -0.22026808247865534,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.22026808247865534,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -1.2090909090909092
+          }
+        }
+      }
+    },
+    {
+      "id": "pensacola",
+      "name": "彭萨科拉级",
+      "navy": "us",
+      "year": 1942,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Pensacola-class_cruiser",
+      "feature": "双联低位与三联高位炮 · 双烟囱",
+      "geometry": {
+        "length": 178.5,
+        "beam": 19.9,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.51,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.51,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.05,
+          -0.23
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.28,
+        "catapults": 2
+      },
+      "classId": "pensacola",
+      "className": "彭萨科拉级",
+      "modelId": "historic-pensacola",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.33698752228163986,
+        "combatStretch": 2.204020100502513,
+        "parts": {
+          "aa-port": {
+            "x": -0.2460008912655971,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2460008912655971,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "northampton",
+      "name": "北安普敦级 CA-26",
+      "navy": "us",
+      "year": 1942,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Northampton-class_cruiser",
+      "feature": "三座三联203毫米炮 · 高艏楼 · 双烟囱",
+      "geometry": {
+        "length": 182.9,
+        "beam": 20.1,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.76,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.7,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.04,
+          -0.25
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.28,
+        "catapults": 2,
+        "hullStyle": "forecastle"
+      },
+      "classId": "northampton",
+      "className": "北安普敦级 CA-26",
+      "modelId": "historic-northampton",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3321859933396292,
+        "combatStretch": 2.235877754086709,
+        "parts": {
+          "aa-port": {
+            "x": -0.24249577513792933,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.24249577513792933,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "portland",
+      "name": "波特兰级",
+      "navy": "us",
+      "year": 1942,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Portland-class_cruiser",
+      "feature": "三座三联炮 · 加宽重巡舰体 · 塔式舰桥",
+      "geometry": {
+        "length": 186,
+        "beam": 20.1,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.76,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.7,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.03,
+          -0.26
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.29,
+        "catapults": 2
+      },
+      "classId": "portland",
+      "className": "波特兰级",
+      "modelId": "historic-portland",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3266495601173021,
+        "combatStretch": 2.2737739872068223,
+        "parts": {
+          "aa-port": {
+            "x": -0.23845417888563053,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23845417888563053,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6261363636363636
+          }
+        }
+      }
+    },
+    {
+      "id": "new-orleans",
+      "name": "新奥尔良级",
+      "navy": "us",
+      "year": 1942,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/New_Orleans-class_cruiser",
+      "feature": "紧凑重巡舰桥 · 三座三联炮 · 舰中航空区",
+      "geometry": {
+        "length": 179.2,
+        "beam": 18.8,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.76,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.7,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.05,
+          -0.24
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.27,
+        "catapults": 2,
+        "catapultStations": [
+          [
+            -0.55,
+            -0.36,
+            90,
+            0.7
+          ],
+          [
+            0.55,
+            -0.36,
+            90,
+            0.7
+          ]
+        ]
+      },
+      "classId": "new-orleans",
+      "className": "新奥尔良级",
+      "modelId": "historic-new-orleans",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3171164772727273,
+        "combatStretch": 2.342127659574468,
+        "parts": {
+          "aa-port": {
+            "x": -0.23149502840909092,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23149502840909092,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5829545454545455
+          }
+        }
+      }
+    },
+    {
+      "id": "st-louis",
+      "name": "圣路易斯级 CL-49",
+      "navy": "us",
+      "year": 1943,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/St._Louis-class_cruiser_(1938)",
+      "feature": "布鲁克林改进型 · 五座三联炮 · 分隔机舱双烟囱",
+      "geometry": {
+        "length": 185.4,
+        "beam": 18.8,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.85,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.65,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.43,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.56,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.02,
+          -0.26
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.13,
+        "catapults": 2
+      },
+      "classId": "st-louis",
+      "className": "圣路易斯级 CL-49",
+      "modelId": "historic-st-louis",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.30651171913307834,
+        "combatStretch": 2.4231610942249238,
+        "parts": {
+          "aa-port": {
+            "x": -0.2237535549671472,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2237535549671472,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.2806818181818182
+          }
+        }
+      }
+    },
+    {
+      "id": "wichita",
+      "name": "威奇塔级",
+      "navy": "us",
+      "year": 1942,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/USS_Wichita_(CA-45)",
+      "feature": "独舰成级 · 布鲁克林型舰体 · 三座三联203毫米炮",
+      "geometry": {
+        "length": 185.4,
+        "beam": 18.8,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.76,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.7,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.04,
+          -0.24
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.26,
+        "catapults": 2
+      },
+      "classId": "wichita",
+      "className": "威奇塔级",
+      "modelId": "historic-wichita",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.30651171913307834,
+        "combatStretch": 2.4231610942249238,
+        "parts": {
+          "aa-port": {
+            "x": -0.2237535549671472,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2237535549671472,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5613636363636364
+          }
+        }
+      }
+    },
+    {
+      "id": "atlanta",
+      "name": "亚特兰大级",
+      "navy": "us",
+      "year": 1942,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Atlanta-class_cruiser",
+      "feature": "八座双联127毫米炮 · 舷侧翼炮 · 双烟囱",
+      "geometry": {
+        "length": 165,
+        "beam": 16.2,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.83,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.63,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.43,
+            "x": 0,
+            "raised": 0.36,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.43,
+            "x": 0,
+            "raised": 0.36,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.63,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.83,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.12,
+            "x": -0.67,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 2,
+            "y": -0.12,
+            "x": 0.67,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.08,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.24,
+        "torpedoes": 2,
+        "deck": "steel"
+      },
+      "classId": "atlanta",
+      "className": "亚特兰大级",
+      "modelId": "historic-atlanta",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.2967768595041322,
+        "combatStretch": 2.502645502645503,
+        "parts": {
+          "aa-port": {
+            "x": -0.2166471074380165,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2166471074380165,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5181818181818182
+          }
+        }
+      }
+    },
+    {
+      "id": "oakland",
+      "name": "奥克兰亚级",
+      "navy": "us",
+      "year": 1944,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Atlanta-class_cruiser",
+      "feature": "亚特兰大改进型 · 六座双联炮 · 无舷侧翼炮",
+      "geometry": {
+        "length": 165,
+        "beam": 16.2,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.83,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.63,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.43,
+            "x": 0,
+            "raised": 0.36,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.43,
+            "x": 0,
+            "raised": 0.36,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.63,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.83,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.08,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.24,
+        "torpedoes": 2,
+        "deck": "steel"
+      },
+      "classId": "oakland",
+      "className": "奥克兰亚级",
+      "modelId": "historic-oakland",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.2967768595041322,
+        "combatStretch": 2.502645502645503,
+        "parts": {
+          "aa-port": {
+            "x": -0.2166471074380165,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2166471074380165,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5181818181818182
+          }
+        }
+      }
+    },
+    {
+      "id": "fargo",
+      "name": "法戈级",
+      "navy": "us",
+      "year": 1946,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Fargo-class_cruiser",
+      "feature": "四座三联152毫米炮 · 单烟囱 · 紧凑上层建筑",
+      "geometry": {
+        "length": 186,
+        "beam": 20.2,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 3,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.11
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.29,
+        "catapults": 2
+      },
+      "classId": "fargo",
+      "className": "法戈级",
+      "modelId": "historic-fargo",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.32827468230694035,
+        "combatStretch": 2.2625176803394624,
+        "parts": {
+          "aa-port": {
+            "x": -0.23964051808406645,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23964051808406645,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6261363636363636
+          }
+        }
+      }
+    },
+    {
+      "id": "oregon-city",
+      "name": "俄勒冈城级",
+      "navy": "us",
+      "year": 1946,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Oregon_City-class_cruiser",
+      "feature": "巴尔的摩改进型 · 单粗烟囱 · 三座三联炮",
+      "geometry": {
+        "length": 205.3,
+        "beam": 21.6,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.76,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.7,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.13
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.29,
+        "catapults": 2
+      },
+      "classId": "oregon-city",
+      "className": "俄勒冈城级",
+      "modelId": "historic-oregon-city",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.31802683434441836,
+        "combatStretch": 2.33542328042328,
+        "parts": {
+          "aa-port": {
+            "x": -0.2321595890714254,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2321595890714254,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6261363636363636
+          }
+        }
+      }
+    },
+    {
+      "id": "des-moines",
+      "name": "得梅因级",
+      "navy": "us",
+      "year": 1950,
+      "kind": "重巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Des_Moines-class_cruiser",
+      "feature": "三座自动三联203毫米炮 · 高舰桥 · 双烟囱",
+      "geometry": {
+        "length": 218.4,
+        "beam": 23.3,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.76,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.7,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.04,
+          -0.24
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "radar": "lattice",
+        "helipad": true
+      },
+      "classId": "des-moines",
+      "className": "得梅因级",
+      "modelId": "historic-des-moines",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3224796037296037,
+        "combatStretch": 2.303175965665236,
+        "parts": {
+          "aa-port": {
+            "x": -0.2354101107226107,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2354101107226107,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "worcester",
+      "name": "伍斯特级",
+      "navy": "us",
+      "year": 1949,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Worcester-class_cruiser",
+      "feature": "六座双联152毫米炮 · 前三后三背负式布置",
+      "geometry": {
+        "length": 207.1,
+        "beam": 21.6,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.85,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.65,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.43,
+            "x": 0,
+            "raised": 0.36,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.43,
+            "x": 0,
+            "raised": 0.36,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.65,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.85,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.07,
+          -0.2
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.25,
+        "radar": "lattice"
+      },
+      "classId": "worcester",
+      "className": "伍斯特级",
+      "modelId": "historic-worcester",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.31526271893244373,
+        "combatStretch": 2.3558994708994705,
+        "parts": {
+          "aa-port": {
+            "x": -0.23014178482068393,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23014178482068393,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5397727272727273
+          }
+        }
+      }
+    },
+    {
+      "id": "alaska",
+      "name": "阿拉斯加级",
+      "navy": "us",
+      "year": 1945,
+      "kind": "大型巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Alaska-class_cruiser",
+      "feature": "大型巡洋舰 · 三座三联305毫米炮 · 双烟囱",
+      "geometry": {
+        "length": 246.4,
+        "beam": 27.8,
+        "calibre": 305,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.76,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": -0.7,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.03,
+          -0.25
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "catapults": 2,
+        "catapultStations": [
+          [
+            -0.55,
+            -0.37,
+            90,
+            0.8
+          ],
+          [
+            0.55,
+            -0.37,
+            90,
+            0.8
+          ]
+        ]
+      },
+      "classId": "alaska",
+      "className": "阿拉斯加级",
+      "modelId": "historic-alaska",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3410382231404958,
+        "combatStretch": 2.177841726618705,
+        "parts": {
+          "aa-port": {
+            "x": -0.24895790289256195,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.24895790289256195,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "juneau",
+      "name": "朱诺级 CL-119",
+      "navy": "us",
+      "year": 1946,
+      "kind": "轻巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Juneau-class_cruiser",
+      "feature": "六座双联127毫米炮 · 无鱼雷管 · 防空塔桥",
+      "geometry": {
+        "length": 165,
+        "beam": 16.2,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.83,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.63,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.43,
+            "x": 0,
+            "raised": 0.36,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.43,
+            "x": 0,
+            "raised": 0.36,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.63,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.83,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.06,
+          -0.2
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.25,
+        "deck": "steel",
+        "radar": "lattice"
+      },
+      "classId": "juneau",
+      "className": "朱诺级 CL-119",
+      "modelId": "historic-juneau",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.2967768595041322,
+        "combatStretch": 2.502645502645503,
+        "parts": {
+          "aa-port": {
+            "x": -0.2166471074380165,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2166471074380165,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5397727272727273
+          }
+        }
+      }
+    },
+    {
+      "id": "northampton-command",
+      "name": "北安普敦级 CLC-1",
+      "navy": "us",
+      "year": 1954,
+      "kind": "指挥巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/USS_Northampton_(CLC-1)",
+      "feature": "指挥巡洋舰 · 大型雷达桅 · 四座单装127毫米炮",
+      "geometry": {
+        "length": 205.7,
+        "beam": 21.6,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.77,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.77,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.08
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.26,
+        "deck": "steel",
+        "radar": "planar",
+        "helipad": true
+      },
+      "classId": "northampton-command",
+      "className": "北安普敦级 CLC-1",
+      "modelId": "historic-northampton-command",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3174084058867725,
+        "combatStretch": 2.3399735449735446,
+        "parts": {
+          "aa-port": {
+            "x": -0.2317081362973439,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2317081362973439,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5613636363636364
+          }
+        }
+      }
+    },
+    {
+      "id": "boston",
+      "name": "波士顿级 CAG-1",
+      "navy": "us",
+      "year": 1956,
+      "kind": "导弹巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Boston-class_cruiser",
+      "feature": "保留前部重炮 · 艉部双联小猎犬导弹 · 单烟囱",
+      "geometry": {
+        "length": 205.3,
+        "beam": 21.6,
+        "calibre": 203,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.77,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.52,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          -0.05
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.27,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.48,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.76,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice"
+      },
+      "classId": "boston",
+      "className": "波士顿级 CAG-1",
+      "modelId": "historic-boston",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.31802683434441836,
+        "combatStretch": 2.33542328042328,
+        "parts": {
+          "aa-port": {
+            "x": -0.2321595890714254,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2321595890714254,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5829545454545455
+          }
+        }
+      }
+    },
+    {
+      "id": "galveston",
+      "name": "加尔维斯顿级",
+      "navy": "us",
+      "year": 1960,
+      "kind": "导弹巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Galveston-class_cruiser",
+      "feature": "克利夫兰改装 · 前部双座三联炮 · 艉部塔洛斯导弹",
+      "geometry": {
+        "length": 185.9,
+        "beam": 20.2,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 3,
+            "y": 0.54,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          0.06,
+          -0.2
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.28,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "talos",
+            "x": 0,
+            "y": -0.7,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice"
+      },
+      "classId": "galveston",
+      "className": "加尔维斯顿级",
+      "modelId": "historic-galveston",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.32845126901070953,
+        "combatStretch": 2.2613012729844413,
+        "parts": {
+          "aa-port": {
+            "x": -0.23976942637781795,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23976942637781795,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6045454545454546
+          }
+        }
+      }
+    },
+    {
+      "id": "providence",
+      "name": "普罗维登斯级",
+      "navy": "us",
+      "year": 1960,
+      "kind": "导弹巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Providence-class_cruiser",
+      "feature": "斯普林菲尔德旗舰型 · 单座前部三联炮 · 艉部小猎犬导弹",
+      "geometry": {
+        "length": 185.9,
+        "beam": 20.2,
+        "calibre": 152,
+        "guns": [
+          {
+            "barrels": 3,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          0.06,
+          -0.22
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.38,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.7,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "planar",
+        "bridgeWidth": 1.2
+      },
+      "classId": "providence",
+      "className": "普罗维登斯级",
+      "modelId": "historic-providence",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.32845126901070953,
+        "combatStretch": 2.2613012729844413,
+        "parts": {
+          "aa-port": {
+            "x": -0.23976942637781795,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23976942637781795,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.8204545454545455
+          }
+        }
+      }
+    },
+    {
+      "id": "albany",
+      "name": "奥尔巴尼级",
+      "navy": "us",
+      "year": 1963,
+      "kind": "导弹巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Albany-class_cruiser",
+      "feature": "全导弹改装 · 高大箱式舰桥 · 艏艉塔洛斯导弹",
+      "geometry": {
+        "length": 205.3,
+        "beam": 21.6,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": -0.18,
+            "x": -0.66,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.18,
+            "x": 0.66,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.07,
+          -0.29
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.32,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "talos",
+            "x": 0,
+            "y": 0.76,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "talos",
+            "x": 0,
+            "y": -0.74,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "twin",
+            "x": -0.75,
+            "y": 0.02,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "twin",
+            "x": 0.75,
+            "y": 0.02,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "planar",
+        "bridgeHeight": 1.2
+      },
+      "classId": "albany",
+      "className": "奥尔巴尼级",
+      "modelId": "historic-albany",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.31802683434441836,
+        "combatStretch": 2.33542328042328,
+        "parts": {
+          "aa-port": {
+            "x": -0.2321595890714254,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2321595890714254,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6909090909090909
+          }
+        }
+      }
+    },
+    {
+      "id": "long-beach",
+      "name": "长滩级 CGN-9",
+      "navy": "us",
+      "year": 1964,
+      "kind": "核动力巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/USS_Long_Beach_(CGN-9)",
+      "feature": "核动力无烟囱 · 箱式相控阵舰桥 · 塔洛斯艉发射器",
+      "geometry": {
+        "length": 219.8,
+        "beam": 21.8,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": -0.12,
+            "x": -0.67,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.12,
+            "x": 0.67,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [],
+        "bridge": "tower",
+        "bridgeY": 0.26,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": 0.78,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": 0.55,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "talos",
+            "x": 0,
+            "y": -0.74,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "asroc",
+            "x": 0,
+            "y": -0.33,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "planar",
+        "bridgeWidth": 1.35,
+        "bridgeHeight": 1.3
+      },
+      "classId": "long-beach",
+      "className": "长滩级 CGN-9",
+      "modelId": "historic-long-beach",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.2997973364215402,
+        "combatStretch": 2.4774311926605503,
+        "parts": {
+          "aa-port": {
+            "x": -0.21885205558772436,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.21885205558772436,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.5613636363636364
+          }
+        }
+      }
+    },
+    {
+      "id": "leahy",
+      "name": "莱希级",
+      "navy": "us",
+      "year": 1965,
+      "kind": "导弹巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Leahy-class_cruiser",
+      "feature": "艏艉双联小猎犬导弹 · 双烟囱桅 · 无主炮",
+      "geometry": {
+        "length": 162.5,
+        "beam": 16.3,
+        "calibre": 0,
+        "guns": [],
+        "funnels": [
+          0.17,
+          -0.24
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.37,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": 0.77,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.76,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "asroc",
+            "x": 0,
+            "y": 0.51,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice"
+      },
+      "classId": "leahy",
+      "className": "莱希级",
+      "modelId": "historic-leahy",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3032027972027972,
+        "combatStretch": 2.4496056091148115,
+        "parts": {
+          "aa-port": {
+            "x": -0.22133804195804194,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.22133804195804194,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7988636363636363
+          }
+        }
+      }
+    },
+    {
+      "id": "bainbridge-nuclear",
+      "name": "班布里奇级 CGN-25",
+      "navy": "us",
+      "year": 1964,
+      "kind": "核动力巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/USS_Bainbridge_(CGN-25)",
+      "feature": "核动力莱希衍生型 · 双端导弹 · 无烟囱",
+      "geometry": {
+        "length": 172.3,
+        "beam": 17.6,
+        "calibre": 0,
+        "guns": [],
+        "funnels": [],
+        "bridge": "tower",
+        "bridgeY": 0.34,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": 0.77,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.76,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "asroc",
+            "x": 0,
+            "y": 0.51,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice"
+      },
+      "classId": "bainbridge-nuclear",
+      "className": "班布里奇级 CGN-25",
+      "modelId": "historic-bainbridge-nuclear",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3087637840975044,
+        "combatStretch": 2.4054870129870127,
+        "parts": {
+          "aa-port": {
+            "x": -0.2253975623911782,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2253975623911782,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7340909090909091
+          }
+        }
+      }
+    },
+    {
+      "id": "belknap",
+      "name": "贝尔纳普级",
+      "navy": "us",
+      "year": 1966,
+      "kind": "导弹巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Belknap-class_cruiser",
+      "feature": "艏部双联导弹 · 艉部127毫米炮 · 后直升机平台",
+      "geometry": {
+        "length": 166.7,
+        "beam": 16.7,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": -0.6,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.13,
+          -0.2
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.36,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": 0.77,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice",
+        "helipad": true
+      },
+      "classId": "belknap",
+      "className": "贝尔纳普级",
+      "modelId": "historic-belknap",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3028167093853956,
+        "combatStretch": 2.4527288280581696,
+        "parts": {
+          "aa-port": {
+            "x": -0.2210561978513388,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2210561978513388,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7772727272727272
+          }
+        }
+      }
+    },
+    {
+      "id": "truxtun",
+      "name": "特拉克斯顿级 CGN-35",
+      "navy": "us",
+      "year": 1968,
+      "kind": "核动力巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/USS_Truxtun_(CGN-35)",
+      "feature": "核动力独舰成级 · 艏炮艉导弹 · 直升机机库",
+      "geometry": {
+        "length": 172.3,
+        "beam": 17.7,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.77,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          }
+        ],
+        "funnels": [],
+        "bridge": "tower",
+        "bridgeY": 0.39,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.67,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice",
+        "hangar": true,
+        "helipad": true
+      },
+      "classId": "truxtun",
+      "className": "特拉克斯顿级 CGN-35",
+      "modelId": "historic-truxtun",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.31051812377987653,
+        "combatStretch": 2.3918966908797414,
+        "parts": {
+          "aa-port": {
+            "x": -0.22667823035930987,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.22667823035930987,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.8420454545454547
+          }
+        }
+      }
+    },
+    {
+      "id": "california",
+      "name": "加利福尼亚级",
+      "navy": "us",
+      "year": 1975,
+      "kind": "核动力巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/California-class_cruiser",
+      "feature": "核动力 · 双端单臂导弹 · 前后各一座127毫米炮",
+      "geometry": {
+        "length": 181.7,
+        "beam": 18.6,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [],
+        "bridge": "tower",
+        "bridgeY": 0.3,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "single",
+            "x": 0,
+            "y": 0.51,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "single",
+            "x": 0,
+            "y": -0.51,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "asroc",
+            "x": 0,
+            "y": 0.03,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice",
+        "helipad": true
+      },
+      "classId": "california",
+      "className": "加利福尼亚级",
+      "modelId": "historic-california",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3094261269825387,
+        "combatStretch": 2.4003379416282637,
+        "parts": {
+          "aa-port": {
+            "x": -0.22588107269725324,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.22588107269725324,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6477272727272727
+          }
+        }
+      }
+    },
+    {
+      "id": "virginia",
+      "name": "弗吉尼亚级",
+      "navy": "us",
+      "year": 1978,
+      "kind": "核动力巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Virginia-class_cruiser",
+      "feature": "核动力 · 双端双臂导弹 · 大型上层建筑",
+      "geometry": {
+        "length": 178.3,
+        "beam": 19.2,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [],
+        "bridge": "tower",
+        "bridgeY": 0.31,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": 0.5,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.5,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "planar",
+        "helipad": true,
+        "bridgeWidth": 1.2
+      },
+      "classId": "virginia",
+      "className": "弗吉尼亚级",
+      "modelId": "historic-virginia",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.3254983939223983,
+        "combatStretch": 2.2818154761904768,
+        "parts": {
+          "aa-port": {
+            "x": -0.23761382756335078,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.23761382756335078,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6693181818181818
+          }
+        }
+      }
+    },
+    {
+      "id": "ticonderoga",
+      "name": "提康德罗加级",
+      "navy": "us",
+      "year": 2000,
+      "kind": "导弹巡洋舰",
+      "hull": "cruiser",
+      "source": "https://en.wikipedia.org/wiki/Ticonderoga-class_cruiser",
+      "feature": "宙斯盾四面阵列 · 艏艉垂发单元 · 双直升机机库",
+      "geometry": {
+        "length": 172.8,
+        "beam": 16.8,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.09,
+          -0.23
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.35,
+        "deck": "steel",
+        "launchers": [
+          {
+            "kind": "vls",
+            "x": 0,
+            "y": 0.52,
+            "rows": 4,
+            "columns": 8
+          },
+          {
+            "kind": "vls",
+            "x": 0,
+            "y": -0.49,
+            "rows": 4,
+            "columns": 8
+          }
+        ],
+        "radar": "aegis",
+        "hangar": true,
+        "helipad": true
+      },
+      "classId": "ticonderoga",
+      "className": "提康德罗加级",
+      "modelId": "historic-ticonderoga",
+      "shape": {
+        "halfLength": 2.159090909090909,
+        "halfBeam": 0.2938762626262626,
+        "combatStretch": 2.5273469387755103,
+        "parts": {
+          "aa-port": {
+            "x": -0.2145296717171717,
+            "y": 0.32386363636363635
+          },
+          "aa-starboard": {
+            "x": 0.2145296717171717,
+            "y": 0.32386363636363635
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7556818181818181
+          }
+        }
+      }
+    },
+    {
+      "id": "sampson",
+      "name": "桑普森级",
+      "navy": "us",
+      "year": 1941,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Sampson-class_destroyer",
+      "feature": "艾伦号战时型 · 高艏楼 · 四烟囱与舷侧炮",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 3,
+        "length": 96.1,
+        "beam": 9.1,
+        "calibre": 102,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": 0.38,
+            "x": -0.62,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.38,
+            "x": 0.62,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.26,
+          0.08,
+          -0.1,
+          -0.28
+        ],
+        "bridge": "low",
+        "bridgeY": 0.56,
+        "torpedoes": 4,
+        "openGuns": true,
+        "hullStyle": "forecastle"
+      },
+      "classId": "sampson",
+      "className": "桑普森级",
+      "modelId": "historic-sampson",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2725054919643889,
+        "combatStretch": 2.454588654588655,
+        "parts": {
+          "aa-port": {
+            "x": -0.19892900913400388,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.19892900913400388,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -1.1511111111111112
+          }
+        }
+      }
+    },
+    {
+      "id": "caldwell",
+      "name": "考德威尔级",
+      "navy": "us",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Caldwell-class_destroyer",
+      "feature": "平甲板驱逐舰 · 四烟囱型 · 四座单装炮",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 3,
+        "length": 96.2,
+        "beam": 9.4,
+        "calibre": 102,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": 0.39,
+            "x": -0.62,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.39,
+            "x": 0.62,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.24,
+          0.06,
+          -0.12,
+          -0.3
+        ],
+        "bridge": "low",
+        "bridgeY": 0.58,
+        "torpedoes": 4,
+        "openGuns": true
+      },
+      "classId": "caldwell",
+      "className": "考德威尔级",
+      "modelId": "historic-caldwell",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2811965811965812,
+        "combatStretch": 2.378723404255319,
+        "parts": {
+          "aa-port": {
+            "x": -0.20527350427350427,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.20527350427350427,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -1.192222222222222
+          }
+        }
+      }
+    },
+    {
+      "id": "wickes",
+      "name": "威克斯级",
+      "navy": "us",
+      "year": 1940,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Wickes-class_destroyer",
+      "feature": "四烟囱平甲板 · 舷侧炮 · 四组三联鱼雷管",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 3,
+        "length": 95.8,
+        "beam": 9.4,
+        "calibre": 102,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": 0.4,
+            "x": -0.63,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.4,
+            "x": 0.63,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.25,
+          0.07,
+          -0.11,
+          -0.29
+        ],
+        "bridge": "low",
+        "bridgeY": 0.57,
+        "torpedoes": 4,
+        "openGuns": true
+      },
+      "classId": "wickes",
+      "className": "威克斯级",
+      "modelId": "historic-wickes",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2823706796566922,
+        "combatStretch": 2.3688326624496834,
+        "parts": {
+          "aa-port": {
+            "x": -0.2061305961493853,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2061305961493853,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -1.1716666666666664
+          }
+        }
+      }
+    },
+    {
+      "id": "clemson",
+      "name": "克莱姆森级",
+      "navy": "us",
+      "year": 1940,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Clemson-class_destroyer",
+      "feature": "增程四烟囱驱逐舰 · 加宽船体 · 舷侧炮",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 3,
+        "length": 95.8,
+        "beam": 9.7,
+        "calibre": 102,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": 0.39,
+            "x": -0.64,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": 0.39,
+            "x": 0.64,
+            "raised": 0,
+            "bearing": -90
+          }
+        ],
+        "funnels": [
+          0.27,
+          0.08,
+          -0.11,
+          -0.3
+        ],
+        "bridge": "low",
+        "bridgeY": 0.57,
+        "torpedoes": 4,
+        "openGuns": true
+      },
+      "classId": "clemson",
+      "className": "克莱姆森级",
+      "modelId": "historic-clemson",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.29138250985850145,
+        "combatStretch": 2.295569796600725,
+        "parts": {
+          "aa-port": {
+            "x": -0.21270923219670604,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.21270923219670604,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -1.1716666666666664
+          }
+        }
+      }
+    },
+    {
+      "id": "farragut-1934",
+      "name": "法拉格特级 1934",
+      "navy": "us",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Farragut-class_destroyer_(1934)",
+      "feature": "五座单装127毫米炮 · 高艏楼 · 双烟囱",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 104,
+        "beam": 10.4,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.56,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.06,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.25,
+          -0.2
+        ],
+        "bridge": "low",
+        "bridgeY": 0.35,
+        "torpedoes": 2,
+        "openGuns": true,
+        "hullStyle": "forecastle"
+      },
+      "classId": "farragut-1934",
+      "className": "法拉格特级 1934",
+      "modelId": "historic-farragut-1934",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.28777777777777774,
+        "combatStretch": 2.3243243243243246,
+        "parts": {
+          "aa-port": {
+            "x": -0.21007777777777775,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.21007777777777775,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7194444444444443
+          }
+        }
+      }
+    },
+    {
+      "id": "porter",
+      "name": "波特级",
+      "navy": "us",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Porter-class_destroyer",
+      "feature": "四座双联127毫米炮 · 大型领舰舰桥",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 116.2,
+        "beam": 11.3,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.12,
+          -0.16
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.31,
+        "torpedoes": 2
+      },
+      "classId": "porter",
+      "className": "波特级",
+      "modelId": "historic-porter",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2798527443105756,
+        "combatStretch": 2.3901458981105,
+        "parts": {
+          "aa-port": {
+            "x": -0.2042925033467202,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2042925033467202,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6372222222222221
+          }
+        }
+      }
+    },
+    {
+      "id": "mahan",
+      "name": "马汉级",
+      "navy": "us",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Mahan-class_destroyer",
+      "feature": "五座单装炮 · 三组鱼雷管 · 三脚桅",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 104,
+        "beam": 10.8,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.56,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.06,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.25,
+          -0.18
+        ],
+        "bridge": "tripod",
+        "bridgeY": 0.35,
+        "torpedoes": 3,
+        "openGuns": true
+      },
+      "classId": "mahan",
+      "className": "马汉级",
+      "modelId": "historic-mahan",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2988461538461538,
+        "combatStretch": 2.2382382382382384,
+        "parts": {
+          "aa-port": {
+            "x": -0.21815769230769227,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.21815769230769227,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7194444444444443
+          }
+        }
+      }
+    },
+    {
+      "id": "gridley",
+      "name": "格里德利级",
+      "navy": "us",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Gridley-class_destroyer",
+      "feature": "四座单装炮 · 十六鱼雷管 · 单粗烟囱",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 104,
+        "beam": 10.9,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.02
+        ],
+        "bridge": "low",
+        "bridgeY": 0.35,
+        "torpedoes": 4,
+        "openGuns": true
+      },
+      "classId": "gridley",
+      "className": "格里德利级",
+      "modelId": "historic-gridley",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.30161324786324784,
+        "combatStretch": 2.217703942474585,
+        "parts": {
+          "aa-port": {
+            "x": -0.2201776709401709,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2201776709401709,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7194444444444443
+          }
+        }
+      }
+    },
+    {
+      "id": "bagley",
+      "name": "巴格利级",
+      "navy": "us",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Bagley-class_destroyer",
+      "feature": "四座单装炮 · 单烟囱进气道 · 四组鱼雷管",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 104,
+        "beam": 10.8,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.02
+        ],
+        "bridge": "low",
+        "bridgeY": 0.37,
+        "torpedoes": 4,
+        "openGuns": true,
+        "funnelStyle": "trunked"
+      },
+      "classId": "bagley",
+      "className": "巴格利级",
+      "modelId": "historic-bagley",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2988461538461538,
+        "combatStretch": 2.2382382382382384,
+        "parts": {
+          "aa-port": {
+            "x": -0.21815769230769227,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.21815769230769227,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7605555555555554
+          }
+        }
+      }
+    },
+    {
+      "id": "somers",
+      "name": "萨默斯级",
+      "navy": "us",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Somers-class_destroyer",
+      "feature": "四座双联炮 · 单烟囱 · 三组四联鱼雷管",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 116.1,
+        "beam": 11.2,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.03
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.32,
+        "torpedoes": 3
+      },
+      "classId": "somers",
+      "className": "萨默斯级",
+      "modelId": "historic-somers",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.27761508278304137,
+        "combatStretch": 2.4094111969111975,
+        "parts": {
+          "aa-port": {
+            "x": -0.20265901043162018,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.20265901043162018,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6577777777777777
+          }
+        }
+      }
+    },
+    {
+      "id": "benham",
+      "name": "本汉级",
+      "navy": "us",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Benham-class_destroyer",
+      "feature": "四座单装炮 · 单烟囱 · 四组鱼雷管",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 103.9,
+        "beam": 10.8,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.04
+        ],
+        "bridge": "low",
+        "bridgeY": 0.36,
+        "torpedoes": 4
+      },
+      "classId": "benham",
+      "className": "本汉级",
+      "modelId": "historic-benham",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.29913378248315686,
+        "combatStretch": 2.236086086086086,
+        "parts": {
+          "aa-port": {
+            "x": -0.2183676612127045,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2183676612127045,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7399999999999999
+          }
+        }
+      }
+    },
+    {
+      "id": "sims",
+      "name": "西姆斯级",
+      "navy": "us",
+      "year": 1939,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Sims-class_destroyer",
+      "feature": "五座单装炮 · 单烟囱 · 中轴鱼雷管",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 106.2,
+        "beam": 11,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.56,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.06,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          -0.13
+        ],
+        "bridge": "low",
+        "bridgeY": 0.34,
+        "torpedoes": 2
+      },
+      "classId": "sims",
+      "className": "西姆斯级",
+      "modelId": "historic-sims",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.29807491106926126,
+        "combatStretch": 2.2440294840294848,
+        "parts": {
+          "aa-port": {
+            "x": -0.2175946850805607,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2175946850805607,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6988888888888889
+          }
+        }
+      }
+    },
+    {
+      "id": "benson",
+      "name": "本森级",
+      "navy": "us",
+      "year": 1940,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Benson-class_destroyer",
+      "feature": "五座单装炮 · 平侧双烟囱 · 双组鱼雷管",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 5,
+        "length": 106.2,
+        "beam": 11,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.56,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.06,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.24,
+          -0.17
+        ],
+        "bridge": "low",
+        "bridgeY": 0.35,
+        "torpedoes": 2
+      },
+      "classId": "benson",
+      "className": "本森级",
+      "modelId": "historic-benson",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.29807491106926126,
+        "combatStretch": 2.2440294840294848,
+        "parts": {
+          "aa-port": {
+            "x": -0.2175946850805607,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2175946850805607,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7194444444444443
+          }
+        }
+      }
+    },
+    {
+      "id": "gleaves",
+      "name": "格里夫斯级",
+      "navy": "us",
+      "year": 1940,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Gleaves-class_destroyer",
+      "feature": "五座单装炮 · 圆截面双烟囱 · 双组鱼雷管",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 5,
+        "length": 106.2,
+        "beam": 11,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.56,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.06,
+            "x": 0,
+            "raised": 0,
+            "bearing": 90
+          },
+          {
+            "barrels": 1,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.23,
+          -0.19
+        ],
+        "bridge": "low",
+        "bridgeY": 0.36,
+        "torpedoes": 2,
+        "roundFunnels": true
+      },
+      "classId": "gleaves",
+      "className": "格里夫斯级",
+      "modelId": "historic-gleaves",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.29807491106926126,
+        "combatStretch": 2.2440294840294848,
+        "parts": {
+          "aa-port": {
+            "x": -0.2175946850805607,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2175946850805607,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7399999999999999
+          }
+        }
+      }
+    },
+    {
+      "id": "allen-sumner",
+      "name": "艾伦·萨姆纳级",
+      "navy": "us",
+      "year": 1944,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Allen_M._Sumner-class_destroyer",
+      "feature": "三座双联127毫米炮 · 双烟囱 · 双舵舰艉",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 5,
+        "length": 114.8,
+        "beam": 12.5,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.76,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.7,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.14,
+          -0.17
+        ],
+        "bridge": "low",
+        "bridgeY": 0.31,
+        "torpedoes": 2,
+        "radar": "lattice"
+      },
+      "classId": "allen-sumner",
+      "className": "艾伦·萨姆纳级",
+      "modelId": "historic-allen-sumner",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.31334688346883466,
+        "combatStretch": 2.1346594594594595,
+        "parts": {
+          "aa-port": {
+            "x": -0.2287432249322493,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2287432249322493,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6372222222222221
+          }
+        }
+      }
+    },
+    {
+      "id": "gearing",
+      "name": "基林级",
+      "navy": "us",
+      "year": 1945,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Gearing-class_destroyer",
+      "feature": "加长萨姆纳型 · 三座双联炮 · 双组鱼雷管",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 5,
+        "length": 119,
+        "beam": 12.5,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.76,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.5,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.7,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.13,
+          -0.19
+        ],
+        "bridge": "low",
+        "bridgeY": 0.32,
+        "torpedoes": 2,
+        "radar": "lattice"
+      },
+      "classId": "gearing",
+      "className": "基林级",
+      "modelId": "historic-gearing",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.3022875816993464,
+        "combatStretch": 2.212756756756757,
+        "parts": {
+          "aa-port": {
+            "x": -0.22066993464052287,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.22066993464052287,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6577777777777777
+          }
+        }
+      }
+    },
+    {
+      "id": "carpenter",
+      "name": "卡彭特反潜亚级",
+      "navy": "us",
+      "year": 1953,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/USS_Carpenter",
+      "feature": "基林反潜改装 · 两座双联76毫米炮 · 双阿尔法反潜炮",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 119,
+        "beam": 12.5,
+        "calibre": 76,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.14,
+          -0.18
+        ],
+        "bridge": "low",
+        "bridgeY": 0.39,
+        "launchers": [
+          {
+            "kind": "alpha",
+            "x": 0,
+            "y": 0.53,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "alpha",
+            "x": 0,
+            "y": -0.49,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice"
+      },
+      "classId": "carpenter",
+      "className": "卡彭特反潜亚级",
+      "modelId": "historic-carpenter",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.3022875816993464,
+        "combatStretch": 2.212756756756757,
+        "parts": {
+          "aa-port": {
+            "x": -0.22066993464052287,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.22066993464052287,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.8016666666666666
+          }
+        }
+      }
+    },
+    {
+      "id": "norfolk",
+      "name": "诺福克级 DL-1",
+      "navy": "us",
+      "year": 1954,
+      "kind": "驱逐领舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/USS_Norfolk_(DL-1)",
+      "feature": "反潜驱逐领舰 · 四座双联76毫米炮 · 大型舰桥",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 164.6,
+        "beam": 16.2,
+        "calibre": 76,
+        "guns": [
+          {
+            "barrels": 2,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": 0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          },
+          {
+            "barrels": 2,
+            "y": -0.53,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 2,
+            "y": -0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.1,
+          -0.19
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.32,
+        "radar": "planar"
+      },
+      "classId": "norfolk",
+      "className": "诺福克级 DL-1",
+      "modelId": "historic-norfolk",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.283232077764277,
+        "combatStretch": 2.3616282949616285,
+        "parts": {
+          "aa-port": {
+            "x": -0.2067594167679222,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2067594167679222,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.6577777777777777
+          }
+        }
+      }
+    },
+    {
+      "id": "mitscher",
+      "name": "米切尔级",
+      "navy": "us",
+      "year": 1955,
+      "kind": "驱逐领舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Mitscher-class_destroyer",
+      "feature": "高速驱逐领舰 · 前后单装127毫米炮 · 双烟囱",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 151,
+        "beam": 15.2,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.12,
+          -0.21
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.35,
+        "radar": "lattice"
+      },
+      "classId": "mitscher",
+      "className": "米切尔级",
+      "modelId": "historic-mitscher",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.28968359087564377,
+        "combatStretch": 2.3090327169274545,
+        "parts": {
+          "aa-port": {
+            "x": -0.21146902133921994,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.21146902133921994,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7194444444444443
+          }
+        }
+      }
+    },
+    {
+      "id": "forrest-sherman",
+      "name": "福雷斯特·舍曼级",
+      "navy": "us",
+      "year": 1958,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Forrest_Sherman-class_destroyer",
+      "feature": "前一后二三座127毫米炮 · 双烟囱 · 高桅雷达",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 127.4,
+        "beam": 13.7,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.52,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 180
+          },
+          {
+            "barrels": 1,
+            "y": -0.77,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.18,
+          -0.21
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.37,
+        "radar": "lattice"
+      },
+      "classId": "forrest-sherman",
+      "className": "福雷斯特·舍曼级",
+      "modelId": "historic-forrest-sherman",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.30946275946275936,
+        "combatStretch": 2.1614519629118174,
+        "parts": {
+          "aa-port": {
+            "x": -0.22590781440781432,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.22590781440781432,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7605555555555554
+          }
+        }
+      }
+    },
+    {
+      "id": "farragut-1958",
+      "name": "法拉格特级 1958",
+      "navy": "us",
+      "year": 1961,
+      "kind": "导弹驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Farragut-class_destroyer_(1958)",
+      "feature": "又称孔茨级 · 艏炮艉双联导弹 · 双烟囱",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 156.2,
+        "beam": 15.9,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          0.15,
+          -0.22
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.37,
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.74,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "asroc",
+            "x": 0,
+            "y": 0.54,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice"
+      },
+      "classId": "farragut-1958",
+      "className": "法拉格特级 1958",
+      "modelId": "historic-farragut-1958",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.292936406316688,
+        "combatStretch": 2.2833928267890533,
+        "parts": {
+          "aa-port": {
+            "x": -0.21384357661118222,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.21384357661118222,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7605555555555554
+          }
+        }
+      }
+    },
+    {
+      "id": "charles-adams",
+      "name": "查尔斯·F·亚当斯级",
+      "navy": "us",
+      "year": 1963,
+      "kind": "导弹驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Charles_F._Adams-class_destroyer",
+      "feature": "前后127毫米炮 · 艉部双臂导弹 · 阿斯洛克",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 133.2,
+        "beam": 14.3,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.78,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.48,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.17,
+          -0.18
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.38,
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.79,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "asroc",
+            "x": 0,
+            "y": 0.54,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "lattice"
+      },
+      "classId": "charles-adams",
+      "className": "查尔斯·F·亚当斯级",
+      "modelId": "historic-charles-adams",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.3089506172839506,
+        "combatStretch": 2.1650349650349647,
+        "parts": {
+          "aa-port": {
+            "x": -0.22553395061728396,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.22553395061728396,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7811111111111111
+          }
+        }
+      }
+    },
+    {
+      "id": "decatur",
+      "name": "迪凯特导弹改装级",
+      "navy": "us",
+      "year": 1968,
+      "kind": "导弹驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/USS_Decatur_(DD-936)",
+      "feature": "舍曼级导弹改装 · 单座艏炮 · 艉部单臂导弹",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 127.4,
+        "beam": 13.7,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.79,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          0.16,
+          -0.19
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.39,
+        "launchers": [
+          {
+            "kind": "single",
+            "x": 0,
+            "y": -0.75,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "asroc",
+            "x": 0,
+            "y": 0.55,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "planar"
+      },
+      "classId": "decatur",
+      "className": "迪凯特导弹改装级",
+      "modelId": "historic-decatur",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.30946275946275936,
+        "combatStretch": 2.1614519629118174,
+        "parts": {
+          "aa-port": {
+            "x": -0.22590781440781432,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.22590781440781432,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.8016666666666666
+          }
+        }
+      }
+    },
+    {
+      "id": "spruance",
+      "name": "斯普鲁恩斯级",
+      "navy": "us",
+      "year": 1988,
+      "kind": "驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Spruance-class_destroyer",
+      "feature": "燃气轮机双烟囱 · 艏垂发 · 双机库与艉炮",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 161.2,
+        "beam": 16.8,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.1,
+          -0.24
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.36,
+        "launchers": [
+          {
+            "kind": "vls",
+            "x": 0,
+            "y": 0.53,
+            "rows": 4,
+            "columns": 8
+          }
+        ],
+        "radar": "lattice",
+        "hangar": true,
+        "helipad": true
+      },
+      "classId": "spruance",
+      "className": "斯普鲁恩斯级",
+      "modelId": "historic-spruance",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2999172870140612,
+        "combatStretch": 2.2302445302445304,
+        "parts": {
+          "aa-port": {
+            "x": -0.21893961952026464,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.21893961952026464,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7399999999999999
+          }
+        }
+      }
+    },
+    {
+      "id": "kidd",
+      "name": "基德级 DDG-993",
+      "navy": "us",
+      "year": 1983,
+      "kind": "导弹驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Kidd-class_destroyer",
+      "feature": "斯普鲁恩斯衍生型 · 艏艉双臂导弹 · 双机库",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 171.6,
+        "beam": 16.8,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.75,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": -0.73,
+            "x": 0,
+            "raised": 0,
+            "bearing": 180
+          }
+        ],
+        "funnels": [
+          0.1,
+          -0.24
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.35,
+        "launchers": [
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": 0.53,
+            "rows": 2,
+            "columns": 4
+          },
+          {
+            "kind": "twin",
+            "x": 0,
+            "y": -0.5,
+            "rows": 2,
+            "columns": 4
+          }
+        ],
+        "radar": "planar",
+        "hangar": true,
+        "helipad": true
+      },
+      "classId": "kidd",
+      "className": "基德级 DDG-993",
+      "modelId": "historic-kidd",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.2817404817404817,
+        "combatStretch": 2.3741312741312743,
+        "parts": {
+          "aa-port": {
+            "x": -0.20567055167055165,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.20567055167055165,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7194444444444443
+          }
+        }
+      }
+    },
+    {
+      "id": "arleigh-burke",
+      "name": "阿利·伯克级",
+      "navy": "us",
+      "year": 2017,
+      "kind": "导弹驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Arleigh_Burke-class_destroyer",
+      "feature": "Flight IIA外观 · 宙斯盾阵列 · 艏艉垂发与双机库",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 155.3,
+        "beam": 20.1,
+        "calibre": 127,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          }
+        ],
+        "funnels": [
+          0.08,
+          -0.24
+        ],
+        "bridge": "tower",
+        "bridgeY": 0.36,
+        "launchers": [
+          {
+            "kind": "vls",
+            "x": 0,
+            "y": 0.56,
+            "rows": 4,
+            "columns": 4
+          },
+          {
+            "kind": "vls",
+            "x": 0,
+            "y": -0.47,
+            "rows": 4,
+            "columns": 8
+          }
+        ],
+        "radar": "aegis",
+        "hangar": true,
+        "helipad": true
+      },
+      "classId": "arleigh-burke",
+      "className": "阿利·伯克级",
+      "modelId": "historic-arleigh-burke",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.3724619016956428,
+        "combatStretch": 1.7958585451122766,
+        "parts": {
+          "aa-port": {
+            "x": -0.2718971882378192,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.2718971882378192,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.7399999999999999
+          }
+        }
+      }
+    },
+    {
+      "id": "zumwalt",
+      "name": "朱姆沃尔特级",
+      "navy": "us",
+      "year": 2016,
+      "kind": "导弹驱逐舰",
+      "hull": "destroyer",
+      "source": "https://en.wikipedia.org/wiki/Zumwalt-class_destroyer",
+      "feature": "2016年双AGS炮外观 · 内倾舰体 · 隐身一体舰桥",
+      "geometry": {
+        "deck": "steel",
+        "torpedoTubes": 4,
+        "length": 190,
+        "beam": 24.6,
+        "calibre": 155,
+        "guns": [
+          {
+            "barrels": 1,
+            "y": 0.8,
+            "x": 0,
+            "raised": 0,
+            "bearing": 0
+          },
+          {
+            "barrels": 1,
+            "y": 0.57,
+            "x": 0,
+            "raised": 0.18,
+            "bearing": 0
+          }
+        ],
+        "funnels": [],
+        "bridge": "tower",
+        "bridgeY": 0.05,
+        "bridgeWidth": 1.4,
+        "bridgeHeight": 1.2,
+        "launchers": [
+          {
+            "kind": "vls",
+            "x": -0.77,
+            "y": 0.4,
+            "rows": 4,
+            "columns": 2
+          },
+          {
+            "kind": "vls",
+            "x": 0.77,
+            "y": 0.4,
+            "rows": 4,
+            "columns": 2
+          },
+          {
+            "kind": "vls",
+            "x": -0.77,
+            "y": -0.4,
+            "rows": 4,
+            "columns": 2
+          },
+          {
+            "kind": "vls",
+            "x": 0.77,
+            "y": -0.4,
+            "rows": 4,
+            "columns": 2
+          }
+        ],
+        "radar": "stealth",
+        "hullStyle": "tumblehome",
+        "hangar": true,
+        "helipad": true
+      },
+      "classId": "zumwalt",
+      "className": "朱姆沃尔特级",
+      "modelId": "historic-zumwalt",
+      "shape": {
+        "halfLength": 2.0555555555555554,
+        "halfBeam": 0.3725964912280701,
+        "combatStretch": 1.7952098439903321,
+        "parts": {
+          "aa-port": {
+            "x": -0.27199543859649117,
+            "y": 0.3083333333333333
+          },
+          "aa-starboard": {
+            "x": 0.27199543859649117,
+            "y": 0.3083333333333333
+          },
+          "bridge": {
+            "x": 0,
+            "y": -0.10277777777777777
           }
         }
       }

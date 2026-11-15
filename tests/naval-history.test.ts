@@ -3,14 +3,14 @@ import assert from 'node:assert/strict';
 import {Game} from '../game/engine.ts';
 import {DEFAULT_FLEET,HISTORICAL_SHIPS,NAVIES,fleetSelection} from '../game/naval-history.ts';
 
-test('the curated archive covers real wartime navies and safe local identities',()=>{
-  assert.equal(HISTORICAL_SHIPS.length,72);
+test('the archive covers real navies and US classes and safe local identities',()=>{
+  assert.equal(HISTORICAL_SHIPS.length,148);
   assert.equal(NAVIES.length,23);
-  assert.equal(new Set(HISTORICAL_SHIPS.map(ship=>ship.id)).size,72);
+  assert.equal(new Set(HISTORICAL_SHIPS.map(ship=>ship.id)).size,148);
   for(const navy of NAVIES)assert.ok(HISTORICAL_SHIPS.some(ship=>ship.navy===navy.id),navy.name);
   for(const ship of HISTORICAL_SHIPS) {
     assert.match(ship.id,/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
-    assert.ok(ship.year>=1937&&ship.year<=1945,ship.name);
+    assert.ok(ship.year>=1937&&ship.year<=(ship.navy==='us'?2026:1945),ship.name);
     assert.equal(new URL(ship.source).protocol,'https:');
   }
 });
@@ -41,4 +41,33 @@ test('historical identity is captured per ship and survives destruction after a 
   game.fleetAppearance.battleship='bismarck';game.damageEnemy(ship,99999);
   assert.equal(game.wrecks[0].appearance,'rodney');
   assert.equal(game.spawnBoss().appearance,'bismarck');
+});
+
+test('the US archive covers every scoped class, including escorts, training carriers, conversions and early survivors',()=>{
+  // Independent coverage checklist; subclasses and conversion groups are explicit.
+  const expected={
+    'fleet-carrier':'yorktown essex lexington ranger wasp-cv7 essex-long independence saipan midway forrestal kitty-hawk enterprise-nuclear john-f-kennedy nimitz gerald-ford long-island charger bogue sangamon casablanca commencement-bay wolverine sable',
+    cruiser:'cleveland brooklyn baltimore omaha pensacola northampton portland new-orleans st-louis wichita atlanta oakland fargo oregon-city des-moines worcester alaska juneau northampton-command boston galveston providence albany long-beach leahy bainbridge-nuclear belknap truxtun california virginia ticonderoga',
+    destroyer:'fletcher sampson caldwell wickes clemson farragut-1934 porter mahan gridley bagley somers benham sims benson gleaves allen-sumner gearing carpenter norfolk mitscher forrest-sherman farragut-1958 charles-adams decatur spruance kidd arleigh-burke zumwalt',
+  };
+  for(const [hull,ids] of Object.entries(expected)) {
+    const entries=HISTORICAL_SHIPS.filter(ship=>ship.navy==='us'&&ship.hull===hull&&ship.classId);
+    assert.deepEqual(entries.map(ship=>ship.classId).sort(),ids.split(' ').sort(),hull);
+    assert.ok(entries.every(ship=>ship.className&&ship.geometry.length>ship.geometry.beam));
+  }
+});
+
+test('every US appearance keeps the game role values and survives sinking with its selected identity',()=>{
+  const game=new Game(()=>.5);game.wave=4;
+  for(const profile of HISTORICAL_SHIPS.filter(ship=>ship.classId)) {
+    game.fleetAppearance[profile.hull]=DEFAULT_FLEET[profile.hull];
+    const baseline=game.spawnShip(profile.hull,240,260);
+    game.fleetAppearance[profile.hull]=profile.id;
+    const unit=game.spawnShip(profile.hull,240,260);
+    for(const key of ['hp','maxHp','radius','halfWidth','halfLength','speed'] as const)assert.equal(unit[key],baseline[key],`${profile.id}: ${key}`);
+    assert.deepEqual(unit.parts.map(part=>[part.id,part.maxHp,part.radius]),baseline.parts.map(part=>[part.id,part.maxHp,part.radius]),profile.id);
+    game.damageEnemy(unit,999999);
+    assert.equal(game.wrecks.at(-1)?.appearance,profile.id);
+    game.enemies=[];game.wrecks=[];
+  }
 });

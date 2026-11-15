@@ -400,13 +400,25 @@ def deckhouse(name, x, y, z, width, length, height, mat=FLEET_EDGE, chamfer=.18)
     return wing(name,points,z+height,height,mat)
 
 
+def tapered_house(name, width, length, bottom, height, taper=.65):
+    outline=[(-.5,-.5),(.5,-.5),(.5,.28),(.22,.5),(-.22,.5),(-.5,.28)]
+    vertices=[(x*width*factor,y*length*factor,z) for factor,z in [(1,bottom),(taper,bottom+height)] for x,y in outline]
+    count=len(outline)
+    faces=[tuple(reversed(range(count))),tuple(range(count,count*2))]
+    faces += [(i,(i+1)%count,(i+1)%count+count,i+count) for i in range(count)]
+    obj=mesh(name,vertices,faces,FLEET_EDGE)
+    obj.data.materials.append(FLEET_ROOF)
+    obj.data.polygons[1].material_index=1
+    return obj
+
+
 def hull_outline(beam, length):
     return [(x*beam,y*length) for x,y in [(-.36,-1),(.36,-1),(.67,-.96),(.87,-.82),(.98,-.52),(1,-.05),(.94,.43),(.74,.72),(.39,.90),(0,1),(-.39,.90),(-.74,.72),(-.94,.43),(-1,-.05),(-.98,-.52),(-.87,-.82),(-.67,-.96)]]
 
 
-def fleet_hull(beam, length):
+def fleet_hull(beam, length, style=None):
     points=hull_outline(beam,length)
-    levels=[(.67,-.34),(.88,-.12),(1,.15),(.94,.29)]
+    levels=[(.67,-.34),(.88,-.12),(1,.15),(.78 if style=='tumblehome' else .94,.29)]
     vertices=[(x*scale,y*(.98 if z<0 else 1),z) for scale,z in levels for x,y in points]
     count=len(points)
     faces=[]
@@ -418,9 +430,11 @@ def fleet_hull(beam, length):
     for face in obj.data.polygons:
         if face.index >= count*2: face.material_index=1
     wing('inset-weather-deck',hull_outline(beam*.86,length*.975),.313,.045,FLEET_DECK)
+    if style=='forecastle':
+        wing('raised-forecastle',[(x,y) for x,y in hull_outline(beam*.86,length*.975) if y>=0],.37,.06,FLEET_EDGE)
 
 
-def naval_gun(name, x, y, z, barrels=2, heavy=False, open_mount=False):
+def naval_gun(name, x, y, z, barrels=2, heavy=False, open_mount=False, stealth=False):
     global root
     previous=root
     mount=group(name,(x,y,z));root=mount
@@ -430,7 +444,9 @@ def naval_gun(name, x, y, z, barrels=2, heavy=False, open_mount=False):
     mount['main_battery']=not aa
     fleet_cylinder('traversing-barbette',(0,0,.035),size*.62,.1,FLEET_INK)
     deckhouse('gunhouse-shadow',.025,-.02,.07,size*1.06,size*.84,.05,FLEET_INK)
-    if open_mount:
+    if stealth:
+        tapered_house('faceted-ags-gun-shield',size*1.25,size*1.20,.07,.25,.62)
+    elif open_mount:
         deckhouse('open-gun-platform',0,-.02,.10,size,size*.72,.045,FLEET_INK)
         box('splinter-shield',(0,.10,.22),(size,.06,.25),FLEET_EDGE)
         for side in [-1,1]: box('shield-wing',(side*size*.43,.025,.22),(.04,.18,.25),FLEET_EDGE)
@@ -478,8 +494,17 @@ def deck_fittings(beam, length, teak=False):
         box('deck-edge-walkway',(side*beam*.76,-length*.20,.329),(.05,length*.91,.014),FLEET_EDGE)
 
 
-def parked_plane(x,y,paint):
+def parked_plane(x,y,paint,jet=False):
     # Bold wings, separated tail and solid fuselage survive the native battle raster.
+    if jet:
+        wing('parked-jet-swept-wing',[(x,y+.24),(x-.29,y-.08),(x-.29,y-.17),(x,y-.07),(x+.29,y-.17),(x+.29,y-.08)],.12,.035,paint)
+        wing('parked-jet-fuselage',[(x,y+.36),(x-.06,y+.12),(x-.075,y-.25),(x+.075,y-.25),(x+.06,y+.12)],.16,.10,paint)
+        wing('parked-jet-tailplane',[(x-.15,y-.26),(x-.15,y-.19),(x+.15,y-.19),(x+.15,y-.26)],.14,.025,paint)
+        box('parked-jet-canopy',(x,y+.10,.19),(.06,.17,.04),FLEET_GLASS)
+        for side in [-1,1]:
+            box('parked-jet-fin',(x+side*.045,y-.19,.22),(.02,.14,.15),paint)
+            box('parked-jet-exhaust',(x+side*.04,y-.265,.11),(.045,.04,.045),FLEET_INK)
+        return
     wing('parked-aircraft-wing',[(x-.055,y+.10),(x-.29,y+.045),(x-.30,y-.075),(x-.055,y-.10),(x+.055,y-.10),(x+.30,y-.075),(x+.29,y+.045),(x+.055,y+.10)],.105,.035,paint)
     deckhouse('parked-aircraft-fuselage',x,y,.065,.11,.50,.09,paint)
     wing('parked-aircraft-tail',[(x-.12,y-.25),(x+.12,y-.25),(x+.13,y-.17),(x-.13,y-.17)],.115,.025,paint)
@@ -506,6 +531,18 @@ def historic_bridge(profile, beam):
     wide=profile['hull'] in ('battleship','fleet-carrier')
     width=.60 if wide else .45
     if style=='island': width=.37
+    width*=profile['geometry'].get('bridgeWidth',1)
+    if profile['geometry'].get('islandless'):
+        deckhouse('under-deck-control-station',0,0,-.20,.20,.36,.16,FLEET_EDGE)
+        box('control-station-window',(0,.18,-.07),(.16,.025,.06),FLEET_GLASS)
+        return
+    radar=profile['geometry'].get('radar')
+    if radar=='stealth':
+        tapered_house('integrated-stealth-deckhouse',width*1.55,1.2,.02,.66,.66)
+        deckhouse('stealth-roof-sensor',0,-.12,.68,width*.40,.26,.07,FLEET_HULL)
+        box('stealth-bridge-window',(0,.414,.57),(width*.65,.025,.055),FLEET_GLASS)
+        for side in [-1,1]:box('embedded-stealth-array',(side*width*.65,-.10,.38),(.02,.24,.15),FLEET_INK)
+        return
     deckhouse('bridge-foundation',0,-.035,.015,width,.44,.17,FLEET_EDGE)
     if style=='pagoda':
         for i,factor in enumerate([1.0,1.15,.83,1.03,.69]):
@@ -515,7 +552,7 @@ def historic_bridge(profile, beam):
         box('upper-observation-window',(0,.13,.88),(width*.59,.025,.07),FLEET_GLASS)
         fleet_cylinder('pagoda-mast',(0,-.09,1.06),.018,.48,FLEET_INK)
     else:
-        height=.14 if style=='low' else .25
+        height=(.14 if style=='low' else .25)*profile['geometry'].get('bridgeHeight',1)
         deckhouse('navigation-level',0,-.015,.185,width*.82,.35,height,FLEET_ROOF)
         box('bridge-glazing',(0,.166,.22+height*.55),(width*.70,.025,.075),FLEET_GLASS)
         for side in [-1,1]:
@@ -529,7 +566,7 @@ def historic_bridge(profile, beam):
                 obj.rotation_euler=delta.to_track_quat('Z','Y').to_euler()
             fleet_cylinder('tripod-observation-top',(0,-.04,1.08),.19,.09,FLEET_EDGE)
             box('tripod-rangefinder',(0,-.04,1.15),(.53,.06,.05),FLEET_ROOF)
-        elif style!='low':
+        elif style!='low' and not radar:
             deckhouse('director-tower',0,-.09,.50,width*.47,.23,.28,FLEET_EDGE)
             box('rangefinder',(0,-.09,.82),(width*.98,.06,.055),FLEET_ROOF)
             fleet_cylinder('signal-mast',(0,-.13,.96),.020,.43,FLEET_INK)
@@ -539,6 +576,20 @@ def historic_bridge(profile, beam):
     radar_ships={'iowa','missouri','south-dakota','enterprise','essex','fletcher','cleveland','brooklyn','baltimore','warspite','king-george-v','rodney','belfast','renown','bismarck','tirpitz','scharnhorst','prinz-eugen','roma','yamato','musashi','nagato','kongo'}
     if profile['id'] in radar_ships:
         box('period-radar',(0,-.13,1.22 if style!='low' else 1.0),(.26,.055,.06),FLEET_EDGE)
+    if radar:
+        if radar in ('planar','aegis'):
+            deckhouse('radar-array-house',0,-.08,.51,width*.85,.30,.36,FLEET_EDGE)
+            for side in [-1,1]:
+                box('phased-array-side',(side*width*.43,-.08,.70),(.018,.22,.22),FLEET_INK)
+                box('phased-array-face',(0,-.08+side*.155,.70),(width*.60,.018,.22),FLEET_INK)
+        else:
+            for side in [-1,1]:
+                start=Vector((side*width*.38,-.10,.48));end=Vector((0,-.10,1.05));delta=end-start
+                obj=fleet_cylinder('lattice-mast-leg',(start+end)/2,.016,delta.length,FLEET_INK)
+                obj.rotation_euler=delta.to_track_quat('Z','Y').to_euler()
+            for z in [.66,.84]:box('lattice-cross-brace',(0,-.10,z),(width*.46,.025,.02),FLEET_ROOF)
+        fleet_cylinder('radar-mast',(0,-.10,.98),.018,.32,FLEET_INK)
+        box('air-search-radar',(0,-.10,1.15),(width*.87,.05,.12),FLEET_ROOF)
 
 
 def historic_funnel(profile, station, index, beam, length):
@@ -547,6 +598,17 @@ def historic_funnel(profile, station, index, beam, length):
     root['historic_funnel']=True
     style=profile['geometry'].get('funnelStyle','raked')
     scale=min(1,beam/.53)
+    if profile['id']=='ranger':
+        root.location.x=beam*.94*(1 if index<3 else -1)
+        root.location.z=-.13
+        funnel(0,0,.45)
+        root=previous
+        return
+    if profile['geometry'].get('paddleWheels'):
+        root.location.x=beam*1.03
+        funnel(0,0,.55)
+        root=previous
+        return
     if profile['hull']=='fleet-carrier' and style!='side':
         root.location.x=beam*.79*profile['geometry'].get('islandSide',1)
         root.location.z=.12
@@ -559,10 +621,16 @@ def historic_funnel(profile, station, index, beam, length):
         fleet_cylinder('downturned-exhaust',(.20,0,.19),.11,.24,FLEET_EDGE)
         fleet_cylinder('dark-exhaust-mouth',(.20,0,.065),.115,.025,FLEET_INK)
     else:
-        if profile['id']=='shinano':
+        cant=profile['geometry'].get('funnelCant',26 if profile['id']=='shinano' else 0)
+        if cant:
             uptake=group('outward-canted-uptake');root=uptake
-            uptake.rotation_euler.y=math.radians(26)
-        funnel(0,0,scale*(1.15 if style=='trunked' and index==0 else 1))
+            uptake['naval_funnel_cant']=cant
+            uptake.rotation_euler.y=math.radians(cant)*profile['geometry'].get('islandSide',1)
+        if profile['geometry'].get('roundFunnels'):
+            fleet_cylinder('round-section-funnel',(0,0,.54),.16*scale,.40,FLEET_EDGE)
+            fleet_cylinder('round-funnel-cap',(0,0,.75),.17*scale,.035,FLEET_INK)
+        else:
+            funnel(0,0,scale*(1.15 if style=='trunked' and index==0 else 1))
         if style=='trunked':
             box('trunked-smoke-uptake',(0,.15,.43),(.25*scale,.43*scale,.20),FLEET_EDGE)
             if profile['navy']=='fr':
@@ -587,6 +655,57 @@ def historical_palette(profile):
             elif slot.material==FLEET_EDGE: slot.material=edge_mat
 
 
+def naval_launcher(spec, beam, length, index):
+    global root
+    previous=root
+    root=group('naval_launcher_'+str(index),(spec['x']*beam,spec['y']*length,.34))
+    kind=spec['kind'];root['naval_launcher']=kind
+    root.rotation_euler.z=math.radians(spec.get('bearing',180 if spec['y']<0 else 0))
+    size=min(1,beam/.50)
+    root.scale=(size,)*3
+    if kind=='vls':
+        rows,columns=spec.get('rows',2),spec.get('columns',4)
+        width=min(.50,columns*.07);depth=rows*.075
+        deckhouse('vls-coaming',0,0,0,width+.045,depth+.045,.045,FLEET_INK)
+        for row in range(rows):
+            for col in range(columns):
+                box('vls-cell-hatch',((col-(columns-1)/2)*width/columns,(row-(rows-1)/2)*.075,.055),(width/columns*.72,.052,.014),FLEET_ROOF)
+    elif kind in ('asroc','alpha'):
+        fleet_cylinder('asw-traversing-base',(0,0,.055),.13,.10,FLEET_INK)
+        if kind=='alpha':
+            deckhouse('weapon-alpha-mount',0,0,.10,.24,.22,.17,FLEET_EDGE)
+            fleet_cylinder('weapon-alpha-projector',(0,.17,.25),.05,.26,FLEET_INK,'Y')
+        else:
+            for row in range(2):
+                for col in range(4):
+                    box('asroc-launch-box',((col-1.5)*.065,0,.15+row*.075),(.056,.28,.065),FLEET_EDGE)
+                    box('asroc-box-mouth',((col-1.5)*.065,.145,.15+row*.075),(.042,.012,.05),FLEET_INK)
+    else:
+        fleet_cylinder('missile-traversing-base',(0,0,.065),.14,.13,FLEET_INK)
+        box('missile-elevation-pedestal',(0,0,.21),(.14,.13,.25),FLEET_EDGE)
+        count=1 if kind=='single' else 2
+        for i in range(count):
+            x=(i-(count-1)/2)*.24
+            box('missile-launch-rail',(x,.035,.34),(.045,.46 if kind=='talos' else .34,.035),FLEET_INK)
+            fleet_cylinder('display-missile',(x,.06,.39),.035,.56 if kind=='talos' else .37,FLEET_MARK,'Y')
+            wing('missile-fins',[(x-.11,-.05),(x,-.01),(x+.11,-.05),(x+.035,.06),(x-.035,.06)],.40,.018,FLEET_ROOF)
+    root=previous
+
+
+def aviation_fittings(profile, beam, length):
+    geometry=profile['geometry']
+    if geometry.get('hangar'):
+        deckhouse('helicopter-hangar',0,-length*.33,.33,beam*1.35,length*.18,.27,FLEET_EDGE)
+        box('hangar-doors',(0,-length*.424,.45),(beam*1.12,.022,.19),FLEET_INK)
+        box('hangar-door-divider',(0,-length*.43,.45),(.025,.027,.19),FLEET_ROOF)
+    if geometry.get('helipad'):
+        deckhouse('helicopter-flight-platform',0,-length*.86,.335,beam*1.42,length*.17,.035,FLEET_DECK)
+        for x in [-.23,.23]:box('helipad-h-upright',(x*beam,-length*.86,.38),(.022,length*.10,.012),FLEET_MARK)
+        box('helipad-h-crossbar',(0,-length*.86,.38),(beam*.46,.024,.012),FLEET_MARK)
+        for side in [-1,1]:
+            box('helipad-edge-stripe',(side*beam*.60,-length*.86,.38),(.018,length*.13,.012),FLEET_MARK)
+
+
 def warship(kind, profile=None):
     global root
     friendly=kind=='carrier'
@@ -595,13 +714,20 @@ def warship(kind, profile=None):
     flattop=profile['hull']=='fleet-carrier'
     beam,length=(1.254,3.03) if friendly else (shape['halfBeam'],shape['halfLength'])
     root['historic_id']=profile['id'];root['historic_year']=profile['year'];root['game_role']=profile['hull']
+    if profile.get('classId'):root['naval_class']=profile['classId']
+    if flattop:
+        root['naval_flight_deck']=geometry.get('flightDeck','straight')
+        root['naval_aviation']=geometry.get('aviation','propeller')
     root['combat_stretch']=1 if friendly else shape['combatStretch']
     root['waterline_beam']=beam*(.80 if flattop else 1);root['waterline_length']=length
-    fleet_hull(beam*(.80 if flattop else 1),length)
+    fleet_hull(beam*(.80 if flattop else 1),length,geometry.get('hullStyle'))
     deck_kind=geometry.get('deck','wood')
     deck_mat=FLEET_TEAK if deck_kind=='wood' else FLEET_PLANK if deck_kind=='linoleum' else FLEET_DECK
     if flattop:
         deck=[(x*beam,y*length) for x,y in [(-.72,-.97),(.72,-.97),(.93,-.86),(.96,.71),(.78,.91),(.52,.97),(-.52,.97),(-.78,.91),(-.96,.71),(-.93,-.86)]]
+        angled=geometry.get('flightDeck')=='angled'
+        if angled:
+            deck=[(x*beam,y*length) for x,y in [(-.72,-.97),(.72,-.97),(.96,-.72),(.96,.67),(.64,.97),(-.48,.97),(-.72,.73),(-1.16,.30),(-1.16,-.20),(-.84,-.55)]]
         wing('flight-deck-shadow',deck,.35,.075,FLEET_INK)
         wing('period-flight-deck',[(x*.96,y*.995) for x,y in deck],.39,.04,deck_mat)
         if deck_kind=='wood':
@@ -609,9 +735,24 @@ def warship(kind, profile=None):
         for side in [-1,1]:box('flight-deck-edge-paint',(side*beam*.82,-length*.05,.41),(.018,length*1.62,.012),FLEET_MARK)
         for y in [length*.15+i*.28 for i in range(7)]:box('runway-dash',(0,y,.416),(.025,.15,.012),FLEET_MARK)
         for x in [-.42,-.21,0,.21,.42]:box('launch-threshold',(x*beam,length*.82,.419),(.045,.19,.014),FLEET_MARK)
+        if angled:
+            for side in [-1,1]:
+                start=Vector(((.13+side*.23)*beam,-length*.85,.425));end=Vector(((-.67+side*.23)*beam,length*.37,.425));delta=end-start
+                obj=box('angled-landing-lane',(start+end)/2,(.022,delta.length,.013),FLEET_MARK)
+                obj.rotation_euler.z=-math.atan2(delta.x,delta.y)
+            for x,y in [(-.32,.56),(.26,.56),(-.73,.08),(-.43,.12)]:
+                box('catapult-track',(x*beam,y*length,.423),(.026,length*.49,.018),FLEET_INK)
+                box('catapult-track-edge',((x+.035)*beam,y*length,.425),(.012,length*.49,.015),FLEET_MARK)
+        if geometry.get('paddleWheels'):
+            for side in [-1,1]:
+                deckhouse('sidewheel-housing',side*beam*.83,-length*.10,.12,beam*.42,length*.32,.23,FLEET_EDGE)
+                for y in [-.19,-.10,-.01]:box('paddlewheel-slat',(side*beam*.99,length*y,.13),(.035,length*.025,.18),FLEET_INK)
         for i,(x,y) in enumerate(geometry.get('lifts',[])):
-            deckhouse('lift-rim-'+str(i),x*beam,y*length,.405,beam*.54,.37,.025,FLEET_INK)
-            deckhouse('lift-deck-'+str(i),x*beam,y*length,.431,beam*.47,.31,.012,FLEET_PLANK if deck_kind=='wood' else FLEET_EDGE)
+            previous=root;root=group('aircraft_lift_'+str(i),(x*beam,y*length,0))
+            root['naval_lift']=True
+            deckhouse('lift-rim-'+str(i),0,0,.405,beam*.54,.37,.025,FLEET_INK)
+            deckhouse('lift-deck-'+str(i),0,0,.431,beam*.47,.31,.012,FLEET_PLANK if deck_kind=='wood' else FLEET_EDGE)
+            root=previous
         for side in [-1,1]:
             for y in [-length*.60,length*.05,length*.63]:deckhouse('sponson-support',side*beam*.94,y,.20,beam*.19,.26,.12,FLEET_HULL)
     else:
@@ -637,11 +778,13 @@ def warship(kind, profile=None):
                 mount=naval_gun('turret_mg_visual_'+str(side),side*beam*.42,.04*length,.34,2)
                 mount.scale=(.42,)*3;mount['main_battery']=False
     for i,station in enumerate(geometry['funnels']):historic_funnel(profile,station,i,beam,length)
+    for i,spec in enumerate(geometry.get('launchers',[])):naval_launcher(spec,beam,length,i)
+    if not flattop:aviation_fittings(profile,beam,length)
     for i,gun in enumerate(geometry['guns']):
         size=min(1,beam/.43) if profile['hull']!='battleship' else 1
         if gun['raised']:
             fleet_cylinder('raised-main-barbette',(gun['x']*beam,gun['y']*length,.34+gun['raised']/2),(.30 if geometry['calibre']>=250 else .16)*size,gun['raised'],FLEET_EDGE)
-        mount=naval_gun('turret_main_'+str(i),gun['x']*beam,gun['y']*length,.34+gun['raised'],gun['barrels'],geometry['calibre']>=250,geometry.get('openGuns',False))
+        mount=naval_gun('turret_main_'+str(i),gun['x']*beam,gun['y']*length,.34+gun['raised'],gun['barrels'],geometry['calibre']>=250,geometry.get('openGuns',False),geometry.get('radar')=='stealth')
         mount.rotation_euler.z=math.radians(gun['bearing']);mount.scale=(size,)*3
         mount['historic_main']=True
     for i,gun in enumerate(geometry.get('secondary',[])):
@@ -660,9 +803,16 @@ def warship(kind, profile=None):
         else:
             for i in range(banks):
                 station=-.30+i*.45/max(1,banks-1)
-                x=(1 if i%2 else -1)*beam*.45 if profile['hull']=='cruiser' else 0
-                deckhouse('torpedo-launcher-base',x,station*length,.34,beam*.85,.16,.06,FLEET_EDGE)
-                for offset in [-.07,0,.07]:fleet_cylinder('deck-torpedo-tube',(x,station*length+offset,.43),.025,beam*1.15,FLEET_INK,'X')
+                x=(1 if i%2 else -1)*beam*.55 if profile['hull']=='cruiser' or banks>=3 else 0
+                if banks>=3:station=-.33+(i//2)*.36
+                previous=root;root=group('torpedo_bank_'+str(i),(x,station*length,0))
+                root['naval_torpedo_bank']=True
+                deckhouse('torpedo-launcher-base',0,0,.34,beam*.85,.16,.06,FLEET_EDGE)
+                tubes=geometry.get('torpedoTubes',3)
+                for tube in range(tubes):
+                    offset=(tube-(tubes-1)/2)*.055
+                    fleet_cylinder('deck-torpedo-tube',(0,offset,.43),.023,beam*.85,FLEET_INK,'X')
+                root=previous
         for i in range(geometry.get('catapults',0)):
             x=(i-(geometry['catapults']-1)/2)*beam*.85
             y=length*.92 if profile['id']=='zara' else -length*.88
@@ -685,20 +835,23 @@ def warship(kind, profile=None):
         if part_id.startswith('aa-'):
             part.scale=(min(1,beam/.60),)*3
             deckhouse('aa-sponson',0,0,-.04,.37,.38,.08,FLEET_HULL)
-            fleet_cylinder('aa-bulwark',(0,0,.045),.17,.075,FLEET_EDGE)
-            naval_gun('turret_aa_'+part_id,0,0,.07,1 if profile['hull']=='patrol-boat' else 3 if profile['navy']=='jp' else 2)
+            if geometry.get('paddleWheels'):
+                deckhouse('unarmed-training-deck-station',0,0,.045,.26,.26,.08,FLEET_EDGE)
+            else:
+                fleet_cylinder('aa-bulwark',(0,0,.045),.17,.075,FLEET_EDGE)
+                naval_gun('turret_aa_'+part_id,0,0,.07,1 if profile['hull']=='patrol-boat' else 3 if profile['navy']=='jp' else 2)
         elif part_id=='bridge':
             part.scale=(min(1,beam/.40),)*3
             historic_bridge(profile,beam)
         else:
-            deckhouse('flight-operations-shadow',0,0,-.012,beam*1.50,length*.66,.015,FLEET_INK)
-            deckhouse('flight-operations-surface',0,0,.005,beam*1.46,length*.63,.025,deck_mat)
+            deckhouse('flight-operations-shadow',0,0,-.030 if geometry.get('flightDeck') else -.012,beam*1.50,length*.66,.010 if geometry.get('flightDeck') else .015,FLEET_INK)
+            deckhouse('flight-operations-surface',0,0,-.012 if geometry.get('flightDeck') else .005,beam*1.46,length*.63,.015 if geometry.get('flightDeck') else .025,deck_mat)
             for yy in [-.70,-.35,0,.35,.70]:box('arresting-cable',(0,yy+.09,.048),(beam*1.30,.014,.012),FLEET_INK)
             parking_x=-geometry.get('islandSide',1)*beam*(.68 if friendly else .62)
-            for i,yy in enumerate([-1.18,-.58,.02]):
+            for i,yy in enumerate([-1.32,-.76,-.20] if geometry.get('aviation')=='jet' else [-1.18,-.58,.02]):
                 aircraft=group('parked_aircraft_'+str(i),(parking_x,yy,.035));root=aircraft
                 aircraft['parked_aircraft']=True;aircraft.scale=(1 if friendly else min(1,beam),)*3
-                parked_plane(0,0,NAVY if friendly else OLIVE);root=part
+                parked_plane(0,0,NAVY if friendly else OLIVE,geometry.get('aviation')=='jet');root=part
         root=previous
         if not friendly:
             ruin=group('ruin_'+part_id,(x,y,.41 if flattop else .34));root=ruin

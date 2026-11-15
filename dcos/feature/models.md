@@ -5,7 +5,7 @@
 - 可编辑模型库：[sky-strike-ww2.blend](../../assets/blender/sky-strike-ww2.blend)。各资产保存在独立集合中，工作文件按网格排列，方便检查与修改。
 - 建模与导出脚本：[build_models.py](../../scripts/blender/build_models.py)。使用 Blender Python API 创建几何体、材质、中队标记与螺旋桨节点。
 - TypeScript 执行入口：[models.ts](../../scripts/models.ts)。负责寻找并启动 Blender。
-- 历史舰艇定义：[naval-history.ts](../../game/naval-history.ts)，含72艘原型、史料与布局。执行入口先生成 [historical-fleet.json](../../assets/blender/historical-fleet.json)，Blender 与战场部件映射使用同一组数据。
+- 历史舰艇定义：[naval-history.ts](../../game/naval-history.ts)，含148个条目、史料与布局。执行入口先生成 [historical-fleet.json](../../assets/blender/historical-fleet.json)，Blender 与战场部件映射使用同一组数据。
 - 游戏模型：`game/public/assets/models/*.glb`。导出清单 `manifest.json` 记录生成器版本、文件名、面数和字节数。
 - 运行时加载器：`game/models.ts`，渲染入口：`game/render.ts`。
 
@@ -39,7 +39,7 @@
 | coastal-battery | 沙地、混凝土防空阵地 |
 | oil-depot | 港口油罐、管线与地基 |
 | transport | 默认约翰·布朗自由轮：五货舱、吊杆与中部驾驶台，友军运行时增加蓝旗 |
-| historic-* | 其余66艘历史外观，按需载入；完整名单与来源见[历史舰库](historical-fleet.md) |
+| historic-* | 其余142个舰库外观，按需载入；完整名单与来源见[历史舰库](historical-fleet.md) |
 
 战机使用架空中队圆形识别标记与二战时期外形元素，不宣称是特定真实历史型号的精确复刻。
 
@@ -82,6 +82,10 @@ BLENDER_PATH=/path/to/blender npm run models:build
 
 ## 验证
 
-模型库共92个GLB：基础26项和按需加载的66项历史外观，共覆盖72艘历史原型。测试限制单模型小于400KB、基础启动库小于2.5MB、完整档案小于9MB。查看或选用历史舰船时才加载相应本地GLB，不在启动时加载全部档案。
+模型库共168个GLB：基础26项和按需加载的142项舰库外观，共覆盖148个条目。测试限制单模型小于400KB、基础启动库小于2.5MB、完整档案小于17MB。查看或选用历史舰船时才加载相应本地GLB，不在启动时加载全部档案。
 
 `npm test` 检查 GLB 格式、几何数据、螺旋桨节点、可拆部件与残骸属性、水线尺寸、舰船高度、停机机翼朝向及炮位间距、木甲板接缝的顶视可见性、导出原点、资源体积和识别色；`npm run test:e2e` 检查浏览器中模型载入、WebGL、完整流程，以及实际像素中的道具和敌弹颜色。
+
+美国扩充舰级的数据在 [us-fleet.ts](../../game/us-fleet.ts)，完整范围、模型外观与来源见[美国舰级库](us-fleet.md)。现代航母的停机为喷气外形，斜角着舰区、升降机与弹射轨道单独建模；导弹发射器以 `naval_launcher` 属性区分，舰级根节点保留 `naval_class`。
+
+航母升降机保留 `naval_lift` 分组以核对实际平台的左右舷及前后位置；烟囱的 `funnelCant` 为建模外倾参数，肯尼迪 CV-67 按此参数创建带实际网格的倾斜烟道。

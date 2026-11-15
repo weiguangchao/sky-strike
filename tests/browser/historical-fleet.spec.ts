@@ -12,8 +12,8 @@ async function ready(page:import('@playwright/test').Page):Promise<void> {
   await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
 }
 
-test('all 72 historical ships have real local previews and every navy filters and wraps',async({page})=>{
-  test.setTimeout(120000);
+test('all 148 historical ships have real local previews and every navy filters and wraps',async({page})=>{
+  test.setTimeout(240000);
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
   const requested:string[]=[];page.on('request',request=>{if(request.url().includes('/assets/models/'))requested.push(request.url());});
   await page.goto('/');await expect(page.locator('#start-button')).toBeEnabled();
@@ -103,4 +103,39 @@ test('the fleet stays inside short phone and landscape windows with long ship na
       }
     }
   }
+});
+
+test('US class filters, direct selection and empty results stay coherent across tabs and persist into combat',async({page})=>{
+  await openFleet(page);
+  await page.locator('#fleet-country').selectOption('us');
+  await page.locator('#fleet-type').selectOption('fleet-carrier');
+  await expect(page.locator('#fleet-entry option')).toHaveCount(23);
+  await page.locator('#fleet-entry').selectOption('gerald-ford');await ready(page);
+  await expect(page.locator('#fleet-name')).toHaveText('杰拉尔德·福特级');
+  await expect(page.locator('#fleet-role')).toContainText('2017年外观');
+  await page.locator('#fleet-era').selectOption('modern');await ready(page);
+  await expect(page.locator('#fleet-entry option')).toHaveCount(2);
+  await page.locator('#fleet-entry').selectOption('gerald-ford');await ready(page);
+  await page.locator('#help-ready').click();await page.locator('#start-button').click();
+  const battle=await page.evaluate(async()=>{
+    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+    game.step=()=>{};game.wave=10;game.enemies=[];
+    const boss=game.spawnBoss();boss.x=240;boss.y=260;
+    return {id:boss.appearance,hp:boss.hp};
+  });
+  expect(battle).toEqual({id:'gerald-ford',hp:4400});
+  await page.reload();await expect(page.locator('#start-button')).toBeEnabled();
+  await page.locator('#help-button').click();await page.locator('#help-tab-fleet').click();
+  await page.locator('#fleet-entry').selectOption('gerald-ford');await ready(page);
+  await expect(page.locator('#help-ready')).toHaveText('已选用 · 返回');
+  await page.locator('#fleet-country').selectOption('jp');
+  await page.locator('#fleet-era').selectOption('modern');
+  await expect(page.locator('#fleet-count')).toHaveText('00 / 0');
+  await expect(page.locator('#help-ready')).toBeDisabled();
+  await expect(page.locator('#fleet-entry')).toBeDisabled();
+  await expect(page.locator('#fleet-source')).toBeHidden();
+  await page.locator('#help-tab-intel').click();await page.locator('#help-tab-fleet').click();
+  await expect(page.locator('#help-ready')).toBeDisabled();
+  await page.locator('#fleet-era').selectOption('all');await ready(page);
+  await expect(page.locator('#help-ready')).toBeEnabled();
 });

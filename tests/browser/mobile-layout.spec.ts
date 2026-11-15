@@ -123,7 +123,7 @@ test.describe('phone visible viewport',()=>{
       },scenario);
       await viewport(page,{width:scenario.width,height:scenario.visibleHeight,offsetTop:scenario.offsetTop});
       await page.locator('#pause-button').click();await page.locator('#pause-help').click();
-      for(const [panel,pages] of [['controls',1],['intel',15],['campaign',10],['fleet',72]] as const) {
+      for(const [panel,pages] of [['controls',1],['intel',15],['campaign',10],['fleet',148]] as const) {
         await page.locator(`#help-tab-${panel}`).click();
         for(let i=0;i<pages;i++) {
           if(panel==='fleet')await expect(page.locator('#fleet-status')).toBeEmpty();
