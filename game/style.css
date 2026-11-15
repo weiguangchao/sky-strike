@@ -230,7 +230,9 @@ dialog h2 { font-size: 25px; letter-spacing: 1px; margin: 12px 0; }
 .fleet-meta #fleet-count { font-family:var(--display); font-size:20px; white-space:nowrap; }
 .fleet-copy #fleet-shape { color:var(--text); }
 .fleet-reference a { color:var(--accent); display:inline-flex; align-items:center; min-height:24px; white-space:nowrap; text-underline-offset:4px; }
-.fleet-pager select { min-width:0; width:100%; min-height:44px; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--panel); color:var(--text); font:inherit; font-size:16px; padding:8px 12px; }
+.fleet-controls select { min-width:0; width:100%; min-height:44px; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--panel); color:var(--text); font:inherit; font-size:16px; padding:8px; }
+.fleet-filters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+.fleet-reference a[hidden] { display:none; }
 .handbook-pager { display: flex; align-items: center; justify-content: center; gap: 24px; margin: 12px 0; }
 .handbook-pager .secondary-button { width: 52px; min-height: 44px; margin: 0; padding: 8px; }
 .handbook-pager > span { min-width: 100px; text-align: center; font: 28px/1 var(--display); color: var(--amber); }

@@ -1,5 +1,6 @@
 import type { ShipKind, PartId, Point } from './types.ts';
 import { HULLS } from './campaign.ts';
+import { US_CLASS_SHIPS, EXISTING_US_CLASSES } from './us-fleet.ts';
 
 export type NavalHull = Exclude<ShipKind, 'coastal-battery' | 'oil-depot'>;
 export const NAVIES = [
@@ -13,8 +14,12 @@ export const NAVIES = [
   {id:'za',name:'南非'}, {id:'dk',name:'丹麦'},
 ] as const;
 export type NavyId = typeof NAVIES[number]['id'];
-export type HistoricalKind = '战列舰' | '战列巡洋舰' | '航空母舰' | '重巡洋舰' | '轻巡洋舰' | '装甲巡洋舰' | '装甲舰' | '驱逐舰' | '岸防舰' | '护卫舰' | '扫雷护航舰' | '鱼雷艇' | '武装运输船' | '炮舰';
+export type HistoricalKind = '战列舰' | '战列巡洋舰' | '航空母舰' | '轻型航空母舰' | '护航航空母舰' | '训练航空母舰' | '大型巡洋舰' | '指挥巡洋舰' | '导弹巡洋舰' | '核动力巡洋舰' | '导弹驱逐舰' | '驱逐领舰' | '重巡洋舰' | '轻巡洋舰' | '装甲巡洋舰' | '装甲舰' | '驱逐舰' | '岸防舰' | '护卫舰' | '扫雷护航舰' | '鱼雷艇' | '武装运输船' | '炮舰';
 export interface MainMount { barrels:number; y:number; x:number; raised:number; bearing:number; calibre?:number }
+export interface NavalLauncher {
+  kind:'twin'|'single'|'talos'|'asroc'|'alpha'|'vls'; x:number; y:number;
+  rows?:number; columns?:number; bearing?:number;
+}
 export interface NavalGeometry {
   length:number; beam:number; calibre:number; guns:readonly MainMount[];
   funnels:readonly number[]; bridge:'tower'|'pagoda'|'tripod'|'low'|'island'; bridgeY:number;
@@ -22,10 +27,17 @@ export interface NavalGeometry {
   deck?:'wood'|'steel'|'armoured'|'linoleum'; funnelStyle?:'raked'|'trunked'|'side';
   torpedoes?:number; catapults?:number; catapultStations?:readonly (readonly [number,number,number,number?])[]; openGuns?:boolean; bowStripes?:boolean;
   secondary?:readonly MainMount[];
+  flightDeck?:'angled'; aviation?:'jet'; islandless?:boolean; paddleWheels?:boolean;
+  radar?:'lattice'|'planar'|'aegis'|'stealth'; launchers?:readonly NavalLauncher[];
+  hangar?:boolean; helipad?:boolean; hullStyle?:'forecastle'|'tumblehome';
+  bridgeWidth?:number; bridgeHeight?:number;
+  torpedoTubes?:number; roundFunnels?:boolean;
+  funnelCant?:number;
 }
 export interface HistoricalShip {
   id:string; name:string; navy:NavyId; year:number; kind:HistoricalKind; hull:NavalHull;
   source:string; feature:string; geometry:NavalGeometry;
+  classId?:string; className?:string;
 }
 // Superfiring bores must clear the lower gunhouse at the game's pixel scale.
 const mount=(barrels:number,y:number,x=0,raised=0,bearing=y<0?180:0):MainMount=>({barrels,y,x,raised:raised?Math.max(.16,raised):0,bearing});
@@ -40,11 +52,11 @@ const broadside=(count:number)=>[
 ];
 const ref=(path:string)=>`https://www.navypedia.org/ships/${path}.htm`;
 function ship<const Id extends string>(id:Id,name:string,navy:NavyId,year:number,kind:HistoricalKind,hull:NavalHull,path:string,feature:string,geometry:NavalGeometry):HistoricalShip&{id:Id} {
-  return {id,name,navy,year,kind,hull,source:path.startsWith('https:')?path:ref(path),feature,geometry};
+  return {id,name,navy,year,kind,hull,source:path.startsWith('https:')?path:ref(path),feature,geometry,...EXISTING_US_CLASSES[id]};
 }
 
 export const HISTORICAL_SHIPS = [
-  // Sources and appearance dates deliberately exclude post-war missile/angled-deck refits.
+  // The original international selection keeps its wartime appearance dates.
   ship('iowa','衣阿华','us',1944,'战列舰','battleship','usa/us_bb_iowa','修长舰艏 · 三座三联主炮 · 双烟囱',
     {length:270.4,beam:33,calibre:406,guns:triple(),funnels:[.06,-.26],bridge:'tower',bridgeY:.29,catapults:2,secondary:secondaryPairs(2,127,.24,.07,-.10,-.27,-.43)}),
   ship('south-dakota','南达科他','us',1942,'战列舰','battleship','usa/us_bb_sdakota','紧凑宽舰体 · 三联主炮 · 单烟囱',
@@ -56,7 +68,7 @@ export const HISTORICAL_SHIPS = [
   ship('essex','埃塞克斯','us',1944,'航空母舰','fleet-carrier','usa/us_cv_essex','直通甲板 · 左舷舷侧升降机 · 大舰岛',
     {length:265.8,beam:45,calibre:127,guns:[],funnels:[.02],bridge:'island',bridgeY:.19,lifts:[[0,.57],[-.83,.04],[0,-.62]],islandSide:1}),
   ship('fletcher','弗莱彻','us',1942,'驱逐舰','destroyer','usa/us_dd_fletcher','五座单装炮 · 双烟囱 · 两组鱼雷管',
-    {length:114.7,beam:12.1,calibre:127,guns:fiveSingle(),funnels:[.15,-.08],bridge:'low',bridgeY:.38,torpedoes:2,deck:'steel'}),
+    {length:114.7,beam:12.1,calibre:127,guns:fiveSingle(),funnels:[.15,-.08],bridge:'low',bridgeY:.38,torpedoes:2,torpedoTubes:5,deck:'steel'}),
   ship('cleveland','克利夫兰','us',1943,'轻巡洋舰','cruiser','usa/us_cr_cleveland','四座三联炮 · 双烟囱 · 舰艉弹射器',
     {length:186,beam:20.2,calibre:152,guns:four(3),funnels:[.06,-.23],bridge:'tower',bridgeY:.29,catapults:2}),
   ship('brooklyn','布鲁克林','us',1942,'轻巡洋舰','cruiser','usa/us_cr_brooklyn','前三后二共五座三联炮 · 双烟囱',
@@ -198,6 +210,7 @@ export const HISTORICAL_SHIPS = [
     {length:93.6,beam:11.8,calibre:102,guns:[mount(1,.75)],funnels:[-.12],bridge:'low',bridgeY:.31,openGuns:true,deck:'steel'}),
   ship('niels-juel','尼尔斯·尤尔','dk',1943,'岸防舰','cruiser','denmark/dk_bb_niels_iuel','十座单装150毫米炮 · 高塔桅 · 单烟囱',
     {length:90,beam:16.3,calibre:150,guns:broadside(10),funnels:[-.20],bridge:'tower',bridgeY:.36,openGuns:true}),
+  ...US_CLASS_SHIPS,
 ] as const;
 
 export type HistoricalShipId = typeof HISTORICAL_SHIPS[number]['id'];

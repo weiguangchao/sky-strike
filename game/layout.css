@@ -331,12 +331,23 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
 .fleet-pager { gap:12px; }
 .fleet-pager .secondary-button { flex:0 0 44px; min-height:44px; }
 .fleet-pager select { flex:1 1 0; width:auto; }
+.fleet-controls { margin-top:12px; }
+.fleet-pager { margin-block:6px 8px; }
+@container app-viewport (max-height:600px) {
+  .fleet-controls { margin-top:6px; }
+  .fleet-controls select { font-size:14px; }
+  .fleet-card .intel-copy h3 { font-size:20px; }
+}
 @container app-viewport (max-height:350px) and (min-width:480px) {
-  #help-dialog[open].fleet-open { display:grid; grid-template-columns:minmax(0,1fr) 156px; gap:8px 12px; }
+  #help-dialog[open].fleet-open { display:grid; grid-template-columns:minmax(0,1fr) 156px; gap:4px 12px; }
   #help-dialog.fleet-open .help-heading { grid-column:1 / -1; margin:0; }
   #help-dialog.fleet-open #help-fleet-panel { display:contents; }
-  #help-dialog.fleet-open .fleet-card { grid-column:1 / -1; }
-  #help-dialog.fleet-open .fleet-pager { grid-column:1; margin:0; }
-  #help-dialog.fleet-open #help-ready { grid-column:2; margin:0; min-width:0; }
+  #help-dialog.fleet-open .fleet-card { grid-column:1 / -1; grid-template-columns:minmax(0,120px) minmax(0,1fr); min-height:76px; }
+  #help-dialog.fleet-open .fleet-card .intel-illustration { max-width:120px; }
+  #help-dialog.fleet-open .fleet-card .intel-copy h3 { font-size:18px; margin:2px 0; }
+  #help-dialog.fleet-open .fleet-card .intel-copy p { margin:2px 0; }
+  #help-dialog.fleet-open .fleet-controls { grid-column:1 / -1; display:grid; grid-template-columns:1fr 1.3fr; gap:6px; margin:0; }
+  #help-dialog.fleet-open .fleet-pager { margin:0; gap:6px; }
+  #help-dialog.fleet-open #help-ready { grid-column:1 / -1; margin:0; min-width:0; }
   #help-dialog.fleet-open #fleet-count { line-height:1; }
 }

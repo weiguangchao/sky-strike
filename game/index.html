@@ -95,7 +95,14 @@
     </section>
     <section class="handbook-panel" id="help-fleet-panel" role="tabpanel" aria-labelledby="help-tab-fleet" hidden>
       <div class="intel-card fleet-card"><div class="intel-illustration" id="fleet-illustration"><span id="fleet-status" role="status" aria-live="polite"></span></div><div class="intel-copy fleet-copy"><div class="fleet-meta"><span id="fleet-role"></span><span id="fleet-count" aria-live="polite"></span></div><h3 id="fleet-name"></h3><p id="fleet-shape"></p><div class="fleet-reference"><span id="fleet-kind"></span><a id="fleet-source" target="_blank" rel="noopener noreferrer">史料 ↗</a></div></div></div>
-      <div class="handbook-pager fleet-pager"><button class="secondary-button" id="fleet-prev" aria-label="上一艘历史舰船">←</button><select id="fleet-country" aria-label="按国家筛选历史舰船"><option value="all">全部海军</option></select><button class="secondary-button" id="fleet-next" aria-label="下一艘历史舰船">→</button></div>
+      <div class="fleet-controls">
+        <div class="fleet-filters">
+          <select id="fleet-country" aria-label="按国家筛选历史舰船"><option value="all">全部海军</option></select>
+          <select id="fleet-type" aria-label="按舰种筛选历史舰船"><option value="all">全部舰种</option><option value="fleet-carrier">航空母舰</option><option value="cruiser">巡洋舰</option><option value="destroyer">驱逐舰</option><option value="battleship">战列舰</option><option value="patrol-boat">巡逻护航艇</option><option value="transport">运输船</option></select>
+          <select id="fleet-era" aria-label="按模型外观年代筛选"><option value="all">全部外观年代</option><option value="wartime">二战外观 ≤1945</option><option value="cold-war">冷战外观 1946–1991</option><option value="modern">现代外观 ≥1992</option></select>
+        </div>
+        <div class="handbook-pager fleet-pager"><button class="secondary-button" id="fleet-prev" aria-label="上一艘历史舰船">←</button><select id="fleet-entry" aria-label="直接选择舰船或舰级"></select><button class="secondary-button" id="fleet-next" aria-label="下一艘历史舰船">→</button></div>
+      </div>
     </section>
     <button class="primary-button" id="help-ready">准备出击 <svg><use href="#i-arrow"/></svg></button>
   </dialog>

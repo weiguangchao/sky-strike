@@ -306,19 +306,23 @@ for(const navy of NAVIES) {
 }
 function fleetActionLabel():void {
   const button=$<HTMLButtonElement>('help-ready');
+  if(!fleetEntries.length){button.disabled=true;button.textContent='请调整筛选';return;}
   button.disabled=!fleetReady&&!fleetFailed;
   button.textContent=fleetFailed?'重试加载':!fleetReady?'载入模型…':selectedFleet[fleetEntries[fleetIndex].hull]===fleetEntries[fleetIndex].id?'已选用 · 返回':game.status==='menu'?'使用本舰':'下次出击使用';
 }
 async function showFleet(index:number):Promise<void> {
+  if(!fleetEntries.length)return;
   fleetIndex=(index+fleetEntries.length)%fleetEntries.length;
   const ship=fleetEntries[fleetIndex],request=++fleetRequest;
   fleetReady=false;fleetFailed=false;fleetActionLabel();
   $('fleet-name').textContent=ship.name;
-  $('fleet-role').textContent=`${NAVIES.find(navy=>navy.id===ship.navy)!.name} ${ship.year}`;
+  $('fleet-role').textContent=`${NAVIES.find(navy=>navy.id===ship.navy)!.name} · ${ship.className&&ship.className!==ship.name?ship.className+' · ':''}${ship.year}年外观`;
   $('fleet-count').textContent=`${waveNum(fleetIndex+1)} / ${fleetEntries.length}`;
   $('fleet-kind').textContent=ship.kind;
   $('fleet-shape').textContent=ship.feature;
   $<HTMLAnchorElement>('fleet-source').href=ship.source;
+  $('fleet-source').hidden=false;
+  $<HTMLSelectElement>('fleet-entry').value=ship.id;
   $('fleet-source').setAttribute('aria-label',`${ship.name}的历史资料，打开新标签页`);
   $('fleet-status').textContent='模型载入中';
   $('fleet-illustration').classList.add('loading');
@@ -376,7 +380,7 @@ function showHelpPanel(id: string) {
     showIntel(intelIndex);
   }
   if(id==='campaign') showCampaign(campaignIndex);
-  if(id==='fleet') {$('fleet-illustration').append($('intel-canvas'));void showFleet(fleetIndex);}
+  if(id==='fleet') {$('fleet-illustration').append($('intel-canvas'));if(fleetEntries.length)void showFleet(fleetIndex);else fleetActionLabel();}
 }
 const helpTabs=[...document.querySelectorAll<HTMLButtonElement>('[data-help]')];
 helpTabs.forEach((tab,index)=>{
@@ -394,12 +398,33 @@ $('campaign-prev').addEventListener('click',()=>showCampaign(campaignIndex-1));
 $('campaign-next').addEventListener('click',()=>showCampaign(campaignIndex+1));
 $('fleet-prev').addEventListener('click',()=>{void showFleet(fleetIndex-1);});
 $('fleet-next').addEventListener('click',()=>{void showFleet(fleetIndex+1);});
-$('fleet-country').addEventListener('change',()=>{
+function filterFleet():void {
   const country=$<HTMLSelectElement>('fleet-country').value;
-  fleetEntries=HISTORICAL_SHIPS.filter(ship=>country==='all'||ship.navy===country);
-  if(!fleetEntries.length)fleetEntries=HISTORICAL_SHIPS;
-  void showFleet(0);
-});
+  const hull=$<HTMLSelectElement>('fleet-type').value;
+  const era=$<HTMLSelectElement>('fleet-era').value;
+  fleetEntries=HISTORICAL_SHIPS.filter(ship=>(country==='all'||ship.navy===country)&&(hull==='all'||ship.hull===hull)&&(era==='all'||(era==='wartime'?ship.year<=1945:era==='cold-war'?ship.year>1945&&ship.year<=1991:ship.year>=1992)));
+  const select=$<HTMLSelectElement>('fleet-entry');
+  select.replaceChildren(...fleetEntries.map(ship=>{
+    const option=document.createElement('option');option.value=ship.id;
+    option.textContent=ship.className&&ship.className!==ship.name?`${ship.className} · ${ship.name}`:ship.name;
+    return option;
+  }));
+  for(const id of ['fleet-prev','fleet-next','fleet-entry'])$<HTMLButtonElement|HTMLSelectElement>(id).disabled=!fleetEntries.length;
+  if(fleetEntries.length){void showFleet(0);return;}
+  fleetRequest++;fleetIndex=0;fleetReady=false;fleetFailed=false;
+  $('fleet-name').textContent='没有符合条件的舰船';
+  $('fleet-role').textContent='';$('fleet-count').textContent='00 / 0';
+  $('fleet-kind').textContent='';$('fleet-shape').textContent='试试其他海军、舰种或外观年代。';
+  $('fleet-source').hidden=true;
+  $('fleet-illustration').classList.add('loading');$('fleet-status').textContent='暂无模型';
+  fleetActionLabel();
+}
+for(const id of ['fleet-country','fleet-type','fleet-era'])$(id).addEventListener('change',filterFleet);
+$('fleet-entry').addEventListener('change',()=>{void showFleet(fleetEntries.findIndex(ship=>ship.id===$<HTMLSelectElement>('fleet-entry').value));});
+// Populate the direct picker without requesting any model until the fleet tab opens.
+$<HTMLSelectElement>('fleet-entry').replaceChildren(...HISTORICAL_SHIPS.map(ship=>{
+  const option=document.createElement('option');option.value=ship.id;option.textContent=ship.className&&ship.className!==ship.name?`${ship.className} · ${ship.name}`:ship.name;return option;
+}));
 document.querySelectorAll<HTMLButtonElement>('[data-open-help]').forEach(button=>button.addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); showHelpPanel('controls'); $<HTMLDialogElement>('help-dialog').showModal(); }));
 $('close-help').addEventListener('click', () => $<HTMLDialogElement>('help-dialog').close());
 $('help-ready').addEventListener('click', () => {

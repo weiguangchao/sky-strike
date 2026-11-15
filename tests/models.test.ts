@@ -50,7 +50,7 @@ test('all Blender assets contain embedded, finite 3D geometry within the mobile 
     assert.ok(bytes < 400_000, `${id}: excessive model payload`);
   }
   assert.ok(initial < 2_500_000, 'initial model download exceeds mobile budget');
-  assert.ok(total < 9_000_000, 'on-demand historical archive exceeds its size budget');
+  assert.ok(total < 17_000_000, 'on-demand historical archive exceeds its size budget');
 });
 
 test('single, twin, four and six engine aircraft keep separate animatable propeller nodes', async () => {
@@ -269,5 +269,116 @@ test('carrier stacks stay with their starboard islands and highlighted midships 
       count++;assert.ok(Math.abs(node.getWorldPosition(new Vector3()).z+station*navalShape(ship).halfLength)<.0001,`${id}: midships catapult`);
       const axis=new Vector3(0,0,1).transformDirection(node.matrixWorld);assert.ok(Math.abs(axis.x)>.9,`${id}: athwartship rail`);
     }});assert.equal(count,countExpected,`${id}: real exported catapult rails`);
+  }
+});
+
+test('US classes export actual carrier, missile and nuclear structures rather than renamed generic hulls',async()=>{
+  const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
+  const {createHash}=await import('node:crypto');
+  const geometryHashes=new Set<string>();
+  for(const ship of HISTORICAL_SHIPS.filter(ship=>ship.classId)) {
+    const buffer=await readFile(new URL(`${historicalModel(ship.id)}.glb`,directory));
+    const {scene}=await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer,'');
+    const roots:import('three').Object3D[]=[],launchers:string[]=[],funnels:import('three').Object3D[]=[];
+    scene.traverse(node=>{
+      if(node.userData.naval_class)roots.push(node);
+      if(node.userData.naval_launcher)launchers.push(node.userData.naval_launcher);
+      if(node.userData.historic_funnel)funnels.push(node);
+    });
+    assert.equal(roots.length,1,ship.id);assert.equal(roots[0].userData.naval_class,ship.classId);
+    assert.equal(funnels.length,ship.geometry.funnels.length,`${ship.id}: funnel count, including nuclear ships without stacks`);
+    assert.deepEqual(launchers.sort(),(ship.geometry.launchers??[]).map(launcher=>launcher.kind).sort(),`${ship.id}: actual exported launcher types`);
+    if(ship.hull==='fleet-carrier') {
+      assert.equal(roots[0].userData.naval_flight_deck,ship.geometry.flightDeck??'straight');
+      assert.equal(roots[0].userData.naval_aviation,ship.geometry.aviation??'propeller');
+    }
+    // Hash only the binary geometry buffer; identity metadata and paint cannot fake a new class.
+    const jsonLength=buffer.readUInt32LE(12),binary=buffer.subarray(20+jsonLength+8);
+    const hash=createHash('sha256').update(binary).digest('hex');
+    assert.ok(!geometryHashes.has(hash),`${ship.id}: duplicate class geometry`);geometryHashes.add(hash);
+  }
+});
+
+test('Forrestal has three starboard lifts with one forward, two aft, and a forward port lift',async()=>{
+  // US Navy All Hands, December 1954: three starboard and one port elevator.
+  const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
+  const {Box3,Vector3}=await import('three');
+  const buffer=await readFile(new URL('historic-forrestal.glb',directory));
+  const {scene}=await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer,'');scene.updateMatrixWorld(true);
+  const centers:import('three').Vector3[]=[];let bridgeZ=NaN;
+  scene.traverse(node=>{
+    if(node.userData.naval_lift)centers.push(new Box3().setFromObject(node).getCenter(new Vector3()));
+    if(node.userData.game_part==='bridge')bridgeZ=node.getWorldPosition(new Vector3()).z;
+  });
+  assert.equal(centers.length,4);
+  const starboard=centers.filter(at=>at.x>0),port=centers.filter(at=>at.x<0);
+  assert.equal(starboard.length,3);assert.equal(port.length,1);
+  assert.equal(starboard.filter(at=>at.z<bridgeZ).length,1);
+  assert.equal(starboard.filter(at=>at.z>bridgeZ).length,2);
+  assert.ok(port[0].z<0,'port elevator remains at the forward end of the angled deck');
+});
+
+test('Kennedy has physically outboard-canted funnel geometry, distinct from Kitty Hawk',async()=>{
+  const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
+  const {Mesh,Vector3}=await import('three');
+  const readScene=async(id:string)=>{
+    const buffer=await readFile(new URL(`${id}.glb`,directory));
+    const {scene}=await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer,'');scene.updateMatrixWorld(true);return scene;
+  };
+  const kennedy=await readScene('historic-john-f-kennedy');
+  let uptake:import('three').Object3D|undefined;
+  kennedy.traverse(node=>{if(typeof node.userData.naval_funnel_cant==='number')uptake=node;});assert.ok(uptake);
+  const vertical=new Vector3(0,1,0).transformDirection(uptake.matrixWorld);
+  assert.ok(vertical.x>.3&&vertical.y>.8,'stack axis inclines outboard');
+  const points:import('three').Vector3[]=[];
+  uptake.traverse(node=>{
+    if(!(node instanceof Mesh))return;
+    const positions=node.geometry.getAttribute('position');
+    for(let i=0;i<positions.count;i++)points.push(new Vector3().fromBufferAttribute(positions,i).applyMatrix4(node.matrixWorld));
+  });
+  assert.ok(points.length>20,'tilted node must contain actual exported meshes');
+  // Compare sections along the stack axis; global-height extremes select opposite rim edges.
+  points.sort((a,b)=>a.dot(vertical)-b.dot(vertical));
+  const count=Math.ceil(points.length*.15);
+  const meanX=(points:readonly import('three').Vector3[])=>points.reduce((sum,at)=>sum+at.x,0)/points.length;
+  assert.ok(meanX(points.slice(-count))-meanX(points.slice(0,count))>.12,'upper funnel mesh must extend farther outboard than the base');
+  let kittyCanted=false;(await readScene('historic-kitty-hawk')).traverse(node=>{if(node.userData.naval_funnel_cant)kittyCanted=true;});
+  assert.equal(kittyCanted,false);
+});
+
+test('1940 Benson and Gleaves export two banks of five separate torpedo tubes',async()=>{
+  // Contemporary Benson cruise book and Destroyer History's original-design records.
+  const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
+  const {Mesh}=await import('three');
+  for(const id of ['benson','gleaves']) {
+    const buffer=await readFile(new URL(`historic-${id}.glb`,directory));
+    const {scene}=await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer,'');
+    const banks:import('three').Object3D[]=[];
+    scene.traverse(node=>{if(node.userData.naval_torpedo_bank)banks.push(node);});
+    assert.equal(banks.length,2,`${id}: two independent torpedo banks`);
+    for(const bank of banks) {
+      let tubes=0;
+      bank.traverse(node=>{
+        if(!(node instanceof Mesh))return;
+        const materials=Array.isArray(node.material)?node.material:[node.material];
+        if(!materials.every(material=>material.name==='fleet_ink'))return;
+        // Count connected shells in the actual exported tube mesh, without trusting count metadata.
+        const positions=node.geometry.getAttribute('position'),indices=node.geometry.index;
+        const vertexIds=new Map<string,number>(),vertices:number[]=[],parents:number[]=[];
+        for(let i=0;i<positions.count;i++) {
+          const key=[positions.getX(i),positions.getY(i),positions.getZ(i)].map(value=>value.toFixed(5)).join(',');
+          let at=vertexIds.get(key);
+          if(at===undefined){at=parents.length;parents.push(at);vertexIds.set(key,at);}
+          vertices.push(at);
+        }
+        const find=(index:number):number=>{while(parents[index]!==index){parents[index]=parents[parents[index]];index=parents[index];}return index;};
+        for(let i=0;i<(indices?.count??positions.count);i+=3) {
+          const a=vertices[indices?indices.getX(i):i];
+          for(let offset=1;offset<3;offset++)parents[find(vertices[indices?indices.getX(i+offset):i+offset])]=find(a);
+        }
+        tubes+=new Set(parents.map((_,index)=>find(index))).size;
+      });
+      assert.equal(tubes,5,`${id}: each bank contains five physical tube shells`);
+    }
   }
 });
