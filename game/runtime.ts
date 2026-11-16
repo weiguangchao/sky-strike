@@ -58,7 +58,6 @@ class BattlefieldScene extends Phaser.Scene {
     });
     const release = (pointer: Phaser.Input.Pointer) => { if (this.pointer?.id === pointer.id) this.pointer = null; };
     this.input.on('pointerup', release); this.input.on('pointerupoutside', release);
-    this.input.on('gameout', () => { this.pointer = null; });
     const renderer = new Renderer(this, this.options.combat);
     void Promise.all(MODEL_IDS.map(id => renderer.library.load(id))).then(() => {
       this.state = { kind: 'ready', renderer };
@@ -102,7 +101,7 @@ export class GameRuntime {
     return this.scene.ready.promise;
   }
   clearInput(): void { this.scene.clearInput(); }
-  resize(): void { this.phaser?.scale.updateBounds(); }
+  resize(): void { this.phaser?.scale.refresh(); }
   destroy(): void { this.clearInput(); this.phaser?.destroy(false); }
   event(event: GameEvent): void { this.scene.view?.event(event); }
   selectCraft(id: CraftId): void { this.scene.view?.library.preview({ id, canvas: this.options.previewCanvas }); }
