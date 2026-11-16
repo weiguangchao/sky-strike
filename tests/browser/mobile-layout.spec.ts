@@ -178,6 +178,52 @@ test.describe('phone visible viewport',()=>{
     await expectMaximumField(page);
   });
 
+  test('touch drag distance follows the current canvas after battle and viewport layout changes',async({page,context,browserName})=>{
+    test.skip(browserName!=='chromium','Real touch input in this regression uses Chromium CDP.');
+    await page.goto('/');await page.locator('#start-button').click();
+    const touch=await context.newCDPSession(page);
+    for(const layout of ['battle','window','toolbar'] as const) {
+      if(layout==='window') await page.setViewportSize({width:430,height:740});
+      if(layout==='toolbar') await viewport(page,{width:430,height:420,offsetTop:12});
+      await settle(page);
+      await page.evaluate(async()=>{
+        const {game}=await import('/main.ts');
+        game.player.x=140;game.player.y=400;game.player.invincible=100;game.time=10;game.spawnTimer=999;
+      });
+      const field=required(await page.locator('#game-canvas').boundingBox());
+      const x=field.x+field.width*.35,y=field.y+field.height*.55;
+      await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+      await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+40,y}]});
+      const expected=140+40/field.width*480*1.12;
+      await expect.poll(()=>page.evaluate(async()=>(await import('/main.ts')).game.player.x),{message:`${layout}: 40px drag uses the displayed canvas width`}).toBeCloseTo(expected,0);
+      await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    }
+  });
+
+  test('a touch drag survives crossing the bomb button and releases on end or cancel',async({page,context,browserName})=>{
+    test.skip(browserName!=='chromium','Real touch input in this regression uses Chromium CDP.');
+    await page.goto('/');await page.locator('#start-button').click();
+    const touch=await context.newCDPSession(page);
+    const field=required(await page.locator('#game-canvas').boundingBox());
+    const button=required(await page.locator('#bomb-button').boundingBox());
+    const start={x:field.x+field.width*.4,y:field.y+field.height*.72};
+    const overButton={x:button.x+button.width/2,y:button.y+button.height/2};
+    for(const type of ['touchEnd','touchCancel'] as const) {
+      await page.evaluate(async()=>{
+        const {game}=await import('/main.ts');
+        game.player.x=140;game.player.y=400;game.player.invincible=100;game.time=10;game.spawnTimer=999;
+      });
+      await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[start]});
+      await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[overButton]});
+      await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:start.x+45,y:start.y}]});
+      const expected=140+45/field.width*480*1.12;
+      await expect.poll(()=>page.evaluate(async()=>(await import('/main.ts')).game.player.x)).toBeCloseTo(expected,0);
+      await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[overButton]});
+      await touch.send('Input.dispatchTouchEvent',{type,touchPoints:[]});
+      expect(await page.evaluate(async()=>(await import('/main.ts')).game.bombs)).toBe(3);
+    }
+  });
+
   test('viewport resizing releases an in-progress touch drag instead of moving the player unexpectedly',async({page,context,browserName})=>{
     test.skip(browserName!=='chromium','Real touch input in this regression uses Chromium CDP.');
     await page.goto('/');await page.locator('#start-button').click();

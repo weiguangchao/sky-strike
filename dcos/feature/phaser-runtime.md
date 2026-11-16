@@ -8,7 +8,7 @@
 - `game/runtime.ts` 创建 Phaser Game 和 battlefield Scene，场景在全部基础精灵就绪后调用战斗帧回调。Phaser 管理帧循环、键盘、鼠标和触摸，既有相对拖动倍率及移动边界保持一致。
 - `game/render.ts` 创建海面、岛屿、尾流、舰船、飞机、弹药、爆炸、补给、判定点与敌弹显示层。Phaser Image 对象池复用精灵；部件切换完好／残骸图层，Phaser 粒子与补间表现战斗事件。
 - `game/sprites.ts` 复用 Phaser Loader、纹理缓存和进行中的下载，下载失败清除待处理记录以便重试。机库和图鉴将缓存中的同一PNG绘制到 Canvas 2D。
-- `game/main.ts` 负责可访问的DOM界面、存档、战斗事件与音效协调，不再拥有 requestAnimationFrame 游戏循环。页面隐藏或窗口失焦时自动暂停并清理输入；VisualViewport变化后同步Phaser的画布坐标边界。
+- `game/main.ts` 负责可访问的DOM界面、存档、战斗事件与音效协调，不再拥有 requestAnimationFrame 游戏循环。页面隐藏或窗口失焦时自动暂停并清理输入；VisualViewport变化后同步Phaser的画布坐标边界与输入比例。
 
 ## 时间、坐标和状态
 
