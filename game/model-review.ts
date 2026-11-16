@@ -1,5 +1,7 @@
 export const MODEL_PASS_SCORE = 9.8;
-export interface ModelScore { revision: string; score: number | null; findings: readonly string[] }
+export type ModelRevision = string & { readonly __brand: 'ModelRevision' };
+export const isModelRevision = (value: unknown): value is ModelRevision => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
+export interface ModelScore { revision: ModelRevision; score: number | null; findings: readonly string[] }
 export interface CouncilMember {
   reviewer: string;
   model: string;
@@ -8,18 +10,17 @@ export interface CouncilMember {
 }
 export interface CouncilRound { round: number; date: string; members: readonly CouncilMember[] }
 export interface ReviewLedger { version: 1; rounds: readonly CouncilRound[] }
-export interface ReviewStatus {
-  state: 'pending' | 'stale' | 'changes-required' | 'approved';
-  scores: readonly number[];
-  unscored?: number;
-  round?: number;
-}
+export type ReviewStatus =
+  | { state: 'pending'; scores: readonly number[]; unscored: number; round: number | null }
+  | { state: 'stale'; scores: readonly []; round: number }
+  | { state: 'changes-required'; scores: readonly number[]; round: number }
+  | { state: 'approved'; scores: readonly [number, number]; round: number };
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   !!value && typeof value === 'object' && !Array.isArray(value);
 
 function isModelScore(value: unknown): value is ModelScore {
-  if (!isRecord(value) || typeof value.revision !== 'string' || !/^[a-f0-9]{64}$/.test(value.revision)) return false;
+  if (!isRecord(value) || !isModelRevision(value.revision)) return false;
   if (!Array.isArray(value.findings) || !value.findings.every(finding => typeof finding === 'string')) return false;
   if (value.score === null) return value.findings.some(finding => finding.trim().length > 0);
   return typeof value.score === 'number' && Number.isFinite(value.score) && value.score >= 0 && value.score <= 10;
@@ -46,23 +47,46 @@ export function isReviewLedger(value: unknown): value is ReviewLedger {
 }
 
 /** Two independent reviews of the same revision and round are required. */
-export function modelReviewStatus(modelId: string, revision: string | undefined, ledger: unknown): ReviewStatus {
-  if (!revision || !isReviewLedger(ledger)) return { state: 'pending', scores: [] };
+export function modelReviewStatus({ modelId, revision, ledger }: { modelId: string; revision: ModelRevision | undefined; ledger: ReviewLedger | null }): ReviewStatus {
+  if (!revision || !ledger) return { state: 'pending', scores: [], unscored: 0, round: null };
   const round = [...ledger.rounds].sort((a, b) => b.round - a.round).find(candidate => candidate.members.some(member => Object.hasOwn(member.results, modelId)));
-  if (!round) return { state: 'pending', scores: [] };
+  if (!round) return { state: 'pending', scores: [], unscored: 0, round: null };
   const reviews = round.members.map(member => member.results[modelId]).filter((score): score is ModelScore => !!score);
   if (reviews.some(review => review.revision !== revision)) return { state: 'stale', scores: [], round: round.round };
   const scores = reviews.flatMap(review => review.score === null ? [] : [review.score]);
   const unscored = reviews.filter(review => review.score === null).length;
   if (unscored) return { state: 'pending', scores, unscored, round: round.round };
   if (scores.some(score => score < MODEL_PASS_SCORE)) return { state: 'changes-required', scores, round: round.round };
-  return { state: scores.length === 2 ? 'approved' : 'pending', scores, round: round.round };
+  const [first, second] = scores;
+  if (first !== undefined && second !== undefined) return { state: 'approved', scores: [first, second], round: round.round };
+  return { state: 'pending', scores, unscored: 0, round: round.round };
+}
+
+export function parseReviewLedger(input: unknown): ReviewLedger | null {
+  return isReviewLedger(input) ? input : null;
+}
+
+export function parseRevisions(input: unknown): ReadonlyMap<string, ModelRevision> {
+  if (!isRecord(input)) throw new Error('Invalid model revision manifest');
+  const revisions = new Map<string, ModelRevision>();
+  for (const [id, revision] of Object.entries(input)) {
+    if (!isModelRevision(revision)) throw new Error(`Invalid model revision: ${id}`);
+    revisions.set(id, revision);
+  }
+  return revisions;
 }
 
 export function reviewLabel(status: ReviewStatus): string {
-  if (status.state === 'approved') return `双评通过 ${status.scores.map(String).join('/')}`;
-  if (status.state === 'stale') return '已更新 · 待重评';
-  if (status.state === 'changes-required') return `未通过 ${status.scores.map(String).join('/')}`;
-  if (status.unscored) return 'Sol 未评分 · 待补评';
-  return status.scores.length ? `待第二位 Sol · ${status.scores[0]}` : '待双 Sol 评审';
+  switch (status.state) {
+    case 'approved': return `双评通过 ${status.scores.map(String).join('/')}`;
+    case 'stale': return '已更新 · 待重评';
+    case 'changes-required': return `未通过 ${status.scores.map(String).join('/')}`;
+    case 'pending':
+      if (status.unscored) return 'Sol 未评分 · 待补评';
+      return status.scores.length ? `待第二位 Sol · ${status.scores[0]}` : '待双 Sol 评审';
+    default: {
+      const _exhaustive: never = status;
+      return _exhaustive;
+    }
+  }
 }

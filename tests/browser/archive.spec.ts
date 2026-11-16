@@ -1,3 +1,4 @@
+import { required } from '../support.ts';
 import { test, expect } from '@playwright/test';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -33,7 +34,7 @@ test('new aircraft and submarine models load lazily, filter, wrap and expose rea
   expect(requested).toHaveLength(0);
   await page.locator('#help-button').click(); await page.locator('#help-tab-archive').click(); await ready(page);
   await expect(page.locator('#archive-entry option')).toHaveCount(ARCHIVE.length);
-  expect(await page.locator('#archive-entry option').evaluateAll(options => new Set(options.map(option => (option as HTMLOptionElement).value)).size)).toBe(ARCHIVE.length);
+  expect(await page.locator('#archive-entry option').evaluateAll(options => new Set(options.map(option => option.getAttribute('value'))).size)).toBe(ARCHIVE.length);
   await expect(page.locator('#help-dialog').getByRole('tab')).toHaveText(['操作', '作战单位', '战役', '历史图鉴']);
   await page.locator('#help-tab-archive').focus();
   await page.keyboard.press('ArrowRight'); await expect(page.locator('#help-tab-controls')).toBeFocused();
@@ -52,12 +53,12 @@ test('new aircraft and submarine models load lazily, filter, wrap and expose rea
       const screenshot = await page.locator('#intel-canvas').screenshot();
       const image = PNG.sync.read(screenshot);
       let visible = 0;
-      for (let at = 0; at < image.data.length; at += 4) if (image.data[at] + image.data[at + 1] + image.data[at + 2] > 270) visible++;
+      for (let at = 0; at < image.data.length; at += 4) if (required(image.data[at]) + required(image.data[at + 1]) + required(image.data[at + 2]) > 270) visible++;
       expect(visible, `${entry.id}: exported geometry must be visible`).toBeGreaterThan(100);
       await writeFile(testInfo.outputPath(`${entry.modelId}-handbook.png`), screenshot);
     }
     await page.locator('#archive-next').click(); await ready(page);
-    await expect(page.locator('#archive-name')).toHaveText(entries[0].name);
+    await expect(page.locator('#archive-name')).toHaveText(required(entries[0]).name);
   }
   for (const era of ['ww1', 'interwar-ww2', 'cold-war', 'modern']) {
     await page.locator('#archive-era').selectOption(era); await ready(page);
@@ -72,6 +73,7 @@ test('new aircraft and submarine models load lazily, filter, wrap and expose rea
 });
 
 test('archive retries failed downloads and discards late downloads after a tab switch', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   let fail = true;
   await page.route('**/archive-sopwith-camel.glb', async route => { if (fail) await route.abort(); else await route.continue(); });
   await openArchive(page); await page.locator('#archive-category').selectOption('aircraft');
@@ -79,8 +81,7 @@ test('archive retries failed downloads and discards late downloads after a tab s
   await expect(page.locator('#help-ready')).toHaveText('重试加载');
   fail = false; await page.locator('#help-ready').click(); await ready(page);
   await page.locator('#close-help').click(); await page.unroute('**/archive-sopwith-camel.glb');
-  let release!: () => void;
-  const gate = new Promise<void>(resolve => { release = resolve; });
+  const { promise: gate, resolve: release } = Promise.withResolvers<void>();
   await page.route('**/archive-sopwith-camel.glb', async route => { await gate; await route.continue(); });
   await page.reload(); await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#help-button').click(); await page.locator('#help-tab-archive').click();
@@ -95,7 +96,7 @@ test('archive retries failed downloads and discards late downloads after a tab s
 
 test('four handbook tabs and archive controls fit small portrait and landscape windows', async ({ page }) => {
   await openArchive(page); await page.locator('#archive-category').selectOption('aircraft'); await ready(page);
-  for (const [width, height] of [[320, 568], [350, 568], [360, 568], [390, 510], [568, 320], [740, 280]]) {
+  for (const [width, height] of [[320, 568], [350, 568], [360, 568], [390, 510], [568, 320], [740, 280]] as const) {
     await page.setViewportSize({ width, height });
     for (const id of ['sopwith-camel', 'a6m5']) {
       await page.locator('#archive-entry').selectOption(id); await ready(page);
@@ -106,10 +107,10 @@ test('four handbook tabs and archive controls fit small portrait and landscape w
 
 test('historical notes and supplemental sources are available by touch and keyboard in short viewports', async ({ page }) => {
   await openArchive(page); await ready(page);
-  for (const [width, height] of [[320, 568], [320, 420], [390, 510], [568, 320], [740, 280]]) {
+  for (const [width, height] of [[320, 568], [320, 420], [390, 510], [568, 320], [740, 280]] as const) {
     await page.setViewportSize({ width, height });
     for (const id of ['iowa', 'f16a', 'sopwith-camel', 'gripen-c', 'nautilus', 'oberon', 'f86a', 'mirage2000c', 'spitfire-ia', 'p51d', 'gato', 'a6m5', 'mig21pf', 'rafale-c']) {
-      const entry = ARCHIVE.find(item => item.id === id)!;
+      const entry = required(ARCHIVE.find(item => item.id === id));
       await page.locator('#archive-entry').selectOption(id); await ready(page);
       const infoButton = page.locator(entry.category === 'surface' ? '#archive-info' : '#help-ready');
       await expect(infoButton).toHaveText('资料说明');
@@ -143,7 +144,7 @@ test('review evidence renders four views of each new exported GLB', async ({ pag
     expect(views).toHaveLength(4);
     const sheet = new PNG({ width: 1280, height: 800 });
     for (const [index, data] of views.entries()) {
-      const frame = PNG.sync.read(Buffer.from(data.split(',')[1], 'base64'));
+      const frame = PNG.sync.read(Buffer.from(required(data.split(',')[1]), 'base64'));
       PNG.bitblt(frame, sheet, 0, 0, frame.width, frame.height, (index % 2) * 640, Math.floor(index / 2) * 400);
     }
     await writeFile(`${evidenceDir}/${entry.modelId}.png`, PNG.sync.write(sheet));

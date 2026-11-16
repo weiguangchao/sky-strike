@@ -1,5 +1,3 @@
-// Authored silhouette coordinates, not engineering drawings. Aircraft length = 6;
-// submarine length = 10, with transverse hull radii relative to half beam.
 export type Section = readonly [forward: number, halfWidth: number, halfHeight: number, height: number, offsetX?: number];
 export type Outline = readonly (readonly [number, number])[];
 export interface AirframeProfile {
@@ -26,7 +24,7 @@ export interface AirframeProfile {
   nacelles?: readonly (readonly Section[])[];
 }
 
-export const AIRFRAME_PROFILES: Readonly<Record<string, AirframeProfile>> = {
+export const AIRFRAME_PROFILES = {
   'sopwith-camel': {
     sections: [[-3,.025,.055,.04],[-2.55,.09,.14,.05],[-1.3,.25,.27,.06],[-.35,.36,.35,.07],[.65,.38,.37,.05],[1.55,.43,.44,0],[2.32,.49,.49,0],[2.65,.48,.48,0]],
     fin: [[-2.90,.08],[-2.95,.43],[-2.78,.69],[-2.48,.72],[-2.30,.50],[-1.88,.08]],
@@ -114,7 +112,7 @@ export const AIRFRAME_PROFILES: Readonly<Record<string, AirframeProfile>> = {
     ductShape:'rounded-rectangle',
     ducts:[ [[-.60,.13,.19,-.02,-.27],[.5,.18,.23,-.03,-.34],[1.03,.16,.21,-.02,-.34]], [[-.60,.13,.19,-.02,.27],[.5,.18,.23,-.03,.34],[1.03,.16,.21,-.02,.34]] ],
   },
-};
+} satisfies Record<string, AirframeProfile>;
 
 export interface SubmarineProfile {
   sections: readonly Section[];
@@ -132,7 +130,7 @@ export interface SubmarineProfile {
   aaPlatform?: boolean;
   deckGunY?: number;
 }
-export const SUBMARINE_PROFILES: Readonly<Record<string, SubmarineProfile>> = {
+export const SUBMARINE_PROFILES = {
   u9: {
     sections:[[-4.7,.07,.10,0],[-3.9,.54,.63,0],[-2.7,.89,.88,0],[-.7,1,.90,0],[1.5,.97,.88,0],[3.1,.72,.73,.02],[4.3,.30,.47,.08],[5,.012,.07,.17]],
     sailRoof:[[-.6,.75],[-.40,.94],[.25,1],[.48,.83],[.60,.35]], openBridge:true, mastCount:2, stern:'single-rudder',
@@ -182,4 +180,4 @@ export const SUBMARINE_PROFILES: Readonly<Record<string, SubmarineProfile>> = {
     sailBase:1.08374,
     sailRoof:[[-.6,.20],[-.47,.88],[-.27,1],[.35,1],[.55,.89],[.60,.14]], openBridge:false, mastCount:3, stern:'x',
   },
-};
+} satisfies Record<string, SubmarineProfile>;

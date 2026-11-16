@@ -1,3 +1,7 @@
+## Preferences
+
+- Use **typescript-best-practices** skill when reading or editing any .ts or .tsx file.
+
 # Sky Strike 项目约定
 
 ## 产品文档

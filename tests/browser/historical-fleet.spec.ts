@@ -1,3 +1,4 @@
+import { required } from '../support.ts';
 import {test,expect} from '@playwright/test';
 import {PNG} from 'pngjs';
 import {HISTORICAL_SHIPS,NAVIES} from '../../game/naval-history.ts';
@@ -31,14 +32,14 @@ test('all 148 historical ships have real local previews and every navy filters a
       const image=PNG.sync.read(await page.locator('#intel-canvas').screenshot());
       let bright=0;const tones=new Set<number>();
       for(let at=0;at<image.data.length;at+=4) {
-        const r=image.data[at],g=image.data[at+1],b=image.data[at+2];
+        const r=required(image.data[at]),g=required(image.data[at+1]),b=required(image.data[at+2]);
         if(r>85&&g>b*.80){bright++;tones.add(((r>>4)<<8)|((g>>4)<<4)|(b>>4));}
       }
       expect(bright,`${ship.id}: visible hull and superstructure`).toBeGreaterThan(100);
       expect(tones.size,`${ship.id}: multiple visible materials`).toBeGreaterThan(8);
       await page.locator('#archive-next').click();
     }
-    await expect(page.locator('#archive-name')).toHaveText(entries[0].name);
+    await expect(page.locator('#archive-name')).toHaveText(required(entries[0]).name);
   }
   expect(errors).toEqual([]);
 });
@@ -53,8 +54,7 @@ test('failed historical downloads can retry and stale requests cannot replace an
   fail=false;await page.locator('#help-ready').click();await ready(page);
   await page.locator('#close-help').click();
   await page.unroute('**/historic-iowa.glb');
-  let release!:()=>void;
-  const gate=new Promise<void>(resolve=>{release=resolve;});
+  const { promise: gate, resolve: release } = Promise.withResolvers<void>();
   await page.route('**/historic-iowa.glb',async route=>{await gate;await route.continue();});
   await page.reload();await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#help-button').click();await page.locator('#help-tab-archive').click();
@@ -73,7 +73,7 @@ test('a selected prototype persists and its battle and wreck keep that identity'
   await expect(page.locator('#archive-name')).toHaveText('俾斯麦');
   await page.locator('#help-ready').click();await page.locator('#start-button').click();
   const result=await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+    const {game}=await import('/main.ts');
     game.step=()=>{};game.wave=5;game.time=10;game.enemies=[];game.events=[];
     const boss=game.spawnBoss();boss.x=240;boss.y=260;
     return {appearance:boss.appearance,hp:boss.hp};
@@ -86,12 +86,12 @@ test('a selected prototype persists and its battle and wreck keep that identity'
   await expect(page.locator('#help-ready')).toHaveText('下次出击使用');
   await page.locator('#help-ready').click();
   expect(await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+    const {game}=await import('/main.ts');
     return game.fleetAppearance.battleship;
   })).toBe('bismarck');
-  const identity=await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
-    game.damageEnemy(game.boss!,99999);return game.wrecks[0].appearance;
+  const identity=await page.evaluate(async()=>{ const { required } = await import('/dom.ts');
+    const {game}=await import('/main.ts');
+    game.damageEnemy(required(game.boss),99999);return required(game.wrecks[0]).appearance;
   });
   expect(identity).toBe('bismarck');
   await page.reload();await expect(page.locator('#start-button')).toBeEnabled();
@@ -103,7 +103,7 @@ test('a selected prototype persists and its battle and wreck keep that identity'
 
 test('the fleet stays inside short phone and landscape windows with long ship names',async({page})=>{
   await openFleet(page);
-  for(const [width,height] of [[320,568],[390,510],[568,320],[740,280]]) {
+  for(const [width,height] of [[320,568],[390,510],[568,320],[740,280]] as const) {
     await page.setViewportSize({width,height});
     for(const navy of ['us','ro','jp']) {
       await page.locator('#archive-country').selectOption(navy);await ready(page);
@@ -132,7 +132,7 @@ test('US class filters, direct selection and empty results stay coherent across 
   await page.locator('#archive-entry').selectOption('gerald-ford');await ready(page);
   await page.locator('#help-ready').click();await page.locator('#start-button').click();
   const battle=await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+    const {game}=await import('/main.ts');
     game.step=()=>{};game.wave=10;game.enemies=[];
     const boss=game.spawnBoss();boss.x=240;boss.y=260;
     return {id:boss.appearance,hp:boss.hp};

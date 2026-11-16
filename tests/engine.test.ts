@@ -1,3 +1,4 @@
+import { required } from './support.ts';
 import test from 'node:test';
 import { UNIT_INFO } from '../game/campaign.ts';
 import type { Input } from '../game/types.ts';
@@ -8,7 +9,7 @@ function random(seed = 42) { return () => { seed = (seed * 16807) % 2147483647; 
 function advance(game: Game, seconds: number, input: Input = {}) { for (let i = 0; i < seconds * 60; i++) game.step(1 / 60, input); }
 
 test('keyboard movement is normalized, bounded, and stops while paused', () => {
-  const game = new Game(random()); game.start();
+  const game = new Game(random()); game.start({  });
   const start = { ...game.player };
   advance(game, .1, { x: 1, y: -1 });
   assert.ok(Math.abs(Math.hypot(game.player.x - start.x, game.player.y - start.y) - game.movementSpeed * .1) < .01);
@@ -21,7 +22,7 @@ test('keyboard movement is normalized, bounded, and stops while paused', () => {
 });
 
 test('only central hitbox takes damage, then invulnerability prevents repeated hits', () => {
-  const game = new Game(random()); game.start(); game.spawnTimer = 99; game.player.invincible = 0;
+  const game = new Game(random()); game.start({  }); game.spawnTimer = 99; game.player.invincible = 0;
   const hp = game.player.hp;
   game.enemyBullets.push({ x: game.player.x + 22, y: game.player.y, vx: 0, vy: 0, radius: 4, color: 'orange' });
   game.step(.01); assert.equal(game.player.hp, hp);
@@ -31,20 +32,20 @@ test('only central hitbox takes damage, then invulnerability prevents repeated h
 });
 
 test('energy levels up once, offers unique upgrades, and freezes combat until selected', () => {
-  const game = new Game(random()); game.start(); game.xp = game.nextXp + 5;
+  const game = new Game(random()); game.start({  }); game.xp = game.nextXp + 5;
   game.step(.01);
   assert.equal(game.status, 'upgrade'); assert.equal(game.level, 2); assert.equal(game.xp, 5);
   assert.equal(new Set(game.choices.map(u => u.id)).size, 3);
   const time = game.time; advance(game, 1); assert.equal(game.time, time);
   assert.equal(game.chooseUpgrade(-1), false);
-  const selected = game.choices[0]; assert.equal(game.chooseUpgrade(0), true);
-  assert.equal(game.status, 'playing'); assert.equal(game.stacks[selected.id], 1);
+  const selected = required(game.choices[0]); assert.equal(game.chooseUpgrade(0), true);
+  assert.equal(game.status, 'playing'); assert.equal(required(game.stacks[selected.id]), 1);
   assert.equal(game.chooseUpgrade(0), false);
 });
 
 test('bomb removes bullets and regular enemies, damages boss, and grants safety', () => {
-  const game = new Game(random()); game.start(); game.wave = 5; game.spawnBoss();
-  const boss = game.boss!; const hp = boss.hp;
+  const game = new Game(random()); game.start({  }); game.wave = 5; game.spawnBoss();
+  const boss = required(game.boss); const hp = boss.hp;
   game.spawnEnemy('gunship', 100, 150);
   game.enemyShot(250, 200, 0, 1, 100);
   assert.equal(game.bomb(), true);
@@ -56,28 +57,28 @@ test('bomb removes bullets and regular enemies, damages boss, and grants safety'
 });
 
 test('shield absorbs a hit, regenerates, and armor repair respects maximum health', () => {
-  const game = new Game(random()); game.start(); game.spawnTimer = 999; game.status = 'upgrade';
-  game.choices = [UPGRADES.find(u => u.id === 'shield')!]; game.chooseUpgrade(0);
+  const game = new Game(random()); game.start({  }); game.spawnTimer = 999; game.status = 'upgrade';
+  game.choices = [required(UPGRADES.find(u => u.id === 'shield'))]; game.chooseUpgrade(0);
   game.player.invincible = 0; const hp = game.player.hp; game.hurt();
   assert.equal(game.player.hp, hp); assert.equal(game.player.shield, false);
   advance(game, 15.1); assert.equal(game.player.shield, true);
-  game.status = 'upgrade'; game.choices = [UPGRADES.find(u => u.id === 'armor')!]; game.chooseUpgrade(0);
+  game.status = 'upgrade'; game.choices = [required(UPGRADES.find(u => u.id === 'armor'))]; game.chooseUpgrade(0);
   assert.equal(game.player.maxHp, hp + 1); assert.equal(game.player.hp, hp + 1);
 });
 
 test('defeat emits one result and restart clears all previous run state', () => {
-  const game = new Game(random()); game.start('turtle', 'easy');
+  const game = new Game(random()); game.start({ craft: 'turtle', difficulty: 'easy' });
   assert.equal(game.player.hp, 9);
   game.score = 1200; game.player.hp = 1; game.player.invincible = 0;
   game.hurt(); game.hurt();
   assert.equal(game.status, 'gameover'); assert.equal(game.drainEvents().filter(e => e.type === 'end').length, 1);
-  game.start('swift'); assert.equal(game.score, 0); assert.equal(game.wave, 1); assert.equal(game.level, 1);
+  game.start({ craft: 'swift' }); assert.equal(game.score, 0); assert.equal(game.wave, 1); assert.equal(game.level, 1);
   assert.equal(game.player.hp, 4); assert.equal(game.bombs, 3); assert.deepEqual(game.stacks, {});
 });
 
 for(const craft of ['falcon','swift','turtle'] as const) for(const difficulty of ['normal','easy'] as const) {
   test(`${craft}/${difficulty}: seeded sortie covers all 15 unit classes and both naval bosses`,()=>{
-    const game=new Game(random(71)); game.start(craft,difficulty);
+    const game=new Game(random(71)); game.start({ craft: craft, difficulty: difficulty });
     const waves=new Set<number>(),bosses=new Set<number>(),units=new Set<string>();
     let steps=0;
     while(!['victory','gameover'].includes(game.status)&&steps<60*540) {
@@ -88,7 +89,7 @@ for(const craft of ['falcon','swift','turtle'] as const) for(const difficulty of
       }
       let x=WIDTH/2;
       if(game.boss) { x=game.boss.x; bosses.add(game.wave); }
-      else if(game.pickups.length) x=game.pickups[0].x;
+      else if(game.pickups.length) x=required(game.pickups[0]).x;
       game.step(1/60,{target:{x,y:HEIGHT-130}});
       waves.add(game.wave);
       for(const enemy of game.enemies) units.add(enemy.layer==='surface'?enemy.hull:enemy.type);
@@ -103,7 +104,7 @@ for(const craft of ['falcon','swift','turtle'] as const) for(const difficulty of
 }
 
 test('takeoff protects the aircraft and delays enemy spawns and weapons without blocking movement', () => {
-  const game=new Game(random()); game.start();
+  const game=new Game(random()); game.start({  });
   advance(game,2,{x:1});
   assert.equal(game.takingOff,true); assert.equal(game.enemies.length,0); assert.equal(game.bullets.length,0);
   assert.ok(game.player.invincible>0); assert.ok(game.player.x>240);
@@ -112,7 +113,7 @@ test('takeoff protects the aircraft and delays enemy spawns and weapons without 
 });
 
 test('aircraft pass over ships safely; cannon and tracking rockets only hit airborne enemies', () => {
-  const game=new Game(random()); game.start(); game.wave=4; game.player.invincible=0;
+  const game=new Game(random()); game.start({  }); game.wave=4; game.player.invincible=0;
   const ship=game.spawnShip('destroyer',240,game.player.y);
   const hp=game.player.hp, hull=ship.hp;
   game.updateEnemies(.01);
@@ -122,28 +123,28 @@ test('aircraft pass over ships safely; cannon and tracking rockets only hit airb
   const plane=game.spawnEnemy('scout',ship.x,ship.y);
   game.updateBullets(.01); assert.equal(plane.dead,true); assert.equal(ship.hp,hull);
   game.bullets=[{x:ship.x,y:ship.y+50,vx:0,vy:-280,damage:100,radius:4,kind:'missile',dead:false}];
-  game.updateBullets(.01); assert.equal(game.bullets[0].vx,0); assert.equal(ship.hp,hull);
+  game.updateBullets(.01); assert.equal(required(game.bullets[0]).vx,0); assert.equal(ship.hp,hull);
   game.enemyShot(game.player.x,game.player.y,0,0,0);
   game.updateBullets(.01); assert.equal(game.player.hp,hp-1);
 });
 
 test('automatic anti-ship ordnance requires alignment, lands on the surface, and spends no manual bombs', () => {
-  const game=new Game(random()); game.start(); game.wave=4;
+  const game=new Game(random()); game.start({  }); game.wave=4;
   const ship=game.spawnShip('destroyer',100,280), hull=ship.hp;
   assert.equal(game.fireOrdnance(),false);
-  game.player.x=ship.x+ship.parts[0].x;
+  game.player.x=ship.x+required(ship.parts[0]).x;
   assert.equal(game.fireOrdnance(),true); assert.equal(game.bombs,3);
-  assert.equal(game.bullets[0].kind,'ordnance');
+  assert.equal(required(game.bullets[0]).kind,'ordnance');
   game.updateBullets(.1); assert.equal(ship.hp,hull,'the weapon must fall before dealing damage');
   game.updateBullets(1.1);
-  assert.ok(ship.hp<hull); assert.ok(ship.parts[0].hp<ship.parts[0].maxHp);
+  assert.ok(ship.hp<hull); assert.ok(required(ship.parts[0]).hp<required(ship.parts[0]).maxHp);
   const before=ship.hp;
   game.impactOrdnance({x:ship.x,y:ship.y+ship.halfLength*.8},30);
   assert.ok(ship.hp<before,'intact parts must never make the hull immune');
 });
 
 test('destroying AA suppresses its own fire and losing the bridge disrupts coordinated attacks', () => {
-  const game=new Game(random()); game.start(); game.wave=5;
+  const game=new Game(random()); game.start({  }); game.wave=5;
   const ship=game.spawnBoss(); ship.y=218;
   game.damagePart(ship,'aa-port',9999);
   game.damagePart(ship,'aa-port',9999);
@@ -152,14 +153,14 @@ test('destroying AA suppresses its own fire and losing the bridge disrupts coord
   ship.fireTimer=0; ship.parts.forEach(part=>part.fireTimer=0);
   game.updateEnemies(.01);
   assert.equal(game.enemyBullets.length,3,'only the intact right AA group can fire');
-  assert.ok(ship.parts.find(part=>part.id==='aa-starboard')!.fireTimer>2.5,'bridge loss slows the remaining AA');
+  assert.ok(required(ship.parts.find(part=>part.id==='aa-starboard')).fireTimer>2.5,'bridge loss slows the remaining AA');
   game.damagePart(ship,'aa-starboard',9999);
   game.enemyBullets=[]; game.updateEnemies(3);
   assert.equal(game.enemyBullets.length,0);
 });
 
 test('the carrier launches small deck squadrons; destroying its deck stops new launches only', () => {
-  const game=new Game(random()); game.start(); game.wave=10;
+  const game=new Game(random()); game.start({  }); game.wave=10;
   const carrier=game.spawnBoss(); carrier.y=218; carrier.launchTimer=0;
   game.updateEnemies(.01);
   const squadron=game.enemies.filter(e=>e.layer==='air');
@@ -172,7 +173,7 @@ test('the carrier launches small deck squadrons; destroying its deck stops new l
 });
 
 test('dive bombers show a warning, lock a fixed route, and do not home after the warning', () => {
-  const game=new Game(random()); game.start(); game.wave=7;
+  const game=new Game(random()); game.start({  }); game.wave=7;
   const diver=game.spawnEnemy('diver',180,151);
   game.updateEnemies(.01); assert.equal(diver.action,'warning');
   const locked=diver.lockedX; game.player.x=440;
@@ -182,11 +183,11 @@ test('dive bombers show a warning, lock a fixed route, and do not home after the
 });
 
 test('surface torpedoes never hurt aircraft and escort loss does not end the sortie', () => {
-  const game=new Game(random()); game.start(); game.wave=3; game.spawnTimer=999;
+  const game=new Game(random()); game.start({  }); game.wave=3; game.spawnTimer=999;
   game.player.invincible=0;
   game.surfaceTorpedoes.push({x:game.player.x,y:game.player.y,vx:0,vy:0,age:0,dead:false});
   game.step(.01); assert.equal(game.player.hp,5);
-  const convoy=game.convoy!;
+  const convoy=required(game.convoy);
   for(let i=0;i<3;i++) game.surfaceTorpedoes.push({x:convoy.x,y:convoy.y,vx:0,vy:0,age:0,dead:false});
   game.step(.01);
   assert.equal(convoy.dead,true); assert.equal(game.status,'playing');
@@ -194,7 +195,7 @@ test('surface torpedoes never hurt aircraft and escort loss does not end the sor
 });
 
 test('surviving escort rewards a bomb, oil depots explode locally, and wrecks sink out of the scene', () => {
-  const game=new Game(random()); game.start(); game.wave=3;
+  const game=new Game(random()); game.start({  }); game.wave=3;
   game.convoy={x:355,y:350,hp:2,maxHp:3,saved:false,dead:false};
   game.nextWave(); assert.equal(game.convoy.saved,true); assert.equal(game.score,600);
   assert.ok(game.pickups.some(p=>p.type==='bomb'));
@@ -205,5 +206,5 @@ test('surviving escort rewards a bomb, oil depots explode locally, and wrecks si
   assert.equal(game.wrecks.length,2);
   game.pickups=[]; game.xp=0; game.nextXp=Infinity; game.spawnTimer=999;
   advance(game,3.3); assert.equal(game.wrecks.length,0);
-  game.start(); assert.equal(game.convoy,null); assert.equal(game.surfaceTorpedoes.length,0);
+  game.start({  }); assert.equal(game.convoy,null); assert.equal(game.surfaceTorpedoes.length,0);
 });

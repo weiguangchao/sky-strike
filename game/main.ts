@@ -1,41 +1,36 @@
+import { element as $, canvas as canvasElement, button, select, dialog, anchor } from './dom.ts';
+import { isCraftId, isDifficulty } from './types.ts';
+import { readStorage, writeStorage, parsePreferences } from './storage.ts';
 import type { CraftId, Difficulty, Point, Result } from './types.ts';
 import { Game, CRAFTS, UPGRADES, WIDTH, HEIGHT } from './engine.ts';
-import { UNIT_INFO, WAVES } from './campaign.ts';
+import { UNIT_INFO, WAVES, waveInfo, unitInfo } from './campaign.ts';
 import { Renderer } from './render.ts';
 import { Sound } from './audio.ts';
 import { trackViewport } from './viewport.ts';
 import { VISUAL_SIGNALS } from './visual-style.ts';
-import { DEFAULT_FLEET, fleetSelection, historicalShip } from './naval-history.ts';
-import type { FleetSelection, NavalHull } from './naval-history.ts';
+import { DEFAULT_FLEET, NAVAL_HULLS, historicalShip } from './naval-history.ts';
+import type { FleetSelection } from './naval-history.ts';
 import { ARCHIVE_COUNTRIES, filterArchive } from './historical-archive.ts';
-import { modelReviewStatus, reviewLabel } from './model-review.ts';
+import { modelReviewStatus, reviewLabel, parseRevisions, parseReviewLedger } from './model-review.ts';
 import revisions from './archive-revisions.json';
 import reviewLedger from './model-reviews.json';
-import type { ModelId } from './models.ts';
+
+const modelRevisions = parseRevisions(revisions);
+const ledger = parseReviewLedger(reviewLedger);
 
 for (const [name, signal] of Object.entries(VISUAL_SIGNALS)) document.documentElement.style.setProperty(`--${name}`, signal.color);
 
-const $ = <T extends HTMLElement = HTMLElement>(id: string): T => {
-  const element = document.getElementById(id);
-  if (!element) throw new Error(`Missing interface element: ${id}`);
-  return element as T;
-};
-const storage = {
-  read<T>(key: string, fallback: T): T { try { return JSON.parse(localStorage.getItem(`sky-strike:${key}`) ?? 'null') ?? fallback; } catch { return fallback; } },
-  write(key: string, value: unknown) { try { localStorage.setItem(`sky-strike:${key}`, JSON.stringify(value)); } catch { /* Play remains available without storage. */ } },
-};
-let selectedCraft = storage.read<CraftId>('craft', 'falcon');
-if (!CRAFTS[selectedCraft]) selectedCraft = 'falcon';
-let difficulty = storage.read<Difficulty>('difficulty', 'normal');
-if (!['normal', 'easy'].includes(difficulty)) difficulty = 'normal';
-let bestScore = Number(storage.read('best', 0)) || 0;
-let flights = Number(storage.read('flights', 0)) || 0;
-let selectedFleet:FleetSelection=fleetSelection(storage.read('fleet',null));
+const preferences = parsePreferences({ craft: readStorage('craft'), difficulty: readStorage('difficulty'), best: readStorage('best'), flights: readStorage('flights'), fleet: readStorage('fleet'), sound: readStorage('sound') });
+let selectedCraft = preferences.craft;
+let difficulty = preferences.difficulty;
+let bestScore = preferences.best;
+let flights = preferences.flights;
+const selectedFleet: FleetSelection = preferences.fleet;
 export const game = new Game();
 game.craft = selectedCraft;
-const renderer = new Renderer($<HTMLCanvasElement>('game-canvas'), $<HTMLCanvasElement>('craft-canvas'), game, $<HTMLCanvasElement>('intel-canvas'));
-const sound = new Sound(Boolean(storage.read('sound', false)));
-const keys = new Set();
+const renderer = new Renderer({ canvas: canvasElement('game-canvas'), previewCanvas: canvasElement('craft-canvas'), game, intelCanvas: canvasElement('intel-canvas') });
+const sound = new Sound(preferences.sound);
+const keys = new Set<string>();
 let pointer: { id: number; position: Point; target: Point } | null = null;
 let announcementTimer = 0;
 let announcementText = '';
@@ -52,10 +47,10 @@ function updateRecord() {
 }
 
 function selectCraft(id: CraftId) {
-  if (game.status !== 'menu' || !CRAFTS[id]) return;
+  if (game.status !== 'menu') return;
   selectedCraft = id;
   game.craft = id;
-  storage.write('craft', id);
+  writeStorage({ key: 'craft', value: id });
   const c = CRAFTS[id];
   document.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach(button => { const active = button.dataset.craft === id; button.classList.toggle('active', active); button.setAttribute('aria-selected', String(active)); });
   $('craft-name').textContent = c.name;
@@ -67,7 +62,7 @@ function selectCraft(id: CraftId) {
 function setDifficulty(mode: Difficulty) {
   if (game.status !== 'menu') return;
   difficulty = mode;
-  storage.write('difficulty', mode);
+  writeStorage({ key: 'difficulty', value: mode });
   document.querySelectorAll<HTMLButtonElement>('[data-difficulty]').forEach(button => { const active = button.dataset.difficulty === mode; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
 }
 
@@ -75,7 +70,7 @@ function start() {
   sound.unlock();
   keys.clear(); pointer = null;
   game.fleetAppearance={...selectedFleet};
-  game.start(selectedCraft, difficulty);
+  game.start({ craft: selectedCraft, difficulty });
   $('build-list').textContent = '等待首次升级';
   $('run-build').hidden = false;
   healthKey = '';
@@ -107,7 +102,7 @@ function togglePause() {
   processEvents(); syncState();
 }
 
-function announce(title: string, boss = false, duration = 2.4) {
+function announce({ title, boss = false, duration = 2.4 }: { title: string; boss?: boolean; duration?: number }) {
   const html = `<strong>${title}</strong>`;
   if (html !== announcementText) { $('wave-announcement').innerHTML = html; announcementText = html; }
   $('wave-announcement').classList.add('visible');
@@ -117,12 +112,12 @@ function announce(title: string, boss = false, duration = 2.4) {
 
 function upgradeChoices() {
   $('upgrade-options').replaceChildren(...game.choices.map((upgrade, index) => {
-    const button = document.createElement('button');
-    button.className = `upgrade-card${upgrade.rare ? ' rare' : ''}`;
+    const option = document.createElement('button');
+    option.className = `upgrade-card${upgrade.rare ? ' rare' : ''}`;
     const rank = game.stacks[upgrade.id] ? `<span class="upgrade-rank">${(game.stacks[upgrade.id] || 0) + 1} 级</span>` : '';
-    button.innerHTML = `<span class="upgrade-icon"><svg><use href="#i-${upgrade.icon}"/></svg></span><span class="upgrade-card-content"><strong>${upgrade.name}${rank}</strong><p>${upgrade.description}</p></span><span class="upgrade-number">${index + 1}</span>`;
-    button.addEventListener('click', () => chooseUpgrade(index));
-    return button;
+    option.innerHTML = `<span class="upgrade-icon"><svg><use href="#i-${upgrade.icon}"/></svg></span><span class="upgrade-card-content"><strong>${upgrade.name}${rank}</strong><p>${upgrade.description}</p></span><span class="upgrade-number">${index + 1}</span>`;
+    option.addEventListener('click', () => chooseUpgrade(index));
+    return option;
   }));
 }
 
@@ -147,7 +142,7 @@ function syncState() {
   document.querySelectorAll<HTMLButtonElement>('[data-craft], [data-difficulty]').forEach(button => { button.disabled = inRun; });
   if (state !== previousStatus) {
     if (state === 'paused') $('resume-button').focus({ preventScroll: true });
-    if (state === 'upgrade') ($('upgrade-options').firstElementChild as HTMLElement | null)?.focus({ preventScroll: true });
+    if (state === 'upgrade') $('upgrade-options').querySelector('button')?.focus({ preventScroll: true });
     if (state === 'gameover' || state === 'victory') $('retry-button').focus({ preventScroll: true });
     previousStatus = state;
   }
@@ -159,15 +154,15 @@ function syncHud() {
   $('level').textContent = String(game.level);
   $('xp-fill').style.width = `${Math.min(100, game.xp / game.nextXp * 100)}%`;
   $('bomb-count').textContent = `× ${game.bombs}`;
-  $<HTMLButtonElement>('bomb-button').disabled = game.bombs === 0;
+  button('bomb-button').disabled = game.bombs === 0;
   const currentHealth = `${game.player.hp}/${game.player.maxHp}`;
   if (healthKey !== currentHealth) {
     healthKey = currentHealth;
     $('health').innerHTML = Array.from({ length: game.player.maxHp }, (_, i) => `<i class="health-point${i >= game.player.hp ? ' empty' : ''}"></i>`).join('');
     $('health').setAttribute('aria-label', `装甲 ${game.player.hp} / ${game.player.maxHp}`);
   }
-  const escort = game.convoy && !game.convoy.dead && !game.convoy.saved;
-  $('weapon-level').textContent = escort ? `护航 ${game.convoy!.hp}/${game.convoy!.maxHp} · 自动对舰` : '机炮对空 · 自动对舰';
+  const escort = game.convoy && !game.convoy.dead && !game.convoy.saved ? game.convoy : null;
+  $('weapon-level').textContent = escort ? `护航 ${escort.hp}/${escort.maxHp} · 自动对舰` : '机炮对空 · 自动对舰';
   $('sector-label').textContent = game.wave>5?'风暴防线':'破晓海域';
   $('boss-hud').hidden = !game.boss;
   if (game.boss) {
@@ -184,9 +179,9 @@ function syncHud() {
 
 function showResults(event: Result) {
   flights++;
-  storage.write('flights', flights);
+  writeStorage({ key: 'flights', value: flights });
   const isBest = event.score > bestScore;
-  if (isBest) { bestScore = event.score; storage.write('best', bestScore); }
+  if (isBest) { bestScore = event.score; writeStorage({ key: 'best', value: bestScore }); }
   $('result-title').textContent = event.victory ? '作战胜利' : '出击结束';
   $('result-score').textContent = pad(event.score);
   $('result-best').hidden = !isBest;
@@ -200,33 +195,36 @@ function processEvents() {
   for (const event of game.drainEvents()) {
     renderer.event(event); sound.play(event.type);
     if (event.type === 'wave') {
-      if (event.wave % 5 === 0) announce('敌方首领接近', true, 3.3);
-      else if (event.wave === 6) announce('风暴防线 · 补给抵达', false, 3);
-      else announce(event.wave === 1 ? '友军航母 · 起飞' : event.wave === 2 ? '对准舰船 · 自动投弹' : WAVES[event.wave-1].name);
+      if (event.wave % 5 === 0) announce({ title: '敌方首领接近', boss: true, duration: 3.3 });
+      else if (event.wave === 6) announce({ title: '风暴防线 · 补给抵达', boss: false, duration: 3 });
+      else announce({ title: event.wave === 1 ? '友军航母 · 起飞' : event.wave === 2 ? '对准舰船 · 自动投弹' : waveInfo(event.wave).name });
     }
-    if (event.type === 'bossDefeated') announce(event.final ? '赤潮已击沉' : '铁岳已击沉', false, 2.4);
+    if (event.type === 'bossDefeated') announce({ title: event.final ? '赤潮已击沉' : '铁岳已击沉', boss: false, duration: 2.4 });
     if (event.type === 'upgrade') { keys.clear(); pointer = null; upgradeChoices(); }
     if (event.type === 'upgraded') {
-      $('build-list').innerHTML = Object.entries(game.stacks).map(([id, count]) => `<span class="build-chip">${UPGRADES.find(u => u.id === id)!.name}${count > 1 ? ` ×${count}` : ''}</span>`).join('');
+      $('build-list').innerHTML = Object.entries(game.stacks).flatMap(([id, count]) => {
+        const upgrade = UPGRADES.find(upgrade => upgrade.id === id);
+        return upgrade ? [`<span class="build-chip">${upgrade.name}${count > 1 ? ` ×${count}` : ''}</span>`] : [];
+      }).join('');
     }
-    if (event.type === 'partDestroyed') announce(`${event.name}已摧毁`, false, 1.5);
-    if (event.type === 'escort') announce(event.saved ? '护航完成 · 航弹补给' : '运输船损失 · 继续作战', false, 2);
-    if (event.type === 'pickup') announce(event.text, false, 1.4);
+    if (event.type === 'partDestroyed') announce({ title: `${event.name}已摧毁`, boss: false, duration: 1.5 });
+    if (event.type === 'escort') announce({ title: event.saved ? '护航完成 · 航弹补给' : '运输船损失 · 继续作战', boss: false, duration: 2 });
+    if (event.type === 'pickup') announce({ title: event.text, boss: false, duration: 1.4 });
     if (event.type === 'end') { keys.clear(); pointer = null; showResults(event); announcementTimer = 0; $('wave-announcement').classList.remove('visible'); }
   }
 }
 
 function toggleSound() {
   sound.enabled = !sound.enabled;
-  if (sound.enabled) { sound.unlock(); sound.tone(660, 880, .12, .05); }
-  storage.write('sound', sound.enabled);
+  if (sound.enabled) { sound.unlock(); sound.tone({ from: 660, to: 880, duration: .12, volume: .05 }); }
+  writeStorage({ key: 'sound', value: sound.enabled });
   syncSound();
 }
 function syncSound() {
   document.querySelectorAll<HTMLButtonElement>('.sound-button').forEach(button => {
     const label = sound.enabled ? '关闭声音' : '开启声音';
     button.setAttribute('aria-label', label); button.title = label;
-    button.querySelector('use')!.setAttribute('href', sound.enabled ? '#i-sound' : '#i-mute');
+    button.querySelector('use')?.setAttribute('href', sound.enabled ? '#i-sound' : '#i-mute');
   });
 }
 
@@ -236,7 +234,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) autoP
 window.addEventListener('blur', autoPause);
 window.addEventListener('resize', () => renderer.resize());
 window.addEventListener('keydown', event => {
-  if ($<HTMLDialogElement>('help-dialog').open || event.ctrlKey || event.metaKey || event.altKey) return;
+  if (dialog('help-dialog').open || event.ctrlKey || event.metaKey || event.altKey) return;
   const key = event.key.toLowerCase();
   if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'w', 'a', 's', 'd', ' '].includes(key) && game.status === 'playing') event.preventDefault();
   if (event.repeat && [' ', 'b', 'p', 'escape', 'm'].includes(key)) return;
@@ -248,7 +246,7 @@ window.addEventListener('keydown', event => {
 });
 window.addEventListener('keyup', event => keys.delete(event.key.toLowerCase()));
 
-const canvas = $<HTMLCanvasElement>('game-canvas');
+const canvas = canvasElement('game-canvas');
 function pointerPosition(event: PointerEvent) {
   const rect = canvas.getBoundingClientRect(), scale = Math.min(rect.width / WIDTH, rect.height / HEIGHT);
   return { x: (event.clientX - rect.left - (rect.width - WIDTH * scale) / 2) / scale, y: (event.clientY - rect.top - (rect.height - HEIGHT * scale) / 2) / scale };
@@ -280,8 +278,8 @@ $('resume-button').addEventListener('click', togglePause);
 $('quit-button').addEventListener('click', goHome);
 $('result-home').addEventListener('click', goHome);
 $('bomb-button').addEventListener('click', () => { sound.unlock(); game.bomb(); processEvents(); syncHud(); });
-document.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach(button => button.addEventListener('click', () => selectCraft(button.dataset.craft as CraftId)));
-document.querySelectorAll<HTMLButtonElement>('[data-difficulty]').forEach(button => button.addEventListener('click', () => setDifficulty(button.dataset.difficulty as Difficulty)));
+document.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach(button => button.addEventListener('click', () => { if (isCraftId(button.dataset.craft)) selectCraft(button.dataset.craft); }));
+document.querySelectorAll<HTMLButtonElement>('[data-difficulty]').forEach(button => button.addEventListener('click', () => { if (isDifficulty(button.dataset.difficulty)) setDifficulty(button.dataset.difficulty); }));
 document.querySelectorAll<HTMLButtonElement>('.sound-button').forEach(button => button.addEventListener('click', toggleSound));
 function syncFullscreen() {
   const label=document.fullscreenElement?'退出全屏':'全屏游戏';
@@ -301,8 +299,10 @@ syncFullscreen();
 let intelIndex = 0;
 let campaignIndex = 0;
 let activeHelp='controls';
-let archiveEntries = filterArchive();
-let archiveIndex = 0, archiveRequest = 0, archiveReady = false, archiveFailed = false;
+let archiveEntries = filterArchive({});
+let archiveIndex = 0, archiveRequest = 0;
+type ArchiveLoad = { kind: 'loading' } | { kind: 'ready' } | { kind: 'failed' } | { kind: 'empty' };
+let archiveLoad: ArchiveLoad = { kind: 'empty' };
 let archiveDetailsOpen = false;
 const ordinaryHelpReady=$('help-ready').innerHTML;
 for (const country of ARCHIVE_COUNTRIES) {
@@ -315,14 +315,14 @@ function archiveShip() {
   return entry?.category === 'surface' ? historicalShip(entry.id) : undefined;
 }
 function archiveActionLabel(): void {
-  const ship = archiveShip(), button = $<HTMLButtonElement>('help-ready');
+  const ship = archiveShip(), actionButton = button('help-ready');
   $('archive-info').hidden = activeHelp !== 'archive' || archiveDetailsOpen || !ship;
-  button.disabled = !!ship && !archiveDetailsOpen && !archiveReady && !archiveFailed;
-  button.textContent = archiveDetailsOpen ? '返回图鉴' : archiveFailed ? '重试加载' : !archiveEntries.length ? '返回作战' :
-    !ship ? '资料说明' : !archiveReady ? '载入模型…' : selectedFleet[ship.hull] === ship.id ? '已选用 · 返回' :
+  actionButton.disabled = !!ship && !archiveDetailsOpen && archiveLoad.kind !== 'ready' && archiveLoad.kind !== 'failed';
+  actionButton.textContent = archiveDetailsOpen ? '返回图鉴' : (archiveLoad.kind === 'failed') ? '重试加载' : !archiveEntries.length ? '返回作战' :
+    !ship ? '资料说明' : archiveLoad.kind !== 'ready' ? '载入模型…' : selectedFleet[ship.hull] === ship.id ? '已选用 · 返回' :
     game.status === 'menu' ? '使用本舰' : '下次出击使用';
 }
-function setArchiveDetails(open: boolean, focus = false): void {
+function setArchiveDetails({ open, focus = false }: { open: boolean; focus?: boolean }): void {
   archiveDetailsOpen = open;
   $('archive-details').hidden = !open;
   for (const id of ['archive-card', 'archive-controls', 'archive-coverage']) $(id).hidden = open;
@@ -331,12 +331,13 @@ function setArchiveDetails(open: boolean, focus = false): void {
 }
 async function showArchive(index: number): Promise<void> {
   const request = ++archiveRequest;
-  archiveReady = false;
-  archiveFailed = false;
+  archiveLoad = { kind: 'loading' };
   archiveIndex = archiveEntries.length ? (index + archiveEntries.length) % archiveEntries.length : 0;
-  setArchiveDetails(false);
+  setArchiveDetails({ open: false });
   $('archive-illustration').classList.add('loading');
-  if (!archiveEntries.length) {
+  const entry = archiveEntries[archiveIndex];
+  if (!entry) {
+    archiveLoad = { kind: 'empty' };
     $('archive-name').textContent = '没有符合条件的型号';
     $('archive-role').textContent = '';
     $('archive-count').textContent = '0 / 0';
@@ -346,11 +347,10 @@ async function showArchive(index: number): Promise<void> {
     $('archive-status').textContent = '暂无模型';
     return;
   }
-  const entry = archiveEntries[archiveIndex];
   $('archive-name').textContent = entry.name;
   const ship = archiveShip();
   const className = ship?.className && ship.className !== entry.name ? `${ship.className} · ` : '';
-  $('archive-role').textContent = `${ARCHIVE_COUNTRIES.find(country => country.id === entry.country)!.name} · ${className}${entry.year}年外观 · ${entry.kind}`;
+  $('archive-role').textContent = `${ARCHIVE_COUNTRIES.find(country => country.id === entry.country)?.name ?? entry.country} · ${className}${entry.year}年外观 · ${entry.kind}`;
   $('archive-count').textContent = `${archiveIndex + 1} / ${archiveEntries.length}`;
   $('archive-shape').textContent = entry.feature;
   $('archive-shape').title = entry.note;
@@ -362,51 +362,51 @@ async function showArchive(index: number): Promise<void> {
     link.setAttribute('aria-label', `${entry.name}的${index === 0 ? '主要史料' : '补充资料'}，${new URL(url).hostname}，打开新标签页`);
     item.append(link); return item;
   }));
-  const revision = (revisions as Record<string, string>)[entry.modelId];
-  const status = modelReviewStatus(entry.modelId, revision, reviewLedger);
+  const revision = modelRevisions.get(entry.modelId);
+  const status = modelReviewStatus({ modelId: entry.modelId, revision, ledger });
   $('archive-review').textContent = reviewLabel(status);
   $('archive-review').dataset.state = status.state;
-  $<HTMLSelectElement>('archive-entry').value = entry.id;
-  const source = $<HTMLAnchorElement>('archive-source');
+  select('archive-entry').value = entry.id;
+  const source = anchor('archive-source');
   source.href = entry.source; source.hidden = false;
   source.setAttribute('aria-label', `${entry.name}的历史资料，打开新标签页`);
   $('archive-status').textContent = '模型载入中';
   try {
-    await renderer.loadArchiveModel(entry.modelId as ModelId);
+    await renderer.loadArchiveModel(entry.modelId);
     if (request !== archiveRequest || activeHelp !== 'archive') return;
-    renderer.selectArchiveModel(entry.modelId as ModelId, entry.category !== 'aircraft');
+    renderer.selectArchiveModel(entry.modelId, entry.category !== 'aircraft');
     $('intel-canvas').setAttribute('aria-label', `${entry.name} ${entry.year}年像素模型`);
-    archiveReady = true;
+    archiveLoad = { kind: 'ready' };
     $('archive-status').textContent = '';
     $('archive-illustration').classList.remove('loading');
     archiveActionLabel();
   } catch {
     if (request !== archiveRequest || activeHelp !== 'archive') return;
-    archiveFailed = true;
+    archiveLoad = { kind: 'failed' };
     $('archive-status').textContent = '模型加载失败，请重试';
     archiveActionLabel();
   }
 }
 function filterCenturyArchive(): void {
-  const category = $<HTMLSelectElement>('archive-category').value;
+  const category = select('archive-category').value;
   const surfaceKind = ['fleet-carrier', 'cruiser', 'destroyer', 'battleship', 'patrol-boat', 'transport'].includes(category);
-  archiveEntries = filterArchive($<HTMLSelectElement>('archive-country').value, surfaceKind ? 'surface' : category, $<HTMLSelectElement>('archive-era').value)
+  archiveEntries = filterArchive({ country: select('archive-country').value, category: surfaceKind ? 'surface' : category, era: select('archive-era').value })
     .filter(entry => !surfaceKind || historicalShip(entry.id)?.hull === category);
   $('archive-entry').replaceChildren(...archiveEntries.map(entry => {
     const option = document.createElement('option');
     option.value = entry.id; option.textContent = entry.name; return option;
   }));
-  for (const id of ['archive-entry', 'archive-prev', 'archive-next']) $<HTMLButtonElement | HTMLSelectElement>(id).disabled = !archiveEntries.length;
+  for (const id of ['archive-entry', 'archive-prev', 'archive-next']) (id === 'archive-entry' ? select(id) : button(id)).disabled = !archiveEntries.length;
   if (activeHelp === 'archive') void showArchive(0);
 }
 for (const id of ['archive-country', 'archive-category', 'archive-era']) $(id).addEventListener('change', filterCenturyArchive);
 $('archive-prev').addEventListener('click', () => { void showArchive(archiveIndex - 1); });
 $('archive-next').addEventListener('click', () => { void showArchive(archiveIndex + 1); });
-$('archive-entry').addEventListener('change', () => { void showArchive(archiveEntries.findIndex(entry => entry.id === $<HTMLSelectElement>('archive-entry').value)); });
+$('archive-entry').addEventListener('change', () => { void showArchive(archiveEntries.findIndex(entry => entry.id === select('archive-entry').value)); });
 filterCenturyArchive();
 function showIntel(index: number) {
   intelIndex = (index + UNIT_INFO.length) % UNIT_INFO.length;
-  const unit=UNIT_INFO[intelIndex];
+  const unit=unitInfo(intelIndex);
   $('intel-name').textContent=unit.name;
   $('intel-role').textContent=unit.role;
   $('intel-shape').textContent=unit.silhouette;
@@ -416,23 +416,23 @@ function showIntel(index: number) {
 }
 function showCampaign(index: number) {
   campaignIndex=(index+WAVES.length)%WAVES.length;
-  const wave=WAVES[campaignIndex];
+  const wave=waveInfo(campaignIndex + 1);
   $('campaign-stage').textContent=campaignIndex===4||campaignIndex===9?'旗舰攻坚':'空海联合作战';
   $('campaign-name').textContent=wave.name;
   $('campaign-objective').textContent=wave.objective;
   const ids=[...wave.air,...wave.sea];
   if(campaignIndex===2||campaignIndex===7) ids.push('heavy-bomber');
-  $('campaign-roster').textContent=ids.map(id=>UNIT_INFO.find(unit=>unit.id===id)!.name).join(' / ');
+  $('campaign-roster').textContent=ids.map(id=>UNIT_INFO.find(unit=>unit.id===id)?.name ?? id).join(' / ');
   $('campaign-count').textContent=`${waveNum(campaignIndex+1)} / 10 波`;
 }
 function showHelpPanel(id: string) {
   activeHelp=id;
-  if (id !== 'archive') setArchiveDetails(false);
+  if (id !== 'archive') setArchiveDetails({ open: false });
   $('help-dialog').classList.toggle('archive-open', id==='archive');
   if (id !== 'archive') archiveRequest++;
   if (id !== 'archive') {
     $('archive-info').hidden = true;
-    $<HTMLButtonElement>('help-ready').disabled = false;
+    button('help-ready').disabled = false;
     $('help-ready').innerHTML = ordinaryHelpReady;
   }
   for(const tab of document.querySelectorAll<HTMLButtonElement>('[data-help]')) {
@@ -451,54 +451,55 @@ function showHelpPanel(id: string) {
 }
 const helpTabs=[...document.querySelectorAll<HTMLButtonElement>('[data-help]')];
 helpTabs.forEach((tab,index)=>{
-  tab.addEventListener('click',()=>showHelpPanel(tab.dataset.help!));
+  tab.addEventListener('click',()=>showHelpPanel(tab.dataset.help ?? 'controls'));
   tab.addEventListener('keydown',event=>{
     if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
     event.preventDefault();
     const next=event.key==='Home'?0:event.key==='End'?helpTabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+helpTabs.length)%helpTabs.length;
-    showHelpPanel(helpTabs[next].dataset.help!); helpTabs[next].focus();
+    const tab = helpTabs[next];
+    if (tab) { showHelpPanel(tab.dataset.help ?? 'controls'); tab.focus(); }
   });
 });
 $('intel-prev').addEventListener('click',()=>showIntel(intelIndex-1));
 $('intel-next').addEventListener('click',()=>showIntel(intelIndex+1));
 $('campaign-prev').addEventListener('click',()=>showCampaign(campaignIndex-1));
 $('campaign-next').addEventListener('click',()=>showCampaign(campaignIndex+1));
-document.querySelectorAll<HTMLButtonElement>('[data-open-help]').forEach(button=>button.addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); showHelpPanel('controls'); $<HTMLDialogElement>('help-dialog').showModal(); }));
-$('close-help').addEventListener('click', () => $<HTMLDialogElement>('help-dialog').close());
-$('archive-info').addEventListener('click', () => setArchiveDetails(true, true));
+document.querySelectorAll<HTMLButtonElement>('[data-open-help]').forEach(button=>button.addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); showHelpPanel('controls'); dialog('help-dialog').showModal(); }));
+$('close-help').addEventListener('click', () => dialog('help-dialog').close());
+$('archive-info').addEventListener('click', () => setArchiveDetails({ open: true, focus: true }));
 $('help-ready').addEventListener('click', () => {
   if (activeHelp === 'archive') {
-    if (archiveDetailsOpen) { setArchiveDetails(false, true); return; }
-    if (archiveFailed) { void showArchive(archiveIndex); return; }
+    if (archiveDetailsOpen) { setArchiveDetails({ open: false, focus: true }); return; }
+    if ((archiveLoad.kind === 'failed')) { void showArchive(archiveIndex); return; }
     const ship = archiveShip();
     if (ship) {
-      if (!archiveReady) return;
+      if (archiveLoad.kind !== 'ready') return;
       selectedFleet[ship.hull] = ship.id;
-      storage.write('fleet', selectedFleet);
+      writeStorage({ key: 'fleet', value: selectedFleet });
       if (game.status === 'menu') game.fleetAppearance = { ...selectedFleet };
-    } else if (archiveEntries.length) { setArchiveDetails(true, true); return; }
+    } else if (archiveEntries.length) { setArchiveDetails({ open: true, focus: true }); return; }
   }
-  $<HTMLDialogElement>('help-dialog').close();
+  dialog('help-dialog').close();
 });
-$<HTMLDialogElement>('help-dialog').addEventListener('close', () => { archiveRequest++; if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
+dialog('help-dialog').addEventListener('close', () => { archiveRequest++; if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
 
 const stopViewportTracking=trackViewport(clearInput);
 import.meta.hot?.dispose(stopViewportTracking);
 
 await renderer.init();
-await Promise.all((Object.keys(selectedFleet) as NavalHull[]).map(async hull=>{
+await Promise.all(NAVAL_HULLS.map(async hull=>{
   try {await renderer.loadHistorical(selectedFleet[hull]);}
   catch {selectedFleet[hull]=DEFAULT_FLEET[hull];}
 }));
 game.fleetAppearance={...selectedFleet};
 selectCraft(selectedCraft); setDifficulty(difficulty); updateRecord(); syncSound(); syncState();
-$<HTMLButtonElement>('start-button').disabled = false;
+button('start-button').disabled = false;
 let lastTime = performance.now();
 function frame(now: number) {
   const dt = Math.min((now - lastTime) / 1000, .05); lastTime = now;
   const x = Number(keys.has('d') || keys.has('arrowright')) - Number(keys.has('a') || keys.has('arrowleft'));
   const y = Number(keys.has('s') || keys.has('arrowdown')) - Number(keys.has('w') || keys.has('arrowup'));
-  game.step(dt, { x, y, target: pointer?.target });
+  game.step(dt, pointer ? { x, y, target: pointer.target } : { x, y });
   processEvents();
   if (game.status === 'playing' || game.status === 'menu') {
     if (announcementTimer > 0) { announcementTimer -= dt; if (announcementTimer <= 0) $('wave-announcement').classList.remove('visible'); }

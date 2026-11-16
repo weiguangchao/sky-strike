@@ -1,16 +1,44 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable",
+      "ES2024.Promise"
+    ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "paths": {
+      "/main.ts": [
+        "./game/main.ts"
+      ],
+      "/dom.ts": [
+        "./game/dom.ts"
+      ]
+    },
     "resolveJsonModule": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "types": ["vite/client", "node"]
+    "types": [
+      "vite/client",
+      "node"
+    ],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
-  "include": ["game/**/*.ts", "scripts/**/*.ts", "tests/**/*.ts", "vite.config.ts", "playwright.config.ts"]
+  "include": [
+    "game",
+    "scripts",
+    "tests",
+    "vite.config.ts",
+    "playwright.config.ts"
+  ]
 }

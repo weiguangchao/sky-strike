@@ -1,3 +1,6 @@
+import { parseGltf } from './gltf-fixture.ts';
+import { parseModelMetadata } from '../game/model-metadata.ts';
+import { required } from './support.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -7,25 +10,16 @@ import {Game} from '../game/engine.ts';
 import {HULLS} from '../game/campaign.ts';
 import { VISUAL_SIGNALS } from '../game/visual-style.ts';
 
-interface Gltf {
-  asset: { version: string; generator: string };
-  buffers: { uri?: string }[];
-  accessors: { type: string; count: number; min?: number[]; max?: number[] }[];
-  meshes: { primitives: { attributes: { POSITION: number }; indices?: number }[] }[];
-  nodes: { name?: string; translation?: number[]; extras?: {game_part?: string; game_ruin?: string} }[];
-  materials: { name: string; extensions?: { KHR_materials_unlit?: object }; pbrMetallicRoughness?: { baseColorFactor?: number[] } }[];
-}
-
 const directory = new URL('../game/public/assets/models/', import.meta.url);
 const ids = ALL_MODEL_IDS;
 
-async function asset(id: string): Promise<{ json: Gltf; bytes: number }> {
+async function asset(id: string): Promise<{ json: ReturnType<typeof parseGltf>; bytes: number }> {
   const buffer = await readFile(new URL(`${id}.glb`, directory));
   assert.equal(buffer.readUInt32LE(0), 0x46546c67, `${id}: GLB magic`);
   assert.equal(buffer.readUInt32LE(4), 2, `${id}: glTF version`);
   assert.equal(buffer.readUInt32LE(8), buffer.length, `${id}: complete binary`);
   assert.equal(buffer.readUInt32LE(16), 0x4e4f534a, `${id}: JSON chunk`);
-  const json = JSON.parse(buffer.subarray(20,20+buffer.readUInt32LE(12)).toString()) as Gltf;
+  const json = parseGltf(JSON.parse(buffer.subarray(20,20+buffer.readUInt32LE(12)).toString()));
   return { json, bytes: buffer.length };
 }
 
@@ -35,13 +29,13 @@ test('all Blender assets contain embedded, finite 3D geometry within the mobile 
     const { json, bytes } = await asset(id);
     total += bytes;
     if(!id.startsWith('archive-'))legacy+=bytes;
-    if((MODEL_IDS as readonly string[]).includes(id))initial+=bytes;
+    if(MODEL_IDS.some(model => model === id))initial+=bytes;
     assert.equal(json.asset.version, '2.0');
     assert.match(json.asset.generator, /Blender/);
     assert.ok(json.buffers.every(buffer => !buffer.uri), `${id}: external resource dependency`);
     assert.ok(json.meshes.length > 0);
     for (const mesh of json.meshes) for (const primitive of mesh.primitives) {
-      const positions = json.accessors[primitive.attributes.POSITION];
+      const positions = required(json.accessors[primitive.attributes.POSITION]);
       assert.ok(positions.count > 2, `${id}: missing mesh geometry`);
       assert.ok(positions.min?.every(Number.isFinite) && positions.max?.every(Number.isFinite));
     }
@@ -67,10 +61,10 @@ test('Blender gameplay markers preserve semantic colors without lighting or tone
     const { json } = await asset(signal.model);
     const material = json.materials.find(material => material.name === `signal_${key}`);
     assert.ok(material?.extensions?.KHR_materials_unlit, `${key}: marker must remain unlit`);
-    const encoded = material.pbrMetallicRoughness!.baseColorFactor!;
+    const encoded = required(required(material.pbrMetallicRoughness).baseColorFactor);
     const rgb = [1,3,5].map(index => parseInt(signal.color.slice(index,index+2),16) / 255);
     const expected = rgb.map(value => value <= .04045 ? value / 12.92 : ((value+.055)/1.055)**2.4);
-    expected.forEach((value,index) => assert.ok(Math.abs(encoded[index]-value)<.0001, `${key}: Blender and HUD colors differ`));
+    expected.forEach((value,index) => assert.ok(Math.abs(required(encoded[index])-value)<.0001, `${key}: Blender and HUD colors differ`));
     assert.ok(json.materials.some(material => material.name === 'signal_ink'));
     assert.ok(json.materials.some(material => material.name === 'signal_white'));
   }
@@ -101,7 +95,7 @@ test('the redesigned fleet has layered local materials, waterline metadata and s
     const {json}=await asset(id);
     assert.ok(json.materials.filter(mat=>mat.name.startsWith('fleet_')).length>=5,`${id}: missing hull/deck/structure hierarchy`);
     let waterline:{waterline_beam:number;waterline_length:number}|undefined;
-    scene.traverse(node=>{if(typeof node.userData.waterline_beam==='number')waterline=node.userData as typeof waterline;});
+    scene.traverse(node=>{const line = parseModelMetadata(node.userData).waterline; if (line) waterline = {waterline_beam:line.halfWidth, waterline_length:line.halfLength};});
     assert.ok(waterline&&waterline.waterline_beam>0&&waterline.waterline_length>waterline.waterline_beam*2,`${id}: wake needs the real hull footprint`);
     assert.ok(size.z>size.x*2,`${id}: keep an elongated ship silhouette`);
     const scale=id==='carrier'?62:HULLS[id].scale;
@@ -137,7 +131,7 @@ test('parked carrier aircraft retain upward-facing wings at the actual game came
     const parked:import('three').Object3D[]=[];
     scene.traverse(node=>{if(node.userData.parked_aircraft)parked.push(node);});
     assert.equal(parked.length,3,`${id}: three independently recognizable parked aircraft`);
-    const aircraftScale=parked[0].scale.x;
+    const aircraftScale=required(parked[0]).scale.x;
     assert.ok(area/(aircraftScale*aircraftScale)>.20,`${id}: wings/tails must keep their upward-facing area at the carrier's authored scale`);
     scene.traverse(part=>{
       if(!part.userData.game_part?.startsWith('aa-'))return;
@@ -170,9 +164,9 @@ test('wood-deck seams remain visible above the deck instead of being buried in i
     let seams=0;
     for(const x of [-.57,-.38,.38,.57])for(const y of [-.50,-.30,.10,.30,.50,.60]) {
       const ray=new Raycaster(new Vector3(beam*x,10,-length*y),new Vector3(0,-1,0));
-      const hit=ray.intersectObjects(visible,false)[0];
+      const hit=required(ray.intersectObjects(visible,false)[0]);
       if(!hit||!(hit.object instanceof Mesh))continue;
-      const material=Array.isArray(hit.object.material)?hit.object.material[hit.face!.materialIndex]:hit.object.material;
+      const material=Array.isArray(hit.object.material)?hit.object.material[required(hit.face).materialIndex]:hit.object.material;
       if(material.name==='fleet_plank')seams++;
     }
     assert.ok(seams>=2,`${id}: wood seams must be visible in exposed deck areas; detected ${seams}`);
@@ -208,7 +202,7 @@ test('distinctive historical main batteries survive Blender export instead of be
   const references:Record<string,number[]>={iowa:[3,3,3],arizona:[3,3,3,3],'king-george-v':[4,2,4],rodney:[3,3,3],richelieu:[4,4],dunkerque:[4,4],bismarck:[2,2,2,2],'giulio-cesare':[3,2,2,3],fletcher:[1,1,1,1,1],mogami:[2,2,2,2,2],'de-ruyter':[2,1,2,2],blyskawica:[1,2,2,2]};
   const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
   for(const [identity,expected] of Object.entries(references)) {
-    const ship=HISTORICAL_SHIPS.find(ship=>ship.id===identity)!;
+    const ship=required(HISTORICAL_SHIPS.find(ship=>ship.id===identity));
     const buffer=await readFile(new URL(`${historicalModel(ship.id)}.glb`,directory));
     const {scene}=await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer,'');scene.updateMatrixWorld(true);
     const {Vector3}=await import('three');
@@ -244,7 +238,7 @@ test('every historical main and secondary battery clears other guns, bridges and
             const end=mount.localToWorld(new Vector3(x,height,-(.25+(heavy?.52:.34))));
             const ray=new Raycaster(start,end.clone().sub(start).normalize(),.001,start.distanceTo(end));
             const hits=ray.intersectObjects(targets,true);
-            if(hits.length)failures.push(`${ship.id} ${pose}: ${mount.name} barrel ${barrel} intersects ${hits[0].object.parent?.name}`);
+            if(hits.length)failures.push(`${ship.id} ${pose}: ${mount.name} barrel ${barrel} intersects ${required(hits[0]).object.parent?.name}`);
           }
         }
       }
@@ -264,7 +258,7 @@ test('carrier stacks stay with their starboard islands and highlighted midships 
     assert.ok(stackCount>0,`${id}: historical island stack is present`);
   }
   for(const [id,station,countExpected] of [['belfast',-.07,1],['sydney',-.07,1],['bismarck',-.24,2],['tirpitz',-.24,2],['king-george-v',-.10,1]] as const) {
-    const ship=HISTORICAL_SHIPS.find(ship=>ship.id===id)!;
+    const ship=required(HISTORICAL_SHIPS.find(ship=>ship.id===id));
     const buffer=await readFile(new URL(`${historicalModel(ship.id)}.glb`,directory));
     const {scene}=await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer,'');scene.updateMatrixWorld(true);
     let count=0;scene.traverse(node=>{if(node.userData.historic_catapult){
@@ -287,12 +281,12 @@ test('US classes export actual carrier, missile and nuclear structures rather th
       if(node.userData.naval_launcher)launchers.push(node.userData.naval_launcher);
       if(node.userData.historic_funnel)funnels.push(node);
     });
-    assert.equal(roots.length,1,ship.id);assert.equal(roots[0].userData.naval_class,ship.classId);
+    assert.equal(roots.length,1,ship.id);assert.equal(required(roots[0]).userData.naval_class,ship.classId);
     assert.equal(funnels.length,ship.geometry.funnels.length,`${ship.id}: funnel count, including nuclear ships without stacks`);
     assert.deepEqual(launchers.sort(),(ship.geometry.launchers??[]).map(launcher=>launcher.kind).sort(),`${ship.id}: actual exported launcher types`);
     if(ship.hull==='fleet-carrier') {
-      assert.equal(roots[0].userData.naval_flight_deck,ship.geometry.flightDeck??'straight');
-      assert.equal(roots[0].userData.naval_aviation,ship.geometry.aviation??'propeller');
+      assert.equal(required(roots[0]).userData.naval_flight_deck,ship.geometry.flightDeck??'straight');
+      assert.equal(required(roots[0]).userData.naval_aviation,ship.geometry.aviation??'propeller');
     }
     // Hash only the binary geometry buffer; identity metadata and paint cannot fake a new class.
     const jsonLength=buffer.readUInt32LE(12),binary=buffer.subarray(20+jsonLength+8);
@@ -317,7 +311,7 @@ test('Forrestal has three starboard lifts with one forward, two aft, and a forwa
   assert.equal(starboard.length,3);assert.equal(port.length,1);
   assert.equal(starboard.filter(at=>at.z<bridgeZ).length,1);
   assert.equal(starboard.filter(at=>at.z>bridgeZ).length,2);
-  assert.ok(port[0].z<0,'port elevator remains at the forward end of the angled deck');
+  assert.ok(required(port[0]).z<0,'port elevator remains at the forward end of the angled deck');
 });
 
 test('Kennedy has physically outboard-canted funnel geometry, distinct from Kitty Hawk',async()=>{
@@ -373,10 +367,10 @@ test('1940 Benson and Gleaves export two banks of five separate torpedo tubes',a
           if(at===undefined){at=parents.length;parents.push(at);vertexIds.set(key,at);}
           vertices.push(at);
         }
-        const find=(index:number):number=>{while(parents[index]!==index){parents[index]=parents[parents[index]];index=parents[index];}return index;};
+        const find=(index:number):number=>{while(required(parents[index])!==index){parents[index]=required(parents[required(parents[index])]);index=required(parents[index]);}return index;};
         for(let i=0;i<(indices?.count??positions.count);i+=3) {
-          const a=vertices[indices?indices.getX(i):i];
-          for(let offset=1;offset<3;offset++)parents[find(vertices[indices?indices.getX(i+offset):i+offset])]=find(a);
+          const a=required(vertices[indices?indices.getX(i):i]);
+          for(let offset=1;offset<3;offset++)parents[find(required(vertices[indices?indices.getX(i+offset):i+offset]))]=find(a);
         }
         tubes+=new Set(parents.map((_,index)=>find(index))).size;
       });

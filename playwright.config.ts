@@ -7,5 +7,5 @@ export default defineConfig({
   testDir: './tests/browser',
   fullyParallel: false,
   use: { browserName, baseURL: deployedURL || 'http://127.0.0.1:5173', launchOptions: browserName === 'chromium' && existsSync(chrome) ? { executablePath: chrome } : {}, screenshot: 'only-on-failure' },
-  webServer: deployedURL ? undefined : { command: 'npm run dev', url: 'http://127.0.0.1:5173', reuseExistingServer: !process.env.CI },
+  ...(deployedURL ? {} : { webServer: { command: 'npm run dev', url: 'http://127.0.0.1:5173', reuseExistingServer: !process.env.CI } }),
 });

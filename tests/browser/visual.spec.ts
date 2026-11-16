@@ -1,3 +1,4 @@
+import { required } from '../support.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { PNG } from 'pngjs';
@@ -11,16 +12,16 @@ async function settleFrame(page: Page): Promise<void> {
 }
 
 async function fixture(page: Page, boss = false): Promise<void> {
-  await page.evaluate(async boss => {
-    const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
-    game.start('falcon','normal');
+  await page.evaluate(async boss => { const { required } = await import('/dom.ts');
+    const { game } = await import('/main.ts');
+    game.start({ craft: 'falcon', difficulty: 'normal' });
     game.step = () => {};
     game.wave = boss ? 10 : 3;
     game.level = 4;
     game.score = 12750;
     game.player.x = 240; game.player.y = 650; game.player.invincible = 0;
     if (boss) {
-      game.spawnBoss(); game.boss.x = 240; game.boss.y = 180; game.boss.hp *= .58;
+      const boss = game.spawnBoss(); boss.x = 240; required(game.boss).y = 180; required(game.boss).hp *= .58;
     } else {
       game.spawnEnemy('scout',80,185); game.spawnEnemy('gunship',240,210); game.spawnEnemy('dart',395,185);
     }
@@ -52,7 +53,7 @@ function coloredPixels(image: PNG, x: number, y: number, hex: string, radius: nu
   for(let py=Math.max(0,Math.floor((y-radius)*scale));py<Math.min(image.height,(y+radius)*scale);py++) {
     for(let px=Math.max(0,Math.floor((x-radius)*scale));px<Math.min(image.width,(x+radius)*scale);px++) {
       const index=(py*image.width+px)*4;
-      if(expected.every((value,channel)=>Math.abs(image.data[index+channel]-value)<22)) count++;
+      if(expected.every((value,channel)=>Math.abs(required(image.data[index+channel])-value)<22)) count++;
     }
   }
   return count;
@@ -63,8 +64,8 @@ async function expectCombatDetails(page: Page): Promise<void> {
   expect(coloredPixels(image,240,650,'#fff1cb',4),'solid player hit point').toBeGreaterThan(0);
   expect(coloredPixels(image,240,650,'#071422',7),'dark player hit point outline').toBeGreaterThan(0);
   expect(coloredPixels(image,405,360,VISUAL_SIGNALS.aimed.color,9),'aimed shot core on small screens').toBeGreaterThan(1);
-  const bossBottom=await page.locator('#boss-hud').evaluate(element=>{
-    const field=document.querySelector('#battlefield')!.getBoundingClientRect();
+  const bossBottom=await page.locator('#boss-hud').evaluate(async element=>{ const { required } = await import('/dom.ts');
+    const field=required(document.querySelector('#battlefield')).getBoundingClientRect();
     return (element.getBoundingClientRect().bottom-field.top)/field.height*760;
   });
   expect(bossBottom,'boss HUD remains above its cruising position').toBeLessThan(130);
@@ -87,7 +88,7 @@ test('combat colors stay distinct in the rendered framebuffer and have shape-onl
   expect(coloredPixels(image,75,360,VISUAL_SIGNALS.danger.color,7)).toBeGreaterThan(2);
   expect(coloredPixels(image,405,360,VISUAL_SIGNALS.aimed.color,7)).toBeGreaterThan(2);
   const seaIndex=(Math.round(270*image.width/480)*image.width+Math.round(450*image.width/480))*4;
-  expect(image.data[seaIndex+2]-image.data[seaIndex],'ocean should be blue, not gray').toBeGreaterThan(40);
+  expect(required(image.data[seaIndex+2])-required(image.data[seaIndex]),'ocean should be blue, not gray').toBeGreaterThan(40);
   await page.screenshot({path:`${output}/desktop-mixed-combat.png`});
   await fixture(page,true);
   await expectCombatDetails(page);
@@ -105,7 +106,7 @@ test('combat colors stay distinct in the rendered framebuffer and have shape-onl
   await expectCombatDetails(page);
   await page.screenshot({path:`${output}/small-phone-combat.png`});
   const bomb=await page.locator('#bomb-button').boundingBox();
-  expect(bomb!.y+bomb!.height).toBeLessThanOrEqual(568);
+  expect(required(bomb).y+required(bomb).height).toBeLessThanOrEqual(568);
 });
 
 test('combat overlays leave incoming shots visible on desktop and small phones', async ({ page }) => {
@@ -114,11 +115,11 @@ test('combat overlays leave incoming shots visible on desktop and small phones',
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   // Start the frozen fixture directly from the menu, so no live announcement timer exists.
-  for (const [width,height] of [[1440,1000],[390,844],[320,568]]) {
+  for (const [width,height] of [[1440,1000],[390,844],[320,568]] as const) {
     await page.setViewportSize({width,height});
     await fixture(page);
     await page.evaluate(async () => {
-      const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+      const { game } = await import('/main.ts');
       game.player.y=100;
       game.enemyBullets=[80,240,400].map(x=>({x,y:90,vx:0,vy:90,radius:4,color:'orange',dead:false}));
       game.bullets=[];
@@ -138,15 +139,15 @@ test('combat overlays leave incoming shots visible on desktop and small phones',
 
     for (const boss of [false,true]) {
       const banner=page.locator('#wave-announcement');
-      const shots=await banner.evaluate((element,boss)=>{
+      const shots=await banner.evaluate(async (element,boss)=>{ const { required } = await import('/dom.ts');
         element.innerHTML=boss?'<strong>敌方首领接近</strong>':'<strong>敌机编队接近</strong>';
         element.classList.add('visible');
         element.classList.toggle('boss-warning',boss);
         element.style.visibility='hidden';
         const bounds=element.getBoundingClientRect();
-        const field=document.querySelector('#battlefield')!.getBoundingClientRect();
+        const field=required(document.querySelector('#battlefield')).getBoundingClientRect();
         const range=document.createRange();
-        const title=element.querySelector('strong')!.firstChild!;
+        const title=required(required(element.querySelector('strong')).firstChild);
         range.setStart(title,2); range.setEnd(title,3);
         const glyph=range.getBoundingClientRect();
         return [
@@ -156,7 +157,7 @@ test('combat overlays leave incoming shots visible on desktop and small phones',
         ];
       },boss);
       await page.evaluate(async shots=>{
-        const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+        const { game } = await import('/main.ts');
         game.enemyBullets=shots.map(({x,y})=>({x,y,vx:0,vy:90,radius:4,color:'orange',dead:false}));
       },shots);
       await settleFrame(page);
@@ -167,7 +168,7 @@ test('combat overlays leave incoming shots visible on desktop and small phones',
       await settleFrame(page);
       const overlay=PNG.sync.read(await battlefield.screenshot());
       await page.evaluate(async()=>{
-        const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+        const { game } = await import('/main.ts');
         game.enemyBullets=[];
       });
       await settleFrame(page);
@@ -177,21 +178,21 @@ test('combat overlays leave incoming shots visible on desktop and small phones',
         let coreIndex=-1;
         for(let y=Math.floor((shot.y-4)*scale);y<(shot.y+4)*scale;y++) for(let x=Math.floor((shot.x-4)*scale);x<(shot.x+4)*scale;x++) {
           const i=(y*control.width+x)*4;
-          if(control.data[i]>control.data[i+1]*2 && control.data[i]>control.data[i+2]*1.5 && (coreIndex<0 || control.data[i]>control.data[coreIndex])) coreIndex=i;
+          if(required(control.data[i])>required(control.data[i+1])*2 && required(control.data[i])>required(control.data[i+2])*1.5 && (coreIndex<0 || required(control.data[i])>required(control.data[coreIndex]))) coreIndex=i;
         }
         expect(coreIndex,'uncovered reference shot is red').toBeGreaterThanOrEqual(0);
         // Compare against the same lettering without a shot, so bright text cannot fake visibility.
-        const signal=(overlay.data[coreIndex]-emptyOverlay.data[coreIndex])/control.data[coreIndex];
+        const signal=(required(overlay.data[coreIndex])-required(emptyOverlay.data[coreIndex]))/required(control.data[coreIndex]);
         expect(signal,`enemy remains visible ${shot.glyph?'behind title glyph':'under background'} at ${width}×${height}`).toBeGreaterThan(.3);
         if (!shot.glyph) {
-          const brightness=overlay.data[coreIndex]/control.data[coreIndex];
+          const brightness=required(overlay.data[coreIndex])/required(control.data[coreIndex]);
           expect(brightness,`shot remains visible under ${boss?'boss':'wave'} banner at ${width}×${height}`).toBeGreaterThan(.4);
           expect(brightness,'banner really darkens the shot, rather than disappearing').toBeLessThan(.97);
-          expect(overlay.data[coreIndex]).toBeGreaterThan(overlay.data[coreIndex+1]*1.8);
+          expect(required(overlay.data[coreIndex])).toBeGreaterThan(required(overlay.data[coreIndex+1])*1.8);
         }
       }
       await page.evaluate(async shots=>{
-        const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+        const { game } = await import('/main.ts');
         game.enemyBullets=shots.map(({x,y})=>({x,y,vx:0,vy:90,radius:4,color:'orange',dead:false}));
       },shots);
       await settleFrame(page);
@@ -210,14 +211,14 @@ test.describe('retina pixel rendering', () => {
     await page.evaluate(() => document.fonts.ready);
     expect(await page.evaluate(() => document.fonts.check('16px "Flight Arcade"'))).toBe(true);
 
-    for (const [width, height] of [[1440, 1000], [390, 844], [320, 568]]) {
+    for (const [width, height] of [[1440, 1000], [390, 844], [320, 568]] as const) {
       await page.setViewportSize({ width, height });
       await fixture(page, true);
-      const raster = await page.locator('#game-canvas').evaluate((canvas: HTMLCanvasElement) => ({
+      const raster = await page.locator('#game-canvas').evaluate(async (canvas: HTMLCanvasElement) => { const { required } = await import('/dom.ts'); return ({
         width: canvas.width, height: canvas.height,
-        antialias: canvas.getContext('webgl2')!.getContextAttributes()!.antialias,
+        antialias: required(required(canvas.getContext('webgl2')).getContextAttributes()).antialias,
         scaling: getComputedStyle(canvas).imageRendering,
-      }));
+      }); });
       // Check the real drawing buffer: CSS alone can disguise a full-resolution render.
       expect(raster).toEqual({ width: 240, height: 380, antialias: false, scaling: 'pixelated' });
       const preview = await page.locator('#craft-canvas').evaluate((canvas: HTMLCanvasElement) => ({
@@ -235,13 +236,13 @@ test.describe('retina pixel rendering', () => {
 
 test('naval hulls and damaged parts keep enemy shots, supplies and the aircraft hit point visible', async({page})=>{
   await page.goto('/'); await expect(page.locator('#start-button')).toBeEnabled();
-  for(const [width,height] of [[1440,1000],[390,844],[320,568]]) {
+  for(const [width,height] of [[1440,1000],[390,844],[320,568]] as const) {
     await page.setViewportSize({width,height});
     await fixture(page,true);
-    await page.evaluate(async()=>{
-      const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
-      game.boss.x=240;game.boss.y=240;
-      game.damagePart(game.boss,'aa-port',99999);
+    await page.evaluate(async()=>{ const { required } = await import('/dom.ts');
+      const {game}=await import('/main.ts');
+      required(game.boss).x=240;required(game.boss).y=240;
+      game.damagePart(required(game.boss),'aa-port',99999);
       game.events=[];game.player.x=240;game.player.y=240;game.player.invincible=0;
       game.pickups=[{type:'xp',x:240,y:310,amount:9,radius:11,dead:false}];
       game.enemyBullets=[{x:240,y:190,vx:0,vy:0,radius:4,color:'orange',dead:false},{x:240,y:280,vx:0,vy:0,radius:4,color:'pink',dead:false}];
@@ -261,10 +262,10 @@ test('sinking keeps the tilted hull visible before it submerges completely',asyn
   await page.setViewportSize({width:1440,height:1000});
   await page.goto('/');await expect(page.locator('#start-button')).toBeEnabled();
   await fixture(page,true);
-  await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
-    game.boss.y=240;game.boss.x=240;
-    game.damageEnemy(game.boss,99999);game.events=[];game.enemyBullets=[];game.bullets=[];game.pickups=[];
+  await page.evaluate(async()=>{ const { required } = await import('/dom.ts');
+    const {game}=await import('/main.ts');
+    required(game.boss).y=240;required(game.boss).x=240;
+    game.damageEnemy(required(game.boss),99999);game.events=[];game.enemyBullets=[];game.bullets=[];game.pickups=[];
   });
   const deckPixels=async()=>{
     await settleFrame(page);
@@ -272,18 +273,18 @@ test('sinking keeps the tilted hull visible before it submerges completely',asyn
     let count=0;const scale=image.width/480;
     for(let y=Math.floor(60*scale);y<430*scale;y++) for(let x=Math.floor(150*scale);x<330*scale;x++) {
       const i=(y*image.width+x)*4;
-      if(image.data[i]>image.data[i+1]*1.15&&image.data[i+1]>image.data[i+2]*1.2)count++;
+      if(required(image.data[i])>required(image.data[i+1])*1.15&&required(image.data[i+1])>required(image.data[i+2])*1.2)count++;
     }
     return count;
   };
   const afloat=await deckPixels();expect(afloat).toBeGreaterThan(1000);
-  await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);game.wrecks[0].age=1;
+  await page.evaluate(async()=>{ const { required } = await import('/dom.ts');
+    const {game}=await import('/main.ts');required(game.wrecks[0]).age=1;
   });
   expect(await deckPixels(),'partly submerged deck remains visible at one second').toBeGreaterThan(afloat*.2);
   await page.screenshot({path:`${output}/carrier-sinking.png`});
-  await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);game.wrecks[0].age=3.15;
+  await page.evaluate(async()=>{ const { required } = await import('/dom.ts');
+    const {game}=await import('/main.ts');required(game.wrecks[0]).age=3.15;
   });
   expect(await deckPixels(),'the hull eventually passes below the sea surface').toBeLessThan(afloat*.1);
 });

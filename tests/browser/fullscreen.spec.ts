@@ -6,14 +6,14 @@ test('fullscreen HUD follows the fitted portrait canvas instead of the window wi
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#start-button').click();
-  await page.evaluate(async()=>{
-    const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+  await page.evaluate(async()=>{ const { required } = await import('/dom.ts');
+    const { game } = await import('/main.ts');
     game.step=()=>{};
-    game.wave=5; game.spawnBoss(); game.boss!.y=153;
+    game.wave=5; game.spawnBoss(); required(game.boss).y=153;
     game.enemyBullets=[{x:240,y:90,vx:0,vy:90,radius:4,color:'orange',dead:false}];
     game.events=[];
   });
-  for (const [width,height] of [[1920,1080],[1366,768],[1280,720],[1024,600],[960,540],[844,390],[568,320],[390,844]]) {
+  for (const [width,height] of [[1920,1080],[1366,768],[1280,720],[1024,600],[960,540],[844,390],[568,320],[390,844]] as const) {
     await page.setViewportSize({width,height});
     await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
     if(await page.locator('#fullscreen-button').isVisible()) await page.locator('#fullscreen-button').click();
@@ -24,12 +24,12 @@ test('fullscreen HUD follows the fitted portrait canvas instead of the window wi
     }
     await expect.poll(()=>page.evaluate(()=>document.fullscreenElement?.id)).toBe('battlefield');
     await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
-    const layout=await page.evaluate(()=>{
-      const canvas=document.querySelector('#game-canvas')!.getBoundingClientRect();
-      const hud=document.querySelector('#game-hud')!.getBoundingClientRect();
-      const boss=document.querySelector('#boss-hud')!.getBoundingClientRect();
-      const bomb=document.querySelector('#bomb-button')!.getBoundingClientRect();
-      const xp=document.querySelector('.xp-track')!.getBoundingClientRect();
+    const layout=await page.evaluate(async ()=>{ const { required } = await import('/dom.ts');
+      const canvas=required(document.querySelector('#game-canvas')).getBoundingClientRect();
+      const hud=required(document.querySelector('#game-hud')).getBoundingClientRect();
+      const boss=required(document.querySelector('#boss-hud')).getBoundingClientRect();
+      const bomb=required(document.querySelector('#bomb-button')).getBoundingClientRect();
+      const xp=required(document.querySelector('.xp-track')).getBoundingClientRect();
       return {canvas:canvas.toJSON(),hud:hud.toJSON(),boss:boss.toJSON(),bomb:bomb.toJSON(),xpBottom:xp.bottom,bossBottom:(boss.bottom-canvas.top)/canvas.height*760};
     });
     await page.screenshot({path:`.artifacts/release/fullscreen-${width}x${height}.png`});

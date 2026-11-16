@@ -1,3 +1,4 @@
+import { required } from './support.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -6,7 +7,7 @@ import { zstdDecompressSync } from 'node:zlib';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Box3, DoubleSide, Mesh, Raycaster, Vector3 } from 'three';
 import { ARCHIVE, ARCHIVE_COUNTRIES, NEW_ARCHIVE, archiveEra, filterArchive } from '../game/historical-archive.ts';
-import { isReviewLedger, modelReviewStatus, reviewLabel } from '../game/model-review.ts';
+import { isReviewLedger, modelReviewStatus as parsedModelReviewStatus, reviewLabel, parseReviewLedger, isModelRevision } from '../game/model-review.ts';
 import type { CouncilMember, ReviewLedger } from '../game/model-review.ts';
 import type { Object3D } from 'three';
 import { currentRevisions } from '../scripts/model-audit.ts';
@@ -38,7 +39,7 @@ function wingEdge(points: Vector3[], fraction: number) {
   const span = Math.max(...points.map(point => point.x));
   const section = points.filter(point => Math.abs(point.x - span * fraction) < .0001).sort((a, b) => a.z - b.z);
   assert.ok(section.length, `wing section ${fraction} is present in the exported mesh`);
-  return { leading: section[0], trailing: section.at(-1)! };
+  return { leading: required(section[0]), trailing: required(section.at(-1)) };
 }
 
 // Sum actual upward-facing painted triangles. A convex hull would fill in
@@ -54,7 +55,7 @@ function planformArea(root: Object3D): number {
       if (!/^archive_(olive|silver|navy|grey)$/.test(materials[group.materialIndex ?? 0].name)) continue;
       for (let at = group.start; at < group.start + group.count; at += 3) {
         const points = [0, 1, 2].map(offset => new Vector3().fromBufferAttribute(positions, indices ? indices.getX(at + offset) : at + offset).applyMatrix4(node.matrixWorld));
-        const normal = points[1].clone().sub(points[0]).cross(points[2].clone().sub(points[0]));
+        const normal = required(points[1]).clone().sub(required(points[0])).cross(required(points[2]).clone().sub(required(points[0])));
         area += Math.max(0, normal.y) / 2;
       }
     }
@@ -69,7 +70,7 @@ test('exported wing angles, chords and areas preserve the corrected aircraft sil
     for (const wing of components(scene, 'main-wing').filter(node => new Box3().setFromObject(node).max.x > 1)) {
       const points = worldVertices(wing), a = wingEdge(points, 0).leading, b = wingEdge(points, 1).leading;
       const angle = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
-      assert.ok(Math.abs(angle - expected[wing.userData.wing_level]) < .1, `${id}: measured dihedral ${angle}`);
+      assert.ok(Math.abs(angle - required(expected[wing.userData.wing_level])) < .1, `${id}: measured dihedral ${angle}`);
     }
     if (id === 'f86a' || id === 'f16a') for (const tail of components(scene, 'horizontal-tail').filter(node => new Box3().setFromObject(node).max.x > .5)) {
       const points = worldVertices(tail), a = wingEdge(points, 0).leading, b = wingEdge(points, 1).leading;
@@ -77,13 +78,13 @@ test('exported wing angles, chords and areas preserve the corrected aircraft sil
     }
   }
   for (const [id, expectedArea] of [['f86a', 26.75], ['p51d', 21.9], ['spitfire-ia', 22.48], ['a6m5', 21.3], ['mig21pf', 23], ['mirage2000c', 41]] as const) {
-    const scene = await archiveScene(id), entry = NEW_ARCHIVE.find(item => item.id === id)!;
+    const scene = await archiveScene(id), entry = required(NEW_ARCHIVE.find(item => item.id === id));
     const area = components(scene, 'main-wing').reduce((sum, wing) => sum + planformArea(wing), 0) * (entry.geometry.length / 6) ** 2;
     assert.ok(Math.abs(area / expectedArea - 1) < .035, `${id}: exported gross planform ${area} m²`);
   }
   for (const [id, expectedSweep, quarterChord] of [['f16a', 40, false], ['f86a', 35.23, true], ['mirage2000c', 58, false], ['mig21pf', 57, false]] as const) {
     const scene = await archiveScene(id);
-    const wing = components(scene, 'main-wing').find(node => new Box3().setFromObject(node).max.x > 1)!;
+    const wing = required(components(scene, 'main-wing').find(node => new Box3().setFromObject(node).max.x > 1));
     const points = worldVertices(wing), a = wingEdge(points, .32), b = wingEdge(points, .92);
     const za = a.leading.z + (quarterChord ? (a.trailing.z - a.leading.z) / 4 : 0);
     const zb = b.leading.z + (quarterChord ? (b.trailing.z - b.leading.z) / 4 : 0);
@@ -92,13 +93,13 @@ test('exported wing angles, chords and areas preserve the corrected aircraft sil
     if (id === 'mirage2000c') assert.ok(wingEdge(points, 1).trailing.z - wingEdge(points, 1).leading.z > .2, 'Mirage retains a finite tip chord');
   }
   for (const [id, sweep] of [['p51d', 3.59222], ['a6m5', 5], ['f16a', 40]] as const) {
-    const scene = await archiveScene(id), wing = components(scene, 'main-wing').find(node => new Box3().setFromObject(node).max.x > 1)!;
+    const scene = await archiveScene(id), wing = required(components(scene, 'main-wing').find(node => new Box3().setFromObject(node).max.x > 1));
     const points = worldVertices(wing), a = wingEdge(points, .32), b = wingEdge(points, .80);
     const angle = Math.atan2(b.leading.z - a.leading.z, b.leading.x - a.leading.x) * 180 / Math.PI;
     assert.ok(Math.abs(angle - sweep) < .2, `${id}: measured leading-edge sweep ${angle}`);
     if (id === 'f16a') {
       assert.ok(Math.abs(a.trailing.z - b.trailing.z) < .001, 'F-16A main trailing edge is unswept');
-      const tail = components(scene, 'horizontal-tail').find(node => new Box3().setFromObject(node).max.x > .5)!;
+      const tail = required(components(scene, 'horizontal-tail').find(node => new Box3().setFromObject(node).max.x > .5));
       const ta = wingEdge(worldVertices(tail), .48), tb = wingEdge(worldVertices(tail), .92);
       const tailSweep = Math.atan2(tb.leading.z - ta.leading.z, tb.leading.x - ta.leading.x) * 180 / Math.PI;
       assert.ok(Math.abs(tailSweep - 40) < .2, `F-16A: measured tail leading-edge sweep ${tailSweep}`);
@@ -114,10 +115,10 @@ test('exported wing angles, chords and areas preserve the corrected aircraft sil
     assert.ok(Math.abs(chord - (wing.userData.wing_level ? 1.6 : 1.2)) < .02, `D.VII: measured chord ${chord}`);
   }
   for (const [id, rootChord, tipChord] of [['spitfire-ia', 2.54, 0], ['mig21pf', 5.9736, .46]] as const) {
-    const scene = await archiveScene(id), entry = NEW_ARCHIVE.find(item => item.id === id)!;
-    const wing = components(scene, 'main-wing').find(node => new Box3().setFromObject(node).max.x > 1)!;
+    const scene = await archiveScene(id), entry = required(NEW_ARCHIVE.find(item => item.id === id));
+    const wing = required(components(scene, 'main-wing').find(node => new Box3().setFromObject(node).max.x > 1));
     const points = worldVertices(wing);
-    for (const [fraction, expected] of [[0, rootChord], [1, tipChord]]) {
+    for (const [fraction, expected] of [[0, rootChord], [1, tipChord]] as const) {
       const edge = wingEdge(points, fraction), chord = (edge.trailing.z - edge.leading.z) * entry.geometry.length / 6;
       assert.ok(Math.abs(chord - expected) < .025, `${id}: chord at ${fraction} measured ${chord}`);
     }
@@ -127,8 +128,8 @@ test('exported wing angles, chords and areas preserve the corrected aircraft sil
 test('Camel wing gap and stagger, and Spitfire/Zero tail spans match primary references', async () => {
   const scene = await archiveScene('sopwith-camel'), scale = 5.72 / 6;
   const wings = components(scene, 'main-wing').filter(node => new Box3().setFromObject(node).max.x > 1);
-  const lower = wings.find(node => node.userData.wing_level === 0)!;
-  const upper = wings.find(node => node.userData.wing_level === 1)!;
+  const lower = required(wings.find(node => node.userData.wing_level === 0));
+  const upper = required(wings.find(node => node.userData.wing_level === 1));
   const low = wingEdge(worldVertices(lower), 0).leading, high = wingEdge(worldVertices(upper), 0).leading;
   assert.ok(Math.abs((high.y - low.y) * scale - 1.524) < .01, 'Camel: 5 ft wing gap at centre');
   assert.ok(Math.abs((low.z - high.z) * scale - .4572) < .01, 'Camel: 18 in positive stagger');
@@ -138,7 +139,7 @@ test('Camel wing gap and stagger, and Spitfire/Zero tail spans match primary ref
     assert.ok(Math.abs((edge.trailing.z - edge.leading.z) * scale - 1.3716) < .01, 'Camel: 4 ft 6 in chord');
   }
   for (const [id, span] of [['spitfire-ia', 3.2004], ['a6m5', 4.73]] as const) {
-    const aircraft = await archiveScene(id), entry = NEW_ARCHIVE.find(item => item.id === id)!;
+    const aircraft = await archiveScene(id), entry = required(NEW_ARCHIVE.find(item => item.id === id));
     const tails = components(aircraft, 'horizontal-tail');
     const bounds = new Box3();
     for (const tail of tails) bounds.union(new Box3().setFromObject(tail));
@@ -154,8 +155,8 @@ test('exported tail surfaces and fins retain their individual sweep and longitud
     ['rafale-c', 'canard', 49.6, 0],
     ['gripen-c', 'canard', 45, 8],
   ] as const) {
-    const scene = await archiveScene(id), entry = NEW_ARCHIVE.find(item => item.id === id)!;
-    const tail = components(scene, component).find(node => new Box3().setFromObject(node).max.x > .5)!;
+    const scene = await archiveScene(id), entry = required(NEW_ARCHIVE.find(item => item.id === id));
+    const tail = required(components(scene, component).find(node => new Box3().setFromObject(node).max.x > .5));
     const points = worldVertices(tail), a = wingEdge(points, .64), b = wingEdge(points, .92);
     const measured = Math.atan2(b.leading.z - a.leading.z, b.leading.x - a.leading.x) * 180 / Math.PI;
     assert.ok(Math.abs(measured - sweep) < .2, `${id}: tail leading-edge sweep ${measured}`);
@@ -175,27 +176,27 @@ test('exported tail surfaces and fins retain their individual sweep and longitud
       assert.ok(Math.abs(measuredTrailing - 15) < .2, 'Rafale canard trailing edge sweeps aft');
     }
   }
-  const f16 = await archiveScene('f16a'), fin = new Box3().setFromObject(components(f16, 'vertical-tail')[0]);
-  const body = new Box3().setFromObject(components(f16, 'fuselage')[0]);
+  const f16 = await archiveScene('f16a'), fin = new Box3().setFromObject(required(components(f16, 'vertical-tail')[0]));
+  const body = new Box3().setFromObject(required(components(f16, 'fuselage')[0]));
   assert.ok(Math.abs(fin.max.z - 3) < .001 && fin.max.z > body.max.z + .15, 'F-16A fin tip is the aftmost airframe point, behind the nozzle');
-  const points = worldVertices(components(f16, 'vertical-tail')[0]);
+  const points = worldVertices(required(components(f16, 'vertical-tail')[0]));
   const top = points.filter(point => Math.abs(point.y - fin.max.y) < .001);
   assert.ok(Math.max(...top.map(point => point.z)) > 2.99 && Math.min(...top.map(point => point.z)) > 2.5, 'F-16A upper fin moves aft with its swept leading and trailing edges');
   const root = points.filter(point => Math.abs(point.y - .197) < .001);
   const leadingSweep = Math.atan2(Math.min(...top.map(point => point.z)) - Math.min(...root.map(point => point.z)), fin.max.y - .197) * 180 / Math.PI;
   assert.ok(Math.abs(leadingSweep - 47.5) < .2, 'F-16A fin leading-edge angle follows the original side view');
-  const mig = await archiveScene('mig21pf'), migPoints = worldVertices(components(mig, 'vertical-tail')[0]);
+  const mig = await archiveScene('mig21pf'), migPoints = worldVertices(required(components(mig, 'vertical-tail')[0]));
   const migTop = migPoints.filter(point => Math.abs(point.y - 1.25) < .001), migRoot = migPoints.filter(point => Math.abs(point.y - .17) < .001);
   const migSweep = Math.atan2(Math.min(...migTop.map(point => point.z)) - Math.min(...migRoot.map(point => point.z)), 1.25 - .17) * 180 / Math.PI;
   assert.ok(Math.abs(migSweep - 60) < .2, 'MiG-21PF retains the steep fin leading edge');
   const rafale = await archiveScene('rafale-c');
-  const panel = components(rafale, 'main-wing').find(node => new Box3().setFromObject(node).max.x > 1)!;
+  const panel = required(components(rafale, 'main-wing').find(node => new Box3().setFromObject(node).max.x > 1));
   assert.ok(Math.abs(new Box3().setFromObject(panel).max.x * 2 * 15.3 / 6 - 9.95) < .01, 'Rafale panel span excludes wingtip missiles');
 });
 
 test('early Gato deck gun is aft of its fairwater while VII C retains its forward gun', async () => {
   for (const id of ['gato', 'type-viic']) {
-    const scene = await archiveScene(id), gun = components(scene, 'deck-gun')[0], sail = components(scene, 'sail')[0];
+    const scene = await archiveScene(id), gun = required(components(scene, 'deck-gun')[0]), sail = required(components(scene, 'sail')[0]);
     assert.ok(gun && sail, id);
     const gunZ = new Box3().setFromObject(gun).getCenter(new Vector3()).z;
     const sailZ = new Box3().setFromObject(sail).getCenter(new Vector3()).z;
@@ -204,13 +205,13 @@ test('early Gato deck gun is aft of its fairwater while VII C retains its forwar
 });
 
 test('Rafale fixed probe joins the forward fuselage ahead of the windscreen', async () => {
-  const scene = await archiveScene('rafale-c'), probe = components(scene, 'refueling-probe')[0];
+  const scene = await archiveScene('rafale-c'), probe = required(components(scene, 'refueling-probe')[0]);
   const bounds = new Box3().setFromObject(probe);
   // The common forward airframe in the military three-view has a short,
   // raised starboard probe whose tip remains behind the nose.
   assert.ok(bounds.min.x > 0 && bounds.max.x < .35, 'probe remains on the starboard cheek');
   assert.ok(bounds.max.z < -1.8 && bounds.min.z < -2.4 && bounds.min.z > -2.6, 'probe begins ahead of the windscreen and stops short of the nose');
-  const body = components(scene, 'fuselage')[0];
+  const body = required(components(scene, 'fuselage')[0]);
   body.traverse(node => {
     if (node instanceof Mesh) for (const material of Array.isArray(node.material) ? node.material : [node.material]) material.side = DoubleSide;
   });
@@ -220,14 +221,14 @@ test('Rafale fixed probe joins the forward fuselage ahead of the windscreen', as
 
 test('intake lips follow their actual duct sections without a second circular outline', async () => {
   for (const id of ['f16a', 'mirage2000c', 'rafale-c', 'gripen-c']) {
-    const scene = await archiveScene(id), entry = NEW_ARCHIVE.find(item => item.id === id)!;
+    const scene = await archiveScene(id), entry = required(NEW_ARCHIVE.find(item => item.id === id));
     assert.equal(entry.category, 'aircraft');
     if (entry.category !== 'aircraft') continue;
-    const ducts = entry.geometry.profile.ducts!;
+    const ducts = required(entry.geometry.profile.ducts);
     for (const [index, intake] of components(scene, 'intake').entries()) {
       const points = worldVertices(intake), front = Math.min(...points.map(point => point.z));
       const rim = points.filter(point => point.z < front + .03);
-      const [, rx, rz] = ducts[index].at(-1)!;
+      const [, rx, rz] = required(required(ducts[index]).at(-1));
       const bounds = new Box3().setFromPoints(rim).getSize(new Vector3());
       assert.ok(Math.abs(bounds.x - rx * 2) < .003 && Math.abs(bounds.y - rz * 2) < .003, `${id}: lip must meet the duct in both axes`);
     }
@@ -239,7 +240,7 @@ test('Spitfire coolers remain attached beneath the raised wings and retain unequ
   for (const wing of wings) wing.traverse(node => {
     if (node instanceof Mesh) for (const material of Array.isArray(node.material) ? node.material : [node.material]) material.side = DoubleSide;
   });
-  const radiator = components(scene, 'wing-radiator')[0], oil = components(scene, 'oil-cooler')[0];
+  const radiator = required(components(scene, 'wing-radiator')[0]), oil = required(components(scene, 'oil-cooler')[0]);
   assert.ok(new Box3().setFromObject(radiator).getSize(new Vector3()).z > new Box3().setFromObject(oil).getSize(new Vector3()).z * 1.7);
   for (const cooler of [radiator, oil]) {
     const attached = worldVertices(cooler).some(point => {
@@ -252,7 +253,7 @@ test('Spitfire coolers remain attached beneath the raised wings and retain unequ
 
 test('old submarine cruise decks cover the hull crown across their longitudinal stations', async () => {
   for (const id of ['u9', 'type-viic', 'gato', 'nautilus', 'oberon']) {
-    const scene = await archiveScene(id), hull = components(scene, 'submarine-hull')[0], deck = components(scene, 'deck-casing')[0];
+    const scene = await archiveScene(id), hull = required(components(scene, 'submarine-hull')[0]), deck = required(components(scene, 'deck-casing')[0]);
     assert.ok(hull && deck, id);
     for (const part of [hull, deck]) part.traverse(node => {
       if (node instanceof Mesh) for (const material of Array.isArray(node.material) ? node.material : [node.material]) material.side = DoubleSide;
@@ -260,12 +261,12 @@ test('old submarine cruise decks cover the hull crown across their longitudinal 
     const width = new Box3().setFromObject(hull).getSize(new Vector3()).x;
     for (let forward = -3.5; forward <= 3.5; forward += .25) for (const fraction of [-.15, 0, .15]) {
       const ray = new Raycaster(new Vector3(width * fraction, 4, -forward), new Vector3(0, -1, 0));
-      const deckHit = ray.intersectObject(deck)[0], hullHit = ray.intersectObject(hull)[0];
+      const deckHit = required(ray.intersectObject(deck)[0]), hullHit = required(ray.intersectObject(hull)[0]);
       assert.ok(deckHit && hullHit, `${id}: deck and hull sampled at ${forward}`);
       assert.ok(deckHit.point.y > hullHit.point.y + .002, `${id}: hull must not emerge through the deck at ${forward}`);
     }
   }
-  const soryu = await archiveScene('soryu-early'), hull = components(soryu, 'submarine-hull')[0];
+  const soryu = await archiveScene('soryu-early'), hull = required(components(soryu, 'submarine-hull')[0]);
   const size = new Box3().setFromObject(hull).getSize(new Vector3());
   assert.ok(Math.abs(size.y / size.x - 10.3 / 9.1) < .005, 'Soryu outer hull retains its published depth/beam ratio');
 });
@@ -280,31 +281,32 @@ test('century archive identities, references and era filters are consistent', ()
     assert.ok(entry.feature && entry.note, entry.id);
   }
   for (const era of ['ww1', 'interwar-ww2', 'cold-war', 'modern']) {
-    assert.ok(filterArchive('all', 'aircraft', era).length, `${era}: aircraft`);
-    assert.ok(filterArchive('all', 'submarine', era).length, `${era}: submarine`);
+    assert.ok(filterArchive({ country: 'all', category: 'aircraft', era }).length, `${era}: aircraft`);
+    assert.ok(filterArchive({ country: 'all', category: 'submarine', era }).length, `${era}: submarine`);
   }
   assert.deepEqual([1918, 1919, 1945, 1946, 1991, 1992].map(archiveEra), ['ww1', 'interwar-ww2', 'interwar-ww2', 'cold-war', 'cold-war', 'modern']);
-  assert.equal(filterArchive('se', 'submarine').length, 0);
+  assert.equal(filterArchive({ country: 'se', category: 'submarine' }).length, 0);
 });
 
 const revision = 'a'.repeat(64);
-const member = (reviewer: string, score = 9.8, rev = revision): CouncilMember => ({ reviewer, model: 'gpt-6.1-sol', taskId: `task-${reviewer}`, results: { example: { revision: rev, score, findings: [] } } });
+assert.ok(isModelRevision(revision));
+const member = (reviewer: string, score = 9.8, rev: string = revision): CouncilMember => { assert.ok(isModelRevision(rev)); return ({ reviewer, model: 'gpt-6.1-sol', taskId: `task-${reviewer}`, results: { example: { revision: rev, score, findings: [] } } }); };
 const ledger = (...members: CouncilMember[]): ReviewLedger => ({ version: 1, rounds: [{ round: 1, date: '2026-11-15', members }] });
 
 test('approval requires two independent Sol scores >=9.8 on one exact revision and round', () => {
-  assert.equal(modelReviewStatus('example', revision, ledger()).state, 'pending');
-  assert.equal(modelReviewStatus('example', revision, ledger(member('a'))).state, 'pending');
-  assert.equal(modelReviewStatus('example', revision, ledger(member('a'), member('a'))).state, 'pending');
-  assert.equal(modelReviewStatus('example', revision, ledger(member('a'), { ...member('b'), taskId: 'task-a' })).state, 'pending');
-  assert.equal(modelReviewStatus('example', revision, ledger(member('a'), member('b', 9.79))).state, 'changes-required');
-  assert.equal(modelReviewStatus('example', revision, ledger(member('a'), member('b'))).state, 'approved');
-  assert.equal(modelReviewStatus('example', revision, ledger(member('a'), member('b', 10))).state, 'approved');
-  assert.equal(modelReviewStatus('example', revision, ledger(member('a'), member('b', 10, 'b'.repeat(64)))).state, 'stale');
-  assert.equal(modelReviewStatus('example', undefined, ledger(member('a'), member('b'))).state, 'pending');
-  const split: ReviewLedger = { version: 1, rounds: [ledger(member('a')).rounds[0], { round: 2, date: '2026-11-15', members: [member('b')] }] };
-  assert.equal(modelReviewStatus('example', revision, split).state, 'pending');
-  const regression: ReviewLedger = { version: 1, rounds: [ledger(member('a'), member('b')).rounds[0], { round: 2, date: '2026-11-15', members: [member('c', 9.5), member('d')] }] };
-  assert.equal(modelReviewStatus('example', revision, regression).state, 'changes-required');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: ledger() }).state, 'pending');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: ledger(member('a')) }).state, 'pending');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: ledger(member('a'), member('a')) }).state, 'pending');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: ledger(member('a'), { ...member('b'), taskId: 'task-a' }) }).state, 'pending');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: ledger(member('a'), member('b', 9.79)) }).state, 'changes-required');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: ledger(member('a'), member('b')) }).state, 'approved');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: ledger(member('a'), member('b', 10)) }).state, 'approved');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: ledger(member('a'), member('b', 10, 'b'.repeat(64))) }).state, 'stale');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision: undefined, ledger: ledger(member('a'), member('b')) }).state, 'pending');
+  const split: ReviewLedger = { version: 1, rounds: [required(ledger(member('a')).rounds[0]), { round: 2, date: '2026-11-15', members: [member('b')] }] };
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: split }).state, 'pending');
+  const regression: ReviewLedger = { version: 1, rounds: [required(ledger(member('a'), member('b')).rounds[0]), { round: 2, date: '2026-11-15', members: [member('c', 9.5), member('d')] }] };
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: regression }).state, 'changes-required');
   for (const score of [NaN, Infinity, -1, 10.01]) assert.equal(isReviewLedger(ledger(member('a', score))), false);
   assert.equal(isReviewLedger(ledger({ ...member('a'), model: 'other-model' })), false);
 });
@@ -314,21 +316,21 @@ test('a real no-score result stays local to its model and supersedes older appro
   unscored.results = { example: { revision, score: null, findings: ['The artifact could not be inspected.'] } };
   const paired = ledger(unscored, member('b'));
   assert.ok(isReviewLedger(paired));
-  const status = modelReviewStatus('example', revision, paired);
+  const status = modelReviewStatus({ modelId: 'example', revision, ledger: paired });
   assert.equal(status.state, 'pending');
   assert.equal(status.unscored, 1);
   assert.match(reviewLabel(status), /未评分/);
   const rounds: ReviewLedger = { version: 1, rounds: [
-    ledger(member('old-a'), member('old-b')).rounds[0],
+    required(ledger(member('old-a'), member('old-b')).rounds[0]),
     { round: 2, date: '2026-11-15', members: [unscored, member('b')] },
   ] };
-  assert.equal(modelReviewStatus('example', revision, rounds).state, 'pending');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: rounds }).state, 'pending');
   const withOther: ReviewLedger = { version: 1, rounds: [{ round: 1, date: '2026-11-15', members: [
     { ...unscored, results: { ...unscored.results, other: { revision, score: 9.9, findings: [] } } },
     { ...member('b'), results: { ...member('b').results, other: { revision, score: 9.8, findings: [] } } },
   ] }] };
-  assert.equal(modelReviewStatus('other', revision, withOther).state, 'approved');
-  assert.equal(modelReviewStatus('example', revision, withOther).state, 'pending');
+  assert.equal(modelReviewStatus({ modelId: 'other', revision, ledger: withOther }).state, 'approved');
+  assert.equal(modelReviewStatus({ modelId: 'example', revision, ledger: withOther }).state, 'pending');
   assert.equal(isReviewLedger(ledger({ ...unscored, results: { example: { revision, score: null, findings: [] } } })), false);
 });
 
@@ -385,9 +387,9 @@ test('every new model exports distinct geometry and physical identifying structu
       assert.equal(nodes.filter(node => node.userData['archive_component'] === 'propulsor').length, entry.geometry.shafts, entry.id);
       assert.equal(nodes.filter(node => node.userData['archive_component'] === 'deck-gun').length, entry.geometry.deckGun ? 1 : 0, entry.id);
       const fins = nodes.filter(node => node.userData['archive_component'] === 'stern-rudder');
-      const expected = { u9: 3, 'type-viic': 4, gato: 3, nautilus: 3, oberon: 3, 'virginia-block-i': 4, 'type-212a': 4, 'soryu-early': 4 }[entry.id];
+      const expected = required({ u9: 3, 'type-viic': 4, gato: 3, nautilus: 3, oberon: 3, 'virginia-block-i': 4, 'type-212a': 4, 'soryu-early': 4 }[entry.id]);
       assert.equal(fins.length, expected, entry.id);
-      const finAxis = new Vector3(1, 0, 0).transformDirection(fins[0].matrixWorld);
+      const finAxis = new Vector3(1, 0, 0).transformDirection(required(fins[0]).matrixWorld);
       if (entry.geometry.rudder === 'x') assert.ok(Math.abs(finAxis.y) > .65 && Math.abs(finAxis.x) > .65, `${entry.id}: real X stern geometry`);
     }
   }
@@ -430,7 +432,7 @@ test('exported main wings have a continuous centre section and physically enter 
 
 test('modern submarine bows are round and sail-mounted planes overlap the actual sail', async () => {
   for (const id of ['virginia-block-i', 'type-212a', 'soryu-early']) {
-    const entry = NEW_ARCHIVE.find(item => item.id === id)!;
+    const entry = required(NEW_ARCHIVE.find(item => item.id === id));
     const buffer = await readFile(new URL(`../game/public/assets/models/${entry.modelId}.glb`, import.meta.url));
     const { scene } = await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer, ''); scene.updateMatrixWorld(true);
     let hull: import('three').Object3D | undefined, sail: import('three').Object3D | undefined;
@@ -466,3 +468,8 @@ test('modern submarine bows are round and sail-mounted planes overlap the actual
     }
   }
 });
+
+
+function modelReviewStatus({ modelId, revision, ledger }: { modelId: string; revision: unknown; ledger: unknown }) {
+  return parsedModelReviewStatus({ modelId, revision: isModelRevision(revision) ? revision : undefined, ledger: parseReviewLedger(ledger) });
+}

@@ -13,5 +13,6 @@
 | [百年舰机与双 Sol 验收](century-archive.md) | 统一历史图鉴、全球服役目录目标、首批12型飞机／8级潜艇、逐模型双9.8门槛 | `game/historical-archive.ts`、`game/model-review.ts` |
 | [全球服役目录补录](inventory/README.md) | 后续型号的服役证据、改型边界及旧舰库身份待核实清单 | `dcos/feature/inventory/` |
 | [Cloudflare Workers 部署](deployment.md) | 账号授权、构建、发布与资源验证 | `wrangler.jsonc`、`game/public/_headers` |
+| [TypeScript 架构](typescript-architecture.md) | 领域类型、数据边界与自动检查 | `game/types.ts`、`game/storage.ts`、`scripts/type-discipline.ts` |
 
 以上文档记录当前游戏行为和需要持续遵循的产品约束。战斗数值以 `game/engine.ts` 的实现为准；调整时同步修改文档。
