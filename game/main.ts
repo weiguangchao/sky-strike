@@ -1,10 +1,10 @@
 import { element as $, canvas as canvasElement, button, select, dialog, anchor } from './dom.ts';
 import { isCraftId, isDifficulty } from './types.ts';
 import { readStorage, writeStorage, parsePreferences } from './storage.ts';
-import type { CraftId, Difficulty, Point, Result } from './types.ts';
-import { Game, CRAFTS, UPGRADES, WIDTH, HEIGHT } from './engine.ts';
+import type { CraftId, Difficulty, Input, Result } from './types.ts';
+import { Game, CRAFTS, UPGRADES } from './engine.ts';
 import { UNIT_INFO, WAVES, waveInfo, unitInfo } from './campaign.ts';
-import { Renderer } from './render.ts';
+import { GameRuntime } from './runtime.ts';
 import { Sound } from './audio.ts';
 import { trackViewport } from './viewport.ts';
 import { VISUAL_SIGNALS } from './visual-style.ts';
@@ -28,16 +28,15 @@ let flights = preferences.flights;
 const selectedFleet: FleetSelection = preferences.fleet;
 export const game = new Game();
 game.craft = selectedCraft;
-const renderer = new Renderer({ canvas: canvasElement('game-canvas'), previewCanvas: canvasElement('craft-canvas'), game, intelCanvas: canvasElement('intel-canvas') });
 const sound = new Sound(preferences.sound);
-const keys = new Set<string>();
-let pointer: { id: number; position: Point; target: Point } | null = null;
+export const runtime = new GameRuntime({ canvas: canvasElement('game-canvas'), previewCanvas: canvasElement('craft-canvas'), intelCanvas: canvasElement('intel-canvas'), combat: game, frame, keydown: handleKey, allowInput: () => !dialog('help-dialog').open, unlockSound: () => sound.unlock() });
 let announcementTimer = 0;
 let announcementText = '';
 let healthKey = '';
 let uiTimer = 0;
 let helpPaused = false;
 let previousStatus = '';
+let initializationFailed = false;
 const pad = (n: number) => String(Math.floor(n)).padStart(6, '0');
 const waveNum = (n: number) => String(n).padStart(2, '0');
 const elapsed = (seconds: number) => `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
@@ -56,7 +55,7 @@ function selectCraft(id: CraftId) {
   $('craft-name').textContent = c.name;
   $('craft-role').textContent = c.role.replace('战机', '');
   for (const [stat, value] of [['power', c.power], ['speed', c.speed], ['armor', c.armor]] as const) $('stat-' + stat).innerHTML = Array.from({ length: 6 }, (_, i) => `<i class="${i < value ? 'filled' : ''}"></i>`).join('');
-  renderer.selectCraft(id);
+  runtime.selectCraft(id);
 }
 
 function setDifficulty(mode: Difficulty) {
@@ -67,8 +66,10 @@ function setDifficulty(mode: Difficulty) {
 }
 
 function start() {
+  if (initializationFailed) { location.reload(); return; }
+  if (!runtime.isReady) return;
   sound.unlock();
-  keys.clear(); pointer = null;
+  clearInput();
   game.fleetAppearance={...selectedFleet};
   game.start({ craft: selectedCraft, difficulty });
   $('build-list').textContent = '等待首次升级';
@@ -81,7 +82,7 @@ function start() {
 }
 
 async function goHome() {
-  keys.clear(); pointer = null;
+  clearInput();
   if(document.fullscreenElement) {
     try { await document.exitFullscreen(); } catch { /* The browser may already be leaving fullscreen. */ }
   }
@@ -96,7 +97,7 @@ async function goHome() {
 }
 
 function togglePause() {
-  keys.clear(); pointer = null;
+  clearInput();
   if (game.status === 'playing') game.pause();
   else if (game.status === 'paused') { sound.unlock(); game.resume(); }
   processEvents(); syncState();
@@ -123,7 +124,7 @@ function upgradeChoices() {
 
 function chooseUpgrade(index: number) {
   if (!game.chooseUpgrade(index)) return;
-  sound.unlock(); keys.clear(); pointer = null;
+  sound.unlock(); clearInput();
   processEvents(); syncState(); syncHud();
   $('game-canvas').focus({ preventScroll: true });
 }
@@ -141,6 +142,7 @@ function syncState() {
   $('boss-hud').hidden = !game.boss || state === 'menu';
   document.querySelectorAll<HTMLButtonElement>('[data-craft], [data-difficulty]').forEach(button => { button.disabled = inRun; });
   if (state !== previousStatus) {
+    runtime.resize();
     if (state === 'paused') $('resume-button').focus({ preventScroll: true });
     if (state === 'upgrade') $('upgrade-options').querySelector('button')?.focus({ preventScroll: true });
     if (state === 'gameover' || state === 'victory') $('retry-button').focus({ preventScroll: true });
@@ -193,14 +195,14 @@ function showResults(event: Result) {
 
 function processEvents() {
   for (const event of game.drainEvents()) {
-    renderer.event(event); sound.play(event.type);
+    runtime.event(event); sound.play(event.type);
     if (event.type === 'wave') {
       if (event.wave % 5 === 0) announce({ title: '敌方首领接近', boss: true, duration: 3.3 });
       else if (event.wave === 6) announce({ title: '风暴防线 · 补给抵达', boss: false, duration: 3 });
       else announce({ title: event.wave === 1 ? '友军航母 · 起飞' : event.wave === 2 ? '对准舰船 · 自动投弹' : waveInfo(event.wave).name });
     }
     if (event.type === 'bossDefeated') announce({ title: event.final ? '赤潮已击沉' : '铁岳已击沉', boss: false, duration: 2.4 });
-    if (event.type === 'upgrade') { keys.clear(); pointer = null; upgradeChoices(); }
+    if (event.type === 'upgrade') { clearInput(); upgradeChoices(); }
     if (event.type === 'upgraded') {
       $('build-list').innerHTML = Object.entries(game.stacks).flatMap(([id, count]) => {
         const upgrade = UPGRADES.find(upgrade => upgrade.id === id);
@@ -210,7 +212,7 @@ function processEvents() {
     if (event.type === 'partDestroyed') announce({ title: `${event.name}已摧毁`, boss: false, duration: 1.5 });
     if (event.type === 'escort') announce({ title: event.saved ? '护航完成 · 航弹补给' : '运输船损失 · 继续作战', boss: false, duration: 2 });
     if (event.type === 'pickup') announce({ title: event.text, boss: false, duration: 1.4 });
-    if (event.type === 'end') { keys.clear(); pointer = null; showResults(event); announcementTimer = 0; $('wave-announcement').classList.remove('visible'); }
+    if (event.type === 'end') { clearInput(); showResults(event); announcementTimer = 0; $('wave-announcement').classList.remove('visible'); }
   }
 }
 
@@ -228,12 +230,12 @@ function syncSound() {
   });
 }
 
-function clearInput() { keys.clear(); pointer = null; }
+function clearInput() { runtime.clearInput(); }
 function autoPause() { clearInput(); game.pause(); processEvents(); syncState(); }
 document.addEventListener('visibilitychange', () => { if (document.hidden) autoPause(); });
 window.addEventListener('blur', autoPause);
-window.addEventListener('resize', () => renderer.resize());
-window.addEventListener('keydown', event => {
+window.addEventListener('resize', () => runtime.resize());
+function handleKey(event: KeyboardEvent): void {
   if (dialog('help-dialog').open || event.ctrlKey || event.metaKey || event.altKey) return;
   const key = event.key.toLowerCase();
   if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'w', 'a', 's', 'd', ' '].includes(key) && game.status === 'playing') event.preventDefault();
@@ -242,33 +244,8 @@ window.addEventListener('keydown', event => {
   if ((key === 'p' || key === 'escape') && (game.status === 'playing' || game.status === 'paused')) { event.preventDefault(); togglePause(); return; }
   if ((key === ' ' || key === 'b') && game.status === 'playing') { event.preventDefault(); game.bomb(); processEvents(); syncHud(); }
   if (['1', '2', '3'].includes(key) && game.status === 'upgrade') { event.preventDefault(); chooseUpgrade(Number(key) - 1); }
-  if (game.status === 'playing') keys.add(key);
-});
-window.addEventListener('keyup', event => keys.delete(event.key.toLowerCase()));
-
-const canvas = canvasElement('game-canvas');
-function pointerPosition(event: PointerEvent) {
-  const rect = canvas.getBoundingClientRect(), scale = Math.min(rect.width / WIDTH, rect.height / HEIGHT);
-  return { x: (event.clientX - rect.left - (rect.width - WIDTH * scale) / 2) / scale, y: (event.clientY - rect.top - (rect.height - HEIGHT * scale) / 2) / scale };
 }
-canvas.addEventListener('pointerdown', event => {
-  if (game.status !== 'playing') return;
-  event.preventDefault(); sound.unlock();
-  canvas.setPointerCapture(event.pointerId);
-  pointer = { id: event.pointerId, position: pointerPosition(event), target: { x: game.player.x, y: game.player.y } };
-});
-canvas.addEventListener('pointermove', event => {
-  if (!pointer || pointer.id !== event.pointerId || game.status !== 'playing') return;
-  event.preventDefault(); const position = pointerPosition(event);
-  pointer.target.x = Math.max(24, Math.min(WIDTH - 24, pointer.target.x + (position.x - pointer.position.x) * 1.12));
-  pointer.target.y = Math.max(100, Math.min(HEIGHT - 45, pointer.target.y + (position.y - pointer.position.y) * 1.12));
-  pointer.position = position;
-});
-const releasePointer = (event: PointerEvent) => { if (pointer?.id === event.pointerId) pointer = null; };
-canvas.addEventListener('pointerup', releasePointer);
-canvas.addEventListener('pointercancel', releasePointer);
-canvas.addEventListener('lostpointercapture', releasePointer);
-canvas.addEventListener('contextmenu', event => event.preventDefault());
+canvasElement('game-canvas').addEventListener('contextmenu', event => event.preventDefault());
 
 $('start-button').addEventListener('click', start);
 $('retry-button').addEventListener('click', start);
@@ -319,7 +296,7 @@ function archiveActionLabel(): void {
   $('archive-info').hidden = activeHelp !== 'archive' || archiveDetailsOpen || !ship;
   actionButton.disabled = !!ship && !archiveDetailsOpen && archiveLoad.kind !== 'ready' && archiveLoad.kind !== 'failed';
   actionButton.textContent = archiveDetailsOpen ? '返回图鉴' : (archiveLoad.kind === 'failed') ? '重试加载' : !archiveEntries.length ? '返回作战' :
-    !ship ? '资料说明' : archiveLoad.kind !== 'ready' ? '载入模型…' : selectedFleet[ship.hull] === ship.id ? '已选用 · 返回' :
+    !ship ? '资料说明' : archiveLoad.kind !== 'ready' ? '载入图像…' : selectedFleet[ship.hull] === ship.id ? '已选用 · 返回' :
     game.status === 'menu' ? '使用本舰' : '下次出击使用';
 }
 function setArchiveDetails({ open, focus = false }: { open: boolean; focus?: boolean }): void {
@@ -344,7 +321,7 @@ async function showArchive(index: number): Promise<void> {
     $('archive-shape').textContent = '当前目录仍在补录，请调整筛选。';
     $('archive-review').textContent = '';
     $('archive-source').hidden = true;
-    $('archive-status').textContent = '暂无模型';
+    $('archive-status').textContent = '暂无图像';
     return;
   }
   $('archive-name').textContent = entry.name;
@@ -370,12 +347,12 @@ async function showArchive(index: number): Promise<void> {
   const source = anchor('archive-source');
   source.href = entry.source; source.hidden = false;
   source.setAttribute('aria-label', `${entry.name}的历史资料，打开新标签页`);
-  $('archive-status').textContent = '模型载入中';
+  $('archive-status').textContent = '图像载入中';
   try {
-    await renderer.loadArchiveModel(entry.modelId);
+    await runtime.loadArchiveModel(entry.modelId);
     if (request !== archiveRequest || activeHelp !== 'archive') return;
-    renderer.selectArchiveModel(entry.modelId, entry.category !== 'aircraft');
-    $('intel-canvas').setAttribute('aria-label', `${entry.name} ${entry.year}年像素模型`);
+    runtime.selectArchiveModel(entry.modelId);
+    $('intel-canvas').setAttribute('aria-label', `${entry.name} ${entry.year}年像素精灵`);
     archiveLoad = { kind: 'ready' };
     $('archive-status').textContent = '';
     $('archive-illustration').classList.remove('loading');
@@ -383,7 +360,7 @@ async function showArchive(index: number): Promise<void> {
   } catch {
     if (request !== archiveRequest || activeHelp !== 'archive') return;
     archiveLoad = { kind: 'failed' };
-    $('archive-status').textContent = '模型加载失败，请重试';
+    $('archive-status').textContent = '图像加载失败，请重试';
     archiveActionLabel();
   }
 }
@@ -412,7 +389,7 @@ function showIntel(index: number) {
   $('intel-shape').textContent=unit.silhouette;
   $('intel-tactic').textContent=unit.tactic;
   $('intel-count').textContent=`${waveNum(intelIndex+1)} / ${UNIT_INFO.length}`;
-  renderer.selectIntel(unit.id);
+  runtime.selectIntel(unit.id);
 }
 function showCampaign(index: number) {
   campaignIndex=(index+WAVES.length)%WAVES.length;
@@ -443,7 +420,7 @@ function showHelpPanel(id: string) {
   }
   if(id==='intel') {
     $('intel-illustration').append($('intel-canvas'));
-    $('intel-canvas').setAttribute('aria-label','作战单位三维预览');
+    $('intel-canvas').setAttribute('aria-label','作战单位二维预览');
     showIntel(intelIndex);
   }
   if(id==='campaign') showCampaign(campaignIndex);
@@ -483,23 +460,25 @@ $('help-ready').addEventListener('click', () => {
 });
 dialog('help-dialog').addEventListener('close', () => { archiveRequest++; if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
 
-const stopViewportTracking=trackViewport(clearInput);
-import.meta.hot?.dispose(stopViewportTracking);
+const stopViewportTracking=trackViewport(() => { clearInput(); runtime.resize(); });
+import.meta.hot?.dispose(() => { stopViewportTracking(); runtime.destroy(); });
 
-await renderer.init();
-await Promise.all(NAVAL_HULLS.map(async hull=>{
-  try {await renderer.loadHistorical(selectedFleet[hull]);}
-  catch {selectedFleet[hull]=DEFAULT_FLEET[hull];}
-}));
-game.fleetAppearance={...selectedFleet};
-selectCraft(selectedCraft); setDifficulty(difficulty); updateRecord(); syncSound(); syncState();
-button('start-button').disabled = false;
-let lastTime = performance.now();
-function frame(now: number) {
-  const dt = Math.min((now - lastTime) / 1000, .05); lastTime = now;
-  const x = Number(keys.has('d') || keys.has('arrowright')) - Number(keys.has('a') || keys.has('arrowleft'));
-  const y = Number(keys.has('s') || keys.has('arrowdown')) - Number(keys.has('w') || keys.has('arrowup'));
-  game.step(dt, pointer ? { x, y, target: pointer.target } : { x, y });
+try {
+  await runtime.init();
+  await Promise.all(NAVAL_HULLS.map(async hull=>{
+    try {await runtime.loadHistorical(selectedFleet[hull]);}
+    catch {selectedFleet[hull]=DEFAULT_FLEET[hull];}
+  }));
+  game.fleetAppearance={...selectedFleet};
+  selectCraft(selectedCraft); setDifficulty(difficulty); updateRecord(); syncSound(); syncState();
+  button('start-button').disabled = false;
+} catch {
+  initializationFailed = true;
+  button('start-button').textContent = '重新加载';
+  button('start-button').disabled = false;
+}
+function frame(dt: number, input: Input): void {
+  game.step(dt, input);
   processEvents();
   if (game.status === 'playing' || game.status === 'menu') {
     if (announcementTimer > 0) { announcementTimer -= dt; if (announcementTimer <= 0) $('wave-announcement').classList.remove('visible'); }
@@ -507,7 +486,4 @@ function frame(now: number) {
   syncState();
   uiTimer += dt;
   if (uiTimer > .08 && game.status !== 'menu') { syncHud(); uiTimer = 0; }
-  renderer.render(dt);
-  requestAnimationFrame(frame);
 }
-requestAnimationFrame(frame);

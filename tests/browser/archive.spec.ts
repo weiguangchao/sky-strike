@@ -27,7 +27,7 @@ async function expectDialogFits(page: import('@playwright/test').Page, context: 
 test('new aircraft and submarine models load lazily, filter, wrap and expose real local previews', async ({ page }, testInfo) => {
   test.setTimeout(90_000);
   const requested: string[] = [], errors: string[] = [];
-  page.on('request', request => { if (request.url().includes('/archive-') && request.url().endsWith('.glb')) requested.push(request.url()); });
+  page.on('request', request => { if (request.url().includes('/archive-') && request.url().endsWith('.png')) requested.push(request.url()); });
   page.on('pageerror', error => errors.push(error.message));
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/'); await expect(page.locator('#start-button')).toBeEnabled();
@@ -54,7 +54,7 @@ test('new aircraft and submarine models load lazily, filter, wrap and expose rea
       const image = PNG.sync.read(screenshot);
       let visible = 0;
       for (let at = 0; at < image.data.length; at += 4) if (required(image.data[at]) + required(image.data[at + 1]) + required(image.data[at + 2]) > 270) visible++;
-      expect(visible, `${entry.id}: exported geometry must be visible`).toBeGreaterThan(100);
+      expect(visible, `${entry.id}: exported sprites must be visible`).toBeGreaterThan(100);
       await writeFile(testInfo.outputPath(`${entry.modelId}-handbook.png`), screenshot);
     }
     await page.locator('#archive-next').click(); await ready(page);
@@ -75,21 +75,21 @@ test('new aircraft and submarine models load lazily, filter, wrap and expose rea
 test('archive retries failed downloads and discards late downloads after a tab switch', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   let fail = true;
-  await page.route('**/archive-sopwith-camel.glb', async route => { if (fail) await route.abort(); else await route.continue(); });
+  await page.route('**/archive-sopwith-camel.png', async route => { if (fail) await route.abort(); else await route.continue(); });
   await openArchive(page); await page.locator('#archive-category').selectOption('aircraft');
   await expect(page.locator('#archive-status')).toContainText('加载失败');
   await expect(page.locator('#help-ready')).toHaveText('重试加载');
   fail = false; await page.locator('#help-ready').click(); await ready(page);
-  await page.locator('#close-help').click(); await page.unroute('**/archive-sopwith-camel.glb');
+  await page.locator('#close-help').click(); await page.unroute('**/archive-sopwith-camel.png');
   const { promise: gate, resolve: release } = Promise.withResolvers<void>();
-  await page.route('**/archive-sopwith-camel.glb', async route => { await gate; await route.continue(); });
+  await page.route('**/archive-sopwith-camel.png', async route => { await gate; await route.continue(); });
   await page.reload(); await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#help-button').click(); await page.locator('#help-tab-archive').click();
   await page.locator('#archive-category').selectOption('aircraft');
-  await expect(page.locator('#archive-status')).toHaveText('模型载入中');
+  await expect(page.locator('#archive-status')).toHaveText('图像载入中');
   await page.locator('#help-tab-intel').click();
   const before = await page.locator('#intel-canvas').evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL());
-  const response = page.waitForResponse('**/archive-sopwith-camel.glb'); release(); await response;
+  const response = page.waitForResponse('**/archive-sopwith-camel.png'); release(); await response;
   await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
   expect(await page.locator('#intel-canvas').evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL())).toBe(before);
 });
@@ -106,6 +106,7 @@ test('four handbook tabs and archive controls fit small portrait and landscape w
 });
 
 test('historical notes and supplemental sources are available by touch and keyboard in short viewports', async ({ page }) => {
+  test.setTimeout(90_000);
   await openArchive(page); await ready(page);
   for (const [width, height] of [[320, 568], [320, 420], [390, 510], [568, 320], [740, 280]] as const) {
     await page.setViewportSize({ width, height });
@@ -132,17 +133,17 @@ test('historical notes and supplemental sources are available by touch and keybo
   }
 });
 
-test('review evidence renders four views of each new exported GLB', async ({ page }, testInfo) => {
+test('review evidence renders both 2D views of each new sprite', async ({ page }, testInfo) => {
   test.setTimeout(90_000);
   await page.goto('/'); await expect(page.locator('#start-button')).toBeEnabled();
-  const moduleURL = `/@fs${fileURLToPath(new URL('../../scripts/archive-views.ts', import.meta.url))}`;
+  const moduleURL = `/@fs${fileURLToPath(new URL('../../scripts/sprite-views.ts', import.meta.url))}`;
   const evidenceDir = testInfo.outputPath('council-views'); await mkdir(evidenceDir, { recursive: true });
   for (const entry of NEW_ARCHIVE) {
     const views: string[] = await page.evaluate(async ({ moduleURL, modelId }) => {
-      const { archiveViews } = await import(moduleURL); return archiveViews(modelId);
+      const { spriteViews } = await import(moduleURL); return spriteViews(modelId);
     }, { moduleURL, modelId: entry.modelId });
-    expect(views).toHaveLength(4);
-    const sheet = new PNG({ width: 1280, height: 800 });
+    expect(views).toHaveLength(2);
+    const sheet = new PNG({ width: 1280, height: 400 });
     for (const [index, data] of views.entries()) {
       const frame = PNG.sync.read(Buffer.from(required(data.split(',')[1]), 'base64'));
       PNG.bitblt(frame, sheet, 0, 0, frame.width, frame.height, (index % 2) * 640, Math.floor(index / 2) * 400);

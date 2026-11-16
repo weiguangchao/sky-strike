@@ -216,7 +216,7 @@ test.describe('retina pixel rendering', () => {
       await fixture(page, true);
       const raster = await page.locator('#game-canvas').evaluate(async (canvas: HTMLCanvasElement) => { const { required } = await import('/dom.ts'); return ({
         width: canvas.width, height: canvas.height,
-        antialias: required(required(canvas.getContext('webgl2')).getContextAttributes()).antialias,
+        antialias: required(required(canvas.getContext('webgl') ?? canvas.getContext('webgl2')).getContextAttributes()).antialias,
         scaling: getComputedStyle(canvas).imageRendering,
       }); });
       // Check the real drawing buffer: CSS alone can disguise a full-resolution render.

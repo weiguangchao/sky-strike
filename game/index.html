@@ -44,7 +44,7 @@
       <div class="frame-top"><span id="sector-label">破晓海域</span></div>
       <div class="battlefield" id="battlefield">
         <div class="battle-stage">
-        <canvas id="game-canvas" width="480" height="760" aria-label="竖版射击战场，方向键或 WASD 移动，空格投放高爆航弹" tabindex="0"></canvas>
+        <canvas id="game-canvas" width="240" height="380" aria-label="竖版射击战场，方向键或 WASD 移动，空格投放高爆航弹" tabindex="0"></canvas>
         <div class="game-hud" id="game-hud" hidden><div class="hud-top"><div><strong id="score" aria-label="作战积分">000000</strong></div><div class="wave-display"><span id="wave">01</span><span class="wave-total">/ 10 波</span></div><button class="hud-pause icon-button" id="pause-button" aria-label="暂停游戏"><span class="pause-face"><svg><use href="#i-pause"/></svg></span></button></div><div class="health-row"><span id="health" aria-label="生命"></span><span class="level-badge">LV.<b id="level">1</b></span></div><div class="xp-track"><span id="xp-fill"></span></div></div>
         <div class="boss-hud" id="boss-hud" hidden><div><span id="boss-name">战列舰 · 铁岳</span><span id="boss-percent">100%</span></div><div class="boss-track"><i id="boss-fill"></i></div><div class="boss-parts" id="boss-parts" aria-label="首领部件"></div></div>
         <div class="wave-announcement" id="wave-announcement" aria-live="polite"></div>
@@ -68,7 +68,7 @@
     <aside class="loadout-panel">
       <div class="panel-heading"><h2>出击机库</h2></div>
       <div class="craft-tabs" role="tablist" aria-label="战机选择"><button class="active" role="tab" aria-selected="true" data-craft="falcon">游隼</button><button role="tab" aria-selected="false" data-craft="swift">雨燕</button><button role="tab" aria-selected="false" data-craft="turtle">玄武</button></div>
-      <div class="craft-illustration"><div class="craft-grid"></div><canvas id="craft-canvas" width="480" height="300" aria-label="当前战机预览"></canvas></div>
+      <div class="craft-illustration"><div class="craft-grid"></div><canvas id="craft-canvas" width="160" height="100" aria-label="当前战机预览"></canvas></div>
       <div class="craft-name"><h3 id="craft-name">游隼</h3><span id="craft-role">均衡型</span></div>
       <div class="craft-stats"><div><span>火力</span><div class="stat-bars" id="stat-power"></div></div><div><span>机动</span><div class="stat-bars" id="stat-speed"></div></div><div><span>装甲</span><div class="stat-bars" id="stat-armor"></div></div></div>
       <div class="run-build" id="run-build" hidden><span>本次强化</span><div id="build-list">等待首次升级</div></div>
@@ -86,7 +86,7 @@
       <div class="help-notes"><p>机炮对空；对准舰船自动投弹，不消耗航弹。</p><p>空格航弹清弹；中央白点受击；升级三选一。</p></div>
     </section>
     <section class="handbook-panel" id="help-intel-panel" role="tabpanel" aria-labelledby="help-tab-intel" hidden>
-      <div class="intel-card"><div class="intel-illustration" id="intel-illustration"><canvas id="intel-canvas" width="192" height="120" aria-label="作战单位三维预览"></canvas></div><div class="intel-copy"><span id="intel-role"></span><h3 id="intel-name"></h3><p id="intel-shape"></p><p id="intel-tactic"></p></div></div>
+      <div class="intel-card"><div class="intel-illustration" id="intel-illustration"><canvas id="intel-canvas" width="192" height="120" aria-label="作战单位二维预览"></canvas></div><div class="intel-copy"><span id="intel-role"></span><h3 id="intel-name"></h3><p id="intel-shape"></p><p id="intel-tactic"></p></div></div>
       <div class="handbook-pager"><button class="secondary-button" id="intel-prev" aria-label="上一种作战单位">←</button><span id="intel-count" aria-live="polite"></span><button class="secondary-button" id="intel-next" aria-label="下一种作战单位">→</button></div>
     </section>
     <section class="handbook-panel" id="help-campaign-panel" role="tabpanel" aria-labelledby="help-tab-campaign" hidden>
