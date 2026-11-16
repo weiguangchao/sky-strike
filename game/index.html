@@ -79,32 +79,45 @@
 
   <dialog id="help-dialog" aria-labelledby="help-title">
     <button class="dialog-close icon-button" id="close-help" aria-label="关闭作战手册"><svg><use href="#i-close"/></svg></button>
-    <div class="help-heading"><h2 id="help-title">手册</h2><div class="help-tabs" role="tablist" aria-label="手册栏目"><button id="help-tab-controls" role="tab" aria-controls="help-controls-panel" aria-selected="true" data-help="controls">操作</button><button id="help-tab-intel" role="tab" aria-controls="help-intel-panel" aria-selected="false" tabindex="-1" data-help="intel">舰机</button><button id="help-tab-campaign" role="tab" aria-controls="help-campaign-panel" aria-selected="false" tabindex="-1" data-help="campaign">战役</button><button id="help-tab-fleet" role="tab" aria-controls="help-fleet-panel" aria-selected="false" tabindex="-1" data-help="fleet">舰库</button></div></div>
+    <div class="help-heading"><h2 id="help-title">手册</h2><div class="help-tabs" role="tablist" aria-label="手册栏目"><button id="help-tab-controls" role="tab" aria-controls="help-controls-panel" aria-selected="true" data-help="controls">操作</button><button id="help-tab-intel" role="tab" aria-controls="help-intel-panel" aria-selected="false" tabindex="-1" data-help="intel">作战单位</button><button id="help-tab-campaign" role="tab" aria-controls="help-campaign-panel" aria-selected="false" tabindex="-1" data-help="campaign">战役</button><button id="help-tab-archive" role="tab" aria-controls="help-archive-panel" aria-selected="false" tabindex="-1" data-help="archive">历史图鉴</button></div></div>
     <section class="handbook-panel" id="help-controls-panel" role="tabpanel" aria-labelledby="help-tab-controls">
       <div class="help-controls"><div><span>电脑</span><p><kbd>WASD / 方向键</kbd> 移动<br><kbd>SPACE / B</kbd> 航弹<br><kbd>P / ESC</kbd> 暂停</p></div><div><span>手机</span><p>按住拖动战机<br>右下角投弹<br>右上角暂停</p></div></div>
       <div class="handbook-signals combat-guide"><span><i class="signal signal-danger"></i>敌弹：躲避</span><span><i class="signal signal-xp"></i>补给：升级</span><span><i class="signal signal-health"></i>十字：维修</span><span><i class="signal signal-bomb"></i>紫箱：航弹</span></div>
       <div class="help-notes"><p>机炮对空；对准舰船自动投弹，不消耗航弹。</p><p>空格航弹清弹；中央白点受击；升级三选一。</p></div>
     </section>
     <section class="handbook-panel" id="help-intel-panel" role="tabpanel" aria-labelledby="help-tab-intel" hidden>
-      <div class="intel-card"><div class="intel-illustration" id="intel-illustration"><canvas id="intel-canvas" width="192" height="120" aria-label="舰机三维预览"></canvas></div><div class="intel-copy"><span id="intel-role"></span><h3 id="intel-name"></h3><p id="intel-shape"></p><p id="intel-tactic"></p></div></div>
-      <div class="handbook-pager"><button class="secondary-button" id="intel-prev" aria-label="上一种舰机">←</button><span id="intel-count" aria-live="polite"></span><button class="secondary-button" id="intel-next" aria-label="下一种舰机">→</button></div>
+      <div class="intel-card"><div class="intel-illustration" id="intel-illustration"><canvas id="intel-canvas" width="192" height="120" aria-label="作战单位三维预览"></canvas></div><div class="intel-copy"><span id="intel-role"></span><h3 id="intel-name"></h3><p id="intel-shape"></p><p id="intel-tactic"></p></div></div>
+      <div class="handbook-pager"><button class="secondary-button" id="intel-prev" aria-label="上一种作战单位">←</button><span id="intel-count" aria-live="polite"></span><button class="secondary-button" id="intel-next" aria-label="下一种作战单位">→</button></div>
     </section>
     <section class="handbook-panel" id="help-campaign-panel" role="tabpanel" aria-labelledby="help-tab-campaign" hidden>
       <div class="campaign-card"><span id="campaign-stage"></span><h3 id="campaign-name"></h3><p id="campaign-objective"></p><div id="campaign-roster"></div></div>
       <div class="handbook-pager"><button class="secondary-button" id="campaign-prev" aria-label="上一波战役">←</button><span id="campaign-count" aria-live="polite"></span><button class="secondary-button" id="campaign-next" aria-label="下一波战役">→</button></div>
     </section>
-    <section class="handbook-panel" id="help-fleet-panel" role="tabpanel" aria-labelledby="help-tab-fleet" hidden>
-      <div class="intel-card fleet-card"><div class="intel-illustration" id="fleet-illustration"><span id="fleet-status" role="status" aria-live="polite"></span></div><div class="intel-copy fleet-copy"><div class="fleet-meta"><span id="fleet-role"></span><span id="fleet-count" aria-live="polite"></span></div><h3 id="fleet-name"></h3><p id="fleet-shape"></p><div class="fleet-reference"><span id="fleet-kind"></span><a id="fleet-source" target="_blank" rel="noopener noreferrer">史料 ↗</a></div></div></div>
-      <div class="fleet-controls">
-        <div class="fleet-filters">
-          <select id="fleet-country" aria-label="按国家筛选历史舰船"><option value="all">全部海军</option></select>
-          <select id="fleet-type" aria-label="按舰种筛选历史舰船"><option value="all">全部舰种</option><option value="fleet-carrier">航空母舰</option><option value="cruiser">巡洋舰</option><option value="destroyer">驱逐舰</option><option value="battleship">战列舰</option><option value="patrol-boat">巡逻护航艇</option><option value="transport">运输船</option></select>
-          <select id="fleet-era" aria-label="按模型外观年代筛选"><option value="all">全部外观年代</option><option value="wartime">二战外观 ≤1945</option><option value="cold-war">冷战外观 1946–1991</option><option value="modern">现代外观 ≥1992</option></select>
+    <section class="handbook-panel" id="help-archive-panel" role="tabpanel" aria-labelledby="help-tab-archive" hidden>
+      <div class="intel-card fleet-card archive-card" id="archive-card">
+        <div class="intel-illustration" id="archive-illustration"><span id="archive-status" role="status" aria-live="polite"></span></div>
+        <div class="intel-copy fleet-copy">
+          <div class="fleet-meta"><span id="archive-role"></span><span id="archive-count" aria-live="polite"></span></div>
+          <h3 id="archive-name"></h3><p id="archive-shape"></p>
+          <div class="fleet-reference"><span id="archive-review"></span><a id="archive-source" target="_blank" rel="noopener noreferrer">史料 ↗</a></div>
         </div>
-        <div class="handbook-pager fleet-pager"><button class="secondary-button" id="fleet-prev" aria-label="上一艘历史舰船">←</button><select id="fleet-entry" aria-label="直接选择舰船或舰级"></select><button class="secondary-button" id="fleet-next" aria-label="下一艘历史舰船">→</button></div>
+      </div>
+      <div class="fleet-controls archive-controls" id="archive-controls">
+        <div class="fleet-filters">
+          <select id="archive-country" aria-label="按原型国家筛选历史图鉴"><option value="all">全部国家</option></select>
+          <select id="archive-category" aria-label="按类别筛选历史图鉴"><option value="all">全部类别</option><option value="aircraft">飞机型号</option><option value="surface">水面舰艇</option><option value="submarine">潜艇舰级</option><optgroup label="水面舰种"><option value="fleet-carrier">航空母舰</option><option value="cruiser">巡洋舰</option><option value="destroyer">驱逐舰</option><option value="battleship">战列舰</option><option value="patrol-boat">巡逻护航艇</option><option value="transport">运输船</option></optgroup></select>
+          <select id="archive-era" aria-label="按外观年代筛选历史图鉴"><option value="all">全部年代</option><option value="ww1">一战 ≤1918</option><option value="interwar-ww2">1919–1945</option><option value="cold-war">冷战 1946–1991</option><option value="modern">现代 ≥1992</option></select>
+        </div>
+        <div class="handbook-pager fleet-pager"><button class="secondary-button" id="archive-prev" aria-label="上一个历史型号">←</button><select id="archive-entry" aria-label="直接选择历史型号或舰级"></select><button class="secondary-button" id="archive-next" aria-label="下一个历史型号">→</button></div>
+      </div>
+      <p id="archive-coverage">首批收录 · 全球服役型号仍在补录</p>
+      <div id="archive-details" role="region" aria-labelledby="archive-details-title" hidden>
+        <h3 id="archive-details-title" tabindex="-1">资料与口径</h3>
+        <p id="archive-note"></p>
+        <ul id="archive-reference-list"></ul>
       </div>
     </section>
-    <button class="primary-button" id="help-ready">准备出击 <svg><use href="#i-arrow"/></svg></button>
+    <div id="help-actions"><button class="secondary-button" id="archive-info" hidden>资料说明</button><button class="primary-button" id="help-ready">准备出击 <svg><use href="#i-arrow"/></svg></button></div>
   </dialog>
   <script type="module" src="./main.ts"></script>
 </body>

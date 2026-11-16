@@ -233,6 +233,10 @@ export class Renderer {
 
   selectHistorical(id:HistoricalShipId):void {this.selectIntelModel(historicalModel(id),true);}
 
+  async loadArchiveModel(id: ModelId): Promise<void> { await this.init(); await this.library.loadModel(id); }
+
+  selectArchiveModel(id: ModelId, naval: boolean): void { this.selectIntelModel(id, naval); }
+
   private selectIntelModel(id:ModelId,naval:boolean):void {
     if (!this.ready || !this.intelRenderer) return;
     if (this.intel) this.intelScene.remove(this.intel.root);

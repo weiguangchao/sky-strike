@@ -1,0 +1,3863 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "sopwith-camel",
+      "modelId": "archive-sopwith-camel",
+      "name": "索普威思 Camel F.1",
+      "country": "gb",
+      "year": 1917,
+      "kind": "双翼战斗机",
+      "category": "aircraft",
+      "feature": "错列双翼与驼峰 · 旋转发动机 · 单跨支柱",
+      "source": "https://airandspace.si.edu/collection-objects/sopwith-f1-camel/nasm_A20170105000",
+      "references": [
+        "https://www.baesystems.com/heritage/page/sopwith-camel",
+        "https://brenthugh.com/flightgear/catalog/sopwithCamel-Bombable/Docs/Historical%20Docs/Flight-Sept1918/1918%20-%201019.PDF"
+      ],
+      "geometry": {
+        "length": 5.72,
+        "span": 8.53,
+        "wing": [
+          [
+            0,
+            0.32
+          ],
+          [
+            0.91,
+            0.32
+          ],
+          [
+            1,
+            0.26
+          ],
+          [
+            1,
+            -0.09958
+          ],
+          [
+            0.91,
+            -0.15958
+          ],
+          [
+            0,
+            -0.15958
+          ]
+        ],
+        "wingLevels": [
+          -0.12,
+          0.459534
+        ],
+        "body": "rotary",
+        "paint": "olive",
+        "tail": "rounded",
+        "propellerBlades": 2,
+        "engines": 1,
+        "struts": "paired",
+        "cockpit": -0.04,
+        "tailSpan": 0.39,
+        "profile": {
+          "sections": [
+            [
+              -3,
+              0.025,
+              0.055,
+              0.04
+            ],
+            [
+              -2.55,
+              0.09,
+              0.14,
+              0.05
+            ],
+            [
+              -1.3,
+              0.25,
+              0.27,
+              0.06
+            ],
+            [
+              -0.35,
+              0.36,
+              0.35,
+              0.07
+            ],
+            [
+              0.65,
+              0.38,
+              0.37,
+              0.05
+            ],
+            [
+              1.55,
+              0.43,
+              0.44,
+              0
+            ],
+            [
+              2.32,
+              0.49,
+              0.49,
+              0
+            ],
+            [
+              2.65,
+              0.48,
+              0.48,
+              0
+            ]
+          ],
+          "fin": [
+            [
+              -2.9,
+              0.08
+            ],
+            [
+              -2.95,
+              0.43
+            ],
+            [
+              -2.78,
+              0.69
+            ],
+            [
+              -2.48,
+              0.72
+            ],
+            [
+              -2.3,
+              0.5
+            ],
+            [
+              -1.88,
+              0.08
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              -1.85
+            ],
+            [
+              0.65,
+              -2.08
+            ],
+            [
+              0.96,
+              -2.35
+            ],
+            [
+              1,
+              -2.68
+            ],
+            [
+              0.75,
+              -2.87
+            ],
+            [
+              0,
+              -2.85
+            ]
+          ],
+          "canopy": [
+            0.19,
+            0.27,
+            0.12,
+            0.42
+          ],
+          "wingThickness": 0.105,
+          "wingDihedralDegrees": [
+            5,
+            0
+          ],
+          "propellerDiameter": 2.59,
+          "lowerSpan": 8.53,
+          "lowerChord": 1,
+          "stagger": 0.47958,
+          "strutBays": [
+            0.72
+          ],
+          "upperWing": [
+            [
+              0,
+              0.32
+            ],
+            [
+              0.91,
+              0.32
+            ],
+            [
+              1,
+              0.26
+            ],
+            [
+              1,
+              -0.09958
+            ],
+            [
+              0.91,
+              -0.15958
+            ],
+            [
+              0.1,
+              -0.15958
+            ],
+            [
+              0.055,
+              -0.08
+            ],
+            [
+              0,
+              0.025
+            ]
+          ],
+          "spine": [
+            [
+              0.2,
+              0.18,
+              0.06,
+              0.39
+            ],
+            [
+              0.5,
+              0.22,
+              0.17,
+              0.43
+            ],
+            [
+              1.25,
+              0.23,
+              0.16,
+              0.42
+            ],
+            [
+              1.6,
+              0.15,
+              0.06,
+              0.4
+            ]
+          ]
+        }
+      },
+      "note": "按公开外形制作的低多边形识别模型；涂装为项目统一演绎。"
+    },
+    {
+      "id": "spad-xiii",
+      "modelId": "archive-spad-xiii",
+      "name": "SPAD S.XIII",
+      "country": "fr",
+      "year": 1917,
+      "kind": "双翼战斗机",
+      "category": "aircraft",
+      "feature": "等弦双翼 · 圆形前置散热器 · 双对翼间支柱",
+      "source": "https://airandspace.si.edu/collection-objects/spad-xiii-smith-iv/nasm_A19200001000",
+      "references": [
+        "https://www.memorial-flight.com/spad-xiii?lang=en"
+      ],
+      "geometry": {
+        "length": 6.25,
+        "span": 8.08,
+        "wing": [
+          [
+            0,
+            0.23
+          ],
+          [
+            0.91,
+            0.23
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            1,
+            -0.14
+          ],
+          [
+            0.91,
+            -0.21
+          ],
+          [
+            0,
+            -0.21
+          ]
+        ],
+        "wingLevels": [
+          -0.13,
+          0.3
+        ],
+        "body": "inline",
+        "paint": "olive",
+        "tail": "rounded",
+        "propellerBlades": 2,
+        "engines": 1,
+        "struts": "paired",
+        "cockpit": -0.09,
+        "tailSpan": 0.37,
+        "profile": {
+          "sections": [
+            [
+              -3,
+              0.03,
+              0.05,
+              0.02
+            ],
+            [
+              -2.4,
+              0.12,
+              0.17,
+              0.05
+            ],
+            [
+              -1.25,
+              0.25,
+              0.29,
+              0.04
+            ],
+            [
+              -0.2,
+              0.35,
+              0.37,
+              0
+            ],
+            [
+              0.95,
+              0.38,
+              0.38,
+              0
+            ],
+            [
+              1.8,
+              0.37,
+              0.39,
+              0
+            ],
+            [
+              2.6,
+              0.36,
+              0.37,
+              0
+            ]
+          ],
+          "fin": [
+            [
+              -2.95,
+              0.08
+            ],
+            [
+              -2.93,
+              0.58
+            ],
+            [
+              -2.78,
+              0.77
+            ],
+            [
+              -2.55,
+              0.77
+            ],
+            [
+              -2.34,
+              0.48
+            ],
+            [
+              -1.95,
+              0.09
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              -1.87
+            ],
+            [
+              0.55,
+              -1.99
+            ],
+            [
+              0.95,
+              -2.26
+            ],
+            [
+              1,
+              -2.55
+            ],
+            [
+              0.82,
+              -2.79
+            ],
+            [
+              0,
+              -2.82
+            ]
+          ],
+          "canopy": [
+            0.18,
+            0.26,
+            0.12,
+            0.4
+          ],
+          "wingThickness": 0.095,
+          "wingDihedralDegrees": [
+            0,
+            0
+          ],
+          "propellerDiameter": 2.5,
+          "lowerSpan": 7.77,
+          "lowerChord": 0.98,
+          "stagger": 0.06,
+          "strutBays": [
+            0.43,
+            0.77
+          ]
+        }
+      },
+      "note": "按公开外形制作的低多边形识别模型；涂装为项目统一演绎。"
+    },
+    {
+      "id": "fokker-dvii",
+      "modelId": "archive-fokker-dvii",
+      "name": "福克 D.VII",
+      "country": "de",
+      "year": 1918,
+      "kind": "双翼战斗机",
+      "category": "aircraft",
+      "feature": "厚翼双翼机 · N 形支柱 · 方截面机首",
+      "source": "https://airandspace.si.edu/collection-objects/fokker-dvii/nasm_A19200004000",
+      "references": [
+        "https://www.fokker-history.com/en-gb/d-vii"
+      ],
+      "geometry": {
+        "length": 7,
+        "span": 8.9,
+        "wing": [
+          [
+            0,
+            0.27857
+          ],
+          [
+            0.96,
+            0.27857
+          ],
+          [
+            1,
+            0.23045
+          ],
+          [
+            1,
+            -0.17857
+          ],
+          [
+            0,
+            -0.17857
+          ]
+        ],
+        "wingLevels": [
+          -0.13,
+          0.3
+        ],
+        "body": "inline",
+        "paint": "olive",
+        "tail": "square",
+        "propellerBlades": 2,
+        "engines": 1,
+        "struts": "N",
+        "cockpit": -0.1,
+        "tailSpan": 0.37,
+        "profile": {
+          "sections": [
+            [
+              -3,
+              0.025,
+              0.07,
+              0.02
+            ],
+            [
+              -2.5,
+              0.1,
+              0.16,
+              0.04
+            ],
+            [
+              -1.3,
+              0.23,
+              0.3,
+              0.05
+            ],
+            [
+              -0.25,
+              0.32,
+              0.36,
+              0.02
+            ],
+            [
+              0.85,
+              0.34,
+              0.37,
+              0
+            ],
+            [
+              1.7,
+              0.33,
+              0.37,
+              0
+            ],
+            [
+              2.62,
+              0.32,
+              0.36,
+              0
+            ]
+          ],
+          "fin": [
+            [
+              -2.98,
+              0.1
+            ],
+            [
+              -3,
+              0.4
+            ],
+            [
+              -2.93,
+              0.62
+            ],
+            [
+              -2.78,
+              0.79
+            ],
+            [
+              -2.62,
+              0.82
+            ],
+            [
+              -2.48,
+              0.75
+            ],
+            [
+              -2.38,
+              0.57
+            ],
+            [
+              -2.28,
+              0.26
+            ],
+            [
+              -1.74,
+              0.09
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              -1.65
+            ],
+            [
+              0.75,
+              -1.96
+            ],
+            [
+              1,
+              -2.15
+            ],
+            [
+              0.89,
+              -2.74
+            ],
+            [
+              0,
+              -2.78
+            ]
+          ],
+          "canopy": [
+            0.18,
+            0.27,
+            0.1,
+            0.41
+          ],
+          "wingThickness": 0.17,
+          "wingDihedralDegrees": [
+            0,
+            0
+          ],
+          "propellerDiameter": 2.8,
+          "lowerSpan": 7,
+          "lowerChord": 0.75,
+          "stagger": 0.15,
+          "strutBays": [
+            0.72
+          ]
+        }
+      },
+      "note": "按公开外形制作的低多边形识别模型；涂装为项目统一演绎。"
+    },
+    {
+      "id": "spitfire-ia",
+      "modelId": "archive-spitfire-ia",
+      "name": "喷火 Mk IA",
+      "country": "gb",
+      "year": 1940,
+      "kind": "螺旋桨战斗机",
+      "category": "aircraft",
+      "feature": "椭圆主翼 · 窄机首 · 翼下散热器",
+      "source": "https://www.rafmuseum.org.uk/london/exhibition-items/supermarine-spitfire-mk-ia/",
+      "references": [
+        "https://stephentaylorhistorian.com/wp-content/uploads/2020/04/ap1565a-spitfire1.pdf"
+      ],
+      "geometry": {
+        "length": 9.12,
+        "span": 11.23,
+        "wing": [
+          [
+            0,
+            0.272583
+          ],
+          [
+            0.4,
+            0.221564
+          ],
+          [
+            0.72,
+            0.135975
+          ],
+          [
+            0.92,
+            0.020146
+          ],
+          [
+            1,
+            -0.099183
+          ],
+          [
+            0.96,
+            -0.189918
+          ],
+          [
+            0.75,
+            -0.270442
+          ],
+          [
+            0.4,
+            -0.299111
+          ],
+          [
+            0,
+            -0.284434
+          ]
+        ],
+        "wingLevels": [
+          -0.12
+        ],
+        "body": "inline",
+        "paint": "olive",
+        "tail": "rounded",
+        "propellerBlades": 3,
+        "engines": 1,
+        "radiator": "wing",
+        "cockpit": -0.07,
+        "tailSpan": 0.284987,
+        "profile": {
+          "sections": [
+            [
+              -3,
+              0.025,
+              0.06,
+              0.07
+            ],
+            [
+              -2.6,
+              0.08,
+              0.15,
+              0.1
+            ],
+            [
+              -1.5,
+              0.17,
+              0.26,
+              0.14
+            ],
+            [
+              -0.75,
+              0.25,
+              0.32,
+              0.14
+            ],
+            [
+              0,
+              0.31,
+              0.33,
+              0.04
+            ],
+            [
+              0.85,
+              0.33,
+              0.34,
+              0.01
+            ],
+            [
+              1.75,
+              0.29,
+              0.3,
+              0
+            ],
+            [
+              2.62,
+              0.23,
+              0.26,
+              0.02
+            ]
+          ],
+          "fin": [
+            [
+              -2.96,
+              0.1
+            ],
+            [
+              -2.95,
+              0.48
+            ],
+            [
+              -2.84,
+              0.76
+            ],
+            [
+              -2.67,
+              0.88
+            ],
+            [
+              -2.45,
+              0.81
+            ],
+            [
+              -2.21,
+              0.47
+            ],
+            [
+              -1.94,
+              0.12
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              -1.91
+            ],
+            [
+              0.48,
+              -1.99
+            ],
+            [
+              0.82,
+              -2.17
+            ],
+            [
+              1,
+              -2.41
+            ],
+            [
+              0.93,
+              -2.58
+            ],
+            [
+              0.64,
+              -2.72
+            ],
+            [
+              0,
+              -2.73
+            ]
+          ],
+          "canopy": [
+            0.205,
+            0.46,
+            0.25,
+            0.34
+          ],
+          "wingThickness": 0.1,
+          "wingDihedralDegrees": [
+            6
+          ],
+          "propellerDiameter": 3.28,
+          "spinner": [
+            [
+              2.6,
+              0.23,
+              0.26,
+              0.02
+            ],
+            [
+              2.76,
+              0.21,
+              0.23,
+              0.02
+            ],
+            [
+              2.91,
+              0.13,
+              0.14,
+              0.01
+            ],
+            [
+              3,
+              0.004,
+              0.004,
+              0
+            ]
+          ]
+        }
+      },
+      "note": "按公开外形制作的低多边形识别模型；涂装为项目统一演绎。"
+    },
+    {
+      "id": "p51d",
+      "modelId": "archive-p51d",
+      "name": "P-51D 野马",
+      "country": "us",
+      "year": 1944,
+      "kind": "螺旋桨战斗机",
+      "category": "aircraft",
+      "feature": "梯形低翼 · 水滴座舱 · 腹部散热器",
+      "source": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196263/north-american-p-51d-mustang/",
+      "references": [
+        "https://www.nps.gov/articles/us-army-aircraft-p51d25na-4473287.htm",
+        "https://ntrs.nasa.gov/api/citations/20050019329/downloads/20050019329.pdf"
+      ],
+      "geometry": {
+        "length": 9.83,
+        "span": 11.28,
+        "wing": [
+          [
+            0,
+            0.22
+          ],
+          [
+            0.88,
+            0.156606
+          ],
+          [
+            1,
+            0.079461
+          ],
+          [
+            0.97,
+            -0.132253
+          ],
+          [
+            0,
+            -0.308
+          ]
+        ],
+        "wingLevels": [
+          -0.12
+        ],
+        "body": "inline",
+        "paint": "silver",
+        "tail": "square",
+        "propellerBlades": 4,
+        "engines": 1,
+        "radiator": "belly",
+        "cockpit": -0.04,
+        "tailSpan": 0.35,
+        "profile": {
+          "sections": [
+            [
+              -3,
+              0.03,
+              0.07,
+              0.05
+            ],
+            [
+              -2.6,
+              0.1,
+              0.16,
+              0.05
+            ],
+            [
+              -1.65,
+              0.19,
+              0.23,
+              0.04
+            ],
+            [
+              -0.7,
+              0.28,
+              0.3,
+              0.02
+            ],
+            [
+              0.2,
+              0.33,
+              0.34,
+              0.02
+            ],
+            [
+              1.15,
+              0.32,
+              0.34,
+              0.01
+            ],
+            [
+              2.1,
+              0.29,
+              0.32,
+              0
+            ],
+            [
+              2.65,
+              0.22,
+              0.26,
+              0
+            ]
+          ],
+          "fin": [
+            [
+              -2.96,
+              0.09
+            ],
+            [
+              -2.94,
+              0.77
+            ],
+            [
+              -2.54,
+              0.88
+            ],
+            [
+              -2.25,
+              0.78
+            ],
+            [
+              -1.92,
+              0.25
+            ],
+            [
+              -1.45,
+              0.13
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              -1.78
+            ],
+            [
+              0.9,
+              -2.15
+            ],
+            [
+              1,
+              -2.31
+            ],
+            [
+              0.95,
+              -2.67
+            ],
+            [
+              0,
+              -2.76
+            ]
+          ],
+          "canopy": [
+            0.23,
+            0.53,
+            0.3,
+            0.37
+          ],
+          "wingThickness": 0.095,
+          "wingDihedralDegrees": [
+            5
+          ],
+          "propellerDiameter": 3.4,
+          "spinner": [
+            [
+              2.63,
+              0.22,
+              0.26,
+              0
+            ],
+            [
+              2.78,
+              0.2,
+              0.23,
+              0
+            ],
+            [
+              2.93,
+              0.11,
+              0.13,
+              0
+            ],
+            [
+              3,
+              0.004,
+              0.004,
+              0
+            ]
+          ]
+        }
+      },
+      "note": "翼面积按服役规格约21.9平方米；上反角另核对NACA原始P-51D报告的5°，试验构型的尺寸另记。"
+    },
+    {
+      "id": "a6m5",
+      "modelId": "archive-a6m5",
+      "name": "零式 A6M5 五二型",
+      "country": "jp",
+      "year": 1943,
+      "kind": "螺旋桨战斗机",
+      "category": "aircraft",
+      "feature": "圆形发动机罩 · 圆翼尖 · 长框式座舱",
+      "source": "https://airandspace.si.edu/collection-objects/mitsubishi-a6m5-reisen-zero-fighter-model-52-zeke/nasm_A19600335000",
+      "references": [
+        "https://dl.ndl.go.jp/api/iiif/4009756/R0000010/full/1600,/0/default.jpg"
+      ],
+      "geometry": {
+        "length": 9.1,
+        "span": 11,
+        "wing": [
+          [
+            0,
+            0.292407
+          ],
+          [
+            0.84,
+            0.203572
+          ],
+          [
+            0.98,
+            0.123787
+          ],
+          [
+            1,
+            0.016661
+          ],
+          [
+            0.94,
+            -0.10057
+          ],
+          [
+            0,
+            -0.304591
+          ]
+        ],
+        "wingLevels": [
+          -0.12
+        ],
+        "body": "radial",
+        "paint": "navy",
+        "tail": "rounded",
+        "propellerBlades": 3,
+        "engines": 1,
+        "cockpit": -0.09,
+        "tailSpan": 0.43,
+        "profile": {
+          "sections": [
+            [
+              -3,
+              0.035,
+              0.075,
+              0.02
+            ],
+            [
+              -2.4,
+              0.11,
+              0.19,
+              0.05
+            ],
+            [
+              -1.3,
+              0.22,
+              0.28,
+              0.06
+            ],
+            [
+              -0.35,
+              0.31,
+              0.32,
+              0.03
+            ],
+            [
+              0.8,
+              0.34,
+              0.35,
+              0.01
+            ],
+            [
+              1.5,
+              0.36,
+              0.37,
+              0
+            ],
+            [
+              2,
+              0.43,
+              0.44,
+              0
+            ],
+            [
+              2.66,
+              0.43,
+              0.44,
+              0
+            ]
+          ],
+          "fin": [
+            [
+              -2.97,
+              0.08
+            ],
+            [
+              -2.98,
+              0.57
+            ],
+            [
+              -2.85,
+              0.83
+            ],
+            [
+              -2.66,
+              0.85
+            ],
+            [
+              -2.36,
+              0.6
+            ],
+            [
+              -2,
+              0.15
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              -1.83
+            ],
+            [
+              0.55,
+              -1.99
+            ],
+            [
+              0.93,
+              -2.25
+            ],
+            [
+              1,
+              -2.48
+            ],
+            [
+              0.87,
+              -2.66
+            ],
+            [
+              0,
+              -2.76
+            ]
+          ],
+          "canopy": [
+            0.23,
+            0.76,
+            0.27,
+            0.36
+          ],
+          "wingThickness": 0.09,
+          "wingDihedralDegrees": [
+            5.7
+          ],
+          "propellerDiameter": 3.05
+        }
+      },
+      "note": "翼面积按公开规格约21.3平方米；TAIC原始表230平方英尺约21.37平方米，差异来自原始英制数值与公制约数。"
+    },
+    {
+      "id": "f86a",
+      "modelId": "archive-f86a",
+      "name": "F-86A 佩刀",
+      "country": "us",
+      "year": 1950,
+      "kind": "喷气战斗机",
+      "category": "aircraft",
+      "feature": "后掠翼 · 机首进气 · 单尾喷口",
+      "source": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196118/north-american-f-86a-sabre/",
+      "references": [
+        "https://ntrs.nasa.gov/api/citations/19930089401/downloads/19930089401.pdf",
+        "https://ntrs.nasa.gov/api/citations/19930086840/downloads/19930086840.pdf"
+      ],
+      "geometry": {
+        "length": 11.43,
+        "span": 11.3,
+        "wing": [
+          [
+            0,
+            0.24
+          ],
+          [
+            1,
+            -0.525374
+          ],
+          [
+            1,
+            -0.805143
+          ],
+          [
+            0,
+            -0.308567
+          ]
+        ],
+        "wingLevels": [
+          -0.1
+        ],
+        "body": "jet",
+        "paint": "silver",
+        "tail": "swept",
+        "propellerBlades": 0,
+        "engines": 1,
+        "intake": "nose",
+        "cockpit": 0.22,
+        "tailSpan": 0.3439115,
+        "profile": {
+          "sections": [
+            [
+              -2.94,
+              0.235,
+              0.235,
+              0
+            ],
+            [
+              -2.4,
+              0.29,
+              0.29,
+              0.01
+            ],
+            [
+              -1.4,
+              0.37,
+              0.34,
+              0.03
+            ],
+            [
+              -0.25,
+              0.4,
+              0.37,
+              0.04
+            ],
+            [
+              0.9,
+              0.38,
+              0.37,
+              0.03
+            ],
+            [
+              1.9,
+              0.34,
+              0.33,
+              -0.02
+            ],
+            [
+              2.98,
+              0.32,
+              0.32,
+              -0.04
+            ]
+          ],
+          "fin": [
+            [
+              -2.91,
+              0.16
+            ],
+            [
+              -2.74,
+              1.03
+            ],
+            [
+              -2.22,
+              1.11
+            ],
+            [
+              -1.34,
+              0.19
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              -1.75
+            ],
+            [
+              1,
+              -2.536593
+            ],
+            [
+              1,
+              -2.809473
+            ],
+            [
+              0,
+              -2.3564
+            ]
+          ],
+          "canopy": [
+            0.245,
+            0.62,
+            0.3,
+            0.39
+          ],
+          "wingThickness": 0.08,
+          "wingDihedralDegrees": [
+            3
+          ],
+          "tailDihedralDegrees": 10
+        }
+      },
+      "note": "主翼按 NACA 实测约 26.75 平方米和 0.51 梯形比校准；后掠采用四分之一弦线约 35°的口径，前缘约 38°，两者不可混用。"
+    },
+    {
+      "id": "mig21pf",
+      "modelId": "archive-mig21pf",
+      "name": "米格-21PF",
+      "country": "su",
+      "year": 1965,
+      "kind": "喷气战斗机",
+      "category": "aircraft",
+      "feature": "三角翼 · 机首进气锥 · 独立水平尾翼",
+      "source": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/195970/mikoyan-gurevich-mig-21pf-fishbed-d/",
+      "references": [
+        "https://aviamuseum.com.ua/en/exposition/exposition/kb-mig/195-mig-21pf",
+        "https://mapsairmuseum.org/wp-content/uploads/2024/02/MiG-21.pdf"
+      ],
+      "geometry": {
+        "length": 15.76,
+        "span": 7.15,
+        "wing": [
+          [
+            0,
+            0.27
+          ],
+          [
+            1,
+            -0.428606
+          ],
+          [
+            1,
+            -0.486982
+          ],
+          [
+            0,
+            -0.488067
+          ]
+        ],
+        "wingLevels": [
+          -0.1
+        ],
+        "body": "jet",
+        "paint": "silver",
+        "tail": "delta",
+        "propellerBlades": 0,
+        "engines": 1,
+        "intake": "nose",
+        "cockpit": 0.21,
+        "tailSpan": 0.54,
+        "profile": {
+          "sections": [
+            [
+              -2.94,
+              0.22,
+              0.23,
+              0
+            ],
+            [
+              -2.25,
+              0.265,
+              0.28,
+              0
+            ],
+            [
+              -1.1,
+              0.29,
+              0.3,
+              0
+            ],
+            [
+              0.25,
+              0.295,
+              0.31,
+              0
+            ],
+            [
+              1.15,
+              0.28,
+              0.3,
+              0.01
+            ],
+            [
+              1.9,
+              0.265,
+              0.28,
+              0
+            ],
+            [
+              2.22,
+              0.26,
+              0.27,
+              0
+            ]
+          ],
+          "fin": [
+            [
+              -2.94,
+              0.12
+            ],
+            [
+              -2.94,
+              1.11
+            ],
+            [
+              -2.64,
+              1.25
+            ],
+            [
+              -0.769385,
+              0.17
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              -1.55
+            ],
+            [
+              1,
+              -2.684615
+            ],
+            [
+              1,
+              -2.85
+            ],
+            [
+              0,
+              -2.85
+            ]
+          ],
+          "canopy": [
+            0.225,
+            0.46,
+            0.28,
+            0.33
+          ],
+          "wingThickness": 0.065,
+          "wingDihedralDegrees": [
+            -2
+          ],
+          "spine": [
+            [
+              -2.04,
+              0.12,
+              0.12,
+              0.29
+            ],
+            [
+              -1.33,
+              0.145,
+              0.18,
+              0.31
+            ],
+            [
+              -0.32,
+              0.16,
+              0.19,
+              0.31
+            ],
+            [
+              0.2,
+              0.15,
+              0.09,
+              0.32
+            ]
+          ],
+          "ventralFin": [
+            [
+              -2.74,
+              -0.19
+            ],
+            [
+              -2.68,
+              -0.55
+            ],
+            [
+              -2.4,
+              -0.61
+            ],
+            [
+              -1.48,
+              -0.25
+            ]
+          ]
+        }
+      },
+      "note": "按公开外形制作的低多边形识别模型；涂装为项目统一演绎。"
+    },
+    {
+      "id": "f16a",
+      "modelId": "archive-f16a",
+      "name": "F-16A 战隼",
+      "country": "us",
+      "year": 1980,
+      "kind": "喷气战斗机",
+      "category": "aircraft",
+      "feature": "边条翼 · 腹部进气 · 单发与单垂尾",
+      "source": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196735/general-dynamics-f-16a-fighting-falcon/",
+      "references": [
+        "https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf",
+        "https://falcon.blu3wolf.com/Docs/USAF-F16.pdf"
+      ],
+      "geometry": {
+        "length": 15.09,
+        "span": 9.144,
+        "wing": [
+          [
+            0,
+            0.42
+          ],
+          [
+            0.23,
+            0.08
+          ],
+          [
+            1,
+            -0.311518
+          ],
+          [
+            1,
+            -0.461286
+          ],
+          [
+            0,
+            -0.461286
+          ]
+        ],
+        "wingLevels": [
+          -0.03
+        ],
+        "body": "jet",
+        "paint": "grey",
+        "tail": "swept",
+        "propellerBlades": 0,
+        "engines": 1,
+        "intake": "chin",
+        "cockpit": 0.39,
+        "tailSpan": 0.6009444,
+        "profile": {
+          "sections": [
+            [
+              -2.82,
+              0.24,
+              0.25,
+              -0.03
+            ],
+            [
+              -2.2,
+              0.3,
+              0.29,
+              -0.02
+            ],
+            [
+              -1.25,
+              0.37,
+              0.32,
+              0
+            ],
+            [
+              -0.25,
+              0.4,
+              0.34,
+              0.02
+            ],
+            [
+              0.8,
+              0.32,
+              0.32,
+              0.04
+            ],
+            [
+              1.55,
+              0.25,
+              0.25,
+              0.03
+            ],
+            [
+              2.25,
+              0.18,
+              0.18,
+              0
+            ],
+            [
+              3,
+              0.015,
+              0.025,
+              -0.02
+            ]
+          ],
+          "fin": [
+            [
+              -2.6,
+              0.1
+            ],
+            [
+              -2.6,
+              0.197
+            ],
+            [
+              -3,
+              1.02
+            ],
+            [
+              -2.538163,
+              1.02
+            ],
+            [
+              -1.64,
+              0.197
+            ],
+            [
+              -0.68,
+              0.1
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              -1.90252
+            ],
+            [
+              0.385,
+              -1.90252
+            ],
+            [
+              1,
+              -2.466276
+            ],
+            [
+              1,
+              -2.72
+            ],
+            [
+              0,
+              -2.72
+            ]
+          ],
+          "canopy": [
+            0.24,
+            0.68,
+            0.32,
+            0.37
+          ],
+          "wingThickness": 0.075,
+          "wingDihedralDegrees": [
+            0
+          ],
+          "tailDihedralDegrees": -10,
+          "ducts": [
+            [
+              [
+                -0.8,
+                0.27,
+                0.23,
+                -0.2
+              ],
+              [
+                0.2,
+                0.3,
+                0.24,
+                -0.25
+              ],
+              [
+                0.85,
+                0.29,
+                0.23,
+                -0.34
+              ],
+              [
+                1.35,
+                0.25,
+                0.18,
+                -0.37
+              ]
+            ]
+          ]
+        }
+      },
+      "note": "主翼面板9.144米，不含翼尖挂轨和导弹。采用早期小平尾，下反10°；手册49平方英尺按露出翼面计算。"
+    },
+    {
+      "id": "mirage2000c",
+      "modelId": "archive-mirage2000c",
+      "name": "幻影 2000C",
+      "country": "fr",
+      "year": 1984,
+      "kind": "喷气战斗机",
+      "category": "aircraft",
+      "feature": "无平尾三角翼 · 两侧进气 · 单发动机",
+      "source": "https://www.dassault-aviation.com/en/defense/customer-support/operational-aircraft/mirage-2000/",
+      "references": [
+        "https://www.defense.gouv.fr/sites/default/files/air/Fiche%20technique%20Mirage%202000D.pdf"
+      ],
+      "geometry": {
+        "length": 14.34,
+        "span": 9.13,
+        "wing": [
+          [
+            0,
+            0.3
+          ],
+          [
+            0.26,
+            0.18
+          ],
+          [
+            0.97,
+            -0.546
+          ],
+          [
+            1,
+            -0.58
+          ],
+          [
+            1,
+            -0.675
+          ],
+          [
+            0.26,
+            -0.72
+          ],
+          [
+            0,
+            -0.72
+          ]
+        ],
+        "wingLevels": [
+          -0.08
+        ],
+        "body": "jet",
+        "paint": "grey",
+        "tail": "delta",
+        "propellerBlades": 0,
+        "engines": 1,
+        "intake": "side",
+        "cockpit": 0.36,
+        "tailSpan": 0,
+        "profile": {
+          "sections": [
+            [
+              -2.94,
+              0.23,
+              0.24,
+              0
+            ],
+            [
+              -2.12,
+              0.31,
+              0.29,
+              0.02
+            ],
+            [
+              -0.8,
+              0.33,
+              0.32,
+              0.03
+            ],
+            [
+              0.55,
+              0.29,
+              0.3,
+              0.03
+            ],
+            [
+              1.35,
+              0.24,
+              0.25,
+              0.03
+            ],
+            [
+              2.05,
+              0.17,
+              0.17,
+              0
+            ],
+            [
+              3,
+              0.015,
+              0.02,
+              -0.02
+            ]
+          ],
+          "fin": [
+            [
+              -2.84,
+              0.16
+            ],
+            [
+              -2.74,
+              1.28
+            ],
+            [
+              -2.08,
+              1.43
+            ],
+            [
+              -0.87,
+              0.17
+            ]
+          ],
+          "tailplane": [],
+          "canopy": [
+            0.22,
+            0.55,
+            0.27,
+            0.33
+          ],
+          "wingThickness": 0.075,
+          "wingDihedralDegrees": [
+            0
+          ],
+          "ducts": [
+            [
+              [
+                -0.65,
+                0.15,
+                0.22,
+                -0.02,
+                -0.29
+              ],
+              [
+                0.45,
+                0.17,
+                0.23,
+                -0.01,
+                -0.36
+              ],
+              [
+                1.04,
+                0.17,
+                0.23,
+                0,
+                -0.36
+              ]
+            ],
+            [
+              [
+                -0.65,
+                0.15,
+                0.22,
+                -0.02,
+                0.29
+              ],
+              [
+                0.45,
+                0.17,
+                0.23,
+                -0.01,
+                0.36
+              ],
+              [
+                1.04,
+                0.17,
+                0.23,
+                0,
+                0.36
+              ]
+            ]
+          ]
+        }
+      },
+      "note": "尺寸采用 Dassault 的全长 14.34 米；轮廓另核对法国军方册内制造商单座型三视图，该图采用 14.55 米的长度口径。"
+    },
+    {
+      "id": "rafale-c",
+      "modelId": "archive-rafale-c",
+      "name": "阵风 C",
+      "country": "fr",
+      "year": 2006,
+      "kind": "喷气战斗机",
+      "category": "aircraft",
+      "feature": "鸭式三角翼 · 双发喷口 · 两侧进气",
+      "source": "https://www.dassault-aviation.com/en/group/about-us/civil-and-military-aircraft/",
+      "references": [
+        "https://www.dassault-aviation.com/fr/defense/rafale/",
+        "https://www.defense.gouv.fr/sites/default/files/air/Rafale%20F4.pdf"
+      ],
+      "geometry": {
+        "length": 15.3,
+        "span": 9.95,
+        "wing": [
+          [
+            0,
+            0.320256
+          ],
+          [
+            1,
+            -0.42
+          ],
+          [
+            1,
+            -0.55
+          ],
+          [
+            0,
+            -0.55
+          ]
+        ],
+        "wingLevels": [
+          -0.08
+        ],
+        "body": "jet",
+        "paint": "grey",
+        "tail": "canard",
+        "propellerBlades": 0,
+        "engines": 2,
+        "intake": "side",
+        "cockpit": 0.38,
+        "tailSpan": 0.4572864,
+        "profile": {
+          "sections": [
+            [
+              -2.9,
+              0.36,
+              0.2,
+              0.03
+            ],
+            [
+              -2.1,
+              0.43,
+              0.24,
+              0.04
+            ],
+            [
+              -0.7,
+              0.44,
+              0.28,
+              0.03
+            ],
+            [
+              0.4,
+              0.34,
+              0.3,
+              0.02
+            ],
+            [
+              1.35,
+              0.25,
+              0.24,
+              0.04
+            ],
+            [
+              2.1,
+              0.16,
+              0.15,
+              0.01
+            ],
+            [
+              3,
+              0.015,
+              0.02,
+              -0.01
+            ]
+          ],
+          "fin": [
+            [
+              -2.62,
+              0.18
+            ],
+            [
+              -2.39,
+              1.12
+            ],
+            [
+              -1.92,
+              1.21
+            ],
+            [
+              -0.58,
+              0.18
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              0.99
+            ],
+            [
+              0.52,
+              0.99
+            ],
+            [
+              1,
+              0.487002
+            ],
+            [
+              1,
+              0.275
+            ],
+            [
+              0.52,
+              0.38974
+            ],
+            [
+              0,
+              0.38974
+            ]
+          ],
+          "canopy": [
+            0.23,
+            0.59,
+            0.29,
+            0.34
+          ],
+          "wingThickness": 0.075,
+          "wingDihedralDegrees": [
+            0.670172
+          ],
+          "refuelingProbe": [
+            [
+              0.14,
+              2.02,
+              0.11
+            ],
+            [
+              0.27,
+              2.26,
+              0.32
+            ],
+            [
+              0.27,
+              2.37,
+              0.32
+            ]
+          ],
+          "ducts": [
+            [
+              [
+                -0.85,
+                0.2,
+                0.23,
+                -0.1,
+                -0.25
+              ],
+              [
+                0.3,
+                0.23,
+                0.24,
+                -0.11,
+                -0.35
+              ],
+              [
+                1,
+                0.18,
+                0.2,
+                -0.13,
+                -0.38
+              ]
+            ],
+            [
+              [
+                -0.85,
+                0.2,
+                0.23,
+                -0.1,
+                0.25
+              ],
+              [
+                0.3,
+                0.23,
+                0.24,
+                -0.11,
+                0.35
+              ],
+              [
+                1,
+                0.18,
+                0.2,
+                -0.13,
+                0.38
+              ]
+            ]
+          ],
+          "nacelles": [
+            [
+              [
+                -2.92,
+                0.19,
+                0.19,
+                -0.04,
+                -0.21
+              ],
+              [
+                -2,
+                0.235,
+                0.24,
+                -0.03,
+                -0.22
+              ],
+              [
+                -0.35,
+                0.25,
+                0.24,
+                -0.04,
+                -0.22
+              ]
+            ],
+            [
+              [
+                -2.92,
+                0.19,
+                0.19,
+                -0.04,
+                0.21
+              ],
+              [
+                -2,
+                0.235,
+                0.24,
+                -0.03,
+                0.22
+              ],
+              [
+                -0.35,
+                0.25,
+                0.24,
+                -0.04,
+                0.22
+              ]
+            ]
+          ]
+        }
+      },
+      "note": "采用2006年C型外形；裸翼展约9.95米，军方图10.9米含翼尖导弹。F3-R册只核对共用机体轮廓。"
+    },
+    {
+      "id": "gripen-c",
+      "modelId": "archive-gripen-c",
+      "name": "JAS 39C 鹰狮",
+      "country": "se",
+      "year": 2002,
+      "kind": "喷气战斗机",
+      "category": "aircraft",
+      "feature": "近耦鸭翼 · 单发 · 翼尖挂轨",
+      "source": "https://www.saab.com/products/gripen-c-series",
+      "references": [
+        "https://www.saab.com/newsroom/press-releases/2002/saab-delivers-latest-gripen-the-first-jas-39c-for-sweden",
+        "https://www.saab.com/globalassets/products/aeronautics/gripen-c-series/gripen_c_factsheet.pdf"
+      ],
+      "geometry": {
+        "length": 14.9,
+        "span": 8.4,
+        "wing": [
+          [
+            0,
+            0.25
+          ],
+          [
+            1,
+            -0.35
+          ],
+          [
+            1,
+            -0.49
+          ],
+          [
+            0,
+            -0.48
+          ]
+        ],
+        "wingLevels": [
+          -0.08
+        ],
+        "body": "jet",
+        "paint": "grey",
+        "tail": "canard",
+        "propellerBlades": 0,
+        "engines": 1,
+        "intake": "side",
+        "cockpit": 0.35,
+        "tailSpan": 0.47,
+        "profile": {
+          "sections": [
+            [
+              -2.91,
+              0.23,
+              0.23,
+              0
+            ],
+            [
+              -2.1,
+              0.29,
+              0.28,
+              0.02
+            ],
+            [
+              -1,
+              0.32,
+              0.29,
+              0.02
+            ],
+            [
+              0.2,
+              0.32,
+              0.29,
+              0.03
+            ],
+            [
+              1.2,
+              0.25,
+              0.25,
+              0.04
+            ],
+            [
+              2,
+              0.17,
+              0.17,
+              0.01
+            ],
+            [
+              2.8,
+              0.035,
+              0.04,
+              0
+            ]
+          ],
+          "fin": [
+            [
+              -2.87,
+              0.16
+            ],
+            [
+              -2.63,
+              1.08
+            ],
+            [
+              -1.92,
+              1.28
+            ],
+            [
+              -0.84,
+              0.16
+            ]
+          ],
+          "tailplane": [
+            [
+              0,
+              1.45
+            ],
+            [
+              0.22,
+              1.45
+            ],
+            [
+              1,
+              0.83
+            ],
+            [
+              1,
+              0.51
+            ],
+            [
+              0.22,
+              0.72
+            ],
+            [
+              0,
+              0.78
+            ]
+          ],
+          "canopy": [
+            0.22,
+            0.55,
+            0.28,
+            0.33
+          ],
+          "wingThickness": 0.07,
+          "wingDihedralDegrees": [
+            1.016211
+          ],
+          "tailDihedralDegrees": 8,
+          "ductShape": "rounded-rectangle",
+          "ducts": [
+            [
+              [
+                -0.6,
+                0.13,
+                0.19,
+                -0.02,
+                -0.27
+              ],
+              [
+                0.5,
+                0.18,
+                0.23,
+                -0.03,
+                -0.34
+              ],
+              [
+                1.03,
+                0.16,
+                0.21,
+                -0.02,
+                -0.34
+              ]
+            ],
+            [
+              [
+                -0.6,
+                0.13,
+                0.19,
+                -0.02,
+                0.27
+              ],
+              [
+                0.5,
+                0.18,
+                0.23,
+                -0.03,
+                0.34
+              ],
+              [
+                1.03,
+                0.16,
+                0.21,
+                -0.02,
+                0.34
+              ]
+            ]
+          ]
+        }
+      },
+      "note": "全长采用 Saab 当前公布的 14.9 米（含机首突出部）；2002 年为 39C 交付并列装年份。"
+    },
+    {
+      "id": "u9",
+      "modelId": "archive-u9",
+      "name": "U 9 级",
+      "country": "de",
+      "year": 1914,
+      "kind": "潜艇",
+      "category": "submarine",
+      "feature": "一战细长双壳 · 低矮围壳 · 双轴推进",
+      "source": "https://uboat.net/wwi/types/?type=U+9",
+      "references": [],
+      "geometry": {
+        "length": 57.38,
+        "beam": 6,
+        "hull": "double",
+        "sail": [
+          [
+            -0.4,
+            -0.5
+          ],
+          [
+            0.4,
+            -0.5
+          ],
+          [
+            0.4,
+            0.5
+          ],
+          [
+            -0.4,
+            0.5
+          ]
+        ],
+        "sailHeight": 0.08,
+        "sailLength": 0.08,
+        "sailY": 0.12,
+        "shafts": 2,
+        "blades": 3,
+        "planes": "bow",
+        "rudder": "cruciform",
+        "deckGun": false,
+        "casing": 0.76,
+        "profile": {
+          "sections": [
+            [
+              -4.7,
+              0.07,
+              0.1,
+              0
+            ],
+            [
+              -3.9,
+              0.54,
+              0.63,
+              0
+            ],
+            [
+              -2.7,
+              0.89,
+              0.88,
+              0
+            ],
+            [
+              -0.7,
+              1,
+              0.9,
+              0
+            ],
+            [
+              1.5,
+              0.97,
+              0.88,
+              0
+            ],
+            [
+              3.1,
+              0.72,
+              0.73,
+              0.02
+            ],
+            [
+              4.3,
+              0.3,
+              0.47,
+              0.08
+            ],
+            [
+              5,
+              0.012,
+              0.07,
+              0.17
+            ]
+          ],
+          "sailRoof": [
+            [
+              -0.6,
+              0.75
+            ],
+            [
+              -0.4,
+              0.94
+            ],
+            [
+              0.25,
+              1
+            ],
+            [
+              0.48,
+              0.83
+            ],
+            [
+              0.6,
+              0.35
+            ]
+          ],
+          "openBridge": true,
+          "mastCount": 2,
+          "stern": "single-rudder",
+          "deckOutline": [
+            [
+              -0.35,
+              -3.8
+            ],
+            [
+              0.35,
+              -3.8
+            ],
+            [
+              0.67,
+              -1.5
+            ],
+            [
+              0.65,
+              2.25
+            ],
+            [
+              0.25,
+              3.85
+            ],
+            [
+              0.035,
+              5
+            ],
+            [
+              -0.035,
+              5
+            ],
+            [
+              -0.25,
+              3.85
+            ],
+            [
+              -0.65,
+              2.25
+            ],
+            [
+              -0.67,
+              -1.5
+            ]
+          ],
+          "deckSheer": [
+            [
+              -4,
+              0.74
+            ],
+            [
+              0,
+              0.88
+            ],
+            [
+              3.5,
+              0.96
+            ],
+            [
+              5,
+              1.09
+            ]
+          ],
+          "deckMasts": [
+            [
+              -2.9,
+              0.7
+            ],
+            [
+              3.15,
+              0.82
+            ]
+          ]
+        }
+      },
+      "note": "展示一战早期外形，不加装后期甲板炮；本级 1910 年起服役。"
+    },
+    {
+      "id": "type-viic",
+      "modelId": "archive-type-viic",
+      "name": "VII C 型",
+      "country": "de",
+      "year": 1941,
+      "kind": "潜艇",
+      "category": "submarine",
+      "feature": "尖艏甲板 · 开放指挥台 · 前部甲板炮",
+      "source": "https://uboat.net/types/viic.htm",
+      "references": [],
+      "geometry": {
+        "length": 67.1,
+        "beam": 6.2,
+        "hull": "double",
+        "sail": [
+          [
+            -0.34,
+            -0.56
+          ],
+          [
+            0.38,
+            -0.46
+          ],
+          [
+            0.43,
+            0.3
+          ],
+          [
+            0.25,
+            0.56
+          ],
+          [
+            -0.25,
+            0.56
+          ],
+          [
+            -0.43,
+            0.3
+          ]
+        ],
+        "sailHeight": 0.11,
+        "sailLength": 0.13,
+        "sailY": 0.1,
+        "shafts": 2,
+        "blades": 3,
+        "planes": "bow",
+        "rudder": "cruciform",
+        "deckGun": true,
+        "casing": 0.82,
+        "profile": {
+          "sections": [
+            [
+              -4.7,
+              0.05,
+              0.09,
+              0
+            ],
+            [
+              -3.8,
+              0.45,
+              0.57,
+              0
+            ],
+            [
+              -2.4,
+              0.87,
+              0.88,
+              0
+            ],
+            [
+              -0.35,
+              1,
+              0.94,
+              0
+            ],
+            [
+              1.7,
+              0.95,
+              0.95,
+              0.01
+            ],
+            [
+              3.35,
+              0.67,
+              0.83,
+              0.11
+            ],
+            [
+              4.4,
+              0.27,
+              0.56,
+              0.2
+            ],
+            [
+              5,
+              0.014,
+              0.11,
+              0.39
+            ]
+          ],
+          "sailRoof": [
+            [
+              -0.6,
+              0.48
+            ],
+            [
+              -0.35,
+              0.65
+            ],
+            [
+              -0.15,
+              1
+            ],
+            [
+              0.35,
+              1
+            ],
+            [
+              0.56,
+              0.82
+            ],
+            [
+              0.6,
+              0.4
+            ]
+          ],
+          "openBridge": true,
+          "mastCount": 2,
+          "stern": "twin-rudder",
+          "deckOutline": [
+            [
+              -0.31,
+              -4.1
+            ],
+            [
+              0.31,
+              -4.1
+            ],
+            [
+              0.69,
+              -2.3
+            ],
+            [
+              0.72,
+              1.8
+            ],
+            [
+              0.54,
+              3.4
+            ],
+            [
+              0,
+              4.88
+            ],
+            [
+              -0.54,
+              3.4
+            ],
+            [
+              -0.72,
+              1.8
+            ],
+            [
+              -0.69,
+              -2.3
+            ]
+          ],
+          "deckSheer": [
+            [
+              -4.1,
+              0.76
+            ],
+            [
+              -1,
+              0.88
+            ],
+            [
+              1.5,
+              0.93
+            ],
+            [
+              3.5,
+              1.15
+            ],
+            [
+              4.88,
+              1.28
+            ]
+          ],
+          "aaPlatform": true
+        }
+      },
+      "note": "按舰级与所示年份外形制作；桅杆、舵面及甲板设备按像素尺寸简化。"
+    },
+    {
+      "id": "gato",
+      "modelId": "archive-gato",
+      "name": "猫鲨级 Gato",
+      "country": "us",
+      "year": 1942,
+      "kind": "潜艇",
+      "category": "submarine",
+      "feature": "长巡航甲板 · 早期阶梯指挥台 · 后置甲板炮",
+      "source": "https://www.history.navy.mil/research/histories/ship-histories/danfs/g/gato-i.html",
+      "references": [
+        "https://navsource.net/archives/08/pdf/0821212.pdf"
+      ],
+      "geometry": {
+        "length": 95.02,
+        "beam": 8.31,
+        "hull": "double",
+        "sail": [
+          [
+            -0.44,
+            -0.55
+          ],
+          [
+            0.44,
+            -0.55
+          ],
+          [
+            0.44,
+            0.4
+          ],
+          [
+            0.26,
+            0.58
+          ],
+          [
+            -0.26,
+            0.58
+          ],
+          [
+            -0.44,
+            0.4
+          ]
+        ],
+        "sailHeight": 0.09,
+        "sailLength": 0.12,
+        "sailY": 0.12,
+        "shafts": 2,
+        "blades": 4,
+        "planes": "bow",
+        "rudder": "cruciform",
+        "deckGun": true,
+        "casing": 0.9,
+        "profile": {
+          "sections": [
+            [
+              -4.7,
+              0.07,
+              0.13,
+              0
+            ],
+            [
+              -3.8,
+              0.54,
+              0.65,
+              0
+            ],
+            [
+              -2.8,
+              0.89,
+              0.86,
+              0
+            ],
+            [
+              -1,
+              1,
+              0.95,
+              0
+            ],
+            [
+              1.8,
+              1,
+              0.96,
+              0
+            ],
+            [
+              3.5,
+              0.89,
+              0.89,
+              0.02
+            ],
+            [
+              4.5,
+              0.54,
+              0.72,
+              0.06
+            ],
+            [
+              4.9,
+              0.22,
+              0.4,
+              0.13
+            ],
+            [
+              5,
+              0.02,
+              0.15,
+              0.16
+            ]
+          ],
+          "sailRoof": [
+            [
+              -0.6,
+              0.56
+            ],
+            [
+              -0.31,
+              0.68
+            ],
+            [
+              -0.13,
+              1
+            ],
+            [
+              0.35,
+              1
+            ],
+            [
+              0.56,
+              0.79
+            ],
+            [
+              0.6,
+              0.34
+            ]
+          ],
+          "openBridge": true,
+          "mastCount": 3,
+          "stern": "single-rudder",
+          "deckOutline": [
+            [
+              -0.38,
+              -4.5
+            ],
+            [
+              0.38,
+              -4.5
+            ],
+            [
+              0.73,
+              -2.8
+            ],
+            [
+              0.82,
+              2.8
+            ],
+            [
+              0.57,
+              4.2
+            ],
+            [
+              0,
+              4.91
+            ],
+            [
+              -0.57,
+              4.2
+            ],
+            [
+              -0.82,
+              2.8
+            ],
+            [
+              -0.73,
+              -2.8
+            ]
+          ],
+          "deckSheer": [
+            [
+              -4.5,
+              0.73
+            ],
+            [
+              -1,
+              0.92
+            ],
+            [
+              2,
+              0.96
+            ],
+            [
+              4.91,
+              1.11
+            ]
+          ],
+          "deckGunY": -0.95,
+          "lowerFairwater": [
+            [
+              -0.18,
+              0.08,
+              0.04,
+              0.97
+            ],
+            [
+              0.02,
+              0.48,
+              0.18,
+              1.04
+            ],
+            [
+              0.35,
+              0.65,
+              0.22,
+              1.05
+            ],
+            [
+              0.85,
+              0.65,
+              0.22,
+              1.05
+            ],
+            [
+              1.15,
+              0.48,
+              0.17,
+              1.04
+            ],
+            [
+              1.38,
+              0.08,
+              0.04,
+              0.97
+            ]
+          ],
+          "periscopeHousing": [
+            [
+              -0.04,
+              0.06,
+              0.09,
+              1.65
+            ],
+            [
+              0.1,
+              0.23,
+              0.45,
+              1.69
+            ],
+            [
+              0.38,
+              0.24,
+              0.5,
+              1.7
+            ],
+            [
+              0.56,
+              0.08,
+              0.17,
+              1.65
+            ]
+          ]
+        }
+      },
+      "note": "展示1942年早期外形，3英寸甲板炮置于围壳后方；后续围壳切削和炮位前移另记。"
+    },
+    {
+      "id": "nautilus",
+      "modelId": "archive-nautilus",
+      "name": "鹦鹉螺级 SSN-571",
+      "country": "us",
+      "year": 1958,
+      "kind": "潜艇",
+      "category": "submarine",
+      "feature": "早期核潜艇 · 长平甲板 · 无甲板炮与双轴",
+      "source": "https://www.history.navy.mil/content/history/nhhc/research/histories/ship-histories/danfs/n/nautilus-ssn-571-iv.html",
+      "references": [
+        "https://ussnautilus.org/common-questions-about-uss-nautilus-ssn-571/"
+      ],
+      "geometry": {
+        "length": 98.68,
+        "beam": 8.43,
+        "hull": "double",
+        "sail": [
+          [
+            -0.37,
+            -0.55
+          ],
+          [
+            0.37,
+            -0.55
+          ],
+          [
+            0.4,
+            0.34
+          ],
+          [
+            0.16,
+            0.58
+          ],
+          [
+            -0.16,
+            0.58
+          ],
+          [
+            -0.4,
+            0.34
+          ]
+        ],
+        "sailHeight": 0.11,
+        "sailLength": 0.13,
+        "sailY": 0.25,
+        "shafts": 2,
+        "blades": 5,
+        "planes": "bow",
+        "rudder": "cruciform",
+        "deckGun": false,
+        "casing": 0.85,
+        "profile": {
+          "sections": [
+            [
+              -4.7,
+              0.08,
+              0.13,
+              0
+            ],
+            [
+              -3.8,
+              0.62,
+              0.69,
+              0
+            ],
+            [
+              -2.5,
+              0.96,
+              0.91,
+              0
+            ],
+            [
+              0,
+              1,
+              0.98,
+              0
+            ],
+            [
+              2.5,
+              1,
+              0.98,
+              0
+            ],
+            [
+              3.8,
+              0.92,
+              0.91,
+              0.01
+            ],
+            [
+              4.5,
+              0.67,
+              0.73,
+              0.04
+            ],
+            [
+              4.88,
+              0.31,
+              0.43,
+              0.05
+            ],
+            [
+              5,
+              0.018,
+              0.11,
+              0.09
+            ]
+          ],
+          "sailRoof": [
+            [
+              -0.6,
+              0.36
+            ],
+            [
+              -0.46,
+              0.88
+            ],
+            [
+              -0.15,
+              1
+            ],
+            [
+              0.34,
+              1
+            ],
+            [
+              0.53,
+              0.8
+            ],
+            [
+              0.6,
+              0.2
+            ]
+          ],
+          "openBridge": false,
+          "mastCount": 3,
+          "stern": "single-rudder",
+          "deckOutline": [
+            [
+              -0.37,
+              -4.25
+            ],
+            [
+              0.37,
+              -4.25
+            ],
+            [
+              0.72,
+              -2.8
+            ],
+            [
+              0.8,
+              2.8
+            ],
+            [
+              0.5,
+              4.3
+            ],
+            [
+              0,
+              4.87
+            ],
+            [
+              -0.5,
+              4.3
+            ],
+            [
+              -0.8,
+              2.8
+            ],
+            [
+              -0.72,
+              -2.8
+            ]
+          ],
+          "deckSheer": [
+            [
+              -4.25,
+              0.82
+            ],
+            [
+              0,
+              0.99
+            ],
+            [
+              4.87,
+              1.07
+            ]
+          ]
+        }
+      },
+      "note": "长度按美国海军 DANFS 的 323 英尺 9 英寸；博物馆另列约 319 英尺，两种口径不混用。"
+    },
+    {
+      "id": "oberon",
+      "modelId": "archive-oberon",
+      "name": "奥伯龙级",
+      "country": "gb",
+      "year": 1969,
+      "kind": "潜艇",
+      "category": "submarine",
+      "feature": "隆起艏声呐 · 高围壳 · 双轴常规动力",
+      "source": "https://seapower.navy.gov.au/history/units/hmas-ovens",
+      "references": [
+        "https://seapower.navy.gov.au/history/units/hmas-oxley-ii"
+      ],
+      "geometry": {
+        "length": 89.9,
+        "beam": 8.1,
+        "hull": "double",
+        "sail": [
+          [
+            -0.3,
+            -0.58
+          ],
+          [
+            0.3,
+            -0.58
+          ],
+          [
+            0.36,
+            0.43
+          ],
+          [
+            0.13,
+            0.58
+          ],
+          [
+            -0.13,
+            0.58
+          ],
+          [
+            -0.36,
+            0.43
+          ]
+        ],
+        "sailHeight": 0.12,
+        "sailLength": 0.13,
+        "sailY": 0.17,
+        "shafts": 2,
+        "blades": 5,
+        "planes": "bow",
+        "rudder": "cruciform",
+        "deckGun": false,
+        "casing": 0.78,
+        "profile": {
+          "sections": [
+            [
+              -4.7,
+              0.08,
+              0.11,
+              0
+            ],
+            [
+              -3.8,
+              0.63,
+              0.67,
+              0
+            ],
+            [
+              -2.3,
+              0.98,
+              0.93,
+              0
+            ],
+            [
+              0.3,
+              1,
+              0.98,
+              0
+            ],
+            [
+              2.3,
+              0.97,
+              0.96,
+              0.02
+            ],
+            [
+              3.5,
+              0.86,
+              0.99,
+              0.13
+            ],
+            [
+              4.35,
+              0.64,
+              0.87,
+              0.21
+            ],
+            [
+              4.8,
+              0.36,
+              0.55,
+              0.19
+            ],
+            [
+              5,
+              0.015,
+              0.15,
+              0.17
+            ]
+          ],
+          "sailRoof": [
+            [
+              -0.6,
+              0.4
+            ],
+            [
+              -0.49,
+              0.88
+            ],
+            [
+              -0.3,
+              1
+            ],
+            [
+              0.39,
+              1
+            ],
+            [
+              0.55,
+              0.86
+            ],
+            [
+              0.6,
+              0.2
+            ]
+          ],
+          "openBridge": false,
+          "mastCount": 3,
+          "stern": "single-rudder",
+          "deckOutline": [
+            [
+              -0.37,
+              -3.9
+            ],
+            [
+              0.37,
+              -3.9
+            ],
+            [
+              0.69,
+              -2.4
+            ],
+            [
+              0.72,
+              2.7
+            ],
+            [
+              0.45,
+              4.2
+            ],
+            [
+              0,
+              4.89
+            ],
+            [
+              -0.45,
+              4.2
+            ],
+            [
+              -0.72,
+              2.7
+            ],
+            [
+              -0.69,
+              -2.4
+            ]
+          ],
+          "deckSheer": [
+            [
+              -3.9,
+              0.87
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              2.6,
+              1.07
+            ],
+            [
+              3.9,
+              1.24
+            ],
+            [
+              4.89,
+              1.13
+            ]
+          ],
+          "sonarFairing": [
+            [
+              2.6,
+              0.16,
+              0.08,
+              1.1
+            ],
+            [
+              2.85,
+              0.46,
+              0.28,
+              1.17
+            ],
+            [
+              3.25,
+              0.57,
+              0.36,
+              1.2
+            ],
+            [
+              3.8,
+              0.51,
+              0.32,
+              1.18
+            ],
+            [
+              4.2,
+              0.32,
+              0.19,
+              1.13
+            ],
+            [
+              4.48,
+              0.055,
+              0.035,
+              1.05
+            ]
+          ]
+        }
+      },
+      "note": "英国设计的奥伯龙级；此处采用澳大利亚 Ovens 1969 年服役外形作为参考，不按运营国重复计舰级。"
+    },
+    {
+      "id": "virginia-block-i",
+      "modelId": "archive-virginia-block-i",
+      "name": "弗吉尼亚级 Block I",
+      "country": "us",
+      "year": 2004,
+      "kind": "潜艇",
+      "category": "submarine",
+      "feature": "水滴形单轴艇体 · 艏水平舵 · 低矮围壳",
+      "source": "https://www.navy.mil/Resources/Fact-Files/Display-FactFiles/Article/2169558/attack-submarines-ssn/",
+      "references": [
+        "https://www.csp.navy.mil/Media/News-Admin/Article/683783/hawaii-visits-yokosuka-during-western-pacific-deployment/"
+      ],
+      "geometry": {
+        "length": 114.91,
+        "beam": 10.36,
+        "hull": "streamlined",
+        "sail": [
+          [
+            -0.24,
+            -0.56
+          ],
+          [
+            0.24,
+            -0.56
+          ],
+          [
+            0.32,
+            0.34
+          ],
+          [
+            0.12,
+            0.58
+          ],
+          [
+            -0.12,
+            0.58
+          ],
+          [
+            -0.32,
+            0.34
+          ]
+        ],
+        "sailHeight": 0.09,
+        "sailLength": 0.12,
+        "sailY": 0.29,
+        "shafts": 1,
+        "blades": 7,
+        "planes": "bow",
+        "rudder": "cruciform",
+        "deckGun": false,
+        "casing": 0,
+        "profile": {
+          "sections": [
+            [
+              -4.7,
+              0.12,
+              0.12,
+              0
+            ],
+            [
+              -4.05,
+              0.5,
+              0.5,
+              0
+            ],
+            [
+              -3.2,
+              0.87,
+              0.88,
+              0
+            ],
+            [
+              -2.5,
+              1,
+              1,
+              0
+            ],
+            [
+              2.9,
+              1,
+              1,
+              0
+            ],
+            [
+              4.3,
+              1,
+              1,
+              0
+            ],
+            [
+              4.68,
+              0.92,
+              0.94,
+              0
+            ],
+            [
+              4.88,
+              0.66,
+              0.7,
+              0
+            ],
+            [
+              4.98,
+              0.27,
+              0.31,
+              0
+            ],
+            [
+              5,
+              0.015,
+              0.02,
+              0
+            ]
+          ],
+          "sailRoof": [
+            [
+              -0.6,
+              0.2
+            ],
+            [
+              -0.43,
+              0.86
+            ],
+            [
+              -0.2,
+              1
+            ],
+            [
+              0.32,
+              1
+            ],
+            [
+              0.53,
+              0.83
+            ],
+            [
+              0.6,
+              0.14
+            ]
+          ],
+          "openBridge": false,
+          "mastCount": 3,
+          "stern": "cruciform"
+        }
+      },
+      "note": "采用早期 Block I 外形；泵喷推进器仅表现公开的导管轮廓，不声称复原内部叶片。"
+    },
+    {
+      "id": "type-212a",
+      "modelId": "archive-type-212a",
+      "name": "212A 型 第一批",
+      "country": "de",
+      "year": 2005,
+      "kind": "潜艇",
+      "category": "submarine",
+      "feature": "短粗单轴艇体 · X 形尾舵 · 围壳水平舵",
+      "source": "https://www.bundeswehr.de/de/ausruestung-technik-bundeswehr/seesysteme-bundeswehr/u-boot-klasse-212-a",
+      "references": [],
+      "geometry": {
+        "length": 56,
+        "beam": 7,
+        "hull": "streamlined",
+        "sail": [
+          [
+            -0.27,
+            -0.55
+          ],
+          [
+            0.27,
+            -0.55
+          ],
+          [
+            0.36,
+            0.3
+          ],
+          [
+            0.17,
+            0.56
+          ],
+          [
+            -0.17,
+            0.56
+          ],
+          [
+            -0.36,
+            0.3
+          ]
+        ],
+        "sailHeight": 0.17,
+        "sailLength": 0.19,
+        "sailY": 0.15,
+        "shafts": 1,
+        "blades": 7,
+        "planes": "sail",
+        "rudder": "x",
+        "deckGun": false,
+        "casing": 0,
+        "profile": {
+          "sections": [
+            [
+              -4.7,
+              0.13,
+              0.14,
+              0
+            ],
+            [
+              -4.15,
+              0.54,
+              0.55,
+              0
+            ],
+            [
+              -3.2,
+              0.91,
+              0.89,
+              0.03
+            ],
+            [
+              -2.2,
+              1,
+              0.98,
+              0.04
+            ],
+            [
+              1.9,
+              1,
+              1,
+              0.04
+            ],
+            [
+              3.7,
+              0.99,
+              1.01,
+              0.02
+            ],
+            [
+              4.4,
+              0.9,
+              0.95,
+              0
+            ],
+            [
+              4.76,
+              0.71,
+              0.78,
+              -0.02
+            ],
+            [
+              4.95,
+              0.37,
+              0.47,
+              -0.04
+            ],
+            [
+              5,
+              0.015,
+              0.035,
+              -0.04
+            ]
+          ],
+          "sailRoof": [
+            [
+              -0.6,
+              0.28
+            ],
+            [
+              -0.42,
+              0.93
+            ],
+            [
+              -0.2,
+              1
+            ],
+            [
+              0.36,
+              1
+            ],
+            [
+              0.54,
+              0.85
+            ],
+            [
+              0.6,
+              0.14
+            ]
+          ],
+          "openBridge": false,
+          "mastCount": 3,
+          "stern": "x"
+        }
+      },
+      "note": "按舰级与所示年份外形制作；桅杆、舵面及甲板设备按像素尺寸简化。"
+    },
+    {
+      "id": "soryu-early",
+      "modelId": "archive-soryu-early",
+      "name": "苍龙级 初期型",
+      "country": "jp",
+      "year": 2009,
+      "kind": "潜艇",
+      "category": "submarine",
+      "feature": "围壳水平舵 · X 形尾舵 · 单轴推进",
+      "source": "https://www.mod.go.jp/msdf/equipment/ships/ss/souryu/",
+      "references": [
+        "https://www.mod.go.jp/atla/research/dts2012/R2-2p.pdf"
+      ],
+      "geometry": {
+        "length": 84,
+        "beam": 9.1,
+        "hull": "streamlined",
+        "sail": [
+          [
+            -0.24,
+            -0.6
+          ],
+          [
+            0.24,
+            -0.6
+          ],
+          [
+            0.32,
+            0.38
+          ],
+          [
+            0.15,
+            0.6
+          ],
+          [
+            -0.15,
+            0.6
+          ],
+          [
+            -0.32,
+            0.38
+          ]
+        ],
+        "sailHeight": 0.13,
+        "sailLength": 0.16,
+        "sailY": 0.26,
+        "shafts": 1,
+        "blades": 7,
+        "planes": "sail",
+        "rudder": "x",
+        "deckGun": false,
+        "casing": 0,
+        "profile": {
+          "sections": [
+            [
+              -4.7,
+              0.12,
+              0.15846,
+              0.01846
+            ],
+            [
+              -4,
+              0.53,
+              0.64516,
+              0.07516
+            ],
+            [
+              -2.9,
+              0.92,
+              1.07527,
+              0.12527
+            ],
+            [
+              -1.9,
+              1,
+              1.13187,
+              0.13187
+            ],
+            [
+              2.5,
+              1,
+              1.13187,
+              0.13187
+            ],
+            [
+              3.8,
+              1,
+              1.13187,
+              0.13187
+            ],
+            [
+              4.38,
+              0.96,
+              1.09791,
+              0.12791
+            ],
+            [
+              4.74,
+              0.76,
+              0.90549,
+              0.10549
+            ],
+            [
+              4.93,
+              0.43,
+              0.5433,
+              0.0633
+            ],
+            [
+              5,
+              0.016,
+              0.03962,
+              0.00462
+            ]
+          ],
+          "sailBase": 1.08374,
+          "sailRoof": [
+            [
+              -0.6,
+              0.2
+            ],
+            [
+              -0.47,
+              0.88
+            ],
+            [
+              -0.27,
+              1
+            ],
+            [
+              0.35,
+              1
+            ],
+            [
+              0.55,
+              0.89
+            ],
+            [
+              0.6,
+              0.14
+            ]
+          ],
+          "openBridge": false,
+          "mastCount": 3,
+          "stern": "x"
+        }
+      },
+      "note": "展示 2009 年服役的初期 AIP 型，不混用后期锂电池艇配置。"
+    }
+  ]
+}

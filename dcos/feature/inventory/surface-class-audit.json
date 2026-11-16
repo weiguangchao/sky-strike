@@ -1,0 +1,996 @@
+{
+  "totalAppearances": 148,
+  "declaredClassGroups": [
+    {
+      "id": "enterprise",
+      "classId": "yorktown",
+      "className": "约克城级",
+      "year": 1942
+    },
+    {
+      "id": "essex",
+      "classId": "essex",
+      "className": "埃塞克斯级",
+      "year": 1944
+    },
+    {
+      "id": "fletcher",
+      "classId": "fletcher",
+      "className": "弗莱彻级",
+      "year": 1942
+    },
+    {
+      "id": "cleveland",
+      "classId": "cleveland",
+      "className": "克利夫兰级",
+      "year": 1943
+    },
+    {
+      "id": "brooklyn",
+      "classId": "brooklyn",
+      "className": "布鲁克林级",
+      "year": 1942
+    },
+    {
+      "id": "baltimore",
+      "classId": "baltimore",
+      "className": "巴尔的摩级",
+      "year": 1944
+    },
+    {
+      "id": "lexington",
+      "classId": "lexington",
+      "className": "列克星敦级",
+      "year": 1942
+    },
+    {
+      "id": "ranger",
+      "classId": "ranger",
+      "className": "突击者级",
+      "year": 1942
+    },
+    {
+      "id": "wasp-cv7",
+      "classId": "wasp-cv7",
+      "className": "胡蜂级 CV-7",
+      "year": 1942
+    },
+    {
+      "id": "essex-long",
+      "classId": "essex-long",
+      "className": "埃塞克斯级 · 长舰艏",
+      "year": 1945
+    },
+    {
+      "id": "independence",
+      "classId": "independence",
+      "className": "独立级",
+      "year": 1944
+    },
+    {
+      "id": "saipan",
+      "classId": "saipan",
+      "className": "塞班级",
+      "year": 1948
+    },
+    {
+      "id": "midway",
+      "classId": "midway",
+      "className": "中途岛级",
+      "year": 1991
+    },
+    {
+      "id": "forrestal",
+      "classId": "forrestal",
+      "className": "福莱斯特级",
+      "year": 1960
+    },
+    {
+      "id": "kitty-hawk",
+      "classId": "kitty-hawk",
+      "className": "小鹰级",
+      "year": 1985
+    },
+    {
+      "id": "enterprise-nuclear",
+      "classId": "enterprise-nuclear",
+      "className": "企业级 CVN-65",
+      "year": 1964
+    },
+    {
+      "id": "john-f-kennedy",
+      "classId": "john-f-kennedy",
+      "className": "约翰·肯尼迪级 CV-67",
+      "year": 1985
+    },
+    {
+      "id": "nimitz",
+      "classId": "nimitz",
+      "className": "尼米兹级",
+      "year": 2005
+    },
+    {
+      "id": "gerald-ford",
+      "classId": "gerald-ford",
+      "className": "杰拉尔德·福特级",
+      "year": 2017
+    },
+    {
+      "id": "long-island",
+      "classId": "long-island",
+      "className": "长岛级",
+      "year": 1942
+    },
+    {
+      "id": "charger",
+      "classId": "charger",
+      "className": "军马级",
+      "year": 1943
+    },
+    {
+      "id": "bogue",
+      "classId": "bogue",
+      "className": "博格级",
+      "year": 1943
+    },
+    {
+      "id": "sangamon",
+      "classId": "sangamon",
+      "className": "桑加蒙级",
+      "year": 1944
+    },
+    {
+      "id": "casablanca",
+      "classId": "casablanca",
+      "className": "卡萨布兰卡级",
+      "year": 1944
+    },
+    {
+      "id": "commencement-bay",
+      "classId": "commencement-bay",
+      "className": "康门斯门特湾级",
+      "year": 1945
+    },
+    {
+      "id": "wolverine",
+      "classId": "wolverine",
+      "className": "狼獾级 IX-64",
+      "year": 1943
+    },
+    {
+      "id": "sable",
+      "classId": "sable",
+      "className": "黑貂级 IX-81",
+      "year": 1943
+    },
+    {
+      "id": "omaha",
+      "classId": "omaha",
+      "className": "奥马哈级",
+      "year": 1942
+    },
+    {
+      "id": "pensacola",
+      "classId": "pensacola",
+      "className": "彭萨科拉级",
+      "year": 1942
+    },
+    {
+      "id": "northampton",
+      "classId": "northampton",
+      "className": "北安普敦级 CA-26",
+      "year": 1942
+    },
+    {
+      "id": "portland",
+      "classId": "portland",
+      "className": "波特兰级",
+      "year": 1942
+    },
+    {
+      "id": "new-orleans",
+      "classId": "new-orleans",
+      "className": "新奥尔良级",
+      "year": 1942
+    },
+    {
+      "id": "st-louis",
+      "classId": "st-louis",
+      "className": "圣路易斯级 CL-49",
+      "year": 1943
+    },
+    {
+      "id": "wichita",
+      "classId": "wichita",
+      "className": "威奇塔级",
+      "year": 1942
+    },
+    {
+      "id": "atlanta",
+      "classId": "atlanta",
+      "className": "亚特兰大级",
+      "year": 1942
+    },
+    {
+      "id": "oakland",
+      "classId": "oakland",
+      "className": "奥克兰亚级",
+      "year": 1944
+    },
+    {
+      "id": "fargo",
+      "classId": "fargo",
+      "className": "法戈级",
+      "year": 1946
+    },
+    {
+      "id": "oregon-city",
+      "classId": "oregon-city",
+      "className": "俄勒冈城级",
+      "year": 1946
+    },
+    {
+      "id": "des-moines",
+      "classId": "des-moines",
+      "className": "得梅因级",
+      "year": 1950
+    },
+    {
+      "id": "worcester",
+      "classId": "worcester",
+      "className": "伍斯特级",
+      "year": 1949
+    },
+    {
+      "id": "alaska",
+      "classId": "alaska",
+      "className": "阿拉斯加级",
+      "year": 1945
+    },
+    {
+      "id": "juneau",
+      "classId": "juneau",
+      "className": "朱诺级 CL-119",
+      "year": 1946
+    },
+    {
+      "id": "northampton-command",
+      "classId": "northampton-command",
+      "className": "北安普敦级 CLC-1",
+      "year": 1954
+    },
+    {
+      "id": "boston",
+      "classId": "boston",
+      "className": "波士顿级 CAG-1",
+      "year": 1956
+    },
+    {
+      "id": "galveston",
+      "classId": "galveston",
+      "className": "加尔维斯顿级",
+      "year": 1960
+    },
+    {
+      "id": "providence",
+      "classId": "providence",
+      "className": "普罗维登斯级",
+      "year": 1960
+    },
+    {
+      "id": "albany",
+      "classId": "albany",
+      "className": "奥尔巴尼级",
+      "year": 1963
+    },
+    {
+      "id": "long-beach",
+      "classId": "long-beach",
+      "className": "长滩级 CGN-9",
+      "year": 1964
+    },
+    {
+      "id": "leahy",
+      "classId": "leahy",
+      "className": "莱希级",
+      "year": 1965
+    },
+    {
+      "id": "bainbridge-nuclear",
+      "classId": "bainbridge-nuclear",
+      "className": "班布里奇级 CGN-25",
+      "year": 1964
+    },
+    {
+      "id": "belknap",
+      "classId": "belknap",
+      "className": "贝尔纳普级",
+      "year": 1966
+    },
+    {
+      "id": "truxtun",
+      "classId": "truxtun",
+      "className": "特拉克斯顿级 CGN-35",
+      "year": 1968
+    },
+    {
+      "id": "california",
+      "classId": "california",
+      "className": "加利福尼亚级",
+      "year": 1975
+    },
+    {
+      "id": "virginia",
+      "classId": "virginia",
+      "className": "弗吉尼亚级",
+      "year": 1978
+    },
+    {
+      "id": "ticonderoga",
+      "classId": "ticonderoga",
+      "className": "提康德罗加级",
+      "year": 2000
+    },
+    {
+      "id": "sampson",
+      "classId": "sampson",
+      "className": "桑普森级",
+      "year": 1941
+    },
+    {
+      "id": "caldwell",
+      "classId": "caldwell",
+      "className": "考德威尔级",
+      "year": 1939
+    },
+    {
+      "id": "wickes",
+      "classId": "wickes",
+      "className": "威克斯级",
+      "year": 1940
+    },
+    {
+      "id": "clemson",
+      "classId": "clemson",
+      "className": "克莱姆森级",
+      "year": 1940
+    },
+    {
+      "id": "farragut-1934",
+      "classId": "farragut-1934",
+      "className": "法拉格特级 1934",
+      "year": 1939
+    },
+    {
+      "id": "porter",
+      "classId": "porter",
+      "className": "波特级",
+      "year": 1939
+    },
+    {
+      "id": "mahan",
+      "classId": "mahan",
+      "className": "马汉级",
+      "year": 1939
+    },
+    {
+      "id": "gridley",
+      "classId": "gridley",
+      "className": "格里德利级",
+      "year": 1939
+    },
+    {
+      "id": "bagley",
+      "classId": "bagley",
+      "className": "巴格利级",
+      "year": 1939
+    },
+    {
+      "id": "somers",
+      "classId": "somers",
+      "className": "萨默斯级",
+      "year": 1939
+    },
+    {
+      "id": "benham",
+      "classId": "benham",
+      "className": "本汉级",
+      "year": 1939
+    },
+    {
+      "id": "sims",
+      "classId": "sims",
+      "className": "西姆斯级",
+      "year": 1939
+    },
+    {
+      "id": "benson",
+      "classId": "benson",
+      "className": "本森级",
+      "year": 1940
+    },
+    {
+      "id": "gleaves",
+      "classId": "gleaves",
+      "className": "格里夫斯级",
+      "year": 1940
+    },
+    {
+      "id": "allen-sumner",
+      "classId": "allen-sumner",
+      "className": "艾伦·萨姆纳级",
+      "year": 1944
+    },
+    {
+      "id": "gearing",
+      "classId": "gearing",
+      "className": "基林级",
+      "year": 1945
+    },
+    {
+      "id": "carpenter",
+      "classId": "carpenter",
+      "className": "卡彭特反潜亚级",
+      "year": 1953
+    },
+    {
+      "id": "norfolk",
+      "classId": "norfolk",
+      "className": "诺福克级 DL-1",
+      "year": 1954
+    },
+    {
+      "id": "mitscher",
+      "classId": "mitscher",
+      "className": "米切尔级",
+      "year": 1955
+    },
+    {
+      "id": "forrest-sherman",
+      "classId": "forrest-sherman",
+      "className": "福雷斯特·舍曼级",
+      "year": 1958
+    },
+    {
+      "id": "farragut-1958",
+      "classId": "farragut-1958",
+      "className": "法拉格特级 1958",
+      "year": 1961
+    },
+    {
+      "id": "charles-adams",
+      "classId": "charles-adams",
+      "className": "查尔斯·F·亚当斯级",
+      "year": 1963
+    },
+    {
+      "id": "decatur",
+      "classId": "decatur",
+      "className": "迪凯特导弹改装级",
+      "year": 1968
+    },
+    {
+      "id": "spruance",
+      "classId": "spruance",
+      "className": "斯普鲁恩斯级",
+      "year": 1988
+    },
+    {
+      "id": "kidd",
+      "classId": "kidd",
+      "className": "基德级 DDG-993",
+      "year": 1983
+    },
+    {
+      "id": "arleigh-burke",
+      "classId": "arleigh-burke",
+      "className": "阿利·伯克级",
+      "year": 2017
+    },
+    {
+      "id": "zumwalt",
+      "classId": "zumwalt",
+      "className": "朱姆沃尔特级",
+      "year": 2016
+    }
+  ],
+  "needsCanonicalClass": [
+    {
+      "id": "iowa",
+      "name": "衣阿华",
+      "navy": "us",
+      "year": 1944,
+      "source": "https://www.navypedia.org/ships/usa/us_bb_iowa.htm"
+    },
+    {
+      "id": "south-dakota",
+      "name": "南达科他",
+      "navy": "us",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/usa/us_bb_sdakota.htm"
+    },
+    {
+      "id": "arizona",
+      "name": "亚利桑那",
+      "navy": "us",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/usa/us_bb_pennsylvania.htm"
+    },
+    {
+      "id": "pt-109",
+      "name": "PT-109",
+      "navy": "us",
+      "year": 1943,
+      "source": "https://www.navypedia.org/ships/usa/us_pt_pt103.htm"
+    },
+    {
+      "id": "john-w-brown",
+      "name": "约翰·布朗",
+      "navy": "us",
+      "year": 1944,
+      "source": "https://www.ssjohnwbrown.org/history"
+    },
+    {
+      "id": "missouri",
+      "name": "密苏里",
+      "navy": "us",
+      "year": 1945,
+      "source": "https://www.navypedia.org/ships/usa/us_bb_iowa.htm"
+    },
+    {
+      "id": "warspite",
+      "name": "厌战",
+      "navy": "gb",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_queen_elizabeth.htm"
+    },
+    {
+      "id": "king-george-v",
+      "name": "乔治五世",
+      "navy": "gb",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_king_george_v.htm"
+    },
+    {
+      "id": "hood",
+      "name": "胡德",
+      "navy": "gb",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_hood.htm"
+    },
+    {
+      "id": "rodney",
+      "name": "罗德尼",
+      "navy": "gb",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_nelson.htm"
+    },
+    {
+      "id": "ark-royal",
+      "name": "皇家方舟",
+      "navy": "gb",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/uk/brit_cv1_ark_royal.htm"
+    },
+    {
+      "id": "illustrious",
+      "name": "光辉",
+      "navy": "gb",
+      "year": 1940,
+      "source": "https://www.navypedia.org/ships/uk/brit_cv1_illustrious.htm"
+    },
+    {
+      "id": "cossack",
+      "name": "哥萨克",
+      "navy": "gb",
+      "year": 1939,
+      "source": "https://www.navypedia.org/ships/uk/brit_dd_tribal.htm"
+    },
+    {
+      "id": "belfast",
+      "name": "贝尔法斯特",
+      "navy": "gb",
+      "year": 1943,
+      "source": "https://www.navypedia.org/ships/uk/brit_cr_edinburgh.htm"
+    },
+    {
+      "id": "renown",
+      "name": "声望",
+      "navy": "gb",
+      "year": 1944,
+      "source": "https://www.navypedia.org/ships/uk/brit_bb1_renown16.htm"
+    },
+    {
+      "id": "yamato",
+      "name": "大和",
+      "navy": "jp",
+      "year": 1945,
+      "source": "https://www.navypedia.org/ships/japan/jap_bb_yamato.htm"
+    },
+    {
+      "id": "nagato",
+      "name": "长门",
+      "navy": "jp",
+      "year": 1944,
+      "source": "https://www.navypedia.org/ships/japan/jap_bb_nagato.htm"
+    },
+    {
+      "id": "kongo",
+      "name": "金刚",
+      "navy": "jp",
+      "year": 1944,
+      "source": "https://www.navypedia.org/ships/japan/jap_bb_kongo.htm"
+    },
+    {
+      "id": "akagi",
+      "name": "赤城",
+      "navy": "jp",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_akagi.htm"
+    },
+    {
+      "id": "kaga",
+      "name": "加贺",
+      "navy": "jp",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_kaga.htm"
+    },
+    {
+      "id": "shokaku",
+      "name": "翔鹤",
+      "navy": "jp",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_shokaku.htm"
+    },
+    {
+      "id": "mogami",
+      "name": "最上",
+      "navy": "jp",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/japan/jap_cr_mogami.htm"
+    },
+    {
+      "id": "fubuki",
+      "name": "吹雪",
+      "navy": "jp",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/japan/jap_dd_fubuki.htm"
+    },
+    {
+      "id": "hiryu",
+      "name": "飞龙",
+      "navy": "jp",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_hiryu.htm"
+    },
+    {
+      "id": "soryu",
+      "name": "苍龙",
+      "navy": "jp",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_soryu.htm"
+    },
+    {
+      "id": "shinano",
+      "name": "信浓",
+      "navy": "jp",
+      "year": 1944,
+      "source": "https://www.navypedia.org/ships/japan/jap_cv_shinano.htm"
+    },
+    {
+      "id": "musashi",
+      "name": "武藏",
+      "navy": "jp",
+      "year": 1944,
+      "source": "https://www.navypedia.org/ships/japan/jap_bb_yamato.htm"
+    },
+    {
+      "id": "bismarck",
+      "name": "俾斯麦",
+      "navy": "de",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/germany/ger_bb_bismarck.htm"
+    },
+    {
+      "id": "scharnhorst",
+      "name": "沙恩霍斯特",
+      "navy": "de",
+      "year": 1943,
+      "source": "https://www.navypedia.org/ships/germany/ger_bb_scharnhorst.htm"
+    },
+    {
+      "id": "graf-spee",
+      "name": "斯佩伯爵",
+      "navy": "de",
+      "year": 1939,
+      "source": "https://www.navypedia.org/ships/germany/ger_cr_deutschland.htm"
+    },
+    {
+      "id": "prinz-eugen",
+      "name": "欧根亲王",
+      "navy": "de",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/germany/ger_cr_eugen.htm"
+    },
+    {
+      "id": "tirpitz",
+      "name": "提尔皮茨",
+      "navy": "de",
+      "year": 1943,
+      "source": "https://www.navypedia.org/ships/germany/ger_bb_bismarck.htm"
+    },
+    {
+      "id": "littorio",
+      "name": "利托里奥",
+      "navy": "it",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/italy/it_bb_vittorio_veneto.htm"
+    },
+    {
+      "id": "giulio-cesare",
+      "name": "朱利奥·凯撒",
+      "navy": "it",
+      "year": 1940,
+      "source": "https://www.navypedia.org/ships/italy/it_bb_giulio_cesare.htm"
+    },
+    {
+      "id": "zara",
+      "name": "扎拉",
+      "navy": "it",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/italy/it_cr_zara.htm"
+    },
+    {
+      "id": "maestrale",
+      "name": "西北风",
+      "navy": "it",
+      "year": 1940,
+      "source": "https://www.navypedia.org/ships/italy/it_dd_maestrale.htm"
+    },
+    {
+      "id": "roma",
+      "name": "罗马",
+      "navy": "it",
+      "year": 1943,
+      "source": "https://www.navypedia.org/ships/italy/it_bb_vittorio_veneto.htm"
+    },
+    {
+      "id": "richelieu",
+      "name": "黎塞留",
+      "navy": "fr",
+      "year": 1940,
+      "source": "https://www.navypedia.org/ships/france/fr_bb_richelieu.htm"
+    },
+    {
+      "id": "dunkerque",
+      "name": "敦刻尔克",
+      "navy": "fr",
+      "year": 1940,
+      "source": "https://www.navypedia.org/ships/france/fr_bb_dunkerque.htm"
+    },
+    {
+      "id": "algerie",
+      "name": "阿尔及利亚",
+      "navy": "fr",
+      "year": 1939,
+      "source": "https://www.navypedia.org/ships/france/fr_cr_algerie.htm"
+    },
+    {
+      "id": "le-fantasque",
+      "name": "空想",
+      "navy": "fr",
+      "year": 1940,
+      "source": "https://www.navypedia.org/ships/france/fr_dd_le_fantasque.htm"
+    },
+    {
+      "id": "marat",
+      "name": "马拉",
+      "navy": "su",
+      "year": 1940,
+      "source": "https://www.navypedia.org/ships/russia/ru_bb_sevastopol.htm"
+    },
+    {
+      "id": "kirov",
+      "name": "基洛夫",
+      "navy": "su",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/russia/ru_cr_kirov.htm"
+    },
+    {
+      "id": "tashkent",
+      "name": "塔什干",
+      "navy": "su",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/russia/ru_dd_tashkent.htm"
+    },
+    {
+      "id": "ning-hai",
+      "name": "宁海",
+      "navy": "cn",
+      "year": 1937,
+      "source": "https://www.navypedia.org/ships/china/ch_cr_ning_hai.htm"
+    },
+    {
+      "id": "yat-sen",
+      "name": "逸仙",
+      "navy": "cn",
+      "year": 1937,
+      "source": "https://www.navypedia.org/ships/china/ch_of_i_hsien.htm"
+    },
+    {
+      "id": "de-ruyter",
+      "name": "德鲁伊特",
+      "navy": "nl",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/netherlands/nl_cr_de_ruyter.htm"
+    },
+    {
+      "id": "java",
+      "name": "爪哇",
+      "navy": "nl",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/netherlands/nl_cr_java.htm"
+    },
+    {
+      "id": "kortenaer",
+      "name": "科特纳尔",
+      "navy": "nl",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/netherlands/nl_dd_van_ghent.htm"
+    },
+    {
+      "id": "blyskawica",
+      "name": "闪电",
+      "navy": "pl",
+      "year": 1939,
+      "source": "https://www.navypedia.org/ships/poland/pl_dd_grom.htm"
+    },
+    {
+      "id": "piorun",
+      "name": "雷电",
+      "navy": "pl",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/poland/pl_dd_piorun.htm"
+    },
+    {
+      "id": "haida",
+      "name": "海达人",
+      "navy": "ca",
+      "year": 1943,
+      "source": "https://www.navypedia.org/ships/canada/can_dd_iroquois.htm"
+    },
+    {
+      "id": "sackville",
+      "name": "萨克维尔",
+      "navy": "ca",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/canada/can_es_flower.htm"
+    },
+    {
+      "id": "sydney",
+      "name": "悉尼 II",
+      "navy": "au",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/australia/aus_cr_sydney.htm"
+    },
+    {
+      "id": "australia",
+      "name": "澳大利亚 II",
+      "navy": "au",
+      "year": 1943,
+      "source": "https://www.navypedia.org/ships/australia/aus_cv_australia.htm"
+    },
+    {
+      "id": "achilles",
+      "name": "阿基里斯",
+      "navy": "nz",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/new_zealand/nz_cr_achilles.htm"
+    },
+    {
+      "id": "stord",
+      "name": "斯托尔德",
+      "navy": "no",
+      "year": 1943,
+      "source": "https://www.navypedia.org/ships/norway/no_dd_stord.htm"
+    },
+    {
+      "id": "averof",
+      "name": "阿韦罗夫",
+      "navy": "gr",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/greece/gr_cr_averof.htm"
+    },
+    {
+      "id": "dubrovnik",
+      "name": "杜布罗夫尼克",
+      "navy": "yu",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/yugoslavia/yu_dd_dubrovnik.htm"
+    },
+    {
+      "id": "ilmarinen",
+      "name": "伊尔马里宁",
+      "navy": "fi",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/finland/fi_bb_vainamoinen.htm"
+    },
+    {
+      "id": "regele-ferdinand",
+      "name": "费迪南德国王",
+      "navy": "ro",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/romania/ro_dd_regele_ferdinand.htm"
+    },
+    {
+      "id": "thonburi",
+      "name": "吞武里",
+      "navy": "th",
+      "year": 1941,
+      "source": "https://www.navypedia.org/ships/thailand/th_bb_sri_ayuthia.htm"
+    },
+    {
+      "id": "bahia",
+      "name": "巴伊亚",
+      "navy": "br",
+      "year": 1944,
+      "source": "https://www.navypedia.org/ships/brazil/br_cr_bahia.htm"
+    },
+    {
+      "id": "bengal",
+      "name": "孟加拉",
+      "navy": "in",
+      "year": 1942,
+      "source": "https://www.navypedia.org/ships/india/in_ms_punjab.htm"
+    },
+    {
+      "id": "natal",
+      "name": "纳塔尔",
+      "navy": "za",
+      "year": 1945,
+      "source": "https://www.navypedia.org/ships/south_africa/saf_es_good_hope.htm"
+    },
+    {
+      "id": "niels-juel",
+      "name": "尼尔斯·尤尔",
+      "navy": "dk",
+      "year": 1943,
+      "source": "https://www.navypedia.org/ships/denmark/dk_bb_niels_iuel.htm"
+    }
+  ],
+  "sharedSourceCandidates": [
+    {
+      "source": "https://www.navypedia.org/ships/usa/us_bb_iowa.htm",
+      "ids": [
+        "iowa",
+        "missouri"
+      ],
+      "verifiedSameClass": false
+    },
+    {
+      "source": "https://www.navypedia.org/ships/japan/jap_bb_yamato.htm",
+      "ids": [
+        "yamato",
+        "musashi"
+      ],
+      "verifiedSameClass": false
+    },
+    {
+      "source": "https://www.navypedia.org/ships/germany/ger_bb_bismarck.htm",
+      "ids": [
+        "bismarck",
+        "tirpitz"
+      ],
+      "verifiedSameClass": false
+    },
+    {
+      "source": "https://www.navypedia.org/ships/italy/it_bb_vittorio_veneto.htm",
+      "ids": [
+        "littorio",
+        "roma"
+      ],
+      "verifiedSameClass": false
+    }
+  ],
+  "warning": "Shared source URL is a research lead, not proof of class identity. All148 geometries remain unreviewed."
+}

@@ -1,0 +1,326 @@
+{
+  "schemaVersion": 1,
+  "scope": "Research backlog for the global served military-aircraft inventory; not a complete worldwide list.",
+  "checkedOn": "2026-11-16",
+  "acceptance": "Every produced model still requires two independent same-round same-revision GPT Sol scores >=9.8. These research records have no models or acceptance scores.",
+  "records": [
+    {
+      "id": "dh4-liberty",
+      "familyId": "airco-dh4",
+      "name": "DH-4（美制 Liberty 发动机型）",
+      "designCountry": "gb",
+      "role": "reconnaissance-day-bomber",
+      "selectedVariant": "1918年美制Liberty构型",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1918,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/197397/AFmuseum/de-havilland-dh-4/",
+          "publisher": "National Museum of the United States Air Force",
+          "checked": "2026-11-16",
+          "supports": "美国制造的DH-4于1918年8月执行作战任务，用于日间轰炸、观察和炮兵校射。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "英国原设计与美国许可生产分别记录，不按制造国重复算新型号。",
+        "博物馆所展为DH-4B复原件；1918年DH-4的座舱、油箱位置不能照搬该复原件。",
+        "不同官方资料的长度、翼展口径存在差异，取得所选构型原图后再定几何。"
+      ]
+    },
+    {
+      "id": "breguet-xiv-b2",
+      "familyId": "breguet-xiv",
+      "name": "Breguet XIV B2",
+      "designCountry": "fr",
+      "role": "day-bomber",
+      "selectedVariant": "B2",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1917,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.museeairespace.fr/wp-content/uploads/sites/2/2020/09/livret-jeu-grande-guerre-musee-air-espace.pdf",
+          "publisher": "Musée de l’Air et de l’Espace",
+          "checked": "2026-11-16",
+          "supports": "资料册印刷第10页（PDF索引5）记载GB5于1917年9月接收Breguet XIV B2。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "B2轰炸构型与A2侦察构型分开记录。",
+        "尚需原始三视图、翼弦和上下翼差异。"
+      ]
+    },
+    {
+      "id": "b17g",
+      "familyId": "boeing-b17",
+      "name": "B-17G Flying Fortress",
+      "designCountry": "us",
+      "role": "heavy-bomber",
+      "selectedVariant": "G",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1944,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.nationalmuseum.af.mil/Upcoming/Photos/igphoto/2000554570/",
+          "publisher": "National Museum of the United States Air Force",
+          "checked": "2026-11-16",
+          "supports": "馆藏历史照片记录1944年B-17G在部队中的飞行，提供明确的型号和作战时期依据。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "不能用B-17F照片省略G型机首下方炮塔。",
+        "博物馆恢复后的涂装与战时裸金属状态须分开，几何仍需三视图。"
+      ]
+    },
+    {
+      "id": "c47a",
+      "familyId": "douglas-c47",
+      "name": "C-47A Skytrain",
+      "designCountry": "us",
+      "role": "transport",
+      "selectedVariant": "A",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1944,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196271/douglas-c-47d-skytrain/",
+          "publisher": "National Museum of the United States Air Force",
+          "checked": "2026-11-16",
+          "supports": "资料明确记载C-47A在1944年执行回收滑翔机任务，支持A型实际服役。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "该网页实物为C-47D，涂装表现C-47A；不得把实物身份、展示涂装与选定改型混为一项。",
+        "后续需A型尺寸、货舱门、发动机短舱、尾翼及起落架参考。"
+      ]
+    },
+    {
+      "id": "pby5a",
+      "familyId": "consolidated-pby",
+      "name": "PBY-5A Catalina",
+      "designCountry": "us",
+      "role": "maritime-patrol-amphibian",
+      "selectedVariant": "5A",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1942,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.history.navy.mil/content/history/nhhc/research/histories/ship-histories/danfs/c/casco-iii.html",
+          "publisher": "Naval History and Heritage Command, DANFS",
+          "checked": "2026-11-16",
+          "supports": "Casco舰史记录VP-41、VP-42的PBY-5A在1942年从水上机保障舰执行巡逻，支持两栖型实际使用。"
+        },
+        {
+          "url": "https://www.history.navy.mil/content/history/museums/nnam/explore/collections/aircraft/p/pby-5a-catalina.html",
+          "publisher": "National Naval Aviation Museum",
+          "checked": "2026-11-16",
+          "supports": "馆藏资料描述两栖型、伞翼和可收放翼尖浮筒；公开尺寸仍需核对所选状态。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "PBY-5水上型与PBY-5A两栖型区分，轮舱不可省略成同一构型。",
+        "机翼浮筒收放状态、侧观察泡、发动机短舱及艇底须独立建模。"
+      ]
+    },
+    {
+      "id": "cg4a",
+      "familyId": "waco-cg4",
+      "name": "Waco CG-4A Hadrian",
+      "designCountry": "us",
+      "role": "assault-glider",
+      "selectedVariant": "A",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1943,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196272/waco-cg-4a-hadrian/",
+          "publisher": "National Museum of the United States Air Force",
+          "checked": "2026-11-16",
+          "supports": "CG-4A于1943年7月西西里行动投入使用；是无动力军用运输滑翔机。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "须支持无发动机飞机，不把其自动标成螺旋桨战斗机。",
+        "机首整体开启、货舱形态及双翼撑杆需要原始照片与图纸。"
+      ]
+    },
+    {
+      "id": "c130h",
+      "familyId": "lockheed-c130",
+      "name": "C-130H Hercules",
+      "designCountry": "us",
+      "role": "transport",
+      "selectedVariant": "H",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1974,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/1555054/c-130-hercules/",
+          "publisher": "United States Air Force",
+          "checked": "2026-11-16",
+          "supports": "官方型号表列C-130H于1974年6月列装，使用T56-A-15涡桨。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "不混入C-130J的六叶桨或J-30加长机身。",
+        "官网英制尺寸与括号公制值有换算不一致，几何尺寸需交叉核对。",
+        "发动机舱、四叶桨、高翼和后货舱斜坡需本型独立轮廓。"
+      ]
+    },
+    {
+      "id": "mb326-two-seat",
+      "familyId": "aermacchi-mb326",
+      "name": "Macchi MB.326（双座教练型）",
+      "designCountry": "it",
+      "role": "jet-trainer",
+      "selectedVariant": "意大利空军双座训练构型",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1962,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.aeronautica.difesa.it/2023/06/15/mb-326k/",
+          "publisher": "Aeronautica Militare",
+          "checked": "2026-11-16",
+          "supports": "意大利空军记载双座MB.326自1962年用于Galatina喷气基础飞行训练。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "网页URL和后段文字涉及单座K型，不能直接把其尺寸表套入双座教练型。",
+        "许可生产的Impala、EMB-326等先作为改型/生产关系记录，须核对再决定是否保留独立几何。"
+      ]
+    },
+    {
+      "id": "a29-super-tucano",
+      "familyId": "embraer-emb314",
+      "name": "A-29 Super Tucano",
+      "designCountry": "br",
+      "role": "light-attack-trainer",
+      "selectedVariant": null,
+      "status": "service-evidence-verified",
+      "evidenceYear": 2004,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.fab.mil.br/notimp/mostra/31102019",
+          "publisher": "Agência Força Aérea / Força Aérea Brasileira",
+          "checked": "2026-11-16",
+          "supports": "巴西空军报道记载A-29于2004年10月到达Joker中队，开始使用该机训练。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "需选定A-29A单座或A-29B双座，当前不把家族照片直接当成精确改型依据。",
+        "不混入EMB-312 Tucano的几何。"
+      ]
+    },
+    {
+      "id": "hal-ht2",
+      "familyId": "hal-ht2",
+      "name": "HAL HT-2",
+      "designCountry": "in",
+      "role": "basic-trainer",
+      "selectedVariant": "HT-2",
+      "status": "military-delivery-verified",
+      "evidenceYear": null,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://hal-india.co.in/our-history",
+          "publisher": "Hindustan Aeronautics Limited",
+          "checked": "2026-11-16",
+          "supports": "制造商记载HT-2由本公司设计生产并向印度空军等客户交付，1951年8月是首飞时间。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "目前已核实军方交付，仍需作战单位或训练学校实际使用资料。",
+        "不能把1951年首飞日期填成服役年份。",
+        "后续核实印度独立后设计来源，不能沿用旧舰库“英属印度”运营国标签。"
+      ]
+    },
+    {
+      "id": "kc135r",
+      "familyId": "boeing-kc135",
+      "name": "KC-135R Stratotanker",
+      "designCountry": "us",
+      "role": "aerial-refuelling",
+      "selectedVariant": "R",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1984,
+      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
+      "sources": [
+        {
+          "url": "https://www.amc.af.mil/Portals/12/documents/AFD-150827-032.pdf",
+          "publisher": "United States Air Force, Air Mobility Command",
+          "checked": "2026-11-16",
+          "supports": "官方历史年表区分1984年6月向384th ARW交付与7月2日正式接收；R型使用CFM56发动机。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "不能把KC-135A窄短舱直接复用为R型。",
+        "交付、正式接收与最早改装试验日期分开，不预设整个家族一个服役日期。",
+        "需要吊舱尺寸、后机身加油杆与后掠翼参考图。"
+      ]
+    }
+  ]
+}

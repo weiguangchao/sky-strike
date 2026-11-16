@@ -107,14 +107,14 @@ test.describe('phone visible viewport',()=>{
     await page.locator('.upgrade-card').first().click();
   });
 
-  test('all handbook pages fit toolbar-reduced portrait and landscape safe regions',async({page})=>{
-    test.setTimeout(120000);
-    await page.goto('/');await page.locator('#start-button').click();
-    for(const scenario of [
-      {width:393,height:844,visibleHeight:600,top:47,bottom:34,left:8,right:8,offsetTop:12},
-      {width:393,height:844,visibleHeight:520,top:47,bottom:34,left:8,right:8,offsetTop:12},
-      {width:844,height:390,visibleHeight:320,top:0,bottom:21,left:0,right:0,offsetTop:0},
-    ]) {
+  for(const scenario of [
+    {width:393,height:844,visibleHeight:600,top:47,bottom:34,left:8,right:8,offsetTop:12},
+    {width:393,height:844,visibleHeight:520,top:47,bottom:34,left:8,right:8,offsetTop:12},
+    {width:844,height:390,visibleHeight:320,top:0,bottom:21,left:0,right:0,offsetTop:0},
+  ]) {
+    test(`all handbook pages fit safe regions at ${scenario.width}×${scenario.visibleHeight}`,async({page})=>{
+      test.setTimeout(120000);
+      await page.goto('/');await page.locator('#start-button').click();
       await page.setViewportSize({width:scenario.width,height:scenario.height});
       await page.evaluate(scenario=>{
         const root=document.documentElement;
@@ -123,10 +123,14 @@ test.describe('phone visible viewport',()=>{
       },scenario);
       await viewport(page,{width:scenario.width,height:scenario.visibleHeight,offsetTop:scenario.offsetTop});
       await page.locator('#pause-button').click();await page.locator('#pause-help').click();
-      for(const [panel,pages] of [['controls',1],['intel',15],['campaign',10],['fleet',148]] as const) {
+      for(const [panel,pages] of [['controls',1],['intel',15],['campaign',10],['archive',168]] as const) {
         await page.locator(`#help-tab-${panel}`).click();
         for(let i=0;i<pages;i++) {
-          if(panel==='fleet')await expect(page.locator('#fleet-status')).toBeEmpty();
+          if(panel==='archive') {
+            await expect(page.locator('#archive-status')).toBeEmpty();
+            // Reserve room for the longer approved label without manufacturing an approval record.
+            await page.locator('#archive-review').evaluate(element=>{element.textContent='双评通过 9.8/10';});
+          }
           await settle(page);
           const layout=await page.locator('#help-dialog').evaluate(element=>({
             rect:element.getBoundingClientRect().toJSON(),height:element.clientHeight,scrollHeight:element.scrollHeight,
@@ -146,8 +150,8 @@ test.describe('phone visible viewport',()=>{
         await page.screenshot({path:`.artifacts/mobile-viewport/safe-${panel}-${scenario.width}x${scenario.visibleHeight}.png`});
       }
       await page.locator('#close-help').click();await page.locator('#resume-button').click();
-    }
-  });
+    });
+  }
 
   test('pause keeps handbook, sound and fullscreen reachable and returns to the same flight',async({page,browserName})=>{
     await page.goto('/');await page.locator('#start-button').click();await page.locator('#pause-button').click();
