@@ -1,535 +1,215 @@
-import * as THREE from 'three';
+import Phaser from 'phaser';
 import { WIDTH, HEIGHT, TAKEOFF_DURATION } from './engine.ts';
 import type { Game } from './engine.ts';
-import type { CraftId, Enemy, GameEvent, Pickup, AirKind, ShipKind, Wreck } from './types.ts';
-import { ModelLibrary, unitModel } from './models.ts';
-import { historicalModel, combatMainBearing } from './naval-history.ts';
-import type { HistoricalShipId } from './naval-history.ts';
-import type { ModelId, ModelInstance, ModelBatch } from './models.ts';
+import type { GameEvent, Ship, ShipKind } from './types.ts';
 import { HULLS } from './campaign.ts';
-import { PIXEL_RASTER, VISUAL_SIGNALS } from './visual-style.ts';
+import { historicalModel } from './naval-history.ts';
+import { unitModel } from './models.ts';
+import type { ModelId } from './models.ts';
+import { SpriteLibrary, spriteAsset, spriteFrame } from './sprites.ts';
+import { VISUAL_SIGNALS } from './visual-style.ts';
 
-interface Visual extends ModelInstance { shadow: THREE.Mesh; id: ModelId }
-interface Particle { x: number; z: number; y: number; vx: number; vz: number; vy: number; life: number; size: number; smoke: boolean; tint: number | undefined }
-interface Shockwave { mesh: THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial>; life: number; radius: number; max: number }
-interface CraftVisuals { hero: Visual; player: Visual; drones: [Visual, Visual] }
-interface RenderResources {
-  crafts: Record<CraftId, CraftVisuals>;
-  islands: [ModelInstance, ModelInstance];
-  carrier: ModelInstance;
-  hostileBatches: { danger: ModelBatch; aimed: ModelBatch };
-  pickupBatches: Record<Pickup['type'], ModelBatch>;
-}
-type RenderState = { kind: 'loading' } | { kind: 'ready'; resources: RenderResources };
-const matrix = new THREE.Object3D();
-const color = new THREE.Color();
-
-function lighting(scene: THREE.Scene): void {
-  scene.add(new THREE.HemisphereLight(0xd9edff, 0x162c42, 1.15));
-  const sun = new THREE.DirectionalLight(0xfff2dc, 3.0);
-  sun.position.set(-170, 500, -260);
-  scene.add(sun);
-}
-
-function batch(scene: THREE.Scene, geometry: THREE.BufferGeometry, material: THREE.Material, count: number): THREE.InstancedMesh {
-  const mesh = new THREE.InstancedMesh(geometry, material, count);
-  mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-  mesh.count = 0;
-  mesh.frustumCulled = false;
-  scene.add(mesh);
-  return mesh;
-}
-
-function put(mesh: THREE.InstancedMesh, index: number, x: number, y: number, z: number, sx: number, sy: number, sz: number, tint?: number, angle = 0): void {
-  matrix.position.set(x, y, z);
-  matrix.scale.set(sx, sy, sz);
-  matrix.rotation.set(0, angle, 0);
-  matrix.updateMatrix();
-  mesh.setMatrixAt(index, matrix.matrix);
-  if (tint !== undefined) mesh.setColorAt(index, color.setHex(tint));
-}
-
-function finishBatch(mesh: THREE.InstancedMesh, count: number): void {
-  mesh.count = count;
-  mesh.instanceMatrix.needsUpdate = true;
-  if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
-}
-
-function shadowTexture(): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas'); canvas.width = canvas.height = 16;
-  const ctx = canvas.getContext('2d');
-  if (!ctx) throw new Error('Canvas 2D is unavailable');
-  ctx.fillStyle = '#101e2833'; ctx.fillRect(3,2,10,12); ctx.fillRect(1,5,14,6);
-  ctx.fillStyle = '#101e2833'; ctx.fillRect(4,4,8,8);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.magFilter = texture.minFilter = THREE.NearestFilter;
-  texture.generateMipmaps = false;
-  return texture;
-}
-
-const waterVertex = `
-  varying vec2 vSea;
-  void main() {
-    vec4 world = modelMatrix * vec4(position, 1.0);
-    vSea = world.xz;
-    gl_Position = projectionMatrix * viewMatrix * world;
+class SpritePool {
+  private readonly images: Phaser.GameObjects.Image[] = [];
+  private used = 0;
+  constructor(private readonly scene: Phaser.Scene, private readonly layer: Phaser.GameObjects.Container) {}
+  begin(): void { this.used = 0; }
+  draw(id: ModelId, frameName: string, x: number, y: number, sx: number, sy = sx, rotation = 0, alpha = 1): Phaser.GameObjects.Image {
+    const frame = spriteFrame(id, frameName);
+    let image = this.images[this.used++];
+    if (!image) { image = this.scene.add.image(0, 0, id, frameName); this.layer.add(image); this.images.push(image); }
+    image.setTexture(id, frameName).setOrigin(frame.originX, frame.originY).setPosition(x, y)
+      .setDisplaySize(frame.worldWidth * sx, frame.worldHeight * sy).setRotation(rotation).setAlpha(alpha).setVisible(true).clearTint().setTintMode(Phaser.TintModes.MULTIPLY);
+    return image;
   }
-`;
-const waterFragment = `
-  uniform float time;
-  uniform float sector;
-  uniform vec3 deepColor;
-  uniform vec3 shallowColor;
-  uniform vec3 stormColor;
-  uniform vec3 crestColor;
-  varying vec2 vSea;
-  void main() {
-    vec2 p = floor((vSea + vec2(0.0, -time * 18.0)) / 4.0) * 4.0;
-    vec3 deep = mix(deepColor, stormColor, sector);
-    float swell = sin(p.y * 0.012 + sin(p.x * 0.006) * 1.4);
-    float dither = mod(floor(p.x / 4.0) + floor(p.y / 4.0), 2.0) * 0.025;
-    float band = floor(clamp(0.48 + swell * 0.31 + dither, 0.0, 0.99) * 3.0) / 3.0;
-    vec3 sea = mix(deep, shallowColor, band);
-    float crest = step(0.99, sin(p.y * 0.11 + floor(p.x / 28.0) * 1.7));
-    float dash = step(0.82, sin(floor(p.x / 12.0) * 2.3 + floor(p.y / 16.0)));
-    sea = mix(sea, crestColor, crest * dash * 0.26);
-    gl_FragColor = vec4(sea, 1.0);
-    #include <tonemapping_fragment>
-    #include <colorspace_fragment>
-  }
-`;
+  finish(): void { for (let i = this.used; i < this.images.length; i++) this.images[i]?.setVisible(false); }
+}
 
 export class Renderer {
-  private initialization?:Promise<void>;
-  private readonly webgl: THREE.WebGLRenderer;
-  private readonly scene = new THREE.Scene();
-  private readonly camera = new THREE.OrthographicCamera(-WIDTH/2, WIDTH/2, HEIGHT/2, -HEIGHT/2, 1, 1600);
-  private readonly library = new ModelLibrary();
-  private readonly previewRenderer: THREE.WebGLRenderer;
-  private readonly previewScene = new THREE.Scene();
-  private readonly previewCamera = new THREE.OrthographicCamera(-1.8,1.8,1.125,-1.125,.1,30);
-  private readonly waterUniforms = { time: { value: 0 }, sector: { value: 0 }, deepColor: { value: new THREE.Color('#123954') }, shallowColor: { value: new THREE.Color('#1c455e') }, stormColor: { value: new THREE.Color('#172f50') }, crestColor: { value: new THREE.Color('#28546a') } };
-  private readonly water = new THREE.ShaderMaterial({ vertexShader: waterVertex, fragmentShader: waterFragment, toneMapped: false, uniforms: this.waterUniforms });
-  private readonly shadows = new THREE.MeshBasicMaterial({ map: shadowTexture(), transparent: true, depthWrite: false });
-  private readonly enemies = new Map<Enemy, Visual>();
-  private readonly free = new Map<ModelId, Visual[]>();
-  private preview?: ModelInstance;
-  private readonly tracers: THREE.InstancedMesh;
-  private readonly wrecks = new Map<Wreck, Visual>();
-  private convoy?: Visual;
-  private readonly details: THREE.InstancedMesh;
-  private intelRenderer?: THREE.WebGLRenderer;
-  private readonly intelScene = new THREE.Scene();
-  private readonly intelCamera = new THREE.OrthographicCamera(-4,4,2.5,-2.5,.1,40);
-  private intel?: ModelInstance;
-  private readonly debris: THREE.InstancedMesh;
-  private readonly center: THREE.Mesh;
-  private readonly armor: THREE.Mesh[] = [];
-  private particles: Particle[] = [];
-  private rings: Shockwave[] = [];
-  private time = 0;
-  private frameCount = 0;
-  private previousX = WIDTH/2;
-  private bank = 0;
-  private shake = 0;
-  private state: RenderState = { kind: 'loading' };
+  readonly library: SpriteLibrary;
+  private readonly root: Phaser.GameObjects.Container;
+  private readonly sea: Phaser.GameObjects.TileSprite;
+  private readonly islands: SpritePool;
+  private readonly ships: SpritePool;
+  private readonly aircraft: SpritePool;
+  private readonly bullets: SpritePool;
+  private readonly pickups: SpritePool;
+  private readonly hostile: SpritePool;
+  private readonly wakes: Phaser.GameObjects.Graphics;
+  private readonly surface: Phaser.GameObjects.Graphics;
+  private readonly shadows: Phaser.GameObjects.Graphics;
+  private readonly rotors: Phaser.GameObjects.Graphics;
+  private readonly hitPoint: Phaser.GameObjects.Graphics;
+  private readonly sparks: Phaser.GameObjects.Particles.ParticleEmitter;
+  private readonly rings = new Set<Phaser.GameObjects.Arc>();
   private readonly reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  private time = 0;
+  private previousX = WIDTH / 2;
+  private bank = 0;
+  private effectsPaused = false;
 
-  private readonly game: Game;
-  private readonly intelCanvas: HTMLCanvasElement | undefined;
-
-  constructor({ canvas, previewCanvas, game, intelCanvas }: { canvas: HTMLCanvasElement; previewCanvas: HTMLCanvasElement; game: Game; intelCanvas?: HTMLCanvasElement }) {
-    this.game = game;
-    this.intelCanvas = intelCanvas;
-    this.webgl = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, powerPreference: 'high-performance' });
-    this.webgl.setPixelRatio(1);
-    this.webgl.outputColorSpace = THREE.SRGBColorSpace;
-    this.webgl.toneMapping = THREE.ACESFilmicToneMapping;
-    this.webgl.toneMappingExposure = .95;
-    this.camera.position.set(0,1000,0);
-    this.camera.up.set(0,0,-1);
-    this.camera.lookAt(0,0,0);
-    this.scene.background = new THREE.Color('#123954');
-    lighting(this.scene);
-    const sea = new THREE.Mesh(new THREE.PlaneGeometry(1800,2400), this.water);
-    sea.rotation.x = -Math.PI/2;
-    this.scene.add(sea);
-    const bulletGeometry = new THREE.SphereGeometry(1,6,4);
-    this.tracers = batch(this.scene, bulletGeometry, new THREE.MeshBasicMaterial({ color:0xffffff, toneMapped:false }), 1200);
-    this.details = batch(this.scene, new THREE.BoxGeometry(1,1,1), new THREE.MeshBasicMaterial({ color:0xffffff, toneMapped:false }), 1500);
-    this.debris = batch(this.scene, new THREE.IcosahedronGeometry(1,0), new THREE.MeshBasicMaterial({color:0xffffff, transparent:true, opacity:.8}),600);
-    this.center = new THREE.Mesh(new THREE.CircleGeometry(6,24), new THREE.MeshBasicMaterial({color:0x071422, toneMapped:false, side:THREE.DoubleSide}));
-    const hitPoint = new THREE.Mesh(new THREE.CircleGeometry(3.5,24), new THREE.MeshBasicMaterial({color:0xfff1cb, toneMapped:false, side:THREE.DoubleSide}));
-    hitPoint.position.z=.1;
-    this.center.add(hitPoint);
-    this.center.rotation.x = -Math.PI/2;
-    this.scene.add(this.center);
-    for(let i=0;i<4;i++) {
-      const plate = new THREE.Mesh(new THREE.BoxGeometry(8,2,2), new THREE.MeshBasicMaterial({color:0xb7c393}));
-      this.armor.push(plate); this.scene.add(plate);
+  constructor(private readonly scene: Phaser.Scene, private readonly combat: Game) {
+    this.library = new SpriteLibrary(scene);
+    this.root = scene.add.container(0, 0).setScale(.5);
+    for (const [key, deep, shallow] of [['sea-day', '#123954', '#1c455e'], ['sea-storm', '#172f50', '#203e5b']] as const) {
+      const texture = scene.textures.createCanvas(key, 128, 128);
+      if (!texture) throw new Error('Sea texture could not be created');
+      const context = texture.context;
+      context.fillStyle = deep; context.fillRect(0, 0, 128, 128);
+      for (let y = 0; y < 128; y += 4) for (let x = 0; x < 128; x += 4) {
+        if (Math.sin(y * .08 + Math.sin(x * .04) * 1.4) > .1) { context.fillStyle = shallow; context.fillRect(x, y, 4, 4); }
+        if ((x * 7 + y * 3) % 101 < 4) { context.fillStyle = '#28546a'; context.fillRect(x, y, 8, 2); }
+      }
+      texture.refresh();
     }
-    this.previewRenderer = new THREE.WebGLRenderer({canvas:previewCanvas,alpha:true,antialias:false});
-    this.previewRenderer.setPixelRatio(1);
-    this.previewRenderer.setSize(PIXEL_RASTER.preview.width,PIXEL_RASTER.preview.height,false);
-    this.previewRenderer.outputColorSpace = THREE.SRGBColorSpace;
-    this.previewRenderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.previewRenderer.toneMappingExposure = .95;
-    this.previewCamera.position.set(2.8,3.8,4.2);
-    this.previewCamera.lookAt(0,.05,0);
-    lighting(this.previewScene);
-    if (intelCanvas) {
-      this.intelRenderer = new THREE.WebGLRenderer({canvas:intelCanvas,alpha:true,antialias:false});
-      this.intelRenderer.setPixelRatio(1);
-      this.intelRenderer.setSize(192,120,false);
-      this.intelRenderer.outputColorSpace = THREE.SRGBColorSpace;
-      this.intelRenderer.toneMapping = THREE.ACESFilmicToneMapping;
-      this.intelRenderer.toneMappingExposure = .95;
-      this.intelCamera.position.set(2,8,4);
-      this.intelCamera.lookAt(0,0,0);
-      lighting(this.intelScene);
-    }
-    this.resize();
+    this.sea = scene.add.tileSprite(0, 0, WIDTH, HEIGHT, 'sea-day').setOrigin(0);
+    this.root.add(this.sea);
+    const layer = () => { const layer = scene.add.container(); this.root.add(layer); return layer; };
+    const graphics = () => { const graphics = scene.add.graphics(); this.root.add(graphics); return graphics; };
+    this.islands = new SpritePool(scene, layer());
+    this.wakes = graphics(); this.ships = new SpritePool(scene, layer()); this.surface = graphics();
+    this.shadows = graphics(); this.aircraft = new SpritePool(scene, layer()); this.rotors = graphics();
+    this.bullets = new SpritePool(scene, layer());
+    const spark = scene.add.graphics().fillStyle(0xffffff).fillRect(0, 0, 4, 4);
+    spark.generateTexture('spark', 4, 4); spark.destroy();
+    this.sparks = scene.add.particles(0, 0, 'spark', { emitting: false, lifespan: { min: 260, max: 650 }, speed: { min: 16, max: 90 }, scale: { start: 1.6, end: .2 }, alpha: { start: .85, end: 0 }, tint: [0xffd184, 0xe49a4b, 0x53626a], maxParticles: 350 });
+    this.root.add(this.sparks);
+    this.pickups = new SpritePool(scene, layer()); this.hitPoint = graphics(); this.hostile = new SpritePool(scene, layer());
   }
-
-  init():Promise<void> {return this.initialization??=this.initialize();}
-
-  private async initialize(): Promise<void> {
-    await this.library.load();
-    const hostileBatches = { danger: this.library.createBatch({ id: VISUAL_SIGNALS.danger.model, capacity: 1200 }), aimed: this.library.createBatch({ id: VISUAL_SIGNALS.aimed.model, capacity: 1200 }) };
-    const pickupBatches = { xp: this.library.createBatch({ id: VISUAL_SIGNALS.xp.model, capacity: 300 }), health: this.library.createBatch({ id: VISUAL_SIGNALS.health.model, capacity: 300 }), bomb: this.library.createBatch({ id: VISUAL_SIGNALS.bomb.model, capacity: 300 }) };
-    for (const batch of [...Object.values(hostileBatches), ...Object.values(pickupBatches)]) this.scene.add(batch.root);
-    const islands: RenderResources['islands'] = [this.library.instantiate('island',52), this.library.instantiate('island',37)];
-    islands.forEach(island => this.scene.add(island.root));
-    const carrier = this.library.instantiate('carrier',35);
-    this.scene.add(carrier.root);
-    const craft = (id: CraftId): CraftVisuals => ({ hero: this.visual(id,85), player: this.visual(id,23), drones: [this.visual(id,10), this.visual(id,10)] });
-    this.state = { kind: 'ready', resources: { hostileBatches, pickupBatches, islands, carrier, crafts: { falcon: craft('falcon'), swift: craft('swift'), turtle: craft('turtle') } } };
-    this.selectCraft(this.game.craft);
-    this.selectIntel('scout');
-    this.render(0);
-  }
-
-  private visual(id: ModelId, scale: number): Visual {
-    const instance = this.library.instantiate(id,scale);
-    if(instance.navalRole || Object.hasOwn(HULLS,id)) instance.root.scale.set(scale*instance.combatStretch,scale*.5,scale);
-    this.scene.add(instance.root);
-    const shadow = new THREE.Mesh(new THREE.PlaneGeometry(1,1),this.shadows);
-    shadow.rotation.x = -Math.PI/2;
-    shadow.scale.set(scale*2.5,scale*1.7,1);
-    this.scene.add(shadow);
-    instance.root.visible = shadow.visible = false;
-    return {...instance,shadow,id};
-  }
-
-  selectCraft(id: CraftId): void {
-    if(this.state.kind !== 'ready') return;
-    if(this.preview) this.previewScene.remove(this.preview.root);
-    this.preview = this.library.instantiate(id,.95);
-    this.preview.root.rotation.y = -.35;
-    this.previewScene.add(this.preview.root);
-    this.previewRenderer.render(this.previewScene,this.previewCamera);
-  }
-
-  selectIntel(id: AirKind | ShipKind): void {
-    this.selectIntelModel(unitModel(id),Object.hasOwn(HULLS,id));
-  }
-
-  async loadHistorical(id:HistoricalShipId):Promise<void> {await this.init();await this.library.loadModel(historicalModel(id));}
-
-  selectHistorical(id:HistoricalShipId):void {this.selectIntelModel(historicalModel(id),true);}
-
-  async loadArchiveModel(id: ModelId): Promise<void> { await this.init(); await this.library.loadModel(id); }
-
-  selectArchiveModel(id: ModelId, naval: boolean): void { this.selectIntelModel(id, naval); }
-
-  private selectIntelModel(id:ModelId,naval:boolean):void {
-    if (this.state.kind !== 'ready' || !this.intelRenderer) return;
-    if (this.intel) this.intelScene.remove(this.intel.root);
-    this.intel = this.library.instantiate(id,1);
-    this.intelScene.add(this.intel.root);
-    if(naval) this.intel.root.rotation.y=-.55;
-    const bounds=new THREE.Box3().setFromObject(this.intel.root);
-    const center=bounds.getCenter(new THREE.Vector3());
-    this.intelCamera.position.copy(center).add(new THREE.Vector3(2,8,4));
-    this.intelCamera.lookAt(center);this.intelCamera.updateMatrixWorld(true);
-    const projected=new THREE.Box3();
-    const vertex=new THREE.Vector3();
-    this.intel.root.traverseVisible(object=>{
-      if(!(object instanceof THREE.Mesh)) return;
-      const positions=object.geometry.getAttribute('position');
-      for(let i=0;i<positions.count;i++) projected.expandByPoint(vertex.fromBufferAttribute(positions,i).applyMatrix4(object.matrixWorld).applyMatrix4(this.intelCamera.matrixWorldInverse));
-    });
-    const size=projected.getSize(new THREE.Vector3());
-    const span=Math.max(size.y,size.x/1.6)*1.12;
-    const midpoint=projected.getCenter(new THREE.Vector3());
-    this.intelCamera.left=midpoint.x-span*.8;this.intelCamera.right=midpoint.x+span*.8;
-    this.intelCamera.top=midpoint.y+span/2;this.intelCamera.bottom=midpoint.y-span/2;
-    this.intelCamera.updateProjectionMatrix();
-    this.intelRenderer.render(this.intelScene,this.intelCamera);
-  }
-
-  resize(): void { this.webgl.setSize(PIXEL_RASTER.battlefield.width,PIXEL_RASTER.battlefield.height,false); }
 
   event(event: GameEvent): void {
-    if(event.type === 'explosion' || event.type === 'hurt' || event.type === 'ordnance' || event.type === 'partDestroyed' || event.type === 'navalSalvo') {
-      const strength = event.type === 'explosion' ? event.size : event.type === 'ordnance' ? .65 : event.type === 'navalSalvo' ? .5 : 1;
-      const surface = event.type === 'ordnance' || event.type === 'partDestroyed' || event.type === 'navalSalvo' || (event.type === 'explosion' && event.layer === 'surface');
-      for(let i=0;i<Math.floor(22*strength);i++) {
-        const angle = Math.random()*Math.PI*2, speed=(15+Math.random()*70)*strength;
-        this.particles.push({x:event.x-WIDTH/2,z:event.y-HEIGHT/2,y:surface?18:85,vx:event.type==='navalSalvo'?-170:Math.cos(angle)*speed,vz:Math.sin(angle)*speed,vy:8+Math.random()*25,life:.4+Math.random()*.7,size:(2+Math.random()*5)*strength,smoke:i%3===0,tint:event.type==='navalSalvo'?0xffe4a1:undefined});
-      }
-      if(event.type!=='navalSalvo' && event.type!=='ordnance') this.shake = Math.max(this.shake,strength*2);
+    if (event.type === 'start' || event.type === 'menu') {
+      this.sparks.killAll(); this.scene.tweens.killAll();
+      for (const ring of this.rings) ring.destroy();
+      this.rings.clear(); this.scene.cameras.main.resetFX(); this.bank = 0; this.previousX = WIDTH / 2;
     }
-    if(event.type === 'bomb' || event.type === 'shieldHit') {
-      const mesh = new THREE.Mesh(new THREE.RingGeometry(.94,1,64),new THREE.MeshBasicMaterial({color:event.type==='bomb'?0xf2dfaf:0xa9be8c,transparent:true,opacity:.8,side:THREE.DoubleSide,depthWrite:false}));
-      mesh.rotation.x = -Math.PI/2;
-      mesh.position.set(this.game.player.x-WIDTH/2,140,this.game.player.y-HEIGHT/2);
-      this.scene.add(mesh);
-      this.rings.push({mesh,life:.75,radius:8,max:event.type==='bomb'?900:80});
-      if(event.type==='bomb') this.shake=7;
+    if (event.type === 'explosion' || event.type === 'hurt' || event.type === 'ordnance' || event.type === 'partDestroyed' || event.type === 'navalSalvo') {
+      const strength = event.type === 'explosion' ? event.size : event.type === 'ordnance' ? .65 : .9;
+      this.sparks.explode(Math.round(18 * strength), event.x, event.y);
+      if (!this.reducedMotion && event.type !== 'ordnance' && event.type !== 'navalSalvo') this.scene.cameras.main.shake(100, strength * .002);
     }
-    if(event.type === 'start' || event.type === 'menu') {
-      this.particles=[]; this.shake=0; this.bank=0; this.previousX=WIDTH/2;
-      for(const ring of this.rings) { this.scene.remove(ring.mesh); ring.mesh.geometry.dispose(); ring.mesh.material.dispose(); }
-      this.rings=[];
+    if (event.type === 'bomb' || event.type === 'shieldHit') {
+      const ring = this.scene.add.circle(this.combat.player.x, this.combat.player.y, 8).setStrokeStyle(2, event.type === 'bomb' ? 0xf2dfaf : 0xa9be8c, .8);
+      this.root.add(ring); this.rings.add(ring); this.root.moveBelow<Phaser.GameObjects.GameObject>(ring, this.sparks);
+      this.scene.tweens.add({ targets: ring, scale: event.type === 'bomb' ? 110 : 10, alpha: 0, duration: this.reducedMotion ? 180 : 650, onComplete: () => { this.rings.delete(ring); ring.destroy(); } });
+      if (!this.reducedMotion && event.type === 'bomb') this.scene.cameras.main.shake(160, .006);
     }
-    if(this.particles.length>600) this.particles.splice(0,this.particles.length-600);
   }
 
-  private place(visual: Visual, x: number, z: number, y: number, turn: number, bank = 0): void {
-    visual.root.visible = visual.shadow.visible = true;
-    visual.root.position.set(x,y,z);
-    visual.root.rotation.set(0,turn,bank);
-    visual.shadow.position.set(x+10,.5,z+15);
-    visual.shadow.rotation.z = -turn;
-    for(const propeller of visual.propellers) propeller.rotation.z=this.time*43;
+  private plane(id: ModelId, x: number, y: number, scale: number, rotation = 0, alpha = 1): void {
+    const frame = spriteFrame(id, 'top');
+    this.shadows.fillStyle(0x071b2b, .22).fillEllipse(x + 9, y + 14, frame.worldWidth * scale * .85, frame.worldHeight * scale * .5);
+    this.aircraft.draw(id, 'top', x, y, scale, scale, rotation, alpha);
+    const flicker = this.reducedMotion ? .3 : .25 + Math.sin(this.time * 65) * .1;
+    for (const rotor of spriteAsset(id).propellers) {
+      const rx = rotor.x * scale, ry = rotor.y * scale;
+      this.rotors.lineStyle(2, 0xd6e1ce, flicker * alpha).lineBetween(x + rx * Math.cos(rotation) - ry * Math.sin(rotation) - scale * .28, y + rx * Math.sin(rotation) + ry * Math.cos(rotation), x + rx * Math.cos(rotation) - ry * Math.sin(rotation) + scale * .28, y + rx * Math.sin(rotation) + ry * Math.cos(rotation));
+    }
+  }
+
+  private ship(id: ModelId, hull: ShipKind, x: number, y: number, heading: number, parts?: Ship['parts'], alpha = 1, sinking = false): void {
+    const asset = spriteAsset(id), scale = HULLS[hull].scale, sx = scale * asset.combatStretch;
+    for (const frame of asset.frames) {
+      const partId = frame.name.split(':')[1];
+      if (frame.name === 'preview') continue;
+      if (frame.name.startsWith('part:') && (sinking || parts?.some(part => part.id === partId && part.hp <= 0))) continue;
+      if (frame.name.startsWith('ruin:') && !sinking && !parts?.some(part => part.id === partId && part.hp <= 0)) continue;
+      this.ships.draw(id, frame.name, x, y, sx, scale, -heading + (sinking ? (1 - alpha) * .3 : 0), alpha);
+    }
+    if (alpha > .55) this.wake(x, y, HULLS[hull].halfWidth, HULLS[hull].halfLength, alpha);
+  }
+
+  private wake(x: number, y: number, halfWidth: number, halfLength: number, alpha = 1): void {
+    for (const side of [-1, 1]) for (let i = 0; i < 6; i++) this.wakes.fillStyle(i < 2 ? 0x62878a : 0x3a6171, alpha * .8).fillRect(x + side * (halfWidth * .28 + i * 3), y + halfLength * .91 + i * 8, 3, 7 + i);
+  }
+
+  private flame(x: number, y: number, size = 1): void {
+    const flicker = this.reducedMotion ? 1 : .8 + Math.sin(this.time * 15 + x) * .2;
+    this.surface.fillStyle(0x424d49, .8).fillRect(x - 4 * size, y - 10 * size, 10 * size, 11 * size)
+      .fillStyle(0xe8a04f).fillRect(x - 4 * size, y - 4 * size, 8 * size, 10 * size * flicker)
+      .fillStyle(0xffde87).fillRect(x - 2 * size, y, 4 * size, 5 * size);
   }
 
   render(dt: number): void {
-    if(this.state.kind !== 'ready') return;
-    const resources = this.state.resources;
-    const game=this.game, active=game.status==='playing', menu=game.status==='menu';
-    if(active || (menu&&!this.reducedMotion)) this.time+=dt;
-    this.waterUniforms.time.value=this.time;
-    this.waterUniforms.sector.value=game.wave>5&&!menu?1:0;
-    resources.islands[0].root.position.set(-230,0,(this.time*18+360)%1750-850);
-    resources.islands[1].root.position.set(280,0,(this.time*18+1210)%2100-1000);
-    if(resources.carrier) {
-      const launching = !menu && game.wave === 1 && game.time < 5;
-      resources.carrier.root.visible = menu || launching;
-      const scale=launching?62:35;
-      resources.carrier.root.scale.set(scale,scale*.5,scale);
-      resources.carrier.root.position.set(launching ? 0 : 158,0,launching ? 145 + Math.max(0,game.time-.35)*150 : (this.time*13+360)%1800-650);
+    const game = this.combat, active = game.status === 'playing', menu = game.status === 'menu';
+    if (active || (menu && !this.reducedMotion)) this.time += dt;
+    const paused = !active;
+    if (paused !== this.effectsPaused) {
+      this.effectsPaused = paused;
+      if (paused) { this.scene.tweens.pauseAll(); this.sparks.pause(); this.scene.cameras.main.resetFX(); }
+      else { this.scene.tweens.resumeAll(); this.sparks.resume(); }
     }
-    for(const visual of Object.values(resources.crafts).flatMap(craft => [craft.hero, craft.player, ...craft.drones])) visual.root.visible=visual.shadow.visible=false;
-    if(menu) {
-      const hero=resources.crafts[game.craft].hero;
-      this.place(hero,0,10,140,-.08,this.reducedMotion?0:Math.sin(this.time*.7)*.06);
-      this.center.visible=false;
-    } else {
-      const player=resources.crafts[game.craft].player;
-      const targetBank=THREE.MathUtils.clamp((this.previousX-game.player.x)*.055,-.45,.45);
-      this.bank=THREE.MathUtils.lerp(this.bank,targetBank,Math.min(1,dt*9));
-      this.previousX=game.player.x;
-      this.place(player,game.player.x-WIDTH/2,game.player.y-HEIGHT/2,game.takingOff ? 18 + 67 * (game.time / TAKEOFF_DURATION) ** 2 : 85,0,this.bank);
-      player.root.visible=game.status!=='gameover' && (game.takingOff || this.reducedMotion || game.player.invincible<=0 || Math.floor(this.time*8)%2===0);
-      player.shadow.visible=game.status!=='gameover';
-      const drones=resources.crafts[game.craft].drones;
-      drones.forEach((drone, i) => { if (i < (game.stacks.drone || 0)) this.place(drone,game.player.x-WIDTH/2+(i===0?-43:43),game.player.y-HEIGHT/2+10,85,0); });
-      this.center.visible=game.status!=='gameover';
-      this.center.position.set(game.player.x-WIDTH/2,165,game.player.y-HEIGHT/2);
+    const pools = [this.islands, this.ships, this.aircraft, this.bullets, this.pickups, this.hostile];
+    for (const pool of pools) pool.begin();
+    for (const graphics of [this.wakes, this.surface, this.shadows, this.rotors, this.hitPoint]) graphics.clear();
+    this.sea.setTexture(game.wave > 5 && !menu ? 'sea-storm' : 'sea-day'); this.sea.tilePositionY = -this.time * 18;
+    this.islands.draw('island', 'top', 15, (this.time * 18 + 260) % 1250 - 260, 46);
+    this.islands.draw('island', 'top', 500, (this.time * 18 + 760) % 1500 - 300, 37);
+    if (menu || (game.wave === 1 && game.time < 5)) {
+      const launching = !menu, y = launching ? 525 + Math.max(0, game.time - .35) * 150 : (this.time * 13 + 180) % 1400 - 200;
+      this.ship('carrier', 'fleet-carrier', launching ? 240 : 400, y, 0);
     }
-    this.armor.forEach((plate,i)=>{
-      plate.visible=!menu&&game.player.shield&&game.status!=='gameover';
-      const angle=i*Math.PI/2;
-      plate.position.set(game.player.x-WIDTH/2+Math.cos(angle)*34,120,game.player.y-HEIGHT/2+Math.sin(angle)*34);
-      plate.rotation.y=-angle+Math.PI/2;
-    });
-    const living=new Set(menu?[]:game.enemies.filter(enemy=>!enemy.dead));
-    for(const [enemy,visual] of this.enemies) if(!living.has(enemy)) {
-      visual.root.visible=visual.shadow.visible=false;
-      this.enemies.delete(enemy);
-      const free=this.free.get(visual.id)||[]; free.push(visual);this.free.set(visual.id,free);
-    }
-    for(const enemy of living) {
-      let visual=this.enemies.get(enemy);
-      if(!visual) {
-        const id = enemy.layer==='surface' && enemy.appearance ? historicalModel(enemy.appearance) : unitModel(enemy.layer==='surface' ? enemy.hull : enemy.type, enemy.layer==='air' && enemy.variant);
-        const size = enemy.layer==='surface' ? HULLS[enemy.hull].scale : enemy.type==='heavy-bomber' ? 31 : enemy.type==='gunship' ? 27 : 18;
-        visual=this.free.get(id)?.pop() || this.visual(id,size);
-        this.enemies.set(enemy,visual);
-      }
-      this.place(visual,enemy.x-WIDTH/2,enemy.y-HEIGHT/2,enemy.layer==='surface'?0:enemy.type==='torpedo'?55:enemy.launchAge!==undefined && enemy.launchAge<1.2 ? 15+enemy.launchAge*53 : 78,enemy.layer==='surface'?enemy.heading:-enemy.heading);
-      if (enemy.layer==='surface') {
-        visual.shadow.visible=false;
-        for (const [id, part] of visual.parts) part.visible=enemy.parts.some(p=>p.id===id && p.hp>0);
-        for (const [id, ruin] of visual.ruins) ruin.visible=enemy.parts.some(p=>p.id===id && p.hp<=0);
-        for (const turret of visual.turrets) {
-          if(turret.name.startsWith('turret_main'))turret.rotation.y=combatMainBearing(turret.position.x);
-          else if(turret.name.startsWith('turret_aa'))turret.rotation.y=Math.atan2(enemy.x-game.player.x,enemy.y-game.player.y);
-        }
-      }
-    }
-    this.renderSea(menu, resources);
-    this.renderBullets(menu, resources.hostileBatches);
-    this.renderPickups(menu, resources.pickupBatches);
-    this.renderEffects(active?dt:0);
-    if(active&&!this.reducedMotion&&this.shake>.1) {
-      this.camera.position.x=(Math.random()-.5)*this.shake;
-      this.camera.position.z=(Math.random()-.5)*this.shake;
-    } else { this.camera.position.x=0;this.camera.position.z=0; }
-    if(active) this.shake*=Math.max(0,1-dt*9);
-    this.webgl.render(this.scene,this.camera);
-    if(this.intelRenderer && this.intel && this.intelCanvas?.getClientRects().length && this.frameCount%3===0) {
-      for(const propeller of this.intel.propellers) propeller.rotation.z=this.time*25;
-      this.intelRenderer.render(this.intelScene,this.intelCamera);
-    }
-    if(++this.frameCount%3===0 && this.preview && menu) {
-      for(const propeller of this.preview.propellers) propeller.rotation.z=this.time*25;
-      this.previewRenderer.render(this.previewScene,this.previewCamera);
-    }
-  }
-
-  private renderSea(menu: boolean, resources: RenderResources): void {
-    const game=this.game;
-    let detail=0;
-    const mark=(x:number,y:number,sx:number,sz:number,tint:number,altitude=3,angle=0)=>{
-      if(detail<1500) put(this.details,detail++,x-WIDTH/2,altitude,y-HEIGHT/2,sx,1,sz,tint,angle);
-    };
-    const flame=(x:number,y:number,index:number,scale=1)=>{
-      const flicker=this.reducedMotion?1:.75+Math.sin(this.time*15+index)*.25;
-      mark(x,y,9*flicker*scale,11*flicker*scale,0xe8a04f,22);
-      mark(x-2,y+2,4*scale,5*scale,0xffde87,25);
-      mark(x+3,y-7,10*scale,11*scale,0x424d49,30);
-    };
-    const wake=(x:number,y:number,visual:ModelInstance,fade=1)=>{
-      if(!visual.waterline) return;
-      const width=visual.waterline.halfWidth*visual.root.scale.x,length=visual.waterline.halfLength*visual.root.scale.z;
-      for(let i=0;i<6*fade;i++) for(const side of [-1,1]) {
-        const t=i/5;
-        mark(x+side*(width*.28+t*16),y+length*.96+5+i*8,3-t*1.5,7+t*3,i<2?0x62878a:0x3a6171,1,side*-.35);
-      }
-      if(fade===1) for(const side of [-1,1]) {
-        mark(x+side*width*.35,y-length*.89,2,9,0x6c8e8d,1,side*.5);
-        mark(x+side*width*.61,y-length*.75,2,8,0x527781,1,side*.38);
-      }
-    };
-    for(const [wreck,visual] of this.wrecks) if(menu || !game.wrecks.includes(wreck)) {
-      visual.root.visible=false; this.wrecks.delete(wreck);
-      const pool=this.free.get(visual.id)||[]; pool.push(visual); this.free.set(visual.id,pool);
-    }
-    for(const wreck of menu?[]:game.wrecks) {
-      let visual=this.wrecks.get(wreck);
-      if(!visual) {
-        const id=wreck.appearance?historicalModel(wreck.appearance):wreck.hull;
-        visual=this.free.get(id)?.pop()||this.visual(id,wreck.scale);
-        this.wrecks.set(wreck,visual);
-      }
-      this.place(visual,wreck.x-WIDTH/2,wreck.y-HEIGHT/2,-12*Math.max(0,wreck.age-.7)**2,wreck.heading,wreck.age*.12);
-      visual.shadow.visible=false;
-      for(const part of visual.parts.values()) part.visible=false;
-      for(const ruin of visual.ruins.values()) ruin.visible=true;
-      if(wreck.age<1.1) wake(wreck.x,wreck.y,visual,1-wreck.age/1.1);
-      if(wreck.age<1.9) for(let i=0;i<3;i++) flame(wreck.x+(i-1)*HULLS[wreck.hull].halfWidth*.25,wreck.y+(i-1)*HULLS[wreck.hull].halfLength*.40,i,Math.min(1,HULLS[wreck.hull].halfWidth/42));
-    }
-    if(!menu) for(const e of game.enemies) {
-      if(e.dead) continue;
-      if(e.layer==='surface') {
-        const visual=this.enemies.get(e);
-        if(visual) wake(e.x,e.y,visual);
-        const selected=e.parts.filter(part=>part.hp>0&&Math.abs(game.player.x-e.x-part.x)<22&&e.y+part.y<game.player.y-25).sort((a,b)=>Math.abs(game.player.x-e.x-a.x)-Math.abs(game.player.x-e.x-b.x))[0];
-        for(const part of e.parts) {
-          if(part.hp<=0) { flame(e.x+part.x,e.y+part.y,e.id,part.id==='flight-deck'?1:.7); continue; }
-          if(part!==selected && part.hp===part.maxHp) continue;
-          const x=e.x+part.x,y=e.y+part.y,r=part.radius;
-          const aligned=part===selected;
-          const tint=aligned?0xe8b65b:0x8f9d7c;
-          if(aligned) for(const sx of [-1,1]) for(const sy of [-1,1]) {
-            mark(x+sx*r,y+sy*r,5,1.5,tint,65);
-            mark(x+sx*r,y+sy*r,1.5,5,tint,65);
+    if (menu) this.plane(game.craft, 240, 390, 85, this.reducedMotion ? 0 : Math.sin(this.time * .7) * .035);
+    else {
+      for (const wreck of game.wrecks) this.ship(wreck.appearance ? historicalModel(wreck.appearance) : wreck.hull, wreck.hull, wreck.x, wreck.y, wreck.heading, undefined, Math.max(0, 1 - (wreck.age / 3.2) ** 2), true);
+      for (const enemy of game.enemies) {
+        if (enemy.dead) continue;
+        if (enemy.layer === 'surface') {
+          this.ship(enemy.appearance ? historicalModel(enemy.appearance) : enemy.hull, enemy.hull, enemy.x, enemy.y, enemy.heading, enemy.parts);
+          const selected = enemy.parts.filter(part => part.hp > 0 && Math.abs(game.player.x - enemy.x - part.x) < 22 && enemy.y + part.y < game.player.y - 25).sort((a, b) => Math.abs(game.player.x - enemy.x - a.x) - Math.abs(game.player.x - enemy.x - b.x))[0];
+          for (const part of enemy.parts) {
+            const x = enemy.x + part.x, y = enemy.y + part.y, r = part.radius;
+            if (part.hp <= 0) { this.flame(x, y, part.id === 'flight-deck' ? 1 : .7); continue; }
+            if (part === selected) {
+              this.surface.lineStyle(1.5, 0xe8b65b, .85);
+              for (const sx of [-1, 1]) for (const sy of [-1, 1]) this.surface.lineBetween(x + sx * r, y + sy * r, x + sx * (r - 5), y + sy * r).lineBetween(x + sx * r, y + sy * r, x + sx * r, y + sy * (r - 5));
+            }
+            if (part === selected || part.hp < part.maxHp) this.surface.fillStyle(part === selected ? 0xe8b65b : 0x8f9d7c).fillRect(x - 13, y - r - 5, 26 * part.hp / part.maxHp, 2);
           }
-          const width=Math.min(26,r*1.4),ratio=part.hp/part.maxHp;
-          mark(x-width/2+width*ratio/2,y-r-5,width*ratio,2,tint,65);
+        } else {
+          this.plane(unitModel(enemy.type, enemy.variant), enemy.x, enemy.y, enemy.type === 'heavy-bomber' ? 31 : enemy.type === 'gunship' ? 27 : 18, enemy.heading);
+          if (enemy.type === 'diver' && enemy.action === 'warning') {
+            this.surface.lineStyle(2, 0xb99554, .6);
+            for (let fraction = .05; fraction < 1; fraction += .06) this.surface.lineBetween(enemy.x + (enemy.lockedX - enemy.x) * fraction, enemy.y + (HEIGHT - enemy.y) * fraction, enemy.x + (enemy.lockedX - enemy.x) * (fraction + .025), enemy.y + (HEIGHT - enemy.y) * (fraction + .025));
+          }
         }
-      } else if(e.type==='diver'&&e.action==='warning') {
-        const end={x:e.lockedX,y:HEIGHT};
-        const length=Math.hypot(end.x-e.x,end.y-e.y);
-        const angle=-Math.atan2(end.x-e.x,-(end.y-e.y));
-        for(let d=30;d<length;d+=28) mark(e.x+(end.x-e.x)*d/length,e.y+(end.y-e.y)*d/length,2,12,0xb99554,2,angle);
+      }
+      const convoy = game.convoy;
+      if (convoy && !convoy.dead && !convoy.saved) {
+        this.ship('transport', 'transport', convoy.x, convoy.y, 0);
+        this.surface.fillStyle(0x77bed1).fillRect(convoy.x, convoy.y - 25, 14, 10).fillStyle(0xe9eed9).fillRect(convoy.x, convoy.y - 25, 2, 20);
+      }
+      for (const torpedo of game.surfaceTorpedoes) {
+        this.wakes.lineStyle(3, 0x8cabad).lineBetween(torpedo.x, torpedo.y - 5, torpedo.x, torpedo.y + 5);
+        for (let i = 1; i <= 4; i++) this.wakes.fillStyle(0x577982, .7).fillRect(torpedo.x - torpedo.vx * .075 * i, torpedo.y - torpedo.vy * .075 * i, 2 + i, 5);
+      }
+      const player = game.player;
+      this.bank += (Phaser.Math.Clamp((player.x - this.previousX) * .02, -.16, .16) - this.bank) * Math.min(1, dt * 9); this.previousX = player.x;
+      if (game.status !== 'gameover') {
+        const alpha = game.takingOff || this.reducedMotion || player.invincible <= 0 || Math.floor(this.time * 8) % 2 === 0 ? 1 : .35;
+        this.plane(game.craft, player.x, player.y, game.takingOff ? 17 + 6 * (game.time / TAKEOFF_DURATION) ** 2 : 23, this.bank, alpha);
+        for (let i = 0; i < (game.stacks.drone || 0); i++) this.plane(game.craft, player.x + (i === 0 ? -43 : 43), player.y + 10, 12);
+        if (player.shield) {
+          this.hitPoint.fillStyle(0xb7c393, .9);
+          for (const side of [-1, 1]) this.hitPoint.fillRect(player.x + side * 33 - 2, player.y - 4, 4, 8).fillRect(player.x - 4, player.y + side * 33 - 2, 8, 4);
+        }
+        this.hitPoint.fillStyle(0x071422).fillCircle(player.x, player.y, 6).fillStyle(0xfff1cb).fillCircle(player.x, player.y, 3.5);
+      }
+      for (const bullet of game.bullets) {
+        if (bullet.kind === 'ordnance') {
+          this.bullets.draw('enemy-aimed', 'top', bullet.x, bullet.y, 3.5 / spriteFrame('enemy-aimed', 'top').worldWidth, 6 / spriteFrame('enemy-aimed', 'top').worldHeight, Math.atan2(bullet.vy, bullet.vx) + Math.PI / 2).setTint(0xffe9a8).setTintMode(Phaser.TintModes.FILL);
+          this.surface.lineStyle(1, 0xe8b65b, .65).strokeCircle(bullet.target.x, bullet.target.y, 6);
+        } else this.bullets.draw('enemy-aimed', 'top', bullet.x, bullet.y, 3 / spriteFrame('enemy-aimed', 'top').worldWidth, 14 / spriteFrame('enemy-aimed', 'top').worldHeight, Math.atan2(bullet.vy, bullet.vx) + Math.PI / 2).setTint(bullet.critical ? 0xffda80 : 0xffedac).setTintMode(Phaser.TintModes.FILL);
+      }
+      for (const pickup of game.pickups) {
+        const signal = VISUAL_SIGNALS[pickup.type], frame = spriteFrame(signal.model, 'top');
+        this.pickups.draw(signal.model, 'top', pickup.x, pickup.y, signal.size / frame.worldWidth, signal.size / frame.worldHeight);
+      }
+      for (const bullet of game.enemyBullets) {
+        const signal = bullet.color === 'pink' ? VISUAL_SIGNALS.aimed : VISUAL_SIGNALS.danger, frame = spriteFrame(signal.model, 'top');
+        this.hostile.draw(signal.model, 'top', bullet.x, bullet.y, signal.size / frame.worldWidth, signal.size / frame.worldHeight, bullet.color === 'pink' ? Math.atan2(bullet.vy, bullet.vx) + Math.PI / 2 : 0);
       }
     }
-    if(!menu && resources.carrier?.root.visible) wake(resources.carrier.root.position.x+WIDTH/2,resources.carrier.root.position.z+HEIGHT/2,resources.carrier);
-    const convoy=game.convoy;
-    if(!menu && convoy&&!convoy.dead&&!convoy.saved) {
-      this.convoy ||= this.visual('transport',HULLS.transport.scale);
-      this.place(this.convoy,convoy.x-WIDTH/2,convoy.y-HEIGHT/2,0,0);
-      this.convoy.shadow.visible=false;
-      wake(convoy.x,convoy.y,this.convoy);
-      mark(convoy.x,convoy.y-18,14,20,0x77bed1,55);
-      mark(convoy.x,convoy.y-18,3,14,0xe9eed9,57);
-    } else if(this.convoy) this.convoy.root.visible=this.convoy.shadow.visible=false;
-    for(const torpedo of menu?[]:game.surfaceTorpedoes) {
-      const angle=-Math.atan2(torpedo.vx,-torpedo.vy);
-      mark(torpedo.x,torpedo.y,3,10,0x8cabad,2,angle);
-      for(let i=1;i<=4;i++) mark(torpedo.x-torpedo.vx*.075*i,torpedo.y-torpedo.vy*.075*i,2+i,5,0x577982,1,angle);
-    }
-    finishBatch(this.details,detail);
-  }
-
-  private renderBullets(menu: boolean, hostileBatches: RenderResources['hostileBatches']): void {
-    const bullets=menu?[]:this.game.bullets;
-    bullets.slice(0,1200).forEach((bullet,i)=>{
-      const falling=bullet.kind==='ordnance';
-      const altitude=falling ? 12+85*(1-bullet.flight/bullet.duration) : 125;
-      put(this.tracers,i,bullet.x-WIDTH/2,altitude,bullet.y-HEIGHT/2,falling?3.5:bullet.kind==='missile'?2.4:1.5,falling?3:1,falling?6:bullet.kind==='missile'?5.5:8,(!falling && bullet.critical)?0xf6b460:0xffe9a8,-Math.atan2(bullet.vx,-bullet.vy));
-    });
-    finishBatch(this.tracers,Math.min(1200,bullets.length));
-    const enemyBullets=menu?[]:this.game.enemyBullets;
-    const counts={danger:0,aimed:0};
-    for (const bullet of enemyBullets) {
-      const type=bullet.color==='pink'?'aimed':'danger';
-      const batch=hostileBatches[type];
-      if (counts[type]>=batch.capacity) continue;
-      const size=VISUAL_SIGNALS[type].size;
-      matrix.position.set(bullet.x-WIDTH/2,170,bullet.y-HEIGHT/2);
-      matrix.scale.setScalar(size);
-      matrix.rotation.set(0,Math.atan2(-bullet.vx,-bullet.vy),0);
-      matrix.updateMatrix();
-      batch.set(counts[type]++,matrix.matrix);
-    }
-    hostileBatches.danger.finish(counts.danger);
-    hostileBatches.aimed.finish(counts.aimed);
-  }
-
-  private renderPickups(menu: boolean, pickupBatches: RenderResources['pickupBatches']): void {
-    const counts={xp:0,health:0,bomb:0};
-    for (const pickup of menu?[]:this.game.pickups) {
-      const batch=pickupBatches[pickup.type];
-      if (counts[pickup.type]>=batch.capacity) continue;
-      matrix.position.set(pickup.x-WIDTH/2,140,pickup.y-HEIGHT/2);
-      matrix.scale.setScalar(VISUAL_SIGNALS[pickup.type].size);
-      matrix.rotation.set(0,0,0);
-      matrix.updateMatrix();
-      batch.set(counts[pickup.type]++,matrix.matrix);
-    }
-    for (const type of ['xp','health','bomb'] as const) pickupBatches[type].finish(counts[type]);
-  }
-
-  private renderEffects(dt: number): void {
-    this.particles=this.particles.filter(particle=>particle.life>0);
-    this.particles.forEach((particle,i)=>{
-      particle.x+=particle.vx*dt;particle.z+=particle.vz*dt;particle.y+=particle.vy*dt;particle.life-=dt;
-      const size=particle.size*(particle.smoke?1.7-particle.life:Math.max(.1,particle.life));
-      put(this.debris,i,particle.x,particle.y,particle.z,size,size*.7,size,particle.tint??(particle.smoke?0x50574e:particle.life>.5?0xffd38a:0xc97643));
-    });
-    finishBatch(this.debris,this.particles.length);
-    this.rings=this.rings.filter(ring=>{
-      ring.life-=dt;
-      ring.radius+=(ring.max-ring.radius)*dt*5;
-      ring.mesh.scale.setScalar(ring.radius);
-      ring.mesh.material.opacity=Math.max(0,ring.life*.8);
-      if(ring.life>0) return true;
-      this.scene.remove(ring.mesh);ring.mesh.geometry.dispose();ring.mesh.material.dispose();return false;
-    });
+    for (const pool of pools) pool.finish();
   }
 }

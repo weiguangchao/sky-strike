@@ -1,12 +1,12 @@
 import { Box3, DirectionalLight, HemisphereLight, Mesh, OrthographicCamera, Scene, SRGBColorSpace, Vector3, WebGLRenderer } from 'three';
-import { ModelLibrary } from '../game/models.ts';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import type { ModelId } from '../game/models.ts';
 
 /** Browser-only review evidence, rendered from the exact exported GLBs. */
 export async function archiveViews(modelId: ModelId): Promise<string[]> {
-  const library = new ModelLibrary();
-  await library.loadModel(modelId);
-  const instance = library.instantiate(modelId, 1);
+  const source = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/models/${modelId}.glb`);
+  const instance = { root: source.scene };
+  instance.root.traverse(object => { if (typeof object.userData.game_ruin === 'string') object.visible = false; });
   const scene = new Scene();
   scene.add(instance.root, new HemisphereLight(0xd9edff, 0x162c42, 1.4));
   const sun = new DirectionalLight(0xfff2dc, 3);

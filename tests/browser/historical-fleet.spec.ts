@@ -17,7 +17,7 @@ async function ready(page:import('@playwright/test').Page):Promise<void> {
 test('all 148 historical ships have real local previews and every navy filters and wraps',async({page})=>{
   test.setTimeout(240000);
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
-  const requested:string[]=[];page.on('request',request=>{if(request.url().includes('/assets/models/'))requested.push(request.url());});
+  const requested:string[]=[];page.on('request',request=>{if(request.url().includes('/assets/sprites/'))requested.push(request.url());});
   await page.goto('/');await expect(page.locator('#start-button')).toBeEnabled();
   expect(requested.filter(url=>url.includes('/historic-'))).toHaveLength(0);
   await page.locator('#help-button').click();await page.locator('#help-tab-archive').click();
@@ -47,22 +47,22 @@ test('all 148 historical ships have real local previews and every navy filters a
 test('failed historical downloads can retry and stale requests cannot replace another tab',async({page})=>{
   await page.emulateMedia({reducedMotion:'reduce'});
   let fail=true;
-  await page.route('**/historic-iowa.glb',async route=>{if(fail)await route.abort();else await route.continue();});
+  await page.route('**/historic-iowa.png',async route=>{if(fail)await route.abort();else await route.continue();});
   await openFleet(page);
   await expect(page.locator('#archive-status')).toContainText('加载失败');
   await expect(page.locator('#help-ready')).toHaveText('重试加载');
   fail=false;await page.locator('#help-ready').click();await ready(page);
   await page.locator('#close-help').click();
-  await page.unroute('**/historic-iowa.glb');
+  await page.unroute('**/historic-iowa.png');
   const { promise: gate, resolve: release } = Promise.withResolvers<void>();
-  await page.route('**/historic-iowa.glb',async route=>{await gate;await route.continue();});
+  await page.route('**/historic-iowa.png',async route=>{await gate;await route.continue();});
   await page.reload();await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#help-button').click();await page.locator('#help-tab-archive').click();
   await page.locator('#archive-category').selectOption('surface');
-  await expect(page.locator('#archive-status')).toHaveText('模型载入中');
+  await expect(page.locator('#archive-status')).toHaveText('图像载入中');
   await page.locator('#help-tab-intel').click();await expect(page.locator('#intel-name')).toHaveText('轻型战斗机');
   const before=await page.locator('#intel-canvas').evaluate((canvas:HTMLCanvasElement)=>canvas.toDataURL());
-  const response=page.waitForResponse('**/historic-iowa.glb');release();await response;
+  const response=page.waitForResponse('**/historic-iowa.png');release();await response;
   await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
   expect(await page.locator('#intel-canvas').evaluate((canvas:HTMLCanvasElement)=>canvas.toDataURL())).toBe(before);
   await expect(page.locator('#intel-name')).toHaveText('轻型战斗机');
