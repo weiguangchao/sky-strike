@@ -212,6 +212,10 @@ dialog h2 { font-size: 25px; letter-spacing: 1px; margin: 12px 0; }
 .boss-parts .destroyed { color: var(--muted); opacity: .72; text-decoration: line-through; }
 .help-heading { display: flex; align-items: center; gap: 18px; padding-right: 32px; }
 .help-tabs { display: flex; gap: 4px; }
+#help-actions { display:flex; gap:8px; }
+#help-actions > button { min-width:0; margin:0; }
+#help-actions .primary-button { flex:1; }
+#archive-info { width:auto; min-height:44px; flex-shrink:0; padding:10px; font-size:16px; }
 .help-tabs button { min-height: 40px; padding: 6px 12px; font-size: 16px; border: 1px solid transparent; border-radius: var(--radius-sm); color: var(--muted); }
 .help-tabs button[aria-selected="true"] { color: var(--text); border-color: var(--line); background: var(--panel); }
 .handbook-panel { min-height: 290px; }
@@ -223,12 +227,19 @@ dialog h2 { font-size: 25px; letter-spacing: 1px; margin: 12px 0; }
 .intel-copy p, .campaign-card p { font-size: 16px; line-height: 1.6; margin: 8px 0; color: var(--muted); }
 .intel-copy #intel-tactic { color: var(--text); }
 .fleet-card .intel-illustration { position:relative; min-width:0; aspect-ratio:1.6; }
-#fleet-status { position:absolute; inset:0; display:grid; place-items:center; padding:12px; text-align:center; color:var(--muted); font-size:16px; }
-#fleet-status:empty { display:none; }
+#archive-status { position:absolute; inset:0; display:grid; place-items:center; padding:12px; text-align:center; color:var(--muted); font-size:16px; }
+#archive-status:empty { display:none; }
+#archive-review { font-size:14px; }
+#archive-review[data-state="approved"] { color:var(--accent); }
+#archive-coverage { font-size:14px; color:var(--muted); margin:4px 0; }
+#archive-details h3 { margin:0 0 8px; font-size:22px; }
+#archive-note { font-size:16px; line-height:1.6; color:var(--text); margin:0 0 8px; }
+#archive-reference-list { list-style:none; padding:0; margin:0; display:grid; gap:4px; }
+#archive-reference-list a { display:flex; align-items:center; min-height:44px; padding:6px 10px; border:1px solid var(--line); border-radius:var(--radius-sm); color:var(--accent); text-underline-offset:4px; }
 .fleet-card .loading #intel-canvas { visibility:hidden; }
 .fleet-meta, .fleet-reference { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:14px; color:var(--muted); }
-.fleet-meta #fleet-count { font-family:var(--display); font-size:20px; white-space:nowrap; }
-.fleet-copy #fleet-shape { color:var(--text); }
+.fleet-meta #archive-count { font-family:var(--display); font-size:20px; white-space:nowrap; }
+.fleet-copy #archive-shape { color:var(--text); }
 .fleet-reference a { color:var(--accent); display:inline-flex; align-items:center; min-height:24px; white-space:nowrap; text-underline-offset:4px; }
 .fleet-controls select { min-width:0; width:100%; min-height:44px; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--panel); color:var(--text); font:inherit; font-size:16px; padding:8px; }
 .fleet-filters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }

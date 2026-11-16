@@ -30,10 +30,11 @@ async function asset(id: string): Promise<{ json: Gltf; bytes: number }> {
 }
 
 test('all Blender assets contain embedded, finite 3D geometry within the mobile size budget', async () => {
-  let total = 0,initial=0;
+  let total = 0,initial=0,legacy=0;
   for (const id of ids) {
     const { json, bytes } = await asset(id);
     total += bytes;
+    if(!id.startsWith('archive-'))legacy+=bytes;
     if((MODEL_IDS as readonly string[]).includes(id))initial+=bytes;
     assert.equal(json.asset.version, '2.0');
     assert.match(json.asset.generator, /Blender/);
@@ -50,7 +51,8 @@ test('all Blender assets contain embedded, finite 3D geometry within the mobile 
     assert.ok(bytes < 400_000, `${id}: excessive model payload`);
   }
   assert.ok(initial < 2_500_000, 'initial model download exceeds mobile budget');
-  assert.ok(total < 17_000_000, 'on-demand historical archive exceeds its size budget');
+  assert.ok(legacy < 17_000_000, 'existing historical fleet exceeds its size budget');
+  assert.ok(total < 21_000_000, 'combined on-demand archive exceeds its size budget');
 });
 
 test('single, twin, four and six engine aircraft keep separate animatable propeller nodes', async () => {

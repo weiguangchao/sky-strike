@@ -7,7 +7,7 @@ test('every air and sea unit has a visible local 3D catalog preview and campaign
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#help-button').click();
-  await page.getByRole('tab',{name:'舰机',exact:true}).click();
+  await page.getByRole('tab',{name:'作战单位',exact:true}).click();
   for(const [index,unit] of UNIT_INFO.entries()) {
     await expect(page.locator('#intel-name')).toHaveText(unit.name);
     await expect(page.locator('#intel-count')).toHaveText(`${String(index+1).padStart(2,'0')} / 15`);

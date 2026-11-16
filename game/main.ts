@@ -5,8 +5,13 @@ import { Renderer } from './render.ts';
 import { Sound } from './audio.ts';
 import { trackViewport } from './viewport.ts';
 import { VISUAL_SIGNALS } from './visual-style.ts';
-import { NAVIES, HISTORICAL_SHIPS, DEFAULT_FLEET, fleetSelection, historicalShip } from './naval-history.ts';
-import type { HistoricalEntry, FleetSelection, NavalHull } from './naval-history.ts';
+import { DEFAULT_FLEET, fleetSelection, historicalShip } from './naval-history.ts';
+import type { FleetSelection, NavalHull } from './naval-history.ts';
+import { ARCHIVE_COUNTRIES, filterArchive } from './historical-archive.ts';
+import { modelReviewStatus, reviewLabel } from './model-review.ts';
+import revisions from './archive-revisions.json';
+import reviewLedger from './model-reviews.json';
+import type { ModelId } from './models.ts';
 
 for (const [name, signal] of Object.entries(VISUAL_SIGNALS)) document.documentElement.style.setProperty(`--${name}`, signal.color);
 
@@ -296,49 +301,109 @@ syncFullscreen();
 let intelIndex = 0;
 let campaignIndex = 0;
 let activeHelp='controls';
-let fleetIndex=0;
-let fleetEntries:readonly HistoricalEntry[]=HISTORICAL_SHIPS;
-let fleetRequest=0,fleetReady=false,fleetFailed=false;
+let archiveEntries = filterArchive();
+let archiveIndex = 0, archiveRequest = 0, archiveReady = false, archiveFailed = false;
+let archiveDetailsOpen = false;
 const ordinaryHelpReady=$('help-ready').innerHTML;
-for(const navy of NAVIES) {
-  const option=document.createElement('option');option.value=navy.id;option.textContent=navy.name;
-  $('fleet-country').append(option);
+for (const country of ARCHIVE_COUNTRIES) {
+  const option = document.createElement('option');
+  option.value = country.id; option.textContent = country.name;
+  $('archive-country').append(option);
 }
-function fleetActionLabel():void {
-  const button=$<HTMLButtonElement>('help-ready');
-  if(!fleetEntries.length){button.disabled=true;button.textContent='请调整筛选';return;}
-  button.disabled=!fleetReady&&!fleetFailed;
-  button.textContent=fleetFailed?'重试加载':!fleetReady?'载入模型…':selectedFleet[fleetEntries[fleetIndex].hull]===fleetEntries[fleetIndex].id?'已选用 · 返回':game.status==='menu'?'使用本舰':'下次出击使用';
+function archiveShip() {
+  const entry = archiveEntries[archiveIndex];
+  return entry?.category === 'surface' ? historicalShip(entry.id) : undefined;
 }
-async function showFleet(index:number):Promise<void> {
-  if(!fleetEntries.length)return;
-  fleetIndex=(index+fleetEntries.length)%fleetEntries.length;
-  const ship=fleetEntries[fleetIndex],request=++fleetRequest;
-  fleetReady=false;fleetFailed=false;fleetActionLabel();
-  $('fleet-name').textContent=ship.name;
-  $('fleet-role').textContent=`${NAVIES.find(navy=>navy.id===ship.navy)!.name} · ${ship.className&&ship.className!==ship.name?ship.className+' · ':''}${ship.year}年外观`;
-  $('fleet-count').textContent=`${waveNum(fleetIndex+1)} / ${fleetEntries.length}`;
-  $('fleet-kind').textContent=ship.kind;
-  $('fleet-shape').textContent=ship.feature;
-  $<HTMLAnchorElement>('fleet-source').href=ship.source;
-  $('fleet-source').hidden=false;
-  $<HTMLSelectElement>('fleet-entry').value=ship.id;
-  $('fleet-source').setAttribute('aria-label',`${ship.name}的历史资料，打开新标签页`);
-  $('fleet-status').textContent='模型载入中';
-  $('fleet-illustration').classList.add('loading');
-  try {
-    await renderer.loadHistorical(ship.id);
-    if(request!==fleetRequest||activeHelp!=='fleet')return;
-    renderer.selectHistorical(ship.id);
-    $('intel-canvas').setAttribute('aria-label',`${ship.name} ${ship.year}年像素模型`);
-    fleetReady=true;$('fleet-status').textContent='';
-    $('fleet-illustration').classList.remove('loading');
-  } catch {
-    if(request!==fleetRequest||activeHelp!=='fleet')return;
-    fleetFailed=true;$('fleet-status').textContent='模型加载失败，请重试';
+function archiveActionLabel(): void {
+  const ship = archiveShip(), button = $<HTMLButtonElement>('help-ready');
+  $('archive-info').hidden = activeHelp !== 'archive' || archiveDetailsOpen || !ship;
+  button.disabled = !!ship && !archiveDetailsOpen && !archiveReady && !archiveFailed;
+  button.textContent = archiveDetailsOpen ? '返回图鉴' : archiveFailed ? '重试加载' : !archiveEntries.length ? '返回作战' :
+    !ship ? '资料说明' : !archiveReady ? '载入模型…' : selectedFleet[ship.hull] === ship.id ? '已选用 · 返回' :
+    game.status === 'menu' ? '使用本舰' : '下次出击使用';
+}
+function setArchiveDetails(open: boolean, focus = false): void {
+  archiveDetailsOpen = open;
+  $('archive-details').hidden = !open;
+  for (const id of ['archive-card', 'archive-controls', 'archive-coverage']) $(id).hidden = open;
+  archiveActionLabel();
+  if (focus) $(open ? 'archive-details-title' : archiveShip() ? 'archive-info' : 'help-ready').focus({ preventScroll: true });
+}
+async function showArchive(index: number): Promise<void> {
+  const request = ++archiveRequest;
+  archiveReady = false;
+  archiveFailed = false;
+  archiveIndex = archiveEntries.length ? (index + archiveEntries.length) % archiveEntries.length : 0;
+  setArchiveDetails(false);
+  $('archive-illustration').classList.add('loading');
+  if (!archiveEntries.length) {
+    $('archive-name').textContent = '没有符合条件的型号';
+    $('archive-role').textContent = '';
+    $('archive-count').textContent = '0 / 0';
+    $('archive-shape').textContent = '当前目录仍在补录，请调整筛选。';
+    $('archive-review').textContent = '';
+    $('archive-source').hidden = true;
+    $('archive-status').textContent = '暂无模型';
+    return;
   }
-  fleetActionLabel();
+  const entry = archiveEntries[archiveIndex];
+  $('archive-name').textContent = entry.name;
+  const ship = archiveShip();
+  const className = ship?.className && ship.className !== entry.name ? `${ship.className} · ` : '';
+  $('archive-role').textContent = `${ARCHIVE_COUNTRIES.find(country => country.id === entry.country)!.name} · ${className}${entry.year}年外观 · ${entry.kind}`;
+  $('archive-count').textContent = `${archiveIndex + 1} / ${archiveEntries.length}`;
+  $('archive-shape').textContent = entry.feature;
+  $('archive-shape').title = entry.note;
+  $('archive-note').textContent = entry.note;
+  $('archive-reference-list').replaceChildren(...[...new Set([entry.source, ...entry.references])].map((url, index) => {
+    const item = document.createElement('li'), link = document.createElement('a');
+    link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+    link.textContent = index === 0 ? '主要史料 ↗' : `补充资料 ${index} ↗`;
+    link.setAttribute('aria-label', `${entry.name}的${index === 0 ? '主要史料' : '补充资料'}，${new URL(url).hostname}，打开新标签页`);
+    item.append(link); return item;
+  }));
+  const revision = (revisions as Record<string, string>)[entry.modelId];
+  const status = modelReviewStatus(entry.modelId, revision, reviewLedger);
+  $('archive-review').textContent = reviewLabel(status);
+  $('archive-review').dataset.state = status.state;
+  $<HTMLSelectElement>('archive-entry').value = entry.id;
+  const source = $<HTMLAnchorElement>('archive-source');
+  source.href = entry.source; source.hidden = false;
+  source.setAttribute('aria-label', `${entry.name}的历史资料，打开新标签页`);
+  $('archive-status').textContent = '模型载入中';
+  try {
+    await renderer.loadArchiveModel(entry.modelId as ModelId);
+    if (request !== archiveRequest || activeHelp !== 'archive') return;
+    renderer.selectArchiveModel(entry.modelId as ModelId, entry.category !== 'aircraft');
+    $('intel-canvas').setAttribute('aria-label', `${entry.name} ${entry.year}年像素模型`);
+    archiveReady = true;
+    $('archive-status').textContent = '';
+    $('archive-illustration').classList.remove('loading');
+    archiveActionLabel();
+  } catch {
+    if (request !== archiveRequest || activeHelp !== 'archive') return;
+    archiveFailed = true;
+    $('archive-status').textContent = '模型加载失败，请重试';
+    archiveActionLabel();
+  }
 }
+function filterCenturyArchive(): void {
+  const category = $<HTMLSelectElement>('archive-category').value;
+  const surfaceKind = ['fleet-carrier', 'cruiser', 'destroyer', 'battleship', 'patrol-boat', 'transport'].includes(category);
+  archiveEntries = filterArchive($<HTMLSelectElement>('archive-country').value, surfaceKind ? 'surface' : category, $<HTMLSelectElement>('archive-era').value)
+    .filter(entry => !surfaceKind || historicalShip(entry.id)?.hull === category);
+  $('archive-entry').replaceChildren(...archiveEntries.map(entry => {
+    const option = document.createElement('option');
+    option.value = entry.id; option.textContent = entry.name; return option;
+  }));
+  for (const id of ['archive-entry', 'archive-prev', 'archive-next']) $<HTMLButtonElement | HTMLSelectElement>(id).disabled = !archiveEntries.length;
+  if (activeHelp === 'archive') void showArchive(0);
+}
+for (const id of ['archive-country', 'archive-category', 'archive-era']) $(id).addEventListener('change', filterCenturyArchive);
+$('archive-prev').addEventListener('click', () => { void showArchive(archiveIndex - 1); });
+$('archive-next').addEventListener('click', () => { void showArchive(archiveIndex + 1); });
+$('archive-entry').addEventListener('change', () => { void showArchive(archiveEntries.findIndex(entry => entry.id === $<HTMLSelectElement>('archive-entry').value)); });
+filterCenturyArchive();
 function showIntel(index: number) {
   intelIndex = (index + UNIT_INFO.length) % UNIT_INFO.length;
   const unit=UNIT_INFO[intelIndex];
@@ -362,11 +427,13 @@ function showCampaign(index: number) {
 }
 function showHelpPanel(id: string) {
   activeHelp=id;
-  $('help-dialog').classList.toggle('fleet-open',id==='fleet');
-  if(id!=='fleet') {
-    fleetRequest++;
-    $<HTMLButtonElement>('help-ready').disabled=false;
-    $('help-ready').innerHTML=ordinaryHelpReady;
+  if (id !== 'archive') setArchiveDetails(false);
+  $('help-dialog').classList.toggle('archive-open', id==='archive');
+  if (id !== 'archive') archiveRequest++;
+  if (id !== 'archive') {
+    $('archive-info').hidden = true;
+    $<HTMLButtonElement>('help-ready').disabled = false;
+    $('help-ready').innerHTML = ordinaryHelpReady;
   }
   for(const tab of document.querySelectorAll<HTMLButtonElement>('[data-help]')) {
     const active=tab.dataset.help===id;
@@ -376,11 +443,11 @@ function showHelpPanel(id: string) {
   }
   if(id==='intel') {
     $('intel-illustration').append($('intel-canvas'));
-    $('intel-canvas').setAttribute('aria-label','舰机三维预览');
+    $('intel-canvas').setAttribute('aria-label','作战单位三维预览');
     showIntel(intelIndex);
   }
   if(id==='campaign') showCampaign(campaignIndex);
-  if(id==='fleet') {$('fleet-illustration').append($('intel-canvas'));if(fleetEntries.length)void showFleet(fleetIndex);else fleetActionLabel();}
+  if(id==='archive') { $('archive-illustration').append($('intel-canvas')); void showArchive(archiveIndex); }
 }
 const helpTabs=[...document.querySelectorAll<HTMLButtonElement>('[data-help]')];
 helpTabs.forEach((tab,index)=>{
@@ -396,48 +463,24 @@ $('intel-prev').addEventListener('click',()=>showIntel(intelIndex-1));
 $('intel-next').addEventListener('click',()=>showIntel(intelIndex+1));
 $('campaign-prev').addEventListener('click',()=>showCampaign(campaignIndex-1));
 $('campaign-next').addEventListener('click',()=>showCampaign(campaignIndex+1));
-$('fleet-prev').addEventListener('click',()=>{void showFleet(fleetIndex-1);});
-$('fleet-next').addEventListener('click',()=>{void showFleet(fleetIndex+1);});
-function filterFleet():void {
-  const country=$<HTMLSelectElement>('fleet-country').value;
-  const hull=$<HTMLSelectElement>('fleet-type').value;
-  const era=$<HTMLSelectElement>('fleet-era').value;
-  fleetEntries=HISTORICAL_SHIPS.filter(ship=>(country==='all'||ship.navy===country)&&(hull==='all'||ship.hull===hull)&&(era==='all'||(era==='wartime'?ship.year<=1945:era==='cold-war'?ship.year>1945&&ship.year<=1991:ship.year>=1992)));
-  const select=$<HTMLSelectElement>('fleet-entry');
-  select.replaceChildren(...fleetEntries.map(ship=>{
-    const option=document.createElement('option');option.value=ship.id;
-    option.textContent=ship.className&&ship.className!==ship.name?`${ship.className} · ${ship.name}`:ship.name;
-    return option;
-  }));
-  for(const id of ['fleet-prev','fleet-next','fleet-entry'])$<HTMLButtonElement|HTMLSelectElement>(id).disabled=!fleetEntries.length;
-  if(fleetEntries.length){void showFleet(0);return;}
-  fleetRequest++;fleetIndex=0;fleetReady=false;fleetFailed=false;
-  $('fleet-name').textContent='没有符合条件的舰船';
-  $('fleet-role').textContent='';$('fleet-count').textContent='00 / 0';
-  $('fleet-kind').textContent='';$('fleet-shape').textContent='试试其他海军、舰种或外观年代。';
-  $('fleet-source').hidden=true;
-  $('fleet-illustration').classList.add('loading');$('fleet-status').textContent='暂无模型';
-  fleetActionLabel();
-}
-for(const id of ['fleet-country','fleet-type','fleet-era'])$(id).addEventListener('change',filterFleet);
-$('fleet-entry').addEventListener('change',()=>{void showFleet(fleetEntries.findIndex(ship=>ship.id===$<HTMLSelectElement>('fleet-entry').value));});
-// Populate the direct picker without requesting any model until the fleet tab opens.
-$<HTMLSelectElement>('fleet-entry').replaceChildren(...HISTORICAL_SHIPS.map(ship=>{
-  const option=document.createElement('option');option.value=ship.id;option.textContent=ship.className&&ship.className!==ship.name?`${ship.className} · ${ship.name}`:ship.name;return option;
-}));
 document.querySelectorAll<HTMLButtonElement>('[data-open-help]').forEach(button=>button.addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); showHelpPanel('controls'); $<HTMLDialogElement>('help-dialog').showModal(); }));
 $('close-help').addEventListener('click', () => $<HTMLDialogElement>('help-dialog').close());
+$('archive-info').addEventListener('click', () => setArchiveDetails(true, true));
 $('help-ready').addEventListener('click', () => {
-  if(activeHelp==='fleet') {
-    if(fleetFailed){void showFleet(fleetIndex);return;}
-    if(!fleetReady)return;
-    const ship=fleetEntries[fleetIndex];selectedFleet[ship.hull]=ship.id;
-    storage.write('fleet',selectedFleet);
-    if(game.status==='menu')game.fleetAppearance={...selectedFleet};
+  if (activeHelp === 'archive') {
+    if (archiveDetailsOpen) { setArchiveDetails(false, true); return; }
+    if (archiveFailed) { void showArchive(archiveIndex); return; }
+    const ship = archiveShip();
+    if (ship) {
+      if (!archiveReady) return;
+      selectedFleet[ship.hull] = ship.id;
+      storage.write('fleet', selectedFleet);
+      if (game.status === 'menu') game.fleetAppearance = { ...selectedFleet };
+    } else if (archiveEntries.length) { setArchiveDetails(true, true); return; }
   }
   $<HTMLDialogElement>('help-dialog').close();
 });
-$<HTMLDialogElement>('help-dialog').addEventListener('close', () => { if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
+$<HTMLDialogElement>('help-dialog').addEventListener('close', () => { archiveRequest++; if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
 
 const stopViewportTracking=trackViewport(clearInput);
 import.meta.hot?.dispose(stopViewportTracking);

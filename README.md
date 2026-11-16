@@ -27,6 +27,8 @@ npm run models:build
 
 macOS 默认使用已安装的 Blender；其他环境从 PATH 查找 `blender`，也可用 `BLENDER_PATH` 指定路径。命令会重新生成模型源文件和游戏 GLB。坐标、螺旋桨节点、模型清单和手工修改流程见 [模型文档](dcos/feature/models.md)。正常开发或构建直接使用已生成的模型，无须每次启动 Blender。
 
+手册“历史图鉴”统一收录原148条舰库资料与首批12型历史飞机、8级潜艇，覆盖一战至现代；舰艇可选作出击外观，飞机与潜艇用于资料浏览，全球服役名录仍在补录。独立源库为 [century-archive.blend](assets/blender/century-archive.blend)，可用 `npm run models:build:archive` 重建。每个模型必须取得两名 GPT Sol 对同一版本分别 ≥9.8 的真实评分才算通过；`npm run models:audit -- --require-approved` 校验全部条目。收录边界、史料与评审规则见 [百年舰机](dcos/feature/century-archive.md)。
+
 ## 验证与发布
 
 ```sh

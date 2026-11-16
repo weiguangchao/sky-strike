@@ -1,0 +1,126 @@
+{
+  "generator": "Blender 5.2.2 LTS",
+  "source": "assets/blender/century-archive.blend",
+  "models": [
+    {
+      "id": "archive-sopwith-camel",
+      "file": "archive-sopwith-camel.glb",
+      "bytes": 376920,
+      "polygons": 2601
+    },
+    {
+      "id": "archive-spad-xiii",
+      "file": "archive-spad-xiii.glb",
+      "bytes": 380044,
+      "polygons": 2608
+    },
+    {
+      "id": "archive-fokker-dvii",
+      "file": "archive-fokker-dvii.glb",
+      "bytes": 356964,
+      "polygons": 2433
+    },
+    {
+      "id": "archive-spitfire-ia",
+      "file": "archive-spitfire-ia.glb",
+      "bytes": 224820,
+      "polygons": 1573
+    },
+    {
+      "id": "archive-p51d",
+      "file": "archive-p51d.glb",
+      "bytes": 220040,
+      "polygons": 1538
+    },
+    {
+      "id": "archive-a6m5",
+      "file": "archive-a6m5.glb",
+      "bytes": 278108,
+      "polygons": 1927
+    },
+    {
+      "id": "archive-f86a",
+      "file": "archive-f86a.glb",
+      "bytes": 167372,
+      "polygons": 1207
+    },
+    {
+      "id": "archive-mig21pf",
+      "file": "archive-mig21pf.glb",
+      "bytes": 187460,
+      "polygons": 1317
+    },
+    {
+      "id": "archive-f16a",
+      "file": "archive-f16a.glb",
+      "bytes": 161572,
+      "polygons": 1152
+    },
+    {
+      "id": "archive-mirage2000c",
+      "file": "archive-mirage2000c.glb",
+      "bytes": 151680,
+      "polygons": 1048
+    },
+    {
+      "id": "archive-rafale-c",
+      "file": "archive-rafale-c.glb",
+      "bytes": 222380,
+      "polygons": 1580
+    },
+    {
+      "id": "archive-gripen-c",
+      "file": "archive-gripen-c.glb",
+      "bytes": 158944,
+      "polygons": 1120
+    },
+    {
+      "id": "archive-u9",
+      "file": "archive-u9.glb",
+      "bytes": 103884,
+      "polygons": 692
+    },
+    {
+      "id": "archive-type-viic",
+      "file": "archive-type-viic.glb",
+      "bytes": 143980,
+      "polygons": 910
+    },
+    {
+      "id": "archive-gato",
+      "file": "archive-gato.glb",
+      "bytes": 131920,
+      "polygons": 886
+    },
+    {
+      "id": "archive-nautilus",
+      "file": "archive-nautilus.glb",
+      "bytes": 107564,
+      "polygons": 728
+    },
+    {
+      "id": "archive-oberon",
+      "file": "archive-oberon.glb",
+      "bytes": 120080,
+      "polygons": 830
+    },
+    {
+      "id": "archive-virginia-block-i",
+      "file": "archive-virginia-block-i.glb",
+      "bytes": 63524,
+      "polygons": 456
+    },
+    {
+      "id": "archive-type-212a",
+      "file": "archive-type-212a.glb",
+      "bytes": 60252,
+      "polygons": 392
+    },
+    {
+      "id": "archive-soryu-early",
+      "file": "archive-soryu-early.glb",
+      "bytes": 59172,
+      "polygons": 392
+    }
+  ]
+}
