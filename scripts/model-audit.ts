@@ -3,7 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 import { ARCHIVE, NEW_ARCHIVE } from '../game/historical-archive.ts';
 import { HISTORICAL_SHIPS } from '../game/naval-history.ts';
-import { isReviewLedger, modelReviewStatus } from '../game/model-review.ts';
+import { parseReviewLedger, parseRevisions, modelReviewStatus } from '../game/model-review.ts';
 
 const root = new URL('../', import.meta.url);
 const hash = (value: Uint8Array | string) => createHash('sha256').update(value).digest('hex');
@@ -25,13 +25,15 @@ export async function refreshRevisions(): Promise<void> {
 async function audit(): Promise<void> {
   if (process.argv.includes('--refresh')) await refreshRevisions();
   const revisions = await currentRevisions();
-  const recorded: Record<string, string> = JSON.parse(await readFile(new URL('game/archive-revisions.json', root), 'utf8'));
-  const ledger: unknown = JSON.parse(await readFile(new URL('game/model-reviews.json', root), 'utf8'));
-  if (!isReviewLedger(ledger)) throw new Error('Invalid council ledger: independent GPT Sol task IDs, finite scores or an explicit no-score reason are required.');
+  const recorded: unknown = JSON.parse(await readFile(new URL('game/archive-revisions.json', root), 'utf8'));
+  const ledger = parseReviewLedger(JSON.parse(await readFile(new URL('game/model-reviews.json', root), 'utf8')));
+  if (!ledger) throw new Error('Invalid council ledger: independent GPT Sol task IDs, finite scores or an explicit no-score reason are required.');
   if (JSON.stringify(revisions) !== JSON.stringify(recorded)) throw new Error('Model revisions changed. Run npm run models:audit -- --refresh; changed models require a fresh council.');
   const counts = { pending: 0, stale: 0, 'changes-required': 0, approved: 0 };
-  for (const entry of ARCHIVE) counts[modelReviewStatus(entry.modelId, revisions[entry.modelId], ledger).state]++;
-  console.log(JSON.stringify({ coverage: 'partial; global service inventory not yet complete', total: ARCHIVE.length, threshold: 9.8, ...counts }, null, 2));
+  const parsedRevisions = parseRevisions(revisions);
+  parseRevisions(recorded);
+  for (const entry of ARCHIVE) counts[modelReviewStatus({ modelId: entry.modelId, revision: parsedRevisions.get(entry.modelId), ledger }).state]++;
+  console.info(JSON.stringify({ coverage: 'partial; global service inventory not yet complete', total: ARCHIVE.length, threshold: 9.8, ...counts }, null, 2));
   if (process.argv.includes('--require-approved') && counts.approved !== ARCHIVE.length) process.exitCode = 1;
 }
 

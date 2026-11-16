@@ -10,8 +10,17 @@ import { HULLS } from './campaign.ts';
 import { PIXEL_RASTER, VISUAL_SIGNALS } from './visual-style.ts';
 
 interface Visual extends ModelInstance { shadow: THREE.Mesh; id: ModelId }
-interface Particle { x: number; z: number; y: number; vx: number; vz: number; vy: number; life: number; size: number; smoke: boolean; tint?: number }
+interface Particle { x: number; z: number; y: number; vx: number; vz: number; vy: number; life: number; size: number; smoke: boolean; tint: number | undefined }
 interface Shockwave { mesh: THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial>; life: number; radius: number; max: number }
+interface CraftVisuals { hero: Visual; player: Visual; drones: [Visual, Visual] }
+interface RenderResources {
+  crafts: Record<CraftId, CraftVisuals>;
+  islands: [ModelInstance, ModelInstance];
+  carrier: ModelInstance;
+  hostileBatches: { danger: ModelBatch; aimed: ModelBatch };
+  pickupBatches: Record<Pickup['type'], ModelBatch>;
+}
+type RenderState = { kind: 'loading' } | { kind: 'ready'; resources: RenderResources };
 const matrix = new THREE.Object3D();
 const color = new THREE.Color();
 
@@ -48,7 +57,8 @@ function finishBatch(mesh: THREE.InstancedMesh, count: number): void {
 
 function shadowTexture(): THREE.CanvasTexture {
   const canvas = document.createElement('canvas'); canvas.width = canvas.height = 16;
-  const ctx = canvas.getContext('2d')!;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('Canvas 2D is unavailable');
   ctx.fillStyle = '#101e2833'; ctx.fillRect(3,2,10,12); ctx.fillRect(1,5,14,6);
   ctx.fillStyle = '#101e2833'; ctx.fillRect(4,4,8,8);
   const texture = new THREE.CanvasTexture(canvas);
@@ -98,19 +108,13 @@ export class Renderer {
   private readonly previewRenderer: THREE.WebGLRenderer;
   private readonly previewScene = new THREE.Scene();
   private readonly previewCamera = new THREE.OrthographicCamera(-1.8,1.8,1.125,-1.125,.1,30);
-  private readonly water = new THREE.ShaderMaterial({ vertexShader: waterVertex, fragmentShader: waterFragment, toneMapped: false, uniforms: { time: { value: 0 }, sector: { value: 0 }, deepColor: { value: new THREE.Color('#123954') }, shallowColor: { value: new THREE.Color('#1c455e') }, stormColor: { value: new THREE.Color('#172f50') }, crestColor: { value: new THREE.Color('#28546a') } } });
+  private readonly waterUniforms = { time: { value: 0 }, sector: { value: 0 }, deepColor: { value: new THREE.Color('#123954') }, shallowColor: { value: new THREE.Color('#1c455e') }, stormColor: { value: new THREE.Color('#172f50') }, crestColor: { value: new THREE.Color('#28546a') } };
+  private readonly water = new THREE.ShaderMaterial({ vertexShader: waterVertex, fragmentShader: waterFragment, toneMapped: false, uniforms: this.waterUniforms });
   private readonly shadows = new THREE.MeshBasicMaterial({ map: shadowTexture(), transparent: true, depthWrite: false });
   private readonly enemies = new Map<Enemy, Visual>();
   private readonly free = new Map<ModelId, Visual[]>();
-  private readonly hero = new Map<CraftId, Visual>();
-  private readonly players = new Map<CraftId, Visual>();
-  private readonly drones = new Map<CraftId, Visual[]>();
-  private readonly islands: ModelInstance[] = [];
-  private carrier?: ModelInstance;
   private preview?: ModelInstance;
   private readonly tracers: THREE.InstancedMesh;
-  private hostileBatches!: { danger: ModelBatch; aimed: ModelBatch };
-  private pickupBatches!: Record<Pickup['type'], ModelBatch>;
   private readonly wrecks = new Map<Wreck, Visual>();
   private convoy?: Visual;
   private readonly details: THREE.InstancedMesh;
@@ -128,10 +132,15 @@ export class Renderer {
   private previousX = WIDTH/2;
   private bank = 0;
   private shake = 0;
-  private ready = false;
+  private state: RenderState = { kind: 'loading' };
   private readonly reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  constructor(canvas: HTMLCanvasElement, previewCanvas: HTMLCanvasElement, private readonly game: Game, private readonly intelCanvas?: HTMLCanvasElement) {
+  private readonly game: Game;
+  private readonly intelCanvas: HTMLCanvasElement | undefined;
+
+  constructor({ canvas, previewCanvas, game, intelCanvas }: { canvas: HTMLCanvasElement; previewCanvas: HTMLCanvasElement; game: Game; intelCanvas?: HTMLCanvasElement }) {
+    this.game = game;
+    this.intelCanvas = intelCanvas;
     this.webgl = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, powerPreference: 'high-performance' });
     this.webgl.setPixelRatio(1);
     this.webgl.outputColorSpace = THREE.SRGBColorSpace;
@@ -186,19 +195,15 @@ export class Renderer {
 
   private async initialize(): Promise<void> {
     await this.library.load();
-    this.hostileBatches = { danger:this.library.createBatch(VISUAL_SIGNALS.danger.model,1200), aimed:this.library.createBatch(VISUAL_SIGNALS.aimed.model,1200) };
-    this.pickupBatches = { xp:this.library.createBatch(VISUAL_SIGNALS.xp.model,300), health:this.library.createBatch(VISUAL_SIGNALS.health.model,300), bomb:this.library.createBatch(VISUAL_SIGNALS.bomb.model,300) };
-    for (const batch of [...Object.values(this.hostileBatches), ...Object.values(this.pickupBatches)]) this.scene.add(batch.root);
-    this.islands.push(this.library.instantiate('island',52),this.library.instantiate('island',37));
-    this.islands.forEach(island => this.scene.add(island.root));
-    this.carrier = this.library.instantiate('carrier',35);
-    this.scene.add(this.carrier.root);
-    for(const id of ['falcon','swift','turtle'] as const) {
-      this.hero.set(id,this.visual(id,85));
-      this.players.set(id,this.visual(id,23));
-      this.drones.set(id,[this.visual(id,10),this.visual(id,10)]);
-    }
-    this.ready = true;
+    const hostileBatches = { danger: this.library.createBatch({ id: VISUAL_SIGNALS.danger.model, capacity: 1200 }), aimed: this.library.createBatch({ id: VISUAL_SIGNALS.aimed.model, capacity: 1200 }) };
+    const pickupBatches = { xp: this.library.createBatch({ id: VISUAL_SIGNALS.xp.model, capacity: 300 }), health: this.library.createBatch({ id: VISUAL_SIGNALS.health.model, capacity: 300 }), bomb: this.library.createBatch({ id: VISUAL_SIGNALS.bomb.model, capacity: 300 }) };
+    for (const batch of [...Object.values(hostileBatches), ...Object.values(pickupBatches)]) this.scene.add(batch.root);
+    const islands: RenderResources['islands'] = [this.library.instantiate('island',52), this.library.instantiate('island',37)];
+    islands.forEach(island => this.scene.add(island.root));
+    const carrier = this.library.instantiate('carrier',35);
+    this.scene.add(carrier.root);
+    const craft = (id: CraftId): CraftVisuals => ({ hero: this.visual(id,85), player: this.visual(id,23), drones: [this.visual(id,10), this.visual(id,10)] });
+    this.state = { kind: 'ready', resources: { hostileBatches, pickupBatches, islands, carrier, crafts: { falcon: craft('falcon'), swift: craft('swift'), turtle: craft('turtle') } } };
     this.selectCraft(this.game.craft);
     this.selectIntel('scout');
     this.render(0);
@@ -217,7 +222,7 @@ export class Renderer {
   }
 
   selectCraft(id: CraftId): void {
-    if(!this.ready) return;
+    if(this.state.kind !== 'ready') return;
     if(this.preview) this.previewScene.remove(this.preview.root);
     this.preview = this.library.instantiate(id,.95);
     this.preview.root.rotation.y = -.35;
@@ -238,7 +243,7 @@ export class Renderer {
   selectArchiveModel(id: ModelId, naval: boolean): void { this.selectIntelModel(id, naval); }
 
   private selectIntelModel(id:ModelId,naval:boolean):void {
-    if (!this.ready || !this.intelRenderer) return;
+    if (this.state.kind !== 'ready' || !this.intelRenderer) return;
     if (this.intel) this.intelScene.remove(this.intel.root);
     this.intel = this.library.instantiate(id,1);
     this.intelScene.add(this.intel.root);
@@ -301,35 +306,36 @@ export class Renderer {
   }
 
   render(dt: number): void {
-    if(!this.ready) return;
+    if(this.state.kind !== 'ready') return;
+    const resources = this.state.resources;
     const game=this.game, active=game.status==='playing', menu=game.status==='menu';
     if(active || (menu&&!this.reducedMotion)) this.time+=dt;
-    this.water.uniforms.time.value=this.time;
-    this.water.uniforms.sector.value=game.wave>5&&!menu?1:0;
-    this.islands[0].root.position.set(-230,0,(this.time*18+360)%1750-850);
-    this.islands[1].root.position.set(280,0,(this.time*18+1210)%2100-1000);
-    if(this.carrier) {
+    this.waterUniforms.time.value=this.time;
+    this.waterUniforms.sector.value=game.wave>5&&!menu?1:0;
+    resources.islands[0].root.position.set(-230,0,(this.time*18+360)%1750-850);
+    resources.islands[1].root.position.set(280,0,(this.time*18+1210)%2100-1000);
+    if(resources.carrier) {
       const launching = !menu && game.wave === 1 && game.time < 5;
-      this.carrier.root.visible = menu || launching;
+      resources.carrier.root.visible = menu || launching;
       const scale=launching?62:35;
-      this.carrier.root.scale.set(scale,scale*.5,scale);
-      this.carrier.root.position.set(launching ? 0 : 158,0,launching ? 145 + Math.max(0,game.time-.35)*150 : (this.time*13+360)%1800-650);
+      resources.carrier.root.scale.set(scale,scale*.5,scale);
+      resources.carrier.root.position.set(launching ? 0 : 158,0,launching ? 145 + Math.max(0,game.time-.35)*150 : (this.time*13+360)%1800-650);
     }
-    for(const visual of [...this.hero.values(),...this.players.values(),...[...this.drones.values()].flat()]) visual.root.visible=visual.shadow.visible=false;
+    for(const visual of Object.values(resources.crafts).flatMap(craft => [craft.hero, craft.player, ...craft.drones])) visual.root.visible=visual.shadow.visible=false;
     if(menu) {
-      const hero=this.hero.get(game.craft)!;
+      const hero=resources.crafts[game.craft].hero;
       this.place(hero,0,10,140,-.08,this.reducedMotion?0:Math.sin(this.time*.7)*.06);
       this.center.visible=false;
     } else {
-      const player=this.players.get(game.craft)!;
+      const player=resources.crafts[game.craft].player;
       const targetBank=THREE.MathUtils.clamp((this.previousX-game.player.x)*.055,-.45,.45);
       this.bank=THREE.MathUtils.lerp(this.bank,targetBank,Math.min(1,dt*9));
       this.previousX=game.player.x;
       this.place(player,game.player.x-WIDTH/2,game.player.y-HEIGHT/2,game.takingOff ? 18 + 67 * (game.time / TAKEOFF_DURATION) ** 2 : 85,0,this.bank);
       player.root.visible=game.status!=='gameover' && (game.takingOff || this.reducedMotion || game.player.invincible<=0 || Math.floor(this.time*8)%2===0);
       player.shadow.visible=game.status!=='gameover';
-      const drones=this.drones.get(game.craft)!;
-      for(let i=0;i<(game.stacks.drone||0);i++) this.place(drones[i],game.player.x-WIDTH/2+(i===0?-43:43),game.player.y-HEIGHT/2+10,85,0);
+      const drones=resources.crafts[game.craft].drones;
+      drones.forEach((drone, i) => { if (i < (game.stacks.drone || 0)) this.place(drone,game.player.x-WIDTH/2+(i===0?-43:43),game.player.y-HEIGHT/2+10,85,0); });
       this.center.visible=game.status!=='gameover';
       this.center.position.set(game.player.x-WIDTH/2,165,game.player.y-HEIGHT/2);
     }
@@ -364,9 +370,9 @@ export class Renderer {
         }
       }
     }
-    this.renderSea(menu);
-    this.renderBullets(menu);
-    this.renderPickups(menu);
+    this.renderSea(menu, resources);
+    this.renderBullets(menu, resources.hostileBatches);
+    this.renderPickups(menu, resources.pickupBatches);
     this.renderEffects(active?dt:0);
     if(active&&!this.reducedMotion&&this.shake>.1) {
       this.camera.position.x=(Math.random()-.5)*this.shake;
@@ -384,7 +390,7 @@ export class Renderer {
     }
   }
 
-  private renderSea(menu: boolean): void {
+  private renderSea(menu: boolean, resources: RenderResources): void {
     const game=this.game;
     let detail=0;
     const mark=(x:number,y:number,sx:number,sz:number,tint:number,altitude=3,angle=0)=>{
@@ -452,7 +458,7 @@ export class Renderer {
         for(let d=30;d<length;d+=28) mark(e.x+(end.x-e.x)*d/length,e.y+(end.y-e.y)*d/length,2,12,0xb99554,2,angle);
       }
     }
-    if(!menu && this.carrier?.root.visible) wake(this.carrier.root.position.x+WIDTH/2,this.carrier.root.position.z+HEIGHT/2,this.carrier);
+    if(!menu && resources.carrier?.root.visible) wake(resources.carrier.root.position.x+WIDTH/2,resources.carrier.root.position.z+HEIGHT/2,resources.carrier);
     const convoy=game.convoy;
     if(!menu && convoy&&!convoy.dead&&!convoy.saved) {
       this.convoy ||= this.visual('transport',HULLS.transport.scale);
@@ -470,19 +476,19 @@ export class Renderer {
     finishBatch(this.details,detail);
   }
 
-  private renderBullets(menu: boolean): void {
+  private renderBullets(menu: boolean, hostileBatches: RenderResources['hostileBatches']): void {
     const bullets=menu?[]:this.game.bullets;
     bullets.slice(0,1200).forEach((bullet,i)=>{
       const falling=bullet.kind==='ordnance';
-      const altitude=falling ? 12+85*(1-(bullet.flight||0)/(bullet.duration||1)) : 125;
-      put(this.tracers,i,bullet.x-WIDTH/2,altitude,bullet.y-HEIGHT/2,falling?3.5:bullet.kind==='missile'?2.4:1.5,falling?3:1,falling?6:bullet.kind==='missile'?5.5:8,bullet.critical?0xf6b460:0xffe9a8,-Math.atan2(bullet.vx,-bullet.vy));
+      const altitude=falling ? 12+85*(1-bullet.flight/bullet.duration) : 125;
+      put(this.tracers,i,bullet.x-WIDTH/2,altitude,bullet.y-HEIGHT/2,falling?3.5:bullet.kind==='missile'?2.4:1.5,falling?3:1,falling?6:bullet.kind==='missile'?5.5:8,(!falling && bullet.critical)?0xf6b460:0xffe9a8,-Math.atan2(bullet.vx,-bullet.vy));
     });
     finishBatch(this.tracers,Math.min(1200,bullets.length));
     const enemyBullets=menu?[]:this.game.enemyBullets;
     const counts={danger:0,aimed:0};
     for (const bullet of enemyBullets) {
       const type=bullet.color==='pink'?'aimed':'danger';
-      const batch=this.hostileBatches[type];
+      const batch=hostileBatches[type];
       if (counts[type]>=batch.capacity) continue;
       const size=VISUAL_SIGNALS[type].size;
       matrix.position.set(bullet.x-WIDTH/2,170,bullet.y-HEIGHT/2);
@@ -491,14 +497,14 @@ export class Renderer {
       matrix.updateMatrix();
       batch.set(counts[type]++,matrix.matrix);
     }
-    this.hostileBatches.danger.finish(counts.danger);
-    this.hostileBatches.aimed.finish(counts.aimed);
+    hostileBatches.danger.finish(counts.danger);
+    hostileBatches.aimed.finish(counts.aimed);
   }
 
-  private renderPickups(menu: boolean): void {
+  private renderPickups(menu: boolean, pickupBatches: RenderResources['pickupBatches']): void {
     const counts={xp:0,health:0,bomb:0};
     for (const pickup of menu?[]:this.game.pickups) {
-      const batch=this.pickupBatches[pickup.type];
+      const batch=pickupBatches[pickup.type];
       if (counts[pickup.type]>=batch.capacity) continue;
       matrix.position.set(pickup.x-WIDTH/2,140,pickup.y-HEIGHT/2);
       matrix.scale.setScalar(VISUAL_SIGNALS[pickup.type].size);
@@ -506,7 +512,7 @@ export class Renderer {
       matrix.updateMatrix();
       batch.set(counts[pickup.type]++,matrix.matrix);
     }
-    for (const type of ['xp','health','bomb'] as const) this.pickupBatches[type].finish(counts[type]);
+    for (const type of ['xp','health','bomb'] as const) pickupBatches[type].finish(counts[type]);
   }
 
   private renderEffects(dt: number): void {

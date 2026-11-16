@@ -1,7 +1,9 @@
-import type { CraftId, Craft, Difficulty, Upgrade, GameStatus, Player, Enemy, EnemyPlane, Boss, Ship, ShipKind, PartId, Bullet, EnemyBullet, Pickup, Input, Point, GameEvent, EventMap, EmptyEvent, DataEvent, Wreck, SurfaceTorpedo, Convoy } from './types.ts';
-import { HULLS, WAVES } from './campaign.ts';
-import { DEFAULT_FLEET, historicalShip, navalShape } from './naval-history.ts';
-import type { FleetSelection, NavalHull } from './naval-history.ts';
+import { isEntityId } from './types.ts';
+import type { EntityId } from './types.ts';
+import type { CraftId, Craft, Difficulty, Upgrade, GameStatus, Player, Enemy, EnemyPlane, Boss, Ship, ShipPart, ShipKind, PartId, Bullet, EnemyBullet, Pickup, Input, Point, GameEvent, Wreck, SurfaceTorpedo, Convoy } from './types.ts';
+import { HULLS, waveInfo } from './campaign.ts';
+import { DEFAULT_FLEET, historicalShip, navalShape, isNavalHull } from './naval-history.ts';
+import type { FleetSelection } from './naval-history.ts';
 
 export const WIDTH = 480;
 export const HEIGHT = 760;
@@ -30,27 +32,37 @@ export const UPGRADES: Upgrade[] = [
 
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 const distance2 = (a: Point, b: Point) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
+const SHIP_IDENTITIES = {
+  'patrol-boat': { type: 'patrol-boat', hull: 'patrol-boat' },
+  destroyer: { type: 'destroyer', hull: 'destroyer' },
+  cruiser: { type: 'cruiser', hull: 'cruiser' },
+  battleship: { type: 'battleship', hull: 'battleship' },
+  'fleet-carrier': { type: 'fleet-carrier', hull: 'fleet-carrier' },
+  'coastal-battery': { type: 'coastal-battery', hull: 'coastal-battery' },
+  'oil-depot': { type: 'oil-depot', hull: 'oil-depot' },
+  transport: { type: 'transport', hull: 'transport' },
+} satisfies { [Hull in ShipKind]: { type: Hull; hull: Hull } };
 
 export class Game {
   fleetAppearance:FleetSelection={...DEFAULT_FLEET};
   readonly random: () => number;
   events: GameEvent[] = [];
   status: GameStatus = 'menu';
-  craft!: CraftId;
-  difficulty!: Difficulty;
-  time!: number;
-  score!: number;
-  kills!: number;
-  wave!: number;
-  waveTime!: number;
-  spawnTimer!: number;
-  fireTimer!: number;
-  missileTimer!: number;
-  ordnanceTimer!: number;
-  level!: number;
-  xp!: number;
-  nextXp!: number;
-  bombs!: number;
+  craft: CraftId = 'falcon';
+  difficulty: Difficulty = 'normal';
+  time: number = 0;
+  score: number = 0;
+  kills: number = 0;
+  wave: number = 1;
+  waveTime: number = 0;
+  spawnTimer: number = 1;
+  fireTimer: number = 0;
+  missileTimer: number = 1;
+  ordnanceTimer: number = .4;
+  level: number = 1;
+  xp: number = 0;
+  nextXp: number = 42;
+  bombs: number = 3;
   stacks: Partial<Record<Upgrade['id'], number>> = {};
   choices: Upgrade[] = [];
   enemies: Enemy[] = [];
@@ -61,27 +73,30 @@ export class Game {
   surfaceTorpedoes: SurfaceTorpedo[] = [];
   convoy: Convoy | null = null;
   boss: Boss | null = null;
-  bossDefeated!: boolean;
-  bossDelay!: number;
-  shieldTimer!: number;
-  player!: Player;
+  bossDefeated: boolean = false;
+  bossDelay: number = 0;
+  shieldTimer: number = 0;
+  player: Player = { x: WIDTH / 2, y: HEIGHT - 135, hp: 5, maxHp: 5, radius: 6, invincible: TAKEOFF_DURATION, shield: false };
   private nextId = 0;
   private milestones = new Set<number>();
 
   constructor(random = Math.random) {
     this.random = random;
-    this.start('falcon', 'normal');
+    this.start({ craft: 'falcon', difficulty: 'normal' });
     this.status = 'menu';
     this.events = [];
   }
 
-  emit(type: EmptyEvent): void;
-  emit<K extends DataEvent>(type: K, data: EventMap[K]): void;
-  emit(type: keyof EventMap, data?: EventMap[DataEvent]): void { this.events.push({ type, ...data } as GameEvent); }
+  emit(event: GameEvent): void { this.events.push(event); }
+  private allocateId(): EntityId {
+    const id = this.nextId++;
+    if (!isEntityId(id)) throw new Error('Entity identifier exhausted');
+    return id;
+  }
   drainEvents() { return this.events.splice(0); }
 
-  start(craft: CraftId = 'falcon', difficulty: Difficulty = 'normal') {
-    this.craft = CRAFTS[craft] ? craft : 'falcon';
+  start({ craft = 'falcon', difficulty = 'normal' }: { craft?: CraftId; difficulty?: Difficulty } = {}) {
+    this.craft = craft;
     this.difficulty = difficulty;
     const spec = CRAFTS[this.craft];
     this.status = 'playing';
@@ -111,17 +126,17 @@ export class Game {
     const hp = spec.hp + (difficulty === 'easy' ? 2 : 0);
     this.player = { x: WIDTH / 2, y: HEIGHT - 135, hp, maxHp: hp, radius: 6, invincible: TAKEOFF_DURATION, shield: false };
     this.events = [];
-    this.emit('start');
-    this.emit('wave', { wave: this.wave });
+    this.emit({ type: 'start' });
+    this.emit({ type: 'wave', wave: this.wave });
   }
 
   get takingOff() { return this.wave === 1 && this.time < TAKEOFF_DURATION; }
   get damage() { return CRAFTS[this.craft].damage * (1 + .25 * (this.stacks.power || 0)); }
   get movementSpeed() { return CRAFTS[this.craft].move * (1 + .15 * (this.stacks.speed || 0)); }
   get fireRate() { return CRAFTS[this.craft].rate * (.82 ** (this.stacks.rapid || 0)); }
-  pause() { if (this.status === 'playing') { this.status = 'paused'; this.emit('pause'); } }
-  resume() { if (this.status === 'paused') { this.status = 'playing'; this.emit('resume'); } }
-  menu() { this.status = 'menu'; this.emit('menu'); }
+  pause() { if (this.status === 'playing') { this.status = 'paused'; this.emit({ type: 'pause' }); } }
+  resume() { if (this.status === 'paused') { this.status = 'playing'; this.emit({ type: 'resume' }); } }
+  menu() { this.status = 'menu'; this.emit({ type: 'menu' }); }
 
   move(dx: number, dy: number, dt: number) {
     const length = Math.hypot(dx, dy);
@@ -172,7 +187,7 @@ export class Game {
     bullet(p.x - 8, p.y - 24); bullet(p.x + 8, p.y - 24);
     for (let i = 1; i <= (this.stacks.spread || 0); i++) { bullet(p.x - 12, p.y - 16, -.15 * i, .72); bullet(p.x + 12, p.y - 16, .15 * i, .72); }
     for (let i = 0; i < (this.stacks.drone || 0); i++) bullet(p.x + (i === 0 ? -43 : 43), p.y + 5, 0, .85);
-    this.emit('shoot');
+    this.emit({ type: 'shoot' });
   }
 
   fireMissile() {
@@ -196,7 +211,7 @@ export class Game {
       target.y += targetShip.type === 'boss' ? Math.min(218-targetShip.y, targetShip.speed*duration) : targetShip.speed*duration;
       if (targetShip.type === 'boss') target.x += Math.cos(targetShip.age*.23)*42*.23*duration;
     }
-    this.bullets.push({ x: p.x, y: p.y - 12, vx: (target.x - p.x) / duration, vy: (target.y - (p.y - 12)) / duration, targetX: target.x, targetY: target.y, flight: 0, duration, radius: 17, damage: this.damage * 10, kind: 'ordnance', dead: false });
+    this.bullets.push({ x: p.x, y: p.y - 12, vx: (target.x - p.x) / duration, vy: (target.y - (p.y - 12)) / duration, target, flight: 0, duration, radius: 17, damage: this.damage * 10, kind: 'ordnance', dead: false });
     return true;
   }
 
@@ -209,7 +224,7 @@ export class Game {
       }
       return;
     }
-    const plan = WAVES[this.wave - 1];
+    const plan = waveInfo(this.wave);
     const duration = 17 + this.wave * .6;
     if (!this.milestones.has(0)) {
       this.milestones.add(0);
@@ -219,11 +234,13 @@ export class Game {
     }
     if (this.waveTime > 9 && !this.milestones.has(1)) {
       this.milestones.add(1);
-      if (plan.sea.length) this.spawnShip(plan.sea[0], 110 + this.random() * 260, -85);
+      const reinforcement = plan.sea[0];
+      if (reinforcement) this.spawnShip(reinforcement, 110 + this.random() * 260, -85);
     }
     this.spawnTimer -= dt;
     if (this.waveTime < duration && this.spawnTimer <= 0 && this.enemies.filter(e => e.layer === 'air').length < 15) {
       const type = plan.air[Math.floor(this.random() * plan.air.length)];
+      if (!type) return;
       const count = type === 'scout' && this.random() < .5 ? 3 : 1;
       const center = 90 + this.random() * 300;
       for (let i = 0; i < count; i++) this.spawnEnemy(type, clamp(center + (i - (count - 1) / 2) * 58, 35, WIDTH - 35), -35 - i * 35);
@@ -239,29 +256,28 @@ export class Game {
     this.spawnTimer = 1.2;
     this.milestones.clear();
     this.bossDefeated = false;
-    if (this.wave === 6) { this.player.hp = Math.min(this.player.maxHp, this.player.hp + 2); this.bombs = Math.min(5, this.bombs + 1); this.emit('pickup', { text: '舰队补给 · 装甲 +2 / 航弹 +1' }); }
-    this.emit('wave', { wave: this.wave });
+    if (this.wave === 6) { this.player.hp = Math.min(this.player.maxHp, this.player.hp + 2); this.bombs = Math.min(5, this.bombs + 1); this.emit({ type: 'pickup', text: '舰队补给 · 装甲 +2 / 航弹 +1' }); }
+    this.emit({ type: 'wave', wave: this.wave });
   }
 
   spawnEnemy(type: EnemyPlane['type'], x: number, y: number) {
     const heavy = type === 'heavy-bomber', gunship = type === 'gunship';
     const health = (heavy ? 430 : gunship ? 75 : type === 'torpedo' ? 52 : 24) * (1 + (this.wave - 1) * .09);
     const direction = this.random() < .5 ? 1 : -1;
-    const e: EnemyPlane = { id: this.nextId++, type, layer: 'air', x: type === 'interceptor' ? (direction > 0 ? -35 : WIDTH + 35) : x, y: type === 'interceptor' ? 100 + this.random() * 180 : y, originX: x, age: 0, phase: this.random() * Math.PI * 2, hp: health, maxHp: health, radius: heavy ? 42 : gunship ? 23 : 16, speed: (heavy ? 34 : gunship ? 54 : type === 'dart' ? 145 : type === 'torpedo' ? 66 : 90) + this.wave * 3, fireTimer: 1 + this.random() * 1.8, dead: false, heading: Math.PI, direction, action: 'cruise', actionTime: 0, lockedX: x, variant: false };
+    const e: EnemyPlane = { id: this.allocateId(), type, layer: 'air', x: type === 'interceptor' ? (direction > 0 ? -35 : WIDTH + 35) : x, y: type === 'interceptor' ? 100 + this.random() * 180 : y, originX: x, age: 0, phase: this.random() * Math.PI * 2, hp: health, maxHp: health, radius: heavy ? 42 : gunship ? 23 : 16, speed: (heavy ? 34 : gunship ? 54 : type === 'dart' ? 145 : type === 'torpedo' ? 66 : 90) + this.wave * 3, fireTimer: 1 + this.random() * 1.8, dead: false, heading: Math.PI, direction, action: 'cruise', actionTime: 0, lockedX: x, variant: false };
     this.enemies.push(e);
     return e;
   }
 
-  spawnShip(hull: ShipKind, x: number, y: number, boss = false): Ship {
+  private shipState(hull: ShipKind, x: number, y: number, boss: boolean) {
     const spec = HULLS[hull];
     const health = spec.hp * (boss ? 1 : 1 + this.wave * .035);
-    const ship: Ship = { id: this.nextId++, type: boss ? 'boss' : hull, hull, layer: 'surface', x, y, originX: x, hp: health, maxHp: health, radius: spec.halfWidth, halfWidth: spec.halfWidth, halfLength: spec.halfLength, speed: spec.speed, age: 0, fireTimer: 2, phase: 0, heading: 0, dead: false, parts: [], launchTimer: 7, salvoTimer: 4, final: hull === 'fleet-carrier' };
-    if(Object.hasOwn(DEFAULT_FLEET,hull))ship.appearance=this.fleetAppearance[hull as NavalHull];
+    const ship = { id: this.allocateId(), layer: 'surface', x, y, originX: x, hp: health, maxHp: health, radius: spec.halfWidth, halfWidth: spec.halfWidth, halfLength: spec.halfLength, speed: spec.speed, age: 0, fireTimer: 2, phase: 0, heading: 0, dead: false, parts: Array<ShipPart>(), launchTimer: 7, salvoTimer: 4, final: hull === 'fleet-carrier', appearance: isNavalHull(hull) ? this.fleetAppearance[hull] : undefined } satisfies Omit<Ship, 'type' | 'hull'>;
     const reference=ship.appearance&&historicalShip(ship.appearance);
     const shape=reference?navalShape(reference):undefined;
     const add = (id: PartId, name: string, px: number, py: number, hp: number, radius = 17) => {
       const point=shape?.parts[id];
-      ship.parts.push({ id, name, x:point?point.x*spec.scale*shape!.combatStretch:px, y:point?point.y*spec.scale:py, hp, maxHp:hp, radius, fireTimer:1.8+this.random() });
+      ship.parts.push({ id, name, x:point && shape ? point.x*spec.scale*shape.combatStretch : px, y:point?point.y*spec.scale:py, hp, maxHp:hp, radius, fireTimer:1.8+this.random() });
     };
     if (hull !== 'oil-depot' && hull !== 'transport') {
       add('aa-port', '左舷防空炮', -spec.halfWidth * .63, spec.halfLength * .15, boss ? 390 : hull === 'patrol-boat' ? 70 : 130, boss ? 21 : 15);
@@ -269,14 +285,22 @@ export class Game {
       if (hull !== 'coastal-battery' && hull !== 'patrol-boat') add('bridge', '舰桥', hull === 'fleet-carrier' ? spec.halfWidth * .68 : 0, -spec.halfLength * .37, boss ? 510 : 160, boss ? 23 : 16);
     }
     if (hull === 'fleet-carrier') add('flight-deck', '飞行甲板', 0, spec.halfLength * .34, 720, 32);
+    return ship;
+  }
+
+  spawnShip(hull: ShipKind, x: number, y: number): Ship {
+    const ship: Ship = { ...this.shipState(hull, x, y, false), ...SHIP_IDENTITIES[hull] };
     this.enemies.push(ship);
     return ship;
   }
 
   spawnBoss() {
     const final = this.wave === 10;
-    this.boss = this.spawnShip(final ? 'fleet-carrier' : 'battleship', WIDTH / 2, -170, true) as Boss;
-    this.emit('boss', { final });
+    const hull = final ? 'fleet-carrier' : 'battleship';
+    const identity = final ? { type: 'boss', hull: 'fleet-carrier', final: true } as const : { type: 'boss', hull: 'battleship', final: false } as const;
+    this.boss = { ...this.shipState(hull, WIDTH / 2, -170, true), ...identity };
+    this.enemies.push(this.boss);
+    this.emit({ type: 'boss', final });
     return this.boss;
   }
 
@@ -366,7 +390,7 @@ export class Game {
       }
     }
     e.salvoTimer -= dt;
-    if ((e.hull === 'battleship' || e.hull === 'destroyer') && e.salvoTimer <= 0) { this.emit('navalSalvo', { x: e.x, y: e.y - e.halfLength * .6 }); e.salvoTimer = 5.5; }
+    if ((e.hull === 'battleship' || e.hull === 'destroyer') && e.salvoTimer <= 0) { this.emit({ type: 'navalSalvo', x: e.x, y: e.y - e.halfLength * .6 }); e.salvoTimer = 5.5; }
   }
 
   enemyShot(x: number, y: number, dx: number, dy: number, speed: number, color: EnemyBullet['color'] = 'orange') {
@@ -389,15 +413,15 @@ export class Game {
       }
       b.x += b.vx * dt; b.y += b.vy * dt;
       if (b.kind === 'ordnance') {
-        b.flight = (b.flight || 0) + dt;
-        if (b.flight >= (b.duration || 1)) {
+        b.flight += dt;
+        if (b.flight >= b.duration) {
           b.dead = true;
-          this.impactOrdnance({ x: b.targetX ?? b.x, y: b.targetY ?? b.y }, b.damage);
+          this.impactOrdnance(b.target, b.damage);
         }
         continue;
       }
       for (const e of this.enemies) {
-        if (!e.dead && e.layer === 'air' && distance2(b, e) < (b.radius + e.radius) ** 2) { b.dead = true; this.damageEnemy(e, b.damage); this.emit('hit', { x: b.x, y: b.y, critical: b.critical }); break; }
+        if (!e.dead && e.layer === 'air' && distance2(b, e) < (b.radius + e.radius) ** 2) { b.dead = true; this.damageEnemy(e, b.damage); this.emit({ type: 'hit', x: b.x, y: b.y, critical: b.critical ?? false }); break; }
       }
     }
     this.bullets = this.bullets.filter(b => !b.dead && b.y > -40 && b.y < HEIGHT + 30 && b.x > -40 && b.x < WIDTH + 40);
@@ -409,7 +433,7 @@ export class Game {
   }
 
   impactOrdnance(point: Point, damage: number) {
-    this.emit('ordnance', point);
+    this.emit({ type: 'ordnance', ...point });
     for (const e of this.enemies) {
       if (e.dead || e.layer !== 'surface' || Math.abs(point.x - e.x) > e.halfWidth + 13 || Math.abs(point.y - e.y) > e.halfLength + 13) continue;
       const part = e.parts.find(p => p.hp > 0 && distance2(point, { x: e.x + p.x, y: e.y + p.y }) < (p.radius + 12) ** 2);
@@ -423,7 +447,7 @@ export class Game {
     const part = ship.parts.find(p => p.id === id);
     if (ship.dead || !part || part.hp <= 0) return;
     part.hp = Math.max(0, part.hp - damage);
-    if (part.hp === 0) { this.score += 120; this.emit('partDestroyed', { x: ship.x + part.x, y: ship.y + part.y, name: part.name }); }
+    if (part.hp === 0) { this.score += 120; this.emit({ type: 'partDestroyed', x: ship.x + part.x, y: ship.y + part.y, name: part.name }); }
   }
 
   damageEnemy(e: Enemy, damage: number) {
@@ -435,7 +459,7 @@ export class Game {
     this.kills++;
     const isBoss = e.type === 'boss', heavy = e.type === 'heavy-bomber';
     this.score += e.layer === 'surface' ? HULLS[e.hull].score : heavy ? 700 : e.type === 'gunship' ? 220 : e.type === 'dart' ? 120 : 100;
-    this.emit('explosion', { x: e.x, y: e.y, size: isBoss ? 4 : e.layer === 'surface' || heavy ? 2 : 1, layer: e.layer });
+    this.emit({ type: 'explosion', x: e.x, y: e.y, size: isBoss ? 4 : e.layer === 'surface' || heavy ? 2 : 1, layer: e.layer });
     if (e.layer === 'surface') {
       this.wrecks.push({ x: e.x, y: e.y, hull: e.hull, heading: e.heading, age: 0, scale: HULLS[e.hull].scale, appearance:e.appearance });
       if (e.hull === 'oil-depot') {
@@ -447,7 +471,7 @@ export class Game {
       this.boss = null; this.bossDefeated = true; this.bossDelay = 3;
       this.enemyBullets = [];
       this.xp += 65;
-      this.emit('bossDefeated', { final: e.final });
+      this.emit({ type: 'bossDefeated', final: e.final });
     } else {
       this.pickups.push({ x: e.x, y: e.y, type: 'xp', amount: e.layer === 'surface' ? 24 : heavy ? 45 : e.type === 'gunship' ? 17 : 9, radius: 11, dead: false });
       const chance = this.random();
@@ -465,7 +489,7 @@ export class Game {
       torpedo.age += dt; torpedo.x += torpedo.vx * dt; torpedo.y += torpedo.vy * dt;
       if (convoy && !convoy.dead && !convoy.saved && Math.abs(torpedo.x - convoy.x) < 27 && Math.abs(torpedo.y - convoy.y) < 62) {
         torpedo.dead = true; convoy.hp--;
-        this.emit('ordnance', { x: torpedo.x, y: torpedo.y });
+        this.emit({ type: 'ordnance', x: torpedo.x, y: torpedo.y });
         if (convoy.hp <= 0) this.resolveEscort(false);
       }
     }
@@ -477,8 +501,8 @@ export class Game {
     this.convoy.saved = saved;
     this.convoy.dead = !saved;
     if (saved) { this.score += 600; this.pickups.push({ x: this.player.x, y: this.player.y - 50, type: 'bomb', radius: 13, dead: false }); }
-    else { this.wrecks.push({ x: this.convoy.x, y: this.convoy.y, hull: 'transport', heading: 0, age: 0, scale: HULLS.transport.scale }); this.emit('explosion', { ...this.convoy, size: 2, layer: 'surface' }); }
-    this.emit('escort', { saved });
+    else { this.wrecks.push({ x: this.convoy.x, y: this.convoy.y, hull: 'transport', heading: 0, age: 0, scale: HULLS.transport.scale }); this.emit({ type: 'explosion', ...this.convoy, size: 2, layer: 'surface' }); }
+    this.emit({ type: 'escort', saved });
   }
 
   updatePickups(dt: number) {
@@ -490,9 +514,9 @@ export class Game {
       } else item.y += (item.type === 'xp' ? 88 : 65) * dt;
       if (distance2(item, this.player) < 23 ** 2) {
         item.dead = true;
-        if (item.type === 'xp') { this.xp += (item.amount || 0) * (1 + .15 * (this.stacks.magnet || 0)); this.score += 10; }
-        if (item.type === 'health') { this.player.hp = Math.min(this.player.maxHp, this.player.hp + 1); this.emit('pickup', { text: '装甲 +1' }); }
-        if (item.type === 'bomb') { this.bombs = Math.min(5, this.bombs + 1); this.emit('pickup', { text: '炸弹 +1' }); }
+        if (item.type === 'xp') { this.xp += item.amount * (1 + .15 * (this.stacks.magnet || 0)); this.score += 10; }
+        if (item.type === 'health') { this.player.hp = Math.min(this.player.maxHp, this.player.hp + 1); this.emit({ type: 'pickup', text: '装甲 +1' }); }
+        if (item.type === 'bomb') { this.bombs = Math.min(5, this.bombs + 1); this.emit({ type: 'pickup', text: '炸弹 +1' }); }
       }
     }
     this.pickups = this.pickups.filter(p => !p.dead && p.y < HEIGHT + 20);
@@ -504,12 +528,12 @@ export class Game {
       this.player.shield = false;
       this.shieldTimer = 15 / (this.stacks.shield || 1);
       this.player.invincible = 1.1;
-      this.emit('shieldHit');
+      this.emit({ type: 'shieldHit' });
       return;
     }
     this.player.hp--;
     this.player.invincible = 1.7 + .3 * (this.stacks.speed || 0);
-    this.emit('hurt', { x: this.player.x, y: this.player.y });
+    this.emit({ type: 'hurt', x: this.player.x, y: this.player.y });
     if (this.player.hp <= 0) this.finish(false);
   }
 
@@ -527,7 +551,7 @@ export class Game {
       } else this.damageEnemy(e, e.type === 'heavy-bomber' ? damage : 99999);
     }
     for (const p of this.pickups) p.magnetized = true;
-    this.emit('bomb', { x: this.player.x, y: this.player.y });
+    this.emit({ type: 'bomb', x: this.player.x, y: this.player.y });
     return true;
   }
 
@@ -537,10 +561,14 @@ export class Game {
     this.level++;
     this.nextXp = Math.round(42 + (this.level - 1) * 17);
     const pool = UPGRADES.filter(u => (this.stacks[u.id] || 0) < u.max && (u.id !== 'repair' || this.player.hp < this.player.maxHp));
-    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(this.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(this.random() * (i + 1));
+      const a = pool[i], b = pool[j];
+      if (a && b) { pool[i] = b; pool[j] = a; }
+    }
     this.choices = pool.slice(0, 3);
     this.status = 'upgrade';
-    this.emit('upgrade', { choices: this.choices, level: this.level });
+    this.emit({ type: 'upgrade', choices: this.choices, level: this.level });
   }
 
   chooseUpgrade(index: number) {
@@ -554,7 +582,7 @@ export class Game {
     this.status = 'playing';
     this.player.invincible = Math.max(this.player.invincible, .8);
     this.choices = [];
-    this.emit('upgraded', { upgrade });
+    this.emit({ type: 'upgraded', upgrade });
     return true;
   }
 
@@ -562,6 +590,6 @@ export class Game {
     if (this.status !== 'playing') return;
     this.status = victory ? 'victory' : 'gameover';
     if (victory) this.score += 5000 + this.player.hp * 300;
-    this.emit('end', { victory, score: this.score, kills: this.kills, wave: this.wave, time: this.time });
+    this.emit({ type: 'end', victory, score: this.score, kills: this.kills, wave: this.wave, time: this.time });
   }
 }

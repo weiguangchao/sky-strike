@@ -1,7 +1,7 @@
 import type { AirKind, ShipKind } from './types.ts';
 
 export interface UnitInfo { id: AirKind | ShipKind; name: string; role: string; tactic: string; silhouette: string }
-export const UNIT_INFO: UnitInfo[] = [
+export const UNIT_INFO: [UnitInfo, ...UnitInfo[]] = [
   { id: 'scout', name: '轻型战斗机', role: '空中 · 编队巡航', tactic: '机炮拦截，留意单发瞄准弹。', silhouette: '单发螺旋桨 / 椭圆翼' },
   { id: 'interceptor', name: '横切截击机', role: '空中 · 侧翼突入', tactic: '从两侧横穿航线，提前向前方射击。', silhouette: '短机身 / 宽直翼' },
   { id: 'diver', name: '俯冲轰炸机', role: '空中 · 预警后直线俯冲', tactic: '虚线锁定后移开，俯冲方向不会追踪。', silhouette: '倒海鸥翼 / 固定起落架' },
@@ -19,7 +19,7 @@ export const UNIT_INFO: UnitInfo[] = [
   { id: 'transport', name: '敌方运输船', role: '海面 · 补给目标', tactic: '击沉获得额外补给；蓝旗运输船则是友军。', silhouette: '货箱 / 吊杆 / 小型舰桥' },
 ];
 export interface WaveInfo { name: string; objective: string; air: AirKind[]; sea: ShipKind[] }
-export const WAVES: WaveInfo[] = [
+export const WAVES: [WaveInfo, ...WaveInfo[]] = [
   { name: '舰队启航', objective: '从友军航母起飞，拦截前方战斗机。', air: ['scout'], sea: [] },
   { name: '外海警戒', objective: '击退横切截击机与巡逻艇。', air: ['scout', 'interceptor'], sea: ['patrol-boat'] },
   { name: '运输船队', objective: '保护蓝旗运输船，优先拦截鱼雷机与重型轰炸机。', air: ['torpedo', 'gunship'], sea: ['patrol-boat'] },
@@ -42,3 +42,10 @@ export const HULLS: Record<ShipKind, HullSpec> = {
   'oil-depot': { hp: 180, halfWidth: 39, halfLength: 45, speed: 24, scale: 30, score: 300 },
   transport: { hp: 230, halfWidth: 25, halfLength: 66, speed: 29, scale: 32, score: 320 },
 };
+
+export function waveInfo(wave: number): WaveInfo {
+  return WAVES[wave - 1] ?? WAVES[0];
+}
+export function unitInfo(index: number): UnitInfo {
+  return UNIT_INFO[index] ?? UNIT_INFO[0];
+}

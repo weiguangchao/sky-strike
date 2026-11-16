@@ -1,3 +1,4 @@
+import { required } from './support.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Game} from '../game/engine.ts';
@@ -28,9 +29,9 @@ test('port and starboard carrier islands move their damage target while retainin
     game.fleetAppearance['fleet-carrier']=id;
     const ship=game.spawnBoss();
     assert.equal(ship.hp,4400);assert.equal(ship.halfWidth,66);assert.equal(ship.halfLength,168);
-    const bridge=ship.parts.find(part=>part.id==='bridge')!;
+    const bridge=required(ship.parts.find(part=>part.id==='bridge'));
     assert.equal(Math.sign(bridge.x),side,id);assert.equal(bridge.maxHp,510);assert.equal(bridge.radius,23);
-    assert.equal(ship.parts.find(part=>part.id==='flight-deck')!.maxHp,720);
+    assert.equal(required(ship.parts.find(part=>part.id==='flight-deck')).maxHp,720);
   }
 });
 
@@ -39,7 +40,7 @@ test('historical identity is captured per ship and survives destruction after a 
   const ship=game.spawnBoss();ship.x=240;ship.y=220;
   assert.equal(ship.appearance,'rodney');assert.equal(ship.hp,2800);
   game.fleetAppearance.battleship='bismarck';game.damageEnemy(ship,99999);
-  assert.equal(game.wrecks[0].appearance,'rodney');
+  assert.equal(required(game.wrecks[0]).appearance,'rodney');
   assert.equal(game.spawnBoss().appearance,'bismarck');
 });
 

@@ -1,3 +1,4 @@
+import { required } from '../support.ts';
 import {test,expect} from '@playwright/test';
 import {PNG} from 'pngjs';
 import {mkdir} from 'node:fs/promises';
@@ -13,7 +14,7 @@ test('every air and sea unit has a visible local 3D catalog preview and campaign
     await expect(page.locator('#intel-count')).toHaveText(`${String(index+1).padStart(2,'0')} / 15`);
     const preview=PNG.sync.read(await page.locator('#intel-canvas').screenshot());
     let modelPixels=0;
-    for(let i=0;i<preview.data.length;i+=4) if(Math.max(preview.data[i],preview.data[i+1],preview.data[i+2])>140) modelPixels++;
+    for(let i=0;i<preview.data.length;i+=4) if(Math.max(required(preview.data[i]),required(preview.data[i+1]),required(preview.data[i+2]))>140) modelPixels++;
     expect(modelPixels,`${unit.id} should have visible model geometry`).toBeGreaterThan(30);
     await page.locator('#intel-next').click();
   }
@@ -33,31 +34,31 @@ test('every air and sea unit has a visible local 3D catalog preview and campaign
 
 test('automatic ordnance breaks rendered boss parts and deck destruction updates the HUD', async({page})=>{
   await page.goto('/'); await page.locator('#start-button').click();
-  await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+  await page.evaluate(async()=>{ const { required } = await import('/dom.ts');
+    const {game}=await import('/main.ts');
     game.wave=5; game.time=10; game.enemies=[]; game.events=[]; game.player.invincible=100;
     game.stacks.power=5; game.stacks.rapid=5;
     const boss=game.spawnBoss(); boss.y=218;
-    game.player.x=boss.x+boss.parts[0].x;
+    game.player.x=boss.x+required(boss.parts[0]).x;
     // Follow the same horizontal alignment while the ship slowly patrols.
-    boss.originX=game.player.x-boss.parts[0].x;
+    boss.originX=game.player.x-required(boss.parts[0]).x;
   });
   await expect(page.locator('#boss-name')).toContainText('铁岳');
-  const target=await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
-    game.boss.age=0; game.boss.originX=game.player.x-game.boss.parts[0].x;
-    return game.boss.parts[0].maxHp;
+  const target=await page.evaluate(async()=>{ const { required } = await import('/dom.ts');
+    const {game}=await import('/main.ts');
+    required(game.boss).age=0; required(game.boss).originX=game.player.x-required(required(game.boss).parts[0]).x;
+    return required(required(game.boss).parts[0]).maxHp;
   });
   expect(target).toBe(390);
   await expect(page.locator('#boss-parts [aria-label="左舷防空炮已摧毁"]')).toBeVisible({timeout:6000});
   await expect(page.locator('#bomb-count')).toHaveText('× 3');
-  const hull=await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
-    return {hp:game.boss.hp,max:game.boss.maxHp,layer:game.boss.layer};
+  const hull=await page.evaluate(async()=>{ const { required } = await import('/dom.ts');
+    const {game}=await import('/main.ts');
+    return {hp:required(game.boss).hp,max:required(game.boss).maxHp,layer:required(game.boss).layer};
   });
   expect(hull.layer).toBe('surface'); expect(hull.hp).toBeLessThan(hull.max); expect(hull.hp).toBeGreaterThan(0);
   await page.evaluate(async()=>{
-    const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);
+    const {game}=await import('/main.ts');
     game.wave=10;game.enemies=[];game.bullets=[];game.enemyBullets=[];game.bossDefeated=false;
     const carrier=game.spawnBoss();carrier.y=218;carrier.launchTimer=99;
     game.player.x=carrier.x;
@@ -77,13 +78,13 @@ test('every redesigned ship fills its catalog preview without cropping or losing
   await page.locator('#intel-illustration').evaluate((element:HTMLElement)=>{element.style.borderColor='transparent';element.style.borderRadius='0';element.style.background='#162936';});
   const ships=new Set(['巡逻艇','驱逐舰','防空巡洋舰','铁岳','赤潮','敌方运输船']);
   for(let i=7;i<15;i++) {
-    const name=(await page.locator('#intel-name').textContent())!;
+    const name=required((await page.locator('#intel-name').textContent()));
     if(ships.has(name)) {
       const preview=PNG.sync.read(await page.locator('#intel-canvas').screenshot());
       let minX=preview.width,minY=preview.height,maxX=0,maxY=0;
       const tones=new Map<number,number>();
       for(let y=0;y<preview.height;y++)for(let x=0;x<preview.width;x++) {
-        const at=(y*preview.width+x)*4,r=preview.data[at],g=preview.data[at+1],b=preview.data[at+2];
+        const at=(y*preview.width+x)*4,r=required(preview.data[at]),g=required(preview.data[at+1]),b=required(preview.data[at+2]);
         if(r>65&&r>b*.86&&g>b*.93) {
           minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);
           const tone=((r>>4)<<8)|((g>>4)<<4)|(b>>4);tones.set(tone,(tones.get(tone)||0)+1);

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "start": "vite --host 0.0.0.0",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "npm run lint && tsc --noEmit",
     "build": "npm run typecheck && npm run models:audit && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "worker:dev": "wrangler dev --local --port 8787",
@@ -16,7 +16,8 @@
     "test:e2e": "playwright test",
     "models:build": "tsx scripts/models.ts && npm run models:build:archive",
     "models:build:archive": "tsx scripts/archive-models.ts",
-    "models:audit": "tsx scripts/model-audit.ts"
+    "models:audit": "tsx scripts/model-audit.ts",
+    "lint": "tsx scripts/type-discipline.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",

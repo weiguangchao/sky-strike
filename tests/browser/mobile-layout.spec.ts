@@ -1,3 +1,4 @@
+import { required } from '../support.ts';
 import {test,expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
@@ -7,14 +8,14 @@ async function settle(page:Page) {
 }
 async function expectMaximumField(page:Page) {
   await settle(page);
-  const bounds=await page.evaluate(()=>{
+  const bounds=await page.evaluate(async ()=>{ const { required } = await import('/dom.ts');
     const css=getComputedStyle(document.body);
     const value=(key:string)=>parseFloat(css.getPropertyValue(key));
     const top=value('--viewport-top')+value('--safe-top');
     const left=value('--viewport-left')+value('--safe-left');
     const width=value('--viewport-width')-value('--safe-left')-value('--safe-right');
     const height=value('--viewport-height')-value('--safe-top')-value('--safe-bottom');
-    const canvas=document.querySelector('#game-canvas')!.getBoundingClientRect();
+    const canvas=required(document.querySelector('#game-canvas')).getBoundingClientRect();
     return {top,left,width,height,canvas:canvas.toJSON(),scrollX,scrollY};
   });
   // A full, undistorted 480:760 field should be as large as its available rectangle allows.
@@ -32,17 +33,17 @@ async function expectTouchControls(page:Page) {
   const field=await page.locator('#game-canvas').boundingBox();
   for(const id of ['pause-button','bomb-button']) {
     const rect=await page.locator('#'+id).boundingBox();
-    expect(rect!.width).toBeGreaterThanOrEqual(44);expect(rect!.height).toBeGreaterThanOrEqual(44);
-    expect(rect!.x).toBeGreaterThanOrEqual(field!.x);
-    expect(rect!.y).toBeGreaterThanOrEqual(field!.y);
-    expect(rect!.x+rect!.width).toBeLessThanOrEqual(field!.x+field!.width+.5);
-    expect(rect!.y+rect!.height).toBeLessThanOrEqual(field!.y+field!.height+.5);
+    expect(required(rect).width).toBeGreaterThanOrEqual(44);expect(required(rect).height).toBeGreaterThanOrEqual(44);
+    expect(required(rect).x).toBeGreaterThanOrEqual(required(field).x);
+    expect(required(rect).y).toBeGreaterThanOrEqual(required(field).y);
+    expect(required(rect).x+required(rect).width).toBeLessThanOrEqual(required(field).x+required(field).width+.5);
+    expect(required(rect).y+required(rect).height).toBeLessThanOrEqual(required(field).y+required(field).height+.5);
   }
 }
 async function viewport(page:Page,values:{width:number;height:number;offsetTop?:number;offsetLeft?:number;scale?:number}) {
-  await page.evaluate(values=>{
-    for(const [name,value] of Object.entries({offsetTop:0,offsetLeft:0,scale:1,...values})) Object.defineProperty(window.visualViewport!,name,{configurable:true,value});
-    window.visualViewport!.dispatchEvent(new Event('resize'));
+  await page.evaluate(async values=>{ const { required } = await import('/dom.ts');
+    for(const [name,value] of Object.entries({offsetTop:0,offsetLeft:0,scale:1,...values})) Object.defineProperty(required(window.visualViewport),name,{configurable:true,value});
+    required(window.visualViewport).dispatchEvent(new Event('resize'));
   },values);
   await settle(page);
 }
@@ -52,20 +53,20 @@ test.describe('phone visible viewport',()=>{
 
   test('combat uses the largest complete portrait field with no site chrome or clipped touch controls',async({page})=>{
     await page.goto('/');await page.locator('#start-button').click();
-    await page.evaluate(async()=>{const{game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);game.wave=5;game.spawnBoss();game.boss.y=180;game.player.invincible=100;game.events=[];});
+    await page.evaluate(async()=>{const{game}=await import('/main.ts');game.wave=5;const boss = game.spawnBoss(); boss.y=180;game.player.invincible=100;game.events=[];});
     await expect(page.locator('.site-header')).toBeHidden();await expect(page.locator('.frame-top')).toBeHidden();
-    for(const [width,height] of [[393,663],[390,624],[320,480],[375,667],[430,740],[390,844],[844,390]]) {
+    for(const [width,height] of [[393,663],[390,624],[320,480],[375,667],[430,740],[390,844],[844,390]] as const) {
       await page.setViewportSize({width,height});
       await expectMaximumField(page);await expectTouchControls(page);
-      const visual=await page.evaluate(()=>{
-        const face=document.querySelector('.pause-face')!.getBoundingClientRect();
-        const boss=document.querySelector('#boss-hud')!.getBoundingClientRect();
+      const visual=await page.evaluate(async ()=>{ const { required } = await import('/dom.ts');
+        const face=required(document.querySelector('.pause-face')).getBoundingClientRect();
+        const boss=required(document.querySelector('#boss-hud')).getBoundingClientRect();
         return {overlap:face.left<boss.right&&face.right>boss.left&&face.top<boss.bottom&&face.bottom>boss.top};
       });
       expect(visual.overlap,`pause face must not cover boss text at ${width}×${height}`).toBe(false);
     }
     const pause=await page.locator('#pause-button').boundingBox();
-    await page.mouse.click(pause!.x+2,pause!.y+pause!.height-2);
+    await page.mouse.click(required(pause).x+2,required(pause).y+required(pause).height-2);
     await expect(page.locator('#pause-screen')).toBeVisible();await page.locator('#resume-button').click();
     await page.setViewportSize({width:393,height:663});await settle(page);
     await mkdir('.artifacts/mobile-viewport',{recursive:true});
@@ -92,13 +93,13 @@ test.describe('phone visible viewport',()=>{
     await page.locator('#pause-button').click();
     await page.locator('#pause-help').click();
     const dialog=await page.locator('#help-dialog').boundingBox();
-    expect(dialog!.y).toBeGreaterThanOrEqual(12+47);
-    expect(dialog!.y+dialog!.height).toBeLessThanOrEqual(12+600-34);
+    expect(required(dialog).y).toBeGreaterThanOrEqual(12+47);
+    expect(required(dialog).y+required(dialog).height).toBeLessThanOrEqual(12+600-34);
     expect(await page.locator('#help-dialog').evaluate(el=>el.scrollHeight<=el.clientHeight&&el.scrollWidth<=el.clientWidth)).toBe(true);
     await page.locator('#close-help').click();
     await expect(page.locator('#pause-screen')).toBeVisible();
     await page.locator('#resume-button').click();
-    await page.evaluate(async()=>{const {game}=await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src);game.xp=game.nextXp;});
+    await page.evaluate(async()=>{const {game}=await import('/main.ts');game.xp=game.nextXp;});
     await expect(page.locator('#upgrade-screen')).toBeVisible();
     const field=await expectMaximumField(page);
     for(const rect of await page.locator('.upgrade-card').evaluateAll(elements=>elements.map(el=>el.getBoundingClientRect().toJSON()))) {
@@ -182,13 +183,13 @@ test.describe('phone visible viewport',()=>{
     await page.goto('/');await page.locator('#start-button').click();
     const touch=await context.newCDPSession(page);
     const field=await page.locator('#game-canvas').boundingBox();
-    const x=field!.x+field!.width/2,y=field!.y+field!.height*.7;
+    const x=required(field).x+required(field).width/2,y=required(field).y+required(field).height*.7;
     await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
-    const initial=await page.evaluate(async()=>(await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src)).game.player.x);
+    const initial=await page.evaluate(async()=>(await import('/main.ts')).game.player.x);
     await viewport(page,{width:393,height:550});
     await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+80,y}]});
     await settle(page);
-    expect(await page.evaluate(async()=>(await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src)).game.player.x)).toBe(initial);
+    expect(await page.evaluate(async()=>(await import('/main.ts')).game.player.x)).toBe(initial);
     await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
     await expectMaximumField(page);
   });

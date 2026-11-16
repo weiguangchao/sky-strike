@@ -14,16 +14,16 @@ async function captureLayout(page: Page, state: string, width: number, height: n
 }
 
 async function expectWithinWindow(page: Page, selectors: string[], containerSelector?: string) {
-  const layout = await page.evaluate(({ selectors, containerSelector }) => ({
+  const layout = await page.evaluate(async ({ selectors, containerSelector }) => { const { required } = await import('/dom.ts'); return ({
     width: innerWidth,
     height: innerHeight,
     scrollWidth: document.documentElement.scrollWidth,
     scrollHeight: document.documentElement.scrollHeight,
-    bounds: containerSelector ? document.querySelector(containerSelector)!.getBoundingClientRect().toJSON() : { left: 0, top: 0, right: innerWidth, bottom: innerHeight },
+    bounds: containerSelector ? required(document.querySelector(containerSelector)).getBoundingClientRect().toJSON() : { left: 0, top: 0, right: innerWidth, bottom: innerHeight },
     elements: selectors.flatMap(selector => [...document.querySelectorAll(selector)]
       .filter(element => element.getClientRects().length)
       .map(element => ({ selector, ...element.getBoundingClientRect().toJSON() }))),
-  }), { selectors, containerSelector });
+  }); }, { selectors, containerSelector });
   expect(layout.scrollWidth).toBeLessThanOrEqual(layout.width);
   expect(layout.scrollHeight).toBeLessThanOrEqual(layout.height);
   for (const rect of layout.elements) {
@@ -50,7 +50,7 @@ async function expectHandbook(page: Page, width: number, height: number): Promis
 
 test('window resizing keeps the complete hangar and every combat dialog on screen', async ({ page }) => {
   test.setTimeout(60000);
-  const sizes = [[1920, 1080], [1440, 900], [1366, 768], [1280, 720], [1024, 600], [820, 1180], [768, 1024], [390, 844], [375, 667], [360, 640], [320, 568], [844, 390]];
+  const sizes: [number, number][] = [[1920, 1080], [1440, 900], [1366, 768], [1280, 720], [1024, 600], [820, 1180], [768, 1024], [390, 844], [375, 667], [360, 640], [320, 568], [844, 390]];
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   await page.evaluate(() => document.fonts.ready);
@@ -68,19 +68,19 @@ test('window resizing keeps the complete hangar and every combat dialog on scree
     await expectWithinWindow(page, ['#pause-screen .dialog-content', '#resume-button', '#pause-restart', '#quit-button'], '#battlefield');
     await captureLayout(page, 'paused', width, height);
     await page.getByRole('button', { name: '继续作战' }).click();
-    await page.evaluate(async () => { const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src); game.xp = game.nextXp; });
+    await page.evaluate(async () => { const { game } = await import('/main.ts'); game.xp = game.nextXp; });
     await expect(page.locator('#upgrade-screen')).toBeVisible();
     await expectWithinWindow(page, ['.upgrade-heading', '.upgrade-card'], '#battlefield');
     await captureLayout(page, 'upgrade', width, height);
     await page.locator('.upgrade-card').first().click();
-    await page.evaluate(async () => { const { game } = await import(document.querySelector<HTMLScriptElement>('script[src*="/main.ts"]')!.src); game.player.hp = 1; game.player.shield = false; game.player.invincible = 0; game.hurt(); });
+    await page.evaluate(async () => { const { game } = await import('/main.ts'); game.player.hp = 1; game.player.shield = false; game.player.invincible = 0; game.hurt(); });
     await expect(page.locator('#result-screen')).toBeVisible();
     await expectWithinWindow(page, ['#result-screen .dialog-content', '#retry-button', '#result-home'], '#battlefield');
     await captureLayout(page, 'result', width, height);
     await page.getByRole('button', { name: '返回机库', exact: true }).click();
     await expect(page.locator('#start-screen')).toBeVisible();
   }
-  for (const [width,height] of [[667,375],[740,360],[568,320]]) {
+  for (const [width,height] of [[667,375],[740,360],[568,320]] as const) {
     await page.setViewportSize({width,height});
     await settleFrame(page);
     await expectHandbook(page,width,height);
@@ -93,7 +93,7 @@ test('window resizing keeps the complete hangar and every combat dialog on scree
 test('catalog and campaign content fit small portrait and landscape windows without scrolling', async({page})=>{
   test.setTimeout(60000);
   await page.goto('/'); await expect(page.locator('#start-button')).toBeEnabled();
-  for(const [width,height] of [[390,844],[320,568],[568,320]]) {
+  for(const [width,height] of [[390,844],[320,568],[568,320]] as const) {
     await page.setViewportSize({width,height}); await settleFrame(page);
     await page.locator('#help-button').click();
     for(const [panel,pages] of [['intel',15],['campaign',10]] as const) {
