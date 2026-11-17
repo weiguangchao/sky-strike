@@ -29,7 +29,9 @@ body {
   container: app-viewport / size;
   display: grid; grid-template-rows: var(--header-height) minmax(0, 1fr) var(--footer-height);
 }
-.site-header { width: 100%; height: 100%; margin: 0 auto; padding-inline: clamp(16px, 4vw, 54px); min-width: 0; }
+.site-header { width: 100%; height: 100%; margin: 0; margin-inline-start: max(0px, calc((100% - 1392px) / 2)); margin-inline-start: round(down, max(0px, calc((100% - 1392px) / 2)), 1px); padding-inline: clamp(16px, 4vw, 54px); padding-inline: round(down, clamp(16px, 4vw, 54px), 1px); min-width: 0; }
+.brand { --brand-height: 64px; align-self: flex-start; margin-top: max(0px, calc((var(--header-height) - 2px - var(--brand-height)) / 2)); margin-top: round(down, max(0px, calc((var(--header-height) - 2px - var(--brand-height)) / 2)), 1px); }
+.brand-logo { width: calc(var(--brand-height) * 4.75); height: var(--brand-height); }
 .hangar {
   width: 100%; max-width: 1390px; height: 100%; min-height: 0; margin: 0 auto;
   padding: var(--stage-inset) clamp(16px, 4vw, 54px);
@@ -65,6 +67,9 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
   .pilot-tip { display: none; }
   .craft-stats { margin-top: 16px; gap: 8px; }
 }
+@media (max-height: 888px) {
+  .brand { --brand-height: 32px; }
+}
 @media (max-height: 560px) {
   :root { --header-height: 48px; --footer-height: 0px; --stage-inset: 6px; --frame-top-height: 32px; }
   .site-footer, .craft-illustration, .craft-stats, .run-build { display: none; }
@@ -83,9 +88,7 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
     background: var(--bg);
   }
   .site-header { padding-inline: 12px; }
-  .brand { font-size: 26px; gap: 8px; }
-  .brand-mark { width: 32px; height: 32px; }
-  .brand-mark svg { width: 24px; height: 24px; }
+  .brand { --brand-height: 32px; }
   .header-right { gap: 4px; }
   .text-button { font-size: 14px; gap: 5px; padding: 4px; }
   .text-button svg { width: 17px; }

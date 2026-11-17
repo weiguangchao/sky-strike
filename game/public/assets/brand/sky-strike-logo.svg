@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 64" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Sky Strike</title>
+  <desc id="desc">原创像素螺旋桨飞机与 SKY STRIKE 字标。</desc>
+  <g transform="translate(0 4) scale(2)">
+  <path fill="#e8b65b" d="M25 1h4v1h1v1h1v4h-1v1h-1v1h-4V8h-1V7h-1V3h1V2h1z"/>
+  <path fill="#162936" d="M11 4h10v4h-2v2h4v1h4v1h1v1h3v6H21v-2h-2v5h3v4h-3v1h-6v-1h-3v-4h3v-5h-2v2H1v-6h3v-1h1v-1h4v-1h4V8h-2z"/>
+  <path fill="#f4e4b8" d="M12 5h8v1h-3v2h1v3h5v1h4v2h3v4h-8v-2h-5v7h4v2h-3v1h-4v-1h-3v-2h4v-7h-5v2H2v-4h3v-2h4v-1h5V8h1V6h-3z"/>
+  <path fill="#aac78c" d="M3 15h3v-2h4v-1h3v3h-3v2H3zm26 0h-3v-2h-4v-1h-3v3h3v2h7zM15 17h2v6h-2z"/>
+  <path fill="#162936" d="M14 10h4v5h-4z"/>
+  <path fill="#4e9ba6" d="M15 10h2v4h-2z"/>
+  <path fill="#f4e4b8" d="M15 10h1v1h-1zM15 14h2v1h-2z"/>
+  </g>
+  <path fill="#f4e4b8" d="M80 18h16v4h-16zM76 22h8v4h-8zM76 26h8v4h-8zM80 30h12v4h-12zM88 34h8v4h-8zM88 38h8v4h-8zM76 42h16v4h-16zM100 18h8v4h-8zM116 18h4v4h-4zM100 22h8v4h-8zM112 22h4v4h-4zM100 26h12v4h-12zM100 30h12v4h-12zM100 34h8v4h-8zM112 34h4v4h-4zM100 38h8v4h-8zM116 38h4v4h-4zM100 42h8v4h-8zM116 42h4v4h-4zM124 18h8v4h-8zM140 18h8v4h-8zM124 22h8v4h-8zM140 22h8v4h-8zM128 26h16v4h-16zM132 30h8v4h-8zM132 34h8v4h-8zM132 38h8v4h-8zM132 42h8v4h-8zM164 18h16v4h-16zM160 22h8v4h-8zM160 26h8v4h-8zM164 30h12v4h-12zM172 34h8v4h-8zM172 38h8v4h-8zM160 42h16v4h-16zM184 18h24v4h-24zM192 22h8v4h-8zM192 26h8v4h-8zM192 30h8v4h-8zM192 34h8v4h-8zM192 38h8v4h-8zM192 42h8v4h-8zM212 18h16v4h-16zM212 22h8v4h-8zM228 22h4v4h-4zM212 26h8v4h-8zM228 26h4v4h-4zM212 30h16v4h-16zM212 34h8v4h-8zM224 34h4v4h-4zM212 38h8v4h-8zM228 38h4v4h-4zM212 42h8v4h-8zM228 42h4v4h-4zM236 18h16v4h-16zM240 22h8v4h-8zM240 26h8v4h-8zM240 30h8v4h-8zM240 34h8v4h-8zM240 38h8v4h-8zM236 42h16v4h-16zM256 18h8v4h-8zM272 18h4v4h-4zM256 22h8v4h-8zM268 22h4v4h-4zM256 26h12v4h-12zM256 30h12v4h-12zM256 34h8v4h-8zM268 34h4v4h-4zM256 38h8v4h-8zM272 38h4v4h-4zM256 42h8v4h-8zM272 42h4v4h-4zM280 18h20v4h-20zM280 22h8v4h-8zM280 26h8v4h-8zM280 30h16v4h-16zM280 34h8v4h-8zM280 38h8v4h-8zM280 42h20v4h-20z"/>
+</svg>
