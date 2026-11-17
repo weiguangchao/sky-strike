@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#162936"/><rect x="5" y="5" width="54" height="54" rx="9" fill="#303d32" stroke="#aac78c" stroke-width="2"/><g shape-rendering="crispEdges"><path fill="#f4e4b8" d="M29 11h6v6h3v15h9v3h6v9H41v-3h-6v9h6v6H23v-6h6v-9h-6v3H11v-9h6v-3h9V17h3z"/><path fill="#e8b65b" d="M23 17h18v3H23z"/><path fill="#245c74" d="M29 26h6v9h-6z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Sky Strike</title>
+  <desc id="desc">米白螺旋桨飞机、草绿主翼和青蓝座舱，海军蓝阶梯圆角底。</desc>
+  <path fill="#162936" d="M2 0h12v1h1v1h1v12h-1v1h-1v1H2v-1H1v-1H0V2h1V1h1z"/>
+  <path fill="#f4e4b8" d="M6 2h4v1H9v2h2v1h3v3h-4V8H9v4h1v1H9v1H7v-1H6v-1h1V8H6v1H2V6h3V5h2V3H6z"/>
+  <path fill="#aac78c" d="M3 7h3v1H3zm7 0h3v1h-3z"/>
+  <path fill="#4e9ba6" d="M7 4h2v1H7z"/>
+</svg>

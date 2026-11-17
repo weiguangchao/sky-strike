@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Sky Strike · 破晓出击</title>
+  <desc id="desc">宽直翼螺旋桨飞机与右上方独立像素日轮，青蓝座舱、草绿机翼和收束尾翼。</desc>
+  <g transform="translate(0 4) scale(2)">
+  <path fill="#e8b65b" d="M25 1h4v1h1v1h1v4h-1v1h-1v1h-4V8h-1V7h-1V3h1V2h1z"/>
+  <path fill="#162936" d="M11 4h10v4h-2v2h4v1h4v1h1v1h3v6H21v-2h-2v5h3v4h-3v1h-6v-1h-3v-4h3v-5h-2v2H1v-6h3v-1h1v-1h4v-1h4V8h-2z"/>
+  <path fill="#f4e4b8" d="M12 5h8v1h-3v2h1v3h5v1h4v2h3v4h-8v-2h-5v7h4v2h-3v1h-4v-1h-3v-2h4v-7h-5v2H2v-4h3v-2h4v-1h5V8h1V6h-3z"/>
+  <path fill="#aac78c" d="M3 15h3v-2h4v-1h3v3h-3v2H3zm26 0h-3v-2h-4v-1h-3v3h3v2h7zM15 17h2v6h-2z"/>
+  <path fill="#162936" d="M14 10h4v5h-4z"/>
+  <path fill="#4e9ba6" d="M15 10h2v4h-2z"/>
+  <path fill="#f4e4b8" d="M15 10h1v1h-1zM15 14h2v1h-2z"/>
+  </g>
+</svg>

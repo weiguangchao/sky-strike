@@ -14,6 +14,7 @@
     "deploy:check": "wrangler deploy --dry-run",
     "test": "tsx --test tests/*.test.ts",
     "test:e2e": "playwright test",
+    "brand:export": "tsx scripts/export-brand.ts",
     "models:build": "tsx scripts/models.ts && npm run models:build:archive",
     "models:build:archive": "tsx scripts/archive-models.ts",
     "models:audit": "tsx scripts/model-audit.ts",

@@ -44,10 +44,9 @@ svg use[href='#i-plane'] { fill: currentColor; stroke: none; }
 .svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 .site-header { display: flex; align-items: center; justify-content: space-between; max-width: 1392px; border-bottom: 2px solid #52634f; box-shadow: 0 2px 0 #0c1b24; }
-.brand { display: flex; align-items: center; gap: 13px; font: 400 32px/.95 var(--display); letter-spacing: 1.1px; }
-.brand-mark { height: 43px; width: 43px; color: var(--bg); background: var(--text); border: 2px solid #b6a272; border-radius: var(--radius-sm); display: grid; place-items: center; box-shadow: 0 2px 0 #0c1b24; }
-.brand-mark svg { width: 28px; height: 28px; }
-.brand-light { color: var(--amber); }
+.brand { display: flex; align-items: center; flex-shrink: 0; }
+.brand picture, .brand-logo { display: block; }
+.brand-logo { image-rendering: pixelated; }
 .header-right { display: flex; align-items: center; gap: 18px; }
 .text-button { display: flex; align-items: center; gap: 8px; font-size: 16px; color: var(--text); padding: 8px; }
 .text-button:hover, .icon-button:hover { color: var(--amber); }
