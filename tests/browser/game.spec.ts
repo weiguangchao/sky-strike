@@ -137,22 +137,107 @@ test('boss HUD, stage resupply and final victory resolve correctly', async ({ pa
   await expect(page.locator('#result-wave')).toHaveText('10/10');
 });
 
-test('Blender models load locally before takeoff and both canvases use WebGL', async ({ page }) => {
+test('Phaser 4 loads local 2D sprites before takeoff without requesting GLB assets', async ({ page }) => {
   const loaded = new Map<string, number>();
   page.on('response', response => {
     const path = new URL(response.url()).pathname;
-    if (path.startsWith('/assets/models/') && path.endsWith('.glb')) loaded.set(path, response.status());
+    if (path.startsWith('/assets/sprites/') && path.endsWith('.png')) loaded.set(path, response.status());
   });
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   expect(loaded.size).toBe(MODEL_IDS.length);
   expect([...loaded.values()]).toEqual(Array(MODEL_IDS.length).fill(200));
-  const contexts = await page.evaluate(async () => { const { required } = await import('/dom.ts');
-    const main = required(document.querySelector<HTMLCanvasElement>('#game-canvas')).getContext('webgl2');
-    const preview = required(document.querySelector<HTMLCanvasElement>('#craft-canvas')).getContext('webgl2');
-    return { main: !!main, preview: !!preview, depth: main?.getParameter(main.DEPTH_BITS) };
+  const contexts = await page.evaluate(() => {
+    const canvas = document.querySelector<HTMLCanvasElement>('#game-canvas');
+    const previewCanvas = document.querySelector<HTMLCanvasElement>('#craft-canvas');
+    if (!canvas || !previewCanvas) throw new Error('Game canvases are unavailable');
+    const main = canvas.getContext('webgl') ?? canvas.getContext('webgl2');
+    const preview = previewCanvas.getContext('2d');
+    return { version: canvas.dataset.engineVersion, main: !!main, preview: !!preview,
+      glb: performance.getEntriesByType('resource').some(entry => entry.name.endsWith('.glb')) };
   });
-  expect(contexts.main).toBe(true);
-  expect(contexts.preview).toBe(true);
-  expect(contexts.depth).toBeGreaterThan(0);
+  expect(contexts).toEqual({ version: '4.2.1', main: true, preview: true, glb: false });
+});
+
+test('losing focus freezes combat and clears held Phaser movement keys', async ({ page }) => {
+  await page.goto('/'); await page.locator('#start-button').click();
+  const initial = await page.evaluate(async () => (await import('/main.ts')).game.player.x);
+  await page.keyboard.down('d');
+  await expect.poll(() => page.evaluate(async () => (await import('/main.ts')).game.player.x)).toBeGreaterThan(initial + 20);
+  await page.evaluate(() => window.dispatchEvent(new Event('blur')));
+  await expect(page.locator('#pause-screen')).toBeVisible();
+  const frozen = await page.evaluate(async () => { const { game } = await import('/main.ts'); return { x: game.player.x, time: game.time }; });
+  await page.waitForTimeout(160);
+  expect(await page.evaluate(async () => (await import('/main.ts')).game.time)).toBe(frozen.time);
+  await page.locator('#resume-button').click(); await page.waitForTimeout(160);
+  expect(await page.evaluate(async () => (await import('/main.ts')).game.player.x)).toBe(frozen.x);
+  await page.keyboard.up('d');
+});
+
+test('a failed startup sprite can reload successfully without an unhandled error', async ({ page }) => {
+  let fail = true;
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await page.route('**/assets/sprites/falcon.png', route => fail ? route.abort() : route.continue());
+  await page.goto('/');
+  await expect(page.locator('#start-button')).toHaveText('重新加载');
+  fail = false; await page.locator('#start-button').click();
+  await expect(page.locator('#start-button')).toHaveText('开始出击');
+  await expect(page.locator('#start-button')).toBeEnabled(); await page.locator('#start-button').click();
+  await expect(page.locator('#game-hud')).toBeVisible(); expect(errors).toEqual([]);
+});
+
+test('startup works without the newer Promise.withResolvers API', async ({ page }) => {
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await page.addInitScript(() => Object.defineProperty(Promise, 'withResolvers', { configurable: true, value: undefined }));
+  await page.goto('/');
+  await expect(page.locator('#start-button')).toBeEnabled();
+  await page.locator('#start-button').click();
+  await expect(page.locator('#game-hud')).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test('unit preview opened during startup draws the selected unit when loading finishes', async ({ page }) => {
+  const gate = Promise.withResolvers<void>();
+  await page.route('**/assets/sprites/falcon.png', async route => { await gate.promise; await route.continue(); });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  try {
+    await page.locator('#help-button').click(); await page.locator('#help-tab-intel').click();
+    await page.locator('#intel-next').click();
+    await expect(page.locator('#start-button')).toBeDisabled();
+    const selected = await page.locator('#intel-name').textContent();
+    gate.resolve();
+    await expect(page.locator('#start-button')).toBeEnabled();
+    await expect(page.locator('#intel-name')).toHaveText(selected ?? '');
+    await expect.poll(() => page.locator('#intel-canvas').evaluate((canvas: HTMLCanvasElement) => {
+      const context = canvas.getContext('2d');
+      return context ? context.getImageData(0, 0, canvas.width, canvas.height).data.some((value, index) => index % 4 === 3 && value > 0) : false;
+    })).toBe(true);
+  } finally { gate.resolve(); }
+});
+
+test('desktop mouse drags remain continuous over the bomb button until release', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/'); await page.locator('#start-button').click();
+  const field = await page.locator('#game-canvas').boundingBox();
+  const bomb = await page.locator('#bomb-button').boundingBox();
+  if (!field || !bomb) throw new Error('Missing battlefield controls');
+  await page.evaluate(async () => {
+    const { game } = await import('/main.ts');
+    game.player.x = 140; game.player.y = 400; game.player.invincible = 100; game.time = 10; game.spawnTimer = 999;
+  });
+  const start = { x: bomb.x - 25, y: bomb.y - 45 };
+  const over = { x: bomb.x + bomb.width / 2, y: bomb.y + bomb.height / 2 };
+  await page.mouse.move(start.x, start.y); await page.mouse.down();
+  await page.mouse.move(over.x, over.y, { steps: 8 });
+  const expectedOver = Math.min(456, 140 + (over.x - start.x) / field.width * 480 * 1.12);
+  await expect.poll(() => page.evaluate(async () => (await import('/main.ts')).game.player.x)).toBeCloseTo(expectedOver, 0);
+  await page.mouse.move(start.x + 15, start.y, { steps: 8 });
+  const expectedBack = 140 + 15 / field.width * 480 * 1.12;
+  await expect.poll(() => page.evaluate(async () => (await import('/main.ts')).game.player.x)).toBeCloseTo(expectedBack, 0);
+  await page.mouse.up(); await page.mouse.move(start.x + 80, start.y);
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  expect(await page.evaluate(async () => (await import('/main.ts')).game.player.x)).toBeCloseTo(expectedBack, 0);
+  await expect(page.locator('#bomb-count')).toHaveText('× 3');
+  await page.locator('#bomb-button').click();
+  await expect(page.locator('#bomb-count')).toHaveText('× 2');
 });

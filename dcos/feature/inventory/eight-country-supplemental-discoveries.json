@@ -1,0 +1,1375 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Balao-class_submarine",
+      "title": "balao",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Balao-class_submarine",
+      "evidenceSha256": "59900d2dbf7f93acf85b5847f4e6f863c75075353daa9791ca0f737b740f5f33",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "This was the most numerous US submarine class; 120 of these boats were commissioned from February 1943 through September 1948, with 12 commissioned postwar. Nine of the 52 US submarines lost in World War II were of this class, along with five lost postwar, including one in Turkish service in 1953, one in Argentine service in the Falklands War of 1982, and one in Peruvian service in 1988.[1][24] Also, Lancetfish flooded and sank while fitting out at the Boston Naval Shipyard on 15 March 1945. She was raised but not repaired, and was listed with the reserve fleet postwar until struck in 1958. Some of the class served actively in the US Navy through the middle 1970s, and one (Hai Pao ex-Tusk) is still active in Taiwan's Republic of China Navy."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/James_Madison-class_submarine",
+      "title": "james-madison-1964",
+      "evidenceSource": "https://en.wikipedia.org/wiki/James_Madison-class_submarine",
+      "evidenceSha256": "39aec78eb840b1adb704db7ef961219f7fb1203ea97a2b730ecda1cbd2634cf8",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "In commission | 1964–1995 |"
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Benjamin_Franklin-class_submarine",
+      "title": "benjamin-franklin-1965",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Benjamin_Franklin-class_submarine",
+      "evidenceSha256": "0de9197a37a17ed308889592eb7f81ccee1046c99e8d1cf0c2628c80de1d3749",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The Benjamin Franklin class of US ballistic missile submarines were in service from the 1960s to the 2000s. The class was an evolutionary development from the earlier James Madison class of fleet ballistic missile submarine. Having quieter machinery and other improvements, it is considered a separate class. A subset of this class is the re-engineered 640 class starting with USS George C. Marshall. The primary difference was that they were built under the new SUBSAFE rules after the loss of USS Thresher, whereas earlier boats of the class had to be retrofitted to meet SUBSAFE requirements. The Benjamin Franklin class, together with the George Washington, Ethan Allen, Lafayette, and James Madison classes, comprised the \"41 for Freedom\" submarines that were the Navy's primary contribution to the nuclear deterrent force through the late 1980s. This class and the James Madison class are combined with the Lafayettes in some references."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/r/r-21.html",
+      "title": "us-r-lake-r21",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/r/r-21.html",
+      "evidenceSha256": "fa6c496c6d52ff5520ca8143d2c629fe11872c5f632067697deec9e1488d078e",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "R-21 (Submarine No. 98) was laid down 19 April 1917 by the Lake Torpedo Boat Co., Bridgeport, Conn.; launched 10 July 1918; sponsored by Mrs. Dallas C. Laizure; and commissioned 17 June 1919, Lt. Comdr. Morris D. Gilmore in command."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/a/albacore-agss-569-iii.html",
+      "title": "albacore-1953",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/a/albacore-agss-569-iii.html",
+      "evidenceSha256": "b1225643a4b36f38cb9c7538d8c0d4ecd8ed4460a9a9e85edcaba008b5d44122",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The third Albacore (AGSS-569) was laid down by the Portsmouth (N.H.) Naval Shipyard on 15 March 1952; launched on 1 August 1953; sponsored by Mrs. J. E. Jowers, the widow of the late CMoMM Arthur L. Stanton, who had been lost in the second Albacore (SS-218); and commissioned on 6 December 1953, Lt. Cmdr. Kenneth C. Gummerson in command."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/USS_Dolphin_(AGSS-555)",
+      "title": "dolphin-1968",
+      "evidenceSource": "https://en.wikipedia.org/wiki/USS_Dolphin_(AGSS-555)",
+      "evidenceSha256": "9b42c9f23eaf81681f7dac1dd9c9873f6665a0a5d2d0d611a4d556ab94ab2ddb",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "USS Dolphin (AGSS-555) was a United States Navy diesel-electric deep-diving research and development submarine. She was commissioned in 1968 and decommissioned in 2007. Her 38-year career was the longest in history for a US Navy submarine to that point. She was the Navy's last operational conventionally powered submarine.[1]"
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/n/narwhal-iii.html",
+      "title": "narwhal-1969",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/n/narwhal-iii.html",
+      "evidenceSha256": "3f7fcfdd0b2e1e5cd08a980acc93959a7c90bd62f409ede14d8065dc1d252598",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The third Narwhal (SS(N)-671) was laid down on 17 January 1966 at Groton, Conn., by General Dynamics Corp.; launched on 9 September 1967; sponsored by Mrs. Glynn R. Donaho; and delivered and commissioned on 12 July 1969, with Cmdr. W. A. Matson in command."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/USS_Glenard_P._Lipscomb",
+      "title": "glenard-p-lipscomb-1974",
+      "evidenceSource": "https://en.wikipedia.org/wiki/USS_Glenard_P._Lipscomb",
+      "evidenceSha256": "e5d146987f20c54b6f7187885e44fa153ddf96c5a918df8b79e62c595ddce587",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Commissioned | 21 December 1974 |"
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/NR-1",
+      "title": "nr1-1969",
+      "evidenceSource": "https://en.wikipedia.org/wiki/NR-1",
+      "evidenceSha256": "d43d72fc340f44eacbdb0ecd87307d43773f6b644f85a3a8435cd316b4040227",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "In service | 27 October 1969 |"
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/t/trieste.html",
+      "title": "trieste",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/t/trieste.html",
+      "evidenceSha256": "433b91a5a42a784e5e82552a5f78ac8c9c5ebb50e2f604ac3e281d781867e7f5",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Hence Trieste, her search mission accomplished, was returned to San Diego, where she was taken out of service. For her part in the search, however, the bathyscaphe and her commander, Comdr. Donald A. Reach, received the Navy Unit Commendation. Subsequently, Trieste was transported to the Washington Navy Yard where she was placed on exhibit in the Navy Memorial Museum in early 1980."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/t/trieste-ii.html",
+      "title": "trieste-ii",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/t/trieste-ii.html",
+      "evidenceSha256": "449dfa302746f323e9b20bf26f1fd6bf103993b4e13dd1b1299a4bc46b00717e",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "This unique craft was listed only as \"equipment\" in the Navy inventory until the autumn of 1969. On 1 September 1969, Trieste II was placed in service, with the hull number X-l. Reclassified as a deep submergence vehicle (DSV) on 1 June 1971, Trieste II (DSV-1) continued her active service in the Pacific Fleet into 1980."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/DSV_Turtle",
+      "title": "alvin-dsv-class",
+      "evidenceSource": "https://en.wikipedia.org/wiki/DSV_Turtle",
+      "evidenceSha256": "9fe0318b74d9abe7337b1d0de9b7ddb19136005d2bbcb9357e87bd4d9082f153",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Turtle spent her career as a unit of the U.S. Navy's Submarine Development Group 1 in San Diego, California."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Mystic-class_deep-submergence_rescue_vehicle",
+      "title": "mystic-dsrv-1971",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Mystic-class_deep-submergence_rescue_vehicle",
+      "evidenceSha256": "60c66c087c5acfb9d8c7cd46a7e44a1219bac52bfcc2ec78ed240fc899efefc5",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "In commission | 1971–2008 |"
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Dry_Combat_Submersible",
+      "title": "dry-combat-submersible-2023",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Dry_Combat_Submersible",
+      "evidenceSha256": "6a41676d78017c5bc9d0e336f49473c3fac6ee659991cef1d5f8f4d1b5e21b59",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The Dry Combat Submersible reached initial operational capability with the US Navy in May 2023.[10]"
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/u-111.html",
+      "title": "type-u93",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/u-111.html",
+      "evidenceSha256": "12c75b3c6431ce0f53526b8fbd2f970da5c3a8e3f10d1a68bb3a6edd337d877a",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "In March 1919, 12 officers and 120 enlisted men arrived in England to ferry the six submarines back to the United States. The crew assigned to U-164, a U-94-class boat that had been only commissioned on 17 October 1918—less than a month before the Armistice—however, found that vessel in such atrocious condition that it was impossible to ready her for the Victory Bond drive—the ostensible reason for which she had been acquired. For that reason, U.S. authorities in England arranged to secure U-111 substituted for the cannibalized and dilapidated U-164. Soon thereafter, U-111 was placed in commission in the U.S. Navy, Lt. Cmdr. Freeland A. Daubin in command."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/u-117.html",
+      "title": "type-ueii",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/u-117.html",
+      "evidenceSha256": "d6d363abc9388be0c8de1f6595797392b11bfc019e60d0bf67e3ef0a9f086412",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The armistice of 11 November 1918 ended hostilities, and required Germany to turn over her submarines to the Allies. U-117 surrendered at Harwich, England, ten days later. Over the ensuing weeks, the United States Navy expressed an interest in acquiring several former German submarines to serve as exhibits during a Victory Bond campaign. U-117 became one of the six boats set aside for that purpose. In March 1919, her U.S. crew took over the submarine and placed her in special commission, Lt. Cmdr. Aquilla G. Dibrell in command."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/u-140.html",
+      "title": "type-u139",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/u-140.html",
+      "evidenceSha256": "a434ee2c43e6a85df6901844dd7cd8e50c6a10e14f4cdb4dac4f628b90a63854",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "In the meantime, the United States Navy had expressed a desire to acquire several former German U-boats for use in a Victory Bond campaign during the summer of 1919. U-140 was set aside for those purposes, and her American crew took control during the latter half of March. The submarine was placed in special commission soon thereafter, Lt. Cmdr. Garnet A. Hulings in command."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/ub-88.html",
+      "title": "type-ubiii",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/ub-88.html",
+      "evidenceSha256": "b2092bc92f77de4497bf9db6b512b503a36b108733d7df03b7570ab2687f4232",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Soon after the 11 November 1918 armistice ended hostilities, UB-88 surrendered along with the other warships of the High Seas Fleet. They were interned a little over a fortnight later, on 26 November. When the U.S. Navy expressed an interest in acquiring several German submarines to be used in conjunction with the current Victory Bond drive and to enable American crews to learn their supposed secrets, UB-88 and five other boats were allocated to the United States with the agreement that they would be destroyed upon the conclusion of the bond campaign. Naval personnel were dispatched from the United States early in 1919, and they took over the submarine on 23 March 1919. Soon thereafter, UB-88 was placed in special commission for the voyage across the Atlantic, Lt. Cmdr. Joseph L. Nielson in command."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/uc-97.html",
+      "title": "type-uciii",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/uc-97.html",
+      "evidenceSha256": "d0abb77fa23c3dc481efa8386bd04d6884d96cfecc2272f0a8c15d2098b412f6",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The U.S. Navy expressed an interest in acquiring several of the surrendered German submarines for display purposes in conjunction with a Victory Bond drive; consequently, UC-97 and five other U-boats were allotted to the United States. Officers and sailors went to England in March and took possession of the boats. UC-97 was placed in special commission on 15 March 1919 for the voyage to the United States, Lt. Cmdr. Holbrook Gibson in command."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/u-3008.html",
+      "title": "type-xxi",
+      "evidenceSource": "https://www.history.navy.mil/research/histories/ship-histories/danfs/u/u-3008.html",
+      "evidenceSha256": "810bb8b5f72c94486d09ee46959f4465d87cc109c1de5f28b799a11d29b1fe69",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "U-3008, a former German Type XXI submarine built in late 1944 and early 1945 by Aktiengesellschaft Weser at Bremen, Germany, was surrendered to the Allies at Kiel, Germany, in May 1945 immediately following the collapse of Nazi Germany. Probably never commissioned in the Kriegsmarine before the end of the war, the U-boat was turned over to the United States Navy in the summer of 1945. She departed Europe early in August and reached New London, Conn., on the 22d. On 13 September, she moved to Portsmouth, N.H., where she began an extensive overhaul the following day. Work proceeded on an intermittent basis due to the lack of final and total approval of the vessel's allocation to the United States by the Allied powers concerned. However, by the spring of 1946, the naval shipyard received orders to proceed with the overhaul as expeditiously as possible and to place the submarine in service immediately upon its completion. U-3008's overhaul was completed by mid-summer, and she went into service on 24 July 1946, Comdr. Everett H. Steinmetz in charge."
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Churchill-class_submarine",
+      "title": "churchill-1970",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Churchill-class_submarine",
+      "evidenceSha256": "65ad56bd65ebbb6ec7613442db929f6055c6c7e64238234a2b1710a12ea7a6c1",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "In 1981 HMS Courageous became the first British submarine to carry the Sub-Harpoon missile. She was decommissioned in 1992 and is at Devonport Dockyard serving as a museum ship."
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Explorer-class_submarine",
+      "title": "explorer-1956",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Explorer-class_submarine",
+      "evidenceSha256": "0ed561591d145f8a4a213d5188cf0b4448778d049ebb76034b0b10ada41371d2",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The first, Excalibur, was commissioned in March 1958. They were very fast boats, achieving a peak speed of over 30 knots,[2] a speed record at the time for a submarine, a sustained underwater speed of around 49 km/h (26.5 kn) for period up to 3 hours, and 22 km/h (12 kn) for 15 hours on one turbine.[1] Because of the use of hydrogen peroxide as a hair bleach, the submarines were nicknamed the Blonde class. As well as providing experience with this type of technology, they also allowed the Royal Navy to practise against fast moving underwater targets. However the use of HTP was not successful, and there were several explosions, which resulted in the second nickname of Exploder being applied to the class and Explorer in particular, while Excalibur had the nickname \"Excruciater\".[3] The subsequent use of HTP to power torpedoes led to the loss of HMS Sidon and the loss of the Russian submarine Kursk."
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/HMS_Swordfish_(1916)",
+      "title": "swordfish-1916",
+      "evidenceSource": "https://en.wikipedia.org/wiki/HMS_Swordfish_(1916)",
+      "evidenceSha256": "a019ce142cabeb36d72cac43a763d6efb30870251967f2ab34bb4bec1e037e09",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Commissioned | 28 April 1916 |"
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/XE-class_submarine",
+      "title": "british-xe-1944",
+      "evidenceSource": "https://en.wikipedia.org/wiki/XE-class_submarine",
+      "evidenceSha256": "af26353e4aeea932ccc178b3c96edb6e120e006f8b5b5c623bff6934f95e4bde",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "On 31 July 1945, HMS XE1 and XE3 executed a joint attack on Japanese warships within Singapore harbour. XE3 was tasked with mining the heavy cruiser Takao while XE1 was to attack the heavy cruiser Myōkō.[3]"
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Welman_submarine",
+      "title": "welman-1943",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Welman_submarine",
+      "evidenceSha256": "fbf68b83d8769341d6abc9aabdb983f1b0eeac7c25993802a49826a713c63c77",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "In the autumn of 1943 the Combined Ops commander, General Sir Robert Laycock (who took over from the then Lord Louis Mountbatten) decided that the Welman was unsuitable for their purposes, so the craft were returned to the Royal Navy. Admiral Sir Lionel Wells, Flag Officer commanding Orkney and Shetland, thought they might be useful for attacks on German shipping using coastal waters inside the Leads off Norway. Motor Torpedo Boats (MTBs) of the 30th Flotilla, manned by officers and men of the Royal Norwegian Navy, were making these raids already and agreed to try the Welmans in an attack on the Floating Dock in Bergen harbour (eventually sunk in September 1944 by X-24). On 20 November 1943 MTB635 and MTB625 left Lunna Voe, Shetland, carrying Welmans W45 (Lt. C. Johnsen, Royal Norwegian Navy), W46 (Lt Bjørn Pedersen (1922), Norwegian Army), W47 (Lt. B. Marris, RNVR) and W48 (Lt. J. Holmes, RN). The craft were launched at the entrance to the fjord."
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Welfreighter",
+      "title": "gb-welfreighter",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Welfreighter",
+      "evidenceSha256": "724485113284ba73684b3498b2a8bffce82809b96d5ba2c518e95c63e2eb6706",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Before the Welfreighter became properly operational the secret war in Europe was nearly over. In late 1944 plans were discussed to deploy the craft to the Adriatic, to assist operations in the Balkans, where SOE was involved in supporting partisans in northern Greece, Albania, and Yugoslavia."
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/LR5",
+      "title": "lr5-rescue",
+      "evidenceSource": "https://en.wikipedia.org/wiki/LR5",
+      "evidenceSha256": "c561b55efc03a73af803d6ad15eaf8c28307106c3d424b689e9c2b928bbe34bd",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The LR5 was used by the Royal Navy from 1978 to 2009. Originally Manufactured by Vickers Slingsby, which became Slingsby Engineering, then Perry Slingsby Systems and is now Forum Energy Technologies (FET)."
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/NATO_Submarine_Rescue_System",
+      "title": "nsrs-srv-nemo",
+      "evidenceSource": "https://en.wikipedia.org/wiki/NATO_Submarine_Rescue_System",
+      "evidenceSha256": "08c7359c461305e7965fbe4b3bd0a3f462215faa433700f049c00724d4675a50",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The NSRS entered service in 2008, replacing the UK's previous rescue system, the LR5. The complete system is fully air transportable in a variety of aircraft operated by NATO countries, including the Airbus A400M Atlas, Boeing C-17 Globemaster III, and Lockheed C-5 Galaxy. It is capable of launch and recovery in a significant wave height of up to 5 metres (16 ft) (sea state 6) and can reach any distressed submarine (DISSUB) in 72-96 hours from the alert, dependent upon location. It has limited capability in ice-covered seas."
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/German_submarine_U-2326",
+      "title": "gb-u2326",
+      "evidenceSource": "https://en.wikipedia.org/wiki/German_submarine_U-2326",
+      "evidenceSha256": "b264b8d5b2c1c52196d97d185e6cd378279f8e4e5a1ab7c7add4c9ffa6602cc9",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "On 14 May 1945, a week after the end of the war, U-2326 surrendered at Dundee, Scotland. Karl Jobst and Leutnant Karl Bertsch were held aboard HMS Unicorn (1824), temporarily known as HMS Cressy. U-2326 would go on to become a British Type-N-class submarine renamed N35 and later be transferred to France in 1946. However, she was sunk 6 December 1946, in an accident in Toulon with the loss of 21 lives. While many sources claim that the boat was later raised and broken up for scrap, the French Navy does not raise warships that suffered a loss of life as they are viewed as military graves, so these claims seem highly unlikely.[2][4][5]"
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/German_submarine_U-1105",
+      "title": "gb-u1105",
+      "evidenceSource": "https://en.wikipedia.org/wiki/German_submarine_U-1105",
+      "evidenceSha256": "0c354829631e35f2d56bf086ac6543d2eb99f707841cdeb04fe9808e18b09ee9",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Though still operated by her German crew, U-1105 was re-designated as the Royal Navy submarine N-16 and sailed under armed frigate and air escort along with other surrendered U-boats, through the North Minch to the British naval base at Lochalsh, then to Lisahally, Northern Ireland. Given a British caretaker crew she sat at Lisshally for several months before she was turned over to the United States as a war prize for study of its unique synthetic rubber skin."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/SEAL_Delivery_Vehicle",
+      "title": "us-sdv",
+      "evidenceSource": "https://en.wikipedia.org/wiki/SEAL_Delivery_Vehicle",
+      "evidenceSha256": "c749f24b8627774c31e6d37bb6872e99b4682ccf899f6d2bac19185c2ddc3759",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The Mark 8 Mod 1 SDV is the only SDV officially in use by the US Navy and Royal Navy. It is an upgrade of the earlier Mark 8 Mod 0 SDV. The Mod 1 is quieter, faster, more efficient, and has a longer range than the Mod 0.[16] Its updated electronics, materials, and battery and motor systems gives it twice the range and 1.5 times the speed of the Mod 0.[16] Another advantage of the Mark 8 Mod 1 over its predecessor is that it is built from aluminium instead of plastic reinforced fiberglass, making its hull sturdier and roomier.[16] The sturdier hull means that it can be deployed from CH-46 Sea Knight and CH-53E Super Stallion helicopters, although SDVs often break or explode when dropped in the water from a helicopter, making aerial deployments impractical and undesirable.[6]"
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Shallow_Water_Combat_Submersible",
+      "title": "us-mk11",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Shallow_Water_Combat_Submersible",
+      "evidenceSha256": "69526dc919a150ea4c29bbc08a3ac581a1b9f58e93ba04c6c70b7f66f21c5407",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The Shallow Water Combat Submersible (SWCS), also known as the Mark 11 SEAL Delivery Vehicle (SDV Mk 11), is a crewed, wet (free-flooding) submersible that serves as a swimmer delivery vehicle for special-operations missions by United States Navy SEALs. Designed to replace the Mark 8 SEAL Delivery Vehicle (SDV Mk 8) on a 1-to-1 basis, Teledyne was awarded a contract to deliver 10 units for a cost of $179 million. The first two ships were delivered in 2018, with the last units planned for delivery in 2022.[7] The SWCS will serve alongside the pressurized Dry Combat Submersible (DCS), a midget submarine developed by Lockheed Martin to replace the cancelled Advanced SEAL Delivery System (ASDS).[8]"
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Chariot_manned_torpedo",
+      "title": "gb-chariot",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Chariot_manned_torpedo",
+      "evidenceSha256": "d1892eff3cf409e56dc5afc47baaa5955841d79884eb13f80b76230fe1ffdfe6",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The Chariot was a British human torpedo used in World War II. The Chariot was inspired by the operations of Italian naval commandos, in particular the raid on 19 December 1941 by members of the Decima Flottiglia MAS who rode \"Maiali\" manned torpedoes into the port of Alexandria and there placed limpet mines on or near the battleships HMS Valiant and HMS Queen Elizabeth as well as an 8,000-ton tanker, causing serious damage which put both battleships out of operational use until 1943.[1]"
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Columbia-class_submarine",
+      "title": "us-columbia",
+      "evidenceSource": "https://en.wikipedia.org/wiki/Columbia-class_submarine",
+      "evidenceSha256": "ff3d68545d7c3663663ad93f5a9e50e382aec8ecaa50a78278137128683a71a0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The upcoming Columbia class (formerly known as the Ohio Replacement Submarine and SSBN-X Future Follow-on Submarine) are nuclear-powered ballistic missile submarines of the United States Navy, designed to replace the Ohio class.[5] Construction of the first vessel began on 1 October 2020,[6] and is scheduled to enter service in 2031.[7][8][9]"
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Stickleback-class_submarine",
+      "title": "Stickleback US loan relationship",
+      "evidenceSource": "https://www.navypedia.org/ships/uk/brit_ss_stickleback.htm",
+      "evidenceSha256": "f05bab0db2be87247d799e62639cc064c8bd09530e3e50dc5ddc4c044042c461",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Stickleback was sold to the Royal Swedish Navy in 1958 and renamed Spiggen , and Sprat was lent to the US Navy at about the same time, to test harbour defences. Although stricken in 1970 the Spiggen was returned to the UK in 1977 for preservation at the Submarine Museum in Gosport."
+    },
+    {
+      "country": "jp",
+      "category": "submarine",
+      "url": "https://web.archive.org/web/20220309151843/https://www.chunichi.co.jp/article/431591",
+      "title": "新型潜水艦「たいげい」就役 海自、２２隻体制に増強：中日新聞Web",
+      "evidenceSource": "https://web.archive.org/web/20220309151843/https://www.chunichi.co.jp/article/431591",
+      "evidenceSha256": "605185dd4cc70d8e6d5aa5b1a79c7263ee2e2dc0ed9eac7da773cf416181dffb",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "海上自衛隊の新型潜水艦「たいげい」が９日、就役した。"
+    },
+    {
+      "country": "jp",
+      "category": "submarine",
+      "url": "https://global.kawasaki.com/en/corp/newsroom/news/detail/?f=20250306_1156",
+      "title": "Submarine Raigei Delivered | Kawasaki Heavy Industries, Ltd.",
+      "evidenceSource": "https://global.kawasaki.com/en/corp/newsroom/news/detail/?f=20250306_1156",
+      "evidenceSha256": "c182a5bfb0af9e5261c6dd03556d918508eb7c4767cc33b3b36fe9083570cb00",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "held a ceremony marking the delivery of the submarine <em>Raigei</em> to the Japan Ministry of Defense (MOD)"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/under_1917/epsh/list.htm",
+      "title": "bars-1915",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/under_1917/epsh/list.htm",
+      "evidenceSha256": "7e810605af9b7b548fff815c9979c70062d23a20e3684c02c89cd9abc0fc30fe",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: № Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй САНКТ-ПЕТЕРБУРГ: Балтийский Завод 1 «Ерш» - 03.07.1914 Весна 1917 15.12.1917 Залож. на заводе \"Ноблесснер\" 01.10.1921 - пер. в ПЛ-9 31.12.1922 - пер. в «Рабочий» 22.05.1931 - погибла, поднята 2 «Форель» - 03.07.1914 Осень 1917 недостроена Залож. на заводе \"Ноблесснер\" 01.10.1921 - пер. в ПЛ-13 4. История проекта: Подводные лодки типа \"Ёрш\" (хотя они и строились как тип \"Барс\" , в их конструкцию были внесены серьезные изменения, по которым их можно отнести к отдельному типу ПЛ, с другим вооружением и назначением) переоборудованы из начатых постройкой ПЛ типа \"Барс\" ввиду острой потребности Балтийского флота в подводных минных заградителях (ПМЗ). В 1916 г. Главное Управление Кораблестроения предложило Балтийскому заводу составить проект переоборудования в ПМЗ ПЛ \"Форель\" с использованием системы постановки мин, принятой для ПМЗ \"Краб\" . Система должна была обеспечивать автоматическую постановку мин типа \"ПЛ\" с наименьшим интервалом 30,5 м при скоростях хода от 4 узлов до полной."
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/877/B-806/B-806.htm",
+      "title": "project-877ekm",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/877/B-806/B-806.htm",
+      "evidenceSha256": "93e22c2c9f44f7020094119c39d80900f79bf99aeac56b5ae56e839b03fc2613",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "1986 год 25 сентября Подписан приёмный акт. Вступила в строй. Находилась в г.Таллин, затем перешла г.Ригу в дивизион учебного центра. Несмотря на то, что ПЛ была построена по экспортному проекту (планировалась для ВМС Ливии), было принято решение оставить её в составе ВМФ СССР и использовать корабль для обучения прибывающих в Советский Союз экипажей иностранных ВМС, для которых велось строительство кораблей по проекту 877ЭКМ . Включена в состав ДКБФ; 1987 год 25 марта Зачислена в состав 239-го ДнУК 650-го УЦ БФ с базированием на порт г.Усть-Двинск (Латвийская ССР); 1987 год На ПЛ прошли обучение два экипажа ПЛ проекта 877ЭКМ ВМС Индии ( S56 Sindhudhvai ) и ВМС Алжира ( Rais Hadi Mubarek 012 ); 1988 год 28 сентября Отнесена к подклассу учебных кораблей; 1988 год 24 октября ПЛ посетила военная делегация Северной Кореи (во главе с министром военной судостроительной промышленности); 1988 год На ПЛ стажировались курсанты ВМС Алжира, Ливии, Индии и Кубы, обучающиеся в ВВМУ и ВМА СССР; 1988 год На ПЛ прошли обучение два экипажа ПЛ проекта 877ЭКМ ВМС Индии и ВМС Алжира; 1989 год 15 мая ПЛ по"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/A615/list.htm",
+      "title": "project-615",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/A615/list.htm",
+      "evidenceSha256": "3996d26a6ac70ec0f80473ae031c2f718954225d767266bcfcc4503e6ccacc09",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ЛЕНИНГРАД: Завод \"Судомех\" (№ 196) (23) 1 М-255 664 08.09.1953 16.09.1954 10.12.1955 2 М-256 665 23.09.1953 15.09.1954 21.12.1955 26.09.1957 - погибла на КБФ 3 М-257 666 10.11.1953 30.09.1954 10.12.1955 1957 - переоборуд. в стенд 4 М-258 667 18.11.1953 04.11.1954 21.12.1955 5 М-259 668 12.01.1954 05.11.1954 13.12.1955 6 М-260 669 14.02.1954 21.05.1955 31.07.1956 7 М-261 1070 23.02.1954 21.05.1955 31.07.1956 30.06.1978 - пер в МС-261 1982 - памятник в Краснодаре 8 М-262 1071 20.03.1954 12.07.1955 31.07.1956 15.02.1971 - пер в УТС-215 9 М-263 1072 08.04.1954 02.08.1955 02.11.1956 10 М-264 1073 04.06.1954 14.09.1955 03.10.1956 11 М-265 1074 15.07.1954 09.09.1955 30.09.1956 12 М-266 1075 30.08.1954 30.10.1955 30.09.1956 03.08.1977 - пер в МС-266 13 М-267 1078 15.10.1954 14.01.1956 30.09.1956 14 М-268 1079 20.11.1954 16.04.1956 26.12.1956 15 М-269 1080 30.11.1954 17.03.1956 27.08.1957 03.08.1977 - пер в МС-269 16 М-295 701 10.01.1955 03.04.1956 16.08.1957 17 М-296 702 01.02.1955 04.0"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/637/M-361/M-361.htm",
+      "title": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/637/M-361/M-361.htm",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/637/M-361/M-361.htm",
+      "evidenceSha256": "4a19e47c386b8f230f3df95f5af9b077783ca3b6e2acc098c2cd1a5ab189d01a",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "1959 год 30 июля Спущена на воду, начаты наладочные испытания; 1960 год май Прекращение испытаний по указанию Главного управления кораблестроения ВМФ СССР; 1961 год 28 февраля Исключена из списков кораблей ВМФ СССР; 1961 год 10 декабря Расформирован экипаж; 1961 год Передана Высшему Военно-морскому инженерному училищу в г.Пушкин (пригород г.Ленинград); 1962 год Поднята на берег и установлена в качестве учебной базы на территории ВВМИУ (с 24.01.1974 - им. В.И. Ленина); 1962 год 24 августа Вошла в состав КБФ как комплексная лаборатория-тренажер; 1998 год 29 августа Сформирован Военно-морской инженерный институт (г.Пушкин) на базе ВВМИУ имени Ф.Э. Дзержинского (г.Санкт-Петербург) и ВВМИУ имени В.И. Ленина (г.Пушкин); 2007 год - 2008 год Силами специалистов ФГУП \"Адмиралтейские верфи\" на лаборатории-тренажере выполнен комплексный ремонт; 2012 год 1 июля Военно-морской инженерный институт (г.Пушкин) путем слияния с Военно-морским институтом радиоэлектроники имени А.С. Попова (г.Петергоф) были объединены в Военный институт (военно-морской политехнический), который стал структурным подразде"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://tass.com/defense/1378805",
+      "title": "project-885",
+      "evidenceSource": "https://tass.com/defense/1378805",
+      "evidenceSha256": "e49a680859d7d9dfa752bf89b3ab87747de94b293ca7c668eba47d387d6a408c",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The ceremony of hoisting the naval flags aboard the improved Project 955A (Borei-A) first serial-built strategic nuclear-powered underwater cruiser Knyaz Oleg and the Project 885M (Yasen-M) first serial-built nuclear-powered sub Novosibirsk was held in Severodvinsk in Russia’s northwest. Putin watched the ceremony via a video linkup while Russian Navy Commander-in-Chief Admiral Nikolay Yevmenov and Deputy Defense Minister Alexey Krivoruchko were present at the subs’ launch site. \"Today the naval flags are being hoisted aboard the nuclear-powered submarines Knyaz Oleg and Novosibirsk and the new missile-carrying submarines are entering service with the Navy,\" the head of state said. The Russian leader thanked the workforce of the Sevmash Shipyard where the two cutting-edge nuclear-powered subs had been built. Putin called the submarines’ armaments \"a formidable strike force\" and specified that the sub Knyaz Oleg was furnished with Bulava intercontinental ballistic missiles while the multi-purpose underwater cruiser Novosibirsk carried Kalibr and Oniks cruise missiles and was capable of both fighting nava"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://en.wikipedia.org/wiki/Borei-class_submarine",
+      "title": "project-955",
+      "evidenceSource": "https://tass.com/defense/1378805",
+      "evidenceSha256": "e49a680859d7d9dfa752bf89b3ab87747de94b293ca7c668eba47d387d6a408c",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "The ceremony of hoisting the naval flags aboard the improved Project 955A (Borei-A) first serial-built strategic nuclear-powered underwater cruiser Knyaz Oleg and the Project 885M (Yasen-M) first serial-built nuclear-powered sub Novosibirsk was held in Severodvinsk in Russia’s northwest. Putin watched the ceremony via a video linkup while Russian Navy Commander-in-Chief Admiral Nikolay Yevmenov and Deputy Defense Minister Alexey Krivoruchko were present at the subs’ launch site. \"Today the naval flags are being hoisted aboard the nuclear-powered submarines Knyaz Oleg and Novosibirsk and the new missile-carrying submarines are entering service with the Navy,\" the head of state said. The Russian leader thanked the workforce of the Sevmash Shipyard where the two cutting-edge nuclear-powered subs had been built. Putin called the submarines’ armaments \"a formidable strike force\" and specified that the sub Knyaz Oleg was furnished with Bulava intercontinental ballistic missiles while the multi-purpose underwater cruiser Novosibirsk carried Kalibr and Oniks cruise missiles and was capable of both fighting nava"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://ria.ru/20240131/podlodka-1924546271.html",
+      "title": "project-677",
+      "evidenceSource": "https://ria.ru/20240131/podlodka-1924546271.html",
+      "evidenceSha256": "34636875bc2a12742a53d273a4c1768ac1b40f5426f40c708472b39b2849b06a",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "ВМФ получил дизель-электрическую подлодку \"Кронштадт\" - РИА Новости, 01.02.2024 Регистрация пройдена успешно! Пожалуйста, перейдите по ссылке из письма, отправленного на Отправить еще раз Политика В мире Экономика Общество Происшествия Армия Наука Культура Туризм Религия Спорт 12:22 31.01.2024 (обновлено: 11:46 01.02.2024) ВМФ получил дизель-электрическую подлодку \"Кронштадт\" Дизель-электрическую подлодку \"Кронштадт\" передали Северному флоту © РИА Новости / Александр Гальперин | Перейти в медиабанк Военнослужащие перед началом торжественной церемонии поднятия Военно-морского флага РФ на подводной лодке проекта 677 \"Кронштадт\" на судостроительном заводе \"Адмиралтейские верфи\" в Санкт-Петербурге © РИА Новости / Александр Гальперин Перейти в медиабанк Военнослужащие перед началом торжественной церемонии поднятия Военно-морского флага РФ на подводной лодке проекта 677 \"Кронштадт\" на судостроительном заводе \"Адмиралтейские верфи\" в Санкт-Петербурге Читать ria.ru в Дзен МАКС Telegram С.-ПЕТЕРБУРГ, 31 янв – РИА Новости. Дизель-электрическую подводную лодку проекта 677 \"Кронштадт\", построенную на \"Адмиралтейских верфях\" (входит в Объединенную судостроительную корпорацию), передали Военно-морскому флоту РФ. Торжественная церемония поднятия военно-морского флага на подлодке состоялась на \"Адмиралтейских верфях\", передает корреспондент РИА Новости. Подлодки проекта \"Антей\" переоснастили новым ракетным комплексом 14 января 2024, 12:02 \"Сегодня праздничный для Военно-морского флота день. Сегодня мы принимаем подводную лодку нового поколения, лодку, которая основана совершенно на новых физических принципах, которая несет грозное оружие – и не случайно эта лодка носит название \"Кронштадт\". Кронштадт – это то место, откуда начинался российский флот, это тот отправной пункт, откуда в кругосветное плавание уходили российские, советские"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/690/list.htm",
+      "title": "project-690",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/690/SS-368/SS-368.htm",
+      "evidenceSha256": "4b4c6817d85e7dca623c27e9c570eeba954467624882cc7460d4ca1f931bfe77",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "1967 год 31 декабря Вступила в строй; 1968 год Зачислена в состав Тихоокеанского флота, принята в опытную эксплуатацию сроком на 1 год с проведением специспытаний по утвержденной программе. Вошла в состав 4-й БрПЛ (с 06.1990 - 4-я ОБрРПЛ) 6-й ЭскПЛ (с 01.09.1989 - в 46-й ДиПЛ, с 03.1990 - в ПрФлРС) КТОФ с базированием на бухту Золотой Рог (г.Владивосток); 1969 год январь ПЛ посетил ГК ВМФ адмирал флота Горшков С.Г., который очень высоко оценил корабль; 1977 год (предположительно) Отнесена к ПЛ специального назначения. Переименована в СС-368 ; 1990 год май Участвов"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/940/list.htm",
+      "title": "project-940",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/940/BS-486/BS-486.htm",
+      "evidenceSha256": "0cc16731c3a19f6102ff8baa4079dba3b3cdc4e7ba535bb69396bf136861c654",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "1976 год 21 января Окончила программу испытаний. Вступила в строй; 1976 год 9 февраля Передана в опытную эксплуатацию на КТОФ; 1976 год 30 июня Подписан приемный акт (? требует уточнения); 1976 год 11 августа Включена в состав 19-й БрПЛ 6-й ЭскПЛ КТОФ с базированием на бухту Малый Улисс (г.Владивосток); 1976 год октябрь - 1978 год сентябрь Опытная эксплуатация. За время опытной эксплуатации было выполнено 37 всплытий и посадок спасательными подводными снарядами ( АС-2 и АС-3 проекта 1837 ) и 942 человеко-спуска водолазов на глубины до 200 м. Шесть акванавтов находились под давлением 19 суток 11 ч. 40 мин. Участвовала вместе с СПС и водолазами"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/1710/list.htm",
+      "title": "project-1710",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/1710/SS-533.htm",
+      "evidenceSha256": "37cfaeeb6c76f7af6efd0e9e83cf891fd9d1acd1e8522f2fe925adb3692c0b00",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "1987 год 19 декабря Вступила в строй; 1988 год Вошла в состав КЧФ. Зачислена в состав 155-й БрПЛ 14-й ДиПЛ КЧФ с базированием на Балаклаву. Эксплуатировалась в интересах 184-й научно-исследовательской экспериментальной базы ВМФ СССР; 1988 год При работе по плану испытаний на Балаклавском рейде, при погружении вышел из строя гирокомпас. Никто этого своевременно не обнаружил, сверку с показаниями магнитного компаса не производили. На ПЛ, считая, что легли на курс от Балаклавы, фактически не заметили, что шли на 180 градусов в"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/1840/list.htm",
+      "title": "project-1840",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/1840/list.htm",
+      "evidenceSha256": "b1f6d54eedf6e9194f3f746042b81b1bc9f18b8fbbdcc23521b7178303960cc4",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ЛЕНИНГРАД: Адмиралтейское объединение (Завод № 196) (1) 1 БC-555 01665 26.10.1977 11.08.1978 12.1979 1989г – начата мод. по пр. 18401 , незакончена 4. История проекта: При разработке и освоении метода \"насыщенных\" погру­жений водолазов длительного пребывания под повышенным давлением (ДП), для экспериментов в морских условиях использовались стационарные подводные лаборатории: в США - \"Слаб\"; во Франции - \"Преконтинент\"; в ФРГ - \"Гельголанд\". Эти лаборатории для своего функционирования нуждались в значительном количестве средств надводного или берегового обеспечения, зависели от состояния погоды на море, надежности стоянки, средств надводного обеспечения. Учитывая специфику задач ПСС ВМФ, необходимость выпол­нения водолазных работ, независимо от состояния моря, для выполнения экспериментальных работ по методу ДП, было ре­шено создать автономную подводную базу-лабораторию (ПБЛ). В сентябре 1967 г. по постановлению Правительства на­чалась разработка проекта ПБЛ ( проект 1840 ) в СПМ"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/1851/list.htm",
+      "title": "project-18510",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/1851/list.htm",
+      "evidenceSha256": "64a61d90f7d84c282a3ff9b7061d05d89bd79b5728e629ebc40987f0a081ae27",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ЛЕНИНГРАД: «Ленинградское Адмиралтейское Объединение» (3) 1 АС-23 01429 25.09.1981 30.10.1983 30.12.1986 на СРЗ \"Звездочка\" в отстое статус в СМИ не озвучен 2 АС-21 01430 26.12.1984 29.04.1991 28.12.1991 постройка по проекту 18511 статус в СМИ не озвучен 3 АС-35 01431 20.12.1989 29.09.1994 12.10.1995 постройка по проекту 18511 на СРЗ \"Звездочка\" в ремонте статус в СМИ не озвучен Возможно существует 4-й корпус проекта, заложенный на ЛАО в 90-х годах, и, в дальнейшем, переведенный для достройки на СРЗ \"Звездочка\". 4. История проекта: В 80-х годах в г.Ленинград, на заводе « ЛАО », началась постройка серии атомных подводных лодок специального назначения проекта 18510 (шифр \"Нельма\"), лишенных вооружения. Корабли предназначались, в частности, для проведения глубоководных работ. Корабли оснащены одним реактором мощностью 10 мВт. По классификации NATO они получили обозначение \"X-Ray\". Все корабли вошли в состав Северного флота. В различных источниках также встречается упоминание о даль"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/1910/list.htm",
+      "title": "project-1910",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/1910/list.htm",
+      "evidenceSha256": "546b4ecd47f98c4ae73fdd137b5ffb07e39ce84cb635245973e95248c99f3b36",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ЛЕНИНГРАД: \"Ленинградское Адмиралтейское Объединение\" (3) 1 АС-13 01401 20.10.1977 25.11.1982 31.12.1986 статус не известен 2 АС-15 01402 23.02.1983 29.04.1988 30.12.1991 3 АС-33 01403 28.11.1988 23.11.1993 16.12.1994 4. История проекта: Для исследования новых типов атомных реакторов в начале 70-х годов было решено построить атомную подводную лодку специального назначения проекта 1910 (шифр «Кашалот»). Бюро-проектант – СПМБМ «Малахит». Завод-строитель – Ленинградское Адмиралтейское объединение. Главный конструктор – Е.С. Корсуков. Явилась первой отечественной атомной научно-исследовательской подводной лодкой малого водоизмещения для выполнения длительных работ различного назначения на глубинах Мирового океана. Оснащена робототехническими, манипуляторными и другими комплексами. Корабль, лишенный традиционного торпедного вооружения, было решено использовать также в качестве средства доставки боевых подводных пловцов. «Атомная глубоководная станция 1 ранга» (так классифицировалась"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/on_1992/10831/list.htm",
+      "title": "project-10831",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/on_1992/10831/list.htm",
+      "evidenceSha256": "6c3134a6600115ba5ecc31369314f617fc87c1508c8af6bfd29aadb0b201193f",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "01.07.2019 в российских территориальных водах на научно-исследовательском глубоководном аппарате, предназначенном для изучения придонного пространства и дна Мирового океана в интересах Военно-морского флота России, в ходе проведения батиметрических измерений возник пожар. 14 моряков-подводников погибли в результате отравления продуктами горения (по сообщению МО РФ от 02.07.2019). Корабль не в строю. 3. Состав проекта: Номер АС-12 впервые стал упоминаться в 2000 году в издании Ильин В.Е. и Колесников А.И. \"Отечественные атомные подводные лодки\". Однако на тот момент такое наименование носил АРС АС-12 проекта 1839 . На сегодняшний день наименование АС-12 упоминается практически во всех открытых источниках. В информации на сайте Отечественная гидронавтика и на портале Флот"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1832/list.htm",
+      "title": "project-18320",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1832/list.htm",
+      "evidenceSha256": "183fa337a76457347a27b54032f159cd3ae8a4cb5afb16f531b1b4c48f11d35e",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ЛЕНИНГРАД: ЛАО (4) 1 АС-6 01650 31.03.1970 09.1973 25.12.1975 до 1977 - АГА-6 1988-1992 мод. по пр. 18321 2 АС-8 01651 16.05.1975 08.05.1979 29.12.1979 до 1977 - АГА-8 3 АС-24 01663 12.02.1985 10.12.1988 31.12.1988 4 АС-27 01671 30.10.1986 09.11.1989 31.12.1989 с 2016 - Москва, парк \"Патриот\" 4. История проекта: Первым глубоководным ПА для ВМФ стал \"Поиск-2\" пр. 18320 , разработанный ЛПМБ \"Рубин\". ПА предназначался для проведения исследований водной среды и дна океана, обнаружения и обследования подводных объектов, а также для производства специальных подводных работ в интересах ВМФ. В связи с повышенными требованиями ТТЗ на проектирование ГА \"Поиск-2\", он, в какой-то мере повторяя проект 1825 , значительно отличался от него как по принятым техническим решениям, так и по полученным характеристикам. В процессе разработки эскизного проек- та 18320 выяснилось, что, с учетом установленных сроков строительства, прочный корпус может быть выполнен из той же вновь создаваемой стали АК-3"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1837/list.htm",
+      "title": "project-1837",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1837/list.htm",
+      "evidenceSha256": "0215540d6f28c41c63b92a48efd5136a262db63ce02e2b044391c670f014182a",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ГОРЬКИЙ: Завод «Красное Сормово» (5+4) Проект 1837 (5) 1 АС-1 10127 22.10.1969 1970 05.11.1971 до 1977 - АПС-1 2 АС-2 ? 28.02.1972 09.1973 29.12.1973 до 1977 - АПС-2 3 АС-3 ? 04.02.1974 11.1974 25.08.1975 до 1977 - АПС-3 4 АС-5 ? 04.03.1976 15.10.1977 28.04.1978 до 1977 - АПС-5 с 2017 - Кронштадт, филиал парка \"Патриот\" 5 АС-11 ? 06.05.1977 13.07.1978 28.12.1978 Проект 1837К (4) 1 АС-16 06003 29.08.1978 25.05.1980 29.11.1980 2 АС-18 06004 11.05.1979 16.09.1980 30.12.1980 3 АС-14 06005 24.04.1980 04.09.1981 10.09.1981 4 АС-19 06006 15.01.1981 04.11.1981 30.12.1981 4. История проекта: Накопленный эксплуатационный опыт во время испытаний ПЛ проекта 666 и 613С позволил более качественно составить тактико-технические задания на проектирование спасательного подводного снаряда (СПС) проекта 1837 и автономного рабочего снаряда (АРС) проекта 1839 , технические проекты и рабочие чертежи которых разрабатывало ЦКБ \"Лазурит\" (главный конструктор Б.А.Леонтьев, главный наблюдающий от ВМФ А.И.Н"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1839/list.htm",
+      "title": "project-1839",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1839/list.htm",
+      "evidenceSha256": "92375bff5a6083e271b5f1329b9fa9fb2b7ed52368c535cca9129df8e2995ea5",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ГОРЬКИЙ: Завод «Красное Сормово» (7+4) Проект 1839 (7) 1 АС-10 04001 27.08.1970 1971? 23.12.1971 (29.12.1971) до 1977 - АРС-10 с 1991 - отстой план - в музей 2 АС-9 ? 1973 1974 30.09.1976 до 1977 - АРС-9 3 АС-4 ? 1975 1977 20.12.1977 до 1977 - АРС-4 4 АС-12 ? 02.1977 30.01.1979 29.06.1979 с 2004 - отстой 5 АС-17 ? 10.1978 25.06.1982 22.09.1982 предположительно утилизирован 6 АС-20 08004 02.1980 05.11.1982 29.12.1982 с 2018 - Балаклава музей 825 ГТС 7 АС-22 08005 25.12.1982 16.08.1983 20.10.1983 с 2017 - Кронштадт, филиал парка \"Патриот\" Проект 18392 (4) 1 АС-25 08006 30.12.1983 19.10.1984 25.01.1985 2 АС-29 ? 12.1984 02.08.1985 22.10.1985 с 2017(?) - отстой 3 АС-32 ? 12.1985 30.06.1986 10.09.1986 4 \"Браво\" ? 198? 1990? 1990 предположительно утилизирован 4. История проекта: Накопленный эксплуатационный опыт во время испытаний ПЛ пр. 666 и 613С позволил более качественно составить тактико-технические задания на проектирование спасательного подводного снаряда (СПС) пр. 1837 и автон"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1855/list.htm",
+      "title": "project-1855",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1855/list.htm",
+      "evidenceSha256": "a5c2a2e86db75e3a7b7f8702137ef7a60bf7715810d723ae144b597a8beead56",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ГОРЬКИЙ: «Красное Сормово» (4) 1 АС-28 ? 01.1982 10.12.1985 12.08.1986 2008 год - мод по пр. 18551 2020 год - ср.ремонт 2 АС-26 08001 04.1986 27.08.1987 25.11.1987 2010 год - мод по пр. 18551 2018 год - ср.ремонт 3 АС-30 08007 09.1987 26.07.1988 12.11.1988 2013 год - мод по пр. 18551 2022 год - ср.ремонт 4 АС-34 ? 01.1988 27.08.1989 30.11.1989 2016 год - мод по пр. 18551 4. История проекта: В середине 70-х годов прошлого века возник вопрос с поисково-спасательными обеспечением проектируемых глубоководных подводных лодок с гпубиной погружения до 1000 метров. Командованием ВМФ СССР было принято решение о создании спасательного глубоководного аппарата (СГА) с рабочей глубиной 1000 метров. Разрабатывая ТТЗ на СГА спасатели ВМФ мечтали увидеть универсальный спасательно-рабочий аппарат, оснащенный современным навигационным и радиотехническим вооружением, способный производить спасение подводников и выполнять разнообразные подводные работы на глубинах до 1000 метров. Придавая перспекти"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/907/list.htm",
+      "title": "project-907",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/907/list.htm",
+      "evidenceSha256": "141eb6be6eaa2f7094483dc90bf899cab04c7178af2bda76574d9ecf06082cc8",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: № Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ЛЕНИНГРАД: Ново-Адмиралтейский завод, с 1972 - Ленинградское Адмиралтейское объединение (32) 1 В-482 16503/1 20.11.1971 12.07.1972 30.06.1973 2 В-483 16503/2 20.11.1971 12.07.1972 30.06.1973 3 B-526 01530 10.03.1974 01.06.1975 25.12.1975 4 B-529 01531 10.03.1974 01.06.1975 25.12.1975 5 В-550 01535 10.03.1974 01.06.1975 25.12.1975 установлен на постамент 6 B-532 01532 10.03.1974 01.06.1975 27.12.1975 7 B-537 01533 10.03.1974 01.06.1975 27.12.1975 8 B-544 01534 10.03.1974 01.06.1975 27.12.1975 9 B-535 01536 1974 03.12.1976 01.10.1977 10 B-545 01538 1974 03.12.1976 01.10.1977 11 B-540 01537 1974 03.12.1976 30.09.1977 12 B-547 01539 1974 03.12.1976 30.09.1977 13 B-559 01540 1974 03.12.1976 30.09.1977 14 B-560 01541 1974 03.12.1976 28.09.1977 15 B-? 01542 ? 16.01.1978 29.09.1978 16 B-? 01543 ? 16.01.1978 29.09.1978 17 B-? 01544 ? 16.01.1978 29.09.1978 18 B-? 01545 ? 16.01.1978 29.09.1978 19 B-? 01546 ? 16.01.1978 29.09.1978 20 B-? 01547 ? 16.01.1978 29.09.1978 21 B-? 01548 ? 10.04."
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/908/list.htm",
+      "title": "project-908",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/908/list.htm",
+      "evidenceSha256": "4596e773551b889cb6fe5cd69c00633433e607c4cfabbe09a67566f6df827410",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: № Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ЛЕНИНГРАД: Ленинградское Адмиралтейское объединение (13) 1 B-485 16501/11 03.05.1972 12.10.1972 12.09.1975 2 B-489 01510 05.03.1972 15.03.1979 03.09.1980 3 B-494 01511 05.03.1972 15.03.1979 04.09.1980 4 В-499 01512 03.09.1980 10.09.1981 29.12.1981 на постаменте в г.Кронштадт 5 B-501 01513 03.09.1980 10.09.1981 29.12.1981 6 B-504 01514 15.03.1981 20.07.1982 10.12.1982 ВМС Украины (?) 7 B-505 01515 15.03.1981 20.07.1982 10.12.1982 8 B-509 01516 19.03.1983 07.06.1983 26.09.1983 ВМС Украины (?) 9 B-511 01517 19.03.1983 11.06.1983 26.09.1983 10 B-528 01518 06.10.1983 26.04.1984 21.08.1984 ВМС Украины (?) 11 B-531 01519 06.10.1983 29.04.1984 21.08.1984 12 B-542 01520 13.06.1983 01.03.1985 08.06.1985 13 B-554 01521 13.06.1983 03.03.1985 08.06.1985 4. История проекта: Сверхмалая подводная лодка-носитель легководолазов \"Тритон-2\" проекта 908 (в некоторых источниках проект 09080 ) была предназначена для скрытой подводной транспортировки шести легководолазов к месту выполнения специальны"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/640/list.htm",
+      "title": "whiskey-project-613",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/640/list.htm",
+      "evidenceSha256": "cf799e1dd137a5553306938d64fdb27e6218d6e394a05544b5e19ad71190e387",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты модернизации Примечания начало окончание вступление в строй ГОРЬКИИ: Завод \"Красное Сормово\" (N 112) (4) 1 С-62 377 15.11.1959 31.01.1961 1961 2 С-73 411 15.10.1959 31.12.1960 1961 3 С-149 305 14.03.1955 28.02.1958 1958 1967 - мод. по пр. 640Ц 4 С-151 402 04.04.1959 30.09.1960 1960 1967 - мод. по пр. 640Ц 4. История проекта: В связи с увеличением скорости и радиуса действия самолетов встал вопрос об увеличении дальности обнаружения летящих самолетов противника в морских секторах противовоздушной обороны страны. Эта задача могла решаться путем размещения мощных радиолокационных станций на кораблях, несущих дозорную службу на определенном удалении от нашего побережья. При этом ПЛ были предпочтительнее надводных кораблей, так как они могут скрытно занимать позицию, уклоняться от обнаружения самолетами, погружаться под воду и обладают большей автономностью, чем надводные корабли. В марте 1955 года СМ СССР принял решение о переоборудовании ПЛ проекта 613 в ПЛ радиолокационного дозора ( проект 640 ). Разработка комплекса радиолок"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/666/list.htm",
+      "title": "whiskey-project-613",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/666/list.htm",
+      "evidenceSha256": "41b794fbaa211d6dd865ed1e66c73c32a32dfc7889899d65b5c37c2782bd27dd",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты модернизации Примечания начало окончание вступления в строй ГОРЬКИЙ: \"Красное Сормово\" (1) 1 С-63 378 1960 1961 1962 мод. под УПС СЕВАСТОПОЛЬ: Сдаточная база Сормовского судостроительного завода (1) 2 С-63 378 04.1969 12.1969 1970 мод. под ПДК 4. История проекта: В период с 1946 по 1957 годы было разработано несколько эскизных и предэскизных проектов переоборудования различных типов боевых ПЛ типа Щ Х и V серии , проекта 633 , проекта 613 и др. Значительный вклад в разработку проектов Подвод­ных спасателей внесли специалисты АСС и НИИ Чикер Н.П., Танкелюн В.И., Мурник В., Трофимов Н.Н., Буленков С.Е., Ники­тинский А.И., Березин Г.Б., Цыбин К.А. и др. В 1958 г., в соответствии с постановлением СМ СССР №0962-432 (423?) был разработан пр. 666 переоборудования ПЛ пр. 613 в экспериментальную спасательную ПЛ (ЭСПЛ) с целью практической проверки и отработки способов использования ее специальных устройств для спасения личного состава аварийной ПЛ сухим способом с помощью управляемого подводного снаряда (УПС) и мокрым способом (само"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/613e/list.html",
+      "title": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/613e/list.html",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/613e/list.html",
+      "evidenceSha256": "f5addcf736e5b19df15c5d1dac6b3b23eea7cfda4118566b5ba3e1c288d0694d",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: № Наименование корабля Заводской номер Даты модернизации Примечания начало окончание вступления в строй ГОРЬКИИ: Завод \"Красное Сормово\" (1) 1 СС-273 714 27.10.1980 22.07.1986 1989? Модер. по проекту 613Э 4. История проекта: Основной недостаток дизель-электрических подводных лодок (ДЭПЛ) в сравнении с атомными подводными лодками - необходимость периодически подвсплывать в режим работы дизеля под водой для зарядки аккумуляторной батареи (АБ). Очевидно желание проектантов ПЛ создать энергетическую установку (ЭУ), независимую от атмосферного воздуха. В СССР работы по созданию ПЛ с ЭУ с электрохимическими генераторами (ЭХГ) были начаты в первой половине 70-х годов. Центральное конструкторское бюро «Лазурит», научно-производственные объединения «Квант» и «Криогенмаш» приступили к созданию для подводных лодок ВНЭУ с электрохимическими генераторами (ЭХГ). Дизель-электрическую подлодку С-273 (в некоторых источниках ошибочно указывается на ПЛ С-296 ) проекта 613 переоборудовали по проекту 613Э шифр «Катран». Опытная ПЛ проекта 613Э разработки ЦКБ \"Лазурит\" была предназначен"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/09774/list.htm",
+      "title": "project-667a",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/09774/list.htm",
+      "evidenceSha256": "3270d93c05452a7e877e90ec6fcfd9d98520afa6039c787b58183b487f21f46f",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты модернизации Примечания начало окончание вступление в строй СЕВЕРОДВИНСК: МП \"Звездочка\" (1) 1 БС-411 430 20.10.1983 30.12.1990 1991 Мод. по проекту 09774 4. История проекта: Атомный подводный ракетоносец К-411 проекта 667А в 1990 г. был переоборудован в носитель сверхмалых подводных лодок. В ходе переоборудования корпус корабля был удлинен до 162,5 м, было полностью демонтировано торпедное вооружение, проведены другие доработки. ГЭУ номинальной мощностью 51000 л. с. включает два реактора ВМ-2-4 по 90 мВт, две паровые турбины, ГТЗА типа ОК-700. Имеется два дизельгенератора ДГ-500, два вспомогательных электродвигателя ПГ-137 и две аккумуляторные батареи по 112 элементов (2х8000 ампер/ч). АПЛ оснащена ГАК «Рубикон» («Рубин»?), ГАС миноискания МГ-509, навигационным комплексом «Медведица», радиолокационным комплексом РЛК-101 «Альбатрос», МРП-10 «Залив-П» и другим оборудованием. Кроме обеспечения спецопераций корабль может привлекаться для различных исследований. В статье Е.А. Горигледжана «Переоборудование атомных подводных рак"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/667AK/list.htm",
+      "title": "project-667a",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/667AK/list.htm",
+      "evidenceSha256": "e6d5c4db021097b5b664435c65973cc73943f813227b03dc9513887c52436833",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты модернизации Примечания начало окончание вступление в строй СЕВЕРОДВИНСК: Северное машиностроительное предприятие (№ 402) (1) 1 К-403 450 1980 1983 1984? 14.07.1981 - пер. в КС-403 4. История проекта: Современные сложные комплексы радиоэлектронного вооружения до установки на боевые корабли требуют проведения широкомасштабных исследований и отработки в лабораторных условиях и на специально оборудованных стендах, а также поэтапных испытаний и доводки опытных образцов в реальных морских условиях. Отработка и сдача таких комплексов непосредственно на боевых кораблях превращаются в весьма длительный процесс, сопряжены с многочисленными доработками программного обеспечения и материальной части, расходованием ресурса аппаратуры и корабля в целом. Как правило, для предварительной оперативной обработки результатов испытаний непосредственно в море требуется установка нештатной измерительной и компьютерной аппаратуры, оборудование помещений для приборов и испытателей, что в условиях стесненности боевой подводной лодки крайне затруднит"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/675n/list.html",
+      "title": "project-675",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/675n/list.html",
+      "evidenceSha256": "2af3a9ef2b09cf556985502473a35926ea87f228df02fec023cf0e95183360f0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты модернизации начало окончание вступление в строй СЕВЕРОДВИНСК: СРЗ \"Звездочка\" (1) КС-86 533 01.1973 12.1980 1981 4. История проекта: Проект переоборудования АПЛ проекта 675 для использования в интересах спецчастей МО СССР. В открытых источниках подробной информации о проекте 675Н (06754) , естественно, не встречается. По данным с сайта \"Отечественная гидронавтика\" переоборудование проводилось в целях работы с автономными глубоководными станциями специального назначения. Проект модернизации разрабатывался ЛПМБ \"Рубин\". Переоборудование ПЛА-носителя производилось на СРЗ \"Звездочка\" в г.Северодвинск. 5. Схема проекта: ? нет данных. 6. Тактико-технические данные проекта: ? нет данных. 7. Источники: - Апальков Ю.В. \"Подводные лодки ВМФ СССР\", Галея Принт, Санкт-Петербург, 2006г. - Информация опубликованная на сайте \"Отечественная гидронавтика\" (http://oosif.ru). Возврат на Главную страницу сайта «Штурм Глубины» Дизайн, подборка материала и верстка Николаев А.С.© 2014-2024"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/627a/list.htm",
+      "title": "project-627",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/627a/list.htm",
+      "evidenceSha256": "82eba7fd35f23f3ef925313b2fe83697164d050daf433a2e3cc97829e5cb1b15",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй СЕВЕРОДВИНСК: Северное машиностроительное предприятие (N 402) (12) 1 К-5 260 13.08.1956 01.09.1958 27.12.1959 14.03.1989 - пер в Б-5 2 К-8 261 09.09.1957 31.05.1959 31.12.1959 12.04.1970 - погибла 3 К-14 281 02.09.1958 16.08.1959 30.12.1959 1992(?) - пер в Б-14 ? 4 К-52 283 15.10.1959 28.08.1960 22.12.1960 1989(?) - пер в Б-52 ? 5 К-21 284 02.04.1960 18.06.1961 31.10.1961 14.03.1989? - пер в Б-21 ? 6 К-11 285 31.10.1960 01.09.1961 30.12.1961 14.03.1989? - пер в Б-11 ? 7 К-133 286 03.07.1961 05.07.1962 29.10.1962 1992(?) - пер в Б-133 ? 8 К-181 287 15.11.1961 07.09.1962 16.10.1962 1989(?) - пер в Б-181 ? 9 К-115 288 04.04.1962 22.10.1962 31.12.1962 1992(?) - пер в Б-115 ? 10 К-159 289 15.08.1962 06.06.1963 09.10.1963 14.03.1989 - пер. в Б-159 30.08.2003 - погибла 11 К-42 290 28.11.1962 17.08.1963 30.11.1963 08.05.1981 - получ. наимен. «Ростовский комсомолец» 1992(?) - пер в Б-42 ? 12 К-50 291 14.02.1963 16.12.1963 17.07.1964 1982? - пер. в К-60 14.03.1989? - пер в Б-60 ? Историче"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/17-45/r1/list.html",
+      "title": "https://www.deepstorm.ru/DeepStorm.files/17-45/r1/list.html",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/17-45/r1/list.html",
+      "evidenceSha256": "7e4c12a87f6a0dec6b8ee07e173ee0d3adfb9110d18a5acab4aac08910a9ef75",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: № Наименование корабля Заводской номер Даты Примечания закладки спуска вступления в строй ЛЕНИНГРАД: «Судомех» (№196) (1) 1 Р-1 92 05.09.1936 04.08.1938 04.11.1950 до 25.09.1940 – С.92 1947 – М-92 4. История проекта: В 30-х годах в Советском Союзе наряду с активным строительством дизель-электрических подводных лодок большое внимание уделялось разработке новых, более совершенных энергоустановок с применением единого теплового двигателя для плавания в надводном и подводном положениях, обеспечивающих увеличение дальности и полной скорости подводного хода. В качестве такого двигателя рассматривался в основном обладающий наибольшей экономичностью по расходу топлива дизель, работающий в надводном положении на атмосферном воздухе, в подводном — по замкнутому циклу с использованием чистого кислорода. Длительное время решением этой проблемы занимался С.А. Базилевский. В 1935 году он предложил проект энергетической установки под наименованием РЕДО (регенеративный единый двигатель особого назначения), которая обеспечивала работу теплового двигателя в подводном положении по за"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/m92/list.html",
+      "title": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/m92/list.html",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/m92/list.html",
+      "evidenceSha256": "9999c086c5d8f866e82f29eacc1a299be17d37eb81b3ca2110460523f39154ce",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: № Наименование корабля Заводской номер Даты Примечания закладки спуска модернизации ЛЕНИНГРАД: «Новое Адмиралтейство» (№196) (1) 1 М-92 92 05.09.36 04.08.38 1949 до 25.09.40 – С.92 до 1949 – Р-1 4. История проекта: Во второй половине 30-х годов конструктор Б.Д. Злотопольский разработал схему энергетической установки, работающей по замкнутому циклу с выбросом части отработанных га­зов сразу непосредственно за борт. Однако эти исследования практического воплощения не получили главным образом из-за бытовавшего мнения о плохой растворимости выхлопных газов в морской воде, что привело бы к появлению газового шлейфа на поверхности воды при движении лодки в под­водном положении. Уже в самом конце 40-х годов в нашей стране были полу­чены научные данные о том, что в отличие от азота углекис­лый газ может хорошо растворяться не только в пресной, но и в соленой воде. Опираясь на эти исследования в СКБ-143 продолжили разработку схемы энергетической установки, предложенной ранее Б.Д. Злотопольским. Использовав ре­зультаты довоенных испытаний и опираясь на опыт работы энергетиче"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/17-45/m90/list.htm",
+      "title": "malyutka-xii-project-40",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/17-45/m90/list.htm",
+      "evidenceSha256": "28599d5aedc3a6927a62183769cdfd1de6cbb1e7fda998fd123b6f5670939426",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "3. Состав проекта: № Наименование корабля Заводской номер Даты Примечания закладки спуска модернизации ЛЕНИНГРАД: Завод \"Судомех\" (№196) (1) 1 М-90 91 27.06.1936 28.11.1937 1940 4. История проекта: Навигационно-гидрографические и гидрометеорологические особенности Балтийского морского театра, в частности образо­вание в мелководной восточной части Финского залива ледового покрова в период с ноября — декабря по март — апрель, существенно затрудняли и прерывали боевую подготовку подводных сил КБФ, располагавшего до 1940 г. очень ограниченной операционной зоной. В 1936 г. офицеры-подводники А.Т. Тарадин и М.И. Балтачи подготовили доклад вышестоящему командованию о возможности использования подводных лодок в условиях Финского залива путем выхода их в незамерзающую часть подо льдом. Доклад был рассмотрен постоянной подводной комиссией при Главном морском штабе, которая пришла к выводу, что «необходимость выхода и входа лодок подо льдом в Финском заливе представляет особую ценность и, если это будет признано оперативно-необходимым, для этого нужно создать специальный тип подводной лодки для"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/under_1917/ag/list.htm",
+      "title": "Holland602 AG/H cross-country boundary",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/under_1917/Under%201917-1.htm",
+      "evidenceSha256": "beed2883e40d55c6785316215220516606c34729fb25ed0e1cf95f7322a31dc9",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Тип «АГ» (тип «Голланд-602F», «-602GF», «-602L», «-602R», США)"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/under_1917/georgiy/list.htm",
+      "title": "FiatFIII Russian versus ItalianF1 boundary",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/under_1917/Under%201917-1.htm",
+      "evidenceSha256": "beed2883e40d55c6785316215220516606c34729fb25ed0e1cf95f7322a31dc9",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Тип «Святой Георгий» (тип \"F\", Италия)"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/17-45/m%20VI/list.htm",
+      "title": "MVI riveted first6 versus welded production",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/17-45/1917-1945.htm",
+      "evidenceSha256": "0ac20db87f6da47adccbaaf42ce61ad21d19a0f2e8622a6718241105275cdc38",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Тип «М» серия VI"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/17-45/c%20IX-b-2/list.htm",
+      "title": "Srednyaya IX-bis-2 late build",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/17-45/1917-1945.htm",
+      "evidenceSha256": "0ac20db87f6da47adccbaaf42ce61ad21d19a0f2e8622a6718241105275cdc38",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Тип «С» серия IX-бис-2"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/under_1917/epsh/ersh/ersh.htm",
+      "title": "Yorsh minelayer independent hull history",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/under_1917/epsh/list.htm",
+      "evidenceSha256": "7e810605af9b7b548fff815c9979c70062d23a20e3684c02c89cd9abc0fc30fe",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "«Ерш»"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/877/B-871/B-871.htm",
+      "title": "877V Alrosa pumpjet",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/877/list.htm",
+      "evidenceSha256": "8fbc8e5778e46320da5a3cc61d64cca21b43c0d7e5c8c3be712390eb38f20ca1",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Б-871"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/877/B-800/B-800.htm",
+      "title": "877LPMB Kaluga",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/877/list.htm",
+      "evidenceSha256": "8fbc8e5778e46320da5a3cc61d64cca21b43c0d7e5c8c3be712390eb38f20ca1",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Б-800"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/705/K-123/K-123.htm",
+      "title": "705K K123",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/705/list.htm",
+      "evidenceSha256": "3ebc7160ec70fadfcdd343a5752a77852b4b9306994aa77d7e59b60201f968f2",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "К-123"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/671RTM/K-502/K-502.htm",
+      "title": "671RTMK K502",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/671RTM/list.htm",
+      "evidenceSha256": "f17b27913a7b53615eb8ef2ffaf85e9132cf29d11e48941f6b11c0f1af2726e0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "К-502"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/971/list.htm",
+      "title": "971/09711/971I additional shapes",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/671RTM/list.htm",
+      "evidenceSha256": "f17b27913a7b53615eb8ef2ffaf85e9132cf29d11e48941f6b11c0f1af2726e0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "971"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/659t/list.htm",
+      "title": "659T torpedo conversion",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/NTS.htm",
+      "evidenceSha256": "28c2e55bee5df033c8d68835168656544b99fae5c252eb39880ad9c41dfc5bc8",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 659Т"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nsrs/675mk/list.htm",
+      "title": "675MK",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nsrs/NSRS.htm",
+      "evidenceSha256": "f560bd85888b23922748dd16eeed118242621354ae1e47b681478a4e203db6e6",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 675МК (675МУ)"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nsrs/675mkv/list.htm",
+      "title": "675MKV",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nsrs/NSRS.htm",
+      "evidenceSha256": "f560bd85888b23922748dd16eeed118242621354ae1e47b681478a4e203db6e6",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 675МКВ"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nsrs/651e/List.htm",
+      "title": "651E reactor-assisted",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nsrs/NSRS.htm",
+      "evidenceSha256": "f560bd85888b23922748dd16eeed118242621354ae1e47b681478a4e203db6e6",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 651Э"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/651k/List.htm",
+      "title": "651K missile-test",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/DSRS.htm",
+      "evidenceSha256": "cc23bc92532903c5138a24742d0da2b6f75d84f588513620abd9d5aa8756c1b0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 651К"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/644/list.htm",
+      "title": "WhiskeyP613/644/665 cruise-missile shapes",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/DSRS.htm",
+      "evidenceSha256": "cc23bc92532903c5138a24742d0da2b6f75d84f588513620abd9d5aa8756c1b0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 644 (модификации 644Д и 644-7)"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/665/list.htm",
+      "title": "Whiskey665",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/DSRS.htm",
+      "evidenceSha256": "cc23bc92532903c5138a24742d0da2b6f75d84f588513620abd9d5aa8756c1b0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 665"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/V613/list.htm",
+      "title": "WhiskeyV613 ballistic test",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект В613"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/613D4/list.htm",
+      "title": "Whiskey613D4/D5/D7",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 613Д4"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/613C/list.htm",
+      "title": "Whiskey613S rescue",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 613С"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/640/S-151/S-151.htm",
+      "title": "Whiskey640C later radio arrangement",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/640/list.htm",
+      "evidenceSha256": "cf799e1dd137a5553306938d64fdb27e6218d6e394a05544b5e19ad71190e387",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "С-151"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/v611/list.html",
+      "title": "ZuluV611",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект В611"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/av611/list.htm",
+      "title": "ZuluAV611",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект АВ611"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/av611e/list.html",
+      "title": "611 research/communications/training conversions",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект АВ611Е"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/629(629a)/list.html",
+      "title": "Golf629A/B",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 629 (629А)"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/mod629/601/list.html",
+      "title": "Golf601 test",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 601"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/mod629/605/list.html",
+      "title": "Golf605/619 test conversions",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 605"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/629R/list.html",
+      "title": "Golf629R communication",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 629Р"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/633rv/list.htm",
+      "title": "Romeo633RV/06333 weapons tests",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/DTS.htm",
+      "evidenceSha256": "4c179edb6ee502c49008652d504af4191c680847e67e780146935639a41814bc",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 633РВ"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/633l/list.htm",
+      "title": "Romeo633L",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 633Л"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/658c/list.htm",
+      "title": "Hotel658M/658C/658U/701",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/NSS.htm",
+      "evidenceSha256": "187c2bc71bf19c49c964032faade7433fd1db4834fc7770477fb8eaa22830346",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 658С"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nbrs/667AM/list.htm",
+      "title": "Yankee667AU/AM",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nbrs/NBRS.htm",
+      "evidenceSha256": "725de7f609832a96a8e33fae84238b51697468ff7a5aadd518686e2ae7b3c2ff",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 667АМ"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nsrs/667AT/list.htm",
+      "title": "Yankee667AT",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nts/NTS.htm",
+      "evidenceSha256": "28c2e55bee5df033c8d68835168656544b99fae5c252eb39880ad9c41dfc5bc8",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 667АТ"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nsrs/667m/list.htm",
+      "title": "Yankee667M",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nsrs/NSRS.htm",
+      "evidenceSha256": "f560bd85888b23922748dd16eeed118242621354ae1e47b681478a4e203db6e6",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 667М"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/on_1992/09780/list.htm",
+      "title": "09780 Akson2",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/on_1992/ns.htm",
+      "evidenceSha256": "d2dfc6a152780e47c782930d600be078c773879d43894cae73800a9b13403e7b",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 09780"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/on_1992/09786/list.htm",
+      "title": "09786 Orenburg carrier",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/on_1992/ns.htm",
+      "evidenceSha256": "d2dfc6a152780e47c782930d600be078c773879d43894cae73800a9b13403e7b",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 09786"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/on_1992/09787/list.htm",
+      "title": "09787 Podmoskovye carrier",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/on_1992/ns.htm",
+      "evidenceSha256": "d2dfc6a152780e47c782930d600be078c773879d43894cae73800a9b13403e7b",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 09787"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nbrs/941/list.htm",
+      "title": "941U/UM missile trials",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/on_1992/ns.htm",
+      "evidenceSha256": "d2dfc6a152780e47c782930d600be078c773879d43894cae73800a9b13403e7b",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проекты 941У и 941УМ"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1832/AS-6/AS-6.htm",
+      "title": "18321 Poisk2 modernization",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1832/list.htm",
+      "evidenceSha256": "183fa337a76457347a27b54032f159cd3ae8a4cb5afb16f531b1b4c48f11d35e",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "АС-6"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1837/AS-16/AS-16.htm",
+      "title": "1837K rescue",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1837/list.htm",
+      "evidenceSha256": "0215540d6f28c41c63b92a48efd5136a262db63ce02e2b044391c670f014182a",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "АС-16"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1839/AS-25/AS-25.htm",
+      "title": "18392 work vehicles",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1839/list.htm",
+      "evidenceSha256": "92375bff5a6083e271b5f1329b9fa9fb2b7ed52368c535cca9129df8e2995ea5",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "АС-25"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1855/AS-28/AS-28.htm",
+      "title": "18551/18551M Priz modernization",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1855/list.htm",
+      "evidenceSha256": "a5c2a2e86db75e3a7b7f8702137ef7a60bf7715810d723ae144b597a8beead56",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "АС-28"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/on_1992/16810/list.htm",
+      "title": "16810 Rus and16811 Konsul",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/on_1992/ss.htm",
+      "evidenceSha256": "65de86b5e80debf7fe98b0c29c3b2dbc481281ad5f50a75e0c9f7c73c6710933",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проекты 16810 и 16811"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/on_1992/18200/list.htm",
+      "title": "18200",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/on_1992/ss.htm",
+      "evidenceSha256": "65de86b5e80debf7fe98b0c29c3b2dbc481281ad5f50a75e0c9f7c73c6710933",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 18200"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/on_1992/18270/list.htm",
+      "title": "18270/18271 Bester",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/on_1992/ss.htm",
+      "evidenceSha256": "65de86b5e80debf7fe98b0c29c3b2dbc481281ad5f50a75e0c9f7c73c6710933",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проекты 18270 и 18271"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/on_1992/21310/list.htm",
+      "title": "21310 TritonNN",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/on_1992/ss.htm",
+      "evidenceSha256": "65de86b5e80debf7fe98b0c29c3b2dbc481281ad5f50a75e0c9f7c73c6710933",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проекты 21310 \"Тритон-НН\""
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/sirena/list.htm",
+      "title": "Triton wet-craft follow-ons and Sirena",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/SASS.htm",
+      "evidenceSha256": "20f3057f462a5996ba4dcf901526527537928348163b3fd8ae93f44724fd12e4",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект «Сирена» (модификации)"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/P611/list.htm",
+      "title": "P611 missile test",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/DSRS.htm",
+      "evidenceSha256": "cc23bc92532903c5138a24742d0da2b6f75d84f588513620abd9d5aa8756c1b0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект П611"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/P613/list.htm",
+      "title": "P613 missile test",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/DSRS.htm",
+      "evidenceSha256": "cc23bc92532903c5138a24742d0da2b6f75d84f588513620abd9d5aa8756c1b0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект П613"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/613A/list.htm",
+      "title": "613A",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/DSRS.htm",
+      "evidenceSha256": "cc23bc92532903c5138a24742d0da2b6f75d84f588513620abd9d5aa8756c1b0",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 613А, 613АД"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/613D5/list.htm",
+      "title": "613D5",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 613Д5"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/613D7/list.htm",
+      "title": "613D7",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 613Д7"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/mod629/619/list.html",
+      "title": "Golf619",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 619"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/mod629/629b/list.html",
+      "title": "Golf629B",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 629Б"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/pv611/list.html",
+      "title": "PV611",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dbrs/dbrs.htm",
+      "evidenceSha256": "b0f099c083514041ed49e13855f21e5ba865c8f6c11ddf637ada7c57212d1d20",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект ПВ611"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/av611c/list.html",
+      "title": "av611c",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект АВ611С"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/av611k/list.html",
+      "title": "av611k",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект АВ611К"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/av611s/list.html",
+      "title": "av611s",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект АВ611Ц"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/av611d/list.html",
+      "title": "av611d",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект АВ611Д"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/av611ra/list.html",
+      "title": "av611ra",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 611РА"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/611ru/list.html",
+      "title": "611ru",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 611РУ"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/611re/list.html",
+      "title": "611re",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 611РЭ"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/611p/list.html",
+      "title": "611p",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 611П"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/613uts/list.htm",
+      "title": "613UTS",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dss/DSS.htm",
+      "evidenceSha256": "2a768e1209d92ac9ab5d3843fe3202948b8a5233149118d7d7c2a96b5833d979",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект УТС-613"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/658u/list.htm",
+      "title": "658U",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/nss/NSS.htm",
+      "evidenceSha256": "187c2bc71bf19c49c964032faade7433fd1db4834fc7770477fb8eaa22830346",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 658У"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/dsrs/06333/list.htm",
+      "title": "06333",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/dts/DTS.htm",
+      "evidenceSha256": "4c179edb6ee502c49008652d504af4191c680847e67e780146935639a41814bc",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 633КС (06333)"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/1906/list.htm",
+      "title": "1906",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/SASS.htm",
+      "evidenceSha256": "20f3057f462a5996ba4dcf901526527537928348163b3fd8ae93f44724fd12e4",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект 1906"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/ups/list.htm",
+      "title": "UPS",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/SASS.htm",
+      "evidenceSha256": "20f3057f462a5996ba4dcf901526527537928348163b3fd8ae93f44724fd12e4",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Проект УПС"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/arhipelag/list.htm",
+      "title": "Arhipelag",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/SASS.htm",
+      "evidenceSha256": "20f3057f462a5996ba4dcf901526527537928348163b3fd8ae93f44724fd12e4",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Комплекс «Архипелаг»"
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/seliger/list.htm",
+      "title": "Seliger",
+      "evidenceSource": "https://www.deepstorm.ru/DeepStorm.files/45-92/sass/SASS.htm",
+      "evidenceSha256": "20f3057f462a5996ba4dcf901526527537928348163b3fd8ae93f44724fd12e4",
+      "checkedOn": "2026-11-17",
+      "supportingQuote": "Комплекс «Селигер»"
+    }
+  ]
+}

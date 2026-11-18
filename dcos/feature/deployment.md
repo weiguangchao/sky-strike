@@ -12,7 +12,7 @@
 
 ## 结构与环境
 
-游戏运行在浏览器，使用 Cloudflare Workers Static Assets 托管 `dist/` 中的网页、脚本、字体与 GLB 模型。
+游戏运行在浏览器，使用 Cloudflare Workers Static Assets 托管 `dist/` 中的网页、脚本、字体与 PNG 精灵。
 
 - 配置文件：[wrangler.jsonc](../../wrangler.jsonc)，Worker 名称为 `sky-strike`。
 - 部署时由 Wrangler 执行 `npm run build`，先完成 TypeScript 类型检查，再生成生产资源。
@@ -44,14 +44,18 @@ npm run deploy       # 构建并发布到 Cloudflare Workers
 
 ## 资源行为与验证
 
-- `game/public/_headers` 对入口页面使用重新验证策略，对未带哈希的模型文件要求缓存重新验证，避免更新后长期加载旧模型。
-- 找不到的资源返回 404，不把缺失的 GLB 或 JavaScript 请求错误地回退成 HTML。
-- 使用生产构建进行浏览器检查时，可设置 `PLAYWRIGHT_BASE_URL`，复用不依赖 Vite 开发模块的模型加载检查：
+- `game/public/_headers` 对入口页面使用重新验证策略，对未带哈希的精灵文件要求缓存重新验证，避免更新后长期加载旧精灵。
+- 找不到的资源返回 404，不把缺失的 PNG 或 JavaScript 请求错误地回退成 HTML。
+- 使用生产构建进行浏览器检查时，可设置 `PLAYWRIGHT_BASE_URL`，复用不依赖 Vite 开发模块的精灵加载检查：
 
 ```sh
-PLAYWRIGHT_BASE_URL=http://localhost:8787 npm run test:e2e -- --grep 'Blender models load locally'
+PLAYWRIGHT_BASE_URL=http://localhost:8787 npm run test:e2e -- --grep 'Phaser 4 loads local 2D sprites'
 ```
 
-发布后检查入口、构建脚本与模型的 HTTP 状态，并用部署 URL 执行同样的浏览器检查。
+发布后检查入口、构建脚本与精灵的 HTTP 状态，并用部署 URL 执行同样的浏览器检查。
 
 Cloudflare 机制参见 [Workers Static Assets 文档](https://developers.cloudflare.com/workers/static-assets/)。
+
+## Phaser 4 二维迁移分支
+
+当前分支的生产构建只发布 Phaser、PNG 精灵和本地界面资源，Vite 完成打包后移除 `dist/assets/models/`，不包含 Three.js 或 GLB。`npm run build` 额外校验精灵的源文件指纹、图层、像素与体积。上述已发布版本记录仍描述历史部署；此重构不会自动发布到线上，待 PR 合并后再按发布流程部署。

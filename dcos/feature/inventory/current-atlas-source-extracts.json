@@ -1,0 +1,6692 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-17T05:09:19.325Z",
+  "complete": false,
+  "status": "source-extracts-require-human-reconciliation",
+  "warning": "Raw secondary-source class pages and commissioning/completion tables for existing atlas appearances. A table can include uncompleted ships, conversions, multiple configurations, and dates outside scope. Neither a nonempty completion cell nor a shared URL automatically verifies a served canonical class. Completion and commissioning are kept distinct. No model score is implied.",
+  "records": [
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_bb_iowa.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:50.250Z",
+      "sha256": "ce0e6568b77904c2ae39f22d75f79afe2b53afe85e081fe8964c08b192ec7bdd",
+      "title": "IOWA battleships (1943 - 1944)",
+      "atlasAppearances": [
+        {
+          "id": "iowa",
+          "modelId": "historic-iowa",
+          "country": "us",
+          "category": "surface"
+        },
+        {
+          "id": "missouri",
+          "modelId": "historic-missouri",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "No",
+            "Name",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "BB61",
+              "Iowa",
+              "",
+              "New York N Yd, Brooklyn",
+              "27.6.1940",
+              "27.8.1942",
+              "22.2.1943",
+              "stricken 3.2006"
+            ],
+            [
+              "BB62",
+              "New Jersey",
+              "",
+              "Philadelphia N Yd",
+              "16.9.1940",
+              "7.12.1942",
+              "23.5.1943",
+              "stricken 1.1999"
+            ],
+            [
+              "BB63",
+              "Missouri",
+              "",
+              "New York N Yd, Brooklyn",
+              "6.1.1941",
+              "29.1.1944",
+              "11.6.1944",
+              "stricken 1.1995"
+            ],
+            [
+              "BB64",
+              "Wisconsin",
+              "",
+              "Philadelphia N Yd",
+              "25.1.1941",
+              "7.12.1943",
+              "16.4.1944",
+              "stricken 3.2006"
+            ],
+            [
+              "BB65",
+              "Illinois",
+              "",
+              "Philadelphia N Yd",
+              "6.12.1942",
+              "---",
+              "---",
+              "cancelled 12.8.1945"
+            ],
+            [
+              "BB66",
+              "Kentucky",
+              "",
+              "Norfolk N Yd, Portsmouth",
+              "6.12.1942",
+              "20.1.1950",
+              "---",
+              "suspended 17.2.1947, sold for BU 9.1958"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_bb_sdakota.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:50.829Z",
+      "sha256": "9b8f0a67cd510c12058d22d3809697a1d2cceccf21f07e221e8c7b5969b3f60e",
+      "title": "SOUTH DAKOTA battleships (1942)",
+      "atlasAppearances": [
+        {
+          "id": "south-dakota",
+          "modelId": "historic-south-dakota",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "No",
+            "Name",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "BB57",
+              "South Dakota",
+              "421",
+              "New York SB, Camden",
+              "5.7.1939",
+              "7.6.1941",
+              "20.3.1942",
+              "stricken 6.1962"
+            ],
+            [
+              "BB58",
+              "Indiana",
+              "378",
+              "Newport News",
+              "20.11.1939",
+              "21.11.1941",
+              "30.4.1942",
+              "stricken 6.1962"
+            ],
+            [
+              "BB59",
+              "Massachusetts",
+              "1478",
+              "Bethlehem, Quincy",
+              "20.7.1939",
+              "23.9.1941",
+              "12.5.1942",
+              "stricken 6.1962, preserved"
+            ],
+            [
+              "BB60",
+              "Alabama",
+              "",
+              "Norfolk N Yd, Portsmouth",
+              "1.2.1940",
+              "16.2.1942",
+              "16.8.1942",
+              "stricken 6.1962, preserved"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_bb_pennsylvania.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:50.951Z",
+      "sha256": "15e87acf38d7a5435b6f52d4e6a38593e618d82c9d820bb57674510b0a70b39a",
+      "title": "PENNSYLVANIA battleships (1916)",
+      "atlasAppearances": [
+        {
+          "id": "arizona",
+          "modelId": "historic-arizona",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "No",
+            "Name",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "BB38",
+              "Pennsylvania",
+              "171",
+              "Newport News",
+              "27.10.1913",
+              "16.3.1915",
+              "12.6.1916",
+              "target for nuclear tests 2.1946"
+            ],
+            [
+              "BB39",
+              "Arizona",
+              "",
+              "New York N Yd, Brooklyn",
+              "16.3.1914",
+              "19.6.1915",
+              "17.10.1916",
+              "sunk 7.12.1941"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_cv_yorktown.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:50.974Z",
+      "sha256": "5b5527c1e3fb3cebdfa178f2c12654c582b338263fca4ba774ef3efd878902ea",
+      "title": "YORKTOWN aircraft carriers (1937 - 1941)",
+      "atlasAppearances": [
+        {
+          "id": "enterprise",
+          "modelId": "historic-enterprise",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "No",
+            "Name",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "CV5",
+              "Yorktown",
+              "359",
+              "Newport News",
+              "21.5.1934",
+              "4.4.1936",
+              "30.9.1937",
+              "sunk 7.6.1942"
+            ],
+            [
+              "CV6, 10.1952- CVA6, 8.1953- CVS6",
+              "Enterprise",
+              "360",
+              "Newport News",
+              "16.7.1934",
+              "3.10.1936",
+              "12.5.1938",
+              "stricken 10.1956"
+            ],
+            [
+              "CV8",
+              "Hornet",
+              "385",
+              "Newport News",
+              "25.9.1939",
+              "14.12.1940",
+              "20.10.1941",
+              "sunk 24.10.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_cv_essex.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:54.134Z",
+      "sha256": "fd8c122782611d902b278844edf6ddf4e0e484e1391211c2116001e50bf55079",
+      "title": "ESSEX aircraft carriers (1942 - 1950)",
+      "atlasAppearances": [
+        {
+          "id": "essex",
+          "modelId": "historic-essex",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "No",
+            "Name",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "CV9, 10.1952- CVA9, 3.1960- CVS9",
+              "Essex",
+              "392",
+              "Newport News",
+              "28.4.1941",
+              "31.7.1942",
+              "31.12.1942",
+              "ASW aircraft carrier 3.1960, stricken 6.1975"
+            ],
+            [
+              "CV10, 10.1952- CVA10, 9.1957- CVS10",
+              "Yorktown (ex-Bon Homme Richard)",
+              "393",
+              "Newport News",
+              "1.12.1941",
+              "21.1.1943",
+              "15.4.1943",
+              "ASW aircraft carrier 9.1957, stricken 6.1973, preserved"
+            ],
+            [
+              "CV11, 10.1952- CVA11, 3.1962- CVS11",
+              "Intrepid",
+              "394",
+              "Newport News",
+              "1.12.1941",
+              "26.4.1943",
+              "16.8.1943",
+              "ASW aircraft carrier 3.1962, stricken 2.1982, preserved"
+            ],
+            [
+              "CV12, 10.1952- CVA12, 6.1959- CVS12",
+              "Hornet (ex-Kearsarge)",
+              "395",
+              "Newport News",
+              "3.8.1942",
+              "30.8.1943",
+              "29.11.1943",
+              "ASW aircraft carrier 6.1959, stricken 7.1989, preserved"
+            ],
+            [
+              "CV13, 10.1952- CVA13, 8.1953- CVS13, 5.1959- AVT8",
+              "Franklin",
+              "396",
+              "Newport News",
+              "7.12.1942",
+              "14.10.1943",
+              "31.1.1944",
+              "ASW aircraft carrier 10.1952, aviation transport 5.1959, stricken 10.1964"
+            ],
+            [
+              "CV14, 10.1952- CVA14, 10.1969- CVS14",
+              "Ticonderoga (ex-Hancock)",
+              "397",
+              "Newport News",
+              "1.2.1943",
+              "7.2.1944",
+              "8.5.1944",
+              "ASW aircraft carrier 10.1969, stricken 11.1973"
+            ],
+            [
+              "CV15, 10.1952- CVA15, 3.1959- CVS15",
+              "Randolph",
+              "398",
+              "Newport News",
+              "10.5.1943",
+              "29.6.1944",
+              "9.10.1944",
+              "ASW aircraft carrier 3.1959, stricken 6.1973"
+            ],
+            [
+              "CV16, 10.1952 - CVA16, 10.1962 - CVS16, 1.1969 - CVT16, 7.1978 - AVT16",
+              "Lexington (ex-Cabot)",
+              "1508",
+              "Bethlehem, Quincy",
+              "15.9.1941",
+              "26.9.1942",
+              "17.2.1943",
+              "ASW aircraft carrier 10.1962, training aircraft carrier 1.1969, auxiliary aircraft landing training ship 7.1978, stricken 11.1991, preserved"
+            ],
+            [
+              "CV17, 10.1952- CVA17, 8.1953- CVS17",
+              "Bunker Hill",
+              "1509",
+              "Bethlehem, Quincy",
+              "15.9.1941",
+              "7.12.1942",
+              "20.5.1943",
+              "ASW aircraft carrier 8.1953, stricken 11.1966"
+            ],
+            [
+              "CV18, 10.1952- CVA18, 11.1956- CVS18",
+              "Wasp (ex-Oriskany)",
+              "1510",
+              "Bethlehem, Quincy",
+              "18.3.1942",
+              "17.8.1943",
+              "24.11.1943",
+              "ASW aircraft carrier 11.1956, stricken 7.1972"
+            ],
+            [
+              "CV19, 10.1952 - CVA19, 6.1975 - CV19",
+              "Hancock (ex-Ticonderoga)",
+              "1511",
+              "Bethlehem, Quincy",
+              "26.1.1943",
+              "17.8.1943",
+              "15.4.1944",
+              "stricken 1.1976"
+            ],
+            [
+              "CV20, 10.1952- CVA20, 6.1959- CVS20",
+              "Bennington",
+              "",
+              "Newport News",
+              "15.12.1942",
+              "26.2.1944",
+              "6.8.1944",
+              "ASW aircraft carrier 6.1959, stricken 9.1989"
+            ],
+            [
+              "CV21, 10.1952- CVA21, 11.1955- CVS21, 1.1959- LPH4",
+              "Boxer",
+              "410",
+              "Newport News",
+              "13.9.1943",
+              "14.12.1944",
+              "16.4.1945",
+              "ASW aircraft carrier 11.1955, assault helicopter carrier 1.1959, stricken 12.1969"
+            ],
+            [
+              "CV31, 10.1952- CVA31, 6.1975- CV31",
+              "Bon Homme Richard",
+              "",
+              "New York N Yd, Brooklyn",
+              "1.2.1943",
+              "29.4.1944",
+              "26.11.1944",
+              "stricken 9.1989"
+            ],
+            [
+              "CV32, 10.1952- CVA32, 8.1953- CVS32, 5.1959- AVT10",
+              "Leyte (ex-Crown Point)",
+              "446",
+              "Newport News",
+              "21.2.1944",
+              "23.8.1945",
+              "11.4.1946",
+              "ASW aircraft carrier 8.1953, aviation transport 5.1959, stricken 6.1969"
+            ],
+            [
+              "CV33, 10.1952- CVA33, 10.1958- CVS33",
+              "Kearsarge",
+              "",
+              "New York N Yd, Brooklyn",
+              "1.3.1944",
+              "5.5.1945",
+              "2.3.1946",
+              "ASW aircraft carrier 10.1958, stricken 5.1973"
+            ],
+            [
+              "CV34, 10.1952- CVA34, 6.1975- CV34",
+              "Oriskany",
+              "",
+              "New York N Yd, Brooklyn",
+              "1.5.1944",
+              "13.10.1945",
+              "25.9.1950",
+              "stricken 7.1989"
+            ],
+            [
+              "CV35",
+              "Reprisal",
+              "",
+              "New York N Yd, Brooklyn",
+              "1.7.1944",
+              "1946",
+              "---",
+              "cancelled 11.8.1945"
+            ],
+            [
+              "CV36, 10.1952- CVA36, 8.1953- CVS36",
+              "Antietam",
+              "",
+              "Philadelphia N Yd",
+              "15.3.1943",
+              "20.8.1944",
+              "28.1.1945",
+              "ASW aircraft carrier 8.1953, stricken 5.1973"
+            ],
+            [
+              "CV37, 10.1952- CVA37, 11.1953- CVS37, 3.1959- LPH5",
+              "Princeton (ex-Valley Forge)",
+              "",
+              "Philadelphia N Yd",
+              "14.9.1943",
+              "8.7.1945",
+              "18.11.1945",
+              "ASW aircraft carrier 11.1953, assault helicopter carrier 3.1959, stricken 1.1970"
+            ],
+            [
+              "CV38, 10.1952- CVA38, 6.1969- CVS38",
+              "Shangri La",
+              "",
+              "Norfolk N Yd, Portsmouth",
+              "15.1.1943",
+              "24.2.1944",
+              "15.9.1944",
+              "ASW aircraft carrier 6.1969, stricken 7.1982"
+            ],
+            [
+              "CV39, 10.1952- CVA39, 8.1957- CVS39",
+              "Lake Champlain",
+              "",
+              "Norfolk N Yd, Portsmouth",
+              "15.3.1943",
+              "2.11.1944",
+              "3.6.1945",
+              "ASW aircraft carrier 8.1957, stricken 12.1969"
+            ],
+            [
+              "CV40, 10.1952- CVA40, 1.1955- CVS40, 1961- AVT12",
+              "Tarawa",
+              "",
+              "Norfolk N Yd, Portsmouth",
+              "1.3.1944",
+              "12.5.1945",
+              "8.12.1945",
+              "ASW aircraft carrier 1.1955, aviation transport 1961, stricken 6.1967"
+            ],
+            [
+              "CV45, 10.1952- CVA45, 11.1953- CVS45, 7.1961- LPH8",
+              "Valley Forge",
+              "",
+              "Philadelphia N Yd",
+              "7.9.1944",
+              "18.11.1945",
+              "3.11.1946",
+              "ASW aircraft carrier 11.1953, assault helicopter carrier 7.1961, stricken 1.1970"
+            ],
+            [
+              "CV46",
+              "Iwo Jima",
+              "447",
+              "Newport News",
+              "29.1.1945",
+              "---",
+              "---",
+              "cancelled 11.8.1945"
+            ],
+            [
+              "CV47, 10.1952- CVA47, 11.1955- CVS47, 5.1959- AVT11",
+              "Philippine Sea (ex-Wright)",
+              "1570",
+              "Bethlehem, Quincy",
+              "19.8.1944",
+              "5.9.1945",
+              "11.5.1946",
+              "ASW aircraft carrier 11.1955, aviation transport 5.1959, stricken 12.1969"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_dd_fletcher.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:53.391Z",
+      "sha256": "740f123bca9e968fbbc72199df70fd0c5ba12371e784463fa83157f4713a7ec2",
+      "title": "FLETCHER destroyers (1942 - 1945)",
+      "atlasAppearances": [
+        {
+          "id": "fletcher",
+          "modelId": "destroyer",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "No",
+            "Name",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "DD445, 3.1949- DDE445, 6.1962- DD445",
+              "Fletcher",
+              "198",
+              "Federal, Kearny",
+              "10/1941",
+              "3.5.1942",
+              "6/1942",
+              "stricken 8.1967"
+            ],
+            [
+              "DD446, 3.1949- DDE446, 6.1962- DD446",
+              "Radford",
+              "199",
+              "Federal, Kearny",
+              "10/1941",
+              "3.5.1942",
+              "7/1942",
+              "stricken 15.7.1969"
+            ],
+            [
+              "DD447, 1.1951- DDE447, 6.1962- DD447",
+              "Jenkins",
+              "200",
+              "Federal, Kearny",
+              "11/1941",
+              "21.6.1942",
+              "7/1942",
+              "stricken 7.1969"
+            ],
+            [
+              "DD448",
+              "La Vallette",
+              "201",
+              "Federal, Kearny",
+              "11/1941",
+              "21.6.1942",
+              "8/1942",
+              "stricken 2.1974"
+            ],
+            [
+              "DD449, 3.1949- DDE449, 6.1962- DD449",
+              "Nicholas",
+              "184",
+              "Bath Iron Wks",
+              "3/1941",
+              "19.2.1942",
+              "6/1942",
+              "stricken 1.1970"
+            ],
+            [
+              "DD450, 3.1949- DDE450, 6.1962- DD450",
+              "O`Bannon",
+              "185",
+              "Bath Iron Wks",
+              "3/1941",
+              "14.3.1942",
+              "6/1942",
+              "stricken 1.1970"
+            ],
+            [
+              "DD451",
+              "Chevalier",
+              "186",
+              "Bath Iron Wks",
+              "4.1941",
+              "11.4.1942",
+              "7/1942",
+              "sunk 7.10.1943"
+            ],
+            [
+              "DD452",
+              "Percival",
+              "204",
+              "Federal, Kearny",
+              "---",
+              "---",
+              "---",
+              "cancelled 7.1.1946"
+            ],
+            [
+              "DD465, 3.1949- DDE465, 6.1962- DD465",
+              "Saufley",
+              "202",
+              "Federal, Kearny",
+              "1/1942",
+              "19.7.1942",
+              "8/1942",
+              "stricken 9.1966"
+            ],
+            [
+              "DD466, 3.1949- DDE466, 6.1962- DD466",
+              "Waller",
+              "203",
+              "Federal, Kearny",
+              "2/1942",
+              "15.8.1942",
+              "10/1942",
+              "stricken 7.1969"
+            ],
+            [
+              "DD467",
+              "Strong",
+              "193",
+              "Bath Iron Wks",
+              "4/1941",
+              "17.5.1942",
+              "8/1942",
+              "sunk 5.7.1943"
+            ],
+            [
+              "DD468, 1.1951- DDE468, 6.1962- DD468",
+              "Taylor",
+              "194",
+              "Bath Iron Wks",
+              "8/1941",
+              "7.6.1942",
+              "8/1942",
+              "to Italy 7.1969 (Lanciere)"
+            ],
+            [
+              "DD469",
+              "De Haven",
+              "195",
+              "Bath Iron Wks",
+              "9.1941",
+              "28.6.1942",
+              "9/1942",
+              "sunk 1.2.1943"
+            ],
+            [
+              "DD470, 1.1951- DDE470, 6.1962- DD470",
+              "Bache",
+              "8021",
+              "Bethlehem, Staten I, Port Richmond",
+              "11/1941",
+              "27.7.1942",
+              "11/1942",
+              "stricken 3.1968"
+            ],
+            [
+              "DD471, 1.1951- DDE471, 6.1962- DD471",
+              "Beale",
+              "8022",
+              "Bethlehem, Staten I, Port Richmond",
+              "12/1941",
+              "24.8.1942",
+              "12/1942",
+              "stricken 10.1968"
+            ],
+            [
+              "DD472",
+              "Guest",
+              "",
+              "Boston N Yd, Charlestown",
+              "9/1941",
+              "20.2.1942",
+              "12/1942",
+              "to Brazil 6.1959 (Pará)"
+            ],
+            [
+              "DD473",
+              "Bennett",
+              "",
+              "Boston N Yd, Charlestown",
+              "12/1941",
+              "16.4.1942",
+              "2/1943",
+              "to Brazil 12.1959 (Paraiba)"
+            ],
+            [
+              "DD474",
+              "Fullam",
+              "",
+              "Boston N Yd, Charlestown",
+              "12/1941",
+              "16.4.1942",
+              "3/1943",
+              "stricken 6.1962"
+            ],
+            [
+              "DD475",
+              "Hudson",
+              "",
+              "Boston N Yd, Charlestown",
+              "2/1942",
+              "3.6.1942",
+              "3/1943",
+              "stricken 12.1972"
+            ],
+            [
+              "DD476",
+              "Hutchins",
+              "",
+              "Boston N Yd, Charlestown",
+              "9/1941",
+              "20.2.1942",
+              "11/1942",
+              "damaged 26.4.1945, repair incomplete, stricken 12.1945"
+            ],
+            [
+              "DD477",
+              "Pringle",
+              "",
+              "Charleston N Yd",
+              "7/1941",
+              "2.5.1942",
+              "9/1942",
+              "sunk 3.5.1945"
+            ],
+            [
+              "DD478",
+              "Stanly",
+              "",
+              "Charleston N Yd",
+              "12/1941",
+              "2.5.1942",
+              "10/1942",
+              "stricken 12.1970"
+            ],
+            [
+              "DD479",
+              "Stevens",
+              "",
+              "Charleston N Yd",
+              "12/1941",
+              "24.6.1942",
+              "2/1943",
+              "stricken 12.1972"
+            ],
+            [
+              "DD480",
+              "Halford",
+              "",
+              "Puget Sound N Yd, Bremerton",
+              "6/1941",
+              "29.10.1942",
+              "4/1943",
+              "stricken 5.1968"
+            ],
+            [
+              "DD481",
+              "Leutze",
+              "",
+              "Puget Sound N Yd, Bremerton",
+              "6/1941",
+              "29.10.1942",
+              "3/1943",
+              "damaged 6.4.1945, never repaired"
+            ],
+            [
+              "DD482",
+              "Watson",
+              "205",
+              "Federal, Kearny",
+              "---",
+              "---",
+              "---",
+              "cancelled 7.1.1946"
+            ],
+            [
+              "DD498, 3.1949- DDE498, 6.1962- DD498",
+              "Philip",
+              "214",
+              "Federal, Kearny",
+              "5/1942",
+              "13.10.1942",
+              "11/1942",
+              "stricken 10.1968"
+            ],
+            [
+              "DD499, 3.1949- DDE499, 6.1962- DD499",
+              "Renshaw",
+              "215",
+              "Federal, Kearny",
+              "5/1942",
+              "13.10.1942",
+              "12/1942",
+              "stricken 1.1970"
+            ],
+            [
+              "DD500",
+              "Ringgold",
+              "216",
+              "Federal, Kearny",
+              "6/1942",
+              "11.11.1942",
+              "12/1942",
+              "to West Germany 7.1959 (Z2)"
+            ],
+            [
+              "DD501",
+              "Schroeder",
+              "217",
+              "Federal, Kearny",
+              "6/1942",
+              "11.11.1942",
+              "1/1943",
+              "stricken 10.1972"
+            ],
+            [
+              "DD502",
+              "Sigsbee",
+              "218",
+              "Federal, Kearny",
+              "7/1942",
+              "7.12.1942",
+              "1/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD503",
+              "Stevenson",
+              "219",
+              "Federal, Kearny",
+              "---",
+              "---",
+              "---",
+              "cancelled 2.1941"
+            ],
+            [
+              "DD504",
+              "Stockton",
+              "220",
+              "Federal, Kearny",
+              "---",
+              "---",
+              "---",
+              "cancelled 2.1941"
+            ],
+            [
+              "DD505",
+              "Thorn",
+              "221",
+              "Federal, Kearny",
+              "---",
+              "---",
+              "---",
+              "cancelled 2.1941"
+            ],
+            [
+              "DD506",
+              "Turner",
+              "222",
+              "Federal, Kearny",
+              "---",
+              "---",
+              "---",
+              "cancelled 2.1941"
+            ],
+            [
+              "DD507, 3.1949- DDE507, 6.1962- DD507",
+              "Conway",
+              "196",
+              "Bath Iron Wks",
+              "11/1941",
+              "16.8.1942",
+              "10/1942",
+              "stricken 11.1969"
+            ],
+            [
+              "DD508, 3.1949- DDE508, 6.1962- DD508",
+              "Cony",
+              "197",
+              "Bath Iron Wks",
+              "12.1941",
+              "16.8.1942",
+              "10/1942",
+              "stricken 7.1969"
+            ],
+            [
+              "DD509",
+              "Converse",
+              "198",
+              "Bath Iron Wks",
+              "2.1942",
+              "30.8.1942",
+              "11/1942",
+              "to Spain 7.1959 (Almirante Valdéz)"
+            ],
+            [
+              "DD510, 1.1951- DDE510, 6.1962- DD510",
+              "Eaton",
+              "199",
+              "Bath Iron Wks",
+              "3.1942",
+              "20.9.1942",
+              "12/1942",
+              "stricken 7.1969"
+            ],
+            [
+              "DD511",
+              "Foote",
+              "200",
+              "Bath Iron Wks",
+              "4.1942",
+              "11.10.1942",
+              "12/1942",
+              "stricken 10.1972"
+            ],
+            [
+              "DD512",
+              "Spence",
+              "201",
+              "Bath Iron Wks",
+              "5/1942",
+              "27.10.1942",
+              "1/1943",
+              "foundered 18.12.1944"
+            ],
+            [
+              "DD513",
+              "Terry",
+              "202",
+              "Bath Iron Wks",
+              "6/1942",
+              "22.11.1942",
+              "1/1943",
+              "stricken 4.1974"
+            ],
+            [
+              "DD514",
+              "Thatcher",
+              "203",
+              "Bath Iron Wks",
+              "6/1942",
+              "6.12.1942",
+              "2/1943",
+              "damaged 15.7.1945, repair incomplete, stricken 12.1945"
+            ],
+            [
+              "DD515",
+              "Anthony",
+              "204",
+              "Bath Iron Wks",
+              "8.1942",
+              "20.12.1942",
+              "2/1943",
+              "to West Germany 1.1958 (Z1)"
+            ],
+            [
+              "DD516",
+              "Wadsworth",
+              "205",
+              "Bath Iron Wks",
+              "8/1942",
+              "10.1.1943",
+              "3/1943",
+              "to West Germany 10.1959 (Z3)"
+            ],
+            [
+              "DD517, 9.1950- DDE517, 6.1962- DD517",
+              "Walker",
+              "206",
+              "Bath Iron Wks",
+              "8/1942",
+              "31.1.1943",
+              "4/1943",
+              "to Italy 7.1969 (Fante)"
+            ],
+            [
+              "DD518",
+              "Brownson",
+              "8025",
+              "Bethlehem, Staten I, Port Richmond",
+              "2.1942",
+              "24.9.1942",
+              "2/1943",
+              "sunk 26.12.1943"
+            ],
+            [
+              "DD519",
+              "Daly",
+              "8026",
+              "Bethlehem, Staten I, Port Richmond",
+              "4.1942",
+              "24.10.1942",
+              "3/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD520",
+              "Isherwood",
+              "8027",
+              "Bethlehem, Staten I, Port Richmond",
+              "5.1942",
+              "24.10.1942",
+              "4/1943",
+              "to Peru 12.1960 (Almirante Guise)"
+            ],
+            [
+              "DD521",
+              "Kimberly",
+              "8028",
+              "Bethlehem, Staten I, Port Richmond",
+              "7.1942",
+              "4.2.1942",
+              "5/1943",
+              "to Taiwan 6.1967 (安陽 [An Yang])"
+            ],
+            [
+              "DD522",
+              "Luce",
+              "8029",
+              "Bethlehem, Staten I, Port Richmond",
+              "8/1942",
+              "6.3.1943",
+              "6/1943",
+              "sunk 3.5.1945"
+            ],
+            [
+              "DD526",
+              "Abner Read",
+              "5377",
+              "Bethlehem, San Francisco",
+              "10/1941",
+              "18.8.1942",
+              "2/1943",
+              "sunk 1.11.1944"
+            ],
+            [
+              "DD527",
+              "Ammen",
+              "5378",
+              "Bethlehem, San Francisco",
+              "11/1941",
+              "17.9.1942",
+              "3/1943",
+              "stricken 10.1960"
+            ],
+            [
+              "DD528",
+              "Mullany (ex-Beatty)",
+              "5379",
+              "Bethlehem, San Francisco",
+              "1/1942",
+              "10.10.1942",
+              "4/1943",
+              "to Taiwan 10.1971 (慶陽 [Chiang Yang])"
+            ],
+            [
+              "DD529",
+              "Bush",
+              "5380",
+              "Bethlehem, San Francisco",
+              "2.1942",
+              "27.10.1942",
+              "5/1943",
+              "sunk 6.4.1945"
+            ],
+            [
+              "DD530",
+              "Trathen",
+              "5381",
+              "Bethlehem, San Francisco",
+              "3.1942",
+              "22.10.1942",
+              "5/1943",
+              "stricken 11.1972"
+            ],
+            [
+              "DD531",
+              "Hazelwood",
+              "5382",
+              "Bethlehem, San Francisco",
+              "4/1942",
+              "20.11.1942",
+              "6/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD532",
+              "Heermann",
+              "5383",
+              "Bethlehem, San Francisco",
+              "5.1942",
+              "5.12.1942",
+              "7/1943",
+              "to Argentina 8.1961 (Almirante Brown)"
+            ],
+            [
+              "DD533",
+              "Hoel",
+              "5384",
+              "Bethlehem, San Francisco",
+              "6.1942",
+              "19.12.1942",
+              "7/1943",
+              "sunk 25.10.1944"
+            ],
+            [
+              "DD534",
+              "McCord",
+              "5385",
+              "Bethlehem, San Francisco",
+              "7.1942",
+              "10.1.1943",
+              "8/1943",
+              "stricken 10.1972"
+            ],
+            [
+              "DD535",
+              "Miller",
+              "5386",
+              "Bethlehem, San Francisco",
+              "8/1942",
+              "7.3.1943",
+              "8/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD536",
+              "Owen",
+              "5387",
+              "Bethlehem, San Francisco",
+              "9/1942",
+              "21.3.1943",
+              "9/1943",
+              "stricken 4.1973"
+            ],
+            [
+              "DD537",
+              "The Sullivans (ex-Putnam)",
+              "5388",
+              "Bethlehem, San Francisco",
+              "10/1942",
+              "4.4.1943",
+              "9/1943",
+              "stricken 12.1974, preserved"
+            ],
+            [
+              "DD538",
+              "Stephen Potter",
+              "5389",
+              "Bethlehem, San Francisco",
+              "10/1942",
+              "28.4.1943",
+              "10/1943",
+              "stricken 12.1972"
+            ],
+            [
+              "DD539",
+              "Tingey",
+              "5390",
+              "Bethlehem, San Francisco",
+              "10/1942",
+              "28.5.1943",
+              "11/1943",
+              "stricken 11.1965"
+            ],
+            [
+              "DD540",
+              "Twining",
+              "5391",
+              "Bethlehem, San Francisco",
+              "11/1942",
+              "11.7.1943",
+              "12/1943",
+              "to Taiwan 10.1971 (貴陽 [Kwei Yang])"
+            ],
+            [
+              "DD541",
+              "Yarnall",
+              "5392",
+              "Bethlehem, San Francisco",
+              "12/1942",
+              "25.7.1943",
+              "12/1943",
+              "to Taiwan 6.1968 (昆陽 [Kuen Yang])"
+            ],
+            [
+              "DD544",
+              "Boyd",
+              "9001",
+              "Bethlehem, San Pedro",
+              "4.1942",
+              "29.10.1942",
+              "5/1943",
+              "to Turkey 10.1969 (İskenderun)"
+            ],
+            [
+              "DD545",
+              "Bradford",
+              "9002",
+              "Bethlehem, San Pedro",
+              "4.1942",
+              "12.12.1942",
+              "6/1943",
+              "to Greece 9.1962 (Θύελλα [Thyella])"
+            ],
+            [
+              "DD546",
+              "Brown",
+              "9003",
+              "Bethlehem, San Pedro",
+              "6/1942",
+              "21.2.1943",
+              "7/1943",
+              "to Greece 9.1962 (Ναυαρίνο [Navarino])"
+            ],
+            [
+              "DD547",
+              "Cowell",
+              "9004",
+              "Bethlehem, San Pedro",
+              "9.1942",
+              "18.3.1943",
+              "8/1943",
+              "to Argentina 8.1971 (Almirante Storni)"
+            ],
+            [
+              "DD550",
+              "Capps",
+              "",
+              "Gulf SB, Chickasaw",
+              "7/1941",
+              "31.5.1942",
+              "6/1943",
+              "to Spain 5.1957 (Lepanto)"
+            ],
+            [
+              "DD551",
+              "David W. Taylor",
+              "",
+              "Gulf SB, Chickasaw",
+              "7/1941",
+              "4.7.1942",
+              "6/1943",
+              "to Spain 5.1957 (Almirante Ferrándiz)"
+            ],
+            [
+              "DD552",
+              "Evans",
+              "",
+              "Gulf SB, Chickasaw",
+              "7/1941",
+              "4.10.1942",
+              "12/1943",
+              "damaged 11.5.1945, repair incomplete, stricken 11.1945"
+            ],
+            [
+              "DD553",
+              "John D. Henley",
+              "",
+              "Gulf SB, Chickasaw",
+              "7/1941",
+              "15.11.1942",
+              "12/1943",
+              "stricken 5.1968"
+            ],
+            [
+              "DD554",
+              "Franks",
+              "11",
+              "Seattle-Tacoma, Seattle",
+              "3.1942",
+              "7.12.1942",
+              "6/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD555",
+              "Haggard",
+              "12",
+              "Seattle-Tacoma, Seattle",
+              "3.1942",
+              "9.2.1943",
+              "8/1943",
+              "damaged 29.4.1945, never repaired"
+            ],
+            [
+              "DD556",
+              "Hailey",
+              "13",
+              "Seattle-Tacoma, Seattle",
+              "4.1942",
+              "9.3.1943",
+              "9/1943",
+              "to Brazil 7.1961 (Pernambuco)"
+            ],
+            [
+              "DD557",
+              "Johnston",
+              "14",
+              "Seattle-Tacoma, Seattle",
+              "5/1942",
+              "25.3.1943",
+              "10/1943",
+              "sunk 24.10.1944"
+            ],
+            [
+              "DD558",
+              "Laws",
+              "15",
+              "Seattle-Tacoma, Seattle",
+              "5/1942",
+              "22.4.1943",
+              "11/1943",
+              "stricken 4.1973"
+            ],
+            [
+              "DD559",
+              "Longshaw",
+              "16",
+              "Seattle-Tacoma, Seattle",
+              "6/1942",
+              "4.6.1943",
+              "12/1943",
+              "sunk 18.5.1945"
+            ],
+            [
+              "DD560",
+              "Morrison",
+              "17",
+              "Seattle-Tacoma, Seattle",
+              "6/1942",
+              "4.7.1943",
+              "12/1943",
+              "sunk 3.5.1945"
+            ],
+            [
+              "DD561",
+              "Prichett",
+              "18",
+              "Seattle-Tacoma, Seattle",
+              "7/1942",
+              "31.7.1943",
+              "1/1944",
+              "to Italy 1.1970 (Geniere)"
+            ],
+            [
+              "DD562",
+              "Robinson",
+              "19",
+              "Seattle-Tacoma, Seattle",
+              "8/1942",
+              "28.8.1943",
+              "1/1944",
+              "stricken 12.1974"
+            ],
+            [
+              "DD563",
+              "Ross",
+              "20",
+              "Seattle-Tacoma, Seattle",
+              "9/1942",
+              "10.9.1943",
+              "2/1944",
+              "stricken 12.1974"
+            ],
+            [
+              "DD564",
+              "Rowe",
+              "21",
+              "Seattle-Tacoma, Seattle",
+              "12/1942",
+              "30.9.1943",
+              "3/1944",
+              "stricken 12.1974"
+            ],
+            [
+              "DD565",
+              "Smalley",
+              "22",
+              "Seattle-Tacoma, Seattle",
+              "2/1943",
+              "17.10.1943",
+              "3/1944",
+              "stricken 4.1965"
+            ],
+            [
+              "DD566",
+              "Stoddard",
+              "23",
+              "Seattle-Tacoma, Seattle",
+              "3/1943",
+              "19.11.1943",
+              "4/1944",
+              "stricken 6.1975"
+            ],
+            [
+              "DD567",
+              "Watts",
+              "24",
+              "Seattle-Tacoma, Seattle",
+              "3/1943",
+              "31.12.1943",
+              "4/1944",
+              "stricken 2.1974"
+            ],
+            [
+              "DD568",
+              "Wren",
+              "25",
+              "Seattle-Tacoma, Seattle",
+              "4/1943",
+              "29.1.1944",
+              "5/1944",
+              "stricken 12.1974"
+            ],
+            [
+              "DD569",
+              "Aulick",
+              "194",
+              "Consolidated, Orange",
+              "5/1941",
+              "2.3.1942",
+              "10/1942",
+              "to Greece 8.1959 (Σφενδόνη [Sfendoni])"
+            ],
+            [
+              "DD570",
+              "Charles Ausburne",
+              "195",
+              "Consolidated, Orange",
+              "5/1941",
+              "6.3.1942",
+              "11/1942",
+              "to West Germany 4.1960 (Z6)"
+            ],
+            [
+              "DD571",
+              "Claxton",
+              "196",
+              "Consolidated, Orange",
+              "7/1941",
+              "1.4.1942",
+              "12/1942",
+              "to West Germany 12.1959 (Z4)"
+            ],
+            [
+              "DD572",
+              "Dyson",
+              "197",
+              "Consolidated, Orange",
+              "7/1941",
+              "15.4.1942",
+              "12/1942",
+              "to West Germany 12.1960 (Z5)"
+            ],
+            [
+              "DD573",
+              "Harrison",
+              "198",
+              "Consolidated, Orange",
+              "7/1941",
+              "7.5.1942",
+              "1/1943",
+              "to Mexico 5.1968 (Cuauhtémoc)"
+            ],
+            [
+              "DD574",
+              "John Rodgers",
+              "199",
+              "Consolidated, Orange",
+              "7/1941",
+              "7.5.1942",
+              "2/1943",
+              "to Mexico 5.1968 (Cuitláhuac)"
+            ],
+            [
+              "DD575",
+              "McKee",
+              "200",
+              "Consolidated, Orange",
+              "3/1942",
+              "2.8.1942",
+              "3/1943",
+              "stricken 10.1972"
+            ],
+            [
+              "DD576, 1.1951- DDE576, 6.1962- DD576",
+              "Murray",
+              "201",
+              "Consolidated, Orange",
+              "3/1942",
+              "16.8.1942",
+              "4/1943",
+              "stricken 6.1965"
+            ],
+            [
+              "DD577, 3.1949- DDE577, 6.1962- DD577",
+              "Sproston",
+              "202",
+              "Consolidated, Orange",
+              "4/1942",
+              "31.8.1942",
+              "5/1943",
+              "stricken 10.1968"
+            ],
+            [
+              "DD578",
+              "Wickes",
+              "203",
+              "Consolidated, Orange",
+              "4/1942",
+              "13.9.1942",
+              "6/1943",
+              "stricken 11.1972"
+            ],
+            [
+              "DD579",
+              "William D. Porter",
+              "204",
+              "Consolidated, Orange",
+              "5/1942",
+              "27.9.1942",
+              "7/1943",
+              "sunk 10.6.1945"
+            ],
+            [
+              "DD580",
+              "Young",
+              "205",
+              "Consolidated, Orange",
+              "5/1942",
+              "11.10.1942",
+              "7/1943",
+              "stricken 5.1968"
+            ],
+            [
+              "DD581",
+              "Charrette",
+              "",
+              "Boston N Yd, Charlestown",
+              "2/1942",
+              "3.6.1942",
+              "5/1943",
+              "to Greece 6.1959 (Βέλος [Velos])"
+            ],
+            [
+              "DD582",
+              "Conner",
+              "",
+              "Boston N Yd, Charlestown",
+              "4/1942",
+              "18.7.1942",
+              "6/1943",
+              "to Greece 9.1959 (Ασπίς [Aspis])"
+            ],
+            [
+              "DD583",
+              "Hall",
+              "",
+              "Boston N Yd, Charlestown",
+              "4/1942",
+              "18.7.1942",
+              "7/1943",
+              "to Greece 2.1960 (Λόγχη [Lonchi])"
+            ],
+            [
+              "DD584",
+              "Halligan",
+              "",
+              "Boston N Yd, Charlestown",
+              "11/1942",
+              "19.3.1943",
+              "8/1943",
+              "sunk 26.3.1945"
+            ],
+            [
+              "DD585",
+              "Haraden",
+              "",
+              "Boston N Yd, Charlestown",
+              "11/1942",
+              "19.3.1943",
+              "9/1943",
+              "stricken 11.1972"
+            ],
+            [
+              "DD586",
+              "Newcomb",
+              "",
+              "Boston N Yd, Charlestown",
+              "3/1943",
+              "4.7.1943",
+              "11/1943",
+              "damaged 6.4.1945, never repaired"
+            ],
+            [
+              "DD587",
+              "Bell",
+              "",
+              "Charleston N Yd",
+              "2/1942",
+              "24.6.1942",
+              "3/1943",
+              "stricken 11.1972"
+            ],
+            [
+              "DD588",
+              "Burns",
+              "",
+              "Charleston N Yd",
+              "5/1942",
+              "8.8.1942",
+              "4/1943",
+              "stricken 11.1972"
+            ],
+            [
+              "DD589",
+              "Izard",
+              "",
+              "Charleston N Yd",
+              "5/1942",
+              "8.8.1942",
+              "5/1943",
+              "stricken 5.1968"
+            ],
+            [
+              "DD590",
+              "Paul Hamilton",
+              "",
+              "Charleston N Yd",
+              "1/1943",
+              "7.4.1943",
+              "10/1943",
+              "stricken 5.1968"
+            ],
+            [
+              "DD591",
+              "Twiggs",
+              "",
+              "Charleston N Yd",
+              "1/1943",
+              "7.4.1943",
+              "11/1943",
+              "sunk 16.6.1945"
+            ],
+            [
+              "DD592",
+              "Howorth",
+              "",
+              "Puget Sound N Yd, Bremerton",
+              "11/1941",
+              "10.1.1943",
+              "4/1944",
+              "stricken 3.1962"
+            ],
+            [
+              "DD593",
+              "Killen",
+              "",
+              "Puget Sound N Yd, Bremerton",
+              "11/1941",
+              "10.1.1943",
+              "5/1944",
+              "stricken 1.1963"
+            ],
+            [
+              "DD594",
+              "Hart (ex-Mansfield)",
+              "",
+              "Puget Sound N Yd, Bremerton",
+              "8.1943",
+              "25.9.1944",
+              "11/1944",
+              "stricken 4.1973"
+            ],
+            [
+              "DD595",
+              "Metcalfe",
+              "",
+              "Puget Sound N Yd, Bremerton",
+              "8/1943",
+              "25.9.1944",
+              "11/1944",
+              "stricken 1.1971"
+            ],
+            [
+              "DD596",
+              "Shields",
+              "",
+              "Puget Sound N Yd, Bremerton",
+              "8/1943",
+              "25.9.1944",
+              "2/1945",
+              "to Brazil 7.1972 (Maranhão)"
+            ],
+            [
+              "DD597",
+              "Wiley",
+              "",
+              "Puget Sound N Yd, Bremerton",
+              "8/1943",
+              "25.9.1944",
+              "2/1945",
+              "stricken 5.1968"
+            ],
+            [
+              "DD629",
+              "Abbot",
+              "208",
+              "Bath Iron Wks",
+              "9/1942",
+              "17.2.1943",
+              "4/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD630",
+              "Braine",
+              "209",
+              "Bath Iron Wks",
+              "10/1942",
+              "7.3.1943",
+              "5/1943",
+              "to Argentina 8.1961 (Domecq García)"
+            ],
+            [
+              "DD631",
+              "Erben",
+              "210",
+              "Bath Iron Wks",
+              "10.1942",
+              "21.3.1943",
+              "5/1943",
+              "to South Korea 5.1963 (충무 [Chungmu])"
+            ],
+            [
+              "DD642",
+              "Hale",
+              "211",
+              "Bath Iron Wks",
+              "11.1942",
+              "4.4.1943",
+              "6/1943",
+              "to Columbia 12.1960 (Antioquia)"
+            ],
+            [
+              "DD643",
+              "Sigourney",
+              "212",
+              "Bath Iron Wks",
+              "12.1942",
+              "24.4.1943",
+              "6/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD644",
+              "Stembel",
+              "213",
+              "Bath Iron Wks",
+              "12/1942",
+              "8.5.1943",
+              "7/1943",
+              "to Argentina 8.1961 (Rosales)"
+            ],
+            [
+              "DD649",
+              "Albert W. Grant",
+              "",
+              "Charleston N Yd",
+              "12/1942",
+              "29.5.1943",
+              "11/1943",
+              "stricken 4.1971"
+            ],
+            [
+              "DD650",
+              "Caperton",
+              "215",
+              "Bath Iron Wks",
+              "1.1943",
+              "22.5.1943",
+              "7/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD651",
+              "Cogswell",
+              "216",
+              "Bath Iron Wks",
+              "2.1943",
+              "5.6.1943",
+              "8/1943",
+              "to Turkey 10.1969 (İzmit)"
+            ],
+            [
+              "DD652",
+              "Ingersoll",
+              "217",
+              "Bath Iron Wks",
+              "2.1943",
+              "28.6.1943",
+              "8/1943",
+              "stricken 1.1970"
+            ],
+            [
+              "DD653",
+              "Knapp",
+              "218",
+              "Bath Iron Wks",
+              "3/1943",
+              "10.7.1943",
+              "9/1943",
+              "stricken 3.1972"
+            ],
+            [
+              "DD654",
+              "Bearss",
+              "",
+              "Gulf SB, Chickasaw",
+              "7.1942",
+              "25.7.1943",
+              "4/1944",
+              "stricken 12.1974"
+            ],
+            [
+              "DD655",
+              "John Hood",
+              "",
+              "Gulf SB, Chickasaw",
+              "10/1942",
+              "25.10.1943",
+              "7/1944",
+              "stricken 12.1974"
+            ],
+            [
+              "DD656",
+              "Van Valkenburgh",
+              "",
+              "Gulf SB, Chickasaw",
+              "11/1942",
+              "19.12.1943",
+              "8/1944",
+              "to Turkey 2.1967 (İzmir)"
+            ],
+            [
+              "DD657",
+              "Charles J. Badger",
+              "8036",
+              "Bethlehem, Staten I, Port Richmond",
+              "9.1942",
+              "3.4.1943",
+              "7/1943",
+              "stricken 1.1974"
+            ],
+            [
+              "DD658",
+              "Colahan",
+              "8037",
+              "Bethlehem, Staten I, Port Richmond",
+              "10.1942",
+              "3.5.1943",
+              "8/1943",
+              "stricken 8.1966"
+            ],
+            [
+              "DD659",
+              "Dashiell",
+              "265",
+              "Federal, Kearny",
+              "10.1942",
+              "6.2.1943",
+              "3/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD660",
+              "Bullard",
+              "266",
+              "Federal, Kearny",
+              "10.1942",
+              "28.2.1943",
+              "4/1943",
+              "stricken 12.1972"
+            ],
+            [
+              "DD661",
+              "Kidd",
+              "267",
+              "Federal, Kearny",
+              "10.1942",
+              "28.2.1943",
+              "4/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD662",
+              "Bennion",
+              "",
+              "Boston N Yd, Charlestown",
+              "3.1943",
+              "4.7.1943",
+              "12/1943",
+              "stricken 4.1971"
+            ],
+            [
+              "DD663",
+              "Heywood L. Edwards",
+              "",
+              "Boston N Yd, Charlestown",
+              "7.1943",
+              "6.10.1943",
+              "1/1944",
+              "to Japan 3.1959 (ありあけ [Ariake])"
+            ],
+            [
+              "DD664",
+              "Richard P. Leary",
+              "",
+              "Boston N Yd, Charlestown",
+              "7/1943",
+              "6.10.1943",
+              "2/1944",
+              "to Japan 3.1959 (ゆうぐれ [Yugure])"
+            ],
+            [
+              "DD665",
+              "Bryant",
+              "",
+              "Charleston N Yd",
+              "12.1942",
+              "29.5.1943",
+              "12/1943",
+              "stricken 6.1968"
+            ],
+            [
+              "DD666",
+              "Black",
+              "362",
+              "Federal, Kearny",
+              "11.1942",
+              "28.3.1943",
+              "5/1943",
+              "stricken 9.1969"
+            ],
+            [
+              "DD667",
+              "Chauncey",
+              "363",
+              "Federal, Kearny",
+              "11.1942",
+              "28.3.1943",
+              "5/1943",
+              "stricken 10.1972"
+            ],
+            [
+              "DD668",
+              "Clarence K. Bronson",
+              "364",
+              "Federal, Kearny",
+              "12.1942",
+              "18.4.1943",
+              "6/1943",
+              "to Turkey 1.1967 (İstanbul)"
+            ],
+            [
+              "DD669",
+              "Cotten",
+              "365",
+              "Federal, Kearny",
+              "2.1943",
+              "12.6.1942",
+              "7/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD670",
+              "Dortch",
+              "366",
+              "Federal, Kearny",
+              "3.1943",
+              "20.6.1943",
+              "8/1943",
+              "to Argentina 8.1961 (Espora)"
+            ],
+            [
+              "DD671",
+              "Gatling",
+              "367",
+              "Federal, Kearny",
+              "3/1943",
+              "20.6.1943",
+              "8/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD672",
+              "Healy",
+              "368",
+              "Federal, Kearny",
+              "3.1943",
+              "4.7.1943",
+              "9/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD673",
+              "Hickox",
+              "369",
+              "Federal, Kearny",
+              "3/1943",
+              "4.7.1943",
+              "9/1943",
+              "to South Korea 11.1968 (부산 [Pusan])"
+            ],
+            [
+              "DD674",
+              "Hunt",
+              "370",
+              "Federal, Kearny",
+              "3.1943",
+              "1.8.1943",
+              "9/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD675",
+              "Lewis Hancock",
+              "371",
+              "Federal, Kearny",
+              "3/1943",
+              "1.8.1943",
+              "9/1943",
+              "to Brazil 8.1967 (Piauí)"
+            ],
+            [
+              "DD676",
+              "Marshall",
+              "372",
+              "Federal, Kearny",
+              "4/1943",
+              "29.8.1943",
+              "10/1943",
+              "stricken 7.1969"
+            ],
+            [
+              "DD677",
+              "McDermut",
+              "373",
+              "Federal, Kearny",
+              "6/1943",
+              "17.10.1943",
+              "11/1943",
+              "stricken 4.1965"
+            ],
+            [
+              "DD678",
+              "McGowan",
+              "374",
+              "Federal, Kearny",
+              "6/1943",
+              "14.11.1943",
+              "12/1943",
+              "to Spain 11.1960 (Jorge Juan)"
+            ],
+            [
+              "DD679",
+              "McNair",
+              "375",
+              "Federal, Kearny",
+              "6.1943",
+              "14.11.1943",
+              "1/1944",
+              "stricken 12.1974"
+            ],
+            [
+              "DD680",
+              "Melvin",
+              "376",
+              "Federal, Kearny",
+              "7/1943",
+              "17.10.1943",
+              "11/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD681",
+              "Hopewell",
+              "9013",
+              "Bethlehem, San Pedro",
+              "10.1942",
+              "2.5.1943",
+              "9/1943",
+              "stricken 1.1970"
+            ],
+            [
+              "DD682",
+              "Porterfield",
+              "9014",
+              "Bethlehem, San Pedro",
+              "10.1942",
+              "13.6.1943",
+              "10/1943",
+              "stricken 3.1975"
+            ],
+            [
+              "DD683",
+              "Stockham",
+              "5398",
+              "Bethlehem, San Francisco",
+              "12/1942",
+              "25.6.1943",
+              "2/1944",
+              "stricken 12.1974"
+            ],
+            [
+              "DD684",
+              "Wedderburn",
+              "5399",
+              "Bethlehem, San Francisco",
+              "1/1943",
+              "1.8.1943",
+              "3/1944",
+              "stricken 10.1969"
+            ],
+            [
+              "DD685",
+              "Picking",
+              "8038",
+              "Bethlehem, Staten I, Port Richmond",
+              "11/1942",
+              "1.6.1943",
+              "9/1943",
+              "stricken 3.1975"
+            ],
+            [
+              "DD686",
+              "Halsey Powell",
+              "8039",
+              "Bethlehem, Staten I, Port Richmond",
+              "2.1943",
+              "30.6.1943",
+              "10/1943",
+              "to South Korea 4.1968 (서울 [Seoul])"
+            ],
+            [
+              "DD687",
+              "Uhlmann",
+              "8040",
+              "Bethlehem, Staten I, Port Richmond",
+              "3/1943",
+              "30.7.1943",
+              "11/1943",
+              "stricken 7.1972"
+            ],
+            [
+              "DD688",
+              "Remey",
+              "219",
+              "Bath Iron Wks",
+              "3/1943",
+              "25.7.1943",
+              "9/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD689",
+              "Wadleigh",
+              "220",
+              "Bath Iron Wks",
+              "4/1943",
+              "7.8.1943",
+              "10/1943",
+              "to Chile 7.1962 (Blanco Encalada)"
+            ],
+            [
+              "DD690",
+              "Norman Scott",
+              "221",
+              "Bath Iron Wks",
+              "4/1943",
+              "28.8.1943",
+              "11/1943",
+              "stricken 4.1973"
+            ],
+            [
+              "DD691",
+              "Mertz",
+              "222",
+              "Bath Iron Wks",
+              "5/1943",
+              "11.9.1943",
+              "11/1943",
+              "stricken 10.1970"
+            ],
+            [
+              "DD792",
+              "Callaghan",
+              "9015",
+              "Bethlehem, San Pedro",
+              "2.1943",
+              "1.8.1943",
+              "11/1943",
+              "sunk 28.7.1945"
+            ],
+            [
+              "DD793",
+              "Cassin",
+              "9016",
+              "Bethlehem, San Pedro",
+              "3.1943",
+              "12.9.1943",
+              "12/1943",
+              "stricken 12.1974"
+            ],
+            [
+              "DD794",
+              "Irwin",
+              "9017",
+              "Bethlehem, San Pedro",
+              "5/1943",
+              "31.10.1943",
+              "2/1944",
+              "to Brazil 5.1968 (Santa Catharina)"
+            ],
+            [
+              "DD795",
+              "Preston",
+              "9018",
+              "Bethlehem, San Pedro",
+              "6/1943",
+              "12.12.1943",
+              "3/1944",
+              "to Turkey 11.1969 (İçel)"
+            ],
+            [
+              "DD796",
+              "Benham",
+              "8041",
+              "Bethlehem, Staten I, Port Richmond",
+              "4.1943",
+              "30.8.1943",
+              "12/1943",
+              "to Peru 10.1961 (Villar)"
+            ],
+            [
+              "DD797",
+              "Cushing",
+              "8042",
+              "Bethlehem, Staten I, Port Richmond",
+              "5.1943",
+              "30.9.1943",
+              "1/1944",
+              "to Brazil 7.1961 (Parana)"
+            ],
+            [
+              "DD798",
+              "Monssen",
+              "8043",
+              "Bethlehem, Staten I, Port Richmond",
+              "6/1943",
+              "30.10.1943",
+              "2/1944",
+              "stricken 2.1963"
+            ],
+            [
+              "DD799",
+              "Jarvis",
+              "26",
+              "Seattle-Tacoma, Seattle",
+              "6/1943",
+              "14.2.1944",
+              "6/1944",
+              "to Spain 11.1960 (Alcalá Galiano)"
+            ],
+            [
+              "DD800",
+              "Porter",
+              "27",
+              "Seattle-Tacoma, Seattle",
+              "7/1943",
+              "13.3.1944",
+              "6/1944",
+              "stricken 10.1972"
+            ],
+            [
+              "DD801",
+              "Colhoun",
+              "28",
+              "Seattle-Tacoma, Seattle",
+              "8.1943",
+              "10.4.1944",
+              "7/1944",
+              "sunk 6.4.1945"
+            ],
+            [
+              "DD802",
+              "Gregory",
+              "29",
+              "Seattle-Tacoma, Seattle",
+              "8.1943",
+              "8.5.1944",
+              "7/1944",
+              "stricken 5.1966"
+            ],
+            [
+              "DD803",
+              "Little",
+              "30",
+              "Seattle-Tacoma, Seattle",
+              "9/1943",
+              "22.5.1944",
+              "8/1944",
+              "sunk 3.5.1945"
+            ],
+            [
+              "DD804",
+              "Rooks",
+              "31",
+              "Seattle-Tacoma, Seattle",
+              "10/1943",
+              "6.6.1944",
+              "9/1944",
+              "to Chile 7.1962 (Cochrane)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_cr_cleveland.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:53.327Z",
+      "sha256": "2e3ae192d7a49aeee47e9ee05e53d917b1573665d1e64eb6e7b6ebbb9363a9d6",
+      "title": "CLEVELAND light cruisers (1942 - 1946)",
+      "atlasAppearances": [
+        {
+          "id": "cleveland",
+          "modelId": "cruiser",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "No",
+            "Name",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate",
+            "Modification"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "CL55",
+              "Cleveland",
+              "423",
+              "New York SB, Camden",
+              "1.7.1940",
+              "1.11.1941",
+              "15.6.1942",
+              "stricken 3.1959",
+              "Cleveland subclass"
+            ],
+            [
+              "CL56",
+              "Columbia",
+              "424",
+              "New York SB, Camden",
+              "19.8.1940",
+              "17.12.1941",
+              "29.6.1942",
+              "stricken 11.1959",
+              "Cleveland subclass"
+            ],
+            [
+              "CL57",
+              "Montpelier",
+              "425",
+              "New York SB, Camden",
+              "2.12.1940",
+              "12.2.1942",
+              "9.9.1942",
+              "stricken 3.1959",
+              "Cleveland subclass"
+            ],
+            [
+              "CL58",
+              "Denver",
+              "426",
+              "New York SB, Camden",
+              "26.12.1940",
+              "4.4.1942",
+              "15.10.1942",
+              "sold 2.1960",
+              "Cleveland subclass"
+            ],
+            [
+              "CL59",
+              "Amsterdam",
+              "427",
+              "New York SB, Camden",
+              "1.5.1941",
+              "22.8.1942",
+              "---",
+              "completed as CVL22 Independence",
+              "Cleveland subclass"
+            ],
+            [
+              "CL60",
+              "Santa Fe",
+              "428",
+              "New York SB, Camden",
+              "7.6.1941",
+              "10.6.1942",
+              "24.11.1942",
+              "stricken 3.1959",
+              "Cleveland subclass"
+            ],
+            [
+              "CL61",
+              "Tallahassee",
+              "429",
+              "New York SB, Camden",
+              "2.6.1941",
+              "18.10.1942",
+              "---",
+              "completed as CVL23 Princeton",
+              "Cleveland subclass"
+            ],
+            [
+              "CL62",
+              "Birmingham",
+              "390",
+              "Newport News",
+              "17.2.1941",
+              "20.3.1942",
+              "29.1.1943",
+              "stricken 3.1959",
+              "Cleveland subclass"
+            ],
+            [
+              "CL63",
+              "Mobile",
+              "391",
+              "Newport News",
+              "14.4.1941",
+              "15.5.1942",
+              "24.3.1943",
+              "stricken 3.1959",
+              "Cleveland subclass"
+            ],
+            [
+              "CL64",
+              "Vincennes (ex-Flint)",
+              "1498",
+              "Bethlehem, Quincy",
+              "7.3.1942",
+              "17.7.1943",
+              "21.1.1944",
+              "stricken 4.1966",
+              "Cleveland subclass"
+            ],
+            [
+              "CL65",
+              "Pasadena",
+              "1499",
+              "Bethlehem, Quincy",
+              "6.2.1943",
+              "28.12.1943",
+              "8.6.1944",
+              "stricken 12.1970",
+              "Cleveland subclass"
+            ],
+            [
+              "CL66, 5.1957- CLG7, 7.1975- CG7",
+              "Springfield",
+              "1500",
+              "Bethlehem, Quincy",
+              "13.2.1943",
+              "9.3.1944",
+              "9.9.1944",
+              "missile cruiser 5.1957, stricken 9.1978",
+              "Cleveland subclass"
+            ],
+            [
+              "CL67, 5.1957- CLG8",
+              "Topeka",
+              "1501",
+              "Bethlehem, Quincy",
+              "21.4.1943",
+              "19.8.1944",
+              "23.12.1944",
+              "missile cruiser 5.1957, stricken 9.1973",
+              "Cleveland subclass"
+            ],
+            [
+              "CL76",
+              "New Haven",
+              "431",
+              "New York SB, Camden",
+              "11.8.1942",
+              "6.11.1942",
+              "---",
+              "completed as CVL24 Belleau Wood",
+              "Cleveland subclass"
+            ],
+            [
+              "CL77",
+              "Huntington",
+              "432",
+              "New York SB, Camden",
+              "17.12.1941",
+              "17.1.1943",
+              "---",
+              "completed as CVL25 Cowpens",
+              "Cleveland subclass"
+            ],
+            [
+              "CL78",
+              "Dayton",
+              "433",
+              "New York SB, Camden",
+              "29.12.1941",
+              "28.2.1943",
+              "---",
+              "completed as CVL26 Monterey",
+              "Cleveland subclass"
+            ],
+            [
+              "CL79",
+              "Wilmington",
+              "434",
+              "New York SB, Camden",
+              "13.3.1942",
+              "4.4.1943",
+              "---",
+              "completed as CVL28 Cabot",
+              "Cleveland subclass"
+            ],
+            [
+              "CL80",
+              "Biloxi",
+              "399",
+              "Newport News",
+              "9.7.1941",
+              "23.2.1943",
+              "21.8.1943",
+              "stricken 9.1961",
+              "Cleveland subclass"
+            ],
+            [
+              "CL81",
+              "Houston (ex-Vicksburg)",
+              "400",
+              "Newport News",
+              "4.8.1941",
+              "19.6.1943",
+              "20.12.1943",
+              "stricken 3.1959",
+              "Cleveland subclass"
+            ],
+            [
+              "CL82, 5.1957- CLG6, 7.1975- CG6",
+              "Providence",
+              "1502",
+              "Bethlehem, Quincy",
+              "27.7.1943",
+              "28.12.1944",
+              "15.5.1945",
+              "missile cruiser 5.1957, stricken 7.1978",
+              "Cleveland subclass"
+            ],
+            [
+              "CL83",
+              "Manchester",
+              "1503",
+              "Bethlehem, Quincy",
+              "25.9.1944",
+              "5.3.1946",
+              "29.10.1946",
+              "stricken 4.1960",
+              "Cleveland subclass"
+            ],
+            [
+              "CL84",
+              "Buffalo",
+              "",
+              "Federal, Kearny",
+              "---",
+              "---",
+              "---",
+              "cancelled 16.12.1940",
+              "Cleveland subclass"
+            ],
+            [
+              "CL85",
+              "Fargo",
+              "443",
+              "New York SB, Camden",
+              "11.4.1942",
+              "22.5.1943",
+              "---",
+              "completed as CVL27 Langley",
+              "Cleveland subclass"
+            ],
+            [
+              "CL86",
+              "Vicksburg (ex-Cheyenne)",
+              "411",
+              "Newport News",
+              "26.10.1942",
+              "14.12.1943",
+              "12.6.1944",
+              "stricken 10.1962",
+              "Cleveland subclass"
+            ],
+            [
+              "CL87",
+              "Duluth",
+              "412",
+              "Newport News",
+              "9.11.1942",
+              "13.1.1944",
+              "18.9.1944",
+              "stricken 11.1960",
+              "Cleveland subclass"
+            ],
+            [
+              "CL88",
+              "Newark",
+              "",
+              "Federal, Kearny",
+              "---",
+              "---",
+              "---",
+              "cancelled 16.12.1940",
+              "Cleveland subclass"
+            ],
+            [
+              "CL89",
+              "Miami",
+              "532",
+              "Cramp, Philadelphia",
+              "2.8.1941",
+              "12.8.1942",
+              "28.12.1943",
+              "stricken 9.1961",
+              "Cleveland subclass"
+            ],
+            [
+              "CL90",
+              "Astoria (ex-Wilkes-Barre)",
+              "533",
+              "Cramp, Philadelphia",
+              "6.9.1941",
+              "6.3.1943",
+              "17.5.1944",
+              "stricken 11.1969",
+              "Cleveland subclass"
+            ],
+            [
+              "CL91, 5.1957- CLG5, 7.1975- CG5",
+              "Oklahoma City",
+              "534",
+              "Cramp, Philadelphia",
+              "8.3.1942",
+              "20.2.1944",
+              "22.12.1944",
+              "missile cruiser 5.1957, stricken 12.1979",
+              "Cleveland subclass"
+            ],
+            [
+              "CL92, 5.1957- CLG4, 7.1975- CG4",
+              "Little Rock",
+              "535",
+              "Cramp, Philadelphia",
+              "6.3.1943",
+              "27.8.1944",
+              "17.6.1945",
+              "missile cruiser 5.1957, stricken 11.1976",
+              "Cleveland subclass"
+            ],
+            [
+              "CLG3 (ex-CLG93, ex-CL93)",
+              "Galveston",
+              "536",
+              "Cramp, Philadelphia",
+              "20.2.1944",
+              "22.4.1945",
+              "28.5.1958",
+              "completed as missile cruiser, stricken 12.1973",
+              "Cleveland subclass"
+            ],
+            [
+              "CL94",
+              "Youngstown",
+              "537",
+              "Cramp, Philadelphia",
+              "4.9.1944",
+              "---",
+              "---",
+              "cancelled 12.8.1945",
+              "Cleveland subclass"
+            ],
+            [
+              "CL99",
+              "Buffalo",
+              "441",
+              "New York SB, Camden",
+              "31.8.1942",
+              "1.8.1943",
+              "---",
+              "completed as CVL29 Bataan",
+              "Cleveland subclass"
+            ],
+            [
+              "CL100",
+              "Newark",
+              "442",
+              "New York SB, Camden",
+              "26.10.1942",
+              "26.9.1943",
+              "---",
+              "completed as CVL30 San Jacinto",
+              "Cleveland subclass"
+            ],
+            [
+              "CL101",
+              "Amsterdam",
+              "408",
+              "Newport News",
+              "3.3.1943",
+              "25.4.1944",
+              "8.1.1945",
+              "stricken 1.1971",
+              "Cleveland subclass"
+            ],
+            [
+              "CL102",
+              "Portsmouth",
+              "409",
+              "Newport News",
+              "28.6.1943",
+              "20.9.1944",
+              "25.6.1945",
+              "stricken 12.1970",
+              "Cleveland subclass"
+            ],
+            [
+              "CL103",
+              "Wilkes-Barre",
+              "446",
+              "New York SB, Camden",
+              "14.12.1942",
+              "24.12.1943",
+              "1.7.1944",
+              "stricken 1.1971",
+              "Cleveland subclass"
+            ],
+            [
+              "CL104",
+              "Atlanta",
+              "447",
+              "New York SB, Camden",
+              "25.1.1943",
+              "6.2.1944",
+              "3.12.1944",
+              "stricken 10.1962",
+              "Cleveland subclass"
+            ],
+            [
+              "CL105",
+              "Dayton",
+              "448",
+              "New York SB, Camden",
+              "8.3.1943",
+              "19.3.1944",
+              "7.1.1945",
+              "stricken 9.1961",
+              "Cleveland subclass"
+            ],
+            [
+              "CL106",
+              "Fargo",
+              "454",
+              "New York SB, Camden",
+              "23.8.1943",
+              "25.3.1945",
+              "9.12.1945",
+              "stricken 3.1970",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL107",
+              "Huntington",
+              "455",
+              "New York SB, Camden",
+              "4.10.1943",
+              "8.4.1945",
+              "23.2.1946",
+              "stricken 9.1961",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL108",
+              "Newark",
+              "456",
+              "New York SB, Camden",
+              "17.1.1944",
+              "14.12.1945",
+              "---",
+              "cancelled 12.8.1945",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL109",
+              "New Haven",
+              "457",
+              "New York SB, Camden",
+              "28.2.1944",
+              "---",
+              "---",
+              "cancelled 12.8.1945",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL110",
+              "Buffalo",
+              "458",
+              "New York SB, Camden",
+              "3.4.1944",
+              "---",
+              "---",
+              "cancelled 12.8.1945",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL111",
+              "Wilmington",
+              "459",
+              "Cramp, Philadelphia",
+              "5.3.1945",
+              "---",
+              "---",
+              "cancelled 12.8.1945",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL112",
+              "Vallejo",
+              "460",
+              "New York SB, Camden",
+              "---",
+              "---",
+              "---",
+              "cancelled 5.10.1944",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL113",
+              "Helena",
+              "461",
+              "New York SB, Camden",
+              "---",
+              "---",
+              "---",
+              "cancelled 5.10.1944",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL114",
+              "Roanoke",
+              "462",
+              "New York SB, Camden",
+              "---",
+              "---",
+              "---",
+              "cancelled 5.10.1944",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL115",
+              "---",
+              "463",
+              "New York SB, Camden",
+              "---",
+              "---",
+              "---",
+              "cancelled 5.10.1944",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL116",
+              "Tallahassee",
+              "443",
+              "Newport News",
+              "31.1.1944",
+              "---",
+              "---",
+              "cancelled 12.8.1945",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL117",
+              "Cheyenne",
+              "444",
+              "Newport News",
+              "29.5.1944",
+              "---",
+              "---",
+              "cancelled 12.8.1945",
+              "Fargo (Cleveland 1942) subclass"
+            ],
+            [
+              "CL118",
+              "Chattanooga",
+              "445",
+              "Newport News",
+              "9.10.1944",
+              "---",
+              "---",
+              "cancelled 12.8.1945",
+              "Fargo (Cleveland 1942) subclass"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_cr_brooklyn.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:53.401Z",
+      "sha256": "66db165b761f43693992e39cf309f68c07dc6515d2877a49c707aba79622793b",
+      "title": "BROOKLYN light cruisers (1938 - 1939)",
+      "atlasAppearances": [
+        {
+          "id": "brooklyn",
+          "modelId": "historic-brooklyn",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "No",
+            "Name",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate"
+          ],
+          "eventColumn": 5,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "CL40",
+              "Brooklyn",
+              "New York N Yd, Brooklyn",
+              "12.3.1935",
+              "30.11.1936",
+              "18.7.1938",
+              "to Chile 1.1951 (O'Higgins)"
+            ],
+            [
+              "CL41",
+              "Philadelphia",
+              "Philadelphia N Yd",
+              "28.5.1935",
+              "17.11.1936",
+              "28.7.1938",
+              "to Brazil 1.1951 (Barroso)"
+            ],
+            [
+              "CL42",
+              "Savannah",
+              "New York SB, Camden",
+              "31.5.1934",
+              "8.5.1937",
+              "30.8.1938",
+              "stricken 3.1959"
+            ],
+            [
+              "CL43",
+              "Nashville",
+              "New York SB, Camden",
+              "24.1.1935",
+              "2.10.1937",
+              "25.11.1938",
+              "to Chile 1.1951 (Capitán Prat)"
+            ],
+            [
+              "CL46",
+              "Phoenix",
+              "New York SB, Camden",
+              "15.4.1935",
+              "12.3.1938",
+              "18.3.1939",
+              "to Argentina 1.1951 (Diecisiete de Octubre (17 de Octubre))"
+            ],
+            [
+              "CL47",
+              "Boise",
+              "Newport News",
+              "1.4.1935",
+              "3.12.1936",
+              "1.2.1939",
+              "to Argentina 1.1951 (Nueve de Julio (9 de Julio))"
+            ],
+            [
+              "CL48",
+              "Honolulu",
+              "New York N Yd, Brooklyn",
+              "10.9.1935",
+              "26.8.1937",
+              "7.9.1938",
+              "stricken 3.1959"
+            ],
+            [
+              "CL49",
+              "St. Louis",
+              "Newport News",
+              "10.12.1936",
+              "15.4.1938",
+              "12.1939",
+              "to Brazil 1.1951 (Tamandaré)"
+            ],
+            [
+              "CL50",
+              "Helena",
+              "New York N Yd, Brooklyn",
+              "9.12.1936",
+              "28.8.1938",
+              "14.12.1939",
+              "sunk 6.7.1943"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_pt_pt103.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:55.924Z",
+      "sha256": "8a72692f096b2fc6cc32c6d626278e72c0771c3b5838f80d8a5c49132df5e697",
+      "title": "&quot;ELCO 80-ft&quot; torpedo boats (PT103) (1942 - 1945)",
+      "atlasAppearances": [
+        {
+          "id": "pt-109",
+          "modelId": "patrol-boat",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": []
+    },
+    {
+      "url": "https://www.navypedia.org/ships/usa/us_cr_baltimore.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:56.285Z",
+      "sha256": "bcaa810873bb50c603f55c3daaa5978ded577ae4a6444d0c5853bb1f1a7dd3dc",
+      "title": "BALTIMORE heavy cruisers (1943 - 1946), NORTHAMPTON command ship (1953)",
+      "atlasAppearances": [
+        {
+          "id": "baltimore",
+          "modelId": "historic-baltimore",
+          "country": "us",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "No",
+            "Name",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate",
+            "Modification"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "CA68",
+              "Baltimore",
+              "1494",
+              "Bethlehem, Quincy",
+              "26.5.1941",
+              "28.7.1942",
+              "15.4.1943",
+              "stricken 2.1971",
+              "Baltimore subclass"
+            ],
+            [
+              "CA69, 1.1952- CAG1, 5.1968- CA69",
+              "Boston",
+              "1495",
+              "Bethlehem, Quincy",
+              "30.6.1941",
+              "26.8.1942",
+              "30.6.1943",
+              "missile cruiser 1.1952, stricken 4.1974",
+              "Baltimore subclass"
+            ],
+            [
+              "CA70, 1.1952- CAG2, 5.1968- CA70",
+              "Canberra (ex-Pittsburgh)",
+              "1496",
+              "Bethlehem, Quincy",
+              "3.9.1941",
+              "19.4.1943",
+              "14.10.1943",
+              "missile cruiser 1.1952, stricken 7.1978",
+              "Baltimore subclass"
+            ],
+            [
+              "CA71",
+              "Quincy (ex-St. Paul)",
+              "1497",
+              "Bethlehem, Quincy",
+              "9.10.1941",
+              "23.6.1943",
+              "15.12.1943",
+              "stricken 10.1973",
+              "Baltimore subclass"
+            ],
+            [
+              "CA72",
+              "Pittsburgh (ex-Albany)",
+              "1504",
+              "Bethlehem, Quincy",
+              "3.2.1943",
+              "22.2.1944",
+              "10.10.1944",
+              "stricken 7.1973",
+              "Baltimore subclass"
+            ],
+            [
+              "CA73",
+              "St. Paul (ex-Rochester)",
+              "1505",
+              "Bethlehem, Quincy",
+              "3.2.1943",
+              "16.9.1944",
+              "17.2.1945",
+              "stricken 7.1978",
+              "Baltimore subclass"
+            ],
+            [
+              "CA74, 9.1959- CG12",
+              "Columbus",
+              "1506",
+              "Bethlehem, Quincy",
+              "28.6.1943",
+              "30.11.1944",
+              "8.6.1945",
+              "missile cruiser 9.1959, stricken 8.1976",
+              "Baltimore subclass"
+            ],
+            [
+              "CA75",
+              "Helena (ex-Des Moines)",
+              "1507",
+              "Bethlehem, Quincy",
+              "9.9.1943",
+              "28.4.1945",
+              "4.9.1945",
+              "stricken 1.1974",
+              "Baltimore subclass"
+            ],
+            [
+              "CA130",
+              "Bremerton",
+              "449",
+              "New York SB, Camden",
+              "1.2.1943",
+              "2.7.1944",
+              "29.4.1945",
+              "stricken 10.1973",
+              "Baltimore subclass"
+            ],
+            [
+              "CA131",
+              "Fall River",
+              "450",
+              "New York SB, Camden",
+              "12.4.1943",
+              "13.8.1944",
+              "1.7.1945",
+              "stricken 2.1971",
+              "Baltimore subclass"
+            ],
+            [
+              "CA132",
+              "Macon",
+              "451",
+              "New York SB, Camden",
+              "14.6.1943",
+              "15.10.1944",
+              "26.8.1945",
+              "stricken 11.1969",
+              "Baltimore subclass"
+            ],
+            [
+              "CA133",
+              "Toledo",
+              "452",
+              "New York SB, Camden",
+              "13.9.1943",
+              "6.5.1945",
+              "27.10.1946",
+              "stricken 1.1974",
+              "Baltimore subclass"
+            ],
+            [
+              "CA135",
+              "Los Angeles",
+              "",
+              "Philadelphia N Yd",
+              "28.7.1943",
+              "20.8.1944",
+              "22.7.1945",
+              "stricken 1.1974",
+              "Baltimore subclass"
+            ],
+            [
+              "CA136, 11.1958- CG11",
+              "Chicago",
+              "",
+              "Philadelphia N Yd",
+              "28.7.1943",
+              "20.8.1944",
+              "10.1.1945",
+              "missile cruiser 11.1958, stricken 1.1984",
+              "Baltimore subclass"
+            ],
+            [
+              "CA122",
+              "Oregon City",
+              "1544",
+              "Bethlehem, Quincy",
+              "8.4.1944",
+              "9.6.1945",
+              "16.2.1946",
+              "stricken 11.1970",
+              "Oregon City (Baltimore 1942) subclass"
+            ],
+            [
+              "CA123, 11.1958- CG10",
+              "Albany",
+              "1545",
+              "Bethlehem, Quincy",
+              "6.3.1944",
+              "30.6.1945",
+              "15.6.1946",
+              "missile cruiser 11.1958, stricken 6.1985",
+              "Oregon City (Baltimore 1942) subclass"
+            ],
+            [
+              "CA124",
+              "Rochester",
+              "1546",
+              "Bethlehem, Quincy",
+              "29.5.1944",
+              "28.8.1945",
+              "20.12.1946",
+              "stricken 10.1973",
+              "Oregon City (Baltimore 1942) subclass"
+            ],
+            [
+              "CLC1 (ex-CA125), 4.1961- CC1",
+              "Northampton",
+              "1547",
+              "Bethlehem, Quincy",
+              "31.8.1944",
+              "27.1.1951",
+              "7.3.1953",
+              "commissioned as command ship, stricken 12.1977",
+              "Oregon City (Baltimore 1942) subclass"
+            ],
+            [
+              "CA126",
+              "Cambridge",
+              "1548",
+              "Bethlehem, Quincy",
+              "---",
+              "---",
+              "---",
+              "cancelled 8.1945",
+              "Oregon City (Baltimore 1942) subclass"
+            ],
+            [
+              "CA127",
+              "Bridgeport",
+              "1549",
+              "Bethlehem, Quincy",
+              "---",
+              "---",
+              "---",
+              "cancelled 8.1945",
+              "Oregon City (Baltimore 1942) subclass"
+            ],
+            [
+              "CA128",
+              "Kansas City",
+              "1550",
+              "Bethlehem, Quincy",
+              "9.7.1945",
+              "---",
+              "---",
+              "cancelled 8.1945",
+              "Oregon City (Baltimore 1942) subclass"
+            ],
+            [
+              "CA129",
+              "Tulsa",
+              "1551",
+              "Bethlehem, Quincy",
+              "---",
+              "---",
+              "---",
+              "cancelled 8.1945",
+              "Oregon City (Baltimore 1942) subclass"
+            ],
+            [
+              "CA137",
+              "Norfolk",
+              "",
+              "Philadelphia N Yd",
+              "27.12.1944",
+              "---",
+              "---",
+              "cancelled 8.1945",
+              "Oregon City (Baltimore 1942) subclass"
+            ],
+            [
+              "CA138",
+              "Scranton",
+              "",
+              "Philadelphia N Yd",
+              "27.12.1944",
+              "---",
+              "---",
+              "cancelled 8.1945",
+              "Oregon City (Baltimore 1942) subclass"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/uk/brit_bb1_queen_elizabeth.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:56.286Z",
+      "sha256": "61960bd4aca051d93ec5cf0c2a1b63515e8cac7dbcb0786bf8207a570f5f97f8",
+      "title": "QUEEN ELIZABETH battleships (5, 1915 - 1916)",
+      "atlasAppearances": [
+        {
+          "id": "warspite",
+          "modelId": "historic-warspite",
+          "country": "gb",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Queen Elizabeth",
+              "10, 97, 00",
+              "",
+              "Portsmouth DYd",
+              "21.10.1912",
+              "16.10.1913",
+              "1.1915",
+              "sold for BU 3.1948"
+            ],
+            [
+              "Warspite",
+              "57, A9, 12, 03",
+              "",
+              "Devonport DYd",
+              "31.10.1912",
+              "26.11.1913",
+              "3.1915",
+              "sold for BU 7.1946"
+            ],
+            [
+              "Barham",
+              "97, 10, 34, 04",
+              "424",
+              "John Brown, Clydebank",
+              "24.2.1913",
+              "31.10.1914",
+              "10.1915",
+              "sunk 25.11.1941"
+            ],
+            [
+              "Valiant",
+              "34, A6, 43, 02",
+              "497",
+              "Fairfield, Govan",
+              "31.1.1913",
+              "4.11.1914",
+              "2.1916",
+              "sold for BU 3.1948"
+            ],
+            [
+              "Malaya",
+              "3A, 84, 06, 01",
+              "867",
+              "Armstrong, Elswick",
+              "20.10.1913",
+              "18.3.1915",
+              "2.1916",
+              "sold for BU 2.1948"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/uk/brit_bb1_king_george_v.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:55.930Z",
+      "sha256": "1c65ebc7a6b51953a91e2b22d76930b9f91d2ee740573de810541dfac0401277",
+      "title": "KING GEORGE V battleships (5, 1940 - 1942)",
+      "atlasAppearances": [
+        {
+          "id": "king-george-v",
+          "modelId": "historic-king-george-v",
+          "country": "gb",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "King George V",
+              "41",
+              "10",
+              "Vickers-Armstrong, Tyne",
+              "1.1.1937",
+              "21.2.1939",
+              "11.12.1940",
+              "stricken 4.1957"
+            ],
+            [
+              "Prince of Wales",
+              "53",
+              "1026",
+              "Cammell Laird, Birkenhead",
+              "1.1.1937",
+              "3.5.1939",
+              "31.3.1941",
+              "sunk 10.12.1941"
+            ],
+            [
+              "Duke of York (ex-Anson)",
+              "17",
+              "554",
+              "John Brown, Clydebank",
+              "5.5.1937",
+              "28.2.1940",
+              "4.11.1941",
+              "stricken 4.1957"
+            ],
+            [
+              "Anson (ex-Jellicoe)",
+              "79",
+              "1553",
+              "Swan Hunter, Wallsend",
+              "20.7.1937",
+              "24.2.1940",
+              "22.6.1942",
+              "stricken 4.1957"
+            ],
+            [
+              "Howe (ex-Beatty)",
+              "32",
+              "669",
+              "Fairfield, Govan",
+              "1.6.1937",
+              "9.4.1940",
+              "29.8.1942",
+              "stricken 4.1957"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/uk/brit_bb1_hood.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:57.607Z",
+      "sha256": "2e0ce7c4ac0103fbc568dff6de42a97df54ff621fb757b61c6cc2b6a0ad2f96a",
+      "title": "HOOD battlecruisers (1(3), 1920)",
+      "atlasAppearances": [
+        {
+          "id": "hood",
+          "modelId": "historic-hood",
+          "country": "gb",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Hood",
+              "51",
+              "460",
+              "John Brown, Clydebank",
+              "31.5.1916, again 1.9.1916",
+              "22.8.1918",
+              "15.5.1920",
+              "sunk 24.5.1941"
+            ],
+            [
+              "Rodney",
+              "",
+              "527",
+              "Fairfield, Govan",
+              "9.10.1916",
+              "---",
+              "---",
+              "suspended 3.1917, cancelled 1918"
+            ],
+            [
+              "Howe",
+              "",
+              "834",
+              "Cammell Laird, Birkenhead",
+              "16.10.1916",
+              "---",
+              "---",
+              "suspended 3.1917, cancelled 1918"
+            ],
+            [
+              "Anson",
+              "",
+              "909",
+              "Armstrong, Elswick",
+              "9.11.1917",
+              "---",
+              "---",
+              "suspended 3.1917, cancelled 1918"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/uk/brit_bb1_nelson.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:58.290Z",
+      "sha256": "822e4725e588863e97af6a01beae9e1ead545e314c59a9fdbc0d6a1f5cb09c82",
+      "title": "NELSON battleships (2, 1927)",
+      "atlasAppearances": [
+        {
+          "id": "rodney",
+          "modelId": "historic-rodney",
+          "country": "gb",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Nelson",
+              "28",
+              "991",
+              "Armstrong, Elswick",
+              "28.12.1922",
+              "3.9.1925",
+              "8.1927",
+              "stricken 2.1948, sold for BU 5.1948"
+            ],
+            [
+              "Rodney",
+              "29",
+              "904",
+              "Cammell Laird, Birkenhead",
+              "28.12.1922",
+              "17.12.1925",
+              "11.1927",
+              "BU 3.1948"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/uk/brit_cv1_ark_royal.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:58.461Z",
+      "sha256": "7d9efed33a113dd6ceaecbff73089d68eb75960993e1f70730de7f3112ad2a44",
+      "title": "ARK ROYAL fleet aircraft carrier (1, 1938)",
+      "atlasAppearances": [
+        {
+          "id": "ark-royal",
+          "modelId": "historic-ark-royal",
+          "country": "gb",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Ark Royal",
+              "91",
+              "1012",
+              "Cammell Laird, Birkenhead",
+              "16.9.1935",
+              "13.4.1937",
+              "16.11.1938",
+              "sunk 14.11.1941"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/uk/brit_cv1_illustrious.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:08:58.973Z",
+      "sha256": "d55d07d636685793a3b9a1d6124d11457cee7cd2b368000ab90d69109d2542bd",
+      "title": "ILLUSTRIOUS fleet aircraft carriers (3, 1940 - 1941)",
+      "atlasAppearances": [
+        {
+          "id": "illustrious",
+          "modelId": "historic-illustrious",
+          "country": "gb",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Illustrious",
+              "87, 1948- R2, 1949- R87",
+              "732",
+              "Vickers-Armstrong, Barrow",
+              "27.4.1937",
+              "5.4.1939",
+              "25.5.1940",
+              "stricken 11.1956"
+            ],
+            [
+              "Formidable",
+              "67, 1948- R1, 1949- R67",
+              "1007",
+              "Harland & Wolff, Belfast",
+              "17.6.1937",
+              "17.8.1939",
+              "24.11.1940",
+              "stricken 11.1953"
+            ],
+            [
+              "Victorious",
+              "38, 1948- R23, 1949- R38",
+              "11",
+              "Vickers-Armstrong, Tyne",
+              "4.5.1937",
+              "14.9.1939",
+              "15.5.1941",
+              "stricken 3.1968"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/uk/brit_dd_tribal.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:01.111Z",
+      "sha256": "125f4255ed52a134a08a0be406e699773efe67b174a9aeeec32c99a3e8bbaa63",
+      "title": "Tribal type destroyers (AFRIDI) (27, 1938 - 1948)",
+      "atlasAppearances": [
+        {
+          "id": "cossack",
+          "modelId": "historic-cossack",
+          "country": "gb",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate",
+            "Modification"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Afridi",
+              "F07",
+              "",
+              "Vickers-Armstrong, Tyne",
+              "6/1936",
+              "8.6.1937",
+              "5.1938",
+              "sunk 3.5.1940",
+              "RN \"Tribals\""
+            ],
+            [
+              "Ashanti",
+              "F51, G51, 1948- D151?",
+              "",
+              "Denny, Dumbarton",
+              "11.1936",
+              "5.11.1937",
+              "12.1938",
+              "BU 4.1949",
+              "RN \"Tribals\""
+            ],
+            [
+              "Bedouin",
+              "F67, G67",
+              "",
+              "Denny, Dumbarton",
+              "6.1937",
+              "21.12.1937",
+              "3.1939",
+              "sunk 15.6.1942",
+              "RN \"Tribals\""
+            ],
+            [
+              "Cossack",
+              "F03, L03",
+              "",
+              "Vickers-Armstrong, Tyne",
+              "6.1936",
+              "8.6.1937",
+              "6.1938",
+              "sunk 27.10.1941",
+              "RN \"Tribals\""
+            ],
+            [
+              "Eskimo",
+              "F75, G75, 1948- D175?",
+              "",
+              "Vickers-Armstrong, Tyne",
+              "8.1936",
+              "3.9.1937",
+              "12.1938",
+              "BU 6.1949",
+              "RN \"Tribals\""
+            ],
+            [
+              "Gurkha",
+              "F20",
+              "",
+              "Fairfield, Govan",
+              "7.1936",
+              "7.7.1937",
+              "10.1938",
+              "sunk 9.4.1940",
+              "RN \"Tribals\""
+            ],
+            [
+              "Maori",
+              "F24",
+              "",
+              "Fairfield, Govan",
+              "7.1936",
+              "2.9.1937",
+              "1.1939",
+              "sunk 12.2.1942",
+              "RN \"Tribals\""
+            ],
+            [
+              "Mashona",
+              "F59",
+              "",
+              "Vickers-Armstrong, Tyne",
+              "8.1936",
+              "3.9.1937",
+              "3.1939",
+              "sunk 28.5.1941",
+              "RN \"Tribals\""
+            ],
+            [
+              "Matabele",
+              "F26",
+              "",
+              "Scotts, Greenock",
+              "10.1936",
+              "6.10.1937",
+              "1.1939",
+              "sunk 17.1.1942",
+              "RN \"Tribals\""
+            ],
+            [
+              "Mohawk",
+              "F31, L31",
+              "",
+              "Thornycroft, Woolston",
+              "7.1936",
+              "5.10.1937",
+              "9.1938",
+              "sunk 16.4.1941",
+              "RN \"Tribals\""
+            ],
+            [
+              "Nubian",
+              "F36, G36, 1948- D236?",
+              "",
+              "Thornycroft, Woolston",
+              "8.1936",
+              "21.12.1937",
+              "12.1938",
+              "BU 6.1949",
+              "RN \"Tribals\""
+            ],
+            [
+              "Punjabi",
+              "F21, G21",
+              "",
+              "Scotts, Greenock",
+              "10.1936",
+              "18.12.1937",
+              "3.1939",
+              "collision 1.5.1942",
+              "RN \"Tribals\""
+            ],
+            [
+              "Sikh",
+              "F82",
+              "",
+              "A. Stephens, Linthouse",
+              "9.1936",
+              "17.12.1937",
+              "10.1938",
+              "sunk 14.9.1942",
+              "RN \"Tribals\""
+            ],
+            [
+              "Somali",
+              "F33",
+              "",
+              "Swan Hunter, Wallsend",
+              "8.1936",
+              "24.8.1937",
+              "12.1938",
+              "sunk 24.9.1942",
+              "RN \"Tribals\""
+            ],
+            [
+              "Tartar",
+              "F43, G43",
+              "",
+              "Swan Hunter, Wallsend",
+              "8.1936",
+              "21.10.1937",
+              "3.1939",
+              "BU 1.1948",
+              "RN \"Tribals\""
+            ],
+            [
+              "Zulu",
+              "F18, G18",
+              "",
+              "A. Stephens, Linthouse",
+              "8.1936",
+              "23.9.1937",
+              "9.1938",
+              "sunk 14.9.1942",
+              "RN \"Tribals\""
+            ],
+            [
+              "Arunta (RAN)",
+              "I30, 1948- D130",
+              "",
+              "Cockatoo DYd, Australia",
+              "11.1939",
+              "30.11.1940",
+              "3.1942",
+              "sold for BU 11.1968",
+              "RAN \"Tribals\""
+            ],
+            [
+              "Bataan (RAN)",
+              "I91, 1948- D191",
+              "",
+              "Cockatoo DYd, Australia",
+              "2.1942",
+              "15.1.1944",
+              "5.1945",
+              "BU 5.1958",
+              "RAN \"Tribals\""
+            ],
+            [
+              "Warramunga (RAN)",
+              "I44, 1948- D123",
+              "",
+              "Cockatoo DYd, Australia",
+              "2.1940",
+              "6.2.1942",
+              "11.1942",
+              "BU 2.1963",
+              "RAN \"Tribals\""
+            ],
+            [
+              "Athabaskan (RCN)",
+              "G07",
+              "",
+              "Vickers-Armstrong, Tyne",
+              "10.1940",
+              "18.11.1941",
+              "2.1943",
+              "sunk 29.4.1944",
+              "RCN \"Tribals\""
+            ],
+            [
+              "Haida (RCN)",
+              "G63, 1948- D63?, 1951- DDE215",
+              "",
+              "Vickers-Armstrong, Tyne",
+              "9.1941",
+              "25.8.1942",
+              "9.1943",
+              "preserved 8.1964",
+              "RCN \"Tribals\""
+            ],
+            [
+              "Huron (RCN)",
+              "G24, 1948- D124?, 1951- DDE216",
+              "",
+              "Vickers-Armstrong, Tyne",
+              "7.1941",
+              "25.6.1942",
+              "7.1943",
+              "BU 8.1965",
+              "RCN \"Tribals\""
+            ],
+            [
+              "Iroquois (RCN)",
+              "G89, 1948- D89?, 1951- DDE217",
+              "",
+              "Vickers-Armstrong, Tyne",
+              "9.1940",
+              "23.9.1941",
+              "12.1942",
+              "BU 9.1966",
+              "RCN \"Tribals\""
+            ],
+            [
+              "Athabaskan (RCN)",
+              "R79, 1948- D179?, 1951- DDE219",
+              "",
+              "Halifax, Canada",
+              "5.1944",
+              "14.5.1946",
+              "1.1948",
+              "BU 7.1969",
+              "RCN \"Tribals\""
+            ],
+            [
+              "Cayuga (RCN)",
+              "R04, 1948- D104?, 1951- DDE218",
+              "",
+              "Halifax, Canada",
+              "10.1943",
+              "28.7.1945",
+              "10.1947",
+              "BU 2.1964",
+              "RCN \"Tribals\""
+            ],
+            [
+              "Micmac (RCN)",
+              "R10, 1948- D110?, 1951- DDE214",
+              "",
+              "Halifax, Canada",
+              "5.1942",
+              "18.9.1943",
+              "9.1945",
+              "BU 3.1964",
+              "RCN \"Tribals\""
+            ],
+            [
+              "Nootka (RCN)",
+              "R96, 1948- D96?, 1951- DDE213",
+              "",
+              "Halifax, Canada",
+              "5.1942",
+              "26.4.1944",
+              "8.1946",
+              "BU 10.1964",
+              "RCN \"Tribals\""
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/uk/brit_cr_edinburgh.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:00.829Z",
+      "sha256": "c64735787bed9637ecd7a2b6b31ce0fc815360cda56f188d34318ad6bac319ab",
+      "title": "EDINBURGH light cruisers (2, 1939)",
+      "atlasAppearances": [
+        {
+          "id": "belfast",
+          "modelId": "historic-belfast",
+          "country": "gb",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Belfast",
+              "35, 1948- C35",
+              "1000",
+              "Harland & Wolff, Belfast",
+              "10.12.1936",
+              "17.3.1938",
+              "3.8.1939",
+              "preserved 10.1971"
+            ],
+            [
+              "Edinburgh",
+              "16",
+              "1537",
+              "Swan Hunter, Wallsend",
+              "30.12.1936",
+              "31.3.1938",
+              "6.7.1939",
+              "sunk 2.5.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/uk/brit_bb1_renown16.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:00.568Z",
+      "sha256": "a5b57962bb11f59db4a2837a9d640dc04fba2dcfd6f2114fccf6fd8b76b2430a",
+      "title": "RENOWN battlecruisers (2, 1916)",
+      "atlasAppearances": [
+        {
+          "id": "renown",
+          "modelId": "historic-renown",
+          "country": "gb",
+          "category": "surface"
+        }
+      ],
+      "tables": []
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_bb_yamato.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:02.622Z",
+      "sha256": "955c18dca39c9ffd715da14927a66dfd7be7cd84f7f55d27307412b29b5661de",
+      "title": "YAMATO battleships (1941 - 1942)",
+      "atlasAppearances": [
+        {
+          "id": "yamato",
+          "modelId": "battleship",
+          "country": "jp",
+          "category": "surface"
+        },
+        {
+          "id": "musashi",
+          "modelId": "historic-musashi",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "大和 [Yamato]",
+              "",
+              "",
+              "Kure K K",
+              "4.11.1937",
+              "8.8.1940",
+              "16.12.1941",
+              "sunk 7.4.1945"
+            ],
+            [
+              "武蔵 [Musashi]",
+              "",
+              "800",
+              "Mitsubishi, Nagasaki",
+              "29.3.1938",
+              "1.11.1940",
+              "5.8.1942",
+              "sunk 24.10.1944"
+            ],
+            [
+              "信濃 [Shinano]",
+              "",
+              "",
+              "Yokosuka K K",
+              "4.5.1940",
+              "---",
+              "---",
+              "completed as carrier 1944"
+            ],
+            [
+              "第111号艦 [No111]",
+              "",
+              "",
+              "Kure K K",
+              "7.11.1940",
+              "---",
+              "---",
+              "BU incomplete 3.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_bb_nagato.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:04.450Z",
+      "sha256": "2a41b56a8561e9057fc668533d03acda6a282bced689d1ab39975794ffbc8a5d",
+      "title": "NAGATO battleships (1920 - 1921)",
+      "atlasAppearances": [
+        {
+          "id": "nagato",
+          "modelId": "historic-nagato",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "長門 [Nagato]",
+              "",
+              "",
+              "Kure K K",
+              "28.8.1917",
+              "9.11.1919",
+              "25.11.1920",
+              "surrendered 9.1945, sunk as target 29.7.1946"
+            ],
+            [
+              "陸奥 [Mutsu]",
+              "",
+              "",
+              "Yokosuka K K",
+              "1.6.1918",
+              "31.5.1920",
+              "22.11.1921",
+              "internal explosion 8.6.1943"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_bb_kongo.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:04.586Z",
+      "sha256": "122b9e64ec67f937265a740b76fff5b2a0b240e5845b3c1f8e44aeb8949dc964",
+      "title": "KONGO battlecruisers (1913 - 1915)",
+      "atlasAppearances": [
+        {
+          "id": "kongo",
+          "modelId": "historic-kongo",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "金剛 [Kongo]",
+              "",
+              "414",
+              "Vickers, Barrow, UK",
+              "17.1.1911",
+              "18.5.1912",
+              "16.8.1913",
+              "sunk 21.11.1944"
+            ],
+            [
+              "比叡 [Hiei]",
+              "",
+              "",
+              "Yokosuka K K",
+              "4.11.1911",
+              "21.11.1912",
+              "4.8.1914",
+              "sunk 13.11.1942"
+            ],
+            [
+              "霧島 [Kirishima]",
+              "",
+              "225",
+              "Mitsubishi, Nagasaki",
+              "17.3.1912",
+              "1.12.1913",
+              "19.4.1915",
+              "sunk 15.11.1942"
+            ],
+            [
+              "榛名 [Haruna]",
+              "",
+              "",
+              "Kawasaki, Kobe",
+              "16.3.1912",
+              "14.12.1913",
+              "19.4.1915",
+              "sunk 28.7.1945"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_cv_akagi.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:04.669Z",
+      "sha256": "5477b20a2fb9f3f629e0c5a712ed849e8ffb7be5bbeacd1e60c4e460eb2a5a0b",
+      "title": "AKAGI aircraft carrier (1927)",
+      "atlasAppearances": [
+        {
+          "id": "akagi",
+          "modelId": "fleet-carrier",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "赤城 [Akagi]",
+              "",
+              "",
+              "Kure K K",
+              "6.12.1920",
+              "22.4.1925",
+              "25.3.1927",
+              "sunk 5.6.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_cv_kaga.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:04.632Z",
+      "sha256": "c439caf1b0f02667dc73fe39d070a563bbc7a7f5f0d163dae106abb4d91b1832",
+      "title": "KAGA aircraft carrier (1928)",
+      "atlasAppearances": [
+        {
+          "id": "kaga",
+          "modelId": "historic-kaga",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "加賀 [Kaga]",
+              "",
+              "",
+              "Kawasaki, Kobe",
+              "19.7.1920",
+              "17.11.1921",
+              "31.3.1928",
+              "sunk 4.6.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_cv_shokaku.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:06.486Z",
+      "sha256": "1c56a424f5bd4283aba655fe6f43c581e9a53f5793f63dfa9fee9a8796134202",
+      "title": "SHOKAKU aircraft carriers (1941)",
+      "atlasAppearances": [
+        {
+          "id": "shokaku",
+          "modelId": "historic-shokaku",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "翔鶴 [Shokaku]",
+              "",
+              "",
+              "Yokosuka K K",
+              "12.12.1937",
+              "1.6.1939",
+              "8.8.1941",
+              "sunk 19.6.1944"
+            ],
+            [
+              "瑞鶴 [Zuikaku]",
+              "",
+              "",
+              "Kawasaki, Kobe",
+              "25.5.1938",
+              "27.11.1939",
+              "25.9.1941",
+              "sunk 25.10.1944"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_cr_mogami.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:06.461Z",
+      "sha256": "5b55b64eb867d2ace5b5ded6f90f903328b7415c30958f680478702387fc0d30",
+      "title": "MOGAMI light / heavy cruisers (1935 - 1937)",
+      "atlasAppearances": [
+        {
+          "id": "mogami",
+          "modelId": "historic-mogami",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "最上 [Mogami]",
+              "",
+              "",
+              "Kure K K",
+              "27.10.1931",
+              "14.3.1934",
+              "28.7.1935",
+              "sunk 25.10.1944"
+            ],
+            [
+              "三隈 [Mikuma]",
+              "",
+              "520",
+              "Mitsubishi, Nagasaki",
+              "24.12.1931",
+              "31.5.1934",
+              "29.8.1935",
+              "sunk 6.6.1942"
+            ],
+            [
+              "鈴谷 [Suzuya]",
+              "",
+              "",
+              "Yokosuka K K",
+              "11.12.1933",
+              "20.11.1934",
+              "31.10.1937",
+              "sunk 25.10.1944"
+            ],
+            [
+              "熊野 [Kumano]",
+              "",
+              "590",
+              "Kawasaki, Kobe",
+              "5.4.1934",
+              "15.10.1936",
+              "31.10.1937",
+              "sunk 25.11.1944"
+            ],
+            [
+              "伊吹 [Ibuki]",
+              "",
+              "",
+              "Kure K K",
+              "24.4.1942",
+              "21.5.1943",
+              "---",
+              "built as aircraft carrier from 12.1943, BU incomplete"
+            ],
+            [
+              "第301号艦 [301-go]",
+              "",
+              "",
+              "Mitsubishi, Nagasaki",
+              "1.1.1942",
+              "---",
+              "---",
+              "BU incomplete"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_dd_fubuki.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:06.765Z",
+      "sha256": "583f462d43011e768801938512301ca2ae333ea1787602fad2f1935f520aa7b4",
+      "title": "FUBUKI destroyers (1928 - 1932)",
+      "atlasAppearances": [
+        {
+          "id": "fubuki",
+          "modelId": "historic-fubuki",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "吹雪 [Fubuki] (ex-第35駆逐艦 [35-go])",
+              "",
+              "",
+              "Maizuru K K",
+              "6/1926",
+              "15.11.1927",
+              "8.1928",
+              "sunk 11.10.1942"
+            ],
+            [
+              "東雲 [Shinonome] (ex-第36駆逐艦 [36-go])",
+              "",
+              "",
+              "Sasebo K K",
+              "8/1926",
+              "26.11.1927",
+              "7/1928",
+              "sunk 18.12.1941"
+            ],
+            [
+              "薄雲 [Usugumo] (ex-第37駆逐艦 [37-go])",
+              "",
+              "",
+              "Ishikawajima, Tokyo",
+              "10/1926",
+              "26.12.1927",
+              "7.1928",
+              "sunk 7.7.1944"
+            ],
+            [
+              "白雲 [Shirakumo] (ex-第38駆逐艦 [38-go])",
+              "",
+              "",
+              "Fujinagata, Osaka",
+              "10/1926",
+              "27.12.1927",
+              "7/1928",
+              "sunk 16.3.1944"
+            ],
+            [
+              "磯波 [Isonami] (ex-第39駆逐艦 [39-go])",
+              "",
+              "",
+              "Uraga, Tokyo",
+              "10/1926",
+              "24.11.1927",
+              "6.1928",
+              "sunk 9.4.1943"
+            ],
+            [
+              "白雪 [Shirayuki] (ex-第40駆逐艦 [40-go])",
+              "",
+              "",
+              "Yokohama Co, Yokohama",
+              "3/1927",
+              "20.3.1928",
+              "12.1928",
+              "sunk 3.3.1943"
+            ],
+            [
+              "初雪 [Hatsuyuki] (ex-第41駆逐艦 [41-go])",
+              "",
+              "",
+              "Maizuru K K",
+              "4/1927",
+              "29.9.1927",
+              "3.1929",
+              "sunk 17.7.1943"
+            ],
+            [
+              "深雪 [Miyuki] (ex-第42駆逐艦 [42-go])",
+              "",
+              "",
+              "Uraga, Tokyo",
+              "4/1927",
+              "26.6.1928",
+              "6.1929",
+              "collision 29.6.1934"
+            ],
+            [
+              "叢雲 [Murakumo] (ex-第43駆逐艦 [43-go])",
+              "",
+              "",
+              "Fujinagata, Osaka",
+              "4/1927",
+              "27.9.1927",
+              "5/1928",
+              "sunk 12.10.1942"
+            ],
+            [
+              "浦波 [Uranami] (ex-第44駆逐艦 [44-go])",
+              "",
+              "",
+              "Sasebo K K",
+              "4/1927",
+              "29.11.1928",
+              "6.1929",
+              "sunk 26.10.1944"
+            ],
+            [
+              "敷波 [Shikinami] (ex-第45駆逐艦 [45-go])",
+              "",
+              "",
+              "Maizuru K K",
+              "7/1928",
+              "22.6.1929",
+              "12.1929",
+              "sunk 12.9.1944"
+            ],
+            [
+              "綾波 [Ayanami] (ex-第46駆逐艦 [46-go])",
+              "",
+              "",
+              "Fujinagata, Osaka",
+              "1/1928",
+              "5.10.1929",
+              "4.1930",
+              "sunk 15.11.1942"
+            ],
+            [
+              "朝霧 [Asagiri]",
+              "",
+              "",
+              "Sasebo K K",
+              "12/1928",
+              "18.11.1929",
+              "6.1930",
+              "sunk 28.8.1942"
+            ],
+            [
+              "狭霧 [Sagiri]",
+              "",
+              "",
+              "Uraga, Tokyo",
+              "3/1929",
+              "23.12.1929",
+              "1.1931",
+              "sunk 24.12.1941"
+            ],
+            [
+              "夕霧 [Yugiri]",
+              "",
+              "",
+              "Maizuru K K",
+              "4/1929",
+              "12.5.1930",
+              "12.1930",
+              "sunk 25.11.1943"
+            ],
+            [
+              "天霧 [Amagiri]",
+              "",
+              "",
+              "Ishikawajima, Tokyo",
+              "11/1928",
+              "27.2.1930",
+              "11.1930",
+              "sunk 23.4.1944"
+            ],
+            [
+              "朧 [Oboro]",
+              "",
+              "",
+              "Sasebo K K",
+              "11/1929",
+              "8.11.1930",
+              "10.1931",
+              "sunk 16.10.1942"
+            ],
+            [
+              "曙 [Akebono]",
+              "",
+              "",
+              "Fujinagata, Osaka",
+              "10/1929",
+              "7.11.1930",
+              "7.1931",
+              "sunk 13.11.1944"
+            ],
+            [
+              "漣 [Sazanami]",
+              "",
+              "",
+              "Maizuru K K",
+              "2/1930",
+              "6.6.1931",
+              "5.1932",
+              "sunk 14.1.1944"
+            ],
+            [
+              "潮 [Ushio]",
+              "",
+              "",
+              "Uraga, Tokyo",
+              "12/1929",
+              "17.11.1930",
+              "11.1931",
+              "damaged 14.11.1944, never repaired"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_cv_hiryu.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:06.451Z",
+      "sha256": "9e266f3bf30c6173182f7dae8d53efbbf295f7e5301b2e2dc259e3f10c420b49",
+      "title": "HIRYU aircraft carrier (1939)",
+      "atlasAppearances": [
+        {
+          "id": "hiryu",
+          "modelId": "historic-hiryu",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "飛龍 [Hiryu]",
+              "",
+              "",
+              "Yokosuka K K",
+              "8.7.1936",
+              "16.11.1937",
+              "5.7.1939",
+              "sunk 5.6.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_cv_soryu.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:08.503Z",
+      "sha256": "214c08445dc180e1324deafcb7cc736c4ebada4ef117cbc4edab06a55e753530",
+      "title": "SORYU aircraft carrier (1937)",
+      "atlasAppearances": [
+        {
+          "id": "soryu",
+          "modelId": "historic-soryu",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "蒼龍 [Soryu]",
+              "",
+              "",
+              "Kure K K",
+              "20.11.1934",
+              "23.12.1935",
+              "29.12.1937",
+              "sunk 4.6.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/japan/jap_cv_shinano.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:08.526Z",
+      "sha256": "f43fcdb8bf942c9ca7b61e20e6deffe4ed5aee0f391db51f88d4a4e35f868586",
+      "title": "SHINANO aircraft carrier (1944)",
+      "atlasAppearances": [
+        {
+          "id": "shinano",
+          "modelId": "historic-shinano",
+          "country": "jp",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "信濃 [Shinano]",
+              "",
+              "",
+              "Yokosuka K K",
+              "4.5.1940",
+              "8.10.1944",
+              "19.11.1944",
+              "sunk 29.11.1944"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/germany/ger_bb_bismarck.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:08.577Z",
+      "sha256": "db720ebd580ccc95bf02ec3d9d53580cea5a3b1747698f41a265c00f4d0ecfab",
+      "title": "BISMARCK battleships (1940 - 1941)",
+      "atlasAppearances": [
+        {
+          "id": "bismarck",
+          "modelId": "historic-bismarck",
+          "country": "de",
+          "category": "surface"
+        },
+        {
+          "id": "tirpitz",
+          "modelId": "historic-tirpitz",
+          "country": "de",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Bismarck",
+              "",
+              "509",
+              "Blohm & Voss, Hamburg",
+              "1.7.1936",
+              "14.2.1939",
+              "24.8.1940",
+              "sunk 27.5.1941"
+            ],
+            [
+              "Tirpitz",
+              "",
+              "128",
+              "KMW Wilhelmshaven",
+              "20.10.1936",
+              "1.4.1939",
+              "25.2.1941",
+              "sunk 12.11.1944"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/germany/ger_bb_scharnhorst.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:08.551Z",
+      "sha256": "37292cdf876328fc38cd78943c8f20d3554fb5be0dc4284e0e3a669b8c2a2f6a",
+      "title": "SCHARNHORST battlecruisers (1938 - 1939)",
+      "atlasAppearances": [
+        {
+          "id": "scharnhorst",
+          "modelId": "historic-scharnhorst",
+          "country": "de",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Scharnhorst",
+              "",
+              "125",
+              "KMW Wilhelmshaven",
+              "16.5.1935",
+              "30.6.1936",
+              "7.1.1939",
+              "sunk 26.12.1943"
+            ],
+            [
+              "Gneisenau",
+              "",
+              "235",
+              "Deutsche Werke, Kiel",
+              "3.5.1935",
+              "8.12.1936",
+              "21.5.1938",
+              "damaged 12.2.1942, repair cancelled 7.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/germany/ger_cr_deutschland.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:10.275Z",
+      "sha256": "d3b75365919856e41f4621b7bbf66482909404e9b09401c82d26a85f1fc1546e",
+      "title": "DEUTSCHLAND heavy cruisers (1933 - 1936)",
+      "atlasAppearances": [
+        {
+          "id": "graf-spee",
+          "modelId": "historic-graf-spee",
+          "country": "de",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Deutschland, 1.1940- Lützow",
+              "",
+              "219",
+              "Deutsche Werke, Kiel",
+              "5.2.1929",
+              "19.5.1931",
+              "1.4.1933",
+              "damaged 16.4.1945, never repaired, scuttled 4.5.1945"
+            ],
+            [
+              "Admiral Scheer",
+              "",
+              "123",
+              "KMW Wilhelmshaven",
+              "25.6.1931",
+              "1.4.1933",
+              "12.11.1934",
+              "sunk 9.4.1945"
+            ],
+            [
+              "Admiral Graf Spee",
+              "",
+              "125",
+              "KMW Wilhelmshaven",
+              "1.10.1932",
+              "30.6.1934",
+              "6.1.1936",
+              "scuttled 17.12.1939"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/germany/ger_cr_eugen.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:10.227Z",
+      "sha256": "d996794a85d94066b2ce6b8bebfe06c8325d03da2ae3b3f2e264bc06817e7024",
+      "title": "PRINZ EUGEN heavy cruisers (1940)",
+      "atlasAppearances": [
+        {
+          "id": "prinz-eugen",
+          "modelId": "historic-prinz-eugen",
+          "country": "de",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Prinz Eugen",
+              "",
+              "564",
+              "Germaniawerft, Kiel",
+              "23.4.1936",
+              "22.8.1938",
+              "1.8.1940",
+              "surrendered 5.1945, to USA 1.1946 (IX300)"
+            ],
+            [
+              "Seydlitz",
+              "",
+              "940",
+              "Deschimag, Bremen",
+              "29.12.1936",
+              "19.1.1939",
+              "---",
+              "cancelled 6.1942, built as aircraft carrier Weser from 12.1942, suspended 6.1943, scuttled incomplete 29.1.1945"
+            ],
+            [
+              "Lützow",
+              "",
+              "941",
+              "Deschimag, Bremen",
+              "2.8.1937",
+              "1.7.1939",
+              "---",
+              "incomplete to Soviet Union 11.2.1940 (Петропавловск [Petropavlovsk])"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/italy/it_bb_vittorio_veneto.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:10.313Z",
+      "sha256": "1a8897c4116ba9640490ba0211240f7c67020e8b51524ae7f674b749c54d64f8",
+      "title": "VITTORIO VENETO battleships (1940 - 1942)",
+      "atlasAppearances": [
+        {
+          "id": "littorio",
+          "modelId": "historic-littorio",
+          "country": "it",
+          "category": "surface"
+        },
+        {
+          "id": "roma",
+          "modelId": "historic-roma",
+          "country": "it",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Vittorio Veneto",
+              "",
+              "",
+              "CRDA, Trieste",
+              "28.10.1934",
+              "22.7.1937",
+              "28.4.1940",
+              "stricken 1.1948"
+            ],
+            [
+              "Littorio, 7.1943- Italia",
+              "",
+              "",
+              "Ansaldo, Genoa",
+              "28.10.1934",
+              "22.8.1937",
+              "6.5.1940",
+              "stricken 6.1948"
+            ],
+            [
+              "Roma",
+              "",
+              "",
+              "CRDA, Trieste",
+              "18.9.1938",
+              "9.6.1940",
+              "14.6.1942",
+              "sunk 9.9.1943"
+            ],
+            [
+              "Impero",
+              "",
+              "",
+              "Ansaldo, Genoa",
+              "14.5.1938",
+              "15.11.1939",
+              "---",
+              "captured incomplete 10.9.1943"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/italy/it_bb_giulio_cesare.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:10.316Z",
+      "sha256": "ba8b8019d86ecbb7af81f9bbb470950228c4b800a5fd944f4803d2bda4f81fa9",
+      "title": "GIULIO CESARE battleships (1914 - 1915)",
+      "atlasAppearances": [
+        {
+          "id": "giulio-cesare",
+          "modelId": "historic-giulio-cesare",
+          "country": "it",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Conte di Cavour",
+              "",
+              "",
+              "R. Arsenale di La Spezia",
+              "10.8.1910",
+              "10.8.1911",
+              "1.4.1915",
+              "sunk 12.11.1940"
+            ],
+            [
+              "Giulio Cesare",
+              "",
+              "",
+              "Ansaldo, Genoa",
+              "24.6.1910",
+              "15.10.1911",
+              "14.5.1914",
+              "to Soviet Union 2.1949 (Новороссийск [Novorossiysk])"
+            ],
+            [
+              "Leonardo da Vinci",
+              "",
+              "",
+              "Odero, Sestri Ponente",
+              "18.7.1910",
+              "14.10.1911",
+              "17.5.1914",
+              "sunk 2.8.1916"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/italy/it_cr_zara.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:13.743Z",
+      "sha256": "f1e52768081dfca85c85270e1fe7b54618999dbf365d03dc4d606cbba416b796",
+      "title": "ZARA heavy cruisers (1931 - 1932)",
+      "atlasAppearances": [
+        {
+          "id": "zara",
+          "modelId": "historic-zara",
+          "country": "it",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 5,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Fiume",
+              "",
+              "STT, Trieste",
+              "29.4.1929",
+              "27.4.1930",
+              "23.11.1931",
+              "sunk 29.3.1941"
+            ],
+            [
+              "Gorizia",
+              "",
+              "OTO, Livorno",
+              "17.3.1930",
+              "28.12.1930",
+              "23.12.1932",
+              "damaged 10.4.1943, repair incomplete"
+            ],
+            [
+              "Pola",
+              "",
+              "OTO, Livorno",
+              "17.3.1931",
+              "5.12.1931",
+              "21.12.1932",
+              "sunk 29.3.1941"
+            ],
+            [
+              "Zara",
+              "",
+              "OTO, Muggiano",
+              "4.7.1929",
+              "27.4.1930",
+              "20.10.1931",
+              "sunk 29.3.1941"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/italy/it_dd_maestrale.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:12.159Z",
+      "sha256": "d0fe225181875fae110154782f2ed3e7311e2563da78389dd72b1c375a6f7387",
+      "title": "MAESTRALE destroyers (1934)",
+      "atlasAppearances": [
+        {
+          "id": "maestrale",
+          "modelId": "historic-maestrale",
+          "country": "it",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Grecale",
+              "GR, 1953- D552, 4.1957- F556",
+              "",
+              "CNR, Ancona",
+              "9.1931",
+              "17.6.1934",
+              "11.1934",
+              "frigate 4.1957, stricken 5.1964"
+            ],
+            [
+              "Libeccio",
+              "LI",
+              "",
+              "CT, Riva Trigoso",
+              "9.1931",
+              "4.7.1934",
+              "11.1934",
+              "sunk 9.11.1941"
+            ],
+            [
+              "Maestrale",
+              "ML",
+              "",
+              "CNR, Ascona",
+              "9.1931",
+              "5.4.1934",
+              "9.1934",
+              "scuttled 9.9.1943"
+            ],
+            [
+              "Scirocco",
+              "SC",
+              "",
+              "CT, Riva Trigoso",
+              "9.1931",
+              "22.4.1934",
+              "10.1934",
+              "foundered 23.3.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/france/fr_bb_richelieu.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:12.242Z",
+      "sha256": "0d05eae32052e9d48e67aabbb1d4d5b0b699d07ec7b29903d694eecfd2888a05",
+      "title": "RICHELIEU battleships (1940 - 1949)",
+      "atlasAppearances": [
+        {
+          "id": "richelieu",
+          "modelId": "historic-richelieu",
+          "country": "fr",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Richelieu",
+              "",
+              "61",
+              "Arsenal de Brest",
+              "22.10.1935",
+              "17.1.1939",
+              "15.7.1940",
+              "FNFL 12.1942, TS 1.1956, accomodation hulk 5.1956"
+            ],
+            [
+              "Jean Bart",
+              "",
+              "X6",
+              "A C de la Loire et Penhoët, St-Nazaire",
+              "12.12.1936",
+              "6.3.1940",
+              "16.1.1949, really 1.5.1955",
+              "gunnery training hulk 1.1961"
+            ],
+            [
+              "Clemenceau",
+              "",
+              "",
+              "Arsenal de Brest",
+              "17.1.1939",
+              "6.1943",
+              "---",
+              "scuttled incomplete 27.8.1944"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/france/fr_bb_dunkerque.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:12.179Z",
+      "sha256": "b5ae8d04e1fb44277cfd1cce802bb89f27390fcc55b6199a89e619ecd2840a1d",
+      "title": "DUNKERQUE battlecruisers (1937 - 1939)",
+      "atlasAppearances": [
+        {
+          "id": "dunkerque",
+          "modelId": "historic-dunkerque",
+          "country": "fr",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Dunkerque",
+              "",
+              "",
+              "Arsenal de Brest",
+              "24.12.1932",
+              "2.10.1935",
+              "1.5.1937",
+              "scuttled 27.11.1942"
+            ],
+            [
+              "Strasbourg",
+              "",
+              "E8",
+              "A C de la Loire et Penhoët, St-Nazaire",
+              "25.11.1934",
+              "12.12.1936",
+              "6.4.1939",
+              "scuttled 27.11.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/france/fr_cr_algerie.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:15.509Z",
+      "sha256": "143f7c152b0c2a1730b333763053b5fa95eec564ff79a344af6779ecd747bd52",
+      "title": "ALGÉRIE heavy cruiser (1934)",
+      "atlasAppearances": [
+        {
+          "id": "algerie",
+          "modelId": "historic-algerie",
+          "country": "fr",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Algérie",
+              "",
+              "",
+              "Arsenal de Brest",
+              "19.3.1931",
+              "21.5.1932",
+              "15.9.1934",
+              "scuttled 27.11.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/france/fr_dd_le_fantasque.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:15.680Z",
+      "sha256": "c53f6cbb7c2d93976298e6255c940ae2ff335b04c46dcd7bea737f710eaf1ce1",
+      "title": "LE FANTASQUE destroyers (1935 - 1936)",
+      "atlasAppearances": [
+        {
+          "id": "le-fantasque",
+          "modelId": "historic-le-fantasque",
+          "country": "fr",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Le Malin",
+              "X02, 1950- D612",
+              "",
+              "F C de la Méditerranée, La Seyne",
+              "11.1931",
+              "17.8.1933",
+              "5.1936",
+              "FNFL 2.1943, hulk 1956"
+            ],
+            [
+              "Le Terrible",
+              "X01, 1950- D611",
+              "",
+              "CNF, Caen",
+              "12.1931",
+              "30.11.1933",
+              "4.1935",
+              "FNFL 1.1943, school ship 1957"
+            ],
+            [
+              "L`Indomptable",
+              "",
+              "",
+              "F C de la Méditerranée, La Seyne",
+              "1.1932",
+              "7.12.1933",
+              "2.1936",
+              "scuttled 27.11.1942"
+            ],
+            [
+              "L`Audacieux",
+              "",
+              "",
+              "Arsenal de Lorient",
+              "11.1931",
+              "15.3.1934",
+              "11.1935",
+              "sunk 7.5.1943"
+            ],
+            [
+              "Le Fantasque",
+              "X03, 1950- D610",
+              "",
+              "Arsenal de Lorient",
+              "11.1931",
+              "15.3.1934",
+              "3.1936",
+              "FNFL 1.1943, stricken 5.1957"
+            ],
+            [
+              "Le Triomphant",
+              "X04, 1950- D613",
+              "",
+              "A C de France, Dunkerque",
+              "8.1931",
+              "16.4.1934",
+              "5.1936",
+              "captured by British 3.7.1940, FNFL 8.1940, stricken 12.1954"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/russia/ru_bb_sevastopol.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:15.706Z",
+      "sha256": "01d53a94456eec2f2803ccc50c0a1eb6769d0188f4d284ab921ab11af9e1d03f",
+      "title": "SEVASTOPOL battleships (1914-1915)",
+      "atlasAppearances": [
+        {
+          "id": "marat",
+          "modelId": "historic-marat",
+          "country": "ru",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Гангут [Gangut], 6.1925- Октябрьская Революция [Oktyabr'skaya Revoliutsiya]",
+              "",
+              "",
+              "New Admiralty, St. Petersburg",
+              "16.6.1909",
+              "7.10.1911",
+              "4.11.1914",
+              "stricken 2.1956"
+            ],
+            [
+              "Севастополь [Sevastopol], 3.1921- Парижская коммуна [Parizhskaya Kommuna], 5.1943- Севастополь [Sevastopol]",
+              "",
+              "",
+              "Baltic Wks, St. Petersburg",
+              "16.6.1909",
+              "29.6.1911",
+              "17.11.1914",
+              "stricken 2.1956"
+            ],
+            [
+              "Полтава [Poltava]",
+              "",
+              "",
+              "New Admiralty, St. Petersburg",
+              "16.6.1909",
+              "10.7.1911",
+              "17.12.1914",
+              "fire 25.11.1919, never repaired"
+            ],
+            [
+              "Петропавловск [Petropavlovsk], 3.1921- Марат [Marat], 5.1943- Петропавловск [Petropavlovsk], 11.1950- Волхов [Volkhov]",
+              "",
+              "",
+              "Baltic Wks, St. Petersburg",
+              "16.6.1909",
+              "9.9.1911",
+              "2.1.1915",
+              "badly damaged 23.9.1941, used as non-self-propelled floating battery, hulk 9.1951"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/russia/ru_cr_kirov.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:15.706Z",
+      "sha256": "e379e54db0c1c30a70c4a3dd60b381765f9146af8c6f13be39c9a4c1fad36e17",
+      "title": "KIROV cruisers (project 26) (1938 - 1940)",
+      "atlasAppearances": [
+        {
+          "id": "kirov",
+          "modelId": "historic-kirov",
+          "country": "ru",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "Киров [Kirov]",
+              "",
+              "269",
+              "189 Ordzhonikidze Yd, Leningrad",
+              "22.10.1935",
+              "30.11.1936",
+              "23.9.1938",
+              "stricken 2.1974"
+            ],
+            [
+              "Ворошилов [Voroshilov]",
+              "",
+              "297",
+              "198 Marti Yd, Nikolayev",
+              "15.10.1935",
+              "28.6.1937",
+              "20.6.1940",
+              "test ship 2.1956"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/russia/ru_dd_tashkent.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:17.701Z",
+      "sha256": "e9661c51a4a5ea0b852c971e380c9eb91461b21f3504350cff5337f77d84d453",
+      "title": "TASHKENT destroyer leader (project 20) (1939)",
+      "atlasAppearances": [
+        {
+          "id": "tashkent",
+          "modelId": "historic-tashkent",
+          "country": "ru",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Ташкент [Tashkent]",
+              "",
+              "215",
+              "OTO, Livorno, Italy",
+              "1.1937",
+              "28.11.1937",
+              "10.1939",
+              "sunk 2.7.1942"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/china/ch_cr_ning_hai.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:17.526Z",
+      "sha256": "d6c613cac182e90ac8cad0201553f31fdf062d84aa6feb5a6b299180165e5987",
+      "title": "NING HAI small light cruisers (1932-1937)",
+      "atlasAppearances": [
+        {
+          "id": "ning-hai",
+          "modelId": "historic-ning-hai",
+          "country": "cn",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "甯海 [Ning Hai]",
+              "",
+              "",
+              "Harima Zosensho, Aoi, Japan",
+              "20.2.1931",
+              "10.10.1931",
+              "31.7.1932",
+              "sunk 23.9.1937"
+            ],
+            [
+              "平海 [Ping Hai]",
+              "",
+              "",
+              "Kyangnan DYd, Shanghai // Harima Zosensho, Aoi, Japan",
+              "28.6.1931",
+              "29.9.1935",
+              "1/1937",
+              "sunk 25.9.1937"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/china/ch_of_i_hsien.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:17.696Z",
+      "sha256": "cf0660822e04cf01f2969d0bd6c712ac0863050cd58dd9f0ce793360c65146c7",
+      "title": "I HSIEN (YAT SEN) gunboat (1930)",
+      "atlasAppearances": [
+        {
+          "id": "yat-sen",
+          "modelId": "historic-yat-sen",
+          "country": "cn",
+          "category": "surface"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "一行 [I Hsien]",
+              "",
+              "",
+              "Kiangnan DYd, Shanghai",
+              "1.1930",
+              "12.11.1930",
+              "12.1930",
+              "sunk 26.9.1937, returned 25.8.1946, to Taiwan 1949 (一行 [I Hsien])"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/china/ch_ss_cz330.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:17.752Z",
+      "sha256": "277cfa680034754a783487f4fd54e0fb44a5de4705b531a7ed6019a00bd02c27",
+      "title": "CHANGCHENG 330 submarines (project 039A, 2005-2012), CHANGCHENG 338 submarines (project 039B, 2012-2015)",
+      "atlasAppearances": [
+        {
+          "id": "type-039a",
+          "modelId": "archive-type-039a",
+          "country": "cn",
+          "category": "submarine"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate",
+            "Modification"
+          ],
+          "eventColumn": 5,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "长城 330 [Changcheng 330]",
+              "330",
+              "Wuchang, Wuhan",
+              "",
+              "31.5.2004",
+              "4/2005",
+              "in service (2019)",
+              "Type 039A"
+            ],
+            [
+              "长城 331 [Changcheng 331]",
+              "331",
+              "Wuchang, Wuhan",
+              "",
+              "31.8.2007",
+              "2009",
+              "in service (2019)",
+              "Type 039A"
+            ],
+            [
+              "长城 332 [Changcheng 332]",
+              "332",
+              "Wuchang, Wuhan",
+              "",
+              "11/2007",
+              "2009",
+              "in service (2019)",
+              "Type 039A"
+            ],
+            [
+              "长城 333 [Changcheng 333]",
+              "333",
+              "Wuchang, Wuhan",
+              "",
+              "4/2008",
+              "2010",
+              "in service (2019)",
+              "Type 039A"
+            ],
+            [
+              "长城 334 [Changcheng 334]",
+              "334",
+              "Wuchang, Wuhan",
+              "",
+              "10.10.2008",
+              "2011",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 335 [Changcheng 335]",
+              "335",
+              "Wuchang, Wuhan",
+              "",
+              "3.10.2010",
+              "2011",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 336 [Changcheng 336]",
+              "336",
+              "Wuchang, Wuhan",
+              "",
+              "11/2010",
+              "2012",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 337 [Changcheng 337]",
+              "337",
+              "Wuchang, Wuhan",
+              "",
+              "16.12.2010",
+              "2012",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 338 [Changcheng 338]",
+              "338",
+              "Jiangnan, Changxing",
+              "",
+              "7.6.2011",
+              "2012",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 339 [Changcheng 339]",
+              "339",
+              "Wuchang, Wuhan",
+              "",
+              "29.7.2011",
+              "2012",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 340 [Changcheng 340]",
+              "340",
+              "Wuchang, Wuhan",
+              "",
+              "28.8.2011",
+              "2012",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 341 [Changcheng 341]",
+              "341",
+              "Jiangnan, Changxing",
+              "",
+              "26.11.2011",
+              "2012",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 342 [Changcheng 342]",
+              "342",
+              "Wuchang, Wuhan",
+              "",
+              "10.12.2013",
+              "2015",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 343 [Changcheng 343]",
+              "343",
+              "Wuchang, Wuhan",
+              "",
+              "25.4.2014",
+              "2016",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 344 [Changcheng 344]",
+              "344",
+              "Wuchang, Wuhan",
+              "",
+              "12/2016",
+              "2017",
+              "in service (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 345 [Changcheng 345]",
+              "345",
+              "Jiangnan, Changxing",
+              "",
+              "2018",
+              "2019",
+              "building (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 346 [Changcheng 346]",
+              "346",
+              "Jiangnan, Changxing",
+              "",
+              "2018",
+              "2019",
+              "building (2019)",
+              "Type 039B"
+            ],
+            [
+              "长城 347 [Changcheng 347]",
+              "347",
+              "Wuchang, Wuhan",
+              "",
+              "2018",
+              "2019",
+              "building (2019)",
+              "Type 039B"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/france/fr_ss_rubis.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:18.882Z",
+      "sha256": "e79ae55093bc69a1b0d40bf351a4ffa74a36ad4a8c17681dec76f05527a87b3a",
+      "title": "RUBIS nuclear attack submarines (1983 - 1988)",
+      "atlasAppearances": [
+        {
+          "id": "rubis-amethyste",
+          "modelId": "archive-rubis-amethyste",
+          "country": "fr",
+          "category": "submarine"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "Rubis (ex-Provence)",
+              "S601",
+              "Q84",
+              "Arsenal de Cherbourg",
+              "11.12.1976",
+              "7.7.1979",
+              "23.2.1983",
+              "in service (2019)"
+            ],
+            [
+              "Saphir (ex-Bretagne)",
+              "S602",
+              "Q85",
+              "Arsenal de Cherbourg",
+              "1.9.1979",
+              "1.9.1981",
+              "6.7.1984",
+              "in service (2019)"
+            ],
+            [
+              "Casabianca (ex-Bourgogne)",
+              "S603",
+              "Q86",
+              "Arsenal de Cherbourg",
+              "19.9.1981",
+              "22.12.1984",
+              "13.5.1987",
+              "in service (2019)"
+            ],
+            [
+              "Émeraude",
+              "S604",
+              "",
+              "Arsenal de Cherbourg",
+              "4.3.1983",
+              "12.4.1986",
+              "15.9.1988",
+              "in service (2019)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/russia/ru_ss_k284.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:19.325Z",
+      "sha256": "6ebba237626cb8ec92cdbe02a5dade8a78b9d920b419c07a552b26ded9af5b60",
+      "title": "K-284 nuclear powered attack submarines (projects 971, 09711, 971I (1984 - 2009)",
+      "atlasAppearances": [
+        {
+          "id": "project-971",
+          "modelId": "archive-project-971",
+          "country": "ru",
+          "category": "submarine"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comp",
+            "Fate",
+            "Modification"
+          ],
+          "eventColumn": 6,
+          "dateKind": "completion",
+          "rows": [
+            [
+              "К-480 [K-480], 7.1991- К-480 Барс [K-480 Bars], 10.1997- К-480 Ак Барс [K-480 Ak Bars]",
+              "",
+              "821",
+              "Northern Yd, Severodvinsk",
+              "22.2.1985",
+              "16.4.1988",
+              "29.12.1988",
+              "stricken 10.2002",
+              "Project 971"
+            ],
+            [
+              "К-317 Пантера [K-317 Pantera]",
+              "878",
+              "822",
+              "Northern Yd, Severodvinsk",
+              "6.11.1986",
+              "21.5.1990",
+              "27.12.1990",
+              "in service (2019)",
+              "Project 971"
+            ],
+            [
+              "К-461 Волк [K-461 Volk]",
+              "867",
+              "831",
+              "Northern Yd, Severodvinsk",
+              "14.11.1987",
+              "11.6.1991",
+              "29.12.1991",
+              "in service (2019)",
+              "Project 971"
+            ],
+            [
+              "К-328 Леопард [K-328 Leopard]",
+              "872",
+              "832",
+              "Northern Yd, Severodvinsk",
+              "26.10.1988",
+              "28.6.1992",
+              "30.12.1992",
+              "in service (2019)",
+              "Project 971"
+            ],
+            [
+              "К-154 Тигр [K-154 Tigr]",
+              "853",
+              "833",
+              "Northern Yd, Severodvinsk",
+              "10.9.1989",
+              "26.6.1993",
+              "29.12.1993",
+              "in service (2019)",
+              "Project 971"
+            ],
+            [
+              "К-284 [K-284], 4.1993- К-284 Акула [K-284 Akula]",
+              "",
+              "501",
+              "Leninskiy Komsomol Yd, Komsomolsk-on-Amur",
+              "11.11.1983",
+              "27.7.1984",
+              "30.12.1984",
+              "stricken 12.1995",
+              "Project 971"
+            ],
+            [
+              "К-263 [K-263], 4.1993- К-263 Дельфин [K-263 Delfin], 2.2002- К-263 Барнаул [K-263 Barnaul]",
+              "",
+              "502",
+              "Leninskiy Komsomol Yd, Komsomolsk-on-Amur",
+              "9.5.1985",
+              "28.5.1986",
+              "30.12.1987",
+              "stricken 12.2013",
+              "Project 971"
+            ],
+            [
+              "К-322 [K-322], 4.1993- К-322 Кашалот [K-322 Kashalot]",
+              "985",
+              "513",
+              "Leninskiy Komsomol Yd, Komsomolsk-on-Amur",
+              "5.9.1986",
+              "18.7.1987",
+              "30.12.1988",
+              "awaiting disposal or transfer (2019)",
+              "Project 971"
+            ],
+            [
+              "К-391 [K-391], 4.1993- К-391 Кит [K-391 Kit], 9.1997- К-391 Братск [K-391 Bratsk]",
+              "990",
+              "514",
+              "Leninskiy Komsomol Yd, Komsomolsk-on-Amur",
+              "23.2.1988",
+              "14.4.1989",
+              "29.12.1989",
+              "in service (2019)",
+              "Project 971"
+            ],
+            [
+              "К-331 [K-331], 4.1993- К-331 Нарвал [K-331 Narval], 3.2001- К-331 Магадан [K-331 Magadan]",
+              "997",
+              "515",
+              "Leninskiy Komsomol Yd, Komsomolsk-on-Amur",
+              "28.12.1989",
+              "23.6.1990",
+              "23.12.1990",
+              "awaiting disposal (2019)",
+              "Project 971"
+            ],
+            [
+              "К-419 [K-419], 4.1993- К-419 Морж [K-419 Morzh], 2.1998- К-419 Кузбасс [K-419 Kuzbass]",
+              "951",
+              "516",
+              "Amur Yd, Komsomolsk-on-Amur",
+              "28.7.1991",
+              "18.5.1992",
+              "31.12.1992",
+              "in service (2019)",
+              "Project 971"
+            ],
+            [
+              "К-295 [K-295], 12.1995- К-295 Дракон [K-295 Drakon], 8.1999- К-295 Самара [K-295 Samara]",
+              "970",
+              "517",
+              "Amur Yd, Komsomolsk-on-Amur",
+              "7.11.1993",
+              "5.8.1994",
+              "17.7.1995",
+              "in service (2019)",
+              "Project 971"
+            ],
+            [
+              "-",
+              "",
+              "519",
+              "Amur Yd, Komsomolsk-on-Amur",
+              "1994",
+              "---",
+              "---",
+              "suspended 2007",
+              "Project 971"
+            ],
+            [
+              "К-157 Вепрь [K-157 Vepr']",
+              "890",
+              "834",
+              "Northern Yd, Severodvinsk",
+              "13.7.1990",
+              "10.12.1994",
+              "25.11.1995",
+              "in service (2019)",
+              "Project 09711"
+            ],
+            [
+              "К-335 Гепард [K-335 Gepard]",
+              "895",
+              "835",
+              "Northern Yd, Severodvinsk",
+              "23.9.1991",
+              "17.9.1999",
+              "3.12.2001",
+              "in service (2019)",
+              "Project 09711"
+            ],
+            [
+              "К-337 Кугуар [K-337 Kuguar]",
+              "",
+              "836",
+              "Northern Yd, Severodvinsk",
+              "18.8.1992",
+              "---",
+              "---",
+              "cancelled 1998",
+              "Project 09711"
+            ],
+            [
+              "К-333 Рысь [K-333 Rys']",
+              "",
+              "837",
+              "Northern Yd, Severodvinsk",
+              "31.8.1993",
+              "---",
+              "---",
+              "cancelled 1997",
+              "Project 09711"
+            ],
+            [
+              "К-152 Нерпа [K-152 Nerpa]",
+              "",
+              "518",
+              "Amur Yd, Komsomolsk-on-Amur",
+              "1993",
+              "30.6.2006",
+              "28.10.2009",
+              "to India 4.2012 (चक्र [Chakra])",
+              "Project 971I"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.navypedia.org/ships/italy/it_ss_sauro.htm",
+      "state": "retrieved",
+      "retrievedAt": "2026-11-17T05:09:19.191Z",
+      "sha256": "67d89bb07866f91e205e90520648035e9eab16c50eacb7fa1f1eed13c6ab6e98",
+      "title": "NAZARIO SAURO attack submarines (1979 - 1982)",
+      "atlasAppearances": [
+        {
+          "id": "sauro-first-series",
+          "modelId": "archive-sauro-first-series",
+          "country": "it",
+          "category": "submarine"
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "No",
+            "Yard No",
+            "Builder",
+            "Laid down",
+            "Launched",
+            "Comm",
+            "Fate"
+          ],
+          "eventColumn": 6,
+          "dateKind": "commissioning",
+          "rows": [
+            [
+              "Nazario Sauro",
+              "S518",
+              "",
+              "CRDA, Monfalcone",
+              "26.6.1974",
+              "9.10.1976",
+              "12.2.1980",
+              "stricken 4.2002"
+            ],
+            [
+              "Carlo Fecia di Cossato",
+              "S519",
+              "",
+              "CRDA, Monfalcone",
+              "15.11.1975",
+              "16.11.1977",
+              "5.11.1979",
+              "stricken 4.2005"
+            ],
+            [
+              "Leonardo da Vinci",
+              "S520",
+              "",
+              "Italcantieri, Monfalcone",
+              "8.6.1978",
+              "20.10.1979",
+              "23.10.1981",
+              "stricken 6.2010"
+            ],
+            [
+              "Guglielmo Marconi",
+              "S521",
+              "",
+              "Italcantieri, Monfalcone",
+              "23.10.1979",
+              "20.9.1980",
+              "11.9.1982",
+              "stricken 10.2003"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

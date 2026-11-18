@@ -4,7 +4,7 @@ import {PNG} from 'pngjs';
 import {mkdir} from 'node:fs/promises';
 import {UNIT_INFO,WAVES} from '../../game/campaign.ts';
 
-test('every air and sea unit has a visible local 3D catalog preview and campaign pages wrap', async({page})=>{
+test('every air and sea unit has a visible local 2D catalog preview and campaign pages wrap', async({page})=>{
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#help-button').click();
@@ -15,7 +15,7 @@ test('every air and sea unit has a visible local 3D catalog preview and campaign
     const preview=PNG.sync.read(await page.locator('#intel-canvas').screenshot());
     let modelPixels=0;
     for(let i=0;i<preview.data.length;i+=4) if(Math.max(required(preview.data[i]),required(preview.data[i+1]),required(preview.data[i+2]))>140) modelPixels++;
-    expect(modelPixels,`${unit.id} should have visible model geometry`).toBeGreaterThan(30);
+    expect(modelPixels,`${unit.id} should have visible sprite artwork`).toBeGreaterThan(30);
     await page.locator('#intel-next').click();
   }
   await expect(page.locator('#intel-name')).toHaveText(UNIT_INFO[0].name);

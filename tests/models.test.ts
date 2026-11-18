@@ -23,6 +23,95 @@ async function asset(id: string): Promise<{ json: ReturnType<typeof parseGltf>; 
   return { json, bytes: buffer.length };
 }
 
+test('exported gull-wing elevation and landing-gear supports have real geometry', async () => {
+  const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+  const { Mesh, Vector3, Raycaster, DoubleSide } = await import('three');
+  async function load(id: string) {
+    const bytes = await readFile(new URL(`${id}.glb`, directory));
+    const { scene } = await new GLTFLoader().parseAsync(Uint8Array.from(bytes).buffer, '');
+    scene.updateMatrixWorld(true);
+    const nodes: import('three').Object3D[] = [];
+    scene.traverse(node => nodes.push(node));
+    return { scene, nodes };
+  }
+  function vertices(root: import('three').Object3D) {
+    const points: import('three').Vector3[] = [];
+    root.traverse(node => {
+      if (!(node instanceof Mesh)) return;
+      const positions = node.geometry.getAttribute('position');
+      for (let at = 0; at < positions.count; at++) points.push(new Vector3().fromBufferAttribute(positions, at).applyMatrix4(node.matrixWorld));
+    });
+    return points;
+  }
+  const diver = await load('diver');
+  const gull = required(diver.nodes.find(node => node.userData.visual_component === 'main-wing'));
+  const points = vertices(gull);
+  const topAt = (span: number) => Math.max(...points.filter(point => Math.abs(Math.abs(point.x) - span) < .002).map(point => point.y));
+  assert.ok(topAt(.48) < topAt(0) - .10, 'inner wing descends from the root');
+  assert.ok(topAt(1.42) > topAt(.48) + .10, 'outer wing rises from the elbow');
+
+  gull.traverse(node => {
+    if (node instanceof Mesh) for (const material of Array.isArray(node.material) ? node.material : [node.material]) material.side = DoubleSide;
+  });
+  const guns = required(diver.nodes.find(node => node.userData.visual_component === 'wing-guns'));
+  for (const side of [-1, 1]) {
+    const roots = vertices(guns).filter(point => point.x * side > 0 && point.z > -.061);
+    assert.ok(roots.length > 4, 'actual barrel roots are sampled');
+    assert.ok(roots.some(point =>
+      new Raycaster(point, new Vector3(0, 1, 0), .00001, .15).intersectObject(gull).length &&
+      new Raycaster(point, new Vector3(0, -1, 0), .00001, .15).intersectObject(gull).length),
+    `Diver: ${side} barrel root enters the gull-wing volume`);
+  }
+
+  const dart = await load('dart');
+  const wing = required(dart.nodes.find(node => node.userData.visual_component === 'main-wing'));
+  const gear = required(dart.nodes.find(node => node.userData.visual_component === 'landing-gear'));
+  wing.traverse(node => {
+    if (node instanceof Mesh) for (const material of Array.isArray(node.material) ? node.material : [node.material]) material.side = DoubleSide;
+  });
+  const attached = vertices(gear).some(point => {
+    const above = new Raycaster(point, new Vector3(0, 1, 0), .00001, .08).intersectObject(wing);
+    const below = new Raycaster(point, new Vector3(0, -1, 0), .00001, .08).intersectObject(wing);
+    return above.length > 0 && below.length > 0;
+  });
+  assert.ok(attached, 'actual gear support vertices enter the closed wing volume');
+});
+
+test('angled-carrier deck paint has flight-deck geometry beneath every point', async () => {
+  const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+  const { Mesh, Vector3, Raycaster, DoubleSide, Box3 } = await import('three');
+  for (const ship of HISTORICAL_SHIPS.filter(ship => ship.geometry.flightDeck === 'angled')) {
+    const buffer = await readFile(new URL(`${historicalModel(ship.id)}.glb`, directory));
+    const { scene } = await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer, '');
+    scene.updateMatrixWorld(true);
+    const deck: import('three').Object3D[] = [], marks: import('three').Vector3[] = [];
+    let deckTop = 0, deckArea = 0;
+    scene.traverse(node => {
+      if (!(node instanceof Mesh)) return;
+      const materials = Array.isArray(node.material) ? node.material : [node.material];
+      if (materials.some(material => material.name === 'fleet_deck')) {
+        materials.forEach(material => { material.side = DoubleSide; });
+        deck.push(node);
+        const bounds = new Box3().setFromObject(node), size = bounds.getSize(new Vector3());
+        if (size.x * size.z > deckArea) { deckArea = size.x * size.z; deckTop = bounds.max.y; }
+      }
+      if (!materials.some(material => material.name === 'fleet_mark')) return;
+      const positions = node.geometry.getAttribute('position');
+      for (let at = 0; at < positions.count; at++) {
+        const point = new Vector3().fromBufferAttribute(positions, at).applyMatrix4(node.matrixWorld);
+        marks.push(point);
+      }
+    });
+    const paint = marks.filter(point => point.y > deckTop && point.y < deckTop + .004);
+    assert.ok(paint.length > 30 && deck.length, `${ship.id}: actual deck and paint were inspected`);
+    for (const point of paint) {
+      const origin = new Vector3(point.x, deckTop + .02, point.z);
+      assert.ok(new Raycaster(origin, new Vector3(0, -1, 0), 0, .03).intersectObjects(deck, false).length,
+        `${ship.id}: paint at ${point.x},${point.z} extends beyond the flight deck`);
+    }
+  }
+});
+
 test('all Blender assets contain embedded, finite 3D geometry within the mobile size budget', async () => {
   let total = 0,initial=0,legacy=0;
   for (const id of ids) {
@@ -131,13 +220,41 @@ test('parked carrier aircraft retain upward-facing wings at the actual game came
     const parked:import('three').Object3D[]=[];
     scene.traverse(node=>{if(node.userData.parked_aircraft)parked.push(node);});
     assert.equal(parked.length,3,`${id}: three independently recognizable parked aircraft`);
+    const deckMeshes:import('three').Object3D[]=[];
+    scene.traverse(node=>{
+      if(!(node instanceof Mesh))return;
+      let parent:import('three').Object3D|null=node;
+      while(parent){if(parent.userData.parked_aircraft||parent.userData.game_ruin)return;parent=parent.parent;}
+      deckMeshes.push(node);
+    });
+    const {Raycaster}=await import('three');
+    for(const aircraft of parked) {
+      const bounds=new Box3().setFromObject(aircraft);
+      const contact:import('three').Vector3[]=[];
+      aircraft.traverse(node=>{
+        if(!(node instanceof Mesh))return;
+        const positions=node.geometry.getAttribute('position');
+        for(let at=0;at<positions.count;at++) {
+          const point=new Vector3().fromBufferAttribute(positions,at).applyMatrix4(node.matrixWorld);
+          if(point.y<bounds.min.y+.0005)contact.push(point);
+        }
+      });
+      assert.ok(contact.length>=3,`${id}: exported aircraft has physical contact geometry`);
+      for(const point of contact) {
+        const hit=required(new Raycaster(point.clone().add(new Vector3(0,.015,0)),new Vector3(0,-1,0),0,.1).intersectObjects(deckMeshes,false)[0]);
+        assert.ok(Math.abs(point.y-hit.point.y)<.006,`${id}: landing gear must touch the actual deck, gap ${point.y-hit.point.y}`);
+      }
+    }
     const aircraftScale=required(parked[0]).scale.x;
     assert.ok(area/(aircraftScale*aircraftScale)>.20,`${id}: wings/tails must keep their upward-facing area at the carrier's authored scale`);
     scene.traverse(part=>{
       if(!part.userData.game_part?.startsWith('aa-'))return;
       const aa=new Box3().setFromObject(part);
-      const overlaps=aircraftBounds.max.x>aa.min.x&&aircraftBounds.min.x<aa.max.x&&aircraftBounds.max.z>aa.min.z&&aircraftBounds.min.z<aa.max.z;
-      assert.ok(!overlaps,`${id}: parked aircraft must remain clear of AA positions in the top-down view`);
+      for(const aircraft of parked) {
+        const occupied=new Box3().setFromObject(aircraft);
+        const overlaps=occupied.max.x>aa.min.x&&occupied.min.x<aa.max.x&&occupied.max.z>aa.min.z&&occupied.min.z<aa.max.z;
+        assert.ok(!overlaps,`${id}: ${aircraft.name} must remain clear of AA positions in the top-down view`);
+      }
     });
     if(id==='carrier')for(const craft of ['falcon','swift','turtle']) {
       const playerData=await readFile(new URL(`${craft}.glb`,directory));
@@ -199,7 +316,7 @@ test('historical ships export the selected identity and removable parts at the s
 
 test('distinctive historical main batteries survive Blender export instead of becoming generic triple turrets',async()=>{
   // Main-battery arrangements are documented in dcos/feature/historical-fleet.md and its linked class records.
-  const references:Record<string,number[]>={iowa:[3,3,3],arizona:[3,3,3,3],'king-george-v':[4,2,4],rodney:[3,3,3],richelieu:[4,4],dunkerque:[4,4],bismarck:[2,2,2,2],'giulio-cesare':[3,2,2,3],fletcher:[1,1,1,1,1],mogami:[2,2,2,2,2],'de-ruyter':[2,1,2,2],blyskawica:[1,2,2,2]};
+  const references:Record<string,number[]>={iowa:[3,3,3],arizona:[3,3,3,3],'king-george-v':[4,2,4],rodney:[3,3,3],richelieu:[4,4],dunkerque:[4,4],bismarck:[2,2,2,2],'giulio-cesare':[3,2,2,3],fletcher:[1,1,1,1,1],mogami:[2,2,2,2,2]};
   const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
   for(const [identity,expected] of Object.entries(references)) {
     const ship=required(HISTORICAL_SHIPS.find(ship=>ship.id===identity));
@@ -213,7 +330,7 @@ test('distinctive historical main batteries survive Blender export instead of be
 
 test('every historical main and secondary battery clears other guns, bridges and funnels in museum and actual combat poses',async()=>{
   const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
-  const {Vector3,Raycaster}=await import('three');
+  const {Vector3,Raycaster,Mesh}=await import('three');
   const failures:string[]=[];
   for(const ship of HISTORICAL_SHIPS) {
     const buffer=await readFile(new URL(`${historicalModel(ship.id)}.glb`,directory));
@@ -233,9 +350,26 @@ test('every historical main and secondary battery clears other guns, bridges and
         const targets=[...guns.filter(other=>other!==mount),...structures];
         for(let barrel=0;barrel<mount.userData.gun_barrels;barrel++) {
           const x=(barrel-(mount.userData.gun_barrels-1)/2)*(heavy?.14:.11);
+          const barrelPoints:import('three').Vector3[]=[];
+          mount.traverse(node=>{
+            if(!(node instanceof Mesh))return;
+            const geometry:import('three').BufferGeometry=node.geometry;
+            const positions=geometry.getAttribute('position'),indices=geometry.index;
+            const materials=Array.isArray(node.material)?node.material:[node.material];
+            for(let at=0;at<(indices?.count??positions.count);at+=3) {
+              const group=geometry.groups.find(group=>at>=group.start&&at<group.start+group.count);
+              if(materials[group?.materialIndex??0]?.name.replace(/\.\d+$/,'')!=='fleet_ink')continue;
+              for(let corner=0;corner<3;corner++) {
+                const point=mount.worldToLocal(new Vector3().fromBufferAttribute(positions,indices?indices.getX(at+corner):at+corner).applyMatrix4(node.matrixWorld));
+                if(Math.abs(point.x-x)<(heavy?.028:.021)+.002&&Math.abs(point.y-.20)<(heavy?.028:.021)+.002&&point.z<-.13)barrelPoints.push(point);
+              }
+            }
+          });
+          assert.ok(barrelPoints.length,`${ship.id}: actual barrel surface vertices`);
+          const rootZ=Math.max(...barrelPoints.map(point=>point.z)),tipZ=Math.min(...barrelPoints.map(point=>point.z));
           for(const height of [.20,.20-(heavy?.028:.021)+.001,.20+(heavy?.028:.021)-.001]) {
-            const start=mount.localToWorld(new Vector3(x,height,-.25));
-            const end=mount.localToWorld(new Vector3(x,height,-(.25+(heavy?.52:.34))));
+            const start=mount.localToWorld(new Vector3(x,height,rootZ));
+            const end=mount.localToWorld(new Vector3(x,height,tipZ));
             const ray=new Raycaster(start,end.clone().sub(start).normalize(),.001,start.distanceTo(end));
             const hits=ray.intersectObjects(targets,true);
             if(hits.length)failures.push(`${ship.id} ${pose}: ${mount.name} barrel ${barrel} intersects ${required(hits[0]).object.parent?.name}`);
@@ -257,7 +391,7 @@ test('carrier stacks stay with their starboard islands and highlighted midships 
     scene.traverse(node=>{if(node.userData.historic_funnel){stackCount++;assert.ok(node.getWorldPosition(new Vector3()).x>.25,`${id}: stack must be outboard of the runway`);}});
     assert.ok(stackCount>0,`${id}: historical island stack is present`);
   }
-  for(const [id,station,countExpected] of [['belfast',-.07,1],['sydney',-.07,1],['bismarck',-.24,2],['tirpitz',-.24,2],['king-george-v',-.10,1]] as const) {
+  for(const [id,station,countExpected] of [['belfast',-.07,1],['bismarck',-.24,2],['tirpitz',-.24,2],['king-george-v',-.10,1]] as const) {
     const ship=required(HISTORICAL_SHIPS.find(ship=>ship.id===id));
     const buffer=await readFile(new URL(`${historicalModel(ship.id)}.glb`,directory));
     const {scene}=await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer,'');scene.updateMatrixWorld(true);
@@ -265,6 +399,26 @@ test('carrier stacks stay with their starboard islands and highlighted midships 
       count++;assert.ok(Math.abs(node.getWorldPosition(new Vector3()).z+station*navalShape(ship).halfLength)<.0001,`${id}: midships catapult`);
       const axis=new Vector3(0,0,1).transformDirection(node.matrixWorld);assert.ok(Math.abs(axis.x)>.9,`${id}: athwartship rail`);
     }});assert.equal(count,countExpected,`${id}: real exported catapult rails`);
+  }
+});
+
+test('vertical-launch cells remain exposed above deckhouses in the exported fleet',async()=>{
+  const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
+  const {Mesh,Box3,Vector3,Raycaster}=await import('three');
+  for(const ship of HISTORICAL_SHIPS.filter(ship=>ship.geometry.launchers?.some(launcher=>launcher.kind==='vls'))) {
+    const buffer=await readFile(new URL(`${historicalModel(ship.id)}.glb`,directory));
+    const {scene}=await new GLTFLoader().parseAsync(Uint8Array.from(buffer).buffer,'');
+    const launchers:import('three').Object3D[]=[],visible:import('three').Object3D[]=[];
+    scene.traverse(node=>{if(node.userData.game_ruin)node.visible=false;if(node.userData.naval_launcher==='vls')launchers.push(node);});
+    scene.updateMatrixWorld(true);
+    scene.traverseVisible(node=>{if(node instanceof Mesh)visible.push(node);});
+    for(const launcher of launchers) {
+      const point=new Box3().setFromObject(launcher).getCenter(new Vector3());point.y=10;
+      const hit=required(new Raycaster(point,new Vector3(0,-1,0)).intersectObjects(visible,false)[0]);
+      let owner:import('three').Object3D|null=hit.object;
+      while(owner&&owner!==launcher)owner=owner.parent;
+      assert.equal(owner,launcher,`${ship.id}: ${launcher.name} is buried beneath another structure`);
+    }
   }
 });
 

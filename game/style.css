@@ -228,8 +228,6 @@ dialog h2 { font-size: 25px; letter-spacing: 1px; margin: 12px 0; }
 .fleet-card .intel-illustration { position:relative; min-width:0; aspect-ratio:1.6; }
 #archive-status { position:absolute; inset:0; display:grid; place-items:center; padding:12px; text-align:center; color:var(--muted); font-size:16px; }
 #archive-status:empty { display:none; }
-#archive-review { font-size:14px; }
-#archive-review[data-state="approved"] { color:var(--accent); }
 #archive-coverage { font-size:14px; color:var(--muted); margin:4px 0; }
 #archive-details h3 { margin:0 0 8px; font-size:22px; }
 #archive-note { font-size:16px; line-height:1.6; color:var(--text); margin:0 0 8px; }
@@ -237,6 +235,7 @@ dialog h2 { font-size: 25px; letter-spacing: 1px; margin: 12px 0; }
 #archive-reference-list a { display:flex; align-items:center; min-height:44px; padding:6px 10px; border:1px solid var(--line); border-radius:var(--radius-sm); color:var(--accent); text-underline-offset:4px; }
 .fleet-card .loading #intel-canvas { visibility:hidden; }
 .fleet-meta, .fleet-reference { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:14px; color:var(--muted); }
+.fleet-reference { justify-content:flex-end; }
 .fleet-meta #archive-count { font-family:var(--display); font-size:20px; white-space:nowrap; }
 .fleet-copy #archive-shape { color:var(--text); }
 .fleet-reference a { color:var(--accent); display:inline-flex; align-items:center; min-height:24px; white-space:nowrap; text-underline-offset:4px; }

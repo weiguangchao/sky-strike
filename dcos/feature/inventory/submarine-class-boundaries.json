@@ -1,0 +1,838 @@
+{
+  "title": "Four submarine class-boundary decisions",
+  "checkedOn": "2026-11-17",
+  "role": "read-only historical class-versus-configuration research",
+  "not": [
+    "art score",
+    "model approval",
+    "live ledger edit",
+    "complete eight-country inventory"
+  ],
+  "worktreeReadOnly": "/Users/weiguangchao/.t3/worktrees/sky-strike/t3-98d096f6-f930ffa68815dcea",
+  "baselines": {
+    "liveResolutions": "dcos/feature/inventory/eight-country-resolutions.json",
+    "liveRecordCount": 510,
+    "stagedCombinedLedger": ".artifacts/eight-country-expansion/ru-submarine-reconciliation/staged-resolutions.json",
+    "stagedRecordCount": 733,
+    "round18ArtFreeze": "untouched; 2056 files not opened for edit"
+  },
+  "quoteConvention": "Quotes are decoded visible text with whitespace collapsed. They are not claimed to be contiguous byte substrings of the HTML. SHA-256 is of the saved response bytes.",
+  "decisions": [
+    {
+      "id": 1,
+      "subject": "IT Marcello / Comandante Cappellini",
+      "compilerUrl": "https://www.navypedia.org/ships/italy/it_ss_marcello.htm",
+      "compilerSha256": "2ea9460a6f38be00d11145b412d50ea0a98abb1686a2238660c80288d48933e2",
+      "compilerHeadings": [
+        "MARCELLO large submarines (1938)",
+        "COMANDANTE CAPPELLINI large submarines (1939)"
+      ],
+      "decision": "one class with an improved two-boat configuration",
+      "recommendedCanonicalId": "marcello-1938",
+      "notASecondClass": "cappellini-1939",
+      "mandatorySecondModel": false,
+      "urlClassSubjects": [
+        {
+          "subject": "Marcello class, including the two later OTO boats",
+          "role": "served class",
+          "inventUrlFragment": false
+        }
+      ],
+      "configurationNote": "Marcello migliorata: Comandante Cappellini and Comandante Faà di Bruno, OTO Muggiano, 1938-1939. Regia Marina Italiana's class table places both in class Marcello with the other nine boats. The stated difference from the previous series is Fiat diesels in place of CRDA diesels. That is a series/configuration, not a second served class and not a second required model.",
+      "service": [
+        {
+          "boat": "Marcello",
+          "event": "delivered to the Navy 5 March 1938; first of a stated series of 11",
+          "country": "it"
+        },
+        {
+          "boat": "Comandante Cappellini",
+          "event": "left Cagliari on a war patrol 6 June 1940; left La Spezia 29 September 1940, crossed Gibraltar 5 October, sank Kabalo on the night of 15 October 1940, reached Bordeaux 5 November 1940",
+          "country": "it"
+        },
+        {
+          "boat": "Comandante Faà di Bruno",
+          "event": "delivered to the Regia Marina 23 October 1939; two Mediterranean missions, 10-16 June 1940 and 15-23 July 1940, off Oran",
+          "country": "it"
+        },
+        {
+          "boat": "UIT24 / I-503",
+          "event": "same hull after the armistice; German and Japanese operation stay on this class, not a new design",
+          "country": "de/jp"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "subject": "FR Aurore / postwar La Créole",
+      "compilerUrl": "https://www.navypedia.org/ships/france/fr_ss_aurore.htm",
+      "compilerSha256": "61c0ad3060ca52fe1b0d234f4e42a9b26fa0abb94f2fa5d7b32cc4edef3f1cfb",
+      "compilerHeadings": [
+        "AURORE 2nd class submarines (1940)",
+        "LA CRÉOLE patrol submarines (1949-1954)"
+      ],
+      "decision": "one class; postwar boats are modified completions",
+      "recommendedCanonicalId": "aurore-1940",
+      "notASecondClass": "la-creole",
+      "mandatorySecondModel": false,
+      "urlClassSubjects": [
+        {
+          "subject": "classe Aurore, including postwar modified completions",
+          "role": "served class",
+          "inventUrlFragment": false
+        }
+      ],
+      "configurationNote": "Only Aurore was finished to the original plans and entered service on 20 June 1940. Five incomplete hulls were completed after the war still inside classe Aurore. La Créole, L'Africaine and L'Astrée are the modified completion (88 mm, 10 tubes, snorkel). L'Andromède and L'Artémise are a further revised configuration with a profiled fin and Narval-trial equipment. German UF2 is the same class.",
+      "service": [
+        {
+          "boat": "Aurore",
+          "event": "enters service 20 June 1940; scuttled at Toulon 27 November 1942",
+          "country": "fr"
+        },
+        {
+          "boat": "La Créole",
+          "event": "enters service 1 April 1949",
+          "country": "fr"
+        },
+        {
+          "boat": "L'Africaine",
+          "event": "enters service 1 January 1950",
+          "country": "fr"
+        },
+        {
+          "boat": "L'Astrée",
+          "event": "enters service 1 January 1950",
+          "country": "fr"
+        },
+        {
+          "boat": "L'Andromède",
+          "event": "enters service 15 April 1953 to a revised plan",
+          "country": "fr"
+        },
+        {
+          "boat": "L'Artémise",
+          "event": "enters service 5 February 1954 to a revised plan",
+          "country": "fr"
+        },
+        {
+          "boat": "La Favorite / UF2",
+          "event": "finished by Germany 5 November 1942 and used for training",
+          "country": "de"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "subject": "DE Type IXD2 / IXD/42, kept apart from IXD1",
+      "compilerUrl": "https://www.navypedia.org/ships/germany/ger_ss_ixd2.htm",
+      "compilerSha256": "1d73a5ff6e6fc600339c9b10d9080abc366494e7812aec1d42e0df49d2b82dc8",
+      "relatedCompilerUrl": "https://www.navypedia.org/ships/germany/ger_ss_ixd1.htm",
+      "relatedCompilerSha256": "f81b1624262bf0ebd72e10d65367a646b9c423d364b8c45dc14778ab9816db0b",
+      "compilerHeadings": [
+        "IXD-2 oceangoing submarines (U177)",
+        "IXD/42 oceangoing transport submarines (U883)"
+      ],
+      "decision": "IXD/42 is a small-difference variant of IXD2; IXD1 stays a separate machinery type",
+      "recommendedCanonicalId": "type-ixd2-1942",
+      "doNotMergeWith": "type-ixd1-1942",
+      "notASecondClass": "type-ixd42",
+      "mandatorySecondModel": false,
+      "urlClassSubjects": [
+        {
+          "subject": "Type IXD2, including the IXD/42 variant completed as U-883",
+          "role": "served class",
+          "inventUrlFragment": false
+        }
+      ],
+      "configurationNote": "U-Boot-Archiv calls IX D42 a variant of the preceding type that 'unterschied sich vom vorhergehenden Typ nur in Kleinigkeiten', same length 87.58 m, same MAN-plus-MWM machinery table, surfaced displacement 1,616 t against 1,610 t for IX D2. Only U 883 was finished. IX D1 is the two-boat Daimler-Benz MB 501 installation, already canonical as type-ixd1-1942. Navypedia's transport heading and stern-tube/252 t cargo line are not adopted as a class.",
+      "service": [
+        {
+          "boat": "U-883",
+          "event": "commissioned 27 March 1945 as the only IXD/42; training boat of 4. U-Flottille; no patrols; surrendered May 1945; scuttled in Operation Deadlight 31 December 1945",
+          "country": "de"
+        },
+        {
+          "boat": "U-180",
+          "event": "Type IXD1, commissioned 16 May 1942, training flotilla then 12. Flottille active service, two patrols",
+          "country": "de",
+          "canonicalId": "type-ixd1-1942"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "subject": "RU/CN Project 877 family and Project 636 family",
+      "decision": "two existing canonicals; every lettered or decimal suffix inside each project is a configuration",
+      "mandatoryNewClasses": [],
+      "excludedFromThisDecision": [
+        "Project 629",
+        "Project 677 Lada",
+        "any post-636 new design",
+        "Indian 08773 as an eight-country class"
+      ],
+      "mappings": [
+        {
+          "recommendedCanonicalId": "project-877ekm",
+          "classSubject": "Project 877 Paltus. The live ID names the export EKM record already ledgered. It is the family bucket, not a statement that every hull is an EKM boat. Do not open a second canonical project-877.",
+          "configurations": [
+            {
+              "code": "877",
+              "meaning": "domestic baseline",
+              "service": "B-248 acceptance act 31 December 1980, then Pacific Fleet"
+            },
+            {
+              "code": "877E",
+              "meaning": "export letter, including Warsaw Pact boats and a russianships lay-down note on early Komsomolsk hulls",
+              "service": "not a new class; export country is not a class"
+            },
+            {
+              "code": "877EKM",
+              "meaning": "tropical export modernization of 877E",
+              "service": "B-806 acceptance act 25 September 1986, retained in the Soviet Navy for foreign-crew training; Changcheng 364/365 Chinese service already live. Laid-down-for-Russia is not Russian service."
+            },
+            {
+              "code": "877V",
+              "meaning": "one boat, B-871 Alrosa, experimental pumpjet instead of a propeller",
+              "service": "naval flag 1 December 1990 and entered service 30 December 1990 on the Deepstorm boat page. Stern differs. Not a new class."
+            },
+            {
+              "code": "877LPMB",
+              "meaning": "B-800 Kaluga, experimental seven-blade propeller and rescue hatch",
+              "service": "entered service and flag raised 30 September 1989. Deepstorm calls it the first Project 877 boat with that hatch. Not a new class."
+            }
+          ]
+        },
+        {
+          "recommendedCanonicalId": "project-636",
+          "classSubject": "Project 636, developed by Rubin from Project 877/877EKM, with hull rework and a new equipment set. Not merged into 877. Not split by customer or missile fit.",
+          "configurations": [
+            {
+              "code": "636",
+              "meaning": "first improved export boats",
+              "service": "Chinese Changcheng 366/367 already live"
+            },
+            {
+              "code": "636M",
+              "meaning": "Club-S missile fit",
+              "service": "later Chinese boats already inside project-636. B-340 completed for China is not Russian service."
+            },
+            {
+              "code": "636.3 / 06363",
+              "meaning": "further development of 636M for the Russian Navy",
+              "service": "Magadan, St Andrew flag and join-the-Navy ceremony 12 October 2021; Yakutsk handed to the Navy 11 June 2025. Not a new class because the operator is Russia or because Kalibr replaced Club-S."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "crosswalk": [
+    {
+      "from": "cappellini-1939",
+      "to": "marcello-1938",
+      "relation": "alias / same class, Marcello migliorata configuration",
+      "operators": [
+        "it",
+        "de",
+        "jp"
+      ],
+      "newModel": false
+    },
+    {
+      "from": "Navypedia heading LA CRÉOLE",
+      "to": "aurore-1940",
+      "relation": "postwar configuration",
+      "operators": [
+        "fr"
+      ],
+      "newModel": false
+    },
+    {
+      "from": "UF2",
+      "to": "aurore-1940",
+      "relation": "already same-as",
+      "operators": [
+        "de"
+      ],
+      "newModel": false
+    },
+    {
+      "from": "IXD/42 U-883",
+      "to": "type-ixd2-1942",
+      "relation": "variant / configuration",
+      "operators": [
+        "de"
+      ],
+      "newModel": false
+    },
+    {
+      "from": "type-ixd1-1942",
+      "to": "type-ixd1-1942",
+      "relation": "unchanged; do not merge with IXD2 or IXD/42",
+      "operators": [
+        "de"
+      ],
+      "newModel": false
+    },
+    {
+      "from": "domestic 877, 877E, 877EKM, 877V, 877LPMB",
+      "to": "project-877ekm",
+      "relation": "configurations of Project 877; ID name is the existing export record",
+      "operators": [
+        "ru",
+        "cn"
+      ],
+      "newModel": false
+    },
+    {
+      "from": "636, 636M, 636.3/06363",
+      "to": "project-636",
+      "relation": "configurations",
+      "operators": [
+        "cn",
+        "ru"
+      ],
+      "newModel": false
+    },
+    {
+      "from": "project-636",
+      "to": "project-877ekm",
+      "relation": "not merged",
+      "operators": [
+        "cn",
+        "ru"
+      ],
+      "newModel": false
+    }
+  ],
+  "conflictsUnresolved": [
+    "Faà di Bruno loss: Regia Marina Italiana says contact was lost and the cause is unknown, and that a postwar HMS Havelock attribution on 8 November 1940 was later doubted because the position was far from the boat's route. uboat.net lists lost 6 November 1940. Navypedia says November 1940, probably Havelock. Service is proved without choosing a loss cause.",
+    "Which Marcello boats had Fiat diesels: Regia Marina Italiana limits the previous-series difference to the two later boats. Navypedia's one data block also assigns Fiat diesels to Mocenigo and Veniero. Engine fit is not the class boundary.",
+    "Cappellini after the armistice: Regia Marina Italiana says German incorporation as UIT.24 on 10 September 1943. The live German row uses transfer to the Kriegsmarine on 6 December 1943 after Japanese capture. This pass does not replace the December transfer date.",
+    "Japanese I-503 date: Regia Marina Italiana says 10 May 1945; the preserved Navypedia UIT24 page says 6 May 1945. Same hull and same class either way.",
+    "uboat.net keeps a compiler class named Improved Marcello. That label agrees with the subclass name and disagrees with a second design family. It is not treated as primary proof of a second class.",
+    "UF2 end: the same Netmarine thread says destroyed at Gdynia by bombing on 6 July 1944, and a later reply says disarmed 5 July 1944 and scuttled in May 1945. Training service after 5 November 1942 is the served event; the end date stays open.",
+    "Postwar Aurore admission years: the Netmarine narrative dates above conflict with Philippe Beriou's coarser year cells and with the Flottes de Combat 1958 column reproduced by Netmarine (La Créole 1946, L'Africaine 1948, L'Astrée 1949). The narrative 'entre en service' dates are the ones used. The 1958 column is not a commissioning date.",
+    "U-883 training-flotilla end: uboat.net 5 May 1945 versus U-Boot-Archiv 8 May 1945. Commissioning 27 March 1945 agrees. The archive commander line '27.03.1944' contradicts its own commissioning line and is a typo.",
+    "U-Boot-Archiv IX D2/D42 pages say cruising diesels of 5500 PS each and, for D2, both 19.2 kn in the prose and 16.5 kn in the table. Those figures contradict the same pages' machinery lines. They are not used.",
+    "IXD/42 as a transport: Navypedia's heading, stern-only tubes and 252 t diesel cargo are not in the U-Boot-Archiv type sheet, which lists four bow and two stern tubes and says the variant differed only in details. Transport completion remains unproved. It would still be a configuration, not a class and not IXD1.",
+    "U-Boot-Archiv IX D1 page says the two boats had no torpedo tubes as fuel suppliers and also carries a torpedo count in the data sheet. The Daimler-Benz plant, not that sheet, is what keeps IXD1 distinct.",
+    "uboat.net's Type IXD aggregate says 30 commissioned boats and lists IXD1 plus IXD2 through U-876, not U-883. Its own U-883 page still types that boat IXD/42. The 30-boat page is a family count, not a reason to fold IXD1 into IXD2.",
+    "Early Project 877 hulls: russianships.info says B-248, B-260 and B-227 were laid down to 877E inside the Project 877 table. Deepstorm lists B-248 as Project 877 with an acceptance act and does not put that 877E note on the boat. Not a separate class.",
+    "B-871 entry: Deepstorm boat page, flag 1 December 1990 and in service 30 December 1990. russianships.info says in service 30 November 1990. Late 1990 Soviet naval service is secure; the day is not.",
+    "636 versus 877: Admiralty Shipyards says Project 636 was developed from 877 with different equipment and hull rework, and also that Project 636 'является модификацией' of 877 and 877EKM. Deepstorm says 636 was developed from 877EKM for China. This pass keeps the two live canonicals and does not treat the word modification as a completed merge.",
+    "Length: Deepstorm gives Project 877 as 72.6 m and the last eight 877 boats as 73.8 m. russianships.info gives Project 636 as 73.8 m and 06363 as 74.5 m. The live China contrast of 72.6 against 73.8 is therefore not a clean 877-versus-636 boundary. 74.5 m is recorded as a 636.3 geometry note, not a third class.",
+    "Deepstorm motor line: 5,500 hp on domestic 877 and 4,050 hp on 877EKM, and a 300 m limit noted for EKM against 350 m for the baseline. Engine and depth figures are not a new class.",
+    "TASS Magadan HTML SHA changed from the staged capture 18f7ae1d3caae7b14b0bfed7f45611254361e7f8d314a814130215e345c22e29 to da3a8c66cebbe1bf88e2734ea7c5f6ba2f77e5ecca47729a1413958d5e0c9e76. The 12 October 2021 flag sentence is still in the new bytes. datePublished is 2021-10-12T09:08:52.000Z."
+  ],
+  "limits": [
+    "No Marina Militare official class page, Journal officiel admission decree, Bundesarchiv KTB, or Rubin drawing was retrieved.",
+    "CNR INSEAN AMINAVI returned HTTP 503, and the Wayback copy returned HTTP 429. It is not used.",
+    "Live Netmarine TLS failed. The classe Aurore thread is a Wayback capture of 18 May 2024, id_ original bytes. The 1958 fleet list is a Wayback capture of 20 February 2003.",
+    "Admiralty Shipyards HTTPS failed certificate verification. The cited pages were fetched over HTTP and returned the project text.",
+    "U-Boot-Archiv and uboat.net are specialist compilers, independent of Navypedia, not Kriegsmarine originals. The archive cites Busch/Röll and contains the internal numeric errors listed above.",
+    "Regia Marina Italiana (regiamarina.net) and sommergibili.com are naval-history sites, not marina.difesa.it. They agree with each other against a second Cappellini class.",
+    "Deepstorm is a naval-history compilation and may share books with Navypedia. Acceptance-act sentences are used as service events. They are not the paper acceptance acts.",
+    "russianships.info is a compiler, used for the length table and the 877E lay-down conflict.",
+    "TASS is a state news report of the flag ceremony. The Admiralty Yakutsk note is the builder's transfer notice.",
+    "No live ledger, staged ledger, source tree, asset, or round-18 freeze file was edited. This is not a complete class census."
+  ],
+  "sources": [
+    {
+      "id": "rm-cappellini",
+      "url": "https://regiamarina.net/r-smg-comandante-cappellini/",
+      "checkedOn": "2026-11-17",
+      "bytes": 138002,
+      "sha256": "33b4afbd7cb03c2caf6bf1f978b31314a4212a50b197ba4ef3633c94d1793859",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/01-regiamarina.net_r-smg-comandante-cappellini_"
+    },
+    {
+      "id": "rm-faa",
+      "url": "https://regiamarina.net/r-smg-faa-di-bruno/",
+      "checkedOn": "2026-11-17",
+      "bytes": 116881,
+      "sha256": "6301c5cd5742e4d32d5025f4ae61755afbed2a6c5491b798e38ce0ad333d3059",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/02-regiamarina.net_r-smg-faa-di-bruno_"
+    },
+    {
+      "id": "rm-marcello",
+      "url": "https://regiamarina.net/r-smg-marcello/",
+      "checkedOn": "2026-11-17",
+      "bytes": 126677,
+      "sha256": "dd147700faef7e81dcdc4fa8d07e8a019725fb8bd06274884097d26ed00f899a",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/03-regiamarina.net_r-smg-marcello_"
+    },
+    {
+      "id": "rm-classes",
+      "url": "https://regiamarina.net/submarine-classes/",
+      "checkedOn": "2026-11-17",
+      "bytes": 141236,
+      "sha256": "30f330b2c3a3875a23fec11b0d77e26ca812bdf6150a4c9b593ab8059035be0f",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/04-regiamarina.net_submarine-classes_"
+    },
+    {
+      "id": "sommergibili-faa",
+      "url": "https://www.sommergibili.com/faadibruno.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 7964,
+      "sha256": "434876dda5a6ac0c1c7a384c2759561e306d67797b19b8534ef084aa47c62525",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/05-www.sommergibili.com_faadibruno.htm"
+    },
+    {
+      "id": "uboat-improved-marcello",
+      "url": "https://uboat.net/italian_submarines/classes/?id=13",
+      "checkedOn": "2026-11-17",
+      "bytes": 9896,
+      "sha256": "5e209f9f65b7a3dfc67113bcfe5ce026874e6022f1f188603fbf8c7e43b71b05",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/06-uboat.net_italian_submarines_classes__id=13"
+    },
+    {
+      "id": "beriou-aurore",
+      "url": "https://philippeberiou.fr/SM_Aurore-caract.php",
+      "checkedOn": "2026-11-17",
+      "bytes": 17694,
+      "sha256": "923b6272384591304b542f006a986ae7ab5028abed9ce221c0ec970f32acd259",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/09-philippeberiou.fr_SM_Aurore-caract.php"
+    },
+    {
+      "id": "archive-ixd42",
+      "url": "http://ubootarchiv.de/ubootwiki/index.php/IX_D42",
+      "checkedOn": "2026-11-17",
+      "bytes": 27402,
+      "sha256": "9a3f07408207ace4fe6681f150ee0a3a12968f40b878ac2efbd62235dc640a28",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/10-ubootarchiv.de_ubootwiki_index.php_IX_D42"
+    },
+    {
+      "id": "archive-ixd2",
+      "url": "http://ubootarchiv.de/ubootwiki/index.php/IX_D2",
+      "checkedOn": "2026-11-17",
+      "bytes": 30372,
+      "sha256": "b330da772851111f8e968c2471f70200fab84c48fadbd5d899c33f9799ae99a5",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/11-ubootarchiv.de_ubootwiki_index.php_IX_D2"
+    },
+    {
+      "id": "archive-ixd1",
+      "url": "http://ubootarchiv.de/ubootwiki/index.php/IX_D1",
+      "checkedOn": "2026-11-17",
+      "bytes": 26988,
+      "sha256": "88ac9d559a8bdbc861ec8365af96e0b15e9754f2cf3e5a929839d46c6f6a419d",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/12-ubootarchiv.de_ubootwiki_index.php_IX_D1"
+    },
+    {
+      "id": "archive-u883",
+      "url": "http://ubootarchiv.de/ubootwiki/index.php/U_883",
+      "checkedOn": "2026-11-17",
+      "bytes": 28029,
+      "sha256": "2bbc7bb38c0a2573e2de0494b221b0f3a71b66c0e6675203cd89176e6fc762b7",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/13-ubootarchiv.de_ubootwiki_index.php_U_883"
+    },
+    {
+      "id": "uboat-u883",
+      "url": "https://uboat.net/boats/u883.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 11698,
+      "sha256": "41a78452460cb5d6c2514549a360e2cb17a62f884db5d7460d5680ad6556dcc7",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/14-uboat.net_boats_u883.htm"
+    },
+    {
+      "id": "adm-877ekm",
+      "url": "http://admship.ru/production/archive/spravochnik-proektov-podvodnykh-lodok-postroennykh-na-admiralteyskikh-verfyakh/proekt-877ekm/",
+      "checkedOn": "2026-11-17",
+      "bytes": 21626,
+      "sha256": "7dcaad5ee84a181b5d4a64a120983e624089b5fbbde307f52127ae5ef0e4799b",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/17-admship.ru_production_archive_spravochnik-proektov-podvodnykh-lodok-postroennykh-na-admiralteyskikh-verfyakh_proekt-877ekm_"
+    },
+    {
+      "id": "adm-yakutsk",
+      "url": "http://admship.ru/press/news/osk-peredala-vmf-rf-dizel-elektricheskuyu-podvodnuyu-lodku-yakutsk/",
+      "checkedOn": "2026-11-17",
+      "bytes": 17525,
+      "sha256": "061e4c683f9aa95a99bd03df20942c1f2ff85a1503dddb06944182f411d8ce65",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/18-admship.ru_press_news_osk-peredala-vmf-rf-dizel-elektricheskuyu-podvodnuyu-lodku-yakutsk_"
+    },
+    {
+      "id": "deep-877",
+      "url": "https://deepstorm.ru/DeepStorm.files/45-92/dts/877/list.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 89560,
+      "sha256": "8fbc8e5778e46320da5a3cc61d64cca21b43c0d7e5c8c3be712390eb38f20ca1",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/19-deepstorm.ru_DeepStorm.files_45-92_dts_877_list.htm"
+    },
+    {
+      "id": "deep-b871",
+      "url": "https://deepstorm.ru/DeepStorm.files/45-92/dts/877/B-871/B-871.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 29984,
+      "sha256": "25a3f91f5da3e44efc4dd812cf422794ab62b2044cff6a172e79b5bd5f7592f9",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/20-deepstorm.ru_DeepStorm.files_45-92_dts_877_B-871_B-871.htm"
+    },
+    {
+      "id": "deep-b800",
+      "url": "https://deepstorm.ru/DeepStorm.files/45-92/dts/877/B-800/B-800.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 20420,
+      "sha256": "528056f4cba134813c62ce844ca51a8d44e0540f6293c5fb8915be37d642fdb1",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/21-deepstorm.ru_DeepStorm.files_45-92_dts_877_B-800_B-800.htm"
+    },
+    {
+      "id": "deep-b806",
+      "url": "https://deepstorm.ru/DeepStorm.files/45-92/dts/877/B-806/B-806.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 32704,
+      "sha256": "93e22c2c9f44f7020094119c39d80900f79bf99aeac56b5ae56e839b03fc2613",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/22-deepstorm.ru_DeepStorm.files_45-92_dts_877_B-806_B-806.htm"
+    },
+    {
+      "id": "deep-b248",
+      "url": "https://deepstorm.ru/DeepStorm.files/45-92/dts/877/B-248/B-248.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 12527,
+      "sha256": "73cb8e3d403827874fb4f81678329f884d9aa61a63325d13e676adae3ccb489d",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/23-deepstorm.ru_DeepStorm.files_45-92_dts_877_B-248_B-248.htm"
+    },
+    {
+      "id": "deep-636",
+      "url": "https://www.deepstorm.ru/DeepStorm.files/on_1992/636/list.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 64148,
+      "sha256": "6021e34d2b5f616ccf0dfd08b8c71d4d913dd98c95f71b607b5dec9f0e5ce8d3",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/24-www.deepstorm.ru_DeepStorm.files_on_1992_636_list.htm"
+    },
+    {
+      "id": "tass-magadan",
+      "url": "https://tass.com/defense/1348293",
+      "checkedOn": "2026-11-17",
+      "bytes": 157242,
+      "sha256": "da3a8c66cebbe1bf88e2734ea7c5f6ba2f77e5ecca47729a1413958d5e0c9e76",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/25-tass.com_defense_1348293"
+    },
+    {
+      "id": "russianships-877",
+      "url": "https://russianships.info/podlodki/877.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 67804,
+      "sha256": "1d7c8963ce50290322b1f76257925966f853b00fa2683782c87ec6733ca1421d",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/27-russianships.info_podlodki_877.htm"
+    },
+    {
+      "id": "adm-636",
+      "url": "http://admship.ru/production/archive/spravochnik-proektov-podvodnykh-lodok-postroennykh-na-admiralteyskikh-verfyakh/proekt-636/",
+      "checkedOn": "2026-11-17",
+      "bytes": 27234,
+      "sha256": "b4459086b1a23f5a1fe0dc89004348f6ad8f15aa17357107151ebbcf23a1f758",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/29-admship.ru_production_archive_spravochnik-proektov-podvodnykh-lodok-postroennykh-na-admiralteyskikh-verfyakh_proekt-636_"
+    },
+    {
+      "id": "adm-636-product",
+      "url": "http://admship.ru/production/underwater/dizel-elektricheskaya-podvodnaya-lodka-proekta-636/",
+      "checkedOn": "2026-11-17",
+      "bytes": 19729,
+      "sha256": "253dbe1f4cd8e8c18007f2153cb030ab9836150ce63dd7a170d51a0cbc7cea14",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/30-admship.ru_production_underwater_dizel-elektricheskaya-podvodnaya-lodka-proekta-636_"
+    },
+    {
+      "id": "uboat-ixd",
+      "url": "https://uboat.net/types/ixd.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 15058,
+      "sha256": "9c2159667c2b9b111167b15527f6fa9807a31214e5fd939b83e714c46784717a",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/32-uboat.net_types_ixd.htm"
+    },
+    {
+      "id": "uboat-u180",
+      "url": "https://uboat.net/boats/u180.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 14307,
+      "sha256": "a75b4128961a04e0a1f1118b39383d2093c9f3cdbb553917486f9fcd380279ac",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/33-uboat.net_boats_u180.htm"
+    },
+    {
+      "id": "wayback-aurore",
+      "url": "https://web.archive.org/web/20240518225130id_/https://forum.netmarine.net/viewtopic.php?t=2915",
+      "checkedOn": "2026-11-17",
+      "bytes": 74361,
+      "sha256": "05bc24d2ce1db2bf361918c9caf30dc5bb36a9a7834a3756fa39fa1a26d3de36",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/wayback-netmarine-forum-20240518.html"
+    },
+    {
+      "id": "wayback-flot1958",
+      "url": "https://web.archive.org/web/20030220095117id_/http://www.netmarine.net:80/bat/listes/flot1958.htm",
+      "checkedOn": "2026-11-17",
+      "bytes": 211734,
+      "sha256": "020e4c607f43a43cf07cad6ddff1e811127b38286cddc6ce669cbed6e9590a10",
+      "path": ".artifacts/eight-country-expansion/submarine-class-boundaries/independent-evidence/raw/wayback-netmarine-flot1958-20030220.html"
+    }
+  ],
+  "quotes": [
+    {
+      "sourceId": "rm-marcello",
+      "quote": "The MARCELLO was the first of a series of 11 boats and which bears its name (Marcello Class). The boat was laid down at the C.R.D.A. shipyard of Monfalcone on January 4th, 1937, launched on November 20th of the same year, and delivered to the Navy on March 5th, 1938.",
+      "meaning": "Eleven-boat Marcello class; lead boat delivered to the Navy."
+    },
+    {
+      "sourceId": "rm-classes",
+      "quote": "Comandante Cappellini | Bernardis | Marcello | Submarine – Oceanic | Comandante Faa Di Bruno | Bernardis | Marcello | Submarine – Oceanic",
+      "meaning": "Class column is Marcello for both later boats, same as Barbarigo and Marcello."
+    },
+    {
+      "sourceId": "rm-cappellini",
+      "quote": "The Cappellini was one of the two Marcellos of more recent construction and it differed from the previous series simply for the substitution of the diesel engines produced by CRDA with similar ones produced by FIAT.",
+      "meaning": "Subclass difference stated as an engine substitution, not a new design."
+    },
+    {
+      "sourceId": "rm-cappellini",
+      "quote": "The Cappellini left Cagliari (Sardinia) on June 6th, 1940 a day after the Finzi and under the command of C.C. Cristiano Masi",
+      "meaning": "Italian wartime patrol, not merely a completion date."
+    },
+    {
+      "sourceId": "rm-cappellini",
+      "quote": "The submarine left La Spezia on September 29th, 1940 to complete the crossing of the strait (Gibraltar) on the 5th of October",
+      "meaning": "Second Italian deployment, Atlantic passage."
+    },
+    {
+      "sourceId": "rm-faa",
+      "quote": "This submarine (commonly called FAA DI BRUNO) was one of the two boats (the other one was the Smg. COMMANDER CAPPELLINI) of the class MARCELLO “improved”. They were both built by the O.T.O. shipyard of Muggiano (La Spezia) between 1938 and 1939",
+      "meaning": "Named improved series inside class Marcello."
+    },
+    {
+      "sourceId": "rm-faa",
+      "quote": "The FAA DI BRUNO was laid down on April 28th, 1938, launched on June 18th, 1939, and delivered to the Regia Marina on October 23rd, 1939.",
+      "meaning": "Delivery to the Navy."
+    },
+    {
+      "sourceId": "rm-faa",
+      "quote": "After two missions in the Mediterranean (from the 10th to the 16th of June and from the 15th to the 23rd of July 1940, off the coast of Oran)",
+      "meaning": "Italian operational service."
+    },
+    {
+      "sourceId": "sommergibili-faa",
+      "quote": "era uno dei due battelli (l’altro era il Smg. COMANDANTE CAPPELLINI (1°)) della classe “MARCELLO migliorata”",
+      "meaning": "Italian-language agreement with the improved-Marcello name."
+    },
+    {
+      "sourceId": "sommergibili-faa",
+      "quote": "Il FAA’ DI BRUNO era stato impostato il 28.4.1938, varato il 18.6.1939 e consegnato alla Marina il 23.10.1939.",
+      "meaning": "Same delivery date."
+    },
+    {
+      "sourceId": "wayback-aurore",
+      "quote": "Les sous-marins de la classe Aurore étaient des sous-marins de 2é classe",
+      "meaning": "One French class name."
+    },
+    {
+      "sourceId": "wayback-aurore",
+      "quote": "Seul le prototype l'Aurore sera terminé selon les plans d'origine.",
+      "meaning": "Postwar boats are not a new design series; they are unfinished hulls completed differently."
+    },
+    {
+      "sourceId": "wayback-aurore",
+      "quote": "elle entre en service le 20 juin1940, ce sera le seul sous marin de la série terminé au début de la guerre; elle sera malheureusement sabordé à Toulon le 27 novembre 1942",
+      "meaning": "Aurore French service and loss."
+    },
+    {
+      "sourceId": "wayback-aurore",
+      "quote": "elle rentrera en service le 1er avril1949",
+      "meaning": "La Créole postwar admission, still inside the Aurore article."
+    },
+    {
+      "sourceId": "wayback-aurore",
+      "quote": "L’Andromède et l'Artémis sont modifiés avec un kiosque profilé et les installations prototypes de la série Narval",
+      "meaning": "Further configuration inside the class, not a Narval-class boat."
+    },
+    {
+      "sourceId": "wayback-aurore",
+      "quote": "elle sera terminée par les allemands le 5 novembre 1942; sert pour l’entraînement",
+      "meaning": "UF2 German training service."
+    },
+    {
+      "sourceId": "beriou-aurore",
+      "quote": "Sous-Marin de 2ème classe de la série Aurore (ou Créole)",
+      "meaning": "Aurore and Créole are alternate names of one series on this private table. Its year cells are not used as admission dates."
+    },
+    {
+      "sourceId": "archive-ixd42",
+      "quote": "Das erste und einzige Boot der Variante D 42, war das am 27.03.1945 fertiggestellte U 883. Diese Variante unterschied sich vom vorhergehenden Typ nur in Kleinigkeiten.",
+      "meaning": "One finished boat; variant of the preceding type, differing in details."
+    },
+    {
+      "sourceId": "archive-u883",
+      "quote": "Typ: IX D42",
+      "meaning": "German type code on the boat sheet."
+    },
+    {
+      "sourceId": "archive-u883",
+      "quote": "Indienststellung: 27.03.1945",
+      "meaning": "Commissioning."
+    },
+    {
+      "sourceId": "archive-u883",
+      "quote": "27.03.1945 - 08.05.1945 Ausbildungsboot - 4. U-Flottille, Stettin",
+      "meaning": "Training-flotilla service, not a war patrol."
+    },
+    {
+      "sourceId": "uboat-u883",
+      "quote": "U-883 was commissioned in 1945, the only U-boat of Type IXD/42.",
+      "meaning": "Agrees on uniqueness and type label."
+    },
+    {
+      "sourceId": "uboat-u883",
+      "quote": "No patrols",
+      "meaning": "No front patrol."
+    },
+    {
+      "sourceId": "uboat-u883",
+      "quote": "4. Flottille (training)",
+      "meaning": "Training flotilla. End date on this page is 5 May 1945."
+    },
+    {
+      "sourceId": "uboat-u180",
+      "quote": "Type IXD1",
+      "meaning": "Separate type label from IXD/42."
+    },
+    {
+      "sourceId": "uboat-u180",
+      "quote": "Commissioned 16 May 1942",
+      "meaning": "IXD1 commissioning."
+    },
+    {
+      "sourceId": "archive-ixd1",
+      "quote": "schnelle Dieselmotoren vom Modell Daimler Benz MB 501",
+      "meaning": "IXD1 machinery is not the MAN-plus-MWM plant of IXD2 and IXD/42."
+    },
+    {
+      "sourceId": "uboat-ixd",
+      "quote": "30 boats commissioned",
+      "meaning": "Aggregate Type IXD count on this page does not include U-883."
+    },
+    {
+      "sourceId": "uboat-ixd",
+      "quote": "The table above is for the IXD2 boat.",
+      "meaning": "The aggregate page still distinguishes the IXD2 data table."
+    },
+    {
+      "sourceId": "deep-b248",
+      "quote": "1980 год 31 декабря Подписан приемный акт, вступила в строй",
+      "meaning": "Domestic Project 877 acceptance, not a completion-only date."
+    },
+    {
+      "sourceId": "deep-b806",
+      "quote": "1986 год 25 сентября Подписан приёмный акт. Вступила в строй.",
+      "meaning": "Soviet acceptance of the export-project boat."
+    },
+    {
+      "sourceId": "deep-b806",
+      "quote": "Несмотря на то, что ПЛ была построена по экспортному проекту (планировалась для ВМС Ливии), было принято решение оставить её в составе ВМФ СССР",
+      "meaning": "B-806 is 877EKM retained in Soviet service. It does not make every domestic 877 an EKM boat."
+    },
+    {
+      "sourceId": "deep-b871",
+      "quote": "1990 год 1 декабря Поднят военно-морской флаг ВМС СССР",
+      "meaning": "877V naval flag."
+    },
+    {
+      "sourceId": "deep-b871",
+      "quote": "1990 год 30 декабря Вступила в строй.",
+      "meaning": "877V entry. Day conflicts with russianships 30 November 1990."
+    },
+    {
+      "sourceId": "deep-877",
+      "quote": "ПЛ Б-871 была построена по проекту 877В и имела опытный водометный движитель (вместо винта).",
+      "meaning": "Pumpjet is a Project 877 modification."
+    },
+    {
+      "sourceId": "deep-877",
+      "quote": "Б-800 (проект 877ЛПМБ) имела винт, выполненный из сплава «Аврора», семилопастной саблевидный с Г-образными лопастями. Этот корабль был первым из ПЛ 877 проекта",
+      "meaning": "LPMB is an experimental 877 configuration."
+    },
+    {
+      "sourceId": "deep-b800",
+      "quote": "1989 год 30 сентября Вошла в строй, поднят флаг ВМФ.",
+      "meaning": "B-800 service."
+    },
+    {
+      "sourceId": "deep-877",
+      "quote": "На базе проекта 877ЭКМ для ВМС КНР был разработан проект 636, а позже и проект 636М.",
+      "meaning": "636 is a later project developed from 877EKM, not a letter suffix."
+    },
+    {
+      "sourceId": "deep-877",
+      "quote": "длина: 72,6 метров (73,8 - на последних 8 кораблях проекта 877)",
+      "meaning": "73.8 m also occurs inside late Project 877."
+    },
+    {
+      "sourceId": "adm-877ekm",
+      "quote": "Основной акцент при модернизации был сделан на обеспечение работы механизмов лодки в тропических условиях.",
+      "meaning": "877EKM is a tropical modernization, not a new class."
+    },
+    {
+      "sourceId": "adm-636",
+      "quote": "На базе проекта 877 АО «ЦКБ МТ «Рубин» был разработан проект 636, отличающийся устанавливаемым оборудованием и доработками корпуса.",
+      "meaning": "Yard: new project number, equipment and hull rework."
+    },
+    {
+      "sourceId": "adm-636-product",
+      "quote": "Подводная лодка проекта 636 относится к третьему поколению ДЭПЛ и является модификацией подводных лодок проектов 877 и 877ЭКМ",
+      "meaning": "Same yard also calls 636 a modification of 877 and 877EKM. Residual merge argument, not adopted."
+    },
+    {
+      "sourceId": "deep-636",
+      "quote": "Проект 636М - улучшенный проект с дальнобойными крылатыми ракетами «Club-S»",
+      "meaning": "636M is a missile configuration."
+    },
+    {
+      "sourceId": "deep-636",
+      "quote": "Проект 06363 - дальнейшее развитие проекта 636М, для ВМФ России",
+      "meaning": "636.3 is a Russian-navy development of 636M, not a new class and not a class created by the customer country."
+    },
+    {
+      "sourceId": "deep-636",
+      "quote": "Б-602 \"Магадан\" 01616 01.11.2019 26.03.2021 12.10.2021",
+      "meaning": "Deepstorm entry date for Magadan."
+    },
+    {
+      "sourceId": "tass-magadan",
+      "quote": "ST. PETERSBURG, October 12. /TASS/. The Project 636.3 Magadan diesel-electric submarine has joined the Russian Navy on Tuesday. The Russian navy’s ensign, the St. Andrews flag, was raised on the submarine.",
+      "meaning": "Flag ceremony. datePublished 2021-10-12."
+    },
+    {
+      "sourceId": "adm-yakutsk",
+      "quote": "11.06.2025 На предприятии ОСК Адмиралтейские верфи состоялась торжественная церемония передачи Военно-Морскому Флоту дизель-электрической подводной лодки «Якутск» проекта 636.3.",
+      "meaning": "Later 636.3 transfer. Same project, not a new class."
+    },
+    {
+      "sourceId": "russianships-877",
+      "quote": "длина: 73,8 (пр.06363 – 74,5)",
+      "meaning": "636.3 length note. Not used to open a third class."
+    },
+    {
+      "sourceId": "russianships-877",
+      "quote": "заложена по пр.877Э",
+      "meaning": "Applied by this page to B-248, B-260 and B-227. Conflicts with the Deepstorm B-248 acceptance record's Project 877 identity. Not a new class."
+    }
+  ],
+  "parentVerification": {
+    "sources": 28,
+    "quotes": 49,
+    "failures": 0,
+    "normalization": "HTML entity decoding, whitespace and declared table-cell separators; original uft-8 metadata typo decoded as strictUTF8.",
+    "decisionsAdopted": true,
+    "ledgerChanges": [
+      {
+        "url": "https://www.navypedia.org/ships/germany/ger_ss_uit24.htm",
+        "canonicalBefore": "cappellini-1939",
+        "canonicalAfter": "marcello-1938"
+      },
+      {
+        "url": "https://www.navypedia.org/ships/japan/jap_ss_cappellini.htm",
+        "canonicalBefore": "cappellini-1939",
+        "canonicalAfter": "marcello-1938"
+      },
+      {
+        "url": "https://www.navypedia.org/ships/russia/ru_ss_b248.htm",
+        "before": "ambiguous",
+        "after": "configuration",
+        "canonicalId": "project-877ekm"
+      }
+    ]
+  }
+}

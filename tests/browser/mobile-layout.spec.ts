@@ -2,6 +2,7 @@ import { required } from '../support.ts';
 import {test,expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
+import { HANDBOOK_ARCHIVE } from '../../game/historical-archive.ts';
 
 async function settle(page:Page) {
   await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
@@ -124,13 +125,11 @@ test.describe('phone visible viewport',()=>{
       },scenario);
       await viewport(page,{width:scenario.width,height:scenario.visibleHeight,offsetTop:scenario.offsetTop});
       await page.locator('#pause-button').click();await page.locator('#pause-help').click();
-      for(const [panel,pages] of [['controls',1],['intel',15],['campaign',10],['archive',168]] as const) {
+      for(const [panel,pages] of [['controls',1],['intel',15],['campaign',10],['archive',HANDBOOK_ARCHIVE.length]] as const) {
         await page.locator(`#help-tab-${panel}`).click();
         for(let i=0;i<pages;i++) {
           if(panel==='archive') {
             await expect(page.locator('#archive-status')).toBeEmpty();
-            // Reserve room for the longer approved label without manufacturing an approval record.
-            await page.locator('#archive-review').evaluate(element=>{element.textContent='双评通过 9.8/10';});
           }
           await settle(page);
           const layout=await page.locator('#help-dialog').evaluate(element=>({
@@ -176,6 +175,70 @@ test.describe('phone visible viewport',()=>{
     }
     await page.locator('#resume-button').click();await expect(page.locator('#pause-screen')).toBeHidden();
     await expectMaximumField(page);
+  });
+
+  test('touch drag distance follows the current canvas after battle and viewport layout changes',async({page,context,browserName})=>{
+    test.skip(browserName!=='chromium','Real touch input in this regression uses Chromium CDP.');
+    await page.goto('/');await page.locator('#start-button').click();
+    const touch=await context.newCDPSession(page);
+    for(const layout of ['battle','window','toolbar'] as const) {
+      if(layout==='window') await page.setViewportSize({width:430,height:740});
+      if(layout==='toolbar') await viewport(page,{width:430,height:420,offsetTop:12});
+      await settle(page);
+      await page.evaluate(async()=>{
+        const {game}=await import('/main.ts');
+        game.player.x=140;game.player.y=400;game.player.invincible=100;game.time=10;game.spawnTimer=999;
+      });
+      const field=required(await page.locator('#game-canvas').boundingBox());
+      const x=field.x+field.width*.35,y=field.y+field.height*.55;
+      await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+      await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+40,y}]});
+      const expected=140+40/field.width*480*1.12;
+      await expect.poll(()=>page.evaluate(async()=>(await import('/main.ts')).game.player.x),{message:`${layout}: 40px drag uses the displayed canvas width`}).toBeCloseTo(expected,0);
+      await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    }
+  });
+
+  test('a touch drag survives crossing the bomb button and releases on end or cancel',async({page,context,browserName})=>{
+    test.skip(browserName!=='chromium','Real touch input in this regression uses Chromium CDP.');
+    await page.goto('/');await page.locator('#start-button').click();
+    const touch=await context.newCDPSession(page);
+    const field=required(await page.locator('#game-canvas').boundingBox());
+    const button=required(await page.locator('#bomb-button').boundingBox());
+    const start={x:field.x+field.width*.4,y:field.y+field.height*.72};
+    const overButton={x:button.x+button.width/2,y:button.y+button.height/2};
+    for(const type of ['touchEnd','touchCancel'] as const) {
+      await page.evaluate(async()=>{
+        const {game}=await import('/main.ts');
+        game.player.x=140;game.player.y=400;game.player.invincible=100;game.time=10;game.spawnTimer=999;
+      });
+      await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[start]});
+      await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[overButton]});
+      await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:start.x+45,y:start.y}]});
+      const expected=140+45/field.width*480*1.12;
+      await expect.poll(()=>page.evaluate(async()=>(await import('/main.ts')).game.player.x)).toBeCloseTo(expected,0);
+      await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[overButton]});
+      await touch.send('Input.dispatchTouchEvent',{type,touchPoints:[]});
+      expect(await page.evaluate(async()=>(await import('/main.ts')).game.bombs)).toBe(3);
+    }
+  });
+
+  test('releasing a mouse click does not cancel an active touch drag',async({page,context,browserName})=>{
+    test.skip(browserName!=='chromium','Simultaneous real touch and mouse input uses Chromium CDP.');
+    await page.goto('/');await page.locator('#start-button').click();
+    const field=required(await page.locator('#game-canvas').boundingBox());
+    const start={x:field.x+field.width*.3,y:field.y+field.height*.7};
+    const touch=await context.newCDPSession(page);
+    await page.evaluate(async()=>{
+      const {game}=await import('/main.ts');
+      game.player.x=140;game.player.y=400;game.player.invincible=100;game.time=10;game.spawnTimer=999;
+    });
+    await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[start]});
+    await page.mouse.click(start.x+40,start.y-30);
+    await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:start.x+30,y:start.y}]});
+    const expected=140+30/field.width*480*1.12;
+    await expect.poll(()=>page.evaluate(async()=>(await import('/main.ts')).game.player.x)).toBeCloseTo(expected,0);
+    await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
   });
 
   test('viewport resizing releases an in-progress touch drag instead of moving the player unexpectedly',async({page,context,browserName})=>{

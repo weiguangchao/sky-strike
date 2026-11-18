@@ -3,124 +3,220 @@
   "source": "assets/blender/century-archive.blend",
   "models": [
     {
+      "id": "archive-c54g",
+      "file": "archive-c54g.glb",
+      "bytes": 347268,
+      "polygons": 14294
+    },
+    {
+      "id": "archive-c119c",
+      "file": "archive-c119c.glb",
+      "bytes": 335096,
+      "polygons": 12696
+    },
+    {
+      "id": "archive-type-093-early",
+      "file": "archive-type-093-early.glb",
+      "bytes": 60824,
+      "polygons": 2130
+    },
+    {
+      "id": "archive-type-092-refit",
+      "file": "archive-type-092-refit.glb",
+      "bytes": 76220,
+      "polygons": 3736
+    },
+    {
+      "id": "archive-type-091-late",
+      "file": "archive-type-091-late.glb",
+      "bytes": 57148,
+      "polygons": 1986
+    },
+    {
+      "id": "archive-type-094-early",
+      "file": "archive-type-094-early.glb",
+      "bytes": 63052,
+      "polygons": 3230
+    },
+    {
+      "id": "archive-type-035g",
+      "file": "archive-type-035g.glb",
+      "bytes": 57452,
+      "polygons": 1856
+    },
+    {
+      "id": "archive-type-039-original",
+      "file": "archive-type-039-original.glb",
+      "bytes": 51996,
+      "polygons": 1842
+    },
+    {
+      "id": "archive-c46a",
+      "file": "archive-c46a.glb",
+      "bytes": 237740,
+      "polygons": 9196
+    },
+    {
+      "id": "archive-c47a",
+      "file": "archive-c47a.glb",
+      "bytes": 248284,
+      "polygons": 9592
+    },
+    {
+      "id": "archive-mb326",
+      "file": "archive-mb326.glb",
+      "bytes": 85940,
+      "polygons": 3117
+    },
+    {
+      "id": "archive-cj6a",
+      "file": "archive-cj6a.glb",
+      "bytes": 83300,
+      "polygons": 2879
+    },
+    {
+      "id": "archive-cg4a",
+      "file": "archive-cg4a.glb",
+      "bytes": 98544,
+      "polygons": 2860
+    },
+    {
       "id": "archive-sopwith-camel",
       "file": "archive-sopwith-camel.glb",
-      "bytes": 376920,
-      "polygons": 2601
+      "bytes": 98104,
+      "polygons": 3440
     },
     {
       "id": "archive-spad-xiii",
       "file": "archive-spad-xiii.glb",
-      "bytes": 380044,
-      "polygons": 2608
+      "bytes": 88900,
+      "polygons": 3223
     },
     {
       "id": "archive-fokker-dvii",
       "file": "archive-fokker-dvii.glb",
-      "bytes": 356964,
-      "polygons": 2433
+      "bytes": 80656,
+      "polygons": 2812
     },
     {
       "id": "archive-spitfire-ia",
       "file": "archive-spitfire-ia.glb",
-      "bytes": 224820,
-      "polygons": 1573
+      "bytes": 79312,
+      "polygons": 2876
     },
     {
       "id": "archive-p51d",
       "file": "archive-p51d.glb",
-      "bytes": 220040,
-      "polygons": 1538
+      "bytes": 79084,
+      "polygons": 2896
     },
     {
       "id": "archive-a6m5",
       "file": "archive-a6m5.glb",
-      "bytes": 278108,
-      "polygons": 1927
+      "bytes": 78636,
+      "polygons": 2833
     },
     {
       "id": "archive-f86a",
       "file": "archive-f86a.glb",
-      "bytes": 167372,
-      "polygons": 1207
+      "bytes": 58676,
+      "polygons": 2155
     },
     {
       "id": "archive-mig21pf",
       "file": "archive-mig21pf.glb",
-      "bytes": 187460,
-      "polygons": 1317
+      "bytes": 74620,
+      "polygons": 2667
     },
     {
       "id": "archive-f16a",
       "file": "archive-f16a.glb",
-      "bytes": 161572,
-      "polygons": 1152
+      "bytes": 62244,
+      "polygons": 2186
     },
     {
       "id": "archive-mirage2000c",
       "file": "archive-mirage2000c.glb",
-      "bytes": 151680,
-      "polygons": 1048
+      "bytes": 56820,
+      "polygons": 1892
     },
     {
       "id": "archive-rafale-c",
       "file": "archive-rafale-c.glb",
-      "bytes": 222380,
-      "polygons": 1580
-    },
-    {
-      "id": "archive-gripen-c",
-      "file": "archive-gripen-c.glb",
-      "bytes": 158944,
-      "polygons": 1120
+      "bytes": 76788,
+      "polygons": 2571
     },
     {
       "id": "archive-u9",
       "file": "archive-u9.glb",
-      "bytes": 103884,
-      "polygons": 692
+      "bytes": 46144,
+      "polygons": 1412
     },
     {
       "id": "archive-type-viic",
       "file": "archive-type-viic.glb",
-      "bytes": 143980,
-      "polygons": 910
+      "bytes": 57964,
+      "polygons": 1752
     },
     {
       "id": "archive-gato",
       "file": "archive-gato.glb",
-      "bytes": 131920,
-      "polygons": 886
+      "bytes": 69632,
+      "polygons": 2218
     },
     {
       "id": "archive-nautilus",
       "file": "archive-nautilus.glb",
-      "bytes": 107564,
-      "polygons": 728
+      "bytes": 49936,
+      "polygons": 1592
     },
     {
       "id": "archive-oberon",
       "file": "archive-oberon.glb",
-      "bytes": 120080,
-      "polygons": 830
+      "bytes": 60908,
+      "polygons": 1994
     },
     {
       "id": "archive-virginia-block-i",
       "file": "archive-virginia-block-i.glb",
-      "bytes": 63524,
-      "polygons": 456
+      "bytes": 47848,
+      "polygons": 1770
     },
     {
       "id": "archive-type-212a",
       "file": "archive-type-212a.glb",
-      "bytes": 60252,
-      "polygons": 392
+      "bytes": 44304,
+      "polygons": 1584
     },
     {
       "id": "archive-soryu-early",
       "file": "archive-soryu-early.glb",
-      "bytes": 59172,
-      "polygons": 392
+      "bytes": 44336,
+      "polygons": 1584
+    },
+    {
+      "id": "archive-type-039a",
+      "file": "archive-type-039a.glb",
+      "bytes": 53888,
+      "polygons": 1882
+    },
+    {
+      "id": "archive-rubis-amethyste",
+      "file": "archive-rubis-amethyste.glb",
+      "bytes": 53416,
+      "polygons": 1866
+    },
+    {
+      "id": "archive-project-971",
+      "file": "archive-project-971.glb",
+      "bytes": 60900,
+      "polygons": 2132
+    },
+    {
+      "id": "archive-sauro-first-series",
+      "file": "archive-sauro-first-series.glb",
+      "bytes": 53476,
+      "polygons": 1866
     }
   ]
 }

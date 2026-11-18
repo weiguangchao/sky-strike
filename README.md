@@ -1,6 +1,6 @@
 # 苍穹突袭 · Sky Strike
 
-支持电脑与手机浏览器的二战复古竖版肉鸽空战游戏。使用 **TypeScript + Vite + Three.js** 开发，飞机、首领、航母与海岛在 **Blender** 中建模，浏览器加载本地 GLB 实时渲染。
+支持电脑与手机浏览器的二战复古竖版肉鸽空战游戏。使用 **TypeScript + Vite + Phaser 4.2.1** 开发，飞机、首领、航母与海岛在 **Blender** 中建模，离线生成分层 PNG 精灵，浏览器只运行二维场景。
 
 在线试玩：[sky-strike.tabuxiangma.workers.dev](https://sky-strike.tabuxiangma.workers.dev)。
 
@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-打开 http://localhost:5173。手机与电脑在同一局域网时，打开 `http://电脑的局域网IP:5173`。字体、模型和音效均在本地提供，不依赖外部资源服务。
+打开 http://localhost:5173。手机与电脑在同一局域网时，打开 `http://电脑的局域网IP:5173`。字体、精灵和音效均在本地提供，不依赖外部资源服务。
 
 电脑使用 WASD／方向键移动、空格投放高爆航弹、P 暂停；手机按住战场拖动，点击右下角按钮投弹。机库和战斗始终适应当前窗口，不产生页面滚动。
 
@@ -23,18 +23,19 @@ npm run dev
 
 ```sh
 npm run models:build
+npm run sprites:build
 ```
 
-macOS 默认使用已安装的 Blender；其他环境从 PATH 查找 `blender`，也可用 `BLENDER_PATH` 指定路径。命令会重新生成模型源文件和游戏 GLB。坐标、螺旋桨节点、模型清单和手工修改流程见 [模型文档](dcos/feature/models.md)。正常开发或构建直接使用已生成的模型，无须每次启动 Blender。
+macOS 默认使用已安装的 Blender；其他环境从 PATH 查找 `blender`，也可用 `BLENDER_PATH` 指定路径。命令会重新生成模型源文件和游戏 GLB。坐标、螺旋桨节点、模型清单和手工修改流程见 [模型文档](dcos/feature/models.md)。`npm run sprites:build` 使用离线栅格器生成顶视、预览、完好部件与残骸图层，不需要启动 Blender。正常开发或构建直接使用已提交的二维精灵；Three.js 仅作为离线工具和源模型测试的开发依赖。
 
-手册“历史图鉴”统一收录原148条舰库资料与首批12型历史飞机、8级潜艇，覆盖一战至现代；舰艇可选作出击外观，飞机与潜艇用于资料浏览，全球服役名录仍在补录。独立源库为 [century-archive.blend](assets/blender/century-archive.blend)，可用 `npm run models:build:archive` 重建。每个模型必须取得两名 GPT Sol 对同一版本分别 ≥9.8 的真实评分才算通过；`npm run models:audit -- --require-approved` 校验全部条目。收录边界、史料与评审规则见 [百年舰机](dcos/feature/century-archive.md)。
+手册“历史图鉴”展示八国162条资料：126条水面舰艇外观、18型飞机和18级潜艇，覆盖一战至今；舰艇可选作出击外观，飞机与潜艇供资料浏览。八国服役目录仍在核对，尚未全部收齐。独立源库为 [century-archive.blend](assets/blender/century-archive.blend)，可用 `npm run models:build:archive` 重建。真实模型验收记录保留在内部账本；先由Grok总评及逐项≥9.8，再由GPT Sol和Claude Opus独立复审同一版本，三席总评及逐项均≥9.8才通过。`npm run models:audit -- --require-approved`检查当前全部载具；图鉴不显示评分。收录边界、史料与完整验收规则见[百年舰机](dcos/feature/century-archive.md)。
 
 ## 验证与发布
 
 ```sh
 npm run typecheck  # 严格检查应用、脚本、配置与测试的 TypeScript 类型
 npm test          # 战斗逻辑、完整通关模拟与 Blender 导出模型验证
-npm run test:e2e  # 电脑操作、手机触摸、模型加载和 11 种窗口尺寸
+npm run test:e2e  # 电脑操作、手机触摸、精灵加载和 11 种窗口尺寸
 npm run build     # 类型检查后构建到 dist/
 npm run preview   # 预览构建结果
 ```
@@ -62,10 +63,14 @@ npm run deploy
 
 - `game/engine.ts`：独立于渲染的战斗与成长逻辑。
 - `game/types.ts`：状态、输入、战机、敌机、武器和事件类型。
-- `game/render.ts`：Three.js 顶视战场、投影、压翼、螺旋桨与实例化特效。
-- `game/models.ts`：本地 GLB 载入、共享资源与模型实例。
-- `game/main.ts`：界面、输入、本地存储和游戏循环。
+- `game/runtime.ts`：Phaser 场景、帧循环、键盘／触摸输入与生命周期。
+- `game/render.ts`：Phaser 二维战场、分层精灵、对象池、粒子与补间特效。
+- `game/models.ts`：离线模型与二维资源共用的资产 ID。
+- `game/sprites.ts`：Phaser 精灵加载、缓存与二维预览。
+- `scripts/sprites.ts`：从原始 GLB 生成分层精灵与带 SHA-256 的清单。
+- `game/main.ts`：界面、本地存储和战斗事件协调。
 - `game/audio.ts`：Web Audio 合成音效。
 - `game/style.css`、`game/layout.css`：二战复古组件外观与窗口适配。
-- `game/public/assets/models/`：Blender 导出模型及生成清单。
+- `game/public/assets/sprites/`：实际发布的 PNG 精灵；构建时验证来源与体积。
+- `game/public/assets/models/`：离线 Blender 导出模型；生产构建不包含此目录。
 - `assets/blender/`：可编辑 Blender 模型库。

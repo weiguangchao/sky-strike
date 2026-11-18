@@ -1,0 +1,1691 @@
+{
+  "schemaVersion": 1,
+  "kind": "eight-country-coverage-research",
+  "generatedOn": "2026-11-17",
+  "notACompleteCatalogue": true,
+  "notAnArtScore": true,
+  "structuralOmissions": [
+    {
+      "id": "eurofighter-typhoon",
+      "category": "aircraft",
+      "role": "multirole-fighter",
+      "operators": [
+        "gb",
+        "de",
+        "it"
+      ],
+      "alsoNonRetained": [
+        "es"
+      ],
+      "existingModel": null,
+      "reuse": "one airframe for all retained operators",
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.raf.mod.uk/aircraft/current-aircraft/typhoon-fgr41/",
+          "retrieved": "2026-11-17",
+          "supports": "RAF Typhoon FGR4 is a current combat aircraft. Combat debut in the 2011 Libya operation. The page gives airframe figures (length 15.96 m) and does not give a first-flight date.",
+          "dateKind": "operational-event-2011-and-current-service"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.publikationen-bundesregierung.de/resource/blob/2277952/729888/69b9e1bd4912f0f3fd0268d58532d6ad/waffensysteme-und-grossgeraet-der-bundeswehr-download-bmvg-data.pdf?download=1",
+          "retrieved": "2026-11-17",
+          "supports": "German government equipment book, stand November 2021: Eurofighter is the backbone of the Luftwaffe combat fleet and is used in air-to-air and air-to-ground roles. No German service-entry year was extracted.",
+          "dateKind": "in-service-as-of-publication-2021-11"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+          "retrieved": "2026-11-17",
+          "supports": "Aeronautica Militare lists Eurofighter Typhoon / F-2000A as a combat aircraft and names Italy, Germany, the United Kingdom and Spain as the industrial partners.",
+          "dateKind": "current-inventory-page-no-entry-year"
+        }
+      ]
+    },
+    {
+      "id": "panavia-tornado",
+      "category": "aircraft",
+      "role": "strike-ew",
+      "operators": [
+        "gb",
+        "de",
+        "it"
+      ],
+      "existingModel": null,
+      "reuse": "one type; IDS and ECR are configurations, not extra national models",
+      "era": "cold-war",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.publikationen-bundesregierung.de/resource/blob/2277952/729888/69b9e1bd4912f0f3fd0268d58532d6ad/waffensysteme-und-grossgeraet-der-bundeswehr-download-bmvg-data.pdf?download=1",
+          "retrieved": "2026-11-17",
+          "supports": "PA-200 Tornado was introduced by Germany, Britain and Italy from 1980. Bundeswehr deliveries ran from 1981 through the last ECR in 1992. IDS and ECR are described as role versions. 1980 is the stated introduction year, not a first flight.",
+          "dateKind": "service-introduction-1980-deliveries-1981-1992"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+          "retrieved": "2026-11-17",
+          "supports": "Aeronautica Militare lists PA 200 Tornado under combat aircraft.",
+          "dateKind": "current-inventory-page-no-entry-year"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.bundeswehr.de/de/organisation/luftwaffe",
+          "retrieved": "2026-11-17",
+          "supports": "Luftwaffe page still names Tornado for reconnaissance, electronic combat and nuclear sharing, and says F-35 will replace it. Replacement wording is future, so F-35 German service is not established by this sentence.",
+          "dateKind": "current-site-wording-future-replacement"
+        }
+      ]
+    },
+    {
+      "id": "f-35-lightning-ii",
+      "category": "aircraft",
+      "role": "multirole-fighter",
+      "operators": [
+        "us",
+        "gb",
+        "it",
+        "jp"
+      ],
+      "existingModel": null,
+      "reuse": "one family. A/B/C silhouette split is unresolved; do not create one model per country",
+      "era": "modern",
+      "ambiguous": "F-35A and F-35B differ visibly. Default proposal is one canonical family with a selected service configuration, not a model per operator or per letter, until an art pass accepts a split.",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.raf.mod.uk/aircraft/current-aircraft/lightning-f35b/",
+          "retrieved": "2026-11-17",
+          "supports": "UK F-35B: first British pilot flight 26 January 2010 is a flight event. IOC December 2018 and IOC Maritime December 2020 are the service milestones on the page. 617 Squadron reformed in 2018.",
+          "dateKind": "first-flight-event-2010-distinct-from-IOC-2018"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+          "retrieved": "2026-11-17",
+          "supports": "Aeronautica Militare states it has F-35A and F-35B.",
+          "dateKind": "current-inventory-no-entry-year"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.navy.mil/Resources/Fact-Files/Display-FactFiles/Article/2169814/amphibious-assault-ships-lhdlhar/",
+          "retrieved": "2026-11-17",
+          "supports": "US Navy fact file, updated 21 October 2026, lists F-35B among the aircraft mix of America-class LHA. That is US service of the type, not a first-flight date.",
+          "dateKind": "current-ship-aircraft-mix"
+        },
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.mod.go.jp/asdf/equipment/",
+          "retrieved": "2026-11-17",
+          "supports": "Search extract of the JASDF equipment page names F-35A and F-15J/DJ. The cleaned fetch kept 'three fighter types are deployed' but dropped those two names. The third fighter name was not recovered.",
+          "dateKind": "current-equipment-page-name-recovery-partial"
+        }
+      ]
+    },
+    {
+      "id": "nh90",
+      "category": "aircraft",
+      "role": "helicopter",
+      "operators": [
+        "fr",
+        "de",
+        "it"
+      ],
+      "existingModel": null,
+      "reuse": "one helicopter family; Caïman Marine, Sea Lion/NFH and SH90 are operator names",
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.publikationen-bundesregierung.de/resource/blob/2277952/729888/69b9e1bd4912f0f3fd0268d58532d6ad/waffensysteme-und-grossgeraet-der-bundeswehr-download-bmvg-data.pdf?download=1",
+          "retrieved": "2026-11-17",
+          "supports": "November 2021 book: NH90 was developed for France, Italy, the Netherlands and Germany and is described as a ten-tonne helicopter that can carry troops or cargo.",
+          "dateKind": "in-inventory-as-of-2021-11-no-german-entry-year"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.colsbleus.defense.gouv.fr/sites/default/files/2025-12/INFOG%20CB%203132_V5.pdf",
+          "retrieved": "2026-11-17",
+          "supports": "December 2025 Cols Bleus naval-aviation graphic places Caïman Marine / NH90 in French naval air flotillas.",
+          "dateKind": "force-graphic-2025-not-a-commissioning-date"
+        },
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.marina.difesa.it/EN/thefleet/airfleet/Pagine/default.aspx",
+          "retrieved": "2026-11-17",
+          "supports": "Italian Navy air-fleet page names SH90 NFH and SH90 TTH. The page text mixes the two headings; both are NH90 family.",
+          "dateKind": "current-navy-air-page-no-entry-year"
+        }
+      ]
+    },
+    {
+      "id": "a400m-atlas",
+      "category": "aircraft",
+      "role": "transport-tanker",
+      "operators": [
+        "gb",
+        "de"
+      ],
+      "operatorsNotEvidencedThisSession": [
+        "fr"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.raf.mod.uk/aircraft/",
+          "retrieved": "2026-11-17",
+          "supports": "RAF aircraft index lists Atlas C1 A400M as a current transport.",
+          "dateKind": "current-index"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.publikationen-bundesregierung.de/resource/blob/2277952/729888/69b9e1bd4912f0f3fd0268d58532d6ad/waffensysteme-und-grossgeraet-der-bundeswehr-download-bmvg-data.pdf?download=1",
+          "retrieved": "2026-11-17",
+          "supports": "November 2021 book describes A400M as a strategic and tactical transport and tanker. It records Eurofighters being refuelled by A400M in April 2019. French operation was not in the extracted passages.",
+          "dateKind": "operational-tanker-event-2019-04"
+        }
+      ]
+    },
+    {
+      "id": "c-130-hercules",
+      "category": "aircraft",
+      "role": "transport",
+      "operators": [
+        "it",
+        "de",
+        "jp"
+      ],
+      "operatorsNotEvidencedThisSession": [
+        "us",
+        "gb",
+        "fr"
+      ],
+      "existingModel": null,
+      "relatedResearchOnly": "c-130h",
+      "reuse": "one type family. J, J-30 and R are configurations",
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+          "retrieved": "2026-11-17",
+          "supports": "AMI: C-130J, standard and stretched J-30, is in service with 46ª Brigata Aerea at Pisa. Developed from C-130H. No Italian entry year extracted.",
+          "dateKind": "current-service-variant-lineage"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.bundeswehr.de/de/organisation/luftwaffe",
+          "retrieved": "2026-11-17",
+          "supports": "Luftwaffe page names C-130J Super Hercules as a transport.",
+          "dateKind": "current-site-no-entry-year"
+        },
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.mod.go.jp/msdf/equipment/aircraft/",
+          "retrieved": "2026-11-17",
+          "supports": "JMSDF fixed-wing page lists C-130R as a transport.",
+          "dateKind": "current-equipment-index"
+        }
+      ]
+    },
+    {
+      "id": "kc-767",
+      "category": "aircraft",
+      "role": "tanker",
+      "operators": [
+        "jp",
+        "it"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.mod.go.jp/asdf/equipment/",
+          "retrieved": "2026-11-17",
+          "supports": "JASDF equipment page names KC-767 as a transport/tanker.",
+          "dateKind": "current-equipment-page"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+          "retrieved": "2026-11-17",
+          "supports": "AMI lists KC-767A under tanking and transport.",
+          "dateKind": "current-inventory-page"
+        }
+      ]
+    },
+    {
+      "id": "eh101-aw101",
+      "category": "aircraft",
+      "role": "helicopter",
+      "operators": [
+        "it",
+        "gb"
+      ],
+      "existingModel": null,
+      "reuse": "Italian HH-101A / EH101 and RN Merlin are one family if Merlin is the same airframe; Merlin service name was on the RN aircraft page",
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+          "retrieved": "2026-11-17",
+          "supports": "AMI lists HH-101A Caesar.",
+          "dateKind": "current-inventory-page"
+        },
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.marina.difesa.it/EN/thefleet/airfleet/Pagine/default.aspx",
+          "retrieved": "2026-11-17",
+          "supports": "Italian Navy lists EH101 ASW/ASuW and EH-101 ASH. The page gives a 1968 first flight for the Bell 212, not for the EH101.",
+          "dateKind": "current-navy-air-page"
+        },
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.royalnavy.mod.uk/equipment/aircraft",
+          "retrieved": "2026-11-17",
+          "supports": "Royal Navy aircraft page lists Merlin MK2 and MK4 and Wildcat as current Fleet Air Arm helicopters.",
+          "dateKind": "current-equipment-page"
+        }
+      ]
+    },
+    {
+      "id": "p-8a-poseidon",
+      "category": "aircraft",
+      "role": "maritime-patrol",
+      "operators": [
+        "gb"
+      ],
+      "operatorsNotEvidencedThisSession": [
+        "us"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.raf.mod.uk/aircraft/",
+          "retrieved": "2026-11-17",
+          "supports": "RAF index lists Poseidon MRA1 as a current ISTAR aircraft.",
+          "dateKind": "current-index"
+        }
+      ]
+    },
+    {
+      "id": "p-3c-orion",
+      "category": "aircraft",
+      "role": "maritime-patrol",
+      "operators": [
+        "de",
+        "jp"
+      ],
+      "existingModel": null,
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.publikationen-bundesregierung.de/resource/blob/2277952/729888/69b9e1bd4912f0f3fd0268d58532d6ad/waffensysteme-und-grossgeraet-der-bundeswehr-download-bmvg-data.pdf?download=1",
+          "retrieved": "2026-11-17",
+          "supports": "November 2021 book: P-3C Orion is a Marinefliegergeschwader 3 long-range anti-submarine and maritime patrol aircraft. Status after 2021 was not checked.",
+          "dateKind": "in-service-as-of-2021-11"
+        },
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.mod.go.jp/msdf/equipment/aircraft/",
+          "retrieved": "2026-11-17",
+          "supports": "JMSDF lists P-3C and P-1 as patrol aircraft. P-1 is a separate later type, not a P-3 variant.",
+          "dateKind": "current-equipment-index"
+        }
+      ]
+    },
+    {
+      "id": "kawasaki-p-1",
+      "category": "aircraft",
+      "role": "maritime-patrol",
+      "operators": [
+        "jp"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.mod.go.jp/msdf/equipment/aircraft/",
+          "retrieved": "2026-11-17",
+          "supports": "JMSDF fixed-wing index lists P-1 separately from P-3C.",
+          "dateKind": "current-equipment-index"
+        }
+      ]
+    },
+    {
+      "id": "shinmaywa-us-2",
+      "category": "aircraft",
+      "role": "rescue-flying-boat",
+      "operators": [
+        "jp"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.mod.go.jp/msdf/equipment/aircraft/",
+          "retrieved": "2026-11-17",
+          "supports": "JMSDF lists US-2 as a rescue aircraft.",
+          "dateKind": "current-equipment-index"
+        }
+      ]
+    },
+    {
+      "id": "f-15j",
+      "category": "aircraft",
+      "role": "fighter",
+      "operators": [
+        "jp"
+      ],
+      "existingModel": null,
+      "relatedDistinctFrom": "f86a",
+      "note": "License-built F-15. Not a new model per Japanese mark unless a later art pass splits J/DJ. US F-15 service was not opened this session, so the US association stays unverified here.",
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.mod.go.jp/asdf/equipment/",
+          "retrieved": "2026-11-17",
+          "supports": "Search extract names F-15J/DJ as a deployed JASDF fighter. Cleaned fetch did not retain the name.",
+          "dateKind": "current-equipment-page"
+        }
+      ]
+    },
+    {
+      "id": "e-2-hawkeye",
+      "category": "aircraft",
+      "role": "aew",
+      "operators": [
+        "fr"
+      ],
+      "operatorsNotEvidencedThisSession": [
+        "us",
+        "jp"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.defense.gouv.fr/marine/forces-surface/porte-avions",
+          "retrieved": "2026-11-17",
+          "supports": "French Navy carrier page lists the embarked group as Rafale Marine, E-2C Hawkeye, Dauphin and Caïman Marine.",
+          "dateKind": "current-carrier-air-group"
+        }
+      ]
+    },
+    {
+      "id": "rafale-marine-configuration",
+      "category": "aircraft",
+      "role": "carrier-fighter",
+      "operators": [
+        "fr"
+      ],
+      "existingModel": "rafale-c",
+      "disposition": "operator-association-not-a-new-type",
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.defense.gouv.fr/marine/forces-surface/porte-avions",
+          "retrieved": "2026-11-17",
+          "supports": "Charles de Gaulle's embarked group includes Rafale Marine. Atlas already has Rafale C. Hook and gear differences are a configuration question, not a second country model.",
+          "dateKind": "current-carrier-air-group"
+        }
+      ]
+    },
+    {
+      "id": "atlantique-2",
+      "category": "aircraft",
+      "role": "maritime-patrol",
+      "operators": [
+        "fr"
+      ],
+      "existingModel": null,
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.colsbleus.defense.gouv.fr/sites/default/files/2025-12/INFOG%20CB%203132_V5.pdf",
+          "retrieved": "2026-11-17",
+          "supports": "December 2025 naval-aviation graphic lists Atlantique 2.",
+          "dateKind": "force-graphic-2025"
+        }
+      ]
+    },
+    {
+      "id": "j-20",
+      "category": "aircraft",
+      "role": "fighter",
+      "operators": [
+        "cn"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.81.cn/2022zt/2022-10/10/content_10190983.htm",
+          "retrieved": "2026-11-17",
+          "supports": "PLA Daily feature: on 9 February 2018 an Air Force spokesperson said J-20 had begun to be assigned to combat units. That is a service event, not a first flight.",
+          "dateKind": "service-assignment-2018-02-09"
+        }
+      ]
+    },
+    {
+      "id": "j-15",
+      "category": "aircraft",
+      "role": "carrier-fighter",
+      "operators": [
+        "cn"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.81.cn/2022zt/2022-10/10/content_10190972.htm",
+          "retrieved": "2026-11-17",
+          "supports": "PLA Daily photo caption shows J-15s on Liaoning's flight deck. The same feature issue records 25 November 2012 trials of takeoff and arrested landing. Trials are not the same statement as fleet assignment.",
+          "dateKind": "deck-caption-and-2012-11-25-trial"
+        }
+      ]
+    },
+    {
+      "id": "y-20",
+      "category": "aircraft",
+      "role": "transport",
+      "operators": [
+        "cn"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.81.cn/2022zt/2022-10/10/content_10190983.htm",
+          "retrieved": "2026-11-17",
+          "supports": "Y-20 was assigned to Air Force units on 6 July 2016. The tanker YY-20 sentence on the same page is a first public appearance on 26 August 2022, not a commissioning sentence.",
+          "dateKind": "service-assignment-2016-07-06-distinct-from-tanker-debut"
+        }
+      ]
+    },
+    {
+      "id": "ami-trainers-and-gliders",
+      "category": "aircraft",
+      "role": "trainer-glider",
+      "operators": [
+        "it"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "membersFromOfficialPage": [
+        "MB.339/T-339",
+        "T-345A",
+        "T-346A",
+        "T.260B",
+        "G.103 Twin Astir",
+        "LAK-17A",
+        "Nimbus-4DM",
+        "U-208A"
+      ],
+      "note": "Official AMI training section. Gliders are in scope. MB.339 is not the research-file MB.326. U-208A is recorded only by the designation printed on the page.",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+          "retrieved": "2026-11-17",
+          "supports": "AMI training section lists these manned trainers and gliders.",
+          "dateKind": "current-inventory-page"
+        }
+      ]
+    },
+    {
+      "id": "ami-other-manned",
+      "category": "aircraft",
+      "role": "transport-sar-aew-patrol",
+      "operators": [
+        "it"
+      ],
+      "existingModel": null,
+      "membersFromOfficialPage": [
+        "C-27J",
+        "KC-767A",
+        "P-72A ATR-72MP",
+        "E-550A/G550 CAEW",
+        "HH-139A/B",
+        "TH-500B",
+        "P.180",
+        "A319CJ",
+        "Falcon 50",
+        "Falcon 900"
+      ],
+      "note": "P-72A page says two pilots and five operators, so it is manned. MQ-9A on the same page is remotely piloted and is excluded.",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+          "retrieved": "2026-11-17",
+          "supports": "AMI inventory headings name these types. No entry years were extracted from the headings.",
+          "dateKind": "current-inventory-page"
+        }
+      ]
+    },
+    {
+      "id": "av-8b-harrier-ii",
+      "category": "aircraft",
+      "role": "vstol-fighter",
+      "operators": [
+        "it"
+      ],
+      "operatorsNotEvidencedThisSession": [
+        "us",
+        "gb"
+      ],
+      "existingModel": null,
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.marina.difesa.it/EN/thefleet/airfleet/Pagine/default.aspx",
+          "retrieved": "2026-11-17",
+          "supports": "Italian Navy air fleet lists AV-8B Plus / Harrier II as a single-seat fighter.",
+          "dateKind": "current-navy-air-page"
+        }
+      ]
+    },
+    {
+      "id": "ab-212",
+      "category": "aircraft",
+      "role": "helicopter",
+      "operators": [
+        "it"
+      ],
+      "existingModel": null,
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.marina.difesa.it/EN/thefleet/airfleet/Pagine/default.aspx",
+          "retrieved": "2026-11-17",
+          "supports": "Italian Navy says the Bell 212 naval version is the backbone of its shipborne helicopter arm. The 1968 date on that page is the Huey maiden flight, not Italian Navy entry into service.",
+          "dateKind": "first-flight-1968-must-not-be-copied-as-service-entry"
+        }
+      ]
+    },
+    {
+      "id": "raf-current-manned-gap",
+      "category": "aircraft",
+      "role": "transport-trainer-istar-combat",
+      "operators": [
+        "gb"
+      ],
+      "existingModel": null,
+      "namedOnIndex": [
+        "Chinook",
+        "C-17A Globemaster",
+        "Hawk T1",
+        "Hawk T2",
+        "Voyager KC2/KC3",
+        "Envoy IV",
+        "Juno HT1",
+        "Jupiter HT1",
+        "Phenom T1",
+        "Prefect T1",
+        "Texan T1",
+        "Tutor T1",
+        "Shadow R1",
+        "Rivet Joint RC-135W",
+        "Viking T1"
+      ],
+      "notAutomaticInclusions": [
+        "Protector RG1: listed, but the fetched index does not say whether it is piloted",
+        "Wedgetail AEW Mk1: 21 May 2026 RAF news says the first aircraft is still in test and evaluation and has not been handed to the RAF"
+      ],
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.raf.mod.uk/aircraft/",
+          "retrieved": "2026-11-17",
+          "supports": "RAF current-aircraft index names the manned types above. Atlas has only Camel and Spitfire IA for Britain.",
+          "dateKind": "current-index"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.raf.mod.uk/news/articles/raf-and-boeing-uk-welcome-the-first-wedgetail-aircraft-to-raf-lossiemouth/",
+          "retrieved": "2026-11-17",
+          "supports": "Wedgetail WT001 arrived at Lossiemouth on 21 May 2026 for test and evaluation. Formal handover had not happened. Exclude until service.",
+          "dateKind": "not-yet-handed-over-2026-05-21"
+        }
+      ]
+    },
+    {
+      "id": "queen-elizabeth-class",
+      "category": "surface",
+      "role": "aircraft-carrier",
+      "operators": [
+        "gb"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.royalnavy.mod.uk/equipment/ships",
+          "retrieved": "2026-11-17",
+          "supports": "Royal Navy ships page names HMS Queen Elizabeth and HMS Prince of Wales as the Queen Elizabeth class, the largest warships built for the Navy.",
+          "dateKind": "current-class-page-no-commissioning-year"
+        }
+      ]
+    },
+    {
+      "id": "type-45-daring",
+      "category": "surface",
+      "role": "destroyer",
+      "operators": [
+        "gb"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.royalnavy.mod.uk/equipment/ships",
+          "retrieved": "2026-11-17",
+          "supports": "Page says Britain's six Type 45 destroyers are the Daring class.",
+          "dateKind": "current-class-page"
+        }
+      ]
+    },
+    {
+      "id": "type-23-duke",
+      "category": "surface",
+      "role": "frigate",
+      "operators": [
+        "gb"
+      ],
+      "existingModel": null,
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.royalnavy.mod.uk/equipment/ships",
+          "retrieved": "2026-11-17",
+          "supports": "Page lists the Duke class as the current frigate and says the City class is due to replace it. City class and Type 31 are future wording, not counted as in service from this page.",
+          "dateKind": "current-class-versus-future-replacement"
+        }
+      ]
+    },
+    {
+      "id": "rn-auxiliaries-and-patrol",
+      "category": "surface",
+      "role": "auxiliary-patrol-minehunter",
+      "operators": [
+        "gb"
+      ],
+      "existingModel": null,
+      "namedOnPage": [
+        "Tide class",
+        "Wave class",
+        "Bay class",
+        "Fort class",
+        "Hunt class",
+        "Sandown class",
+        "River class",
+        "Archer class",
+        "Cutlass class"
+      ],
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.royalnavy.mod.uk/equipment/ships",
+          "retrieved": "2026-11-17",
+          "supports": "Royal Navy and RFA sections name these current classes. Fleet Solid Support Ships are described as future and are not counted.",
+          "dateKind": "current-equipment-page"
+        }
+      ]
+    },
+    {
+      "id": "astute-class",
+      "category": "submarine",
+      "role": "ssn",
+      "operators": [
+        "gb"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.royalnavy.mod.uk/equipment/submarine",
+          "retrieved": "2026-11-17",
+          "supports": "Royal Navy submarine page lists Astute as an in-service attack submarine. Dreadnought is under construction to replace Vanguard from 2030 and is not counted as served.",
+          "dateKind": "current-class-versus-future-build"
+        }
+      ]
+    },
+    {
+      "id": "vanguard-class",
+      "category": "submarine",
+      "role": "ssbn",
+      "operators": [
+        "gb"
+      ],
+      "existingModel": null,
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.royalnavy.mod.uk/equipment/submarine",
+          "retrieved": "2026-11-17",
+          "supports": "Page lists Vanguard as the current nuclear-deterrent submarine, 149 m long. Oberon is the only British submarine in the atlas and is not this class.",
+          "dateKind": "current-class-page"
+        }
+      ]
+    },
+    {
+      "id": "los-angeles-class",
+      "category": "submarine",
+      "role": "ssn",
+      "operators": [
+        "us"
+      ],
+      "existingModel": null,
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.navy.mil/resources/fact-files/display-factfiles/article/2169558/attack-submarines-ssn/",
+          "retrieved": "2026-11-17",
+          "supports": "US Navy SSN fact file, updated 24 November 2025: three SSN classes are in service. Los Angeles (SSN 688), about 24 still in commission, with 12 VLS tubes. Not a first-flight or launch date.",
+          "dateKind": "in-commission-as-of-2025-11-24"
+        }
+      ]
+    },
+    {
+      "id": "seawolf-class",
+      "category": "submarine",
+      "role": "ssn",
+      "operators": [
+        "us"
+      ],
+      "existingModel": null,
+      "era": "cold-war-to-modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.navy.mil/resources/fact-files/display-factfiles/article/2169558/attack-submarines-ssn/",
+          "retrieved": "2026-11-17",
+          "supports": "Same fact file: three Seawolf-class submarines. Lead ship USS Seawolf (SSN 21) commissioned 19 July 1997. That date is a commissioning, and it is only stated for the lead ship.",
+          "dateKind": "lead-ship-commissioning-1997-07-19"
+        }
+      ]
+    },
+    {
+      "id": "virginia-class-not-block",
+      "category": "submarine",
+      "role": "ssn",
+      "operators": [
+        "us"
+      ],
+      "existingModel": "virginia-block-i",
+      "disposition": "collapse-block-to-class",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.navy.mil/resources/fact-files/display-factfiles/article/2169558/attack-submarines-ssn/",
+          "retrieved": "2026-11-17",
+          "supports": "Fact file treats Virginia (SSN 774) as one class and says 24 boats had been commissioned by the 24 November 2025 update. It does not make Block I a separate class. Atlas model remains the selected early configuration.",
+          "dateKind": "class-service-not-a-block-count"
+        }
+      ]
+    },
+    {
+      "id": "america-wasp-lha-lhd",
+      "category": "surface",
+      "role": "amphibious-assault",
+      "operators": [
+        "us"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.navy.mil/Resources/Fact-Files/Display-FactFiles/Article/2169814/amphibious-assault-ships-lhdlhar/",
+          "retrieved": "2026-11-17",
+          "supports": "Fact file updated 21 October 2026: America-class LHA and Wasp-class LHD are the current amphibious assault ships. USS America date deployed 7 July 2017. us-fleet.md had placed LHA/LHD outside the US expansion.",
+          "dateKind": "class-in-service-lead-ship-date-2017-07-07"
+        }
+      ]
+    },
+    {
+      "id": "charles-de-gaulle",
+      "category": "surface",
+      "role": "aircraft-carrier",
+      "operators": [
+        "fr"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.defense.gouv.fr/sites/default/files/marine/liste%20des%20navires%20de%20la%20Marine%20nationale.pdf",
+          "retrieved": "2026-11-17",
+          "supports": "Navy circular of 16 April 2025, fleet as of 1 April 2025: one aircraft carrier, Charles de Gaulle, R 91, Toulon, listed with ships in service. French atlas surface ships stop at 1940.",
+          "dateKind": "in-service-list-2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "mistral-pha",
+      "category": "surface",
+      "role": "amphibious",
+      "operators": [
+        "fr"
+      ],
+      "existingModel": null,
+      "era": "modern",
+      "shipsOnOfficialList": [
+        "Mistral L 9013",
+        "Tonnerre L 9014",
+        "Dixmude L 9015"
+      ],
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.defense.gouv.fr/sites/default/files/marine/liste%20des%20navires%20de%20la%20Marine%20nationale.pdf",
+          "retrieved": "2026-11-17",
+          "supports": "Same circular: three PHA. The circular gives ship names and hull numbers, not a separate class essay. One class identity is the inventory proposal.",
+          "dateKind": "in-service-list-2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "french-frigates-2025",
+      "category": "surface",
+      "role": "frigate",
+      "operators": [
+        "fr"
+      ],
+      "existingModel": null,
+      "groupsOnOfficialList": [
+        "FDA Forbin and Chevalier Paul",
+        "FREMM Aquitaine group, six named ships",
+        "FREMM DA Alsace and Lorraine",
+        "FLF La Fayette type, five in the summary count"
+      ],
+      "note": "FREMM and FREMM DA stay one class with a configuration note unless a silhouette split is later accepted. FDI Amiral Ronarc'h is listed under ships on trials, PAE 28 October 2022, not asserted here as commissioned.",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.defense.gouv.fr/sites/default/files/marine/liste%20des%20navires%20de%20la%20Marine%20nationale.pdf",
+          "retrieved": "2026-11-17",
+          "supports": "Annex states in-service counts and names for FDA, FREMM, FREMM DA and La Fayette-type light frigates as of 1 April 2025.",
+          "dateKind": "in-service-list-2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "french-snle-and-sna",
+      "category": "submarine",
+      "role": "ssbn-ssn",
+      "operators": [
+        "fr"
+      ],
+      "existingModel": "rubis-amethyste",
+      "officialShips": {
+        "SNLE": [
+          "Le Triomphant S 616",
+          "Le Téméraire S 617",
+          "Le Vigilant S 618",
+          "Le Terrible S 619"
+        ],
+        "SNA in service": [
+          "Améthyste S 605",
+          "Perle S 606",
+          "Suffren S 635",
+          "Duguay-Trouin S 636"
+        ],
+        "SNA on trials": [
+          "Tourville S 637, PAE 15 March 2024"
+        ]
+      },
+      "classNamesNotPrinted": "The circular never prints Rubis, Barracuda or Le Triomphant as a class title. Lead-ship class labels are a proposal, not a quotation.",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.defense.gouv.fr/sites/default/files/marine/liste%20des%20navires%20de%20la%20Marine%20nationale.pdf",
+          "retrieved": "2026-11-17",
+          "supports": "Four SNLE and four in-service SNA, plus one SNA on trials, as of 1 April 2025. Summary table's SNA count of four matches the in-service names and excludes Tourville.",
+          "dateKind": "in-service-or-trials-2025-04-01"
+        }
+      ],
+      "disposition": "partial-sample-only",
+      "conflict": "Navypedia's Rubis page, fetched 2026-11-17, stops at Émeraude and still said in service (2019). The official circular of 1 April 2025 lists Améthyste and Perle instead, plus Suffren boats. SNLE ships and the Suffren group remain absent. Do not add a second Rubis model for the modernization."
+    },
+    {
+      "id": "german-surface-2021",
+      "category": "surface",
+      "role": "frigate-corvette-auxiliary-minehunter",
+      "operators": [
+        "de"
+      ],
+      "existingModel": null,
+      "namedInNovember2021Book": [
+        "Braunschweig-class K130 corvettes",
+        "Frankenthal-class MJ332 minehunters, ten boats",
+        "Type 404 tenders, six",
+        "Oste-class intelligence ships, three",
+        "Baden-Württemberg F125, four",
+        "Sachsen F124, three",
+        "Brandenburg F123, four",
+        "Bremen F122, Lübeck called the last of the class",
+        "Berlin-class Einsatzgruppenversorger"
+      ],
+      "dateCaution": "Stand November 2021. Not a 2026 fleet. Bremen-class survival after 2021 was not checked.",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.publikationen-bundesregierung.de/resource/blob/2277952/729888/69b9e1bd4912f0f3fd0268d58532d6ad/waffensysteme-und-grossgeraet-der-bundeswehr-download-bmvg-data.pdf?download=1",
+          "retrieved": "2026-11-17",
+          "supports": "The book describes these as Deutsche Marine ships. Atlas German surface ships are Bismarck, Tirpitz, Scharnhorst, Graf Spee and Prinz Eugen only.",
+          "dateKind": "in-service-description-as-of-2021-11"
+        }
+      ]
+    },
+    {
+      "id": "type-212a-operators",
+      "category": "submarine",
+      "role": "ssk",
+      "operators": [
+        "de"
+      ],
+      "possibleOperator": "it",
+      "existingModel": "type-212a",
+      "disposition": "german-service-already-modelled; italian-class-link-not-official-on-fetched-pages",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://www.publikationen-bundesregierung.de/resource/blob/2277952/729888/69b9e1bd4912f0f3fd0268d58532d6ad/waffensysteme-und-grossgeraet-der-bundeswehr-download-bmvg-data.pdf?download=1",
+          "retrieved": "2026-11-17",
+          "supports": "November 2021 book describes Klasse 212A as the Navy's conventional AIP submarines.",
+          "dateKind": "in-service-as-of-2021-11"
+        },
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.marina.difesa.it/noi-siamo-la-marina/pilastro-operativo/mezzi/forze-navali/Pagine/Homepage.aspx",
+          "retrieved": "2026-11-17",
+          "supports": "Italian Navy ship-name index includes Salvatore Todaro and Scirè. It does not say they are submarines or Type 212A.",
+          "dateKind": "name-only"
+        },
+        {
+          "grade": "secondary-list",
+          "url": "https://it.wikipedia.org/wiki/Flotta_della_Marina_Militare",
+          "retrieved": "2026-11-17",
+          "supports": "Wikipedia fleet table calls Salvatore Todaro a Todaro-class submarine and gives 2006 as entrata in servizio. That class link and year are secondary, not copied from the official name index.",
+          "dateKind": "secondary-claimed-service-entry-2006"
+        }
+      ],
+      "italianConventionalSample": "sauro-first-series already models the first Sauro batch. Todaro remains a separate possible association to type-212a, not a second Sauro."
+    },
+    {
+      "id": "jmsdf-surface-classes",
+      "category": "surface",
+      "role": "escort-amphibious-mine-auxiliary",
+      "operators": [
+        "jp"
+      ],
+      "existingModel": null,
+      "officialClassNames": [
+        "Mogami FFM",
+        "Murasame DD",
+        "Takanami DD",
+        "Asagiri DD",
+        "Akizuki DD",
+        "Asahi DD",
+        "Hyuga DDH",
+        "Izumo DDH",
+        "Kongo DDG",
+        "Atago DDG",
+        "Maya DDG",
+        "Abukuma DE",
+        "Awaji MSO",
+        "Enoshima MSC",
+        "Hirashima MSC",
+        "Sugashima MSC",
+        "Uraga MST",
+        "Hayabusa PG",
+        "Osumi LST"
+      ],
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.mod.go.jp/msdf/equipment/ships/",
+          "retrieved": "2026-11-17",
+          "supports": "JMSDF surface-ship index lists these current classes. Atlas Japanese surface ships are wartime only. Auxiliary classes are on the same site's index and were not copied ship by ship.",
+          "dateKind": "current-class-index"
+        }
+      ]
+    },
+    {
+      "id": "jmsdf-submarines-beside-soryu",
+      "category": "submarine",
+      "role": "ssk",
+      "operators": [
+        "jp"
+      ],
+      "existingModel": "soryu-early",
+      "alsoMissing": [
+        "Oyashio",
+        "Taigei"
+      ],
+      "disposition": "Soryu early AIP configuration stays the selected Soryu appearance; Oyashio and Taigei are further classes on the official index",
+      "evidence": [
+        {
+          "grade": "official-search-extract",
+          "url": "https://www.mod.go.jp/msdf/equipment/ships/index3.html",
+          "retrieved": "2026-11-17",
+          "supports": "JMSDF submarine index lists Oyashio, Soryu and Taigei. Training and test roles of Oyashio and Taigei are additional duties of those classes, not extra classes.",
+          "dateKind": "current-class-index"
+        }
+      ]
+    },
+    {
+      "id": "plan-carriers-and-major-ships",
+      "category": "surface",
+      "role": "carrier-destroyer-amphibious",
+      "operators": [
+        "cn"
+      ],
+      "existingModel": null,
+      "evidenced": [
+        "Liaoning, hull 16, delivered to the Navy 25 September 2012",
+        "Shandong, hull 17, commissioned 17 December 2019",
+        "Fujian, hull 18, launched 17 June 2022; a 5 November 2026 China Military Network headline says commissioning anniversary, article body not opened",
+        "Type 055 destroyer Nanchang joined the fleet 12 January 2020; the article uses 055型",
+        "Hainan, described as the first amphibious assault ship, joined 23 April 2021; no type number in the fetched text"
+      ],
+      "ambiguous": "Liaoning and Shandong are both described as carriers, one converted/first and one first domestic. They are not automatically two models or one model. Fujian is described as the first catapult carrier and should not be folded into the ski-jump ships. Type 075 is not printed in the fetched articles.",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "http://www.mod.gov.cn/gfbw/qwfb/4915485.html",
+          "retrieved": "2026-11-17",
+          "supports": "Ministry of National Defense reprint of PLA Daily, 13 July 2022: Liaoning, Shandong and Fujian dates and roles as above; Nanchang and Lhasa called 10,000-ton destroyers; new strategic nuclear submarines mentioned without a type number.",
+          "dateKind": "delivery-2012-09-25-commissioning-2019-12-17-launch-2022-06-17-destroyer-service-2020-01-12"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://www.81.cn/2022zt/2022-10/10/content_10190983.htm",
+          "retrieved": "2026-11-17",
+          "supports": "Hainan joined the fleet on 23 April 2021. Fujian launch repeated as 17 June 2022.",
+          "dateKind": "service-2021-04-23-and-launch-2022-06-17"
+        },
+        {
+          "grade": "official-search-snippet",
+          "url": "http://www.81.cn/hj_208557/index.html",
+          "retrieved": "2026-11-17",
+          "supports": "Navy index snippet dated 5 November 2026 is titled as Fujian's first commissioning anniversary. Body not fetched, so commissioning is not treated as fully verified.",
+          "dateKind": "headline-only"
+        }
+      ]
+    },
+    {
+      "id": "plan-nuclear-submarines-unnamed",
+      "category": "submarine",
+      "role": "ssn-ssbn",
+      "operators": [
+        "cn"
+      ],
+      "existingModel": null,
+      "disposition": "category-empty-and-service-asserted-without-a-class-name",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "http://www.mod.gov.cn/gfbw/qwfb/4915485.html",
+          "retrieved": "2026-11-17",
+          "supports": "PLA Daily text says new nuclear submarines and new strategic nuclear submarines joined the fleet during the decade before July 2022. No class number or boat class name is in that passage. Do not fill Type 093/094 from this page.",
+          "dateKind": "service-asserted-class-identity-absent"
+        }
+      ],
+      "notClosedBy": "type-039a is a conventional class in the atlas, sourced to Navypedia, and is not the nuclear class asserted by the PLA Daily text."
+    },
+    {
+      "id": "russian-modern-force-without-class-index",
+      "category": "surface",
+      "role": "named-ships-only",
+      "operators": [
+        "ru"
+      ],
+      "existingModel": null,
+      "alsoCategory": "submarine and naval aviation are described, not listed",
+      "evidence": [
+        {
+          "grade": "official-fetched",
+          "url": "https://eng.mil.ru/en/structure/forces/navy.htm",
+          "retrieved": "2026-11-17",
+          "supports": "English MoD navy page news names the nuclear submarine Krasnoyarsk, the diesel-electric submarine Volkhov and the frigate Admiral Golovko. No class names.",
+          "dateKind": "ship-operations-reported-no-class"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://eng.mil.ru/en/structure/forces/navy/associations/structure/forces/type/navy/north/about.htm",
+          "retrieved": "2026-11-17",
+          "supports": "Northern Fleet page says its basis is nuclear-powered missile and torpedo submarines, missile-carrying and anti-submarine aviation, and missile, aircraft-carrying and anti-submarine ships. Categories only.",
+          "dateKind": "force-composition-categories"
+        },
+        {
+          "grade": "official-fetched",
+          "url": "https://pda.mil.ru/pda/weapons/navy.htm",
+          "retrieved": "2026-11-17",
+          "supports": "Russian weapons hub links to submarine forces, surface forces, naval aviation and coastal forces. Child catalogues were not opened.",
+          "dateKind": "index-hub-only"
+        }
+      ],
+      "existingSubmarineModel": "project-971",
+      "limit": "Project 971 is already a model on secondary evidence. It does not identify Krasnoyarsk, Volkhov or Admiral Golovko, and it is not a Russian class catalogue."
+    }
+  ],
+  "exclusions": [
+    {
+      "id": "mq-9a-predator-b",
+      "country": "it",
+      "category": "aircraft",
+      "rule": "unmanned",
+      "evidence": {
+        "grade": "official-fetched",
+        "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+        "retrieved": "2026-11-17",
+        "supports": "AMI calls Predator B an aeromobile a pilotaggio remoto, with a ground control station. Excluded.",
+        "dateKind": "n/a"
+      }
+    },
+    {
+      "id": "global-hawk",
+      "country": "jp",
+      "category": "aircraft",
+      "rule": "unmanned",
+      "evidence": {
+        "grade": "official-fetched",
+        "url": "https://www.mod.go.jp/asdf/equipment/",
+        "retrieved": "2026-11-17",
+        "supports": "JASDF page calls Global Hawk a 無操縦者航空機, an unpiloted aircraft. Excluded.",
+        "dateKind": "n/a"
+      }
+    },
+    {
+      "id": "heron-tp",
+      "country": "de",
+      "category": "aircraft",
+      "rule": "unmanned",
+      "evidence": {
+        "grade": "official-fetched",
+        "url": "https://www.publikationen-bundesregierung.de/resource/blob/2277952/729888/69b9e1bd4912f0f3fd0268d58532d6ad/waffensysteme-und-grossgeraet-der-bundeswehr-download-bmvg-data.pdf?download=1",
+        "retrieved": "2026-11-17",
+        "supports": "November 2021 book describes Heron TP as an Aufklärungsdrohne. Luftwaffe page also groups unmanned systems separately. Excluded.",
+        "dateKind": "n/a"
+      }
+    },
+    {
+      "id": "canopus-usv",
+      "country": "fr",
+      "category": "surface",
+      "rule": "unmanned",
+      "evidence": {
+        "grade": "official-fetched",
+        "url": "https://www.defense.gouv.fr/sites/default/files/marine/liste%20des%20navires%20de%20la%20Marine%20nationale.pdf",
+        "retrieved": "2026-11-17",
+        "supports": "Circular lists Canopus as a surface mine-warfare drone taken in charge on 20 December 2024, and says its commander is not embarked. Excluded.",
+        "dateKind": "n/a"
+      }
+    },
+    {
+      "id": "dreadnought-class-ssbn",
+      "country": "gb",
+      "category": "submarine",
+      "rule": "not-yet-in-service",
+      "evidence": {
+        "grade": "official-search-extract",
+        "url": "https://www.royalnavy.mod.uk/equipment/submarine",
+        "retrieved": "2026-11-17",
+        "supports": "Page says Dreadnought is under construction to replace Vanguard from 2030.",
+        "dateKind": "future"
+      }
+    },
+    {
+      "id": "wedgetail-aew-mk1",
+      "country": "gb",
+      "category": "aircraft",
+      "rule": "not-yet-handed-over",
+      "evidence": {
+        "grade": "official-fetched",
+        "url": "https://www.raf.mod.uk/news/articles/raf-and-boeing-uk-welcome-the-first-wedgetail-aircraft-to-raf-lossiemouth/",
+        "retrieved": "2026-11-17",
+        "supports": "21 May 2026 arrival is test and evaluation, not handover.",
+        "dateKind": "not-service"
+      }
+    },
+    {
+      "id": "wing-loong-ii",
+      "country": "cn",
+      "category": "aircraft",
+      "rule": "unmanned-and-first-flight-only",
+      "evidence": {
+        "grade": "official-fetched",
+        "url": "https://www.81.cn/2022zt/2022-10/10/content_10190983.htm",
+        "retrieved": "2026-11-17",
+        "supports": "PLA Daily records Wing Loong II's first flight in February 2017 and calls it a UAV. First flight is not service, and the type is unmanned.",
+        "dateKind": "first-flight-2017-02"
+      }
+    },
+    {
+      "id": "gripen-c",
+      "country": "se",
+      "category": "aircraft",
+      "rule": "non-retained-operator",
+      "evidence": {
+        "grade": "project-code",
+        "url": "game/historical-archive.ts",
+        "retrieved": "2026-11-17",
+        "supports": "Removed from NEW_ARCHIVE. tests/archive.test.ts expects no Sweden entries. archive-profiles.ts still has a gripen-c profile and model-reviews.json still has scores. No retained operator was evidenced this session.",
+        "dateKind": "n/a"
+      }
+    }
+  ],
+  "ambiguities": [
+    {
+      "id": "china-after-1949-roc",
+      "state": "unresolved",
+      "note": "Retained country is China. Ning Hai and Yat Sen are 1937 Republic of China Navy ships and stay. Post-1949 Taiwan service is not a ninth country in the current code and was not evidenced as PRC service. Do not add Taiwan-only types until that boundary is decided."
+    },
+    {
+      "id": "liaoning-shandong",
+      "state": "unresolved-same-or-two-classes",
+      "note": "Official text distinguishes the first carrier from the first domestically built carrier. It does not say they are one class or two."
+    },
+    {
+      "id": "fujian-commissioning",
+      "state": "launch-verified-commissioning-headline-only",
+      "note": "Launch on 17 June 2022 is in the fetched PLA Daily text. The 5 November 2026 anniversary headline was not opened."
+    },
+    {
+      "id": "prc-submarine-type-numbers",
+      "state": "service-without-identity",
+      "note": "Official text asserts new nuclear and strategic nuclear submarines. Wikipedia type numbers were not promoted."
+    },
+    {
+      "id": "f-35-variant-split",
+      "state": "family-versus-silhouette",
+      "note": "A and B both served retained countries. They are not three or four models."
+    },
+    {
+      "id": "j-7-mig-21",
+      "state": "unresolved",
+      "note": "MiG-21PF is the only Russian aircraft model. Early Chinese J-7 license airframes may associate to it. Later double-delta J-7E is not automatically a second model and was not sourced this session."
+    },
+    {
+      "id": "italian-todaro-as-212a",
+      "state": "name-official-class-secondary",
+      "note": "Do not add an Italian submarine model if the class is 212A. Do not assert the class identity from the official name list alone."
+    },
+    {
+      "id": "raf-contractor-trainers",
+      "state": "listed-by-raf-service-boundary-unchecked",
+      "note": "Tutor, Prefect, Phenom, Texan, Juno and Jupiter are on the RAF index. Whether each is a military type or a contractor-owned civil trainer was not checked aircraft by aircraft."
+    },
+    {
+      "id": "protector-rg1",
+      "state": "listed-pilot-status-unstated",
+      "note": "On the RAF index. The fetched text does not say it is unpiloted. Not included and not excluded."
+    },
+    {
+      "id": "french-sna-class-split",
+      "state": "ships-official-class-titles-absent",
+      "note": "Améthyste/Perle versus Suffren/Duguay-Trouin/Tourville is the conventional split. The circular does not print those class titles."
+    },
+    {
+      "id": "gdr-and-imperial-labels",
+      "state": "same-country-different-polity-tag",
+      "note": "Polity tags are metadata. They must not multiply models."
+    }
+  ],
+  "sourceIndexes": [
+    {
+      "country": "us",
+      "category": "surface",
+      "role": "current-official",
+      "grade": "official-fetched",
+      "url": "https://www.navy.mil/Resources/Fact-Files/Display-FactFiles/Article/2169814/amphibious-assault-ships-lhdlhar/",
+      "limit": "One fact file, not the historical class list. Fact-file landing page did not enumerate every file."
+    },
+    {
+      "country": "us",
+      "category": "surface",
+      "role": "current-official",
+      "grade": "official-fetched",
+      "url": "https://www.navy.mil/Resources/Fact-Files/Display-FactFiles/article/2169795/aircraft-carriers-cvn/",
+      "limit": "Nimitz and Ford, both already modeled. Updated 27 February 2025."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "role": "current-official",
+      "grade": "official-fetched",
+      "url": "https://www.navy.mil/resources/fact-files/display-factfiles/article/2169558/attack-submarines-ssn/",
+      "limit": "SSN only. SSBN/SSGN fact file was not opened, so Ohio is not asserted from this page."
+    },
+    {
+      "country": "us",
+      "category": "aircraft",
+      "role": "historical-official-index-not-opened",
+      "grade": "unfetched",
+      "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/",
+      "limit": "Needed to close US aircraft. Prior research file cites individual fact sheets; the index was not ingested."
+    },
+    {
+      "country": "us",
+      "category": "surface-submarine",
+      "role": "historical-official-index-not-opened",
+      "grade": "unfetched",
+      "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs.html",
+      "limit": "Ship histories, not a class ledger. Required source, not a finished inventory."
+    },
+    {
+      "country": "us",
+      "category": "submarine",
+      "role": "secondary-reconciliation",
+      "grade": "secondary-unfetched",
+      "url": "https://en.wikipedia.org/wiki/List_of_submarine_classes_of_the_United_States_Navy",
+      "limit": "Search confirmed the page exists. Rows were not ingested and are not service proof."
+    },
+    {
+      "country": "gb",
+      "category": "surface",
+      "role": "current-official",
+      "grade": "official-search-extract",
+      "url": "https://www.royalnavy.mod.uk/equipment/ships",
+      "limit": "Current ships and RFA, not 1914-present."
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "role": "current-official",
+      "grade": "official-search-extract",
+      "url": "https://www.royalnavy.mod.uk/equipment/submarine",
+      "limit": "Astute, Vanguard, future Dreadnought. No historical classes."
+    },
+    {
+      "country": "gb",
+      "category": "aircraft",
+      "role": "current-official",
+      "grade": "official-search-extract",
+      "url": "https://www.raf.mod.uk/aircraft/",
+      "limit": "Current RAF only. Fleet Air Arm is a separate page."
+    },
+    {
+      "country": "gb",
+      "category": "aircraft",
+      "role": "current-official",
+      "grade": "official-search-extract",
+      "url": "https://www.royalnavy.mod.uk/equipment/aircraft",
+      "limit": "F-35B, Merlin, Wildcat named. Not a historical FAA list."
+    },
+    {
+      "country": "gb",
+      "category": "submarine",
+      "role": "secondary-reconciliation",
+      "grade": "secondary-search-extract",
+      "url": "https://en.wikipedia.org/wiki/List_of_submarine_classes_of_the_Royal_Navy",
+      "limit": "Extract lists many classes, including pre-1914 boats, midgets and single foreign boats. Not filtered and not service-proved."
+    },
+    {
+      "country": "gb",
+      "category": "aircraft",
+      "role": "historical-secondary-not-opened",
+      "grade": "unfetched",
+      "url": "https://en.wikipedia.org/wiki/List_of_aircraft_of_the_Royal_Air_Force",
+      "limit": "Likely reconciliation index. Not fetched this session, so no row count is claimed."
+    },
+    {
+      "country": "fr",
+      "category": "surface-submarine",
+      "role": "current-official",
+      "grade": "official-fetched",
+      "url": "https://www.defense.gouv.fr/sites/default/files/marine/liste%20des%20navires%20de%20la%20Marine%20nationale.pdf",
+      "limit": "Circular 16 April 2025, state on 1 April 2025. Current names, not 1914-present classes, and not a historical ledger."
+    },
+    {
+      "country": "fr",
+      "category": "aircraft",
+      "role": "current-naval-official",
+      "grade": "official-fetched",
+      "url": "https://www.colsbleus.defense.gouv.fr/sites/default/files/2025-12/INFOG%20CB%203132_V5.pdf",
+      "limit": "Naval aviation graphic, December 2025. Not the Air and Space Force inventory."
+    },
+    {
+      "country": "fr",
+      "category": "aircraft",
+      "role": "air-force-index-not-opened",
+      "grade": "unfetched",
+      "url": "https://www.defense.gouv.fr/air",
+      "limit": "Armée de l'Air et de l'Espace catalogue was not opened. Rafale C in the atlas does not close it."
+    },
+    {
+      "country": "de",
+      "category": "aircraft-surface-submarine",
+      "role": "official-snapshot",
+      "grade": "official-fetched",
+      "url": "https://www.publikationen-bundesregierung.de/resource/blob/2277952/729888/69b9e1bd4912f0f3fd0268d58532d6ad/waffensysteme-und-grossgeraet-der-bundeswehr-download-bmvg-data.pdf?download=1",
+      "limit": "Stand November 2021. Not 1914-present and not guaranteed current in 2026."
+    },
+    {
+      "country": "de",
+      "category": "aircraft",
+      "role": "current-official",
+      "grade": "official-fetched",
+      "url": "https://www.bundeswehr.de/de/organisation/luftwaffe",
+      "limit": "Current Luftwaffe narrative, not a historical type list."
+    },
+    {
+      "country": "de",
+      "category": "submarine",
+      "role": "secondary-reconciliation",
+      "grade": "secondary-search-extract",
+      "url": "https://en.wikipedia.org/wiki/List_of_submarine_classes",
+      "limit": "Extract separates Kaiserliche Marine, Kriegsmarine, modern German Navy and export models. Export models are out unless a retained navy operated them. Rows not verified."
+    },
+    {
+      "country": "it",
+      "category": "aircraft",
+      "role": "current-official",
+      "grade": "official-fetched",
+      "url": "https://www.aeronautica.difesa.it/home/noi-siamo-l-am/personale-e-mezzi/",
+      "limit": "Current AMI page, not 1914-present. Museum page at maf-pagina-velivoli is a different, historical display and was not used as the fleet."
+    },
+    {
+      "country": "it",
+      "category": "aircraft",
+      "role": "current-navy-official",
+      "grade": "official-search-extract",
+      "url": "https://www.marina.difesa.it/EN/thefleet/airfleet/Pagine/default.aspx",
+      "limit": "Navy air fleet. Does not name F-35B; absence from this page is not proof of absence."
+    },
+    {
+      "country": "it",
+      "category": "surface",
+      "role": "current-official-names",
+      "grade": "official-search-extract",
+      "url": "https://www.marina.difesa.it/noi-siamo-la-marina/pilastro-operativo/mezzi/forze-navali/Pagine/Homepage.aspx",
+      "limit": "Alphabetical ship names without class or type. Cannot by itself create class identities."
+    },
+    {
+      "country": "it",
+      "category": "surface-submarine",
+      "role": "secondary-current-fleet",
+      "grade": "secondary-list",
+      "url": "https://it.wikipedia.org/wiki/Flotta_della_Marina_Militare",
+      "limit": "Gives classes and entrata in servizio years. Secondary. Includes small craft that may be too granular."
+    },
+    {
+      "country": "jp",
+      "category": "surface",
+      "role": "current-official",
+      "grade": "official-search-extract",
+      "url": "https://www.mod.go.jp/msdf/equipment/ships/",
+      "limit": "Current JMSDF. No Imperial Japanese Navy class list."
+    },
+    {
+      "country": "jp",
+      "category": "submarine",
+      "role": "current-official",
+      "grade": "official-search-extract",
+      "url": "https://www.mod.go.jp/msdf/equipment/ships/index3.html",
+      "limit": "Oyashio, Soryu, Taigei only."
+    },
+    {
+      "country": "jp",
+      "category": "aircraft",
+      "role": "current-official",
+      "grade": "official-search-extract",
+      "url": "https://www.mod.go.jp/msdf/equipment/aircraft/",
+      "limit": "JMSDF fixed wing. Rotary-wing index was seen only as a sidebar."
+    },
+    {
+      "country": "jp",
+      "category": "aircraft",
+      "role": "current-official",
+      "grade": "official-fetched-partial",
+      "url": "https://www.mod.go.jp/asdf/equipment/",
+      "limit": "Cleaned fetch lost fighter names that the search extract showed. Not a historical IJN/IJA list."
+    },
+    {
+      "country": "jp",
+      "category": "submarine",
+      "role": "secondary-reconciliation",
+      "grade": "secondary-search-extract",
+      "url": "https://en.wikipedia.org/wiki/List_of_submarine_classes",
+      "limit": "IJN and JMSDF sections in the extract. Many IJN type-boats are one-off subclasses; do not inflate each Kaidai mark without a silhouette rule."
+    },
+    {
+      "country": "cn",
+      "category": "surface-aircraft-submarine",
+      "role": "official-narrative",
+      "grade": "official-fetched",
+      "url": "http://www.mod.gov.cn/gfbw/qwfb/4915485.html",
+      "limit": "Anniversary reporting, not a fleet list. No historical ROC/PRC catalogue."
+    },
+    {
+      "country": "cn",
+      "category": "aircraft-surface",
+      "role": "official-narrative",
+      "grade": "official-fetched",
+      "url": "https://www.81.cn/2022zt/2022-10/10/content_10190983.htm",
+      "limit": "Selected milestone equipment, not a complete inventory."
+    },
+    {
+      "country": "cn",
+      "category": "submarine",
+      "role": "secondary-only",
+      "grade": "secondary-search-extract",
+      "url": "https://en.wikipedia.org/wiki/List_of_submarine_classes",
+      "limit": "PRC class names in the extract conflict with the rule that official pages fetched here do not give those type numbers. Do not promote them to evidenced classes."
+    },
+    {
+      "country": "ru",
+      "category": "surface-submarine-aircraft",
+      "role": "official-categories",
+      "grade": "official-fetched",
+      "url": "https://eng.mil.ru/en/structure/forces/navy.htm",
+      "limit": "News and fleet descriptions. Not a class or type catalogue. Child weapons pages not opened."
+    },
+    {
+      "country": "ru",
+      "category": "submarine",
+      "role": "secondary-reconciliation",
+      "grade": "secondary-search-extract",
+      "url": "https://en.wikipedia.org/wiki/List_of_Soviet_and_Russian_submarine_classes",
+      "limit": "Extract names imperial, WWII and later projects. NATO names and project numbers disagree. Not row-verified. Required filter: served, manned, 1914-present, not a paper project."
+    },
+    {
+      "country": "all",
+      "category": "surface",
+      "role": "secondary-historical-already-used-by-project",
+      "grade": "project-source-not-reindexed",
+      "url": "https://www.navypedia.org/ships/",
+      "limit": "Individual class pages are already cited by naval-history.ts. Country indexes were not crawled this session. Navypedia is a secondary compiler, including ships outside the eight countries."
+    },
+    {
+      "country": "all",
+      "category": "aircraft",
+      "role": "prior-project-research",
+      "grade": "project-record-not-refetched",
+      "url": "dcos/feature/inventory/aircraft-research.json",
+      "limit": "Eleven records. Not atlas models. evidenceYear is an event year."
+    }
+  ],
+  "accountingMechanism": {
+    "name": "finite source-ledger, not a preset total",
+    "unit": {
+      "aircraft": "type family id",
+      "surface": "class id",
+      "submarine": "class id"
+    },
+    "rowStates": [
+      "mapped",
+      "same-as",
+      "excluded-civilian",
+      "excluded-unmanned",
+      "excluded-never-served",
+      "excluded-not-yet-in-service",
+      "excluded-non-retained-only",
+      "configuration-of",
+      "ambiguous",
+      "unresolved"
+    ],
+    "dates": [
+      "firstFlightOrLaunch",
+      "serviceEntry",
+      "evidenceEvent",
+      "modeledAppearance"
+    ],
+    "dateRule": "A row cannot move to mapped on a first-flight, launch or contract date. serviceEntry or a documented in-service event is required. modeledAppearance is chosen later and may differ from both.",
+    "closure": "A country-category cell is closed only when every row of each assigned index is in a terminal state and every mapped row cites the evidence that establishes service. Unresolved count is the coverage number. There is no target inventory size.",
+    "steps": [
+      "Register the indexes in sourceIndexes. Add an index before adding a type.",
+      "Ingest index rows as unresolved, including names that look familiar.",
+      "Normalize license names, NATO names and translations onto one canonical id.",
+      "Apply exclusion rules with a quotation, not a memory of the type.",
+      "Attach retained operators. A second retained country never creates a second model.",
+      "Choose one service configuration for the model. Blocks, marks and sister ships stay on that id.",
+      "Only a row in mapped, with geometry still empty, becomes a modelling candidate.",
+      "Publish counts as mapped / excluded / ambiguous / unresolved. Never publish a percentage of an imagined complete fleet."
+    ],
+    "whyFinite": "Each official or secondary index is finite. The historical problem is that no retained country publishes one official 1914-present type-and-class list. Closure is therefore per index, and the missing historical indexes stay open on purpose."
+  },
+  "completenessLimits": [
+    "Runtime count on 17 November 2026 is 151: 128 surface appearances, 11 aircraft and 12 submarines. Four of the submarines were read from the worktree after the older 8-boat description and were checked against their Navypedia source pages.",
+    "147 runtime entries were read from code. They are a sample.",
+    "Official pages opened here are current snapshots or anniversary articles. None is a 1914-present type catalogue.",
+    "The German equipment book is dated November 2021. The French fleet circular is dated 1 April 2025. They are not silently updated to November 2026.",
+    "Wikipedia and Navypedia extracts are reconciliation leads. Their class rows were not accepted as service evidence.",
+    "Russia's official English pages confirm categories and a handful of ship names, not classes. China's official articles name some ships and assert submarines without class numbers. Those holes stay open.",
+    "US aircraft, pre-1939 US battleships, frigates and auxiliaries, and every country's WWI-to-Cold-War aircraft remain mostly unlisted because their indexes were not ingested.",
+    "Empty atlas cells are real. A filled cell is not complete.",
+    "No art score is implied by a type being evidenced.",
+    "Navypedia fate columns that say in service (2019) are the compiler's freeze date. They are not a 2026 fleet."
+  ]
+}

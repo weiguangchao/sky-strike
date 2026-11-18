@@ -44,7 +44,7 @@
       <div class="frame-top"><span id="sector-label">破晓海域</span></div>
       <div class="battlefield" id="battlefield">
         <div class="battle-stage">
-        <canvas id="game-canvas" width="480" height="760" aria-label="竖版射击战场，方向键或 WASD 移动，空格投放高爆航弹" tabindex="0"></canvas>
+        <canvas id="game-canvas" width="240" height="380" aria-label="竖版射击战场，方向键或 WASD 移动，空格投放高爆航弹" tabindex="0"></canvas>
         <div class="game-hud" id="game-hud" hidden><div class="hud-top"><div><strong id="score" aria-label="作战积分">000000</strong></div><div class="wave-display"><span id="wave">01</span><span class="wave-total">/ 10 波</span></div><button class="hud-pause icon-button" id="pause-button" aria-label="暂停游戏"><span class="pause-face"><svg><use href="#i-pause"/></svg></span></button></div><div class="health-row"><span id="health" aria-label="生命"></span><span class="level-badge">LV.<b id="level">1</b></span></div><div class="xp-track"><span id="xp-fill"></span></div></div>
         <div class="boss-hud" id="boss-hud" hidden><div><span id="boss-name">战列舰 · 铁岳</span><span id="boss-percent">100%</span></div><div class="boss-track"><i id="boss-fill"></i></div><div class="boss-parts" id="boss-parts" aria-label="首领部件"></div></div>
         <div class="wave-announcement" id="wave-announcement" aria-live="polite"></div>
@@ -68,7 +68,7 @@
     <aside class="loadout-panel">
       <div class="panel-heading"><h2>出击机库</h2></div>
       <div class="craft-tabs" role="tablist" aria-label="战机选择"><button class="active" role="tab" aria-selected="true" data-craft="falcon">游隼</button><button role="tab" aria-selected="false" data-craft="swift">雨燕</button><button role="tab" aria-selected="false" data-craft="turtle">玄武</button></div>
-      <div class="craft-illustration"><div class="craft-grid"></div><canvas id="craft-canvas" width="480" height="300" aria-label="当前战机预览"></canvas></div>
+      <div class="craft-illustration"><div class="craft-grid"></div><canvas id="craft-canvas" width="160" height="100" aria-label="当前战机预览"></canvas></div>
       <div class="craft-name"><h3 id="craft-name">游隼</h3><span id="craft-role">均衡型</span></div>
       <div class="craft-stats"><div><span>火力</span><div class="stat-bars" id="stat-power"></div></div><div><span>机动</span><div class="stat-bars" id="stat-speed"></div></div><div><span>装甲</span><div class="stat-bars" id="stat-armor"></div></div></div>
       <div class="run-build" id="run-build" hidden><span>本次强化</span><div id="build-list">等待首次升级</div></div>
@@ -86,7 +86,7 @@
       <div class="help-notes"><p>机炮对空；对准舰船自动投弹，不消耗航弹。</p><p>空格航弹清弹；中央白点受击；升级三选一。</p></div>
     </section>
     <section class="handbook-panel" id="help-intel-panel" role="tabpanel" aria-labelledby="help-tab-intel" hidden>
-      <div class="intel-card"><div class="intel-illustration" id="intel-illustration"><canvas id="intel-canvas" width="192" height="120" aria-label="作战单位三维预览"></canvas></div><div class="intel-copy"><span id="intel-role"></span><h3 id="intel-name"></h3><p id="intel-shape"></p><p id="intel-tactic"></p></div></div>
+      <div class="intel-card"><div class="intel-illustration" id="intel-illustration"><canvas id="intel-canvas" width="192" height="120" aria-label="作战单位二维预览"></canvas></div><div class="intel-copy"><span id="intel-role"></span><h3 id="intel-name"></h3><p id="intel-shape"></p><p id="intel-tactic"></p></div></div>
       <div class="handbook-pager"><button class="secondary-button" id="intel-prev" aria-label="上一种作战单位">←</button><span id="intel-count" aria-live="polite"></span><button class="secondary-button" id="intel-next" aria-label="下一种作战单位">→</button></div>
     </section>
     <section class="handbook-panel" id="help-campaign-panel" role="tabpanel" aria-labelledby="help-tab-campaign" hidden>
@@ -99,18 +99,18 @@
         <div class="intel-copy fleet-copy">
           <div class="fleet-meta"><span id="archive-role"></span><span id="archive-count" aria-live="polite"></span></div>
           <h3 id="archive-name"></h3><p id="archive-shape"></p>
-          <div class="fleet-reference"><span id="archive-review"></span><a id="archive-source" target="_blank" rel="noopener noreferrer">史料 ↗</a></div>
+          <div class="fleet-reference"><a id="archive-source" target="_blank" rel="noopener noreferrer">史料 ↗</a></div>
         </div>
       </div>
       <div class="fleet-controls archive-controls" id="archive-controls">
         <div class="fleet-filters">
-          <select id="archive-country" aria-label="按原型国家筛选历史图鉴"><option value="all">全部国家</option></select>
-          <select id="archive-category" aria-label="按类别筛选历史图鉴"><option value="all">全部类别</option><option value="aircraft">飞机型号</option><option value="surface">水面舰艇</option><option value="submarine">潜艇舰级</option><optgroup label="水面舰种"><option value="fleet-carrier">航空母舰</option><option value="cruiser">巡洋舰</option><option value="destroyer">驱逐舰</option><option value="battleship">战列舰</option><option value="patrol-boat">巡逻护航艇</option><option value="transport">运输船</option></optgroup></select>
+          <select id="archive-country" aria-label="按服役国家筛选历史图鉴"><option value="all">全部国家</option></select>
+          <select id="archive-category" aria-label="按类别筛选历史图鉴"><option value="all">全部类别</option><option value="aircraft">飞机</option><option value="submarine">潜艇</option><option value="fleet-carrier">航空母舰</option><option value="cruiser">巡洋舰</option><option value="destroyer">驱逐舰</option><option value="battleship">战列舰</option></select>
           <select id="archive-era" aria-label="按外观年代筛选历史图鉴"><option value="all">全部年代</option><option value="ww1">一战 ≤1918</option><option value="interwar-ww2">1919–1945</option><option value="cold-war">冷战 1946–1991</option><option value="modern">现代 ≥1992</option></select>
         </div>
         <div class="handbook-pager fleet-pager"><button class="secondary-button" id="archive-prev" aria-label="上一个历史型号">←</button><select id="archive-entry" aria-label="直接选择历史型号或舰级"></select><button class="secondary-button" id="archive-next" aria-label="下一个历史型号">→</button></div>
       </div>
-      <p id="archive-coverage">首批收录 · 全球服役型号仍在补录</p>
+      <p id="archive-coverage">八国图鉴 · 一战至今服役型号核对中</p>
       <div id="archive-details" role="region" aria-labelledby="archive-details-title" hidden>
         <h3 id="archive-details-title" tabindex="-1">资料与口径</h3>
         <p id="archive-note"></p>

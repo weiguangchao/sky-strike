@@ -5,13 +5,13 @@ import {Game} from '../game/engine.ts';
 import {DEFAULT_FLEET,HISTORICAL_SHIPS,NAVIES,fleetSelection} from '../game/naval-history.ts';
 
 test('the archive covers real navies and US classes and safe local identities',()=>{
-  assert.equal(HISTORICAL_SHIPS.length,148);
-  assert.equal(NAVIES.length,23);
-  assert.equal(new Set(HISTORICAL_SHIPS.map(ship=>ship.id)).size,148);
-  for(const navy of NAVIES)assert.ok(HISTORICAL_SHIPS.some(ship=>ship.navy===navy.id),navy.name);
+  assert.equal(HISTORICAL_SHIPS.length,128);
+  assert.equal(NAVIES.length,8);
+  assert.equal(new Set(HISTORICAL_SHIPS.map(ship=>ship.id)).size,128);
+  for(const navy of NAVIES)assert.ok(HISTORICAL_SHIPS.some(ship=>ship.navy===navy.id||(navy.id==='ru'&&ship.navy==='su')),navy.name);
   for(const ship of HISTORICAL_SHIPS) {
     assert.match(ship.id,/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
-    assert.ok(ship.year>=1937&&ship.year<=(ship.navy==='us'?2026:1945),ship.name);
+    assert.ok(ship.year>=1914&&ship.year<=new Date().getFullYear(),ship.name);
     assert.equal(new URL(ship.source).protocol,'https:');
   }
 });
@@ -21,6 +21,7 @@ test('stored fleet choices reject wrong roles and unknown paths without removing
   const choices=fleetSelection({battleship:'richelieu',destroyer:'akagi',cruiser:'../../bad',transport:7});
   assert.equal(choices.battleship,'richelieu');assert.equal(choices.destroyer,DEFAULT_FLEET.destroyer);
   assert.equal(choices.cruiser,DEFAULT_FLEET.cruiser);assert.equal(choices.transport,DEFAULT_FLEET.transport);
+  assert.deepEqual(fleetSelection({ cruiser: 'averof', destroyer: 'haida' }), DEFAULT_FLEET);
 });
 
 test('port and starboard carrier islands move their damage target while retaining combat values',()=>{
