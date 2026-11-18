@@ -66,7 +66,7 @@ export async function auditInventory() {
     scope: inventory.scope, complete,
     warning: 'Discovery rows are unverified leads, not a required model count. Current atlas appearances include configurations and are not a canonical class census.',
     candidates: inventory.candidates.length, unresolved: coverage.reduce((total, cell) => total + cell.unresolved, 0),
-    decisions: resolutions.records.length, resolvedCandidates: resolved.size, canonicalTypes: canonical.size, coverage, unavailableSources,
+    decisions: resolutions.records.length, candidatesWithDecisions: resolved.size, canonicalTypes: canonical.size, coverage, unavailableSources,
   };
 }
 

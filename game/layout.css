@@ -371,8 +371,15 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
   .fleet-card .intel-copy h3 { font-size:20px; }
 }
 @container app-viewport (max-height:600px) and (max-width:360px) {
-  .fleet-card { grid-template-columns:72px minmax(0,1fr); gap:10px; }
-  .fleet-meta { line-height:1.35; }
+  #help-dialog.archive-open .help-heading { margin-bottom:4px; row-gap:4px; }
+  .fleet-card { grid-template-columns:72px minmax(0,1fr); gap:0 10px; }
+  .fleet-copy { display:contents; }
+  .fleet-meta { grid-column:1 / -1; line-height:1.35; }
+  .fleet-card .intel-illustration { grid-column:1; grid-row:2 / 4; }
+  #archive-name, #archive-shape { grid-column:2; }
+  .fleet-reference { grid-column:1 / -1; }
+  .fleet-card .intel-copy h3 { font-size:18px; margin:2px 0; }
+  .fleet-card .intel-copy p { margin:2px 0; }
   .fleet-meta #archive-count { font-size:16px; }
 }
 @container app-viewport (max-height:350px) and (min-width:480px) {

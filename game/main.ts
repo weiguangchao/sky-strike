@@ -465,6 +465,7 @@ try {
   }));
   game.fleetAppearance={...selectedFleet};
   selectCraft(selectedCraft); setDifficulty(difficulty); updateRecord(); syncSound(); syncState();
+  if (activeHelp === 'intel' && dialog('help-dialog').open) showIntel(intelIndex);
   button('start-button').disabled = false;
 } catch {
   initializationFailed = true;

@@ -173,3 +173,14 @@ test('review evidence renders both 2D views of each new sprite', async ({ page }
     await writeFile(`${evidenceDir}/${entry.modelId}.png`, PNG.sync.write(sheet));
   }
 });
+
+test('multi-operator submarine metadata and its action fit narrow short handbooks', async ({ page }) => {
+  await openArchive(page);
+  await page.locator('#archive-category').selectOption('submarine');
+  await page.locator('#archive-entry').selectOption('type-viic'); await ready(page);
+  for (const height of [480, 450]) {
+    await page.setViewportSize({ width: 320, height });
+    await page.evaluate(() => document.fonts.ready);
+    await expectDialogFits(page, `Type VIIC 320×${height}`);
+  }
+});

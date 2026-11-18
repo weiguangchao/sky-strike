@@ -6,6 +6,9 @@ import type { ArchiveCountryId } from '../game/naval-history.ts';
 import { ARCHIVE } from '../game/historical-archive.ts';
 import previousInventory from '../dcos/feature/inventory/eight-country-index.json';
 import supplementalInput from '../dcos/feature/inventory/eight-country-supplemental-discoveries.json';
+import resolutionInput from '../dcos/feature/inventory/eight-country-resolutions.json';
+import { candidateKey, parseInventoryResolutions } from './inventory-resolutions.ts';
+import type { InventoryResolution } from './inventory-resolutions.ts';
 
 type Category = 'aircraft' | 'surface' | 'submarine';
 interface Link { url: string; title: string }
@@ -182,6 +185,18 @@ export function supplementalDiscoveries(input: unknown): SupplementalDiscovery[]
   });
 }
 
+/** Never publish a refresh that strands decisions made against an earlier index. */
+export async function publishInventory({ report, decisions, destination }: {
+  report: { candidates: readonly Pick<Candidate, 'country' | 'category' | 'url'>[] };
+  decisions: readonly Pick<InventoryResolution, 'country' | 'category' | 'candidateUrl'>[];
+  destination: URL;
+}): Promise<void> {
+  const candidates = new Set(report.candidates.map(candidateKey));
+  const missing = decisions.find(row => !candidates.has(candidateKey({ ...row, url: row.candidateUrl })));
+  if (missing) throw new Error(`Refresh is missing discovery for an existing decision: ${missing.country}/${missing.category}/${missing.candidateUrl}`);
+  await writeFile(destination, JSON.stringify(report, null, 2) + '\n');
+}
+
 async function collect(): Promise<void> {
   const folder = new URL('../.artifacts/eight-country-expansion/source-pages/', import.meta.url);
   await mkdir(folder, { recursive: true });
@@ -250,7 +265,7 @@ async function collect(): Promise<void> {
   const rows = [...candidates.values()];
   const coverage = NAVIES.flatMap(country => (['aircraft', 'surface', 'submarine'] as const).map(category => ({ country: country.id, category, state: 'in-progress', discoveredCandidates: rows.filter(row => row.country === country.id && row.category === category).length, currentAtlasEntries: ARCHIVE.filter(entry => entry.country === country.id && entry.category === category).length })));
   const report = { version: 1, collectedAt: new Date().toISOString(), scope: 'Actually served manned military aircraft types, surface warship/auxiliary and submarine classes in 1914-present; eight retained service countries. Secondary indexes contain unserved proposals and out-of-period types and MUST be verified before modeling. Imports and aliases require canonical identity reconciliation.', complete: false, coverage, sources: retrieved.map(source => source.state === 'retrieved' ? { ...source, links: undefined } : source), candidates: rows };
-  await writeFile(new URL('../dcos/feature/inventory/eight-country-index.json', import.meta.url), JSON.stringify(report, null, 2) + '\n');
+  await publishInventory({ report, decisions: parseInventoryResolutions(resolutionInput).records, destination: new URL('../dcos/feature/inventory/eight-country-index.json', import.meta.url) });
   console.info(JSON.stringify({ complete: false, sources: retrieved.length, unavailable: retrieved.filter(source => source.state === 'unavailable').length, candidates: rows.length, coverage }));
 }
 

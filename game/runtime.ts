@@ -20,18 +20,42 @@ interface RuntimeOptions {
   unlockSound: () => void;
 }
 
+function deferredReady() {
+  let resolve = () => {};
+  let reject = (_error: unknown) => {};
+  const promise = new Promise<void>((onReady, onError) => { resolve = onReady; reject = onError; });
+  return { promise, resolve, reject };
+}
+
 class BattlefieldScene extends Phaser.Scene {
-  readonly ready = Promise.withResolvers<void>();
+  readonly ready = deferredReady();
   private state: { kind: 'loading' } | { kind: 'ready'; renderer: Renderer } = { kind: 'loading' };
   private readonly keys = new Set<string>();
   private readonly handledKeys = new WeakSet<KeyboardEvent>();
   private pointer: { id: number; position: Point; target: Point } | null = null;
+  private capturedMouse: number | null = null;
 
   constructor(private readonly options: RuntimeOptions) { super('battlefield'); }
   get view(): Renderer | undefined { return this.state.kind === 'ready' ? this.state.renderer : undefined; }
   get isReady(): boolean { return this.state.kind === 'ready'; }
 
   create(): void {
+    const captureMouse = (event: PointerEvent) => {
+      if (event.pointerType !== 'mouse' || event.button !== 0 || !this.options.allowInput() || this.options.combat.status !== 'playing') return;
+      this.options.canvas.setPointerCapture(event.pointerId);
+      this.capturedMouse = event.pointerId;
+    };
+    const releaseMouse = (event: PointerEvent) => {
+      if (event.pointerId !== this.capturedMouse) return;
+      this.capturedMouse = null; this.pointer = null;
+    };
+    this.options.canvas.addEventListener('pointerdown', captureMouse);
+    this.options.canvas.addEventListener('lostpointercapture', releaseMouse);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.clearInput();
+      this.options.canvas.removeEventListener('pointerdown', captureMouse);
+      this.options.canvas.removeEventListener('lostpointercapture', releaseMouse);
+    });
     this.input.keyboard?.on('keydown', (event: KeyboardEvent) => {
       // Phaser can replay queued native events when several arrive before the next frame.
       if (this.handledKeys.has(event)) return;
@@ -65,7 +89,11 @@ class BattlefieldScene extends Phaser.Scene {
     }, error => this.ready.reject(error));
   }
 
-  clearInput(): void { this.keys.clear(); this.pointer = null; }
+  clearInput(): void {
+    this.keys.clear(); this.pointer = null;
+    if (this.capturedMouse !== null && this.options.canvas.hasPointerCapture(this.capturedMouse)) this.options.canvas.releasePointerCapture(this.capturedMouse);
+    this.capturedMouse = null;
+  }
   update(_time: number, delta: number): void {
     if (this.state.kind !== 'ready') return;
     const dt = Math.min(delta / 1000, .05);

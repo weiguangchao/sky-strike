@@ -1,7 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { aircraftLinks, navalLeaf, submarineLink, supplementalDiscoveries } from '../scripts/collect-service-inventory.ts';
+import { aircraftLinks, navalLeaf, submarineLink, supplementalDiscoveries, publishInventory } from '../scripts/collect-service-inventory.ts';
 import { serviceTables } from '../scripts/collect-atlas-service-evidence.ts';
+import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 test('aircraft discovery reads the model column without treating origin countries as aircraft', () => {
   const html = `<table class="wikitable sortable"><tr><th>Aircraft</th><th>Origin</th></tr>
@@ -126,4 +130,18 @@ test('supplemental discovery preserves provenance without assigning service, mod
   assert.throws(() => supplementalDiscoveries({ version: 1, records: [{ ...row, country: 'ca' }] }), /Out-of-scope/);
   assert.throws(() => supplementalDiscoveries({ version: 1, records: [{ ...row, evidenceSha256: 'missing' }] }), /provenance/);
   assert.throws(() => supplementalDiscoveries({ version: 1, records: [{ ...row, url: 'http://example.org/' }] }), /provenance/);
+});
+
+test('an incomplete refresh preserves the previous index and a complete refresh can replace it', async t => {
+  const folder = await mkdtemp(join(tmpdir(), 'sky-strike-inventory-'));
+  t.after(() => rm(folder, { recursive: true, force: true }));
+  const destination = pathToFileURL(join(folder, 'index.json'));
+  const previous = '{"complete":false,"previous":"validated index"}\n';
+  await writeFile(destination, previous);
+  const decisions = [{ country: 'cn', category: 'aircraft', candidateUrl: 'https://www.example.org/J-7/' }] as const;
+  await assert.rejects(publishInventory({ report: { candidates: [] }, decisions, destination }), /missing discovery.*existing decision.*J-7/);
+  assert.equal(await readFile(destination, 'utf8'), previous, 'source loss must not replace the existing index');
+  const report = { complete: false, candidates: [{ country: 'cn', category: 'aircraft', url: 'https://example.org/j-7' }] } as const;
+  await publishInventory({ report, decisions, destination });
+  assert.deepEqual(JSON.parse(await readFile(destination, 'utf8')), report);
 });
