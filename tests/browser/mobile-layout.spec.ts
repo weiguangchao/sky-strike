@@ -223,6 +223,24 @@ test.describe('phone visible viewport',()=>{
     }
   });
 
+  test('releasing a mouse click does not cancel an active touch drag',async({page,context,browserName})=>{
+    test.skip(browserName!=='chromium','Simultaneous real touch and mouse input uses Chromium CDP.');
+    await page.goto('/');await page.locator('#start-button').click();
+    const field=required(await page.locator('#game-canvas').boundingBox());
+    const start={x:field.x+field.width*.3,y:field.y+field.height*.7};
+    const touch=await context.newCDPSession(page);
+    await page.evaluate(async()=>{
+      const {game}=await import('/main.ts');
+      game.player.x=140;game.player.y=400;game.player.invincible=100;game.time=10;game.spawnTimer=999;
+    });
+    await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[start]});
+    await page.mouse.click(start.x+40,start.y-30);
+    await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:start.x+30,y:start.y}]});
+    const expected=140+30/field.width*480*1.12;
+    await expect.poll(()=>page.evaluate(async()=>(await import('/main.ts')).game.player.x)).toBeCloseTo(expected,0);
+    await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  });
+
   test('viewport resizing releases an in-progress touch drag instead of moving the player unexpectedly',async({page,context,browserName})=>{
     test.skip(browserName!=='chromium','Real touch input in this regression uses Chromium CDP.');
     await page.goto('/');await page.locator('#start-button').click();

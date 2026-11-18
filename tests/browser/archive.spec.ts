@@ -174,13 +174,18 @@ test('review evidence renders both 2D views of each new sprite', async ({ page }
   }
 });
 
-test('multi-operator submarine metadata and its action fit narrow short handbooks', async ({ page }) => {
+for (const spec of [
+  { id: 'type-viic', category: 'submarine' },
+  { id: 'c46a', category: 'aircraft' },
+  { id: 'c47a', category: 'aircraft' },
+  { id: 'c119c', category: 'aircraft' },
+]) test(`multi-operator metadata and its action fit narrow short handbooks: ${spec.id}`, async ({ page }) => {
   await openArchive(page);
-  await page.locator('#archive-category').selectOption('submarine');
-  await page.locator('#archive-entry').selectOption('type-viic'); await ready(page);
-  for (const height of [480, 450]) {
-    await page.setViewportSize({ width: 320, height });
+  await page.locator('#archive-category').selectOption(spec.category);
+  await page.locator('#archive-entry').selectOption(spec.id); await ready(page);
+  for (const viewport of [{ width: 320, height: 480 }, { width: 320, height: 450 }, { width: 393, height: 480 }]) {
+    await page.setViewportSize(viewport);
     await page.evaluate(() => document.fonts.ready);
-    await expectDialogFits(page, `Type VIIC 320×${height}`);
+    await expectDialogFits(page, `${spec.id} ${viewport.width}×${viewport.height}`);
   }
 });

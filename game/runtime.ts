@@ -47,7 +47,8 @@ class BattlefieldScene extends Phaser.Scene {
     };
     const releaseMouse = (event: PointerEvent) => {
       if (event.pointerId !== this.capturedMouse) return;
-      this.capturedMouse = null; this.pointer = null;
+      this.capturedMouse = null;
+      if (this.pointer?.id === this.input.mousePointer.id) this.pointer = null;
     };
     this.options.canvas.addEventListener('pointerdown', captureMouse);
     this.options.canvas.addEventListener('lostpointercapture', releaseMouse);
