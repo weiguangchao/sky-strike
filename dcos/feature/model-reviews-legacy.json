@@ -1,0 +1,1449 @@
+{
+  "version": 1,
+  "rounds": [
+    {
+      "round": 1,
+      "date": "2026-11-15",
+      "members": [
+        {
+          "reviewer": "Sol A",
+          "model": "gpt-6.1-sol",
+          "taskId": "node:delegated-task:command%3Amcp%3Ad286f08a-543b-4505-bc3e-144a1a5c535f%3Adelegate-task%3Afcea92bc-809c-44bd-885c-b00e4c8c8f95",
+          "results": {
+            "archive-sopwith-camel": {
+              "revision": "a6ba5dd8f6d4500466a8c0665d8a075a2ca5ce9725bee9cac1c188f338658ba7",
+              "score": 6.4,
+              "findings": [
+                "旋转发动机、双翼和固定起落架存在",
+                "误用双跨翼间支柱；上翼中央段缺失，机首及驼峰轮廓不足"
+              ]
+            },
+            "archive-spad-xiii": {
+              "revision": "40bd7856cafeae68eac8fae8ab76b4f692b3cd2709a020caea3dbfb2f73a9d21",
+              "score": 7.2,
+              "findings": [
+                "圆形散热器、双跨支柱和双翼可辨",
+                "上翼中央段缺失，翼根接合及机身侧面比例需要修正"
+              ]
+            },
+            "archive-fokker-dvii": {
+              "revision": "967bcd872ff4c7a20a62b0b33f85566be1dfd58913a797e77055b0735e0e7bc7",
+              "score": 6.8,
+              "findings": [
+                "方截面机身与N形支柱真实存在",
+                "上下翼被做成同展，中央翼段缺失，机首散热器识别不足"
+              ]
+            },
+            "archive-spitfire-ia": {
+              "revision": "fadd686a331af894ad07009995f400b5aa60d7d76bc84820a90b73bbc585ce4a",
+              "score": 7.7,
+              "findings": [
+                "椭圆主翼、三叶桨及两侧不同冷却器可辨",
+                "实际GLB主翼在横向和高度上均与机身分离，尾翼轮廓仍较通用"
+              ]
+            },
+            "archive-p51d": {
+              "revision": "66b552abb4a1b4ea1111cec0536471194326292f782f437ecc150be4af77f74b",
+              "score": 7.6,
+              "findings": [
+                "四叶桨、水滴座舱和腹部散热器存在",
+                "主翼悬空，腹部进气及机身过渡过于块状，型号轮廓尚需细化"
+              ]
+            },
+            "archive-a6m5": {
+              "revision": "a33cb7d9ee1273f1a86be03938c32e4ae3ed1760dc0d4f1cfab6ba3febc2f3aa",
+              "score": 7,
+              "findings": [
+                "三叶桨、圆罩和圆翼尖成立",
+                "主翼分离，座舱横框大部分埋在玻璃内，机首轮廓过于细长"
+              ]
+            },
+            "archive-f86a": {
+              "revision": "cbc8fae6c27e5fe3e636e4248f8e121a462aded40ada06f7c05131d042204a64",
+              "score": 7.2,
+              "findings": [
+                "后掠翼、机首进气及单喷口真实存在",
+                "主翼与机身有明确横向间隙，机体和尾翼轮廓过于通用"
+              ]
+            },
+            "archive-mig21pf": {
+              "revision": "589a23d592353aeb6028c8578c3c4ad7df4fd48947913b80bbd439b56913a188",
+              "score": 7.8,
+              "findings": [
+                "窄翼展三角翼、机首进气及独立平尾可辨",
+                "进气锥过于圆钝，背脊、垂尾及平尾轮廓缺少PF型号特征"
+              ]
+            },
+            "archive-f16a": {
+              "revision": "98e59099364c87405cbd58b90f6cd22abf0641e26e4cf7441564fa82dd59b9b1",
+              "score": 8,
+              "findings": [
+                "边条翼、腹部进气、单喷口和翼尖挂轨可辨",
+                "缺少双腹鳍，机身肩部及尾翼仍采用过于通用的截面和轮廓"
+              ]
+            },
+            "archive-mirage2000c": {
+              "revision": "111ef5b2a9016ef4825f4fafa9e2a3175c2e38fa774bc38368dcd69f77b323bf",
+              "score": 7.8,
+              "findings": [
+                "无平尾三角翼、两侧进气及单喷口成立",
+                "侧进气锥未形成，垂尾和后机身轮廓过于通用，翼身结合不足"
+              ]
+            },
+            "archive-rafale-c": {
+              "revision": "1a8e7f4b313825684c9293521790eda64cb3f84eaa7816bb0a5deb44a8b1b529",
+              "score": 7.9,
+              "findings": [
+                "鸭翼、三角翼及双喷口均有实体几何",
+                "双发后机身仍接近细圆管，进气道、翼身过渡和垂尾比例需要重塑"
+              ]
+            },
+            "archive-gripen-c": {
+              "revision": "5c0bfe4b68b87cefdbcc7f4ebee5b0ae315ca599f2daed3fd95b3390757a06c5",
+              "score": 8.1,
+              "findings": [
+                "鸭翼、单喷口、机首突出部和翼尖挂轨可辨",
+                "机身截面、侧进气道与垂尾仍是共用近似轮廓，尚未达到高精度识别要求"
+              ]
+            },
+            "archive-u9": {
+              "revision": "7638114a69abd4353533e19bd95697bdfe4121765a95d934359501feb3147d37",
+              "score": 6.8,
+              "findings": [
+                "双轴及无甲板炮符合所声明早期口径",
+                "参考中的直艏、艏艉桅杆及艇体侧面特征不足，当前更像通用纺锤形潜艇"
+              ]
+            },
+            "archive-type-viic": {
+              "revision": "a79010156f242a0f32a4722218ec0bc18a9eda39f42786d5dc7241ef100fe7e8",
+              "score": 6.9,
+              "findings": [
+                "双轴、前甲板炮及尖艏甲板存在",
+                "围壳和船型艏艉轮廓不足，通用高艉背鳍及十字尾部不符参考布局"
+              ]
+            },
+            "archive-gato": {
+              "revision": "d8ab91523356d693e7a5e740e33e030ed9fb7b03f4fb6c1a11ff980ae7edd891",
+              "score": 7,
+              "findings": [
+                "长甲板、双轴、甲板炮及围壳阶梯存在",
+                "阶梯围壳仍过于简化，艇体和艏艉沿用通用模板，与VII C的级别差异不足"
+              ]
+            },
+            "archive-nautilus": {
+              "revision": "3ac069b03e8fe7286e3bda1b524f6a9c43f0db0cc273c824addc01db6c2768d6",
+              "score": 7.1,
+              "findings": [
+                "无甲板炮、双轴及较前置围壳成立",
+                "围壳侧面、艏形和上层艇体仍过于通用，1958年外形识别不足"
+              ]
+            },
+            "archive-oberon": {
+              "revision": "7ddffccb1742a8fee78519ce5eed8a1641215329375f12fe30ad889b6fc2c886",
+              "score": 7,
+              "findings": [
+                "艏声呐隆起、高围壳及双轴有实体表现",
+                "艇体和围壳轮廓过度通用；补充PDF与艇型外形无关，需提供对应时期依据"
+              ]
+            },
+            "archive-virginia-block-i": {
+              "revision": "b7d32b16f45139ddc34df66124cb52717ecbc21c6fcba4c5eba6b98d2c979e5c",
+              "score": 7.3,
+              "findings": [
+                "单轴、艏水平舵和泵喷导管轮廓存在",
+                "艏部仍是长尖锥，围壳及艇体过渡缺少Block I特征，导管过于薄环化"
+              ]
+            },
+            "archive-type-212a": {
+              "revision": "d1d2e53ffef258f40ec522c284d918e0a775d38fa012ee64611d0b8c18f9d086",
+              "score": 6.2,
+              "findings": [
+                "短粗比例、单轴和X形尾舵成立",
+                "水平舵错误地安装于艏部，说明文字也错误；尖锥艏与军方公开圆钝艏外形不符"
+              ]
+            },
+            "archive-soryu-early": {
+              "revision": "d2cb9d0cd6d7b4fe4790ba735641d79a6ad318c6a7262048af1bc0bb060cfd18",
+              "score": 7.4,
+              "findings": [
+                "围壳水平舵、单轴和X形尾舵可辨",
+                "水平舵与围壳实体脱离，艏部及上层艇体仍是通用尖纺锤轮廓"
+              ]
+            }
+          }
+        },
+        {
+          "reviewer": "Sol B",
+          "model": "gpt-6.1-sol",
+          "taskId": "node:delegated-task:command%3Amcp%3Ad286f08a-543b-4505-bc3e-144a1a5c535f%3Adelegate-task%3Ab1d553de-f0b6-46a5-9e7c-1560d0024367",
+          "results": {
+            "archive-sopwith-camel": {
+              "revision": "a6ba5dd8f6d4500466a8c0665d8a075a2ca5ce9725bee9cac1c188f338658ba7",
+              "score": 6,
+              "findings": [
+                "错列双翼、旋转发动机和起落架有实体几何。",
+                "上翼中央断开，缺少驼峰；双站翼间支柱及机首比例削弱Camel识别。"
+              ]
+            },
+            "archive-spad-xiii": {
+              "revision": "40bd7856cafeae68eac8fae8ab76b4f692b3cd2709a020caea3dbfb2f73a9d21",
+              "score": 6.8,
+              "findings": [
+                "双对支柱、前散热器和固定起落架可见。",
+                "上翼缺中央连接段，机首仍呈通用细长锥形，散热器与发动机罩整体轮廓不足。"
+              ]
+            },
+            "archive-fokker-dvii": {
+              "revision": "967bcd872ff4c7a20a62b0b33f85566be1dfd58913a797e77055b0735e0e7bc7",
+              "score": 6.5,
+              "findings": [
+                "方截面机身和N形支柱确实存在。",
+                "上下翼采用相同翼展与轮廓，缺中央上翼；厚翼、机首和尾舵轮廓仍不充分。"
+              ]
+            },
+            "archive-spitfire-ia": {
+              "revision": "fadd686a331af894ad07009995f400b5aa60d7d76bc84820a90b73bbc585ce4a",
+              "score": 7.2,
+              "findings": [
+                "椭圆主翼、三叶桨和非对称翼下散热设备可辨。",
+                "翼根与机身存在实测间隙；通用机身、座舱后段和梯形平尾影响型号轮廓。"
+              ]
+            },
+            "archive-p51d": {
+              "revision": "66b552abb4a1b4ea1111cec0536471194326292f782f437ecc150be4af77f74b",
+              "score": 7.3,
+              "findings": [
+                "四叶桨、水滴座舱、梯形翼和腹部散热器均有几何。",
+                "翼根断开，腹部散热器仍像独立方盒；机首和垂尾缺少P-51D特有过渡。"
+              ]
+            },
+            "archive-a6m5": {
+              "revision": "a33cb7d9ee1273f1a86be03938c32e4ae3ed1760dc0d4f1cfab6ba3febc2f3aa",
+              "score": 6.8,
+              "findings": [
+                "径向发动机、三叶桨和较长座舱可见。",
+                "翼根断开，座舱框架大部分埋入玻璃；发动机罩与机身过渡、翼尖及尾翼仍过于通用。"
+              ]
+            },
+            "archive-f86a": {
+              "revision": "cbc8fae6c27e5fe3e636e4248f8e121a462aded40ada06f7c05131d042204a64",
+              "score": 6.9,
+              "findings": [
+                "后掠翼、机首进气口和单喷口成立。",
+                "翼根存在间隙，机身呈近等径直管；尾翼和进气口周围的F-86A轮廓不足。"
+              ]
+            },
+            "archive-mig21pf": {
+              "revision": "589a23d592353aeb6028c8578c3c4ad7df4fd48947913b80bbd439b56913a188",
+              "score": 7.3,
+              "findings": [
+                "三角翼、独立水平尾翼和机首进气结构可区分。",
+                "进气锥使用圆头椭球，垂尾和背脊缺少PF特征；机身截面仍是通用模板。"
+              ]
+            },
+            "archive-f16a": {
+              "revision": "98e59099364c87405cbd58b90f6cd22abf0641e26e4cf7441564fa82dd59b9b1",
+              "score": 7.3,
+              "findings": [
+                "边条翼、腹部进气、翼尖挂轨和单发动机均可辨。",
+                "进气道呈独立椭球附件，缺少肩部融合和腹鳍；通用垂尾与平尾削弱F-16A识别。"
+              ]
+            },
+            "archive-mirage2000c": {
+              "revision": "111ef5b2a9016ef4825f4fafa9e2a3175c2e38fa774bc38368dcd69f77b323bf",
+              "score": 7.6,
+              "findings": [
+                "无平尾三角翼、两侧进气和单喷口组合清楚。",
+                "侧进气口呈外挂椭球，缺少入口锥体及融合轮廓；垂尾、背部和机身粗细仍需按型号修形。"
+              ]
+            },
+            "archive-rafale-c": {
+              "revision": "1a8e7f4b313825684c9293521790eda64cb3f84eaa7816bb0a5deb44a8b1b529",
+              "score": 7.2,
+              "findings": [
+                "鸭翼、三角主翼和两个实际喷口存在。",
+                "双发后机身主要靠末端加宽和两个圆环表达，发动机舱、进气道和垂尾轮廓不足。"
+              ]
+            },
+            "archive-gripen-c": {
+              "revision": "5c0bfe4b68b87cefdbcc7f4ebee5b0ae315ca599f2daed3fd95b3390757a06c5",
+              "score": 7.6,
+              "findings": [
+                "近耦鸭翼、单喷口、翼尖挂轨和机首突出部可见。",
+                "进气口与鸭翼采用通用构形，机身肩部和垂尾缺乏Gripen特有轮廓。"
+              ]
+            },
+            "archive-u9": {
+              "revision": "7638114a69abd4353533e19bd95697bdfe4121765a95d934359501feb3147d37",
+              "score": 6.7,
+              "findings": [
+                "低围壳、双轴和无甲板炮的早期配置成立。",
+                "艇体与甲板主要沿用共用尖艏模板，早期上层建筑和艏艉轮廓不足以稳定识别U 9级。"
+              ]
+            },
+            "archive-type-viic": {
+              "revision": "a79010156f242a0f32a4722218ec0bc18a9eda39f42786d5dc7241ef100fe7e8",
+              "score": 6.8,
+              "findings": [
+                "前部甲板炮、双轴、排水孔和指挥台标记存在。",
+                "开放指挥台主要是封顶围壳上的黑色椭球；甲板、围壳侧面与艏艉仍过于通用。"
+              ]
+            },
+            "archive-gato": {
+              "revision": "d8ab91523356d693e7a5e740e33e030ed9fb7b03f4fb6c1a11ff980ae7edd891",
+              "score": 7,
+              "findings": [
+                "长甲板、阶梯围壳、甲板炮和双轴结构可见。",
+                "与VII C等模型共用艇体截面，阶梯围壳仍简化为方块，1942年舰级轮廓不够明确。"
+              ]
+            },
+            "archive-nautilus": {
+              "revision": "3ac069b03e8fe7286e3bda1b524f6a9c43f0db0cc273c824addc01db6c2768d6",
+              "score": 7,
+              "findings": [
+                "双轴、长甲板和无甲板炮配置成立，长度口径有说明。",
+                "围壳侧轮廓与艏艉使用通用构形，缺少足以区分1958年Nautilus的整体外形。"
+              ]
+            },
+            "archive-oberon": {
+              "revision": "7ddffccb1742a8fee78519ce5eed8a1641215329375f12fe30ad889b6fc2c886",
+              "score": 7,
+              "findings": [
+                "双轴、高围壳和隆起声呐附件存在。",
+                "声呐表现为甲板上的独立椭球，围壳与艇艏缺乏整合；与其他旧艇共享的轮廓比例过多。"
+              ]
+            },
+            "archive-virginia-block-i": {
+              "revision": "b7d32b16f45139ddc34df66124cb52717ecbc21c6fcba4c5eba6b98d2c979e5c",
+              "score": 7.3,
+              "findings": [
+                "单轴泵喷导管、艏水平舵和十字尾舵均为实际几何。",
+                "艇艏仍收成尖点，声呐外形叠加明显；围壳与后体轮廓不足以准确表达Block I。"
+              ]
+            },
+            "archive-type-212a": {
+              "revision": "d1d2e53ffef258f40ec522c284d918e0a775d38fa012ee64611d0b8c18f9d086",
+              "score": 6.3,
+              "findings": [
+                "短粗长宽比、单轴和实体X形尾舵成立。",
+                "前水平舵错误放在艇艏，应为围壳水平舵；艇艏仍呈尖形，围壳侧轮廓也需重做。"
+              ]
+            },
+            "archive-soryu-early": {
+              "revision": "d2cb9d0cd6d7b4fe4790ba735641d79a6ad318c6a7262048af1bc0bb060cfd18",
+              "score": 7.8,
+              "findings": [
+                "围壳水平舵、实体X形尾舵和单轴构成清晰识别组合。",
+                "共用尖艏截面与外挂声呐椭球不符合整体圆钝艏形；围壳和艇体融合仍不足。"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "date": "2026-11-15",
+      "members": [
+        {
+          "reviewer": "Sol A",
+          "model": "gpt-6.1-sol",
+          "taskId": "node:delegated-task:command%3Amcp%3Ad286f08a-543b-4505-bc3e-144a1a5c535f%3Adelegate-task%3A2e5f655e-05eb-438b-a506-8742003aca92",
+          "results": {
+            "archive-sopwith-camel": {
+              "revision": "8888302f11f6b12bf66176c7510bf8af5786290eea05e502fe9d577998c7f7fa",
+              "score": 9,
+              "findings": [
+                "已确认翼根接合、连续上翼、单跨支柱与驼峰修复。",
+                "前视上下翼仍共用约1度上反角；应改为上翼平直、下翼约5度，并重新计算支柱端点。"
+              ]
+            },
+            "archive-spad-xiii": {
+              "revision": "82c520bb7f722afa79f39be44947d4f06aa6419fcd6c7f9c2993de5ff1b44d21",
+              "score": 9.2,
+              "findings": [
+                "双对翼间支柱、连续翼根及圆形前置散热器可见。",
+                "缺少沿发动机两侧向后延伸的长排气管；需恢复馆藏实机照片中明显的侧面识别结构。"
+              ]
+            },
+            "archive-fokker-dvii": {
+              "revision": "eaf694248c80989ca57330cc2497a5d112476bbb93cea7b26f0fd30bbf2c50ce",
+              "score": 9.1,
+              "findings": [
+                "独立上下翼翼展、翼弦、N形支柱与方截面机身已确认。",
+                "机首上部仍是封闭平整外壳，缺少公开可见的外露发动机与侧排气轮廓。",
+                "方向舵上部仍过于平顶方折，需按D.VII圆弧舵面重画侧轮廓。"
+              ]
+            },
+            "archive-spitfire-ia": {
+              "revision": "8efcafd12e93247f4a033b939fd39d9013a59764301037d8132edf15f3998531",
+              "score": 9.2,
+              "findings": [
+                "椭圆主翼、独立尾翼与实体翼根已确认。",
+                "机鼻仍由平切发动机罩接独立小椭球整流罩，需恢复连续收束。",
+                "翼下散热器与油冷却器仅宽度不同、纵向长度相同；需分别制作长散热器和较短油冷却器。"
+              ]
+            },
+            "archive-p51d": {
+              "revision": "f3e38f4159acdd76b31862ca698214575f593e2e5082600efac18bd2cc82fe73",
+              "score": 9.3,
+              "findings": [
+                "水滴座舱、四叶桨、梯形翼与腹部散热器形成可识别组合。",
+                "发动机罩前端与完整椭球整流罩之间仍存在间隔，侧影呈平切鼻端接小球；需重做整流罩基部与机鼻衔接。"
+              ]
+            },
+            "archive-a6m5": {
+              "revision": "5a52ce0cc8ab29bc9dabb39f0a70e20bc091f1896525a296c030f4203c3807f3",
+              "score": 9.8,
+              "findings": [
+                "四视图确认圆形发动机罩、三叶桨、较短圆翼尖、长框式座舱与独立尾部轮廓。",
+                "座舱框已沿玻璃表面可见，翼根实体接合；在本次192x120低多边形外形识别范围内未发现必须整改的主轮廓差异。"
+              ]
+            },
+            "archive-f86a": {
+              "revision": "64f449cbbc572c5a7e2b5f3b11aad517f7adee79ab02837797410358ce433a49",
+              "score": 9.2,
+              "findings": [
+                "机首进气、单喷口、后掠平尾和座舱布局已确认。",
+                "实际GLB主翼前缘后掠约28.64度，典型佩刀后掠轮廓不足；需按F-86A公开翼形重新校准前后缘。"
+              ]
+            },
+            "archive-mig21pf": {
+              "revision": "557b60289430ab2658fd90c38abf6d45b621f7ae5cdcf4c41dd015019d023199",
+              "score": 9.3,
+              "findings": [
+                "三角主翼、独立平尾、进气锥与背脊已确认。",
+                "后机腹缺少单腹鳍，侧视下缘仍近乎平直；需补入PF公开外形中的腹鳍及其根部接合。"
+              ]
+            },
+            "archive-f16a": {
+              "revision": "b0799630a36b7b69eaae085cbc61f494cff8fd4e88c29750877017f4624283d7",
+              "score": 9,
+              "findings": [
+                "腹部进气道、边条、双腹鳍、单发喷口与翼尖挂轨已确认。",
+                "实际GLB外翼主前缘后掠约31.25度，明显偏离40度；后缘也需同步校准，当前顶视主翼轮廓过于平展。"
+              ]
+            },
+            "archive-mirage2000c": {
+              "revision": "e2617fcf235af52730f9d228379786fcee80e1964d5da1d1cefc1c569cb49bca",
+              "score": 9.3,
+              "findings": [
+                "无平尾布局、双侧进气及进气锥、单发动机已确认。",
+                "主翼前后缘在翼尖完全汇合，变成零翼尖弦的尖三角；需恢复截尖翼形，并校准实测约53.80度的前缘后掠。"
+              ]
+            },
+            "archive-rafale-c": {
+              "revision": "2e64eba08d953137f4034e12fe93f535ed5194093e322273675a1c85ac462e3c",
+              "score": 9.3,
+              "findings": [
+                "鸭翼、双发动机舱、双喷口与双侧进气已进入实际GLB。",
+                "缺少座舱前方右侧固定加油探管，三分之四和侧视机首识别结构不完整；需补入外露探管及支座。"
+              ]
+            },
+            "archive-gripen-c": {
+              "revision": "34bf10a865804507abfd35173e27eded8c0f609f4a208b5063ffc7fa66a44487",
+              "score": 9.3,
+              "findings": [
+                "近耦鸭翼、单喷口、机首突出部与翼尖挂轨已确认。",
+                "双侧进气口仍呈圆管口，前视差异明显；需按Gripen C方圆过渡入口重画开口和与机身相接的外壳。"
+              ]
+            },
+            "archive-u9": {
+              "revision": "099080a05bc363385459582d5f424f27b6fc798e93aa7f82cf3c65075d64a885",
+              "score": 9.8,
+              "findings": [
+                "四视图确认细长船型艇体、低矮开放围壳、前后甲板桅杆、双轴与低置艉舵。",
+                "已摆脱通用现代十字尾；按条目声明的一战早期无后期甲板炮外形，本轮未发现必须整改的主轮廓差异。"
+              ]
+            },
+            "archive-type-viic": {
+              "revision": "93a0f85e4d2906d48a462280c776b2dd347b4a217f2b1182341e7f57e935c258",
+              "score": 9.4,
+              "findings": [
+                "尖艏舷弧、开放指挥台、前甲板炮、双轴及双舵修复已确认。",
+                "指挥台后部防空平台及炮位轮廓仍缺失；需按1941年早期配置补足，不能只保留一个开放围板。"
+              ]
+            },
+            "archive-gato": {
+              "revision": "2105f0961bd3d5b90ecf3d9a78adcab1869d2bb7db55e6733e25eb1ad2dced42",
+              "score": 9.2,
+              "findings": [
+                "长巡航甲板、前甲板炮、双轴与独立艇体截面已确认。",
+                "所述阶梯指挥台仍主要由开口围板和薄后平台组成；需恢复1942年早期较丰满fairwater的实体层次及侧轮廓。"
+              ]
+            },
+            "archive-nautilus": {
+              "revision": "d86653f47f6049fddd26dad14b3d01471b7ae5dda35e0d0c53ca21e79aee4a3d",
+              "score": 9.8,
+              "findings": [
+                "四视图确认长平甲板、船型艏、封闭围壳、前水平舵、双轴且无甲板炮。",
+                "艇体、围壳及艉部已形成早期核潜艇识别组合；在当前低多边形预览尺度内未发现必须整改的主轮廓差异。"
+              ]
+            },
+            "archive-oberon": {
+              "revision": "220f0c3acbfa7e5bead4f1230e71e14662de63c5da45c19d5643b906a367606b",
+              "score": 9.1,
+              "findings": [
+                "独立船型截面、高围壳与双轴已确认。",
+                "艏上声呐罩仍未形成可读局部体积；当前只有艇体和甲板上缘缓慢隆起，需按所选早期参考外形恢复罩体及其与甲板的交界。"
+              ]
+            },
+            "archive-virginia-block-i": {
+              "revision": "87772afbe7a2cc209655e76f33b6a703f850abd10fab47fe6fca872f227c99f8",
+              "score": 9.8,
+              "findings": [
+                "四视图确认连续圆钝艏、低矮围壳、艏水平舵、十字尾与单轴。",
+                "泵喷外导管已沿推进轴布置并有外部支撑，未再叠加独立艏部椭球；本轮未发现必须整改的公开主轮廓差异。"
+              ]
+            },
+            "archive-type-212a": {
+              "revision": "54e19585e94d2d9808fe36d9deb039151e0f2bb293bbfb354de8a4124f6c4c66",
+              "score": 9.8,
+              "findings": [
+                "四视图确认短粗艇体、圆钝艏、高围壳、X形尾舵与单轴。",
+                "围壳水平舵已安装在围壳上且根部进入实体；本轮未发现必须整改的主轮廓或结构连接差异。"
+              ]
+            },
+            "archive-soryu-early": {
+              "revision": "da00483b130d45cc48e259f6170688f8ba9b61770c065f699de505da672db314",
+              "score": 9.4,
+              "findings": [
+                "圆钝艏、围壳水平舵实体接合、X形尾舵与单轴已确认。",
+                "实际GLB主艇体高度与宽度均约对应9.1米，缺少补足上部外壳的轮廓；需结合公开10.3米深度及侧视资料修正垂向比例和上甲板外壳。"
+              ]
+            }
+          }
+        },
+        {
+          "reviewer": "Sol B",
+          "model": "gpt-6.1-sol",
+          "taskId": "node:delegated-task:command%3Amcp%3Ad286f08a-543b-4505-bc3e-144a1a5c535f%3Adelegate-task%3Afa0dbd96-dbf3-4cca-bce0-9464cd5cf9a4",
+          "results": {
+            "archive-sopwith-camel": {
+              "revision": "8888302f11f6b12bf66176c7510bf8af5786290eea05e502fe9d577998c7f7fa",
+              "score": 9.3,
+              "findings": [
+                "单跨支柱、驼峰和连续中央翼段已确认修复。",
+                "上下翼仍共用上反量；应改为上翼平直、下翼约5度，并恢复上翼中央后缘观察切口。"
+              ]
+            },
+            "archive-spad-xiii": {
+              "revision": "82c520bb7f722afa79f39be44947d4f06aa6419fcd6c7f9c2993de5ff1b44d21",
+              "score": 9.5,
+              "findings": [
+                "双跨支柱、圆形前置散热器和翼根接合可辨。",
+                "侧视仍缺机身两侧的长排气管；上下翼应平直，当前仍有共同上反量。"
+              ]
+            },
+            "archive-fokker-dvii": {
+              "revision": "eaf694248c80989ca57330cc2497a5d112476bbb93cea7b26f0fd30bbf2c50ce",
+              "score": 9.3,
+              "findings": [
+                "上下独立翼展、较窄下翼、厚翼和N形支柱已落实。",
+                "上翼弦长折算约1.33米，仍窄于公开实测约1.60米；轮间仅有细轴，缺少有识别价值的翼型轮轴整流罩。"
+              ]
+            },
+            "archive-spitfire-ia": {
+              "revision": "8efcafd12e93247f4a033b939fd39d9013a59764301037d8132edf15f3998531",
+              "score": 9.4,
+              "findings": [
+                "椭圆主翼、窄机首及独立尾翼可辨，翼根已接合。",
+                "主翼上反角约3.1度，低于Spitfire I手册约6度，正视轮廓明显偏平；应按真实半翼展换算翼尖抬升量。"
+              ]
+            },
+            "archive-p51d": {
+              "revision": "f3e38f4159acdd76b31862ca698214575f593e2e5082600efac18bd2cc82fe73",
+              "score": 9.6,
+              "findings": [
+                "水滴座舱、四叶桨、腹部散热器和梯形低翼已具备。",
+                "机首下方进气口仍缺失；主翼平面面积约20平方米，较公开约21.9平方米偏小，应校正弦长及翼根轮廓。"
+              ]
+            },
+            "archive-a6m5": {
+              "revision": "5a52ce0cc8ab29bc9dabb39f0a70e20bc091f1896525a296c030f4203c3807f3",
+              "score": 9.6,
+              "findings": [
+                "框式座舱已沿玻璃表面清楚显示，圆形机罩、三叶桨和主翼接合已确认。",
+                "机罩后缘仍缺A6M5具有识别价值的分列排气短管，侧视机罩仍过于光滑。"
+              ]
+            },
+            "archive-f86a": {
+              "revision": "64f449cbbc572c5a7e2b5f3b11aad517f7adee79ab02837797410358ce433a49",
+              "score": 8.8,
+              "findings": [
+                "机首进气口、后掠布局及单喷口均已具备。",
+                "主翼轮廓折算约18.73平方米，对照NACA约26.75平方米明显偏窄；主翼约1度上反、平尾近乎水平，也未保留实机约3度和10度的翼角。"
+              ]
+            },
+            "archive-mig21pf": {
+              "revision": "557b60289430ab2658fd90c38abf6d45b621f7ae5cdcf4c41dd015019d023199",
+              "score": 9.4,
+              "findings": [
+                "进气锥、独立水平尾翼、三角翼及背脊均可辨。",
+                "侧视仍缺后机腹腹鳍与PF机首上方长空速管，应补充这些公开外部识别结构。"
+              ]
+            },
+            "archive-f16a": {
+              "revision": "b0799630a36b7b69eaae085cbc61f494cff8fd4e88c29750877017f4624283d7",
+              "score": 9.5,
+              "findings": [
+                "边条翼、腹部进气、单发及腹鳍已经形成独立轮廓。",
+                "进气口口缘缩放轴错误；实际GLB口缘高0.522，椭圆导管开口高0.36，正视存在明显错层。"
+              ]
+            },
+            "archive-mirage2000c": {
+              "revision": "e2617fcf235af52730f9d228379786fcee80e1964d5da1d1cefc1c569cb49bca",
+              "score": 9.4,
+              "findings": [
+                "无平尾三角翼、单发及两侧进气配置正确。",
+                "椭圆进气道仍配圆形口缘，实际GLB口缘高0.362而开口高0.46；应校正口缘轴向缩放并使其贴合导管。"
+              ]
+            },
+            "archive-rafale-c": {
+              "revision": "2e64eba08d953137f4034e12fe93f535ed5194093e322273675a1c85ac462e3c",
+              "score": 9.7,
+              "findings": [
+                "鸭翼、独立双发舱及双喷口已确认，型号识别明显改善。",
+                "进气口仍受口缘缩放轴错误影响，圆形口缘未完整贴合独立椭圆导管；幅度较小，但应修正后复核正视轮廓。"
+              ]
+            },
+            "archive-gripen-c": {
+              "revision": "34bf10a865804507abfd35173e27eded8c0f609f4a208b5063ffc7fa66a44487",
+              "score": 9.5,
+              "findings": [
+                "鸭翼、单喷口、翼尖挂轨和机首空速管均可辨。",
+                "进气口口缘仍为圆形，实际GLB高0.342而导管开口高0.42，正视口缘与外壳不贴合。"
+              ]
+            },
+            "archive-u9": {
+              "revision": "099080a05bc363385459582d5f424f27b6fc798e93aa7f82cf3c65075d64a885",
+              "score": 9.5,
+              "findings": [
+                "低围壳、双轴、早期无甲板炮配置和公开外形桅杆已确认。",
+                "艉部艇体仍穿出甲板形成长椭圆凸起；forward=-2处艇体顶高0.46375，甲板仅0.41969，应重做甲板纵向截面。"
+              ]
+            },
+            "archive-type-viic": {
+              "revision": "93a0f85e4d2906d48a462280c776b2dd347b4a217f2b1182341e7f57e935c258",
+              "score": 9.5,
+              "findings": [
+                "双轴、双舵、开放指挥台、前甲板炮及尖艏已确认。",
+                "艉部艇体仍贯穿巡航甲板；forward=-2处艇体顶高0.41197，甲板0.38889，顶视有非预期凸起。"
+              ]
+            },
+            "archive-gato": {
+              "revision": "2105f0961bd3d5b90ecf3d9a78adcab1869d2bb7db55e6733e25eb1ad2dced42",
+              "score": 9.4,
+              "findings": [
+                "双轴、独立艉舵、开放围壳和后部平台已具备。",
+                "长巡航甲板被艇体穿出，艉部形成显著长椭圆凸起；forward=-2处艇体顶高0.39355，甲板0.36018，应消除交穿。"
+              ]
+            },
+            "archive-nautilus": {
+              "revision": "d86653f47f6049fddd26dad14b3d01471b7ae5dda35e0d0c53ca21e79aee4a3d",
+              "score": 9.6,
+              "findings": [
+                "无甲板炮、长上层甲板、双轴及独立围壳轮廓已确认。",
+                "艉部艇体仍高于甲板，forward=-2处为0.39468/0.37966，顶视出现不应贯穿平甲板的长凸起。"
+              ]
+            },
+            "archive-oberon": {
+              "revision": "220f0c3acbfa7e5bead4f1230e71e14662de63c5da45c19d5643b906a367606b",
+              "score": 9.7,
+              "findings": [
+                "独立艏部轮廓、封闭围壳、双轴及单舵已确认；补充来源已替换为军方姊妹艇资料。",
+                "局部艇体与甲板仍交穿，艉部和前部顶视留有细长露出区域，应使甲板站位与艇体截面一致。"
+              ]
+            },
+            "archive-virginia-block-i": {
+              "revision": "87772afbe7a2cc209655e76f33b6a703f850abd10fab47fe6fca872f227c99f8",
+              "score": 9.8,
+              "findings": [
+                "圆钝艏已由连续艇体形成，没有独立声呐椭球叠加；艏水平舵、十字艉舵和低围壳可辨。",
+                "轴向中空泵喷外导管与支撑已确认，保持公开外部轮廓范围；本轮未发现阻止该低多边形识别模型达到9.8的必要差异。"
+              ]
+            },
+            "archive-type-212a": {
+              "revision": "54e19585e94d2d9808fe36d9deb039151e0f2bb293bbfb354de8a4124f6c4c66",
+              "score": 9.8,
+              "findings": [
+                "短粗艇体、圆钝艏、较高围壳、单轴和X形艉舵均可辨。",
+                "围壳水平舵已接入实体，四视图与实际GLB均确认；按公开外形和192x120像素用途，本轮未发现必要阻断差异。"
+              ]
+            },
+            "archive-soryu-early": {
+              "revision": "da00483b130d45cc48e259f6170688f8ba9b61770c065f699de505da672db314",
+              "score": 9.6,
+              "findings": [
+                "围壳水平舵接合、X形艉舵、单轴与连续圆钝艏已确认修复。",
+                "主体截面仍近似深宽相等的正圆；海自公开宽9.1米、深10.3米，应恢复较高艇体截面及相应上部外壳轮廓。"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "date": "2026-11-16",
+      "members": [
+        {
+          "reviewer": "Sol A",
+          "model": "gpt-6.1-sol",
+          "taskId": "node:delegated-task:command%3Amcp%3Ad286f08a-543b-4505-bc3e-144a1a5c535f%3Adelegate-task%3Aabddba8d-8387-47b2-bb69-b9c59a3c6161",
+          "results": {
+            "archive-sopwith-camel": {
+              "revision": "7af2bfc061da1ed1db8b8a72c877ed5e47eaf1033827301131dfef419f9e7622",
+              "score": 9.8,
+              "findings": [
+                "实际GLB保留错列双翼、驼峰、旋转发动机和单跨支柱；量得下翼5°、上翼0°，上翼中央后缘切口可见。"
+              ]
+            },
+            "archive-spad-xiii": {
+              "revision": "56d220f6119026d071cef9de4f3fa5a0c317ce6f34553a72534dfbd092890048",
+              "score": 9.9,
+              "findings": [
+                "上下翼平直、双对翼间支柱、圆形前散热器与长侧排气均在实际几何及四视图中成立，手册尺寸下辨识清楚。"
+              ]
+            },
+            "archive-fokker-dvii": {
+              "revision": "c260f8009f9be4423133659944b65add67e3cc40dfbe03a96cb2be2487a040c9",
+              "score": 9.8,
+              "findings": [
+                "实际上/下翼根弦长为1.6/1.2米；N形支柱、翼型轮轴罩、外露发动机、侧排气与圆弧舵均可辨识。"
+              ]
+            },
+            "archive-spitfire-ia": {
+              "revision": "ed42cf8b862313af42a7f991aa8edfd17af1cd019191e5ce54921519ca0fc24d",
+              "score": 9.5,
+              "findings": [
+                "6°上反角、连续整流罩及不等长翼下冷却器已修正；实际主翼投影约20.40平方米，相对标准22.48平方米偏小约9.2%，椭圆翼弦仍偏窄。"
+              ]
+            },
+            "archive-p51d": {
+              "revision": "64c02a5881049858b58b0a536d376dae7769260f279b719c1baff4df7c751001",
+              "score": 9.9,
+              "findings": [
+                "连续整流罩、机首下进气口、水滴座舱与腹部散热器均存在；实际主翼投影约21.85平方米，符合约21.9平方米的目标。"
+              ]
+            },
+            "archive-a6m5": {
+              "revision": "27282a9d12cdc3600e17b2e2d053ab8b74fbd48878cdaa66873fb61a08273169",
+              "score": 9.2,
+              "findings": [
+                "圆形发动机罩、框式长座舱、圆翼尖及分列短排气管成立；实际主翼投影约17.48平方米，比21.3平方米小约17.9%，需要增宽翼弦。"
+              ]
+            },
+            "archive-f86a": {
+              "revision": "d340df45c13e1a7fa59d3ffac3923ecd717fdf33504787a2247bfcf6cbe9e6c6",
+              "score": 9.9,
+              "findings": [
+                "实际翼面积约26.75平方米，梯形比约0.51；量得四分之一弦线后掠35.23°、前缘37.75°、主翼上反3°及平尾上反10°，没有混淆后掠口径。"
+              ]
+            },
+            "archive-mig21pf": {
+              "revision": "4ae48d6a694e891d4f5cce56d6fe1cb1faeb39251cd4c8aba4a9ca406f6526c4",
+              "score": 9.3,
+              "findings": [
+                "机首进气锥、上机首探管、背脊、腹鳍及独立平尾均已导出；实际主翼投影约19.44平方米，比型号公开的23平方米小约15.5%。"
+              ]
+            },
+            "archive-f16a": {
+              "revision": "5ecd398aa0899d9c64538e62578cea6e3c686b1817e375c527d13288ea6c8b06",
+              "score": 9.8,
+              "findings": [
+                "边条翼、腹部进气、双腹鳍、单喷口及翼尖挂轨可见；实际外翼前缘后掠约40.00°，进气口口缘与导管接合。"
+              ]
+            },
+            "archive-mirage2000c": {
+              "revision": "f8b2039f5d98b2f8d963d44054af0803d997d1027305e2612942cdf48cdde556",
+              "score": 9.8,
+              "findings": [
+                "无平尾截尖三角翼、两侧进气与单喷口成立；实际外翼前缘约58.09°，翼尖保留有限弦长，入口外壳与口缘连续。"
+              ]
+            },
+            "archive-rafale-c": {
+              "revision": "75b31bd23dec5e402bd97f5fd9ff95d12b6090066d93cef58192536db6aaf5bc",
+              "score": 9.8,
+              "findings": [
+                "鸭式三角翼、双发动机舱、两个独立喷口及右侧固定加油探管均由实际几何表现，手册预览轮廓清晰。"
+              ]
+            },
+            "archive-gripen-c": {
+              "revision": "486474856c79c4c6200ec667e8b5ddcf02b44113e2915fe9c3b57193ab38f312",
+              "score": 9.8,
+              "findings": [
+                "近耦鸭翼、单喷口、翼尖挂轨与机首探管齐全；进气入口呈方圆过渡，未见前轮口缘与导管错轴问题。"
+              ]
+            },
+            "archive-u9": {
+              "revision": "37fad1ed9adf9a8d5a7d4ce84c38130c5331c1a4a108b239789ef989ff4fada0",
+              "score": 9.8,
+              "findings": [
+                "细长船型、低开放围壳、甲板无线电桅杆、双轴及早期无甲板炮配置一致；甲板顶部连续覆盖艇体。"
+              ]
+            },
+            "archive-type-viic": {
+              "revision": "1bee25256531dcc805a4663317b93696b6198a7da0986b4d3aa18f19e015becc",
+              "score": 9.8,
+              "findings": [
+                "尖艏甲板、开放指挥台、前甲板炮及早期单层后防空平台可见，双轴双舵布局保留，未见艇体穿出甲板。"
+              ]
+            },
+            "archive-gato": {
+              "revision": "b349963e064205963d46d7027a5d2909d1803fdddec582b4c2fd0790ccf9d0f0",
+              "score": 9.8,
+              "findings": [
+                "长巡航甲板、丰满低层fairwater、后部潜望镜外壳与阶梯指挥台形成独立轮廓；双轴、甲板炮及甲板覆盖关系成立。"
+              ]
+            },
+            "archive-nautilus": {
+              "revision": "31751274bf70bf3213f4c7ac759f9ca71cfdc6d9006e666c005b71d1c3ae7e21",
+              "score": 9.8,
+              "findings": [
+                "早期核潜艇的长平甲板、前置围壳、双轴与无甲板炮外形成立；长度口径差异已有明确资料说明。"
+              ]
+            },
+            "archive-oberon": {
+              "revision": "ae3a6392b3c9af295297bdd313c65c06025be4583152b5688231aa37cddfa535",
+              "score": 9.8,
+              "findings": [
+                "高围壳、双轴与隆起艏声呐罩可辨识；声呐罩已接入前甲板，四视图及手册预览未见原悬浮问题。"
+              ]
+            },
+            "archive-virginia-block-i": {
+              "revision": "03ae51cecd544488794df16406150224343b9a1838eaf8aa61f19364aef4079f",
+              "score": 9.9,
+              "findings": [
+                "圆钝艏、低围壳、艏水平舵、十字尾舵与单轴泵喷外导管均具备；外导管沿艇轴布置，符合公开外形识别用途。"
+              ]
+            },
+            "archive-type-212a": {
+              "revision": "de197aa0988a0972e0ae9470e1b003728f4fe85a423f404b8e093e84e87fa832",
+              "score": 9.8,
+              "findings": [
+                "短粗艇体、较高围壳、单轴及X形尾舵区别明确；围壳水平舵根部进入围壳实体，现代圆钝艏保留。"
+              ]
+            },
+            "archive-soryu-early": {
+              "revision": "1b926a6098ac69bd5df2c5b75e6822bc0b5e7ff1996c86cd3bccc11b9525eb9c",
+              "score": 9.8,
+              "findings": [
+                "圆钝艏、围壳水平舵、单轴及X形尾舵成立；实际艇体深宽比符合10.3/9.1，围壳潜舵接合正确。"
+              ]
+            }
+          }
+        },
+        {
+          "reviewer": "Sol B",
+          "model": "gpt-6.1-sol",
+          "taskId": "node:delegated-task:command%3Amcp%3Ad286f08a-543b-4505-bc3e-144a1a5c535f%3Adelegate-task%3Ad6df2ad5-c28f-4dbd-b460-88bd89655599",
+          "results": {
+            "archive-sopwith-camel": {
+              "revision": "7af2bfc061da1ed1db8b8a72c877ed5e47eaf1033827301131dfef419f9e7622",
+              "score": 9.8,
+              "findings": [
+                "上下翼错列、驼峰、中央后缘切口和固定起落架可辨；实际下翼5度、上翼0度。"
+              ]
+            },
+            "archive-spad-xiii": {
+              "revision": "56d220f6119026d071cef9de4f3fa5a0c317ce6f34553a72534dfbd092890048",
+              "score": 9.8,
+              "findings": [
+                "平直双翼、双对翼间支柱、圆形散热器及长侧排气均在实际导出中可见；未见必要修复。"
+              ]
+            },
+            "archive-fokker-dvii": {
+              "revision": "c260f8009f9be4423133659944b65add67e3cc40dfbe03a96cb2be2487a040c9",
+              "score": 9.8,
+              "findings": [
+                "上下翼根弦约1.6米和1.2米；N形支柱、轮轴翼型罩、外露发动机与圆弧舵可辨。"
+              ]
+            },
+            "archive-spitfire-ia": {
+              "revision": "ed42cf8b862313af42a7f991aa8edfd17af1cd019191e5ce54921519ca0fc24d",
+              "score": 9.8,
+              "findings": [
+                "椭圆主翼、6度上反、连续整流罩及不等长翼下冷却器成立；手册尺寸下识别清楚。"
+              ]
+            },
+            "archive-p51d": {
+              "revision": "64c02a5881049858b58b0a536d376dae7769260f279b719c1baff4df7c751001",
+              "score": 9.9,
+              "findings": [
+                "实际主翼投影约21.85平方米；连续整流罩、机首下进气口、水滴座舱和腹部散热器完整。"
+              ]
+            },
+            "archive-a6m5": {
+              "revision": "27282a9d12cdc3600e17b2e2d053ab8b74fbd48878cdaa66873fb61a08273169",
+              "score": 9.4,
+              "findings": [
+                "圆形机罩、框式座舱和分列排气已具备；实际主翼投影仅约17.48平方米，较TAIC ZEKE 52约21.37平方米小18%，需恢复翼弦分布。"
+              ]
+            },
+            "archive-f86a": {
+              "revision": "d340df45c13e1a7fa59d3ffac3923ecd717fdf33504787a2247bfcf6cbe9e6c6",
+              "score": 9.9,
+              "findings": [
+                "实际主翼约26.75平方米、四分之一弦线后掠35.23度；主翼3度和平尾10度上反吻合，未混淆前缘后掠口径。"
+              ]
+            },
+            "archive-mig21pf": {
+              "revision": "4ae48d6a694e891d4f5cce56d6fe1cb1faeb39251cd4c8aba4a9ca406f6526c4",
+              "score": 9.5,
+              "findings": [
+                "腹鳍、上机首探管、进气锥和独立平尾已具备；实际主翼投影约19.44平方米，较公开23平方米小15.5%，需校准三角翼翼弦分布。"
+              ]
+            },
+            "archive-f16a": {
+              "revision": "5ecd398aa0899d9c64538e62578cea6e3c686b1817e375c527d13288ea6c8b06",
+              "score": 9.8,
+              "findings": [
+                "边条翼、腹部进气、单发喷口、腹鳍及翼尖挂轨可辨；入口与导管截面连接正常。"
+              ]
+            },
+            "archive-mirage2000c": {
+              "revision": "f8b2039f5d98b2f8d963d44054af0803d997d1027305e2612942cdf48cdde556",
+              "score": 9.8,
+              "findings": [
+                "无平尾截尖三角翼、有限翼尖弦、双侧进气与单发喷口成立；实际主翼投影约40.52平方米。"
+              ]
+            },
+            "archive-rafale-c": {
+              "revision": "75b31bd23dec5e402bd97f5fd9ff95d12b6090066d93cef58192536db6aaf5bc",
+              "score": 9.8,
+              "findings": [
+                "鸭翼、双发动机舱与双喷口明确，右侧固定加油探管可见；低分辨率用途下未见必要修复。"
+              ]
+            },
+            "archive-gripen-c": {
+              "revision": "486474856c79c4c6200ec667e8b5ddcf02b44113e2915fe9c3b57193ab38f312",
+              "score": 9.8,
+              "findings": [
+                "近耦鸭翼、单发、翼尖挂轨和方圆过渡进气口可辨；进气口外壳与口缘衔接正常。"
+              ]
+            },
+            "archive-u9": {
+              "revision": "37fad1ed9adf9a8d5a7d4ce84c38130c5331c1a4a108b239789ef989ff4fada0",
+              "score": 9.8,
+              "findings": [
+                "细长艇体、低开放围壳、双轴、单艉舵及前后无线电桅杆成立；甲板未见艇体穿出。"
+              ]
+            },
+            "archive-type-viic": {
+              "revision": "1bee25256531dcc805a4663317b93696b6198a7da0986b4d3aa18f19e015becc",
+              "score": 9.8,
+              "findings": [
+                "尖艏甲板、开放指挥台、单层后防空平台、前甲板炮、双轴双舵可辨；甲板连续。"
+              ]
+            },
+            "archive-gato": {
+              "revision": "b349963e064205963d46d7027a5d2909d1803fdddec582b4c2fd0790ccf9d0f0",
+              "score": 9.8,
+              "findings": [
+                "低层丰满fairwater、后部潜望镜外壳、阶梯指挥台与长巡航甲板已体现；双轴和甲板炮可辨。"
+              ]
+            },
+            "archive-nautilus": {
+              "revision": "31751274bf70bf3213f4c7ac759f9ca71cfdc6d9006e666c005b71d1c3ae7e21",
+              "score": 9.8,
+              "findings": [
+                "长甲板、封闭围壳、艏水平舵及双轴布局明确；甲板连续，未见必要修复。"
+              ]
+            },
+            "archive-oberon": {
+              "revision": "ae3a6392b3c9af295297bdd313c65c06025be4583152b5688231aa37cddfa535",
+              "score": 9.8,
+              "findings": [
+                "艏声呐罩已接入甲板，高围壳、双轴及艏水平舵可辨；四视图未见悬浮附件或甲板穿透。"
+              ]
+            },
+            "archive-virginia-block-i": {
+              "revision": "03ae51cecd544488794df16406150224343b9a1838eaf8aa61f19364aef4079f",
+              "score": 9.8,
+              "findings": [
+                "圆钝艏、低围壳、艏水平舵、十字尾舵及轴向泵喷外导管成立；未见必要修复。"
+              ]
+            },
+            "archive-type-212a": {
+              "revision": "de197aa0988a0972e0ae9470e1b003728f4fe85a423f404b8e093e84e87fa832",
+              "score": 9.8,
+              "findings": [
+                "短粗艇体、圆钝艏、X形尾舵和围壳水平舵明确；潜舵根部接入围壳实体。"
+              ]
+            },
+            "archive-soryu-early": {
+              "revision": "1b926a6098ac69bd5df2c5b75e6822bc0b5e7ff1996c86cd3bccc11b9525eb9c",
+              "score": 9.8,
+              "findings": [
+                "实际艇体深宽约10.3/9.1米，围壳水平舵接合、X形尾舵及单轴布局成立；未见必要修复。"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "date": "2026-11-16",
+      "members": [
+        {
+          "reviewer": "Sol A",
+          "model": "gpt-6.1-sol",
+          "taskId": "node:delegated-task:command%3Amcp%3Ad286f08a-543b-4505-bc3e-144a1a5c535f%3Adelegate-task%3A2e958dc3-9965-4481-9ccd-7aef23df1a85",
+          "results": {
+            "archive-sopwith-camel": {
+              "revision": "d2f55f2dc6c830237f26f9d26156c24688a9c9874d036ce007016e84c4aefd68",
+              "score": 9.8,
+              "findings": [
+                "上下翼实测约5°/0°；中央切口、错列、驼峰和单跨支柱可见，手册轮廓完整，未发现必要修复。"
+              ]
+            },
+            "archive-spad-xiii": {
+              "revision": "9c40d732c69ca7ac2414d392a518c9a8f79483f59ec4c481d9a678704c7f7784",
+              "score": 9.8,
+              "findings": [
+                "上下翼平直、双跨支柱、圆形散热器和长排气实体保留；与Camel、D.VII具有可辨结构差异，未发现必要修复。"
+              ]
+            },
+            "archive-fokker-dvii": {
+              "revision": "7300e3570912557d2e8f8f85ba6b31b2061c4d0797fb30b0f17aed295b4aa6c8",
+              "score": 9.85,
+              "findings": [
+                "上下翼根弦实测约1.60/1.20米；N形支柱、方机首、外露发动机和轴翼存在，未发现必要修复。"
+              ]
+            },
+            "archive-spitfire-ia": {
+              "revision": "f975b19a9cb71e3cae01e86cd6f60f6b1b0ccb6322fac3885a7e5766c4a76d50",
+              "score": 9.85,
+              "findings": [
+                "主翼实测约22.480平方米、根弦2.540米、上反6°；椭圆轮廓与不等长冷却器保留，未见悬空接合。",
+                "AP原页的平均气动弦不能充作根弦；与ARC原始报告约2.518米根弦的差异不足以要求192x120轮廓修复。"
+              ]
+            },
+            "archive-p51d": {
+              "revision": "e1a70788a84abee2946400264bdf5716315c003c6b1a52ecf569dfb2e44c2a76",
+              "score": 9.85,
+              "findings": [
+                "主翼实测约21.854平方米、上反5°；水滴座舱、四叶桨和腹部散热器清楚，未发现必要修复。",
+                "NACA试验构型尺寸与条目采用的服役规格已分开处理。"
+              ]
+            },
+            "archive-a6m5": {
+              "revision": "e6ad89f61b038abd5405e5de7ccb2d9d7e756caa1c66770a185c93609da5dfa0",
+              "score": 9.85,
+              "findings": [
+                "主翼实测约21.300平方米、翼展11米、上反5.7°；长框式座舱、圆发动机罩与分列排气保留。",
+                "TAIC的230平方英尺与约21.3平方米差异属于约数口径，未发现必要修复。"
+              ]
+            },
+            "archive-f86a": {
+              "revision": "984c70bcb1b8e0c1fde3e99ec6df9dc85d7af0a16e3c63537c246488bcf2c4e7",
+              "score": 9.85,
+              "findings": [
+                "主翼实测约26.747平方米、上反3°；后掠翼、机首进气和独立上反平尾明确，未把四分之一弦后掠误作前缘角，未发现必要修复。"
+              ]
+            },
+            "archive-mig21pf": {
+              "revision": "1a6f43c694b0c86e629416e5a6d1dd8790022ac2765f3d89bc6b7651b19a1d21",
+              "score": 9.85,
+              "findings": [
+                "主翼实测约23.000平方米、根弦5.9736米、翼尖弦0.460米、下反2°；截梢翼、翼刀、腹鳍及上机首空速管均存在，未发现必要修复。"
+              ]
+            },
+            "archive-f16a": {
+              "revision": "f1edb9dede420ecdc47d7051504ccf65de33eee210a4fb975b16c849e23d608f",
+              "score": 9.8,
+              "findings": [
+                "边条翼、腹部进气道、翼尖挂轨和双腹鳍形成清楚识别特征；四视图及手册未显示脱接或关键轮廓裁切，未发现必要修复。"
+              ]
+            },
+            "archive-mirage2000c": {
+              "revision": "8f7335e55136885f730a32333db17c337f4ec63e63e62a5ca3a7cf0d891130ee",
+              "score": 9.8,
+              "findings": [
+                "无平尾截尖三角翼、两侧进气及单喷口明确；制造商与军方图的长度口径已注明，未发现必要修复。"
+              ]
+            },
+            "archive-rafale-c": {
+              "revision": "bd22a74427f92a6083e48f428fe8b2890cdcd770b98bb75bdc285e9cdcfe6fd2",
+              "score": 9.8,
+              "findings": [
+                "鸭翼、双发机舱和双喷口可辨；右侧探管为风挡前方短弯管，端头实测短于机鼻约1.4025米，安装座接入机体。",
+                "主翼实测约39.191平方米；45.7平方米参考值的统计边界未确定，不据此认定面积或轮廓错误。"
+              ]
+            },
+            "archive-gripen-c": {
+              "revision": "0eb7c04cecc342a2d050228209eb20680a61cf3fe84f8a1924045fd90884e77a",
+              "score": 9.8,
+              "findings": [
+                "近耦鸭翼、单喷口、翼尖挂轨及方圆过渡进气口保留，手册轮廓完整。",
+                "主翼实测约27.222平方米；30与25.54平方米参考值的统计边界未统一，未据此提出强制修形。"
+              ]
+            },
+            "archive-u9": {
+              "revision": "3517ba9379e7fc1504e40ae9964c1df20c7c69b1b6278438f97454b8a9043125",
+              "score": 9.8,
+              "findings": [
+                "细长早期艇体、低围壳、甲板桅杆和双轴布局存在；无后期甲板炮，甲板未见艇体穿出，未发现必要修复。"
+              ]
+            },
+            "archive-type-viic": {
+              "revision": "0ac70492bdfc95a34de79b5ee49ca852d1b1f32bfad33f5a731fb26b07b8af49",
+              "score": 9.85,
+              "findings": [
+                "尖艏甲板、开放指挥台、前置甲板炮、双轴双舵保留；与早期Gato炮位区分明确，未发现必要修复。"
+              ]
+            },
+            "archive-gato": {
+              "revision": "f8b92c9e46690dfd17883cd42e7672bb68c6b6e2155fe7765d1cea277c9d4cbc",
+              "score": 9.85,
+              "findings": [
+                "甲板炮实际位于围壳后方，早期阶梯围壳、长巡航甲板和双轴结构保留。",
+                "1942年早期参考外形与后期炮位前移分开处理，未发现必要修复。"
+              ]
+            },
+            "archive-nautilus": {
+              "revision": "4b15045664691c5c2937e21947d17fb7037d808472532b4e6c1a412d0daa1215",
+              "score": 9.8,
+              "findings": [
+                "长平甲板、封闭围壳、双轴及无甲板炮外形清楚；DANFS与博物馆长度口径已分别说明，未发现必要修复。"
+              ]
+            },
+            "archive-oberon": {
+              "revision": "ff4ae5cd781eb33dab16d7e81bd9c16221436fd63243cd5255e2796a44fee637",
+              "score": 9.8,
+              "findings": [
+                "隆起艏声呐、高围壳和双轴布局可辨；甲板表面连续，Ovens参考外形与设计来源国家已区分，未发现必要修复。"
+              ]
+            },
+            "archive-virginia-block-i": {
+              "revision": "0290add1de8d07b073b08037e7ba7b237e63e1ee30c14189d9a5ee0b49b4df14",
+              "score": 9.8,
+              "findings": [
+                "圆钝艏、艏水平舵、十字尾舵及泵喷外导管存在，未宣称复原内部推进结构。",
+                "未取得可靠实舰围壳高度尺寸；套件比例推算不足以证明当前围壳必须修改。"
+              ]
+            },
+            "archive-type-212a": {
+              "revision": "b089293bd1ee61c4636914021e9a848107bbdc26d34788bfff09a0bf7ec72bbb",
+              "score": 9.85,
+              "findings": [
+                "短粗圆钝艇体、围壳水平舵、X形尾舵及单轴布局明确；潜舵根部接入围壳，未发现必要修复。"
+              ]
+            },
+            "archive-soryu-early": {
+              "revision": "16f605c56042c43b09dd1c42b177d8a73bb9a7fc1e4e1e2093a201aa182a80f1",
+              "score": 9.85,
+              "findings": [
+                "艇体实测最大宽度9.1米、深度约10.3米；围壳水平舵、X形尾舵及单轴布局保留。",
+                "初期AIP外形未混用后期锂电池配置，未发现必要修复。"
+              ]
+            }
+          }
+        },
+        {
+          "reviewer": "Sol B",
+          "model": "gpt-6.1-sol",
+          "taskId": "node:delegated-task:command%3Amcp%3Ad286f08a-543b-4505-bc3e-144a1a5c535f%3Adelegate-task%3A86a8e9fe-904f-4d5d-a725-427933582909",
+          "results": {
+            "archive-sopwith-camel": {
+              "revision": "d2f55f2dc6c830237f26f9d26156c24688a9c9874d036ce007016e84c4aefd68",
+              "score": 9.85,
+              "findings": [
+                "四视图与手册预览均已检查；下翼5°、上翼0°、中央观察切口、驼峰和单跨支柱成立，未发现本用途下的必要修复。"
+              ]
+            },
+            "archive-spad-xiii": {
+              "revision": "9c40d732c69ca7ac2414d392a518c9a8f79483f59ec4c481d9a678704c7f7784",
+              "score": 9.8,
+              "findings": [
+                "平直双翼、双对翼间支柱、圆形前置散热器与长排气均有实体几何；192×120预览保留主要识别特征，无必要修复。"
+              ]
+            },
+            "archive-fokker-dvii": {
+              "revision": "7300e3570912557d2e8f8f85ba6b31b2061c4d0797fb30b0f17aed295b4aa6c8",
+              "score": 9.85,
+              "findings": [
+                "实际导出上下翼根弦约1.6/1.2米；方截面机首、外露发动机、N形支柱和轴翼可见，无必要修复。"
+              ]
+            },
+            "archive-spitfire-ia": {
+              "revision": "f975b19a9cb71e3cae01e86cd6f60f6b1b0ccb6322fac3885a7e5766c4a76d50",
+              "score": 9.9,
+              "findings": [
+                "实际主翼投影面积约22.4800平方米、根弦2.5400米、上反6°；椭圆翼和不等长冷却器保留，四视图与手册预览未见必要修复。"
+              ]
+            },
+            "archive-p51d": {
+              "revision": "e1a70788a84abee2946400264bdf5716315c003c6b1a52ecf569dfb2e44c2a76",
+              "score": 9.85,
+              "findings": [
+                "实际主翼约21.8541平方米、上反5°；水滴座舱、四叶桨、腹部散热器和梯形翼可辨，未将试验机其它尺寸替代服役规格，无必要修复。"
+              ]
+            },
+            "archive-a6m5": {
+              "revision": "e6ad89f61b038abd5405e5de7ccb2d9d7e756caa1c66770a185c93609da5dfa0",
+              "score": 9.85,
+              "findings": [
+                "实际主翼约21.3000平方米、上反5.7°；圆翼尖、长框式座舱与分列排气均可见。TAIC的230平方英尺约21.37平方米不构成本轮必要差异。"
+              ]
+            },
+            "archive-f86a": {
+              "revision": "984c70bcb1b8e0c1fde3e99ec6df9dc85d7af0a16e3c63537c246488bcf2c4e7",
+              "score": 9.85,
+              "findings": [
+                "实际主翼约26.7468平方米、上反3°，平尾保留10°上反；机首进气和后掠翼识别清楚，未将四分之一弦后掠混作前缘后掠，无必要修复。"
+              ]
+            },
+            "archive-mig21pf": {
+              "revision": "1a6f43c694b0c86e629416e5a6d1dd8790022ac2765f3d89bc6b7651b19a1d21",
+              "score": 9.85,
+              "findings": [
+                "实际主翼约23.0000平方米、根弦5.9736米、翼尖弦0.4600米、下反2°；截梢、翼刀、进气锥、上机首空速管和腹鳍均保留，无必要修复。"
+              ]
+            },
+            "archive-f16a": {
+              "revision": "f1edb9dede420ecdc47d7051504ccf65de33eee210a4fb975b16c849e23d608f",
+              "score": 9.6,
+              "findings": [
+                "P2，高置信度：实际GLB平尾前缘根部与翼尖等高，实测0°；原始T.O.1F-16A-1两种平尾规格均为约-10°。当前192×120相机下翼尖差异约1.9像素，需要配置并导出平尾下反角。",
+                "边条翼、腹部进气、单发与双腹鳍可辨；未用包含边条和中央段的投影面积直接对比不同边界的参考翼面积。"
+              ]
+            },
+            "archive-mirage2000c": {
+              "revision": "8f7335e55136885f730a32333db17c337f4ec63e63e62a5ca3a7cf0d891130ee",
+              "score": 9.85,
+              "findings": [
+                "实际主翼投影约40.5165平方米；截尖三角翼、无平尾和两侧进气结构成立，四视图与手册预览未见必要修复。"
+              ]
+            },
+            "archive-rafale-c": {
+              "revision": "bd22a74427f92a6083e48f428fe8b2890cdcd770b98bb75bdc285e9cdcfe6fd2",
+              "score": 9.85,
+              "findings": [
+                "右侧固定探管已缩短并安装在风挡前方；鸭翼、两侧进气和双发喷口可辨。实际主翼投影约39.1910平方米、鸭翼约5.9724平方米，未以不明确的面积边界直接认定尺寸错误，无必要修复。"
+              ]
+            },
+            "archive-gripen-c": {
+              "revision": "0eb7c04cecc342a2d050228209eb20680a61cf3fe84f8a1924045fd90884e77a",
+              "score": 9.8,
+              "findings": [
+                "近耦鸭翼、方圆过渡进气口、单发与翼尖挂轨均有实际几何，192×120预览可辨；30与25.54平方米等面积口径不足以单独证明本模型存在必要尺寸修复。"
+              ]
+            },
+            "archive-u9": {
+              "revision": "3517ba9379e7fc1504e40ae9964c1df20c7c69b1b6278438f97454b8a9043125",
+              "score": 9.8,
+              "findings": [
+                "细长艇体、低开放围壳、前后甲板桅杆、双轴和早期无甲板炮配置均可见；甲板与艇体接合正常，无必要修复。"
+              ]
+            },
+            "archive-type-viic": {
+              "revision": "0ac70492bdfc95a34de79b5ee49ca852d1b1f32bfad33f5a731fb26b07b8af49",
+              "score": 9.85,
+              "findings": [
+                "尖艏、开放指挥台、前置甲板炮、防空平台、双轴及双舵保留；四视图与手册预览未见必要修复。"
+              ]
+            },
+            "archive-gato": {
+              "revision": "f8b92c9e46690dfd17883cd42e7672bb68c6b6e2155fe7765d1cea277c9d4cbc",
+              "score": 9.85,
+              "findings": [
+                "实际GLB甲板炮位于围壳后方，早期阶梯围壳、长甲板和双轴均保留；与所声明1942年早期配置相容，无必要修复。"
+              ]
+            },
+            "archive-nautilus": {
+              "revision": "4b15045664691c5c2937e21947d17fb7037d808472532b4e6c1a412d0daa1215",
+              "score": 9.8,
+              "findings": [
+                "长平甲板、封闭围壳、艏水平舵、双轴及无甲板炮配置成立；保留DANFS与博物馆长度口径差异，无必要修复。"
+              ]
+            },
+            "archive-oberon": {
+              "revision": "ff4ae5cd781eb33dab16d7e81bd9c16221436fd63243cd5255e2796a44fee637",
+              "score": 9.8,
+              "findings": [
+                "艏部隆起声呐罩、高围壳、长甲板和双轴可辨；手册预览保留与其它旧艇的识别差异，无必要修复。"
+              ]
+            },
+            "archive-virginia-block-i": {
+              "revision": "0290add1de8d07b073b08037e7ba7b237e63e1ee30c14189d9a5ee0b49b4df14",
+              "score": 9.8,
+              "findings": [
+                "圆钝艏、艏水平舵、十字尾舵和单轴泵喷外导管成立；未将未核实套件比例当作实舰围壳尺寸，当前证据未形成必要修复。"
+              ]
+            },
+            "archive-type-212a": {
+              "revision": "b089293bd1ee61c4636914021e9a848107bbdc26d34788bfff09a0bf7ec72bbb",
+              "score": 9.85,
+              "findings": [
+                "短粗艇体、圆钝艏、围壳水平舵、X形尾舵及单轴推进成立；围壳潜舵接合与手册识别正常，无必要修复。"
+              ]
+            },
+            "archive-soryu-early": {
+              "revision": "16f605c56042c43b09dd1c42b177d8a73bb9a7fc1e4e1e2093a201aa182a80f1",
+              "score": 9.85,
+              "findings": [
+                "上部外壳保留10.3米深度与9.1米宽度的比例；围壳水平舵、X形尾舵和单轴推进可辨，未混入后期锂电池艇配置，无必要修复。"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "date": "2026-11-16",
+      "members": [
+        {
+          "reviewer": "Sol A",
+          "model": "gpt-6.1-sol",
+          "taskId": "node:delegated-task:command%3Amcp%3Ad286f08a-543b-4505-bc3e-144a1a5c535f%3Adelegate-task%3Af01fd1c0-fe13-48b5-8f9d-5f6c5194ea1f",
+          "results": {
+            "archive-sopwith-camel": {
+              "revision": "fa340e0564577954e347da7a8833d45c9a4a29de78ce1c2564e7c953e84ebfb9",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-spad-xiii": {
+              "revision": "c406cf158bfbc0471f1f79c2d79a6dbf22d692fc8575e8e29cb9a540b1144a4b",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-fokker-dvii": {
+              "revision": "e8473c2237a089e39ac8c982ede13b5dcf6b9e7e124911cc2b2edb6ed7ae3e3d",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-spitfire-ia": {
+              "revision": "496e95eac6366eee6ac008de6d2a158c67ca8c36515958120e342a145c41f2d4",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-p51d": {
+              "revision": "675f04c5db64a2264a162eba4086aa17918be8159ae189efd8ae6df9051a546a",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-a6m5": {
+              "revision": "28d14ad0b4ac6d1bac3b1d02c26cc3a5bb6b265eef863af854138fcef362a0fc",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-f86a": {
+              "revision": "e7aee374c2e043c6c24d7891f6b7e20719c0e167100e8bcc24ce8346e283b21c",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-mig21pf": {
+              "revision": "1d14d7b1c482c478a05174cb592b98da51bbae403af2b53ab038c878f8f67960",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-f16a": {
+              "revision": "fec7c20e67b17c1e07598c83d8afd85bb2f1112a97234c228a3aca3783971674",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-mirage2000c": {
+              "revision": "2874b0f225cba6da695abf99956e914ac96183684cb3a9b500ec40b5e66d9da7",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-rafale-c": {
+              "revision": "0656365c28ae63dec2108bfafe02c01dcb2e880421a64ea12885e2180eba7bb9",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-gripen-c": {
+              "revision": "0639e69938644671a84b36ff883ae83bba0fbe6e0f2bfb64d2e9caede2e9618c",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-u9": {
+              "revision": "420b073bb31d7cab0fb06ad8ff353e41f37f25d996da50f90e1e99d3772e18dc",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-type-viic": {
+              "revision": "23473b44059e9a55cb18eef81fbd8a97a9fce8fbbb686ff83b17745812879f2f",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-gato": {
+              "revision": "a382446257fa5abbc533d678c22dc62ba43e8e9c4a3c739a800a7be0fb9d67d4",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-nautilus": {
+              "revision": "223618574526e42e3299fc773cd39173af500eb210c4f187298fbfb75b8305a1",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-oberon": {
+              "revision": "acbf25b017ff9d2c1b3e9e565a809ab0a0b25929e639982f09849b8116082992",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-virginia-block-i": {
+              "revision": "9457a478fa7812849788a0a6f4156b114f141f02ddc8346751f4ddf1bd81bcfa",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-type-212a": {
+              "revision": "bc4bd31d32a1131c8da16f44619d5a4db62f7984d260f1e161bfdc5493842b88",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            },
+            "archive-soryu-early": {
+              "revision": "c32210142b1882288f44fb57c4528890ac98b9038fb7675b246e7f7da07b2b66",
+              "score": null,
+              "findings": [
+                "评审任务因服务额度限制失败，未完成审查，未产生分数。"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

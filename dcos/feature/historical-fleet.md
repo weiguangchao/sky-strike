@@ -1,6 +1,8 @@
 # 历史舰库
 
-保留最初23个国家／战时海军的72艘代表舰，并扩充二战至现代美国舰级；合计148个条目，美国82个舰级／亚级／改装分组，详见[美国舰级库](us-fleet.md)。名单经用户授权按主要海军与经典舰型筛选，是有明确范围的首批舰库，不宣称穷尽所有参战国或所有军舰。中国舰艇采用1937年抗战时的外观，原有其他舰艇采用1939—1945年的战时外观；美国扩充舰级采用各自标明的外观年份。
+按最新范围仅保留八国的既有舰艇外观，并扩充二战至现代美国舰级；图鉴展示126个条目，美国82个舰级／亚级／改装分组，详见[美国舰级库](us-fleet.md)。名单经用户授权按主要海军与经典舰型筛选，是有明确范围的首批舰库，不宣称穷尽所有参战国或所有军舰。中国舰艇采用1937年抗战时的外观，保留的其他舰艇采用1939—1945年的战时外观；美国扩充舰级采用各自标明的外观年份。
+
+PT-109巡逻艇和约翰·布朗运输船已从图鉴移除，不提供这两类的图鉴筛选或外观选择。它们作为战斗原型的资源及历史评审依据仍保留。
 
 ## 历史与画风
 
@@ -13,7 +15,7 @@
 
 ## 选择与运行
 
-手册 → 历史图鉴 → 水面舰艇，按国家、类别（含水面舰种）、外观年代组合筛选，直接选舰或前后翻页。每页显示一艘本地二维舰船精灵、国别、参考年份、舰种、结构特征和史料链接。点击“使用本舰”将其用于对应游戏单位；飞行中更换时明确标为“下次出击使用”。选择保存在本机，出击时锁定，沉没残骸沿用该舰的模型。
+手册 → 历史图鉴，按国家、平铺的航空母舰／巡洋舰／驱逐舰／战列舰类别、外观年代组合筛选，直接选舰或前后翻页。每页显示一艘本地二维舰船精灵、国别、参考年份、舰种、结构特征和史料链接。点击“使用本舰”将其用于对应游戏单位；飞行中更换时明确标为“下次出击使用”。选择保存在本机，出击时锁定，沉没残骸沿用该舰的模型。
 
 历史模型按查看／选用加载本地 PNG 精灵，启动阶段只加载基础26项与本机已选舰。加载期间隐藏上一艘预览，失败可重试；快速翻页与切换栏目不会被较早返回的请求覆盖。
 
@@ -25,7 +27,7 @@
 
 表中的链接用于对应舰级的布置、尺寸及战时改装参考；同级舰共用相应舰级史料。模型不依赖这些外部网页加载。
 
-| 海军 | 舰名 | 年份 | 舰种 | 识别特征与史料 |
+| 国家／海军 | 舰艇 | 外形年份 | 舰种 | 结构特征与资料 |
 | --- | --- | --- | --- | --- |
 | 美国 | 衣阿华 | 1944 | 战列舰 | [修长舰艏 · 三座三联主炮 · 双烟囱](https://www.navypedia.org/ships/usa/us_bb_iowa.htm) |
 | 美国 | 南达科他 | 1942 | 战列舰 | [紧凑宽舰体 · 三联主炮 · 单烟囱](https://www.navypedia.org/ships/usa/us_bb_sdakota.htm) |
@@ -74,38 +76,16 @@
 | 法国 | 敦刻尔克 | 1940 | 战列舰 | [两座前置四联330毫米炮 · 长后甲板](https://www.navypedia.org/ships/france/fr_bb_dunkerque.htm) |
 | 法国 | 阿尔及利亚 | 1939 | 重巡洋舰 | [四座双联炮 · 方形塔桥 · 单烟囱](https://www.navypedia.org/ships/france/fr_cr_algerie.htm) |
 | 法国 | 空想 | 1940 | 驱逐舰 | [五座单装炮 · 两根大烟囱 · 三组鱼雷管](https://www.navypedia.org/ships/france/fr_dd_le_fantasque.htm) |
-| 苏联 | 马拉 | 1940 | 战列舰 | [四座平甲板三联炮 · 双烟囱 · 前桅塔桥](https://www.navypedia.org/ships/russia/ru_bb_sevastopol.htm) |
-| 苏联 | 基洛夫 | 1941 | 轻巡洋舰 | [三座三联180毫米炮 · 双烟囱 · 四脚前桅](https://www.navypedia.org/ships/russia/ru_cr_kirov.htm) |
-| 苏联 | 塔什干 | 1942 | 驱逐舰 | [蓝灰舰体 · 三座双联炮 · 双烟囱](https://www.navypedia.org/ships/russia/ru_dd_tashkent.htm) |
+| 俄罗斯（苏联） | 马拉 | 1940 | 战列舰 | [四座平甲板三联炮 · 双烟囱 · 前桅塔桥](https://www.navypedia.org/ships/russia/ru_bb_sevastopol.htm) |
+| 俄罗斯（苏联） | 基洛夫 | 1941 | 轻巡洋舰 | [三座三联180毫米炮 · 双烟囱 · 四脚前桅](https://www.navypedia.org/ships/russia/ru_cr_kirov.htm) |
+| 俄罗斯（苏联） | 塔什干 | 1942 | 驱逐舰 | [蓝灰舰体 · 三座双联炮 · 双烟囱](https://www.navypedia.org/ships/russia/ru_dd_tashkent.htm) |
 | 中国 | 宁海 | 1937 | 轻巡洋舰 | [三座双联140毫米炮 · 双烟囱 · 小型机库](https://www.navypedia.org/ships/china/ch_cr_ning_hai.htm) |
 | 中国 | 逸仙 | 1937 | 炮舰 | [艏艉单装大炮 · 低矮上层建筑 · 单烟囱](https://www.navypedia.org/ships/china/ch_of_i_hsien.htm) |
-| 荷兰 | 德鲁伊特 | 1942 | 轻巡洋舰 | [三座双联加一座单装炮 · 高塔桥 · 双烟囱](https://www.navypedia.org/ships/netherlands/nl_cr_de_ruyter.htm) |
-| 荷兰 | 爪哇 | 1942 | 轻巡洋舰 | [十座单装炮 · 舷侧炮列 · 双烟囱](https://www.navypedia.org/ships/netherlands/nl_cr_java.htm) |
-| 荷兰 | 科特纳尔 | 1942 | 驱逐舰 | [四座单装炮 · 双烟囱 · 两组鱼雷管](https://www.navypedia.org/ships/netherlands/nl_dd_van_ghent.htm) |
-| 波兰 | 闪电 | 1939 | 驱逐舰 | [七门120毫米炮 · 前单装与双联混合 · 双烟囱](https://www.navypedia.org/ships/poland/pl_dd_grom.htm) |
-| 波兰 | 雷电 | 1941 | 驱逐舰 | [三座双联主炮 · 单烟囱 · 五联鱼雷管](https://www.navypedia.org/ships/poland/pl_dd_piorun.htm) |
-| 加拿大 | 海达人 | 1943 | 驱逐舰 | [部族级 · 三座120毫米双联主炮 · 双烟囱](https://www.navypedia.org/ships/canada/can_dd_iroquois.htm) |
-| 加拿大 | 萨克维尔 | 1942 | 护卫舰 | [花级护航舰 · 艏部单装炮 · 艉部深弹架](https://www.navypedia.org/ships/canada/can_es_flower.htm) |
-| 澳大利亚 | 悉尼 II | 1941 | 轻巡洋舰 | [四座双联炮 · 分隔双烟囱 · 中部弹射器](https://www.navypedia.org/ships/australia/aus_cr_sydney.htm) |
-| 澳大利亚 | 澳大利亚 II | 1943 | 重巡洋舰 | [郡级 · 四座双联203毫米炮 · 三烟囱](https://www.navypedia.org/ships/australia/aus_cv_australia.htm) |
-| 新西兰 | 阿基里斯 | 1942 | 轻巡洋舰 | [利安德级 · 四座双联炮 · 单粗烟囱](https://www.navypedia.org/ships/new_zealand/nz_cr_achilles.htm) |
-| 挪威 | 斯托尔德 | 1943 | 驱逐舰 | [四座单装炮 · 单烟囱 · 两组四联鱼雷管](https://www.navypedia.org/ships/norway/no_dd_stord.htm) |
-| 希腊 | 阿韦罗夫 | 1941 | 装甲巡洋舰 | [艏艉双联234毫米炮 · 四座舷侧双联炮 · 三烟囱](https://www.navypedia.org/ships/greece/gr_cr_averof.htm) |
-| 南斯拉夫 | 杜布罗夫尼克 | 1941 | 驱逐舰 | [四座单装140毫米炮 · 双烟囱 · 长艏楼](https://www.navypedia.org/ships/yugoslavia/yu_dd_dubrovnik.htm) |
-| 芬兰 | 伊尔马里宁 | 1941 | 岸防舰 | [短宽舰体 · 艏艉双联254毫米炮 · 高观测桅](https://www.navypedia.org/ships/finland/fi_bb_vainamoinen.htm) |
-| 罗马尼亚 | 费迪南德国王 | 1941 | 驱逐舰 | [五座单装炮 · 双烟囱 · 两组三联鱼雷管](https://www.navypedia.org/ships/romania/ro_dd_regele_ferdinand.htm) |
-| 泰国 | 吞武里 | 1941 | 岸防舰 | [短宽舰体 · 艏艉双联203毫米炮 · 单烟囱](https://www.navypedia.org/ships/thailand/th_bb_sri_ayuthia.htm) |
-| 巴西 | 巴伊亚 | 1944 | 轻巡洋舰 | [十座单装炮 · 舷侧炮列 · 改装后三烟囱](https://www.navypedia.org/ships/brazil/br_cr_bahia.htm) |
-| 英属印度 | 孟加拉 | 1942 | 扫雷护航舰 | [巴瑟斯特级 · 艏部单装炮 · 扫雷深弹艉甲板](https://www.navypedia.org/ships/india/in_ms_punjab.htm) |
-| 南非 | 纳塔尔 | 1945 | 护卫舰 | [湖级护卫舰 · 艏部单装炮 · 艉部反潜装具](https://www.navypedia.org/ships/south_africa/saf_es_good_hope.htm) |
-| 丹麦 | 尼尔斯·尤尔 | 1943 | 岸防舰 | [十座单装150毫米炮 · 高塔桅 · 单烟囱](https://www.navypedia.org/ships/denmark/dk_bb_niels_iuel.htm) |
 
 ## 补充史料
 
 - [美国海军历史与遗产司令部：企业CV-6](https://www.history.navy.mil/content/history/nhhc/browse-by-topic/ships/aircraft-carriers/big-e.html)、[弗莱彻DD-445](https://www.history.navy.mil/research/histories/ship-histories/danfs/f/fletcher.html)。
 - [NOAA：赤城残骸与左舷舰岛](https://oceanexplorer.noaa.gov/photogrammetry/akagi/)。
-- [加拿大海军：海达人](https://www.canada.ca/en/navy/services/history/ships-histories/haida.html)、[萨克维尔](https://www.canada.ca/en/navy/services/history/ships-histories/sackville.html)。
-- [希腊海军阿韦罗夫博物馆：主炮与舷侧炮](https://averof.hellenicnavy.gr/en/battleship-g-averof/history/launching-and-extra-features/)。
 - [波兰海军博物馆：闪电](https://muzeummw.pl/en/orp-blyskawica-a-real-war-veteran/)。
 - [新西兰政府：二战海军](https://nzhistory.govt.nz/war/royal-new-zealand-navy/second-world-war)。
 - [荷兰国家档案馆：爪哇海海战舰艇](https://www.nationaalarchief.nl/beleven/nieuws/1942-engelandvaarders-in-de-slag-in-de-javazee)。
@@ -115,4 +95,4 @@
 
 ## 验证约定
 
-模型回归核对全舰库身份、原点、主炮联装形式、全148个条目的主炮／副炮在图鉴与战斗姿态下避开其他炮座、舰桥与烟囱、航母舷侧烟囱、中部弹射器、可拆部件坐标、水线、停机轮廓和资源预算；浏览器检查全部舰船预览、国家筛选、异步请求顺序、失败重试、选择存储、实际战斗及手机可视安全区域。战场像素测试继续覆盖船体、残骸上方的敌弹与补给。
+模型回归核对全舰库身份、原点、主炮联装形式、全部当前条目的主炮／副炮在图鉴与战斗姿态下避开其他炮座、舰桥与烟囱、航母舷侧烟囱、中部弹射器、可拆部件坐标、水线、停机轮廓和资源预算；浏览器检查全部舰船预览、国家筛选、异步请求顺序、失败重试、选择存储、实际战斗及手机可视安全区域。战场像素测试继续覆盖船体、残骸上方的敌弹与补给。

@@ -6,16 +6,13 @@ export type NavalHull = Exclude<ShipKind, 'coastal-battery' | 'oil-depot'>;
 export const NAVAL_HULLS = ['patrol-boat', 'destroyer', 'cruiser', 'battleship', 'fleet-carrier', 'transport'] as const satisfies readonly NavalHull[];
 export const isNavalHull = (value: unknown): value is NavalHull => NAVAL_HULLS.some(hull => hull === value);
 export const NAVIES = [
-  {id:'us',name:'美国'}, {id:'gb',name:'英国'}, {id:'jp',name:'日本'},
-  {id:'de',name:'德国'}, {id:'it',name:'意大利'}, {id:'fr',name:'法国'},
-  {id:'su',name:'苏联'}, {id:'cn',name:'中国'}, {id:'nl',name:'荷兰'},
-  {id:'pl',name:'波兰'}, {id:'ca',name:'加拿大'}, {id:'au',name:'澳大利亚'},
-  {id:'nz',name:'新西兰'}, {id:'no',name:'挪威'}, {id:'gr',name:'希腊'},
-  {id:'yu',name:'南斯拉夫'}, {id:'fi',name:'芬兰'}, {id:'ro',name:'罗马尼亚'},
-  {id:'th',name:'泰国'}, {id:'br',name:'巴西'}, {id:'in',name:'英属印度'},
-  {id:'za',name:'南非'}, {id:'dk',name:'丹麦'},
+  {id:'cn',name:'中国'}, {id:'us',name:'美国'}, {id:'fr',name:'法国'},
+  {id:'gb',name:'英国'}, {id:'ru',name:'俄罗斯（含苏联、沙俄）'},
+  {id:'jp',name:'日本'}, {id:'de',name:'德国'}, {id:'it',name:'意大利'},
 ] as const;
-export type NavyId = typeof NAVIES[number]['id'];
+export type ArchiveCountryId = typeof NAVIES[number]['id'];
+// Preserve Soviet authoring identities and existing appearance dates.
+export type NavyId = ArchiveCountryId | 'su';
 export type HistoricalKind = '战列舰' | '战列巡洋舰' | '航空母舰' | '轻型航空母舰' | '护航航空母舰' | '训练航空母舰' | '大型巡洋舰' | '指挥巡洋舰' | '导弹巡洋舰' | '核动力巡洋舰' | '导弹驱逐舰' | '驱逐领舰' | '重巡洋舰' | '轻巡洋舰' | '装甲巡洋舰' | '装甲舰' | '驱逐舰' | '岸防舰' | '护卫舰' | '扫雷护航舰' | '鱼雷艇' | '武装运输船' | '炮舰';
 export interface MainMount { barrels:number; y:number; x:number; raised:number; bearing:number; calibre?:number }
 export interface NavalLauncher {
@@ -48,10 +45,6 @@ const four=(barrels=2)=>[mount({ barrels, y: .72 }),mount({ barrels, y: .46, x: 
 const two=(barrels=2)=>[mount({ barrels, y: .71 }),mount({ barrels, y: -.71 })];
 const secondaryPairs=({barrels,calibre,stations}:{barrels:number;calibre:number;stations:readonly number[]})=>[-1,1].flatMap(side=>stations.map(y=>({...mount({ barrels, y, x: side*.61, raised: 0, bearing: -side*90 }),calibre})));
 const fiveSingle=()=>[mount({ barrels: 1, y: .74 }),mount({ barrels: 1, y: .50, x: 0, raised: .08 }),mount({ barrels: 1, y: -.30, x: 0, raised: 0, bearing: 90 }),mount({ barrels: 1, y: -.53, x: 0, raised: .08 }),mount({ barrels: 1, y: -.75 })];
-const broadside=(count:number)=>[
-  mount({ barrels: 1, y: .81 }),mount({ barrels: 1, y: -.81 }),
-  ...Array.from({length:(count-2)/2},(_,i)=>[-1,1].map(side=>mount({ barrels: 1, y: .49-i*.98/((count-2)/2-1), x: side*.68, raised: 0, bearing: -side*90 }))).flat(),
-];
 const ref=(path:string)=>`https://www.navypedia.org/ships/${path}.htm`;
 function ship<const Id extends string>({ id, name, navy, year, kind, hull, path, feature, geometry }: Pick<HistoricalShip, 'name' | 'navy' | 'year' | 'kind' | 'hull' | 'feature' | 'geometry'> & { id: Id; path: string }):HistoricalShip&{id:Id} {
   return {id,name,navy,year,kind,hull,source:path.startsWith('https:')?path:ref(path),feature,geometry,...EXISTING_US_CLASSES[id]};
@@ -171,47 +164,6 @@ export const HISTORICAL_SHIPS = [
   ship({ id: 'yat-sen', name: '逸仙', navy: 'cn', year: 1937, kind: '炮舰', hull: 'destroyer', path: 'china/ch_of_i_hsien', feature: '艏艉单装大炮 · 低矮上层建筑 · 单烟囱',
     geometry: {length:83.8,beam:10.5,calibre:152,guns:two(1),funnels:[-.06],bridge:'low',bridgeY:.34,openGuns:true} }),
 
-  ship({ id: 'de-ruyter', name: '德鲁伊特', navy: 'nl', year: 1942, kind: '轻巡洋舰', hull: 'cruiser', path: 'netherlands/nl_cr_de_ruyter', feature: '三座双联加一座单装炮 · 高塔桥 · 双烟囱',
-    geometry: {length:170.8,beam:15.7,calibre:149,guns:[mount({ barrels: 2, y: .80 }),mount({ barrels: 1, y: .54, x: 0, raised: .10 }),mount({ barrels: 2, y: -.53, x: 0, raised: .10 }),mount({ barrels: 2, y: -.78 })],funnels:[.05,-.23],bridge:'tower',bridgeY:.28,catapults:1,catapultStations:[[0,-.36,90]]} }),
-  ship({ id: 'java', name: '爪哇', navy: 'nl', year: 1942, kind: '轻巡洋舰', hull: 'cruiser', path: 'netherlands/nl_cr_java', feature: '十座单装炮 · 舷侧炮列 · 双烟囱',
-    geometry: {length:155.3,beam:16,calibre:149,guns:[mount({ barrels: 1, y: .83 }),mount({ barrels: 1, y: .61 }),mount({ barrels: 1, y: -.59 }),mount({ barrels: 1, y: -.82 }),...[-1,1].flatMap(side=>[.36,.02,-.32].map(y=>mount({ barrels: 1, y, x: side*.68, raised: 0, bearing: -side*90 })))],funnels:[.15,-.17],bridge:'tripod',bridgeY:.43,openGuns:true} }),
-  ship({ id: 'kortenaer', name: '科特纳尔', navy: 'nl', year: 1942, kind: '驱逐舰', hull: 'destroyer', path: 'netherlands/nl_dd_van_ghent', feature: '四座单装炮 · 双烟囱 · 两组鱼雷管',
-    geometry: {length:98.2,beam:9.53,calibre:120,guns:four(1),funnels:[.13,-.12],bridge:'low',bridgeY:.36,torpedoes:2,openGuns:true,deck:'steel'} }),
-
-  ship({ id: 'blyskawica', name: '闪电', navy: 'pl', year: 1939, kind: '驱逐舰', hull: 'destroyer', path: 'poland/pl_dd_grom', feature: '七门120毫米炮 · 前单装与双联混合 · 双烟囱',
-    geometry: {length:114,beam:11.3,calibre:120,guns:[mount({ barrels: 1, y: .82 }),mount({ barrels: 2, y: .56, x: 0, raised: .08 }),mount({ barrels: 2, y: -.54, x: 0, raised: .08 }),mount({ barrels: 2, y: -.79 })],funnels:[.13,-.12],bridge:'low',bridgeY:.35,torpedoes:2,deck:'steel'} }),
-  ship({ id: 'piorun', name: '雷电', navy: 'pl', year: 1941, kind: '驱逐舰', hull: 'destroyer', path: 'poland/pl_dd_piorun', feature: '三座双联主炮 · 单烟囱 · 五联鱼雷管',
-    geometry: {length:108.7,beam:10.9,calibre:120,guns:triple(2),funnels:[-.04],bridge:'low',bridgeY:.29,torpedoes:1,deck:'steel'} }),
-  ship({ id: 'haida', name: '海达人', navy: 'ca', year: 1943, kind: '驱逐舰', hull: 'destroyer', path: 'canada/can_dd_iroquois', feature: '部族级 · 三座120毫米双联主炮 · 双烟囱',
-    geometry: {length:114.9,beam:11.4,calibre:120,guns:[mount({ barrels: 2, y: .80 }),mount({ barrels: 2, y: .54, x: 0, raised: .08 }),mount({ barrels: 2, y: -.79 })],funnels:[.13,-.12],bridge:'low',bridgeY:.34,torpedoes:1,deck:'steel'} }),
-  ship({ id: 'sackville', name: '萨克维尔', navy: 'ca', year: 1942, kind: '护卫舰', hull: 'patrol-boat', path: 'canada/can_es_flower', feature: '花级护航舰 · 艏部单装炮 · 艉部深弹架',
-    geometry: {length:62.5,beam:10.1,calibre:102,guns:[mount({ barrels: 1, y: .73 })],funnels:[-.08],bridge:'low',bridgeY:.30,openGuns:true,deck:'steel'} }),
-  ship({ id: 'sydney', name: '悉尼 II', navy: 'au', year: 1941, kind: '轻巡洋舰', hull: 'cruiser', path: 'australia/aus_cr_sydney', feature: '四座双联炮 · 分隔双烟囱 · 中部弹射器',
-    geometry: {length:171.4,beam:17.3,calibre:152,guns:four(),funnels:[.10,-.28],bridge:'tower',bridgeY:.30,torpedoes:2,catapults:1,catapultStations:[[0,-.07,90]]} }),
-  ship({ id: 'australia', name: '澳大利亚 II', navy: 'au', year: 1943, kind: '重巡洋舰', hull: 'cruiser', path: 'australia/aus_cv_australia', feature: '郡级 · 四座双联203毫米炮 · 三烟囱',
-    geometry: {length:192.9,beam:20.8,calibre:203,guns:four(),funnels:[.13,-.06,-.25],bridge:'tower',bridgeY:.32,torpedoes:2,catapults:1,catapultStations:[[0,-.35,90]]} }),
-  ship({ id: 'achilles', name: '阿基里斯', navy: 'nz', year: 1942, kind: '轻巡洋舰', hull: 'cruiser', path: 'new_zealand/nz_cr_achilles', feature: '利安德级 · 四座双联炮 · 单粗烟囱',
-    geometry: {length:169,beam:17,calibre:152,guns:four(),funnels:[-.09],bridge:'tower',bridgeY:.28,torpedoes:2,catapults:1,catapultStations:[[0,-.29,90]]} }),
-  ship({ id: 'stord', name: '斯托尔德', navy: 'no', year: 1943, kind: '驱逐舰', hull: 'destroyer', path: 'norway/no_dd_stord', feature: '四座单装炮 · 单烟囱 · 两组四联鱼雷管',
-    geometry: {length:110.6,beam:10.9,calibre:120,guns:four(1),funnels:[-.04],bridge:'low',bridgeY:.29,torpedoes:2,deck:'steel'} }),
-  ship({ id: 'averof', name: '阿韦罗夫', navy: 'gr', year: 1941, kind: '装甲巡洋舰', hull: 'cruiser', path: 'greece/gr_cr_averof', feature: '艏艉双联234毫米炮 · 四座舷侧双联炮 · 三烟囱',
-    geometry: {length:140.8,beam:21,calibre:234,guns:[...two(),...[-1,1].flatMap(side=>[.33,-.33].map(y=>mount({ barrels: 2, y, x: side*.68, raised: 0, bearing: -side*90 })))],funnels:[.18,-.04,-.26],bridge:'tripod',bridgeY:.48} }),
-  ship({ id: 'dubrovnik', name: '杜布罗夫尼克', navy: 'yu', year: 1941, kind: '驱逐舰', hull: 'destroyer', path: 'yugoslavia/yu_dd_dubrovnik', feature: '四座单装140毫米炮 · 双烟囱 · 长艏楼',
-    geometry: {length:113.2,beam:10.7,calibre:140,guns:four(1),funnels:[.12,-.14],bridge:'low',bridgeY:.35,torpedoes:2,openGuns:true,deck:'steel'} }),
-  ship({ id: 'ilmarinen', name: '伊尔马里宁', navy: 'fi', year: 1941, kind: '岸防舰', hull: 'cruiser', path: 'finland/fi_bb_vainamoinen', feature: '短宽舰体 · 艏艉双联254毫米炮 · 高观测桅',
-    geometry: {length:93,beam:16.9,calibre:254,guns:two(),funnels:[-.13],bridge:'tower',bridgeY:.30} }),
-  ship({ id: 'regele-ferdinand', name: '费迪南德国王', navy: 'ro', year: 1941, kind: '驱逐舰', hull: 'destroyer', path: 'romania/ro_dd_regele_ferdinand', feature: '五座单装炮 · 双烟囱 · 两组三联鱼雷管',
-    geometry: {length:102,beam:9.6,calibre:120,guns:fiveSingle(),funnels:[.13,-.10],bridge:'low',bridgeY:.37,torpedoes:2,openGuns:true,deck:'steel'} }),
-  ship({ id: 'thonburi', name: '吞武里', navy: 'th', year: 1941, kind: '岸防舰', hull: 'cruiser', path: 'thailand/th_bb_sri_ayuthia', feature: '短宽舰体 · 艏艉双联203毫米炮 · 单烟囱',
-    geometry: {length:76.5,beam:14.4,calibre:203,guns:two(),funnels:[-.14],bridge:'tower',bridgeY:.28} }),
-  ship({ id: 'bahia', name: '巴伊亚', navy: 'br', year: 1944, kind: '轻巡洋舰', hull: 'cruiser', path: 'brazil/br_cr_bahia', feature: '十座单装炮 · 舷侧炮列 · 改装后三烟囱',
-    geometry: {length:122.4,beam:11.9,calibre:120,guns:broadside(10),funnels:[.21,0,-.21],bridge:'low',bridgeY:.46,torpedoes:2,openGuns:true} }),
-  ship({ id: 'bengal', name: '孟加拉', navy: 'in', year: 1942, kind: '扫雷护航舰', hull: 'patrol-boat', path: 'india/in_ms_punjab', feature: '巴瑟斯特级 · 艏部单装炮 · 扫雷深弹艉甲板',
-    geometry: {length:56.7,beam:9.5,calibre:76,guns:[mount({ barrels: 1, y: .73 })],funnels:[-.08],bridge:'low',bridgeY:.30,openGuns:true,deck:'steel'} }),
-  ship({ id: 'natal', name: '纳塔尔', navy: 'za', year: 1945, kind: '护卫舰', hull: 'destroyer', path: 'south_africa/saf_es_good_hope', feature: '湖级护卫舰 · 艏部单装炮 · 艉部反潜装具',
-    geometry: {length:93.6,beam:11.8,calibre:102,guns:[mount({ barrels: 1, y: .75 })],funnels:[-.12],bridge:'low',bridgeY:.31,openGuns:true,deck:'steel'} }),
-  ship({ id: 'niels-juel', name: '尼尔斯·尤尔', navy: 'dk', year: 1943, kind: '岸防舰', hull: 'cruiser', path: 'denmark/dk_bb_niels_iuel', feature: '十座单装150毫米炮 · 高塔桅 · 单烟囱',
-    geometry: {length:90,beam:16.3,calibre:150,guns:broadside(10),funnels:[-.20],bridge:'tower',bridgeY:.36,openGuns:true} }),
   ...US_CLASS_SHIPS,
 ] as const;
 

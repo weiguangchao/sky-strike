@@ -20,7 +20,11 @@
     "models:audit": "tsx scripts/model-audit.ts",
     "sprites:build": "tsx scripts/sprites.ts",
     "sprites:check": "tsx scripts/check-sprites.ts",
-    "lint": "tsx scripts/type-discipline.ts"
+    "lint": "tsx scripts/type-discipline.ts",
+    "inventory:collect": "tsx scripts/collect-service-inventory.ts",
+    "inventory:audit": "tsx scripts/inventory-audit.ts",
+    "inventory:atlas-sources": "tsx scripts/collect-atlas-service-evidence.ts",
+    "inventory:operators": "tsx scripts/archive-service-countries.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",

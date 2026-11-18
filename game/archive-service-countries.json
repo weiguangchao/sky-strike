@@ -1,0 +1,499 @@
+{
+  "version": 1,
+  "ledgerSha256": "37e8abb56b6e64ec2bb549e87c0a7dd0d36903f582df2d1440e109fe1ac6a2f2",
+  "models": [
+    {
+      "modelId": "archive-a6m5",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "archive-c119c",
+      "countries": [
+        "cn",
+        "us"
+      ]
+    },
+    {
+      "modelId": "archive-c46a",
+      "countries": [
+        "cn",
+        "us"
+      ]
+    },
+    {
+      "modelId": "archive-c47a",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "archive-c54g",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "archive-cg4a",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "archive-cj6a",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "archive-f16a",
+      "countries": [
+        "cn",
+        "us"
+      ]
+    },
+    {
+      "modelId": "archive-f86a",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "archive-fokker-dvii",
+      "countries": [
+        "de"
+      ]
+    },
+    {
+      "modelId": "archive-gato",
+      "countries": [
+        "us",
+        "jp",
+        "it"
+      ]
+    },
+    {
+      "modelId": "archive-mb326",
+      "countries": [
+        "it"
+      ]
+    },
+    {
+      "modelId": "archive-mig21pf",
+      "countries": [
+        "cn",
+        "ru"
+      ]
+    },
+    {
+      "modelId": "archive-mirage2000c",
+      "countries": [
+        "cn",
+        "fr"
+      ]
+    },
+    {
+      "modelId": "archive-nautilus",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "archive-p51d",
+      "countries": [
+        "cn",
+        "us"
+      ]
+    },
+    {
+      "modelId": "archive-project-971",
+      "countries": [
+        "ru"
+      ]
+    },
+    {
+      "modelId": "archive-rafale-c",
+      "countries": [
+        "fr"
+      ]
+    },
+    {
+      "modelId": "archive-rubis-amethyste",
+      "countries": [
+        "fr"
+      ]
+    },
+    {
+      "modelId": "archive-sauro-first-series",
+      "countries": [
+        "it"
+      ]
+    },
+    {
+      "modelId": "archive-sopwith-camel",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "archive-soryu-early",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "archive-spad-xiii",
+      "countries": [
+        "us",
+        "fr"
+      ]
+    },
+    {
+      "modelId": "archive-spitfire-ia",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "archive-type-035g",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "archive-type-039-original",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "archive-type-039a",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "archive-type-091-late",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "archive-type-092-refit",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "archive-type-093-early",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "archive-type-094-early",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "archive-type-212a",
+      "countries": [
+        "de",
+        "it"
+      ]
+    },
+    {
+      "modelId": "archive-type-viic",
+      "countries": [
+        "fr",
+        "gb",
+        "ru",
+        "de"
+      ]
+    },
+    {
+      "modelId": "archive-u9",
+      "countries": [
+        "de"
+      ]
+    },
+    {
+      "modelId": "archive-virginia-block-i",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "battleship",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "cruiser",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "destroyer",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "fleet-carrier",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-algerie",
+      "countries": [
+        "fr"
+      ]
+    },
+    {
+      "modelId": "historic-arizona",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "historic-ark-royal",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "historic-baltimore",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "historic-belfast",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "historic-bismarck",
+      "countries": [
+        "de"
+      ]
+    },
+    {
+      "modelId": "historic-cossack",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "historic-dunkerque",
+      "countries": [
+        "fr"
+      ]
+    },
+    {
+      "modelId": "historic-enterprise",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "historic-essex",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "historic-fubuki",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-giulio-cesare",
+      "countries": [
+        "it"
+      ]
+    },
+    {
+      "modelId": "historic-graf-spee",
+      "countries": [
+        "de"
+      ]
+    },
+    {
+      "modelId": "historic-hiryu",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-hood",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "historic-illustrious",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "historic-iowa",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "historic-kaga",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-king-george-v",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "historic-kirov",
+      "countries": [
+        "ru"
+      ]
+    },
+    {
+      "modelId": "historic-kongo",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-le-fantasque",
+      "countries": [
+        "fr"
+      ]
+    },
+    {
+      "modelId": "historic-littorio",
+      "countries": [
+        "it"
+      ]
+    },
+    {
+      "modelId": "historic-maestrale",
+      "countries": [
+        "it"
+      ]
+    },
+    {
+      "modelId": "historic-marat",
+      "countries": [
+        "ru"
+      ]
+    },
+    {
+      "modelId": "historic-mogami",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-nagato",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-ning-hai",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "historic-prinz-eugen",
+      "countries": [
+        "de"
+      ]
+    },
+    {
+      "modelId": "historic-renown",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "historic-richelieu",
+      "countries": [
+        "fr"
+      ]
+    },
+    {
+      "modelId": "historic-rodney",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "historic-scharnhorst",
+      "countries": [
+        "de"
+      ]
+    },
+    {
+      "modelId": "historic-shinano",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-shokaku",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-soryu",
+      "countries": [
+        "jp"
+      ]
+    },
+    {
+      "modelId": "historic-south-dakota",
+      "countries": [
+        "us"
+      ]
+    },
+    {
+      "modelId": "historic-tashkent",
+      "countries": [
+        "ru"
+      ]
+    },
+    {
+      "modelId": "historic-warspite",
+      "countries": [
+        "gb"
+      ]
+    },
+    {
+      "modelId": "historic-yat-sen",
+      "countries": [
+        "cn"
+      ]
+    },
+    {
+      "modelId": "historic-zara",
+      "countries": [
+        "it"
+      ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { PNG } from 'pngjs';
-import { ARCHIVE, NEW_ARCHIVE } from '../../game/historical-archive.ts';
+import { ARCHIVE, HANDBOOK_ARCHIVE, NEW_ARCHIVE } from '../../game/historical-archive.ts';
 
 async function openArchive(page: import('@playwright/test').Page) {
   await page.goto('/'); await expect(page.locator('#start-button')).toBeEnabled();
@@ -33,8 +33,12 @@ test('new aircraft and submarine models load lazily, filter, wrap and expose rea
   await page.goto('/'); await expect(page.locator('#start-button')).toBeEnabled();
   expect(requested).toHaveLength(0);
   await page.locator('#help-button').click(); await page.locator('#help-tab-archive').click(); await ready(page);
-  await expect(page.locator('#archive-entry option')).toHaveCount(ARCHIVE.length);
-  expect(await page.locator('#archive-entry option').evaluateAll(options => new Set(options.map(option => option.getAttribute('value'))).size)).toBe(ARCHIVE.length);
+  await expect(page.locator('#archive-entry option')).toHaveCount(HANDBOOK_ARCHIVE.length);
+  expect(await page.locator('#archive-entry option').evaluateAll(options => new Set(options.map(option => option.getAttribute('value'))).size)).toBe(HANDBOOK_ARCHIVE.length);
+  await expect(page.locator('#archive-review')).toHaveCount(0);
+  await expect(page.locator('#archive-category option')).toHaveText(['全部类别', '飞机', '潜艇', '航空母舰', '巡洋舰', '驱逐舰', '战列舰']);
+  await expect(page.locator('#archive-category optgroup')).toHaveCount(0);
+  await expect(page.locator('#archive-entry option[value="pt-109"], #archive-entry option[value="john-w-brown"]')).toHaveCount(0);
   await expect(page.locator('#help-dialog').getByRole('tab')).toHaveText(['操作', '作战单位', '战役', '历史图鉴']);
   await page.locator('#help-tab-archive').focus();
   await page.keyboard.press('ArrowRight'); await expect(page.locator('#help-tab-controls')).toBeFocused();
@@ -48,7 +52,6 @@ test('new aircraft and submarine models load lazily, filter, wrap and expose rea
       await page.locator('#archive-entry').selectOption(entry.id); await ready(page);
       await expect(page.locator('#archive-name')).toHaveText(entry.name);
       await expect(page.locator('#archive-source')).toHaveAttribute('href', entry.source);
-      await expect(page.locator('#archive-review')).not.toBeEmpty();
       await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
       const screenshot = await page.locator('#intel-canvas').screenshot();
       const image = PNG.sync.read(screenshot);
@@ -64,7 +67,8 @@ test('new aircraft and submarine models load lazily, filter, wrap and expose rea
     await page.locator('#archive-era').selectOption(era); await ready(page);
     await expect(page.locator('#archive-entry option')).not.toHaveCount(0);
   }
-  await page.locator('#archive-country').selectOption('se');
+  await page.locator('#archive-country').selectOption('cn');
+  await page.locator('#archive-era').selectOption('ww1');
   await expect(page.locator('#archive-name')).toHaveText('没有符合条件的型号');
   await expect(page.locator('#archive-next')).toBeDisabled();
   await page.locator('#help-tab-intel').click();
@@ -77,6 +81,7 @@ test('archive retries failed downloads and discards late downloads after a tab s
   let fail = true;
   await page.route('**/archive-sopwith-camel.png', async route => { if (fail) await route.abort(); else await route.continue(); });
   await openArchive(page); await page.locator('#archive-category').selectOption('aircraft');
+  await page.locator('#archive-entry').selectOption('sopwith-camel');
   await expect(page.locator('#archive-status')).toContainText('加载失败');
   await expect(page.locator('#help-ready')).toHaveText('重试加载');
   fail = false; await page.locator('#help-ready').click(); await ready(page);
@@ -86,6 +91,7 @@ test('archive retries failed downloads and discards late downloads after a tab s
   await page.reload(); await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#help-button').click(); await page.locator('#help-tab-archive').click();
   await page.locator('#archive-category').selectOption('aircraft');
+  await page.locator('#archive-entry').selectOption('sopwith-camel');
   await expect(page.locator('#archive-status')).toHaveText('图像载入中');
   await page.locator('#help-tab-intel').click();
   const before = await page.locator('#intel-canvas').evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL());
@@ -94,11 +100,27 @@ test('archive retries failed downloads and discards late downloads after a tab s
   expect(await page.locator('#intel-canvas').evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL())).toBe(before);
 });
 
+test('served-country filters share one class model and label its original appearance', async ({ page }) => {
+  await openArchive(page);
+  await page.locator('#archive-category').selectOption('submarine');
+  for (const [width, height] of [[320, 568], [740, 280]] as const) {
+    await page.setViewportSize({ width, height });
+    for (const spec of [{ country: 'jp', id: 'gato', appearance: '美国1942年外观' }, { country: 'it', id: 'type-212a', appearance: '德国2005年外观' }, { country: 'ru', id: 'type-viic', appearance: '德国1941年外观' }]) {
+      await page.locator('#archive-country').selectOption(spec.country);
+      await expect(page.locator(`#archive-entry option[value="${spec.id}"]`)).toHaveCount(1);
+      await page.locator('#archive-entry').selectOption(spec.id); await ready(page);
+      await expect(page.locator('#archive-role')).toContainText(spec.appearance);
+      await expect(page.locator('#archive-role')).toContainText('曾服役：');
+      await expectDialogFits(page, `${spec.id} operator ${width}×${height}`);
+    }
+  }
+});
+
 test('four handbook tabs and archive controls fit small portrait and landscape windows', async ({ page }) => {
   await openArchive(page); await page.locator('#archive-category').selectOption('aircraft'); await ready(page);
   for (const [width, height] of [[320, 568], [350, 568], [360, 568], [390, 510], [568, 320], [740, 280]] as const) {
     await page.setViewportSize({ width, height });
-    for (const id of ['sopwith-camel', 'a6m5']) {
+    for (const id of ['sopwith-camel', 'a6m5', 'cg4a']) {
       await page.locator('#archive-entry').selectOption(id); await ready(page);
       await expectDialogFits(page, `${id} ${width}×${height}`);
     }
@@ -110,7 +132,7 @@ test('historical notes and supplemental sources are available by touch and keybo
   await openArchive(page); await ready(page);
   for (const [width, height] of [[320, 568], [320, 420], [390, 510], [568, 320], [740, 280]] as const) {
     await page.setViewportSize({ width, height });
-    for (const id of ['iowa', 'f16a', 'sopwith-camel', 'gripen-c', 'nautilus', 'oberon', 'f86a', 'mirage2000c', 'spitfire-ia', 'p51d', 'gato', 'a6m5', 'mig21pf', 'rafale-c']) {
+    for (const id of ['iowa', 'f16a', 'sopwith-camel', 'nautilus', 'oberon', 'f86a', 'mirage2000c', 'spitfire-ia', 'p51d', 'gato', 'a6m5', 'mig21pf', 'rafale-c', 'cg4a']) {
       const entry = required(ARCHIVE.find(item => item.id === id));
       await page.locator('#archive-entry').selectOption(id); await ready(page);
       const infoButton = page.locator(entry.category === 'surface' ? '#archive-info' : '#help-ready');

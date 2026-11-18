@@ -351,8 +351,12 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
 .fleet-pager { margin-block:6px 8px; }
 @container app-viewport (max-height:450px) and (max-width:479px) {
   #help-dialog.archive-open .help-heading { margin-bottom:4px; row-gap:4px; }
-  .fleet-card { grid-template-columns:72px minmax(0,1fr); gap:10px; }
-  .fleet-meta { line-height:1.35; }
+  .fleet-card { grid-template-columns:72px minmax(0,1fr); gap:0 10px; }
+  .fleet-copy { display:contents; }
+  .fleet-meta { grid-column:1 / -1; line-height:1.35; }
+  .fleet-card .intel-illustration { grid-column:1; grid-row:2 / 4; }
+  #archive-name, #archive-shape { grid-column:2; }
+  .fleet-reference { grid-column:1 / -1; }
   .fleet-meta #archive-count { font-size:16px; }
   #archive-details h3 { margin-bottom:4px; }
   #archive-note { margin-bottom:4px; }

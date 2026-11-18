@@ -42,6 +42,14 @@
 - `npm run deploy:check`：构建并检查 Workers 部署配置；`npm run deploy` 发布；`npm run worker:dev` 使用本地 Workers 运行时验证。
 - 浏览器测试优先使用本机 Google Chrome；其他环境可用 Playwright Chromium。
 
+## Council 模型评审
+
+- 固定成员：Cursor Grok 4.7 xhigh、GPT Sol xhigh、Claude Opus high。
+- 先只提交 Grok；总评和本批全部当前模型评分都必须至少 9.8；这是用户最新指定的门槛（早期轮次的严格大于规则仅保留为历史）。
+- `npm run models:audit -- --require-grok` 通过后，才提交 GPT、Claude 评审同一轮、同一冻结版本；两者总评及逐模型评分仍须各≥9.8。
+- 模型或最终精灵变更后，从新的 Grok 首审开始。保留真实旧评分，禁止跨版本、跨轮次借分，禁止平均或四舍五入过线。
+- 评审只读；未通过就按真实问题继续修改。缺失评分如实记录，不能自行补分或宣称通过。
+
 ## Pull requests
 
 - Never make a PR unless the developer explicitly asks you to do so.

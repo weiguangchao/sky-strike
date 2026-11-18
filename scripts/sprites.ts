@@ -4,10 +4,12 @@ import { Box3, Color, Mesh, MeshBasicMaterial, MeshStandardMaterial, Vector3 } f
 import type { BufferGeometry, Object3D } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { PNG } from 'pngjs';
+import { pathToFileURL } from 'node:url';
 import { ALL_MODEL_IDS } from '../game/models.ts';
 import { HULLS } from '../game/campaign.ts';
 import { NEW_ARCHIVE } from '../game/historical-archive.ts';
 import { parseModelMetadata } from '../game/model-metadata.ts';
+import { refreshRevisions } from './model-audit.ts';
 
 interface Triangle { points: [Vector3, Vector3, Vector3]; color: Color; layer: string }
 interface Frame { name: string; x: number; y: number; width: number; height: number; originX: number; originY: number; worldWidth: number; worldHeight: number }
@@ -25,7 +27,7 @@ function layerOf(object: Object3D): string {
   return 'top';
 }
 
-function trianglesOf(object: Object3D): Triangle[] {
+export function trianglesOf(object: Object3D): Triangle[] {
   const triangles: Triangle[] = [];
   object.updateMatrixWorld(true);
   object.traverse(node => {
@@ -49,8 +51,9 @@ function trianglesOf(object: Object3D): Triangle[] {
   return triangles;
 }
 
-function raster(triangles: Triangle[], direction: Vector3, name: string, y: number, bounds: Box3, horizontal = false): { image: PNG; frame: Frame } {
-  const forward = direction.clone().normalize(), upAxis = horizontal ? new Vector3(1, 0, 0) : direction.y > .999 ? new Vector3(0, 0, -1) : new Vector3(0, 1, 0);
+export function raster(triangles: Triangle[], direction: Vector3, name: string, y: number, bounds: Box3, horizontal = false, resolution = tile): { image: PNG; frame: Frame } {
+  const tile = resolution;
+  const forward = direction.clone().normalize(), upAxis = horizontal ? new Vector3(-1, 0, 0) : forward.y > .999 ? new Vector3(0, 0, -1) : new Vector3(0, 1, 0);
   const right = new Vector3().crossVectors(upAxis, forward).normalize(), up = new Vector3().crossVectors(forward, right);
   const project = (v: Vector3) => new Vector3(v.dot(right), v.dot(up), v.dot(forward));
   const projected = triangles.map(t => ({ ...t, points: t.points.map(project) }));
@@ -88,14 +91,15 @@ function raster(triangles: Triangle[], direction: Vector3, name: string, y: numb
   return { image, frame: { name, x: left, y: y + top, width, height, originX: (tile / 2 - center.x * scale - left) / width, originY: (tile / 2 + center.y * scale - top) / height, worldWidth: width / scale, worldHeight: height / scale } };
 }
 
-function projectionBounds(triangles: Triangle[], direction: Vector3, horizontal = false): Box3 {
-  const forward = direction.clone().normalize(), upAxis = horizontal ? new Vector3(1, 0, 0) : direction.y > .999 ? new Vector3(0, 0, -1) : new Vector3(0, 1, 0);
+export function projectionBounds(triangles: Triangle[], direction: Vector3, horizontal = false): Box3 {
+  const forward = direction.clone().normalize(), upAxis = horizontal ? new Vector3(-1, 0, 0) : forward.y > .999 ? new Vector3(0, 0, -1) : new Vector3(0, 1, 0);
   const right = new Vector3().crossVectors(upAxis, forward).normalize(), up = new Vector3().crossVectors(forward, right);
   const bounds = new Box3();
   for (const triangle of triangles) for (const point of triangle.points) bounds.expandByPoint(new Vector3(point.dot(right), point.dot(up), point.dot(forward)));
   return bounds;
 }
 
+async function buildSprites(): Promise<void> {
 await mkdir(new URL('game/public/assets/sprites/', root), { recursive: true });
 const assets = [];
 for (const id of ALL_MODEL_IDS) {
@@ -109,7 +113,7 @@ for (const id of ALL_MODEL_IDS) {
     if (metadata.combatStretch !== undefined) combatStretch = metadata.combatStretch;
     if (node.name.startsWith('propeller_')) { const position = node.getWorldPosition(new Vector3()); propellers.push({ x: position.x, y: position.z }); }
   });
-  const direction = new Vector3(0, 1, 0), previewDirection = new Vector3(2, 8, 4);
+  const direction = new Vector3(0, 1, 0);
   const bounds = projectionBounds(intact, direction);
   const elevation = (layer: string) => Math.max(...triangles.filter(t => t.layer === layer).flatMap(t => t.points.map(point => point.y)));
   const layers = ['top', ...[...new Set(triangles.map(t => t.layer).filter(layer => layer !== 'top'))].sort((a, b) => elevation(a) - elevation(b))];
@@ -120,7 +124,8 @@ for (const id of ALL_MODEL_IDS) {
     PNG.bitblt(image, sheet, 0, 0, tile, tile, 0, index * tile); frames.push(frame);
   }
   const naval = id.startsWith('historic-') || ['carrier', ...Object.keys(HULLS)].includes(id) || NEW_ARCHIVE.some(entry => entry.modelId === id && entry.category === 'submarine');
-  const preview = raster(intact, previewDirection, 'preview', layers.length * tile, projectionBounds(intact, previewDirection, naval), naval);
+  const previewDirection = naval ? new Vector3(7, 5, 8) : new Vector3(5, 6, 7);
+  const preview = raster(intact, previewDirection, 'preview', layers.length * tile, projectionBounds(intact, previewDirection));
   PNG.bitblt(preview.image, sheet, 0, 0, tile, tile, 0, layers.length * tile); frames.push(preview.frame);
   let cursorX = 1, cursorY = 1, rowHeight = 0;
   const packedFrames = frames.map(frame => {
@@ -140,4 +145,8 @@ for (const id of ALL_MODEL_IDS) {
   assets.push({ id, file: `${id}.png`, sourceHash: hash(bytes), hash: hash(output), bytes: output.length, combatStretch, propellers, frames: packedFrames });
 }
 await writeFile(new URL('game/sprite-manifest.json', root), JSON.stringify({ version: 1, generatorHash: hash(await readFile(new URL('scripts/sprites.ts', root))), assets }) + '\n');
+await refreshRevisions();
 console.info(JSON.stringify({ sprites: assets.length, bytes: assets.reduce((total, asset) => total + asset.bytes, 0) }));
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) await buildSprites();

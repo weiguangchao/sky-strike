@@ -1,5 +1,5 @@
 {
-  "totalAppearances": 148,
+  "totalAppearances": 128,
   "declaredClassGroups": [
     {
       "id": "enterprise",
@@ -816,146 +816,6 @@
       "navy": "cn",
       "year": 1937,
       "source": "https://www.navypedia.org/ships/china/ch_of_i_hsien.htm"
-    },
-    {
-      "id": "de-ruyter",
-      "name": "德鲁伊特",
-      "navy": "nl",
-      "year": 1942,
-      "source": "https://www.navypedia.org/ships/netherlands/nl_cr_de_ruyter.htm"
-    },
-    {
-      "id": "java",
-      "name": "爪哇",
-      "navy": "nl",
-      "year": 1942,
-      "source": "https://www.navypedia.org/ships/netherlands/nl_cr_java.htm"
-    },
-    {
-      "id": "kortenaer",
-      "name": "科特纳尔",
-      "navy": "nl",
-      "year": 1942,
-      "source": "https://www.navypedia.org/ships/netherlands/nl_dd_van_ghent.htm"
-    },
-    {
-      "id": "blyskawica",
-      "name": "闪电",
-      "navy": "pl",
-      "year": 1939,
-      "source": "https://www.navypedia.org/ships/poland/pl_dd_grom.htm"
-    },
-    {
-      "id": "piorun",
-      "name": "雷电",
-      "navy": "pl",
-      "year": 1941,
-      "source": "https://www.navypedia.org/ships/poland/pl_dd_piorun.htm"
-    },
-    {
-      "id": "haida",
-      "name": "海达人",
-      "navy": "ca",
-      "year": 1943,
-      "source": "https://www.navypedia.org/ships/canada/can_dd_iroquois.htm"
-    },
-    {
-      "id": "sackville",
-      "name": "萨克维尔",
-      "navy": "ca",
-      "year": 1942,
-      "source": "https://www.navypedia.org/ships/canada/can_es_flower.htm"
-    },
-    {
-      "id": "sydney",
-      "name": "悉尼 II",
-      "navy": "au",
-      "year": 1941,
-      "source": "https://www.navypedia.org/ships/australia/aus_cr_sydney.htm"
-    },
-    {
-      "id": "australia",
-      "name": "澳大利亚 II",
-      "navy": "au",
-      "year": 1943,
-      "source": "https://www.navypedia.org/ships/australia/aus_cv_australia.htm"
-    },
-    {
-      "id": "achilles",
-      "name": "阿基里斯",
-      "navy": "nz",
-      "year": 1942,
-      "source": "https://www.navypedia.org/ships/new_zealand/nz_cr_achilles.htm"
-    },
-    {
-      "id": "stord",
-      "name": "斯托尔德",
-      "navy": "no",
-      "year": 1943,
-      "source": "https://www.navypedia.org/ships/norway/no_dd_stord.htm"
-    },
-    {
-      "id": "averof",
-      "name": "阿韦罗夫",
-      "navy": "gr",
-      "year": 1941,
-      "source": "https://www.navypedia.org/ships/greece/gr_cr_averof.htm"
-    },
-    {
-      "id": "dubrovnik",
-      "name": "杜布罗夫尼克",
-      "navy": "yu",
-      "year": 1941,
-      "source": "https://www.navypedia.org/ships/yugoslavia/yu_dd_dubrovnik.htm"
-    },
-    {
-      "id": "ilmarinen",
-      "name": "伊尔马里宁",
-      "navy": "fi",
-      "year": 1941,
-      "source": "https://www.navypedia.org/ships/finland/fi_bb_vainamoinen.htm"
-    },
-    {
-      "id": "regele-ferdinand",
-      "name": "费迪南德国王",
-      "navy": "ro",
-      "year": 1941,
-      "source": "https://www.navypedia.org/ships/romania/ro_dd_regele_ferdinand.htm"
-    },
-    {
-      "id": "thonburi",
-      "name": "吞武里",
-      "navy": "th",
-      "year": 1941,
-      "source": "https://www.navypedia.org/ships/thailand/th_bb_sri_ayuthia.htm"
-    },
-    {
-      "id": "bahia",
-      "name": "巴伊亚",
-      "navy": "br",
-      "year": 1944,
-      "source": "https://www.navypedia.org/ships/brazil/br_cr_bahia.htm"
-    },
-    {
-      "id": "bengal",
-      "name": "孟加拉",
-      "navy": "in",
-      "year": 1942,
-      "source": "https://www.navypedia.org/ships/india/in_ms_punjab.htm"
-    },
-    {
-      "id": "natal",
-      "name": "纳塔尔",
-      "navy": "za",
-      "year": 1945,
-      "source": "https://www.navypedia.org/ships/south_africa/saf_es_good_hope.htm"
-    },
-    {
-      "id": "niels-juel",
-      "name": "尼尔斯·尤尔",
-      "navy": "dk",
-      "year": 1943,
-      "source": "https://www.navypedia.org/ships/denmark/dk_bb_niels_iuel.htm"
     }
   ],
   "sharedSourceCandidates": [
@@ -965,7 +825,13 @@
         "iowa",
         "missouri"
       ],
-      "verifiedSameClass": false
+      "verifiedSameClass": true,
+      "canonicalClassId": "iowa",
+      "verifiedOn": "2026-11-17",
+      "sourceSha256": "ce0e6568b77904c2ae39f22d75f79afe2b53afe85e081fe8964c08b192ec7bdd",
+      "evidence": "IOWA battleships (1943 - 1944); BB61 Iowa Comm 22.2.1943; BB63 Missouri Comm 11.6.1944.",
+      "sourceGrade": "secondary-compiler-fetched",
+      "note": "Class identity only. Retained sister-ship/configuration appearances do not count as additional classes; no new art score inferred."
     },
     {
       "source": "https://www.navypedia.org/ships/japan/jap_bb_yamato.htm",
@@ -973,7 +839,13 @@
         "yamato",
         "musashi"
       ],
-      "verifiedSameClass": false
+      "verifiedSameClass": true,
+      "canonicalClassId": "yamato",
+      "verifiedOn": "2026-11-17",
+      "sourceSha256": "955c18dca39c9ffd715da14927a66dfd7be7cd84f7f55d27307412b29b5661de",
+      "evidence": "YAMATO battleships (1941 - 1942); Yamato Comp 16.12.1941; Musashi Comp 5.8.1942. Shinano completed as carrier 1944 is not treated as a served Yamato-class battleship.",
+      "sourceGrade": "secondary-compiler-fetched",
+      "note": "Class identity only. Retained sister-ship/configuration appearances do not count as additional classes; no new art score inferred."
     },
     {
       "source": "https://www.navypedia.org/ships/germany/ger_bb_bismarck.htm",
@@ -981,7 +853,13 @@
         "bismarck",
         "tirpitz"
       ],
-      "verifiedSameClass": false
+      "verifiedSameClass": true,
+      "canonicalClassId": "bismarck",
+      "verifiedOn": "2026-11-17",
+      "sourceSha256": "db720ebd580ccc95bf02ec3d9d53580cea5a3b1747698f41a265c00f4d0ecfab",
+      "evidence": "BISMARCK battleships (1940 - 1941); Bismarck Comp 24.8.1940; Tirpitz Comp 25.2.1941.",
+      "sourceGrade": "secondary-compiler-fetched",
+      "note": "Class identity only. Retained sister-ship/configuration appearances do not count as additional classes; no new art score inferred."
     },
     {
       "source": "https://www.navypedia.org/ships/italy/it_bb_vittorio_veneto.htm",
@@ -989,8 +867,14 @@
         "littorio",
         "roma"
       ],
-      "verifiedSameClass": false
+      "verifiedSameClass": true,
+      "canonicalClassId": "littorio",
+      "verifiedOn": "2026-11-17",
+      "sourceSha256": "1a8897c4116ba9640490ba0211240f7c67020e8b51524ae7f674b749c54d64f8",
+      "evidence": "VITTORIO VENETO battleships (1940 - 1942); Littorio and Roma are in the Ships table under this class heading.",
+      "sourceGrade": "secondary-compiler-fetched",
+      "note": "Class identity only. Retained sister-ship/configuration appearances do not count as additional classes; no new art score inferred."
     }
   ],
-  "warning": "Shared source URL is a research lead, not proof of class identity. All148 geometries remain unreviewed."
+  "warning": "Eight-country runtime appearances only; remaining class/configuration normalization is incomplete. Four sibling pairs have been checked against the fetched class headings and ship tables. Historical art scores do not establish service-inventory coverage."
 }

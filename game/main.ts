@@ -1,3 +1,4 @@
+import { archiveServiceCountries } from './archive-service-countries.ts';
 import { element as $, canvas as canvasElement, button, select, dialog, anchor } from './dom.ts';
 import { isCraftId, isDifficulty } from './types.ts';
 import { readStorage, writeStorage, parsePreferences } from './storage.ts';
@@ -10,13 +11,7 @@ import { trackViewport } from './viewport.ts';
 import { VISUAL_SIGNALS } from './visual-style.ts';
 import { DEFAULT_FLEET, NAVAL_HULLS, historicalShip } from './naval-history.ts';
 import type { FleetSelection } from './naval-history.ts';
-import { ARCHIVE_COUNTRIES, filterArchive } from './historical-archive.ts';
-import { modelReviewStatus, reviewLabel, parseRevisions, parseReviewLedger } from './model-review.ts';
-import revisions from './archive-revisions.json';
-import reviewLedger from './model-reviews.json';
-
-const modelRevisions = parseRevisions(revisions);
-const ledger = parseReviewLedger(reviewLedger);
+import { ARCHIVE_COUNTRIES, ARCHIVE_SURFACE_HULLS, filterArchive } from './historical-archive.ts';
 
 for (const [name, signal] of Object.entries(VISUAL_SIGNALS)) document.documentElement.style.setProperty(`--${name}`, signal.color);
 
@@ -284,7 +279,7 @@ let archiveDetailsOpen = false;
 const ordinaryHelpReady=$('help-ready').innerHTML;
 for (const country of ARCHIVE_COUNTRIES) {
   const option = document.createElement('option');
-  option.value = country.id; option.textContent = country.name;
+  option.value = country.id; option.textContent = country.id === 'ru' ? '俄罗斯' : country.name;
   $('archive-country').append(option);
 }
 function archiveShip() {
@@ -319,7 +314,6 @@ async function showArchive(index: number): Promise<void> {
     $('archive-role').textContent = '';
     $('archive-count').textContent = '0 / 0';
     $('archive-shape').textContent = '当前目录仍在补录，请调整筛选。';
-    $('archive-review').textContent = '';
     $('archive-source').hidden = true;
     $('archive-status').textContent = '暂无图像';
     return;
@@ -327,7 +321,11 @@ async function showArchive(index: number): Promise<void> {
   $('archive-name').textContent = entry.name;
   const ship = archiveShip();
   const className = ship?.className && ship.className !== entry.name ? `${ship.className} · ` : '';
-  $('archive-role').textContent = `${ARCHIVE_COUNTRIES.find(country => country.id === entry.country)?.name ?? entry.country} · ${className}${entry.year}年外观 · ${entry.kind}`;
+  const appearanceCountry = ARCHIVE_COUNTRIES.find(country => country.id === entry.country)?.name ?? entry.country;
+  const serviceCountries = archiveServiceCountries(entry);
+  const operators = serviceCountries.map(id => id === 'ru' ? '俄罗斯' : ARCHIVE_COUNTRIES.find(country => country.id === id)?.name ?? id).join('／');
+  const serviceLabel = serviceCountries.length > 1 ? ` · 曾服役：${operators}` : '';
+  $('archive-role').textContent = `${appearanceCountry}${entry.year}年外观 · ${className}${entry.kind}${serviceLabel}`;
   $('archive-count').textContent = `${archiveIndex + 1} / ${archiveEntries.length}`;
   $('archive-shape').textContent = entry.feature;
   $('archive-shape').title = entry.note;
@@ -339,10 +337,6 @@ async function showArchive(index: number): Promise<void> {
     link.setAttribute('aria-label', `${entry.name}的${index === 0 ? '主要史料' : '补充资料'}，${new URL(url).hostname}，打开新标签页`);
     item.append(link); return item;
   }));
-  const revision = modelRevisions.get(entry.modelId);
-  const status = modelReviewStatus({ modelId: entry.modelId, revision, ledger });
-  $('archive-review').textContent = reviewLabel(status);
-  $('archive-review').dataset.state = status.state;
   select('archive-entry').value = entry.id;
   const source = anchor('archive-source');
   source.href = entry.source; source.hidden = false;
@@ -366,7 +360,7 @@ async function showArchive(index: number): Promise<void> {
 }
 function filterCenturyArchive(): void {
   const category = select('archive-category').value;
-  const surfaceKind = ['fleet-carrier', 'cruiser', 'destroyer', 'battleship', 'patrol-boat', 'transport'].includes(category);
+  const surfaceKind = ARCHIVE_SURFACE_HULLS.some(hull => hull === category);
   archiveEntries = filterArchive({ country: select('archive-country').value, category: surfaceKind ? 'surface' : category, era: select('archive-era').value })
     .filter(entry => !surfaceKind || historicalShip(entry.id)?.hull === category);
   $('archive-entry').replaceChildren(...archiveEntries.map(entry => {

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "scope": "Research backlog for the global served military-aircraft inventory; not a complete worldwide list.",
-  "checkedOn": "2026-11-16",
-  "acceptance": "Every produced model still requires two independent same-round same-revision GPT Sol scores >=9.8. These research records have no models or acceptance scores.",
+  "scope": "Research backlog for the eight retained service countries; not a complete inventory.",
+  "checkedOn": "2026-11-17",
+  "acceptance": "Grok overall and every current model >=9.8 first, then independent GPT Sol xhigh and Claude Opus high overall and every current model >=9.8 on the same round/revision. Research records are not modeled or accepted.",
   "records": [
     {
       "id": "dh4-liberty",
@@ -95,8 +95,8 @@
       "name": "C-47A Skytrain",
       "designCountry": "us",
       "role": "transport",
-      "selectedVariant": "A",
-      "status": "service-evidence-verified",
+      "selectedVariant": "USAAF 1944 C-47A; three-blade radial fit, military double cargo door, main gear retracted with part-exposed wheels",
+      "status": "modelled-pending-council",
       "evidenceYear": 1944,
       "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
       "sources": [
@@ -105,17 +105,56 @@
           "publisher": "National Museum of the United States Air Force",
           "checked": "2026-11-16",
           "supports": "资料明确记载C-47A在1944年执行回收滑翔机任务，支持A型实际服役。"
+        },
+        {
+          "url": "https://www.amcmuseum.org/at-the-museum/aircraft/c-47a-skytrain/",
+          "publisher": "Air Mobility Command Museum",
+          "checked": "2026-11-17",
+          "sourceSha256": "1c5af0fec4850e1eefeb824e8e0436b334185ee45ffa8a6542dffe5e54acc83c",
+          "supports": "C-47A serial42-92841 assignment diary:21Apr1944 assigned61stTroopCarrierSquadron;6Jun1944 actualNormandyairdrop. Specifications63ft9inlength95ft6inspan,R1830-90C. FirstFlight23Dec1941 isnotthisairframe service date."
+        },
+        {
+          "url": "https://www.airwar.ru/enc/cww2/c47.html",
+          "publisher": "Airwar secondary compilation",
+          "checked": "2026-11-17",
+          "sourceSha256": "09518d2969936af60ed8b7c2f72e8fbfc142244dd0405a0d3c655e28f9655e39",
+          "supports": "Variant-labelled C-46A/C-47A recognition outline/specification, actually fetched and viewed; not original factory engineering drawing."
+        },
+        {
+          "url": "https://www.airwar.ru/image/idop/cww2/c47/c47-1.gif",
+          "publisher": "Airwar secondary compilation",
+          "checked": "2026-11-17",
+          "sourceSha256": "11b45fdc5e4d7e7dec42d6e9ecaa22f206ac08cbb947abc05af56d58c0c237c4",
+          "supports": "Variant-labelled C-46A/C-47A recognition outline/specification, actually fetched and viewed; not original factory engineering drawing."
         }
       ],
-      "geometry": null,
+      "geometry": {
+        "modelId": "archive-c47a",
+        "source": "assets/blender/century-archive.blend",
+        "generator": "scripts/blender/build_archive.py",
+        "status": "modelled-awaiting-council",
+        "lengthMetres": 19.431,
+        "spanMetres": 29.1084,
+        "appearanceYear": 1944,
+        "reference": "Actual AMC museum specifications and retrieved Airwar secondary recognition outline; not engineering reconstruction"
+      },
       "review": {
-        "state": "not-modelled",
+        "state": "pending-council",
         "scores": []
       },
       "openQuestions": [
-        "该网页实物为C-47D，涂装表现C-47A；不得把实物身份、展示涂装与选定改型混为一项。",
-        "后续需A型尺寸、货舱门、发动机短舱、尾翼及起落架参考。"
-      ]
+        "不同运营国与许可生产身份仍逐项核对，此模型不自动新增跨国服役关系。",
+        "二手识别图仅用于低多边形外形近似；军用构型、馆藏后期改装和民用履历分开。",
+        "当前模型等待新的Grok优先三方评分，无任何第16轮通过记录。"
+      ],
+      "specificationEvidence": {
+        "sourceSha256": "1c5af0fec4850e1eefeb824e8e0436b334185ee45ffa8a6542dffe5e54acc83c",
+        "verbatimImperial": {
+          "length": "63 ft 9 in",
+          "span": "95 ft 6 in"
+        },
+        "limitations": "Selected AMC A dimensions; do not mix generic64ft5in family figure or C117 enlargedtail. Primary original curl403 retained; Node actually retrieved full200article."
+      }
     },
     {
       "id": "pby5a",
@@ -158,7 +197,7 @@
       "designCountry": "us",
       "role": "assault-glider",
       "selectedVariant": "A",
-      "status": "service-evidence-verified",
+      "status": "modelled-pending-council",
       "evidenceYear": 1943,
       "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
       "sources": [
@@ -169,14 +208,20 @@
           "supports": "CG-4A于1943年7月西西里行动投入使用；是无动力军用运输滑翔机。"
         }
       ],
-      "geometry": null,
+      "geometry": {
+        "modelId": "archive-cg4a",
+        "lengthMetres": 14.732,
+        "spanMetres": 25.5016,
+        "appearanceYear": 1944,
+        "reference": "Kaboldy CC BY-SA 4.0 secondary three-view; official museum dimensions"
+      },
       "review": {
-        "state": "not-modelled",
+        "state": "pending-council",
         "scores": []
       },
       "openQuestions": [
-        "须支持无发动机飞机，不把其自动标成螺旋桨战斗机。",
-        "机首整体开启、货舱形态及双翼撑杆需要原始照片与图纸。"
+        "二手三视图用于辨识；不宣称工程级外形复原。",
+        "新版本须Grok先≥9.8，再由GPT和Claude同版本独立评分均≥9.8。"
       ]
     },
     {
@@ -214,7 +259,7 @@
       "name": "Macchi MB.326（双座教练型）",
       "designCountry": "it",
       "role": "jet-trainer",
-      "selectedVariant": "意大利空军双座训练构型",
+      "selectedVariant": "意大利空军无后缀MB.326双座、无武装训练构型；不采用未建造MB.326A方案",
       "status": "service-evidence-verified",
       "evidenceYear": 1962,
       "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
@@ -224,73 +269,36 @@
           "publisher": "Aeronautica Militare",
           "checked": "2026-11-16",
           "supports": "意大利空军记载双座MB.326自1962年用于Galatina喷气基础飞行训练。"
-        }
-      ],
-      "geometry": null,
-      "review": {
-        "state": "not-modelled",
-        "scores": []
-      },
-      "openQuestions": [
-        "网页URL和后段文字涉及单座K型，不能直接把其尺寸表套入双座教练型。",
-        "许可生产的Impala、EMB-326等先作为改型/生产关系记录，须核对再决定是否保留独立几何。"
-      ]
-    },
-    {
-      "id": "a29-super-tucano",
-      "familyId": "embraer-emb314",
-      "name": "A-29 Super Tucano",
-      "designCountry": "br",
-      "role": "light-attack-trainer",
-      "selectedVariant": null,
-      "status": "service-evidence-verified",
-      "evidenceYear": 2004,
-      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
-      "sources": [
+        },
         {
-          "url": "https://www.fab.mil.br/notimp/mostra/31102019",
-          "publisher": "Agência Força Aérea / Força Aérea Brasileira",
-          "checked": "2026-11-16",
-          "supports": "巴西空军报道记载A-29于2004年10月到达Joker中队，开始使用该机训练。"
-        }
-      ],
-      "geometry": null,
-      "review": {
-        "state": "not-modelled",
-        "scores": []
-      },
-      "openQuestions": [
-        "需选定A-29A单座或A-29B双座，当前不把家族照片直接当成精确改型依据。",
-        "不混入EMB-312 Tucano的几何。"
-      ]
-    },
-    {
-      "id": "hal-ht2",
-      "familyId": "hal-ht2",
-      "name": "HAL HT-2",
-      "designCountry": "in",
-      "role": "basic-trainer",
-      "selectedVariant": "HT-2",
-      "status": "military-delivery-verified",
-      "evidenceYear": null,
-      "evidenceYearMeaning": "documented service or operational event; not automatically entry into service",
-      "sources": [
+          "url": "https://www.airwar.ru/enc/attack/mb326.html",
+          "publisher": "Airwar（二手汇编）",
+          "checked": "2026-11-17",
+          "sourceSha256": "2e2cf6a738a79ee27748bb9cea455314a8483a76ae9f00dd22015f74c1ca6db1",
+          "supports": "此二手页面将规格列标为MB.326A；英、意版本Variants段均明确A为未建造武装方案。本表不作为所选服役基本型的独立尺寸证明；页面未加A后缀的通用三视图仅作外形线索。"
+        },
         {
-          "url": "https://hal-india.co.in/our-history",
-          "publisher": "Hindustan Aeronautics Limited",
-          "checked": "2026-11-16",
-          "supports": "制造商记载HT-2由本公司设计生产并向印度空军等客户交付，1951年8月是首飞时间。"
+          "url": "https://it.wikipedia.org/wiki/Aermacchi_MB-326",
+          "publisher": "意大利语Wikipedia（二手汇编）",
+          "checked": "2026-11-17",
+          "sourceSha256": "75fe5d2a323f2d8e43e89c48f7a8901cdfe6f64715f42427baae7e4db0f101d6",
+          "supports": "Variants明确无后缀MB326为意大利空军生产训练型、MB326A为proposta ma mai costruita（未建造方案）。通用信息框列10.56m翼展、10.65m长、19m²；首图K型不作基本型外形依据。这是单一二手尺寸口径，不能称独立制造商核验。"
         }
       ],
-      "geometry": null,
+      "geometry": {
+        "modelId": "archive-mb326",
+        "source": "assets/blender/century-archive.blend",
+        "generator": "scripts/blender/build_archive.py",
+        "status": "modelled-awaiting-council"
+      },
       "review": {
-        "state": "not-modelled",
+        "state": "pending-council",
         "scores": []
       },
       "openQuestions": [
-        "目前已核实军方交付，仍需作战单位或训练学校实际使用资料。",
-        "不能把1951年首飞日期填成服役年份。",
-        "后续核实印度独立后设计来源，不能沿用旧舰库“英属印度”运营国标签。"
+        "MB.326A未建造武装方案排除；已核实1962年训练服役的对象为无后缀MB.326双座基本型。",
+        "当前10.56m翼展、10.65m长及19m²采用意大利语百科通用信息框，尚缺独立制造商尺寸；Airwar标A的表格不再计作独立印证。",
+        "许可生产及E/G/K等实际运营或独立构型继续按规范身份归并；未核实其他服役国不外推。"
       ]
     },
     {
@@ -320,6 +328,516 @@
         "不能把KC-135A窄短舱直接复用为R型。",
         "交付、正式接收与最早改装试验日期分开，不预设整个家族一个服役日期。",
         "需要吊舱尺寸、后机身加油杆与后掠翼参考图。"
+      ]
+    },
+    {
+      "id": "j20-early-service",
+      "familyId": "chengdu-j20",
+      "name": "歼-20（早期部队外形）",
+      "designCountry": "cn",
+      "serviceCountries": [
+        "cn"
+      ],
+      "role": "fighter",
+      "selectedVariant": "2018年部队外形，具体机体批次待参考核对",
+      "status": "service-evidence-verified",
+      "evidenceYear": 2018,
+      "evidenceYearMeaning": "source explicitly dates assignment to operational units; not a first-flight date",
+      "sources": [
+        {
+          "url": "https://www.81.cn/2022zt/2022-10/10/content_10190983.htm",
+          "publisher": "中国军网／解放军报",
+          "checked": "2026-11-17",
+          "sourceSha256": "a8555327361891b82071d57c3793cb0a3952ce4b9983a73be54f50ad4a10175b",
+          "supports": "2018年2月9日，空军新闻发言人发布消息，歼-20开始列装空军作战部队。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "需所选年份三视图、尺寸、双垂尾外倾、鸭翼、进气道及发动机外形证据。",
+        "不把后期改型或推测内部结构混入2018年外形。"
+      ]
+    },
+    {
+      "id": "y20-early-service",
+      "familyId": "xian-y20",
+      "name": "运-20（早期部队外形）",
+      "designCountry": "cn",
+      "serviceCountries": [
+        "cn"
+      ],
+      "role": "transport",
+      "selectedVariant": "2016年运输型，具体机体批次待参考核对",
+      "status": "service-evidence-verified",
+      "evidenceYear": 2016,
+      "evidenceYearMeaning": "source explicitly states assignment to Air Force units; not a first-flight date",
+      "sources": [
+        {
+          "url": "https://www.81.cn/2022zt/2022-10/10/content_10190983.htm",
+          "publisher": "中国军网／解放军报",
+          "checked": "2026-11-17",
+          "sourceSha256": "a8555327361891b82071d57c3793cb0a3952ce4b9983a73be54f50ad4a10175b",
+          "supports": "2016年7月6日，运-20正式列装空军部队。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "需四发高翼、T形尾翼、起落架整流罩、发动机及货舱外形原图和尺寸。",
+        "不把后期发动机或加油机外形混入2016年运输型。"
+      ]
+    },
+    {
+      "id": "macchi-c202",
+      "familyId": "macchi-c202",
+      "name": "Macchi C.202 Folgore",
+      "designCountry": "it",
+      "serviceCountries": [
+        "it"
+      ],
+      "role": "fighter",
+      "selectedVariant": "1941年初期部队外形，批次未定",
+      "status": "secondary-service-evidence-needs-corroboration",
+      "evidenceYear": 1941,
+      "evidenceYearMeaning": "secondary account of operational delivery; not a first-flight date",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Macchi_C.202",
+          "publisher": "Wikipedia，转引型号史与航空书籍；尚需核对原书或官方馆藏",
+          "checked": "2026-11-17",
+          "sourceSha256": "cbcb8f8ae99f12fb444705f780d33d119c94376dc7a299e41a57a75ac79841d4",
+          "supports": "正文记载1941年7月29日首三架作战C.202抵达Merna、11月参加北非行动；规格表长8.85米、翼展10.58米、翼面积16.82平方米。"
+        }
+      ],
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "需原始三视图、左右翼不等长、腹部散热器、座舱及发动机机首构型。",
+        "NASM试探链接即使HTTP200也按藏品ID跳至空速表清理泵，已拒用；不能据URL文字认定实物身份。",
+        "意大利空军博物馆试探地址未取得，仍需可靠官方或出版物佐证。"
+      ]
+    },
+    {
+      "id": "cj6a",
+      "familyId": "nanchang-cj6",
+      "name": "初教-6A（早期军用教练型）",
+      "designCountry": "cn",
+      "serviceCountries": [
+        "cn"
+      ],
+      "role": "basic-trainer",
+      "selectedVariant": "285hp HS6A、无武装、双座串列低翼的早期军用训练构型",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1962,
+      "evidenceYearMeaning": "中新网明确区分1958首飞和1962定型服役／交付部队；此年支持家族服役，不宣称独立核实A后缀首批日期",
+      "sources": [
+        {
+          "url": "https://www.chinanews.com/gn/2019/02-28/8767631.shtml",
+          "publisher": "中国新闻网／洪都公司供图",
+          "checked": "2026-11-17",
+          "sourceSha256": "4dbde405f1d4173005592c93da51afd8e77b41f774e0757ee72bd214fbd8dfb5",
+          "supports": "中新网2019年2月28日报道：初教6飞机于1958年首飞，1962年定型服役；自1962年定型后交付部队以来，总计飞行约1000万小时。配图明确空军航空大学开学典礼飞行表演、洪都公司供图。"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Nanchang_CJ-6",
+          "publisher": "Wikipedia, citing Jane’s Aircraft Recognition Guide",
+          "checked": "2026-11-17",
+          "sourceSha256": "1763074c710b3003bad4b3b984710fee796067ae8f38161424df98ab19913016",
+          "supports": "Specifications (CJ-6A): length 8.46m, wingspan 10.22m, two crew；PLAAF、PLANAF实际运营。二手汇编，非制造商图纸。"
+        },
+        {
+          "url": "http://www.warbirdalley.com/cj6.htm",
+          "publisher": "Warbird Alley",
+          "checked": "2026-11-17",
+          "sourceSha256": "2d81c38b799b94cbdaf7746d57e72149033293442a6d8f7c4c4615d6e0fd5546",
+          "supports": "Specifications(CJ-6A)列285hp HS6A、Armament: None；另段1962为A型生产，不与初始服役混同。"
+        }
+      ],
+      "geometry": {
+        "modelId": "archive-cj6a",
+        "source": "assets/blender/century-archive.blend",
+        "generator": "scripts/blender/build_archive.py",
+        "status": "modelled-awaiting-council"
+      },
+      "review": {
+        "state": "pending-council",
+        "scores": []
+      },
+      "openQuestions": [
+        "中国新闻网洪都公司正面照片与实际取得三视图已确认前三点起落架、外翼上反与平顶梯形垂尾；所选模型为起落架收起的军用A型。",
+        "二手资料通用CJ6的10.18米翼展、22.60平方米面积与CJ6A的10.22米资料存在冲突；不混用表格，不宣称精确工程复原。"
+      ]
+    },
+    {
+      "id": "c46a",
+      "familyId": "curtiss-c46",
+      "name": "C-46A Commando",
+      "designCountry": "us",
+      "serviceCountries": [
+        "us"
+      ],
+      "role": "military-transport",
+      "selectedVariant": "USAAF 1944 C-46A; four-blade standard radial fit, main gear retracted",
+      "status": "modelled-pending-council",
+      "evidenceYear": 1945,
+      "evidenceYearMeaning": "source-specific delivery or operational event; not necessarily initial family entry into service",
+      "sources": [
+        {
+          "url": "https://www.amcmuseum.org/at-the-museum/aircraft/c-46a-commando/",
+          "publisher": "Air Mobility Command Museum",
+          "checked": "2026-11-17",
+          "sourceSha256": "a1122783e587457d90be46f06b337480b56503b30729877422005906f9790fd5",
+          "supports": "Assignment history:23 May1945 delivered fromCurtiss-Wright SaintLouis asUSAAF43-47350;10June1945 transferredtoCNACbyLendLease. Museumdisplay aircraftlaterciviluse;notproofthatCNACwasChineseArmedForcesoperator."
+        },
+        {
+          "url": "https://www.airwar.ru/enc/cww2/c46.html",
+          "publisher": "Airwar secondary compilation",
+          "checked": "2026-11-17",
+          "sourceSha256": "2ac7d6c035dadb671ab6538072e7dbe143356965f0a41d2c08da53da6cecd503",
+          "supports": "Variant-labelled C-46A/C-47A recognition outline/specification, actually fetched and viewed; not original factory engineering drawing."
+        },
+        {
+          "url": "https://www.airwar.ru/image/idop/cww2/c46/c46-1.gif",
+          "publisher": "Airwar secondary compilation",
+          "checked": "2026-11-17",
+          "sourceSha256": "e051c991b210e00886e17fe83cb3a89500f29b9ac8ac1b60a39e5ffbbb2192ac",
+          "supports": "Variant-labelled C-46A/C-47A recognition outline/specification, actually fetched and viewed; not original factory engineering drawing."
+        }
+      ],
+      "specificationEvidence": {
+        "sourceSha256": "a1122783e587457d90be46f06b337480b56503b30729877422005906f9790fd5",
+        "verbatimImperial": {
+          "span": "108 ft 0 in",
+          "length": "76 ft 4 in"
+        },
+        "limitations": "Maidenflight26March1940 isfamilycivilCW20date, notmilitaryservice. Thecurrentdisplaylatercivilcareer doesnoteraseUSAAFdelivery."
+      },
+      "geometry": {
+        "modelId": "archive-c46a",
+        "source": "assets/blender/century-archive.blend",
+        "generator": "scripts/blender/build_archive.py",
+        "status": "modelled-awaiting-council",
+        "lengthMetres": 23.2664,
+        "spanMetres": 32.9184,
+        "appearanceYear": 1944,
+        "reference": "Actual AMC museum specifications and retrieved Airwar secondary recognition outline; not engineering reconstruction"
+      },
+      "review": {
+        "state": "pending-council",
+        "scores": []
+      },
+      "openQuestions": [
+        "不同运营国与许可生产身份仍逐项核对，此模型不自动新增跨国服役关系。",
+        "二手识别图仅用于低多边形外形近似；军用构型、馆藏后期改装和民用履历分开。",
+        "当前模型等待新的Grok优先三方评分，无任何第16轮通过记录。"
+      ]
+    },
+    {
+      "id": "c54g",
+      "familyId": "douglas-c54",
+      "name": "C-54G Skymaster",
+      "designCountry": "us",
+      "serviceCountries": [
+        "us"
+      ],
+      "role": "military-transport",
+      "selectedVariant": "C-54G Skymaster; actual military-service representative, retracted tricycle gear",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1945,
+      "evidenceYearMeaning": "source-specific delivery or operational event; not necessarily initial family entry into service",
+      "sources": [
+        {
+          "url": "https://museumofaviation.org/portfolio/c-54g-skymaster/",
+          "publisher": "Museum of Aviation",
+          "checked": "2026-11-17",
+          "sourceSha256": "af97c596f8b7376dd87118f810e85ad16d65a5bc912c7ac78ceb32eacd236c4e",
+          "supports": "Museum aircraft deliveredUSAAF August1945, BerlinAirlift service in22ndTransportUnit/313thTroopCarrierGroup; original text actually retrieved."
+        }
+      ],
+      "specificationEvidence": {
+        "sourceSha256": "af97c596f8b7376dd87118f810e85ad16d65a5bc912c7ac78ceb32eacd236c4e",
+        "verbatimImperial": {
+          "span": "117 ft 6 in",
+          "length": "93 ft 5 in"
+        },
+        "limitations": "Secondary Wiki C54G table gives93ft10in. Difference5in; no false independent agreement."
+      },
+      "geometry": {
+        "modelId": "archive-c54g",
+        "source": "assets/blender/century-archive.blend",
+        "generator": "scripts/blender/build_archive.py",
+        "status": "modelled-awaiting-council",
+        "lengthMetres": 28.4734,
+        "spanMetres": 35.814,
+        "appearanceYear": 1960,
+        "reference": "Variant-labelled museum service/specification and photographs; different-variant family outlines identified explicitly; not engineering reconstruction"
+      },
+      "review": {
+        "state": "pending-council",
+        "scores": []
+      },
+      "openQuestions": [
+        "Secondary Wiki C54G table gives93ft10in. Difference5in; no false independent agreement.",
+        "不同改型识别图只辅助家族轮廓，不是本构型原厂三视图；仍须新的Grok优先三席评分。"
+      ]
+    },
+    {
+      "id": "c119c",
+      "familyId": "fairchild-c119",
+      "name": "C-119C Flying Boxcar",
+      "designCountry": "us",
+      "serviceCountries": [
+        "us"
+      ],
+      "role": "military-transport",
+      "selectedVariant": "C-119C Flying Boxcar; actual military-service representative, retracted tricycle gear",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1951,
+      "evidenceYearMeaning": "source-specific delivery or operational event; not necessarily initial family entry into service",
+      "sources": [
+        {
+          "url": "https://museumofaviation.org/portfolio/c-119c-flying-boxcar/",
+          "publisher": "Museum of Aviation",
+          "checked": "2026-11-17",
+          "sourceSha256": "8bcb306b4dbfad69187388e303f57b7844de25db67fc2ce29338e3f49f9716d9",
+          "supports": "USAFdeliveryOctober1951 andworldwidemilitarycareerexplicit onactualCmodelmuseumrecord."
+        }
+      ],
+      "specificationEvidence": {
+        "sourceSha256": "8bcb306b4dbfad69187388e303f57b7844de25db67fc2ce29338e3f49f9716d9",
+        "verbatimImperial": {
+          "span": "109 ft 4 in",
+          "length": "86 ft 6 in"
+        },
+        "limitations": "Page saysWrightR4360; manufacturerattributionconflictswithPrattWhitneyR4360 secondaryCspec. Span1inlargerthansecondary109ft3. Do notcopyG-modelWrightR3350 orcivilJetPak."
+      },
+      "geometry": {
+        "modelId": "archive-c119c",
+        "source": "assets/blender/century-archive.blend",
+        "generator": "scripts/blender/build_archive.py",
+        "status": "modelled-awaiting-council",
+        "lengthMetres": 26.3652,
+        "spanMetres": 33.3248,
+        "appearanceYear": 1955,
+        "reference": "Variant-labelled museum service/specification and photographs; different-variant family outlines identified explicitly; not engineering reconstruction"
+      },
+      "review": {
+        "state": "pending-council",
+        "scores": []
+      },
+      "openQuestions": [
+        "Page saysWrightR4360; manufacturerattributionconflictswithPrattWhitneyR4360 secondaryCspec. Span1inlargerthansecondary109ft3. Do notcopyG-modelWrightR3350 orcivilJetPak.",
+        "不同改型识别图只辅助家族轮廓，不是本构型原厂三视图；仍须新的Grok优先三席评分。"
+      ]
+    },
+    {
+      "id": "c124a",
+      "familyId": "douglas-c124",
+      "name": "C-124A Globemaster II",
+      "designCountry": "us",
+      "serviceCountries": [
+        "us"
+      ],
+      "role": "military-transport",
+      "selectedVariant": "C124A; dated fit requires outline verification before modelling",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1950,
+      "evidenceYearMeaning": "source-specific delivery or operational event; not necessarily initial family entry into service",
+      "sources": [
+        {
+          "url": "https://www.amcmuseum.org/at-the-museum/aircraft/c-124a-globemaster-ii/",
+          "publisher": "Air Mobility Command Museum",
+          "checked": "2026-11-17",
+          "sourceSha256": "41c93b7977867fedf61f01a5d4a3fcb1dfc06ce1fcc3c5ddcebe8b2abf1aef4e",
+          "supports": "OperationaldeliveriesMay1950; museumA servedMATS,AFRES,SAC,TAC."
+        }
+      ],
+      "specificationEvidence": {
+        "sourceSha256": "41c93b7977867fedf61f01a5d4a3fcb1dfc06ce1fcc3c5ddcebe8b2abf1aef4e",
+        "verbatimImperial": {
+          "span": "174 ft 2 in",
+          "length": "130 ft 5 in"
+        },
+        "limitations": "Source states C noseweather-radar andwingtipheater laterretrofittedtoAs. Table engine63A could mixlaterfits. Selectdatedconfigurationbefore geometry; usephotographs/reference forA vsC."
+      },
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "需要所选构型三视图、翼弦／上反、发动机短舱、机尾／货舱门和实际结构接合的独立参考。",
+        "Source states C noseweather-radar andwingtipheater laterretrofittedtoAs. Table engine63A could mixlaterfits. Selectdatedconfigurationbefore geometry; usephotographs/reference forA vsC."
+      ]
+    },
+    {
+      "id": "c133b",
+      "familyId": "douglas-c133",
+      "name": "C-133B Cargomaster",
+      "designCountry": "us",
+      "serviceCountries": [
+        "us"
+      ],
+      "role": "military-transport",
+      "selectedVariant": "C133B; dated fit requires outline verification before modelling",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1961,
+      "evidenceYearMeaning": "source-specific delivery or operational event; not necessarily initial family entry into service",
+      "sources": [
+        {
+          "url": "https://www.amcmuseum.org/at-the-museum/aircraft/c-133b-cargomaster/",
+          "publisher": "Air Mobility Command Museum",
+          "checked": "2026-11-17",
+          "sourceSha256": "ed345f61750daf454dffaa2d87467a4766cc7b2b337dd98dfb59c24dc05f6b73",
+          "supports": "MuseumB59-536 lastproduction1961; deliveredUSAF then1501stATW; AfirstdeliveryAug1957 isdistinctevent."
+        }
+      ],
+      "specificationEvidence": {
+        "sourceSha256": "ed345f61750daf454dffaa2d87467a4766cc7b2b337dd98dfb59c24dc05f6b73",
+        "verbatimImperial": {
+          "span": "179 ft 7 in",
+          "length": "157 ft 5 in"
+        },
+        "limitations": "SecondaryBtable154ft3in x179ft9in. MuseumdiscusseslateA/Bclamshellrear adding3ftcargolength; exteriorlengthdifference3ft2in notresolved. No newgeometryyet."
+      },
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "需要所选构型三视图、翼弦／上反、发动机短舱、机尾／货舱门和实际结构接合的独立参考。",
+        "SecondaryBtable154ft3in x179ft9in. MuseumdiscusseslateA/Bclamshellrear adding3ftcargolength; exteriorlengthdifference3ft2in notresolved. No newgeometryyet."
+      ]
+    },
+    {
+      "id": "c141a",
+      "familyId": "lockheed-c141",
+      "name": "C-141A Starlifter",
+      "designCountry": "us",
+      "serviceCountries": [
+        "us"
+      ],
+      "role": "military-transport",
+      "selectedVariant": "C141A; dated fit requires outline verification before modelling",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1965,
+      "evidenceYearMeaning": "source-specific delivery or operational event; not necessarily initial family entry into service",
+      "sources": [
+        {
+          "url": "https://www.amcmuseum.org/at-the-museum/aircraft/c-141a-starlifter/",
+          "publisher": "Air Mobility Command Museum",
+          "checked": "2026-11-17",
+          "sourceSha256": "a2170bfb1ec292d000f859c39aca2f04b0f5659e5e4476b88180d3de0373d6bf",
+          "supports": "Museum text says productiondeliveries1965(284USAF,1NASA). Display61-2775 was first/testaircraft, NOT operationalairframe evidence by itself. Earlier militarychronology supports1964trainingunitdelivery."
+        }
+      ],
+      "specificationEvidence": {
+        "sourceSha256": "a2170bfb1ec292d000f859c39aca2f04b0f5659e5e4476b88180d3de0373d6bf",
+        "verbatimImperial": {
+          "span": "160 ft",
+          "length": "145 ft"
+        },
+        "limitations": "Wiki table is C141B:168ft4in. Do not apply stretchedB dimensions toA; testaircraft display details are not automatically operationalA."
+      },
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "需要所选构型三视图、翼弦／上反、发动机短舱、机尾／货舱门和实际结构接合的独立参考。",
+        "Wiki table is C141B:168ft4in. Do not apply stretchedB dimensions toA; testaircraft display details are not automatically operationalA."
+      ]
+    },
+    {
+      "id": "c5a",
+      "familyId": "lockheed-c5",
+      "name": "C-5A Galaxy",
+      "designCountry": "us",
+      "serviceCountries": [
+        "us"
+      ],
+      "role": "military-transport",
+      "selectedVariant": "C5A; dated fit requires outline verification before modelling",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1970,
+      "evidenceYearMeaning": "source-specific delivery or operational event; not necessarily initial family entry into service",
+      "sources": [
+        {
+          "url": "https://www.amcmuseum.org/at-the-museum/aircraft/c-5a-galaxy/",
+          "publisher": "Air Mobility Command Museum",
+          "checked": "2026-11-17",
+          "sourceSha256": "b2d191be08d2520788a2ccf52c0654b41a4f3051e381168971c1475f5f52adb4",
+          "supports": "Museum text operational1970; display69-0014 delivered436thMAW.1969trainingdelivery in earlier chronology remains distinct."
+        }
+      ],
+      "specificationEvidence": {
+        "sourceSha256": "b2d191be08d2520788a2ccf52c0654b41a4f3051e381168971c1475f5f52adb4",
+        "verbatimImperial": {
+          "span": "222 ft 8 in",
+          "length": "247 ft 10 in"
+        },
+        "limitations": "CurrentsecondaryWiki specificationsC5M length247ft1in, span222ft9in; TF39A and F138M powerplants differ."
+      },
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "需要所选构型三视图、翼弦／上反、发动机短舱、机尾／货舱门和实际结构接合的独立参考。",
+        "CurrentsecondaryWiki specificationsC5M length247ft1in, span222ft9in; TF39A and F138M powerplants differ."
+      ]
+    },
+    {
+      "id": "kc10a",
+      "familyId": "mcdonnell-douglas-kc10",
+      "name": "KC-10A Extender",
+      "designCountry": "us",
+      "serviceCountries": [
+        "us"
+      ],
+      "role": "tanker-transport",
+      "selectedVariant": "KC10A; dated fit requires outline verification before modelling",
+      "status": "service-evidence-verified",
+      "evidenceYear": 1981,
+      "evidenceYearMeaning": "source-specific delivery or operational event; not necessarily initial family entry into service",
+      "sources": [
+        {
+          "url": "https://www.amcmuseum.org/at-the-museum/aircraft/kc-10a-extender/",
+          "publisher": "Air Mobility Command Museum",
+          "checked": "2026-11-17",
+          "sourceSha256": "081a30360dd510b0c73a4d8f49fede0d60a07edbbfe607781623395072c55785",
+          "supports": "Museumtext saysenteredservice1981; retainedearlierprimarychronology17Marchdelivery."
+        }
+      ],
+      "specificationEvidence": {
+        "sourceSha256": "081a30360dd510b0c73a4d8f49fede0d60a07edbbfe607781623395072c55785",
+        "verbatimImperial": {
+          "span": "165 ft 4 1/2 in",
+          "length": "181 ft 7 in"
+        },
+        "limitations": "Still inservice atmuseumtable isoutdatedsnapshot. Currentretirementstatusnotinferredfromundatedpage; model canrepresentdatedserved1981configuration."
+      },
+      "geometry": null,
+      "review": {
+        "state": "not-modelled",
+        "scores": []
+      },
+      "openQuestions": [
+        "需要所选构型三视图、翼弦／上反、发动机短舱、机尾／货舱门和实际结构接合的独立参考。",
+        "Still inservice atmuseumtable isoutdatedsnapshot. Currentretirementstatusnotinferredfromundatedpage; model canrepresentdatedserved1981configuration."
       ]
     }
   ]

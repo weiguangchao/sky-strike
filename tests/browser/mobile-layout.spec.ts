@@ -2,6 +2,7 @@ import { required } from '../support.ts';
 import {test,expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
+import { HANDBOOK_ARCHIVE } from '../../game/historical-archive.ts';
 
 async function settle(page:Page) {
   await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
@@ -124,13 +125,11 @@ test.describe('phone visible viewport',()=>{
       },scenario);
       await viewport(page,{width:scenario.width,height:scenario.visibleHeight,offsetTop:scenario.offsetTop});
       await page.locator('#pause-button').click();await page.locator('#pause-help').click();
-      for(const [panel,pages] of [['controls',1],['intel',15],['campaign',10],['archive',168]] as const) {
+      for(const [panel,pages] of [['controls',1],['intel',15],['campaign',10],['archive',HANDBOOK_ARCHIVE.length]] as const) {
         await page.locator(`#help-tab-${panel}`).click();
         for(let i=0;i<pages;i++) {
           if(panel==='archive') {
             await expect(page.locator('#archive-status')).toBeEmpty();
-            // Reserve room for the longer approved label without manufacturing an approval record.
-            await page.locator('#archive-review').evaluate(element=>{element.textContent='双评通过 9.8/10';});
           }
           await settle(page);
           const layout=await page.locator('#help-dialog').evaluate(element=>({

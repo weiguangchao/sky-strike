@@ -1,0 +1,541 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-11-18",
+  "scopeComplete": false,
+  "notAnArtReview": true,
+  "scope": "Evidence-based identity boundaries and reuse of existing aircraft representatives; no claim of eight-country inventory completeness.",
+  "method": "Licensed original names and equipment configurations share an ancestor type; a substantially redesigned airframe with actual military service evidence receives a distinct identity. Dated actual operations and publication upper bounds do not have to be the first-service date.",
+  "idMigrations": [
+    {
+      "from": "mil-mi17",
+      "to": "mil-mi8"
+    },
+    {
+      "from": "kamov-ka31",
+      "to": "kamov-ka27"
+    },
+    {
+      "from": "northrop-f5",
+      "to": [
+        "northrop-f5a",
+        "northrop-f5e"
+      ]
+    }
+  ],
+  "parentCorrections": [
+    {
+      "candidateUrl": "https://en.wikipedia.org/wiki/Harbin_Z-9",
+      "subject": "Z-19 cross-link",
+      "change": "Replace the redundant unknown-service remainder with same-as to the existing officially service-verified harbin-z19; original Z-19 row remains unchanged."
+    },
+    {
+      "candidateUrl": "https://en.wikipedia.org/wiki/Chengdu_J-7",
+      "subject": "J-7E",
+      "change": "Ambiguous to service-verified separate double-delta identity; actual dated replacement is in the original cached body."
+    },
+    {
+      "candidateUrl": "https://en.wikipedia.org/wiki/Shenyang_J-8",
+      "subject": "J-8II/J-8B",
+      "change": "Ambiguous to service-verified separate side-intake identity; actual 1 April 2001 operation is explicit in the same body."
+    }
+  ],
+  "decisions": [
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Shenyang_J-11",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Shenyang_J-11",
+        "sourceSha256": "7adb300a1f3d85e064fba4bfabb590da1d1863783b8798eb3403f0c8aaf232e0",
+        "checkedOn": "2026-11-18",
+        "rationale": "Dated PLAAF use is J-11B at Shaheen 1 in March 2011. FlightGlobal, 21 October 1998, says the licence assembly was of the Su-27SK, printed there as F-11, with AL-31F engines and avionics still Russian-supplied. That is a programme statement, not an acceptance date. The page's '200 Su-27UBKs' sentence conflicts with it and is not used. The J-11B is described as a variant with domestic subsystems, without a new wing or fuselage length. J-15 and J-16 are not included."
+      },
+      "canonicalId": "sukhoi-su27",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[military-exercise 2011-03] “PLAAF J-11Bs participated in Shaheen 1, a joint Sino-Pakistani exercise, in March 2011.” [https://en.wikipedia.org/wiki/Shenyang_J-11]",
+      "disposition": "configuration",
+      "configuration": "J-11B domestic-subsystem fit of the Su-27SK; licence-assembled J-11 is the same type",
+      "modelId": null
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Xi'an_H-6",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Xi'an_H-6",
+        "sourceSha256": "a8a3478e5b90e9ee6d860b25f9f72820b13fb71e0aef7036ea213e20f2823284",
+        "checkedOn": "2026-11-18",
+        "rationale": "Tu-16 deliveries began in 1958, and the first Chinese-assembled Tu-16 was transferred to the PLAAF in the December after its 27 September 1959 maiden flight. The 24 December 1968 domestic first flight is not acceptance. GlobalSecurity describes the original nose as round and glassed-in."
+      },
+      "canonicalId": "tupolev-tu16",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[delivery 1958; PLAAF transfer in the December after the 27 September 1959 maiden flight] “Delivery of the Tu-16 to China began in 1958” / “the first Chinese Tu-16 completed its maiden flight and in December was transferred to the PLAAF.” [https://en.wikipedia.org/wiki/Xi'an_H-6]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Xi'an_H-6",
+      "evidence": {
+        "source": "https://www.81.cn/bq_208581/jdt_208582/10025260.html",
+        "sourceSha256": "1bd3ab3b57c6b901c7459770420ac8ea6633c21397ad79ad985738de3f4c5216",
+        "checkedOn": "2026-11-18",
+        "rationale": "By the 20 April 2021 article, H-6Ks had been delivered to units and had flown Miyako and Bashi patrols. The first delivery date is not stated. Wikipedia and GlobalSecurity describe a redesigned nose radome, enlarged inlets and a D-30KP-2 turbofan. The DoD PDF was HTTP 403 and is not cited. H-6J is a naval fit of this aircraft, not a third identity."
+      },
+      "canonicalId": "xian-h6k",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[publication-bound operational use by 2021-04-20] “在战略打击能力方面，轰6K轰炸机等远程精确打击装备交付部队标志着我军空中远距精确打击能力逐步形成。” [https://www.81.cn/bq_208581/jdt_208582/10025260.html]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Xi'an_H-6",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Xi'an_H-6",
+        "sourceSha256": "a8a3478e5b90e9ee6d860b25f9f72820b13fb71e0aef7036ea213e20f2823284",
+        "checkedOn": "2026-11-18",
+        "rationale": "No hashed source both dates H-6N unit acceptance and measures its fuselage."
+      },
+      "disposition": "ambiguous",
+      "question": "H-6N remains unresolved. Do not record it as the glazed-nose Tu-16 and do not treat it as externally identical to the H-6K."
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Xian_H-6",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Xian_H-6",
+        "sourceSha256": "9f39093037771db5e6fd265c2349d585e3e6ef875fab28cecbaa83ba457adce4",
+        "checkedOn": "2026-11-18",
+        "rationale": "This URL is the same article and follows tupolev-tu16."
+      },
+      "canonicalId": "tupolev-tu16",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[alias] “It is a license-built version of the Soviet Tupolev Tu-16” [https://en.wikipedia.org/wiki/Xian_H-6]",
+      "disposition": "same-as"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Xian_H-6",
+      "evidence": {
+        "source": "https://www.81.cn/bq_208581/jdt_208582/10025260.html",
+        "sourceSha256": "1bd3ab3b57c6b901c7459770420ac8ea6633c21397ad79ad985738de3f4c5216",
+        "checkedOn": "2026-11-18",
+        "rationale": "This alias follows xian-h6k."
+      },
+      "canonicalId": "xian-h6k",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[alias] “在战略打击能力方面，轰6K轰炸机等远程精确打击装备交付部队标志着我军空中远距精确打击能力逐步形成。” [https://www.81.cn/bq_208581/jdt_208582/10025260.html]",
+      "disposition": "same-as"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Xian_H-6",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Xian_H-6",
+        "sourceSha256": "9f39093037771db5e6fd265c2349d585e3e6ef875fab28cecbaa83ba457adce4",
+        "checkedOn": "2026-11-18",
+        "rationale": "The H-6N remainder stays open on the alias URL."
+      },
+      "disposition": "ambiguous",
+      "question": "H-6N remains unresolved on this alias. Do not record it as the glazed-nose Tu-16 and do not treat it as externally identical to the H-6K."
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Shaanxi_Y-8",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Shaanxi_Y-8",
+        "sourceSha256": "c416167ae488fd8223d36244dcebaf60276066e766a70fe46e0067459c4d5870",
+        "checkedOn": "2026-11-18",
+        "rationale": "China bought An-12s with an assembly licence; Soviet assistance was withdrawn; the original Y-8 kept the An-12 tail turret. Antonov calls the An-12 a military transport and does not mention China. The 2012 caption does not name the variant."
+      },
+      "canonicalId": "antonov-an12",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[dated photograph 2012; variant not stated] “Shaanxi Y-8 of PLA Air Force on 2012.” [https://en.wikipedia.org/wiki/Shaanxi_Y-8]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Shaanxi_Y-8",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Shaanxi_Y-8",
+        "sourceSha256": "c416167ae488fd8223d36244dcebaf60276066e766a70fe46e0067459c4d5870",
+        "checkedOn": "2026-11-18",
+        "rationale": "Later pressurized and Y-8F600 airframes are not shown to be the original outline."
+      },
+      "disposition": "ambiguous",
+      "question": "Later Y-8 airframes, including the pressurized cabin and Y-8F600, are not shown to be the original An-12 outline. The 2012 caption does not name the variant. Do not add them to antonov-an12."
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Shaanxi_KJ-200",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Shaanxi_KJ-200",
+        "sourceSha256": "ffcfadfa462368ea9dee34454ef25474b8b11037b09370fd87d9b9066359f4e1",
+        "checkedOn": "2026-11-18",
+        "rationale": "The page says PLA service in 2007 and that 80 percent of the Y-8 was modified. The newspaper was not retrieved. The 20 April 2021 sentence places 空警200 in training while 装备 attaches to 空警500."
+      },
+      "disposition": "ambiguous",
+      "question": "KJ-200 service is not denied, but its airframe parent is unresolved. Do not alias it to antonov-an12 and do not invent a parent canonical."
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Xian_Y-7",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Xian_Y-7",
+        "sourceSha256": "ff24fccba28bb84e277c78bb1cdc1af3fd02b798499eda8efd5674914e263ff4",
+        "checkedOn": "2026-11-18",
+        "rationale": "The Y-7 is equated to the An-24RV. A PLAAF Y-7 crashed on 19 October 2006. Antonov defines the An-26 by a different rear fuselage and ramp. The civil MA60 is not included."
+      },
+      "canonicalId": "antonov-an24",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[military accident 2006-10-19] “19 October 2006” / “A People's Liberation Army Air Force Y-7 crashed into a wheat field near Hengshui, killing two.” [https://en.wikipedia.org/wiki/Xian_Y-7]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Xian_Y-7",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Xian_Y-7",
+        "sourceSha256": "ff24fccba28bb84e277c78bb1cdc1af3fd02b798499eda8efd5674914e263ff4",
+        "checkedOn": "2026-11-18",
+        "rationale": "Y-7H entered production in 1992. That is not acceptance."
+      },
+      "disposition": "ambiguous",
+      "question": "Y-7H is described as an unlicensed An-26 ramp-door copy, not the An-24/Y-7 fit. Production in 1992 is not military acceptance. Do not service-verify antonov-an26 from this page."
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Harbin_Z-9",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Harbin_Z-9",
+        "sourceSha256": "35b035b92bdc7f824aded1f236096b03e1b2b3f76375dcfde66514566ece60ff",
+        "checkedOn": "2026-11-18",
+        "rationale": "Z-9B entered PLA service in 1994 and the page says the Z-9 is generally identical to the AS365N. The Z-9B fenestron has 11 blades rather than 13. GlobalSecurity says the 1980 licence was for the Dauphin and its engine, 50 helicopters and 100 engines. Naval weapon fits stay in this airframe."
+      },
+      "canonicalId": "aerospatiale-as365",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[service-entry 1994] “Z-9B production began in 1993 and entered PLA service in 1994.” [https://en.wikipedia.org/wiki/Harbin_Z-9]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Harbin_Z-9",
+      "evidence": {
+        "source": "https://www.81.cn/bq_208581/jdt_208582/10025260.html",
+        "sourceSha256": "1bd3ab3b57c6b901c7459770420ac8ea6633c21397ad79ad985738de3f4c5216",
+        "checkedOn": "2026-11-18",
+        "rationale": "The full sentence ties Z-19 equipment to Army operational capability by the article date. That date is an observation bound, not a first-entry date. HTTPS redirected to the captured HTTP response. Literal: “2021-04-20 09:19:49” / “在立体作战能力方面，直20、直10、直19、直8系列直升机装备，弥补了陆军在空地一体化、远程机动、快速突击、特种作战等方面的能力短板，有效支撑了陆军由区域防卫型向全域作战型、由平面陆军向立体陆军、由大陆军向强陆军的转变。” Parent boundary adoption: Z-9 page also lists tandem-seat attack derivative Z-19. Reuse the already proved harbin-z19 identity; do not merge it into aerospatiale-as365 and do not erase its prior official 2021 unit-equipment evidence."
+      },
+      "canonicalId": "harbin-z19",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[unit equipment by publication 2021-04-20; no first-service date inferred] “2021-04-20 09:19:49” / “在立体作战能力方面，直20、直10、直19、直8系列直升机装备，弥补了陆军在空地一体化、远程机动、快速突击、特种作战等方面的能力短板，有效支撑了陆军由区域防卫型向全域作战型、由平面陆军向立体陆军、由大陆军向强陆军的转变。” [https://www.81.cn/bq_208581/jdt_208582/10025260.html]",
+      "disposition": "same-as"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Chengdu_J-7",
+      "evidence": {
+        "source": "https://www.81.cn/bq_208581/jdt_208582/10025260.html",
+        "sourceSha256": "1bd3ab3b57c6b901c7459770420ac8ea6633c21397ad79ad985738de3f4c5216",
+        "checkedOn": "2026-11-18",
+        "rationale": "The article separates the 17 January 1966 first flight from equipment of units in March 1967. GlobalSecurity identifies the transferred design as the MiG-21F-13 and separately says certification was in June 1967; June is not substituted for March. Wikipedia says only minor differences from the MiG-21. archive-mig21pf is a PF fit, not this aircraft."
+      },
+      "canonicalId": "mikoyan-mig21",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[unit equipment 1967-03; first flight 1966-01-17 kept separate] “1966年1月17日，由沈阳飞机厂试制成功的2倍声速国产歼7飞机首飞成功。1967年3月，歼7装备空军部队。” [https://www.81.cn/bq_208581/jdt_208582/10025260.html]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Chengdu_J-7",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Chengdu_J-7",
+        "sourceSha256": "1b4fdb9344c4373c94a5a019d71f57b4c1c4901d66976f67ebd095cef3ae6b80",
+        "checkedOn": "2026-11-18",
+        "rationale": "Secondary source body explicitly dates actual PLAAF replacement with substantially redesigned double-delta J-7E to the mid-1990s. This is an operational interval, not a first-acceptance date. GlobalSecurity independently describes the double-delta wing and already-in-service status at the 1996 unveiling. Keep the early MiG-21F-13/J-7 separate; export F-7MG-specific fittings and later G fits are not separately claimed."
+      },
+      "canonicalId": "chengdu-j7e",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[actual PLAAF replacement, mid-1990s; not first acceptance] “Throughout the mid-1990s, the PLAAF began to replace its J-7B inventory with the substantially redesigned and improved J-7E variant.”",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Changhe_Z-8",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Changhe_Z-8",
+        "sourceSha256": "969786699bd2255e903c4f8ea5f53aaa434c80c1c4f2d823b350bccd52eed712",
+        "checkedOn": "2026-11-18",
+        "rationale": "Domestic Z-8 production is the Super Frelon. Naval delivery for trials and certification on 12 November 1994 are not acceptance. By 2013 at least five People's Armed Police Z-8s had been delivered. The 20 April 2021 article equips the Z-8 series without separating the wide-body. This alias is the Super Frelon outline only."
+      },
+      "canonicalId": "aerospatiale-sa321",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[delivery by 2013] “by 2013, at least five helicopters had been delivered, and most had been assigned to forestry firefighting units.” [https://en.wikipedia.org/wiki/Changhe_Z-8]",
+      "disposition": "same-as"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Changhe_Z-8",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Changhe_Z-8",
+        "sourceSha256": "969786699bd2255e903c4f8ea5f53aaa434c80c1c4f2d823b350bccd52eed712",
+        "checkedOn": "2026-11-18",
+        "rationale": "The page states a load-area width increase from 1.8 m to 2.4 m and a January 2019 first sighting."
+      },
+      "disposition": "ambiguous",
+      "question": "The wide-body Z-8L/Z-8G, widened from 1.8 m to 2.4 m, is not the SA 321 outline. First spotted in January 2019 is not acceptance. Do not merge it into aerospatiale-sa321."
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Mil_Mi-8",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Mil_Mi-8",
+        "sourceSha256": "465a033e964675114bc1cbca4e82de844b2be409126cfcfeefc65b52986ef6d1",
+        "checkedOn": "2026-11-18",
+        "rationale": "The China operators entry and the link title are undated and do not identify a Mi-8T."
+      },
+      "disposition": "ambiguous",
+      "question": "No dated PLA Mi-8T service, with TV2-117 engines and a starboard tail rotor, was found. Mi-17 and Mi-171 are export names of the later configuration and are resolved as mil-mi8."
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Mil_Mi-17",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Mil_Mi-17",
+        "sourceSha256": "c9d948903ea00b13d70bddb90a2487d802bad6a9a0ebbd1236566f47222fdb3f",
+        "checkedOn": "2026-11-18",
+        "rationale": "The page says Mi-17 is the export name of the aircraft Russian forces call Mi-8MT, with the tail rotor on the port side. A PLA Mi-171 crashed on 31 May 2008. The manufacturer catalog was not retrieved."
+      },
+      "canonicalId": "mil-mi8",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[military accident 2008-05-31] “On 31 May 2008, a People's Liberation Army Mi-171 transport crashed in southwest Sichuan province” [https://en.wikipedia.org/wiki/Mil_Mi-17]",
+      "disposition": "configuration",
+      "configuration": "Mi-171, export name of the Mi-8AMT; port-side tail rotor, not the Mi-8T",
+      "modelId": null
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Kamov_Ka-27",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Kamov_Ka-27",
+        "sourceSha256": "51095dd12a38af27daf543fce34b5b136cb09ac1574388da0851bb20508abe9f",
+        "checkedOn": "2026-11-18",
+        "rationale": "Ka-28 is the export Ka-27PL. The same sentence mentions Ka-31, which is a configuration on its own page. The 1990s date stays approximate."
+      },
+      "canonicalId": "kamov-ka27",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[acquisition decade 1990s, approximate] “Since the 1990s, China has purchased the Ka-28 export version and Ka-31 radar warning version for the PLAN fleet.” [https://en.wikipedia.org/wiki/Kamov_Ka-27]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Kamov_Ka-31",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Kamov_Ka-31",
+        "sourceSha256": "236d69522e16b8041d5760fd57f70be41448f3aca6abd3dc8ef1dcb88fbe6ca5",
+        "checkedOn": "2026-11-18",
+        "rationale": "The page says the Ka-31 airframe is based on the Ka-27 and that its distinctive feature is the folding ventral radar. Delivery of the Chinese aircraft is given as 2010-2011. No manufacturer page was retrieved."
+      },
+      "canonicalId": "kamov-ka27",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[delivery 2010-2011] “The helicopters were delivered between 2010 and 2011.” [https://en.wikipedia.org/wiki/Kamov_Ka-31]",
+      "disposition": "configuration",
+      "configuration": "Ka-31 AEW: Ka-27 airframe with folding ventral radar",
+      "modelId": null
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Northrop_F-5E",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Northrop_F-5E",
+        "sourceSha256": "23fecb9b411427eb3a7d5bb153162ed612a83474f8b770bd9bd09a539b5c2c1d",
+        "checkedOn": "2026-11-18",
+        "rationale": "Seven F-5As and two F-5Bs were delivered in 1965, and 72 F-5As and 11 F-5Bs were operating in 1971. The 2006 USAF Museum archive gives F-5A span 25 ft 10 in and length 47 ft 2 in. The F-5B is the two-seat Freedom Fighter."
+      },
+      "canonicalId": "northrop-f5a",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[delivery 1965] “seven F-5As and two F-5Bs under the US Military Assistance Program in 1965.” [https://en.wikipedia.org/wiki/Northrop_F-5E]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Northrop_F-5E",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Northrop_F-5E",
+        "sourceSha256": "23fecb9b411427eb3a7d5bb153162ed612a83474f8b770bd9bd09a539b5c2c1d",
+        "checkedOn": "2026-11-18",
+        "rationale": "Twenty-eight new F-5Es were issued to Taiwan by May 1975. Pima Air & Space gives span 26 ft 8 in, length 48 ft 2 in, a longer fuselage and larger wings, and J85-GE-21 engines. The F-5F is the two-seat Tiger II. Production counts are not the service evidence."
+      },
+      "canonicalId": "northrop-f5e",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[issued by 1975-05] “An additional 28 new F-5Es were issued to Taiwan by May 1975.” [https://en.wikipedia.org/wiki/Northrop_F-5E]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Shenyang_J-8",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Shenyang_J-8",
+        "sourceSha256": "54d655741fe52ea16449ffc63ea4915382e4b87b8eaa09379f794e34434ab923",
+        "checkedOn": "2026-11-18",
+        "rationale": "Formal entry on 2 March 1980 is kept for the nose-intake J-8. The same date is also the State Certification Commission approval of the J-8 I specification. It does not cover the J-8II."
+      },
+      "canonicalId": "shenyang-j8",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[formal service entry 1980-03-02, nose-intake J-8] “The J-8 was already recognized as obsolescent when it formally entered service on 2 March 1980.” [https://en.wikipedia.org/wiki/Shenyang_J-8]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Shenyang_J-8",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Shenyang_J-8",
+        "sourceSha256": "54d655741fe52ea16449ffc63ea4915382e4b87b8eaa09379f794e34434ab923",
+        "checkedOn": "2026-11-18",
+        "rationale": "Secondary source identifies J-8B as originally J-8II, with a conventional radome, side intakes and substantially redesigned airframe. Its 1 April 2001 operational collision proves actual military use independently of the 1988 production/service clearance; 2001 is not a first-service date. Nose-intake shenyang-j8 remains separate."
+      },
+      "canonicalId": "shenyang-j8ii",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[actual military operation 2001-04-01; not first acceptance] “On 1 April 2001, a J-8B collided with a United States Navy Lockheed EP-3E ARIES II signals intelligence aircraft 70 miles southeast of Hainan Island.”",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "cn",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Dassault_Mirage_2000",
+      "evidence": {
+        "source": "https://air.mnd.gov.tw/TW/Weapon/Weapon_Detail.aspx?CID=55&ID=7",
+        "sourceSha256": "c14776aecd8e046020b2a2fee571c3199676241379133ddfa77194f5302c6a91",
+        "checkedOn": "2026-11-18",
+        "rationale": "ROCAF delivery from 1997 is the Mirage 2000-5, with RDY radar and published span 30 ft and length 47 ft. The re-fetched hash differs from the 17 November 2026 capture; the delivery sentence is still literal. Thirty feet is 9.144 m and 47 ft is 14.326 m, against archive-mirage2000c at 9.13 m and 14.34 m for the French 2000C of 1984. Dassault's page was blocked. The C mesh is not attached to this row."
+      },
+      "canonicalId": "dassault-mirage-2000",
+      "serviceCountries": [
+        "cn"
+      ],
+      "serviceEvidence": "[official delivery from 1997, Mirage 2000-5] “幻象2000-5型機為法國達梭公司開發製造，採無水平尾翼的三角翼設計，自1997年起交付空軍” [https://air.mnd.gov.tw/TW/Weapon/Weapon_Detail.aspx?CID=55&ID=7]",
+      "disposition": "service-verified"
+    },
+    {
+      "country": "fr",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Dassault_Mirage_2000",
+      "evidence": {
+        "source": "https://www.defense.gouv.fr/air/actualites/mirage-2000c-rdi-tire-sa-reverence",
+        "sourceSha256": "1f363d7c2e6733d9219d78368473aa117bded849cd438ae05cb8348a94a153a5",
+        "checkedOn": "2026-11-18",
+        "rationale": "French Air and Space Force, published 17 June 2022; dated operational replacement proves actual French military service of Mirage 2000C and single-seat Rafale. Literal: “Le jeudi 9 juin 2022, deux Rafale monoplaces ont décollé de Mont-de-Marsan pour se poser à Orange, afin de relever définitivement le Mirage 2000C de la mission opérationnelle de posture permanente de sûreté.” This is a 2022 service event, not a first-service date. Proposed mapping only to the existing French representative; no geometry, year, paint or art score change. Mirage -5, twin-seat D/N and Rafale B/M configurations are not claimed to have this exact representative appearance."
+      },
+      "canonicalId": "dassault-mirage-2000",
+      "serviceCountries": [
+        "fr"
+      ],
+      "serviceEvidence": "[actual air-defence duty 9 June 2022] “Le jeudi 9 juin 2022, deux Rafale monoplaces ont décollé de Mont-de-Marsan pour se poser à Orange, afin de relever définitivement le Mirage 2000C de la mission opérationnelle de posture permanente de sûreté.”",
+      "disposition": "modelled",
+      "modelId": "archive-mirage2000c"
+    },
+    {
+      "country": "fr",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Dassault_Rafale",
+      "evidence": {
+        "source": "https://www.defense.gouv.fr/air/actualites/mirage-2000c-rdi-tire-sa-reverence",
+        "sourceSha256": "1f363d7c2e6733d9219d78368473aa117bded849cd438ae05cb8348a94a153a5",
+        "checkedOn": "2026-11-18",
+        "rationale": "French Air and Space Force, published 17 June 2022; dated operational replacement proves actual French military service of Mirage 2000C and single-seat Rafale. Literal: “Le jeudi 9 juin 2022, deux Rafale monoplaces ont décollé de Mont-de-Marsan pour se poser à Orange, afin de relever définitivement le Mirage 2000C de la mission opérationnelle de posture permanente de sûreté.” This is a 2022 service event, not a first-service date. Proposed mapping only to the existing French representative; no geometry, year, paint or art score change. Mirage -5, twin-seat D/N and Rafale B/M configurations are not claimed to have this exact representative appearance."
+      },
+      "canonicalId": "dassault-rafale",
+      "serviceCountries": [
+        "fr"
+      ],
+      "serviceEvidence": "[actual air-defence duty 9 June 2022] “Le jeudi 9 juin 2022, deux Rafale monoplaces ont décollé de Mont-de-Marsan pour se poser à Orange, afin de relever définitivement le Mirage 2000C de la mission opérationnelle de posture permanente de sûreté.”",
+      "disposition": "modelled",
+      "modelId": "archive-rafale-c"
+    },
+    {
+      "country": "ru",
+      "category": "aircraft",
+      "candidateUrl": "https://en.wikipedia.org/wiki/Mikoyan-Gurevich_MiG-21",
+      "evidence": {
+        "source": "https://en.wikipedia.org/wiki/Mikoyan-Gurevich_MiG-21",
+        "sourceSha256": "7590067c70385823fd801cb54fae84a25343fceea24ca575477d455f6c6e2a23",
+        "checkedOn": "2026-11-18",
+        "rationale": "Secondary compiler only; body describes Soviet-piloted MiG-21 operations during 1970. This supports actual Soviet military use and does not date first acceptance, certify a 1963 PF fit, validate combat claims, or settle the J-7 licensed/redesigned variants. UAC HTTPS fetch failed certificate verification; NMUSAF source describes Soviet manufacture but does not independently date Soviet service. Reuses mikoyan-mig21 established by licensed-type reconciliation; this Soviet 1970 event does not prove China operated the representative PF fit."
+      },
+      "canonicalId": "mikoyan-mig21",
+      "serviceCountries": [
+        "ru"
+      ],
+      "serviceEvidence": "[1970 Soviet operation, secondary] “In March 1970, Soviet pilots and SAM crews arrived with their equipment.” “On 30 July, Israeli F-4s lured Soviet MiG-21s into an area where they were ambushed by Israeli Mirages.”",
+      "disposition": "modelled",
+      "modelId": "archive-mig21pf"
+    }
+  ],
+  "limits": [
+    "Wikipedia and GlobalSecurity remain secondary compilers; unavailable maker or government pages do not count as evidence.",
+    "H-6N, later pressurized/Y-8F600, KJ-200 airframe parent, Y-7H acceptance, wide-body Z-8L/G and dated original Mi-8T service remain unresolved.",
+    "Shared representative models preserve their appearance country/year/fit: Chinese early J-7 is not called MiG-21PF, and ROC Mirage 2000-5 is not called Mirage 2000C.",
+    "No new geometry, sprites, art revisions or scores. All 24 coverage cells remain open."
+  ]
+}
