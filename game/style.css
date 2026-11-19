@@ -122,7 +122,7 @@ kbd { font: 400 18px/1.25 var(--display); border: 1px solid #8c9a7880; border-bo
 .signal-health::after { content: '+'; position: relative; font: 900 12px/8px Arial, sans-serif; }
 .signal-bomb { background: var(--bomb); transform: rotate(45deg); }
 .signal-bomb::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #071422; }
-.handbook-signals { margin: 15px 0; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: #24382f; }
+.handbook-signals { padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: #24382f; }
 .site-footer { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 14px; }
 .footer-controls { display: flex; gap: 22px; }
 .footer-controls > span { display: flex; gap: 6px; align-items: center; }
@@ -200,52 +200,78 @@ dialog { border: 2px solid #aac78c; border-radius: var(--radius-lg); background:
 dialog::backdrop { background: #0c1b24d9; }
 .dialog-close { position: absolute; top: 14px; right: 14px; }
 dialog h2 { font-size: 25px; letter-spacing: 1px; margin: 12px 0; }
-.help-controls { display: grid; grid-template-columns: 1fr 1fr; border-block: 1px solid var(--line); }
+.help-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; padding-block: 12px; border-block: 1px solid var(--line); }
 .help-controls > div > span { color: var(--accent); font-size: 18px; }
 .help-controls p { color: var(--muted); font-size: 16px; line-height: 1.8; margin: 6px 0 0; }
-.help-notes { margin-bottom: 25px; }
-.help-notes p { font-size: 16px; color: var(--muted); margin: 8px 0; }
+.help-notes p { font-size: 16px; color: var(--muted); margin: 0; }
+.help-notes p + p { margin-top: 8px; }
 
 
 .boss-parts { display: flex; justify-content: space-between; gap: 1cqw; margin-top: .1cqw; color: var(--text); font-size: 3.4cqw; line-height: 1; }
 .boss-parts .destroyed { color: var(--muted); opacity: .72; text-decoration: line-through; }
 .help-heading { display: flex; align-items: center; gap: 18px; padding-right: 32px; }
 .help-tabs { display: flex; gap: 4px; }
-#help-actions { display:flex; gap:8px; }
-#help-actions > button { min-width:0; margin:0; }
-#help-actions .primary-button { flex:1; }
-#archive-info { width:auto; min-height:44px; flex-shrink:0; padding:10px; font-size:16px; }
 .help-tabs button { min-height: 40px; padding: 6px 12px; font-size: 16px; border: 1px solid transparent; border-radius: var(--radius-sm); color: var(--muted); }
 .help-tabs button[aria-selected="true"] { color: var(--text); border-color: var(--line); background: var(--panel); }
-.handbook-panel { min-height: 290px; }
-.intel-card { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 22px; min-height: 224px; }
-.intel-illustration { border: 1px solid var(--line); border-radius: var(--radius-md); background: repeating-linear-gradient(0deg, transparent 0 19px, #aac78c0a 19px 20px), repeating-linear-gradient(90deg, transparent 0 19px, #aac78c0a 19px 20px), var(--bg); }
-#intel-canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; }
-.intel-copy > span, .campaign-card > span { color: var(--accent); font-size: 16px; }
-.intel-copy h3, .campaign-card h3 { font-size: 26px; margin: 10px 0; line-height: 1.3; }
-.intel-copy p, .campaign-card p { font-size: 16px; line-height: 1.6; margin: 8px 0; color: var(--muted); }
-.intel-copy #intel-tactic { color: var(--text); }
-.fleet-card .intel-illustration { position:relative; min-width:0; aspect-ratio:1.6; }
+.fleet-card { display: grid; grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr); align-items: start; gap: 18px; }
+.fleet-copy { min-width: 0; }
+.fleet-title { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.fleet-title h3 { min-width: 0; word-break: keep-all; overflow-wrap: anywhere; }
+.fleet-illustration { border: 1px solid var(--line); border-radius: var(--radius-md); background: repeating-linear-gradient(0deg, transparent 0 19px, #aac78c0a 19px 20px), repeating-linear-gradient(90deg, transparent 0 19px, #aac78c0a 19px 20px), var(--bg); }
+#archive-canvas { display: block; image-rendering: pixelated; }
+.campaign-card > span { color: var(--accent); font-size: 16px; }
+.fleet-copy h3, .campaign-card h3 { font-size: 26px; margin: 10px 0; line-height: 1.3; }
+.fleet-copy h3 { font-size: 24px; line-height: 1.2; margin-block: 5px; }
+.fleet-copy p, .campaign-card p { font-size: 16px; line-height: 1.6; margin: 8px 0; color: var(--muted); }
+.fleet-copy p { font-size: 15px; line-height: 1.45; margin-block-start: 0; }
+.fleet-card .fleet-illustration { position:relative; min-width:0; }
 #archive-status { position:absolute; inset:0; display:grid; place-items:center; padding:12px; text-align:center; color:var(--muted); font-size:16px; }
 #archive-status:empty { display:none; }
-#archive-coverage { font-size:14px; color:var(--muted); margin:4px 0; }
-#archive-details h3 { margin:0 0 8px; font-size:22px; }
-#archive-note { font-size:16px; line-height:1.6; color:var(--text); margin:0 0 8px; }
-#archive-reference-list { list-style:none; padding:0; margin:0; display:grid; gap:4px; }
-#archive-reference-list a { display:flex; align-items:center; min-height:44px; padding:6px 10px; border:1px solid var(--line); border-radius:var(--radius-sm); color:var(--accent); text-underline-offset:4px; }
-.fleet-card .loading #intel-canvas { visibility:hidden; }
-.fleet-meta, .fleet-reference { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:14px; color:var(--muted); }
-.fleet-reference { justify-content:flex-end; }
-.fleet-meta #archive-count { font-family:var(--display); font-size:20px; white-space:nowrap; }
+.fleet-card .loading #archive-canvas { visibility:hidden; }
+.fleet-meta { display:grid; grid-template-columns:minmax(0,1fr) auto; grid-template-rows:minmax(1lh,auto) minmax(1lh,auto); align-items:start; column-gap:8px; font-size:14px; line-height:19px; color:var(--muted); }
+.fleet-identity { display:flex; flex-wrap:wrap; column-gap:8px; }
+#archive-count { font-family:var(--display); font-size:20px; white-space:nowrap; }
+#archive-role { grid-column:1 / -1; }
 .fleet-copy #archive-shape { color:var(--text); }
-.fleet-reference a { color:var(--accent); display:inline-flex; align-items:center; min-height:24px; white-space:nowrap; text-underline-offset:4px; }
+/* The description is a flex column, so margins add instead of collapsing; the description margin alone separates the lines. */
+#archive-operators { margin:0; font-size:14px; }
+#archive-operators:empty { display:none; }
+/* Each country name stays whole; the line may only break after a ／. */
+.fleet-operator { white-space:nowrap; }
+/* List layout: each feature is a ruled row, and rows split the spare height evenly down to the sprite frame. Overflow is
+   clipped only to absorb sub-pixel rounding on fractional-height cards; real overflow still switches to the paragraph. */
+#archive-card[data-features="list"] .fleet-description { overflow:clip; }
+#archive-card[data-features="list"] #archive-shape { position:relative; overflow:clip; flex:1 0 auto; display:flex; flex-direction:column; margin-block-end:0; border-top:1px solid var(--line); }
+/* The bullet sits on the first line of a wrapped row. */
+#archive-card[data-features="list"] .fleet-feature { flex:1 0 auto; display:grid; grid-template-columns:4px minmax(0, 1fr); align-content:center; align-items:start; column-gap:8px; line-height:1.2; border-bottom:1px solid var(--line); }
+/* A card a few pixels short keeps a compact list without rules, in the same type size. */
+#archive-card[data-features="list"][data-feature-size="compact"] #archive-shape { border-top:0; }
+#archive-card[data-features="list"][data-feature-size="compact"] .fleet-feature { line-height:1.1; border-bottom:0; }
+.fleet-feature-bullet { display:none; }
+#archive-card[data-features="list"] .fleet-feature-bullet { display:block; width:4px; height:4px; margin-block-start:calc((1lh - 4px) / 2); background:var(--accent); }
+/* Separators leave the list layout but stay in the accessibility tree, so screen readers still hear the original sentence. */
+#archive-card[data-features="list"] .fleet-feature-separator { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+/* Lines break between phrases; list rows split them evenly, while the paragraph fills each line as the original did.
+   A phrase wider than its line still wraps inside itself. */
+#archive-card[data-features="list"] #archive-shape { text-wrap:balance; }
+.fleet-feature-phrase { display:inline-block; max-width:100%; }
+.fleet-feature-unit { white-space:nowrap; }
+/* A line may break after a separator, never before it. */
+.fleet-feature-separator { white-space:nowrap; }
+#archive-card[data-features="list"] #archive-operators { margin-block-start:2px; }
+#archive-source { color:var(--accent); display:inline-flex; align-items:center; min-height:24px; font-size:14px; white-space:nowrap; text-underline-offset:4px; }
 .fleet-controls select { min-width:0; width:100%; min-height:44px; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--panel); color:var(--text); font:inherit; font-size:16px; padding:8px; }
+.fleet-controls { display:grid; grid-template-columns:minmax(0, 1fr); gap:6px; }
 .fleet-filters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
-.fleet-reference a[hidden] { display:none; }
-.handbook-pager { display: flex; align-items: center; justify-content: center; gap: 24px; margin: 12px 0; }
+.handbook-pager { display: flex; align-items: center; justify-content: center; gap: 16px; }
 .handbook-pager .secondary-button { width: 52px; min-height: 44px; margin: 0; padding: 8px; }
 .handbook-pager > span { min-width: 100px; text-align: center; font: 28px/1 var(--display); color: var(--amber); }
-.campaign-card { min-height: 224px; display: flex; flex-direction: column; justify-content: center; padding: 16px 22px; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--line); margin-top: 16px; }
+.fleet-pager { gap: 8px; }
+.fleet-pager .secondary-button { flex: 0 0 44px; }
+.fleet-pager select { flex: 1 1 0; width: auto; }
+.campaign-card { display: flex; flex-direction: column; justify-content: safe center; padding: 16px 20px; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--line); }
+.campaign-card > * { flex: none; }
+#help-controls-panel:focus-visible, .campaign-card:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
 #campaign-roster { color: var(--accent); font-size: 16px; line-height: 1.5; margin-top: 8px; }
 
 

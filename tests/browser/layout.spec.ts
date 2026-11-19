@@ -36,8 +36,8 @@ async function expectWithinWindow(page: Page, selectors: string[], containerSele
 
 async function expectHandbook(page: Page, width: number, height: number): Promise<void> {
   await page.getByRole('button', { name: '作战手册' }).click();
-  await expectWithinWindow(page, ['#help-dialog', '#close-help', '#help-ready']);
-  await expectWithinWindow(page, ['#close-help', '#help-ready', '.help-controls', '.handbook-signals', '.help-notes'], '#help-dialog');
+  await expectWithinWindow(page, ['#help-dialog', '#close-help']);
+  await expectWithinWindow(page, ['#close-help', '.help-controls', '.handbook-signals', '.help-notes'], '#help-dialog');
   const handbook = await page.locator('#help-dialog').evaluate(element => ({ height:element.clientHeight, scrollHeight:element.scrollHeight, width:element.clientWidth, scrollWidth:element.scrollWidth }));
   expect(handbook.scrollHeight, `handbook height at ${width}×${height}`).toBeLessThanOrEqual(handbook.height);
   expect(handbook.scrollWidth, `handbook width at ${width}×${height}`).toBeLessThanOrEqual(handbook.width);
@@ -45,7 +45,7 @@ async function expectHandbook(page: Page, width: number, height: number): Promis
     await mkdir('.artifacts/visual-qa',{recursive:true});
     await page.screenshot({path:`.artifacts/visual-qa/handbook-${width}x${height}.png`});
   }
-  await page.locator('#help-ready').click();
+  await page.locator('#close-help').click();
 }
 
 test('window resizing keeps the complete hangar and every combat dialog on screen', async ({ page }) => {
@@ -90,23 +90,70 @@ test('window resizing keeps the complete hangar and every combat dialog on scree
 });
 
 
-test('catalog and campaign content fit small portrait and landscape windows without scrolling', async({page})=>{
+test('campaign content fits small portrait and landscape windows without scrolling', async({page})=>{
   test.setTimeout(60000);
   await page.goto('/'); await expect(page.locator('#start-button')).toBeEnabled();
   for(const [width,height] of [[390,844],[320,568],[568,320]] as const) {
     await page.setViewportSize({width,height}); await settleFrame(page);
     await page.locator('#help-button').click();
-    for(const [panel,pages] of [['intel',15],['campaign',10]] as const) {
-      await page.locator(`#help-tab-${panel}`).click();
-      for(let i=0;i<pages;i++) {
-        await expectWithinWindow(page,[`#help-${panel}-panel`,'#help-ready','#close-help'],'#help-dialog');
-        const bounds=await page.locator('#help-dialog').evaluate(element=>({h:element.clientHeight,sh:element.scrollHeight,w:element.clientWidth,sw:element.scrollWidth}));
-        expect(bounds.sh,`${panel} page ${i+1} at ${width}×${height}`).toBeLessThanOrEqual(bounds.h);
-        expect(bounds.sw).toBeLessThanOrEqual(bounds.w);
-        await page.locator(`#${panel}-next`).click();
-      }
-      await page.screenshot({path:`.artifacts/visual-qa/${panel}-${width}x${height}.png`});
+    await page.locator('#help-tab-campaign').click();
+    for(let i=0;i<10;i++) {
+      await expectWithinWindow(page,['#help-campaign-panel','#close-help'],'#help-dialog');
+      const bounds=await page.locator('#help-dialog').evaluate(element=>({h:element.clientHeight,sh:element.scrollHeight,w:element.clientWidth,sw:element.scrollWidth}));
+      expect(bounds.sh,`campaign page ${i+1} at ${width}×${height}`).toBeLessThanOrEqual(bounds.h);
+      expect(bounds.sw).toBeLessThanOrEqual(bounds.w);
+      await page.locator('#campaign-next').click();
     }
-    await page.locator('#help-ready').click();
+    await page.screenshot({path:`.artifacts/visual-qa/campaign-${width}x${height}.png`});
+    await page.locator('#close-help').click();
+  }
+});
+
+test('handbook tabs share the same frame and content spacing', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#start-button')).toBeEnabled();
+  await page.evaluate(() => document.fonts.ready);
+  await page.getByRole('button', { name: '作战手册' }).click();
+  const handbook = page.locator('#help-dialog');
+  const viewports = [
+    [1280, 900, 12], [393, 844, 9], [480, 420, 8], [650, 280, 3],
+    [568, 320, 6], [320, 275, 3], [320, 260, 3], [340, 260, 3], [340, 281, 3],
+    [479, 600, 9], [480, 600, 12], [568, 451, 12], [650, 450, 8],
+    [650, 451, 12], [700, 600, 12],
+  ] as const;
+  for (const [width, height, expectedGap] of viewports) {
+    await page.setViewportSize({ width, height });
+    await settleFrame(page);
+    const positions = [];
+    for (const tab of ['controls', 'campaign', 'archive']) {
+      await handbook.locator(`#help-tab-${tab}`).click();
+      positions.push({
+        dialog: await handbook.boundingBox(),
+        heading: await handbook.locator('.help-heading').boundingBox(),
+        close: await handbook.locator('#close-help').boundingBox(),
+      });
+      const fits = await handbook.evaluate(dialog => dialog.scrollHeight <= dialog.clientHeight && dialog.scrollWidth <= dialog.clientWidth);
+      expect(fits, `${tab} at ${width}×${height}`).toBe(true);
+      const gaps = await handbook.locator(`#help-${tab}-panel`).evaluate(panel => {
+        const boxes = Array.from(panel.children, child => child.getBoundingClientRect());
+        return boxes.slice(1).map((box, index) => box.top - (boxes[index]?.bottom ?? box.top));
+      });
+      expect(gaps, `${tab} spacing at ${width}×${height}`).toEqual(
+        tab === 'controls' ? [expectedGap, expectedGap] : [expectedGap],
+      );
+    }
+    expect(positions[0]?.dialog).not.toBeNull();
+    expect(positions[1]).toEqual(positions[0]);
+    expect(positions[2]).toEqual(positions[0]);
+    await page.locator('#archive-entry').selectOption('fletcher');
+    const heading = await handbook.locator('.help-heading').boundingBox();
+    const artwork = await handbook.locator('#archive-illustration').boundingBox();
+    const metadata = await handbook.locator('.fleet-meta').boundingBox();
+    const filters = await handbook.locator('.fleet-filters').boundingBox();
+    if (!heading || !artwork || !metadata || !filters) throw new Error('Archive preview and controls must be visible');
+    expect([
+      Math.min(artwork.y, metadata.y) - heading.y - heading.height,
+      filters.y - artwork.y - artwork.height,
+    ], `archive preview spacing at ${width}×${height}`).toEqual([expectedGap, expectedGap]);
   }
 });

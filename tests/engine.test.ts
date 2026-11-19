@@ -1,6 +1,6 @@
 import { required } from './support.ts';
 import test from 'node:test';
-import { UNIT_INFO } from '../game/campaign.ts';
+import { UNIT_NAMES } from '../game/campaign.ts';
 import type { Input } from '../game/types.ts';
 import assert from 'node:assert/strict';
 import { Game, UPGRADES, WIDTH, HEIGHT } from '../game/engine.ts';
@@ -98,7 +98,7 @@ for(const craft of ['falcon','swift','turtle'] as const) for(const difficulty of
     }
     assert.equal(game.status,'victory',`stalled at wave ${game.wave}, time ${game.time}`);
     assert.equal(waves.size,10); assert.deepEqual([...bosses],[5,10]);
-    assert.deepEqual([...units].sort(),UNIT_INFO.map(unit=>unit.id).sort());
+    assert.deepEqual([...units].sort(),Object.keys(UNIT_NAMES).sort());
     assert.ok(game.kills>100); assert.ok(game.level>5); assert.ok(game.score>20000);
   });
 }

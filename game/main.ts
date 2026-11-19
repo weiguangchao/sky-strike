@@ -1,17 +1,18 @@
 import { archiveServiceCountries } from './archive-service-countries.ts';
+import { archiveServiceYears } from './archive-service-years.ts';
 import { element as $, canvas as canvasElement, button, select, dialog, anchor } from './dom.ts';
 import { isCraftId, isDifficulty } from './types.ts';
 import { readStorage, writeStorage, parsePreferences } from './storage.ts';
 import type { CraftId, Difficulty, Input, Result } from './types.ts';
 import { Game, CRAFTS, UPGRADES } from './engine.ts';
-import { UNIT_INFO, WAVES, waveInfo, unitInfo } from './campaign.ts';
+import { UNIT_NAMES, WAVES, waveInfo } from './campaign.ts';
 import { GameRuntime } from './runtime.ts';
 import { Sound } from './audio.ts';
 import { trackViewport } from './viewport.ts';
 import { VISUAL_SIGNALS } from './visual-style.ts';
 import { DEFAULT_FLEET, NAVAL_HULLS, historicalShip } from './naval-history.ts';
 import type { FleetSelection } from './naval-history.ts';
-import { ARCHIVE_COUNTRIES, ARCHIVE_SURFACE_HULLS, filterArchive } from './historical-archive.ts';
+import { ARCHIVE_COUNTRIES, ARCHIVE_SURFACE_HULLS, archiveDisplayCategory, filterArchive } from './historical-archive.ts';
 
 for (const [name, signal] of Object.entries(VISUAL_SIGNALS)) document.documentElement.style.setProperty(`--${name}`, signal.color);
 
@@ -24,7 +25,7 @@ const selectedFleet: FleetSelection = preferences.fleet;
 export const game = new Game();
 game.craft = selectedCraft;
 const sound = new Sound(preferences.sound);
-export const runtime = new GameRuntime({ canvas: canvasElement('game-canvas'), previewCanvas: canvasElement('craft-canvas'), intelCanvas: canvasElement('intel-canvas'), combat: game, frame, keydown: handleKey, allowInput: () => !dialog('help-dialog').open, unlockSound: () => sound.unlock() });
+export const runtime = new GameRuntime({ canvas: canvasElement('game-canvas'), previewCanvas: canvasElement('craft-canvas'), archiveCanvas: canvasElement('archive-canvas'), combat: game, frame, keydown: handleKey, allowInput: () => !dialog('help-dialog').open, unlockSound: () => sound.unlock() });
 let announcementTimer = 0;
 let announcementText = '';
 let healthKey = '';
@@ -268,94 +269,134 @@ document.querySelectorAll<HTMLButtonElement>('[data-fullscreen]').forEach(button
 }));
 document.addEventListener('fullscreenchange',syncFullscreen);
 syncFullscreen();
-let intelIndex = 0;
 let campaignIndex = 0;
 let activeHelp='controls';
 let archiveEntries = filterArchive({});
 let archiveIndex = 0, archiveRequest = 0;
-type ArchiveLoad = { kind: 'loading' } | { kind: 'ready' } | { kind: 'failed' } | { kind: 'empty' };
-let archiveLoad: ArchiveLoad = { kind: 'empty' };
-let archiveDetailsOpen = false;
-const ordinaryHelpReady=$('help-ready').innerHTML;
+const archiveCard = $('archive-card');
+archiveCard.addEventListener('keydown', event => {
+  if ((event.key !== 'PageDown' && event.key !== 'PageUp') || archiveCard.scrollHeight <= archiveCard.clientHeight) return;
+  event.preventDefault();
+  const direction = event.key === 'PageDown' ? 1 : -1;
+  archiveCard.scrollBy({ top: direction * archiveCard.clientHeight, behavior: 'instant' });
+});
 for (const country of ARCHIVE_COUNTRIES) {
   const option = document.createElement('option');
   option.value = country.id; option.textContent = country.id === 'ru' ? '俄罗斯' : country.name;
   $('archive-country').append(option);
 }
-function archiveShip() {
-  const entry = archiveEntries[archiveIndex];
-  return entry?.category === 'surface' ? historicalShip(entry.id) : undefined;
+/** Each feature is its own span and the separators stay as text, so the description reads the same in both layouts. */
+function showFeatures(feature: string): void {
+  const clauses = feature.split(' · ');
+  const items = clauses.flatMap((text, index) => {
+    const item = document.createElement('span');
+    const bullet = document.createElement('span');
+    const words = document.createElement('span');
+    bullet.className = 'fleet-feature-bullet'; bullet.setAttribute('aria-hidden', 'true');
+    words.className = 'fleet-feature-text';
+    // Phrases end after 与／、 or before a number, so a wrap lands between words rather than inside 双联 or 收起轮.
+    for (const phrase of text.split(/(?<=[与、／])|(?<=[^0-9A-Za-z.\s-])(?=[0-9])/)) {
+      const block = document.createElement('span');
+      block.className = 'fleet-feature-phrase';
+      // Numbers keep their unit and Latin designations stay whole, so a wrap never splits 203毫米 or HS6A.
+      for (const part of phrase.split(/([0-9A-Za-z.-]+(?:毫米|厘米|千米|公里|海里|英寸|英尺|万吨|米|吨|节|年)?)/)) {
+        if (!part) continue;
+        if (!/[0-9A-Za-z]/.test(part)) { block.append(part); continue; }
+        const unit = document.createElement('span');
+        unit.className = 'fleet-feature-unit'; unit.textContent = part;
+        block.append(unit);
+      }
+      words.append(block);
+    }
+    // The separator closes the clause's last phrase, so the paragraph can break after it but never before it.
+    if (index < clauses.length - 1) {
+      const separator = document.createElement('span');
+      separator.className = 'fleet-feature-separator'; separator.textContent = ' ·';
+      words.lastElementChild?.append(separator);
+    }
+    item.className = 'fleet-feature'; item.append(bullet, words);
+    return index < clauses.length - 1 ? [item, ' '] : [item];
+  });
+  $('archive-shape').replaceChildren(...items);
 }
-function archiveActionLabel(): void {
-  const ship = archiveShip(), actionButton = button('help-ready');
-  $('archive-info').hidden = activeHelp !== 'archive' || archiveDetailsOpen || !ship;
-  actionButton.disabled = !!ship && !archiveDetailsOpen && archiveLoad.kind !== 'ready' && archiveLoad.kind !== 'failed';
-  actionButton.textContent = archiveDetailsOpen ? '返回图鉴' : (archiveLoad.kind === 'failed') ? '重试加载' : !archiveEntries.length ? '返回作战' :
-    !ship ? '资料说明' : archiveLoad.kind !== 'ready' ? '载入图像…' : selectedFleet[ship.hull] === ship.id ? '已选用 · 返回' :
-    game.status === 'menu' ? '使用本舰' : '下次出击使用';
+/**
+ * Features become a ruled list that fills the column when it fits, in the same type size on every entry. A card that is a
+ * few pixels short keeps a compact list without rules; only when even that overflows do the features stay one paragraph
+ * that wraps between phrases, as the original description did. In windows too short for any, the card may scroll.
+ */
+function fitArchiveFeatures(): void {
+  const listable = $('archive-shape').querySelectorAll('.fleet-feature').length > 1;
+  archiveCard.dataset.features = 'list';
+  if (listable) for (const size of ['regular', 'compact']) {
+    archiveCard.dataset.featureSize = size;
+    if (archiveCard.scrollHeight <= archiveCard.clientHeight) return;
+  }
+  archiveCard.dataset.features = 'inline';
+  archiveCard.dataset.featureSize = 'regular';
 }
-function setArchiveDetails({ open, focus = false }: { open: boolean; focus?: boolean }): void {
-  archiveDetailsOpen = open;
-  $('archive-details').hidden = !open;
-  for (const id of ['archive-card', 'archive-controls', 'archive-coverage']) $(id).hidden = open;
-  archiveActionLabel();
-  if (focus) $(open ? 'archive-details-title' : archiveShip() ? 'archive-info' : 'help-ready').focus({ preventScroll: true });
-}
+new ResizeObserver(fitArchiveFeatures).observe(archiveCard);
+void document.fonts.ready.then(fitArchiveFeatures);
 async function showArchive(index: number): Promise<void> {
   const request = ++archiveRequest;
-  archiveLoad = { kind: 'loading' };
   archiveIndex = archiveEntries.length ? (index + archiveEntries.length) % archiveEntries.length : 0;
-  setArchiveDetails({ open: false });
+  archiveCard.scrollTo({ top: 0, behavior: 'instant' });
   $('archive-illustration').classList.add('loading');
   const entry = archiveEntries[archiveIndex];
   if (!entry) {
-    archiveLoad = { kind: 'empty' };
     $('archive-name').textContent = '没有符合条件的型号';
+    $('archive-nation').textContent = '';
+    $('archive-service').textContent = '';
     $('archive-role').textContent = '';
     $('archive-count').textContent = '0 / 0';
-    $('archive-shape').textContent = '当前目录仍在补录，请调整筛选。';
+    showFeatures('当前目录仍在补录，请调整筛选。');
+    $('archive-operators').textContent = '';
     $('archive-source').hidden = true;
+    fitArchiveFeatures();
     $('archive-status').textContent = '暂无图像';
     return;
   }
-  $('archive-name').textContent = entry.name;
-  const ship = archiveShip();
-  const className = ship?.className && ship.className !== entry.name ? `${ship.className} · ` : '';
-  const appearanceCountry = ARCHIVE_COUNTRIES.find(country => country.id === entry.country)?.name ?? entry.country;
+  const name = $('archive-name');
+  const [first, ...rest] = entry.name.split('·');
+  name.textContent = first ?? '';
+  for (const part of rest) name.append('·', document.createElement('wbr'), part);
+  const ship = entry.category === 'surface' ? historicalShip(entry.id) : undefined;
+  const soviet = ship?.navy === 'su' || entry.id === 'project-971' || entry.id === 'mig21pf';
+  const appearanceCountry = entry.country === 'ru' ? soviet ? '苏联' : '俄罗斯' :
+    ARCHIVE_COUNTRIES.find(country => country.id === entry.country)?.name ?? entry.country;
   const serviceCountries = archiveServiceCountries(entry);
-  const operators = serviceCountries.map(id => id === 'ru' ? '俄罗斯' : ARCHIVE_COUNTRIES.find(country => country.id === id)?.name ?? id).join('／');
-  const serviceLabel = serviceCountries.length > 1 ? ` · 曾服役：${operators}` : '';
-  $('archive-role').textContent = `${appearanceCountry}${entry.year}年外观 · ${className}${entry.kind}${serviceLabel}`;
+  const operators = serviceCountries.map(id => id === 'ru' ? '俄罗斯' : ARCHIVE_COUNTRIES.find(country => country.id === id)?.name ?? id);
+  const operatorsLabel = entry.id === 'c46a' || entry.id === 'c119c' ? '系列曾服役' : '曾服役';
+  const service = archiveServiceYears(entry.id);
+  const category = archiveDisplayCategory(entry);
+  $('archive-nation').textContent = appearanceCountry;
+  $('archive-service').textContent = service.label;
+  $('archive-role').textContent = service.scope ? `${category} · ${service.scope}` : category;
+  // Each country name stays whole; the line may only break after a ／.
+  $('archive-operators').replaceChildren(...serviceCountries.length > 1 ? [`${operatorsLabel}：`, ...operators.map((country, index) => {
+    const name = document.createElement('span');
+    name.className = 'fleet-operator'; name.textContent = index < operators.length - 1 ? `${country}／` : country;
+    return name;
+  })] : []);
   $('archive-count').textContent = `${archiveIndex + 1} / ${archiveEntries.length}`;
-  $('archive-shape').textContent = entry.feature;
+  showFeatures(entry.feature);
   $('archive-shape').title = entry.note;
-  $('archive-note').textContent = entry.note;
-  $('archive-reference-list').replaceChildren(...[...new Set([entry.source, ...entry.references])].map((url, index) => {
-    const item = document.createElement('li'), link = document.createElement('a');
-    link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
-    link.textContent = index === 0 ? '主要史料 ↗' : `补充资料 ${index} ↗`;
-    link.setAttribute('aria-label', `${entry.name}的${index === 0 ? '主要史料' : '补充资料'}，${new URL(url).hostname}，打开新标签页`);
-    item.append(link); return item;
-  }));
   select('archive-entry').value = entry.id;
   const source = anchor('archive-source');
   source.href = entry.source; source.hidden = false;
   source.setAttribute('aria-label', `${entry.name}的历史资料，打开新标签页`);
+  // Text and layout are final before the first await, so the card never shows a stale fit while the sprite loads.
+  fitArchiveFeatures();
   $('archive-status').textContent = '图像载入中';
   try {
     await runtime.loadArchiveModel(entry.modelId);
     if (request !== archiveRequest || activeHelp !== 'archive') return;
     runtime.selectArchiveModel(entry.modelId);
-    $('intel-canvas').setAttribute('aria-label', `${entry.name} ${entry.year}年像素精灵`);
-    archiveLoad = { kind: 'ready' };
+    $('archive-canvas').setAttribute('aria-label', `${entry.name} ${entry.year}年像素精灵`);
     $('archive-status').textContent = '';
     $('archive-illustration').classList.remove('loading');
-    archiveActionLabel();
   } catch {
     if (request !== archiveRequest || activeHelp !== 'archive') return;
-    archiveLoad = { kind: 'failed' };
-    $('archive-status').textContent = '图像加载失败，请重试';
-    archiveActionLabel();
+    $('archive-status').textContent = '图像加载失败';
   }
 }
 function filterCenturyArchive(): void {
@@ -375,16 +416,6 @@ $('archive-prev').addEventListener('click', () => { void showArchive(archiveInde
 $('archive-next').addEventListener('click', () => { void showArchive(archiveIndex + 1); });
 $('archive-entry').addEventListener('change', () => { void showArchive(archiveEntries.findIndex(entry => entry.id === select('archive-entry').value)); });
 filterCenturyArchive();
-function showIntel(index: number) {
-  intelIndex = (index + UNIT_INFO.length) % UNIT_INFO.length;
-  const unit=unitInfo(intelIndex);
-  $('intel-name').textContent=unit.name;
-  $('intel-role').textContent=unit.role;
-  $('intel-shape').textContent=unit.silhouette;
-  $('intel-tactic').textContent=unit.tactic;
-  $('intel-count').textContent=`${waveNum(intelIndex+1)} / ${UNIT_INFO.length}`;
-  runtime.selectIntel(unit.id);
-}
 function showCampaign(index: number) {
   campaignIndex=(index+WAVES.length)%WAVES.length;
   const wave=waveInfo(campaignIndex + 1);
@@ -393,32 +424,20 @@ function showCampaign(index: number) {
   $('campaign-objective').textContent=wave.objective;
   const ids=[...wave.air,...wave.sea];
   if(campaignIndex===2||campaignIndex===7) ids.push('heavy-bomber');
-  $('campaign-roster').textContent=ids.map(id=>UNIT_INFO.find(unit=>unit.id===id)?.name ?? id).join(' / ');
+  $('campaign-roster').textContent=ids.map(id=>UNIT_NAMES[id]).join(' / ');
   $('campaign-count').textContent=`${waveNum(campaignIndex+1)} / 10 波`;
 }
 function showHelpPanel(id: string) {
   activeHelp=id;
-  if (id !== 'archive') setArchiveDetails({ open: false });
-  $('help-dialog').classList.toggle('archive-open', id==='archive');
   if (id !== 'archive') archiveRequest++;
-  if (id !== 'archive') {
-    $('archive-info').hidden = true;
-    button('help-ready').disabled = false;
-    $('help-ready').innerHTML = ordinaryHelpReady;
-  }
   for(const tab of document.querySelectorAll<HTMLButtonElement>('[data-help]')) {
     const active=tab.dataset.help===id;
     tab.setAttribute('aria-selected',String(active));
     tab.tabIndex=active?0:-1;
     $(`help-${tab.dataset.help}-panel`).hidden=!active;
   }
-  if(id==='intel') {
-    $('intel-illustration').append($('intel-canvas'));
-    $('intel-canvas').setAttribute('aria-label','作战单位二维预览');
-    showIntel(intelIndex);
-  }
   if(id==='campaign') showCampaign(campaignIndex);
-  if(id==='archive') { $('archive-illustration').append($('intel-canvas')); void showArchive(archiveIndex); }
+  if(id==='archive') void showArchive(archiveIndex);
 }
 const helpTabs=[...document.querySelectorAll<HTMLButtonElement>('[data-help]')];
 helpTabs.forEach((tab,index)=>{
@@ -431,27 +450,10 @@ helpTabs.forEach((tab,index)=>{
     if (tab) { showHelpPanel(tab.dataset.help ?? 'controls'); tab.focus(); }
   });
 });
-$('intel-prev').addEventListener('click',()=>showIntel(intelIndex-1));
-$('intel-next').addEventListener('click',()=>showIntel(intelIndex+1));
 $('campaign-prev').addEventListener('click',()=>showCampaign(campaignIndex-1));
 $('campaign-next').addEventListener('click',()=>showCampaign(campaignIndex+1));
 document.querySelectorAll<HTMLButtonElement>('[data-open-help]').forEach(button=>button.addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); showHelpPanel('controls'); dialog('help-dialog').showModal(); }));
 $('close-help').addEventListener('click', () => dialog('help-dialog').close());
-$('archive-info').addEventListener('click', () => setArchiveDetails({ open: true, focus: true }));
-$('help-ready').addEventListener('click', () => {
-  if (activeHelp === 'archive') {
-    if (archiveDetailsOpen) { setArchiveDetails({ open: false, focus: true }); return; }
-    if ((archiveLoad.kind === 'failed')) { void showArchive(archiveIndex); return; }
-    const ship = archiveShip();
-    if (ship) {
-      if (archiveLoad.kind !== 'ready') return;
-      selectedFleet[ship.hull] = ship.id;
-      writeStorage({ key: 'fleet', value: selectedFleet });
-      if (game.status === 'menu') game.fleetAppearance = { ...selectedFleet };
-    } else if (archiveEntries.length) { setArchiveDetails({ open: true, focus: true }); return; }
-  }
-  dialog('help-dialog').close();
-});
 dialog('help-dialog').addEventListener('close', () => { archiveRequest++; if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
 
 const stopViewportTracking=trackViewport(() => { clearInput(); runtime.resize(); });
@@ -465,7 +467,6 @@ try {
   }));
   game.fleetAppearance={...selectedFleet};
   selectCraft(selectedCraft); setDifficulty(difficulty); updateRecord(); syncSound(); syncState();
-  if (activeHelp === 'intel' && dialog('help-dialog').open) showIntel(intelIndex);
   button('start-button').disabled = false;
 } catch {
   initializationFailed = true;

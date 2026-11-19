@@ -198,6 +198,32 @@ export const ARCHIVE_SURFACE_HULLS = ['fleet-carrier', 'cruiser', 'destroyer', '
 /** Handbook entries can be removed while retaining assets used in combat and art provenance. */
 export const HANDBOOK_ARCHIVE = ARCHIVE.filter(entry => entry.category !== 'surface'
   || ARCHIVE_SURFACE_HULLS.some(hull => historicalShip(entry.id)?.hull === hull));
+
+// Legacy named ships and submarine variants have their own display class.
+const ARCHIVE_CLASSES: ReadonlyMap<string, string> = new Map([
+  ['iowa', '衣阿华级'], ['missouri', '衣阿华级'], ['south-dakota', '南达科他级'], ['arizona', '宾夕法尼亚级'],
+  ['warspite', '伊丽莎白女王级'], ['king-george-v', '乔治五世国王级'], ['hood', '海军上将级'],
+  ['rodney', '纳尔逊级'], ['illustrious', '光辉级'], ['cossack', '部族级'], ['belfast', '爱丁堡亚级'], ['renown', '声望级'],
+  ['yamato', '大和级'], ['musashi', '大和级'], ['nagato', '长门级'], ['kongo', '金刚级'],
+  ['shokaku', '翔鹤级'], ['mogami', '最上级'], ['fubuki', '吹雪级'],
+  ['bismarck', '俾斯麦级'], ['tirpitz', '俾斯麦级'], ['scharnhorst', '沙恩霍斯特级'],
+  ['graf-spee', '德意志级'], ['prinz-eugen', '希佩尔海军上将级'],
+  ['littorio', '利托里奥级'], ['roma', '利托里奥级'], ['giulio-cesare', '加富尔伯爵级'],
+  ['zara', '扎拉级'], ['maestrale', '西北风级'], ['richelieu', '黎塞留级'],
+  ['dunkerque', '敦刻尔克级'], ['le-fantasque', '空想级'], ['marat', '甘古特级'],
+  ['kirov', '基洛夫级'], ['tashkent', '塔什干级'], ['ning-hai', '宁海级'],
+  ['gerald-ford', '福特级'],
+  ['type-093-early', '093型商级'], ['type-092-refit', '092型夏级'], ['type-091-late', '091型汉级'],
+  ['type-094-early', '094型晋级'], ['type-035g', '035G型明级'], ['type-039-original', '039型宋级'],
+  ['u9', 'U 9级'], ['type-viic', 'VII C型'], ['gato', '猫鲨级'], ['nautilus', '鹦鹉螺级'],
+  ['oberon', '奥伯龙级'], ['virginia-block-i', '弗吉尼亚级'], ['type-212a', '212A型'], ['soryu-early', '苍龙级'],
+  ['type-039a', '039A型元级'], ['rubis-amethyste', '红宝石级'], ['project-971', '971型鲨鱼级'], ['sauro-first-series', '萨乌罗级'],
+]);
+
+export function archiveDisplayCategory(entry: ArchiveEntry): string {
+  return ARCHIVE_CLASSES.get(entry.id) ?? (entry.category === 'surface' ? historicalShip(entry.id)?.className : undefined) ?? entry.kind;
+}
+
 export function archiveEra(year: number): ArchiveEra {
   return year <= 1918 ? 'ww1' : year <= 1945 ? 'interwar-ww2' : year <= 1991 ? 'cold-war' : 'modern';
 }

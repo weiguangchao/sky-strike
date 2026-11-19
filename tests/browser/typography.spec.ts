@@ -46,6 +46,6 @@ test('font failure leaves the hangar, handbook and flight operable',async({page}
   await page.goto('/');await expect(page.locator('#start-button')).toBeEnabled();await page.evaluate(()=>document.fonts.ready);
   await page.locator('#help-button').click();await expect(page.locator('#help-dialog')).toBeVisible();
   const fit=await page.locator('#help-dialog').evaluate(dialog=>dialog.scrollHeight<=dialog.clientHeight&&dialog.scrollWidth<=dialog.clientWidth);expect(fit).toBe(true);
-  await page.locator('#help-ready').click();await page.locator('#start-button').click();await expect(page.locator('#game-hud')).toBeVisible();
+  await page.locator('#close-help').click();await page.locator('#start-button').click();await expect(page.locator('#game-hud')).toBeVisible();
   await page.locator('#pause-button').click();await expect(page.locator('#resume-button')).toBeVisible();
 });

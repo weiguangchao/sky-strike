@@ -9,9 +9,9 @@
 | [产品特点与画风](characteristics.md) | 二战风格、二维战场、色板、窗口适配约束 | `game/render.ts`、`game/style.css`、`game/layout.css` |
 | [品牌 Logo](logo.md) | 像素螺旋桨飞机、字标、图标与使用规范 | `game/public/assets/brand/`、`game/icon.svg` |
 | [Blender 模型流程](models.md) | 离线模型、二维精灵、生成、图层和坐标 | `assets/blender/`、`scripts/blender/`、`game/sprites.ts` |
-| [历史舰库](historical-fleet.md) | 历史图鉴中的八国、126个舰艇外观与美国82个舰级分组、史料、筛选与外观选择 | `game/naval-history.ts`、`game/main.ts` |
+| [历史舰库](historical-fleet.md) | 图鉴中的八国、126个舰艇外观与美国82个舰级分组、史料与筛选 | `game/naval-history.ts`、`game/main.ts` |
 | [美国舰级库](us-fleet.md) | 二战至现代82个舰级／亚级／改装分组、范围及来源 | `game/us-fleet.ts` |
-| [百年舰机与三方 council 验收](century-archive.md) | 八国历史图鉴、服役目录核对、逐模型Grok先≥9.8、再GPT／Claude≥9.8 | `game/historical-archive.ts`、`game/model-review.ts` |
+| [百年舰机与三方 council 验收](century-archive.md) | 八国图鉴、服役目录核对、逐模型Grok先≥9.8、再GPT／Claude≥9.8 | `game/historical-archive.ts`、`game/model-review.ts` |
 | [八国服役目录核对](inventory/README.md) | 后续型号的服役证据、改型边界及旧舰库身份待核实清单 | `dcos/feature/inventory/` |
 | [Cloudflare Workers 部署](deployment.md) | 账号授权、构建、发布与资源验证 | `wrangler.jsonc`、`game/public/_headers` |
 | [Phaser 4 运行架构](phaser-runtime.md) | 场景、循环、输入、资源和纯二维发布 | `game/runtime.ts`、`game/render.ts`、`game/sprites.ts` |
