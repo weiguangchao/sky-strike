@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 import { WIDTH, HEIGHT } from './engine.ts';
 import type { Game } from './engine.ts';
-import type { AirKind, CraftId, GameEvent, Input, Point, ShipKind } from './types.ts';
+import type { CraftId, GameEvent, Input, Point } from './types.ts';
 import type { HistoricalShipId } from './naval-history.ts';
 import { historicalModel } from './naval-history.ts';
-import { MODEL_IDS, unitModel } from './models.ts';
+import { MODEL_IDS } from './models.ts';
 import type { ModelId } from './models.ts';
 import { PIXEL_RASTER } from './visual-style.ts';
 import { Renderer } from './render.ts';
@@ -12,7 +12,7 @@ import { Renderer } from './render.ts';
 interface RuntimeOptions {
   canvas: HTMLCanvasElement;
   previewCanvas: HTMLCanvasElement;
-  intelCanvas: HTMLCanvasElement;
+  archiveCanvas: HTMLCanvasElement;
   combat: Game;
   frame: (dt: number, input: Input) => void;
   keydown: (event: KeyboardEvent) => void;
@@ -113,7 +113,6 @@ export class GameRuntime {
     this.scene = new BattlefieldScene(options);
     options.canvas.dataset.engineVersion = this.version;
     options.previewCanvas.width = PIXEL_RASTER.preview.width; options.previewCanvas.height = PIXEL_RASTER.preview.height;
-    options.intelCanvas.width = 192; options.intelCanvas.height = 120;
   }
   get isReady(): boolean { return this.scene.isReady; }
   init(): Promise<void> {
@@ -134,8 +133,7 @@ export class GameRuntime {
   destroy(): void { this.clearInput(); this.phaser?.destroy(false); }
   event(event: GameEvent): void { this.scene.view?.event(event); }
   selectCraft(id: CraftId): void { this.scene.view?.library.preview({ id, canvas: this.options.previewCanvas }); }
-  selectIntel(id: AirKind | ShipKind): void { this.selectArchiveModel(unitModel(id)); }
   async loadHistorical(id: HistoricalShipId): Promise<void> { await this.loadArchiveModel(historicalModel(id)); }
   async loadArchiveModel(id: ModelId): Promise<void> { await this.init(); await this.scene.view?.library.load(id); }
-  selectArchiveModel(id: ModelId): void { this.scene.view?.library.preview({ id, canvas: this.options.intelCanvas }); }
+  selectArchiveModel(id: ModelId): void { this.scene.view?.library.preview({ id, canvas: this.options.archiveCanvas }); }
 }

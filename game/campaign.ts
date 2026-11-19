@@ -1,23 +1,22 @@
 import type { AirKind, ShipKind } from './types.ts';
 
-export interface UnitInfo { id: AirKind | ShipKind; name: string; role: string; tactic: string; silhouette: string }
-export const UNIT_INFO: [UnitInfo, ...UnitInfo[]] = [
-  { id: 'scout', name: '轻型战斗机', role: '空中 · 编队巡航', tactic: '机炮拦截，留意单发瞄准弹。', silhouette: '单发螺旋桨 / 椭圆翼' },
-  { id: 'interceptor', name: '横切截击机', role: '空中 · 侧翼突入', tactic: '从两侧横穿航线，提前向前方射击。', silhouette: '短机身 / 宽直翼' },
-  { id: 'diver', name: '俯冲轰炸机', role: '空中 · 预警后直线俯冲', tactic: '虚线锁定后移开，俯冲方向不会追踪。', silhouette: '倒海鸥翼 / 固定起落架' },
-  { id: 'torpedo', name: '鱼雷攻击机', role: '空中 · 低空袭舰', tactic: '优先拦截，海面鱼雷会威胁护航运输船。', silhouette: '长机身 / 腹部鱼雷' },
-  { id: 'heavy-bomber', name: '重型轰炸机', role: '空中 · 精英编队', tactic: '集中火力击破，航弹能快速清理护航机。', silhouette: '多发动机 / 双垂尾' },
-  { id: 'gunship', name: '双发护航机', role: '空中 · 扇形射击', tactic: '穿过扇形弹幕间隙，避开中央机身。', silhouette: '双发动机 / 重装机翼' },
-  { id: 'dart', name: '高速突击机', role: '空中 · 快速穿场', tactic: '保持机动，留出迎面交错空间。', silhouette: '收窄机翼 / 轻型机身' },
-  { id: 'patrol-boat', name: '巡逻艇', role: '海面 · 单座防空炮', tactic: '横向对准船体，自动投弹即可击破。', silhouette: '细长艇身 / 低矮驾驶舱' },
-  { id: 'destroyer', name: '驱逐舰', role: '海面 · 双舷防空', tactic: '对准两侧炮位投弹，可逐一压制火力。', silhouette: '修长舰体 / 双烟囱' },
-  { id: 'cruiser', name: '防空巡洋舰', role: '海面 · 密集交错弹', tactic: '先拆一侧防空炮，为下一轮进攻打开通道。', silhouette: '宽甲板 / 多座高射炮' },
-  { id: 'battleship', name: '铁岳', role: '第 5 波首领 · 战列舰', tactic: '拆防空炮减少弹幕，摧毁舰桥减慢齐射。舰体始终可攻击。', silhouette: '三联装主炮 / 厚重舰桥' },
-  { id: 'fleet-carrier', name: '赤潮', role: '第 10 波首领 · 航母', tactic: '摧毁飞行甲板停止新机起飞，已升空敌机仍需拦截。', silhouette: '全通飞行甲板 / 左舷舰岛' },
-  { id: 'coastal-battery', name: '海岛炮台', role: '岸防 · 固定防空阵地', tactic: '对准炮位自动投弹，摧毁后不再射击。', silhouette: '沙地工事 / 双联炮管' },
-  { id: 'oil-depot', name: '港口油库', role: '岸防 · 连锁爆炸', tactic: '击破油罐能打击附近敌军并清除局部敌弹。', silhouette: '储油罐 / 港口栈桥' },
-  { id: 'transport', name: '敌方运输船', role: '海面 · 补给目标', tactic: '击沉获得额外补给；蓝旗运输船则是友军。', silhouette: '货箱 / 吊杆 / 小型舰桥' },
-];
+export const UNIT_NAMES: Record<AirKind | ShipKind, string> = {
+  scout: '轻型战斗机',
+  interceptor: '横切截击机',
+  diver: '俯冲轰炸机',
+  torpedo: '鱼雷攻击机',
+  'heavy-bomber': '重型轰炸机',
+  gunship: '双发护航机',
+  dart: '高速突击机',
+  'patrol-boat': '巡逻艇',
+  destroyer: '驱逐舰',
+  cruiser: '防空巡洋舰',
+  battleship: '铁岳',
+  'fleet-carrier': '赤潮',
+  'coastal-battery': '海岛炮台',
+  'oil-depot': '港口油库',
+  transport: '敌方运输船',
+};
 export interface WaveInfo { name: string; objective: string; air: AirKind[]; sea: ShipKind[] }
 export const WAVES: [WaveInfo, ...WaveInfo[]] = [
   { name: '舰队启航', objective: '从友军航母起飞，拦截前方战斗机。', air: ['scout'], sea: [] },
@@ -45,7 +44,4 @@ export const HULLS: Record<ShipKind, HullSpec> = {
 
 export function waveInfo(wave: number): WaveInfo {
   return WAVES[wave - 1] ?? WAVES[0];
-}
-export function unitInfo(index: number): UnitInfo {
-  return UNIT_INFO[index] ?? UNIT_INFO[0];
 }

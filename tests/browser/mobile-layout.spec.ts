@@ -125,7 +125,7 @@ test.describe('phone visible viewport',()=>{
       },scenario);
       await viewport(page,{width:scenario.width,height:scenario.visibleHeight,offsetTop:scenario.offsetTop});
       await page.locator('#pause-button').click();await page.locator('#pause-help').click();
-      for(const [panel,pages] of [['controls',1],['intel',15],['campaign',10],['archive',HANDBOOK_ARCHIVE.length]] as const) {
+      for(const [panel,pages] of [['controls',1],['campaign',10],['archive',HANDBOOK_ARCHIVE.length]] as const) {
         await page.locator(`#help-tab-${panel}`).click();
         for(let i=0;i<pages;i++) {
           if(panel==='archive') {
@@ -156,8 +156,8 @@ test.describe('phone visible viewport',()=>{
   test('pause keeps handbook, sound and fullscreen reachable and returns to the same flight',async({page,browserName})=>{
     await page.goto('/');await page.locator('#start-button').click();await page.locator('#pause-button').click();
     await page.locator('#pause-help').click();await expect(page.locator('#help-dialog')).toBeVisible();
-    await page.locator('#help-tab-intel').click();await expect(page.locator('#intel-canvas')).toBeVisible();
-    await page.locator('#help-ready').click();await expect(page.locator('#pause-screen')).toBeVisible();
+    await page.locator('#help-tab-campaign').click();await expect(page.locator('#help-campaign-panel')).toBeVisible();
+    await page.locator('#close-help').click();await expect(page.locator('#pause-screen')).toBeVisible();
     await page.locator('.pause-tools .sound-button').click();
     await expect(page.locator('.pause-tools .sound-button')).toHaveAttribute('aria-label','关闭声音');
     if(browserName==='chromium') {

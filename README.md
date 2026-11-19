@@ -28,7 +28,7 @@ npm run sprites:build
 
 macOS 默认使用已安装的 Blender；其他环境从 PATH 查找 `blender`，也可用 `BLENDER_PATH` 指定路径。命令会重新生成模型源文件和游戏 GLB。坐标、螺旋桨节点、模型清单和手工修改流程见 [模型文档](dcos/feature/models.md)。`npm run sprites:build` 使用离线栅格器生成顶视、预览、完好部件与残骸图层，不需要启动 Blender。正常开发或构建直接使用已提交的二维精灵；Three.js 仅作为离线工具和源模型测试的开发依赖。
 
-手册“历史图鉴”展示八国162条资料：126条水面舰艇外观、18型飞机和18级潜艇，覆盖一战至今；舰艇可选作出击外观，飞机与潜艇供资料浏览。八国服役目录仍在核对，尚未全部收齐。独立源库为 [century-archive.blend](assets/blender/century-archive.blend)，可用 `npm run models:build:archive` 重建。真实模型验收记录保留在内部账本；先由Grok总评及逐项≥9.8，再由GPT Sol和Claude Opus独立复审同一版本，三席总评及逐项均≥9.8才通过。`npm run models:audit -- --require-approved`检查当前全部载具；图鉴不显示评分。收录边界、史料与完整验收规则见[百年舰机](dcos/feature/century-archive.md)。
+手册「图鉴」展示八国162条资料：126条水面舰艇外观、18型飞机和18级潜艇，覆盖一战至今；舰艇、飞机和潜艇均供资料浏览。八国服役目录仍在核对，尚未全部收齐。独立源库为 [century-archive.blend](assets/blender/century-archive.blend)，可用 `npm run models:build:archive` 重建。真实模型验收记录保留在内部账本；先由Grok总评及逐项≥9.8，再由GPT Sol和Claude Opus独立复审同一版本，三席总评及逐项均≥9.8才通过。`npm run models:audit -- --require-approved`检查当前全部载具；图鉴不显示评分。收录边界、史料与完整验收规则见[百年舰机](dcos/feature/century-archive.md)。
 
 ## 验证与发布
 

@@ -196,19 +196,21 @@ test('startup works without the newer Promise.withResolvers API', async ({ page 
   expect(errors).toEqual([]);
 });
 
-test('unit preview opened during startup draws the selected unit when loading finishes', async ({ page }) => {
+test('archive opened during startup draws the selected model when loading finishes', async ({ page }) => {
   const gate = Promise.withResolvers<void>();
   await page.route('**/assets/sprites/falcon.png', async route => { await gate.promise; await route.continue(); });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   try {
-    await page.locator('#help-button').click(); await page.locator('#help-tab-intel').click();
-    await page.locator('#intel-next').click();
+    await page.locator('#help-button').click(); await page.locator('#help-tab-archive').click();
+    await page.locator('#archive-category').selectOption('aircraft');
+    await page.locator('#archive-entry').selectOption('a6m5');
     await expect(page.locator('#start-button')).toBeDisabled();
-    const selected = await page.locator('#intel-name').textContent();
+    const selected = await page.locator('#archive-name').textContent();
     gate.resolve();
     await expect(page.locator('#start-button')).toBeEnabled();
-    await expect(page.locator('#intel-name')).toHaveText(selected ?? '');
-    await expect.poll(() => page.locator('#intel-canvas').evaluate((canvas: HTMLCanvasElement) => {
+    await expect(page.locator('#archive-name')).toHaveText(selected ?? '');
+    await expect(page.locator('#archive-canvas')).toBeVisible();
+    await expect.poll(() => page.locator('#archive-canvas').evaluate((canvas: HTMLCanvasElement) => {
       const context = canvas.getContext('2d');
       return context ? context.getImageData(0, 0, canvas.width, canvas.height).data.some((value, index) => index % 4 === 3 && value > 0) : false;
     })).toBe(true);

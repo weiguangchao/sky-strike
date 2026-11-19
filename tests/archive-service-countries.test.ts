@@ -24,6 +24,12 @@ for (const spec of [
 test('unverified operators stay out and generated mappings match the adopted evidence ledger', async () => {
   const entry = required(ARCHIVE.find(entry => entry.modelId === 'archive-type-212a'));
   assert.equal(filterArchive({ country: 'us' }).includes(entry), false);
+  const china = filterArchive({ country: 'cn', category: 'aircraft' });
+  for (const id of ['mig21pf', 'mirage2000c']) {
+    const variant = required(ARCHIVE.find(entry => entry.id === id));
+    assert.deepEqual(archiveServiceCountries(variant), [variant.country]);
+    assert.equal(china.includes(variant), false);
+  }
   const ledgerText = await readFile(new URL('../dcos/feature/inventory/eight-country-resolutions.json', import.meta.url), 'utf8');
   const generated: unknown = JSON.parse(await readFile(new URL('../game/archive-service-countries.json', import.meta.url), 'utf8'));
   assert.deepEqual(generated, archiveServiceCountryData(ledgerText));

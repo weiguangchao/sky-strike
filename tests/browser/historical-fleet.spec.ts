@@ -11,7 +11,6 @@ async function openFleet(page:import('@playwright/test').Page):Promise<void> {
 }
 async function ready(page:import('@playwright/test').Page):Promise<void> {
   await expect(page.locator('#archive-status')).toBeEmpty();
-  await expect(page.locator('#help-ready')).toBeEnabled();
   await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
 }
 
@@ -35,7 +34,7 @@ test('all retained historical ships have real local previews and every navy filt
         await expect(page.locator('#archive-name')).toHaveText(ship.name);await ready(page);
         await expect(page.locator('#archive-count')).toHaveText(`${index+1} / ${entries.length}`);
         await expect(page.locator('#archive-source')).toHaveAttribute('href',ship.source);
-        const image=PNG.sync.read(await page.locator('#intel-canvas').screenshot());
+        const image=PNG.sync.read(await page.locator('#archive-canvas').screenshot());
         let bright=0;const tones=new Set<number>();
         for(let at=0;at<image.data.length;at+=4) {
           const r=required(image.data[at]),g=required(image.data[at+1]),b=required(image.data[at+2]);
@@ -57,8 +56,10 @@ test('failed historical downloads can retry and stale requests cannot replace an
   await page.route('**/historic-iowa.png',async route=>{if(fail)await route.abort();else await route.continue();});
   await openFleet(page);
   await expect(page.locator('#archive-status')).toContainText('加载失败');
-  await expect(page.locator('#help-ready')).toHaveText('重试加载');
-  fail=false;await page.locator('#help-ready').click();await ready(page);
+  fail=false;
+  await page.locator('#archive-next').click();
+  await page.locator('#archive-prev').click();await ready(page);
+  await expect(page.locator('#archive-entry')).toHaveValue('iowa');
   await page.locator('#close-help').click();
   await page.unroute('**/historic-iowa.png');
   const { promise: gate, resolve: release } = Promise.withResolvers<void>();
@@ -67,18 +68,23 @@ test('failed historical downloads can retry and stale requests cannot replace an
   await page.locator('#help-button').click();await page.locator('#help-tab-archive').click();
   await page.locator('#archive-category').selectOption('battleship');
   await expect(page.locator('#archive-status')).toHaveText('图像载入中');
-  await page.locator('#help-tab-intel').click();await expect(page.locator('#intel-name')).toHaveText('轻型战斗机');
-  const before=await page.locator('#intel-canvas').evaluate((canvas:HTMLCanvasElement)=>canvas.toDataURL());
+  await page.locator('#help-tab-campaign').click();await expect(page.locator('#campaign-name')).toHaveText('舰队启航');
+  const before=await page.locator('#archive-canvas').evaluate((canvas:HTMLCanvasElement)=>canvas.toDataURL());
   const response=page.waitForResponse('**/historic-iowa.png');release();await response;
   await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
-  expect(await page.locator('#intel-canvas').evaluate((canvas:HTMLCanvasElement)=>canvas.toDataURL())).toBe(before);
-  await expect(page.locator('#intel-name')).toHaveText('轻型战斗机');
+  expect(await page.locator('#archive-canvas').evaluate((canvas:HTMLCanvasElement)=>canvas.toDataURL())).toBe(before);
+  await expect(page.locator('#campaign-name')).toHaveText('舰队启航');
 });
 
-test('a selected prototype persists and its battle and wreck keep that identity',async({page})=>{
+test('a saved prototype stays equipped while browsing and keeps its identity in battle and as a wreck',async({page})=>{
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('sky-strike:fleet')) {
+      localStorage.setItem('sky-strike:fleet', JSON.stringify({ version: 1, value: { battleship: 'bismarck' } }));
+    }
+  });
   await openFleet(page);await page.locator('#archive-country').selectOption('de');await ready(page);
   await expect(page.locator('#archive-name')).toHaveText('俾斯麦');
-  await page.locator('#help-ready').click();await page.locator('#start-button').click();
+  await page.locator('#close-help').click();await page.locator('#start-button').click();
   const result=await page.evaluate(async()=>{
     const {game}=await import('/main.ts');
     game.step=()=>{};game.wave=5;game.time=10;game.enemies=[];game.events=[];
@@ -90,8 +96,7 @@ test('a selected prototype persists and its battle and wreck keep that identity'
   await page.locator('#help-button').click();await page.locator('#help-tab-archive').click();
   await page.locator('#archive-country').selectOption('us');
   await page.locator('#archive-entry').selectOption('iowa');await ready(page);
-  await expect(page.locator('#help-ready')).toHaveText('下次出击使用');
-  await page.locator('#help-ready').click();
+  await page.locator('#close-help').click();
   expect(await page.evaluate(async()=>{
     const {game}=await import('/main.ts');
     return game.fleetAppearance.battleship;
@@ -102,10 +107,7 @@ test('a selected prototype persists and its battle and wreck keep that identity'
   });
   expect(identity).toBe('bismarck');
   await page.reload();await expect(page.locator('#start-button')).toBeEnabled();
-  await page.locator('#help-button').click();await page.locator('#help-tab-archive').click();
-  await page.locator('#archive-category').selectOption('battleship');
-  await page.locator('#archive-entry').selectOption('iowa');await ready(page);
-  await expect(page.locator('#help-ready')).toHaveText('已选用 · 返回');
+  expect(await page.evaluate(async () => (await import('/main.ts')).game.fleetAppearance.battleship)).toBe('bismarck');
 });
 
 test('the fleet stays inside short phone and landscape windows with long ship names',async({page})=>{
@@ -127,18 +129,24 @@ test('the fleet stays inside short phone and landscape windows with long ship na
   }
 });
 
-test('US class filters, direct selection and empty results stay coherent across tabs and persist into combat',async({page})=>{
+test('US class filters and empty results stay coherent across tabs and combat uses the saved prototype',async({page})=>{
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('sky-strike:fleet')) {
+      localStorage.setItem('sky-strike:fleet', JSON.stringify({ version: 1, value: { 'fleet-carrier': 'gerald-ford' } }));
+    }
+  });
   await openFleet(page);
   await page.locator('#archive-country').selectOption('us');
   await page.locator('#archive-category').selectOption('fleet-carrier');
   await expect(page.locator('#archive-entry option')).toHaveCount(23);
   await page.locator('#archive-entry').selectOption('gerald-ford');await ready(page);
   await expect(page.locator('#archive-name')).toHaveText('杰拉尔德·福特级');
-  await expect(page.locator('#archive-role')).toContainText('2017年外观');
+  await expect(page.locator('#archive-service')).toHaveText('2017–至今');
+  await expect(page.locator('#archive-role')).toHaveText('福特级');
   await page.locator('#archive-era').selectOption('modern');await ready(page);
   await expect(page.locator('#archive-entry option')).toHaveCount(2);
   await page.locator('#archive-entry').selectOption('gerald-ford');await ready(page);
-  await page.locator('#help-ready').click();await page.locator('#start-button').click();
+  await page.locator('#close-help').click();await page.locator('#start-button').click();
   const battle=await page.evaluate(async()=>{
     const {game}=await import('/main.ts');
     game.step=()=>{};game.wave=10;game.enemies=[];
@@ -150,18 +158,14 @@ test('US class filters, direct selection and empty results stay coherent across 
   await page.locator('#help-button').click();await page.locator('#help-tab-archive').click();
   await page.locator('#archive-category').selectOption('fleet-carrier');
   await page.locator('#archive-entry').selectOption('gerald-ford');await ready(page);
-  await expect(page.locator('#help-ready')).toHaveText('已选用 · 返回');
-  await page.locator('#archive-category').selectOption('fleet-carrier');
   await page.locator('#archive-country').selectOption('jp');
   await page.locator('#archive-era').selectOption('modern');
   await expect(page.locator('#archive-count')).toHaveText('0 / 0');
-  await expect(page.locator('#help-ready')).toHaveText('返回作战');
-  await expect(page.locator('#help-ready')).toBeEnabled();
   await expect(page.locator('#archive-entry')).toBeDisabled();
   await expect(page.locator('#archive-source')).toBeHidden();
-  await page.locator('#help-tab-intel').click();await page.locator('#help-tab-archive').click();
-  await expect(page.locator('#help-ready')).toHaveText('返回作战');
-  await expect(page.locator('#help-ready')).toBeEnabled();
+  await page.locator('#help-tab-campaign').click();await page.locator('#help-tab-archive').click();
+  await expect(page.locator('#archive-count')).toHaveText('0 / 0');
   await page.locator('#archive-era').selectOption('all');await ready(page);
-  await expect(page.locator('#help-ready')).toBeEnabled();
+  await expect(page.locator('#archive-entry')).toBeEnabled();
+  await expect(page.locator('#archive-canvas')).toBeVisible();
 });
