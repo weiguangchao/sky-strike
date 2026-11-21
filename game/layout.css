@@ -52,12 +52,14 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
   .pilot-tip, .run-build { margin-top: 20px; }
 }
 @media (max-width: 1100px) {
-  .difficulty { grid-template-columns: 1fr; }
+  .game-mode { grid-template-columns: 1fr; }
   .segmented { width: fit-content; }
   .mission-name { font-size: 24px; }
 }
-@media (max-width: 1000px) {
+@media (max-width: 1000px), (max-height: 480px) {
   .briefing { display: none; }
+  body:not(.battle-active) .frame-top { justify-content: space-between; gap: 6px; padding-inline: 7px; }
+  body:not(.battle-active) #mission-open-compact { display: inline-flex; flex: none; padding: 2px 6px; font-size: 14px; white-space: nowrap; }
   .hangar { max-width: 1000px; grid-template-columns: minmax(0, var(--battle-width)) minmax(0, 230px); column-gap: clamp(18px, 3vw, 28px); justify-content: center; }
   .game-section { grid-column: 1; }
   .loadout-panel { grid-column: 2; grid-row: 1; }
@@ -75,8 +77,28 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
   .site-footer, .craft-illustration, .craft-stats, .run-build { display: none; }
   h1 { font-size: 26px; margin-bottom: 12px; }
   .mission-card { padding-block: 10px; }
-  .flight-record, .difficulty { margin-top: 12px; }
+  .flight-record, .game-mode { margin-top: 12px; }
   .craft-name { margin-top: 12px; }
+}
+
+/* The chapter picker fits the same visual safe area as the handbook. */
+#mission-dialog {
+  width: min(calc(var(--usable-width) - 24px), 450px);
+  max-height: calc(var(--usable-height) - 16px);
+  margin: 0;
+  padding: 16px 20px;
+  left: calc(var(--viewport-left) + var(--safe-left) + var(--usable-width) / 2);
+  top: calc(var(--viewport-top) + var(--safe-top) + var(--usable-height) / 2);
+  transform: translate(-50%, -50%);
+}
+#mission-dialog[open] { display: grid; gap: 12px; }
+.mission-selects { display: grid; gap: 10px; }
+@container app-viewport (max-height: 440px) {
+  #mission-dialog { width: min(calc(var(--usable-width) - 24px), 560px); padding: 8px 12px; }
+  #mission-dialog[open] { gap: 8px; }
+}
+@container app-viewport (min-width: 480px) and (max-height: 440px) {
+  .mission-selects:has(#mission-select-field:not([hidden])) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* Phones use one selector row; the active tab already names the aircraft. */

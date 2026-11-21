@@ -1,6 +1,6 @@
 import { required } from './support.ts';
 import test from 'node:test';
-import { UNIT_NAMES } from '../game/campaign.ts';
+import { BOSS_TIME_LIMIT, CAMPAIGN_STAGES, CHAPTERS, UNIT_NAMES, WAVES, WAVES_PER_MISSION } from '../game/campaign.ts';
 import type { Input } from '../game/types.ts';
 import assert from 'node:assert/strict';
 import { Game, UPGRADES, WIDTH, HEIGHT } from '../game/engine.ts';
@@ -67,8 +67,8 @@ test('shield absorbs a hit, regenerates, and armor repair respects maximum healt
 });
 
 test('defeat emits one result and restart clears all previous run state', () => {
-  const game = new Game(random()); game.start({ craft: 'turtle', difficulty: 'easy' });
-  assert.equal(game.player.hp, 9);
+  const game = new Game(random()); game.start({ craft: 'turtle' });
+  assert.equal(game.player.hp, 7);
   game.score = 1200; game.player.hp = 1; game.player.invincible = 0;
   game.hurt(); game.hurt();
   assert.equal(game.status, 'gameover'); assert.equal(game.drainEvents().filter(e => e.type === 'end').length, 1);
@@ -76,12 +76,54 @@ test('defeat emits one result and restart clears all previous run state', () => 
   assert.equal(game.player.hp, 4); assert.equal(game.bombs, 3); assert.deepEqual(game.stacks, {});
 });
 
-for(const craft of ['falcon','swift','turtle'] as const) for(const difficulty of ['normal','easy'] as const) {
-  test(`${craft}/${difficulty}: seeded sortie covers all 15 unit classes and both naval bosses`,()=>{
-    const game=new Game(random(71)); game.start({ craft: craft, difficulty: difficulty });
+test('the eight added sorties each introduce five distinct air and sea formations', () => {
+  const addedIds = ['fog-convoy', 'tide-break', 'carrier-screen', 'night-harbor', 'ice-passage', 'relay-island', 'strait-recovery', 'fleet-crossing'];
+  const added = CAMPAIGN_STAGES.filter(({ mission }) => addedIds.includes(mission.id));
+  assert.equal(added.length, addedIds.length);
+  const roster = ({ air, sea }: (typeof WAVES)[number]) => JSON.stringify([[...air].sort(), [...sea].sort()]);
+  const seen = new Set(CAMPAIGN_STAGES
+    .filter(({ mission }) => !addedIds.includes(mission.id))
+    .flatMap(({ mission }) => mission.waves.map(roster)));
+
+  for (const { mission } of added) {
+    const encounters = mission.waves.filter((wave, index) => wave !== WAVES[index]);
+    assert.equal(encounters.length, 5, mission.name);
+    for (const encounter of encounters) {
+      const formation = roster(encounter);
+      assert.ok(!seen.has(formation), `${mission.name} / ${encounter.name} repeats a formation`);
+      seen.add(formation);
+    }
+  }
+});
+
+test('authored air and sea rosters spawn in campaign and at the corresponding point in endless', () => {
+  for (const [stageIndex, stage] of CAMPAIGN_STAGES.entries()) {
+    for (const [waveIndex, wave] of stage.mission.waves.entries()) {
+      if (wave === WAVES[waveIndex]) continue;
+      for (const [airIndex, air] of wave.air.entries()) {
+        for (const mode of ['campaign', 'endless'] as const) {
+          const game = new Game(() => (airIndex + .5) / wave.air.length);
+          game.start({ sortie: mode === 'campaign' ? { kind: mode, stage } : { kind: mode, chapter: CHAPTERS[0] } });
+          game.time = 3;
+          game.wave = waveIndex + 1 + (mode === 'endless' ? stageIndex * WAVES_PER_MISSION : 0);
+          game.spawnTimer = 0;
+          game.step(.05);
+          const label = `${mode} / ${stage.mission.name} / ${wave.name}`;
+          assert.deepEqual(game.enemies.flatMap(enemy => enemy.layer === 'surface' ? [enemy.hull] : []), wave.sea, label);
+          const aircraft = new Set(game.enemies.flatMap(enemy => enemy.layer === 'air' ? [enemy.type] : []));
+          assert.deepEqual(aircraft, new Set(waveIndex === 2 || waveIndex === 7 ? ['heavy-bomber', air] : [air]), label);
+        }
+      }
+    }
+  }
+});
+
+for (const [index, stage] of CAMPAIGN_STAGES.entries()) for (const craft of index === 0 ? stage.chapter.craft : [stage.chapter.craft[0]]) {
+  test(`${stage.mission.name}/${craft}: a complete sortie fits 8–12 minutes`,()=>{
+    const game=new Game(random(71)); game.start({ craft, sortie: { kind: 'campaign', stage } });
     const waves=new Set<number>(),bosses=new Set<number>(),units=new Set<string>();
     let steps=0;
-    while(!['victory','gameover'].includes(game.status)&&steps<60*540) {
+    while(!['victory','gameover'].includes(game.status)&&steps<60*720) {
       steps++; game.player.invincible=100;
       if(game.status==='upgrade') {
         const index=game.choices.findIndex(u=>['power','spread','rapid','drone','missile'].includes(u.id));
@@ -97,11 +139,79 @@ for(const craft of ['falcon','swift','turtle'] as const) for(const difficulty of
       assert.ok(game.enemyBullets.length<=520);
     }
     assert.equal(game.status,'victory',`stalled at wave ${game.wave}, time ${game.time}`);
-    assert.equal(waves.size,10); assert.deepEqual([...bosses],[5,10]);
-    assert.deepEqual([...units].sort(),Object.keys(UNIT_NAMES).sort());
+    assert.ok(game.time >= 480 && game.time <= 720, String(game.time));
+    assert.equal(waves.size,WAVES_PER_MISSION); assert.deepEqual([...bosses],[5,10]);
+    if (index === 0) assert.deepEqual([...units].sort(),Object.keys(UNIT_NAMES).sort());
     assert.ok(game.kills>100); assert.ok(game.level>5); assert.ok(game.score>20000);
   });
 }
+
+test('sinking the final campaign carrier secures victory during the sinking animation', () => {
+  const game = new Game(random());
+  game.start();
+  game.wave = WAVES_PER_MISSION;
+  game.player.hp = 1;
+  game.player.invincible = 0;
+  const aircraft = game.spawnEnemy('scout', game.player.x, game.player.y);
+  const carrier = game.spawnBoss();
+  game.damageEnemy(carrier, carrier.maxHp);
+
+  game.step(.05);
+  assert.equal(game.player.hp, 1);
+  game.step(.05, { x: 1 });
+  assert.equal(game.player.x, aircraft.x);
+  assert.equal(game.bomb(), false);
+  assert.ok(required(game.wrecks[0]).age > 0);
+  advance(game, 3.1);
+  assert.equal(game.status, 'victory');
+  assert.deepEqual(game.drainEvents().flatMap(event => event.type === 'end' ? [event.outcome] : []), ['victory']);
+});
+
+test('a campaign boss deadline advances past the midboss but ends the mission at the final carrier', () => {
+  const game = new Game(random());
+  game.start();
+  game.wave = 5;
+  game.waveTime = BOSS_TIME_LIMIT;
+  game.step(.05);
+  assert.equal(game.wave, 6);
+  assert.equal(game.status, 'playing');
+  assert.equal(game.boss, null);
+  game.wave = WAVES_PER_MISSION;
+  game.waveTime = BOSS_TIME_LIMIT;
+  game.step(.05);
+  assert.equal(game.status, 'gameover');
+  assert.equal(game.drainEvents().find(event => event.type === 'end')?.outcome, 'timeout');
+});
+
+test('endless rotates chapters, carries run state, and never wins or stalls at a boss deadline', () => {
+  const game = new Game(random());
+  const chapter = required(CHAPTERS[1]);
+  game.start({ craft: 'swift', sortie: { kind: 'endless', chapter } });
+  assert.equal(game.craft, chapter.craft[0]);
+  assert.equal(game.activeStage.chapter, chapter);
+  const startIndex = CAMPAIGN_STAGES.indexOf(game.activeStage);
+  game.score = 1500;
+  game.stacks.armor = 2;
+  for (let cycle = 0; cycle <= CAMPAIGN_STAGES.length; cycle++) {
+    game.wave = (cycle + 1) * WAVES_PER_MISSION;
+    game.waveTime = 0;
+    const boss = game.spawnBoss();
+    assert.equal(boss.hull, 'fleet-carrier');
+    if (cycle % 2 === 0) {
+      game.damageEnemy(boss, boss.maxHp);
+      game.bossDelay = 0;
+    } else game.waveTime = BOSS_TIME_LIMIT;
+    game.step(.05);
+    if (game.status === 'upgrade') game.chooseUpgrade(0);
+    assert.equal(game.status, 'playing');
+    assert.equal(game.wave, (cycle + 1) * WAVES_PER_MISSION + 1);
+    assert.equal(game.missionWave, 1);
+    assert.equal(game.activeStage, CAMPAIGN_STAGES[(startIndex + cycle + 1) % CAMPAIGN_STAGES.length]);
+  }
+  assert.ok(game.score > 1500);
+  assert.ok((game.stacks.armor ?? 0) >= 2);
+  assert.equal(game.drainEvents().some(event => event.type === 'end'), false);
+});
 
 test('takeoff protects the aircraft and delays enemy spawns and weapons without blocking movement', () => {
   const game=new Game(random()); game.start({  });

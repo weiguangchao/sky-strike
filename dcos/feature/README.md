@@ -4,7 +4,7 @@
 
 | 文档 | 内容 | 实现位置 |
 | --- | --- | --- |
-| [游戏玩法](gameplay.md) | 单局循环、舰机、十波空海战役、部件破坏、强化、计分 | `game/engine.ts`、`game/campaign.ts` |
+| [游戏玩法](gameplay.md) | 章节解锁、战役与无尽、战役名称史实原型、舰机、部件破坏、强化、计分 | `game/engine.ts`、`game/campaign.ts` |
 | [功能清单](features.md) | 机库、操作、暂停、界面、存储、声音 | `game/main.ts`、`game/viewport.ts`、`game/index.html`、`game/audio.ts` |
 | [产品特点与画风](characteristics.md) | 二战风格、二维战场、色板、窗口适配约束 | `game/render.ts`、`game/style.css`、`game/layout.css` |
 | [品牌 Logo](logo.md) | 像素螺旋桨飞机、字标、图标与使用规范 | `game/public/assets/brand/`、`game/icon.svg` |

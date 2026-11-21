@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
-import {WAVES} from '../../game/campaign.ts';
+import {CAMPAIGN_STAGES, WAVES} from '../../game/campaign.ts';
 
 test('campaign shows all waves and wraps, with keyboard navigation back to controls', async({page})=>{
   await page.goto('/');
@@ -18,6 +18,24 @@ test('campaign shows all waves and wraps, with keyboard navigation back to contr
   await page.keyboard.press('ArrowLeft');
   await expect(page.locator('#help-tab-controls')).toBeFocused();
   await expect(page.locator('#help-controls-panel')).toBeVisible();
+});
+
+test('the handbook shows the San Carlos landing briefing with bay and shore headings', async ({ page }) => {
+  const ids = CAMPAIGN_STAGES.map(stage => stage.mission.id);
+  await page.addInitScript(missionIds => {
+    localStorage.setItem('sky-strike:campaignCleared', JSON.stringify(missionIds));
+    localStorage.setItem('sky-strike:campaignMission', JSON.stringify('ice-passage'));
+  }, ids);
+  await page.goto('/');
+  await expect(page.locator('#start-button')).toBeEnabled();
+  await page.locator('#help-button').click();
+  await page.locator('#help-tab-campaign').click();
+  await expect(page.locator('#campaign-stage')).toHaveText('圣卡洛斯湾登陆');
+  const headings = ['湾口巡线', '湾内航道', '运输船队', '近岸追击', '铁岳决战', '舰队补给', '锚地警戒', '舰载机群', '湾口突破', '赤潮终局'];
+  for (const heading of headings) {
+    await expect(page.locator('#campaign-name')).toHaveText(heading);
+    await page.locator('#campaign-next').click();
+  }
 });
 
 test('automatic ordnance breaks rendered boss parts and deck destruction updates the HUD', async({page})=>{

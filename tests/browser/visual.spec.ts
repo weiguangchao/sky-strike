@@ -14,7 +14,7 @@ async function settleFrame(page: Page): Promise<void> {
 async function fixture(page: Page, boss = false): Promise<void> {
   await page.evaluate(async boss => { const { required } = await import('/dom.ts');
     const { game } = await import('/main.ts');
-    game.start({ craft: 'falcon', difficulty: 'normal' });
+    game.start({ craft: 'falcon' });
     game.step = () => {};
     game.wave = boss ? 10 : 3;
     game.level = 4;
