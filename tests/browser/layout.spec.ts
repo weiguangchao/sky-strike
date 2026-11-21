@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
+import { CAMPAIGN_STAGES, CHAPTERS } from '../../game/campaign.ts';
+import { required } from '../support.ts';
 
 async function settleFrame(page: Page): Promise<void> {
   await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
@@ -103,10 +105,13 @@ test('campaign content fits small portrait and landscape windows without scrolli
     await page.setViewportSize({width,height}); await settleFrame(page);
     await page.locator('#help-button').click();
     await page.locator('#help-tab-campaign').click();
-    // The opening mission and Leyte Gulf, whose briefing and five archive links are the longest, fit without scrolling the card.
-    for(const [chapter,mission] of [['0','0'],['1','14']] as const) {
-      await page.locator('#campaign-chapter').selectOption(chapter);
-      await page.locator('#campaign-mission').selectOption(mission);
+    // The opening mission plus the longest briefings (Tondern, Earnest Will) and the fullest archive pages
+    // (Leyte Gulf's six links, Praying Mantis and Deliberate Force's longest notes) fit without scrolling the card.
+    for(const id of ['dawn-seas','tondern','leyte-gulf','earnest-will','relay-island','deliberate-force']) {
+      const index=CAMPAIGN_STAGES.findIndex(stage=>stage.mission.id===id);
+      await page.locator('#campaign-chapter').selectOption(String(CHAPTERS.indexOf(required(CAMPAIGN_STAGES[index]).chapter)));
+      await page.locator('#campaign-mission').selectOption(String(index));
+      const mission=id;
       const pages=await page.locator('#campaign-page option').count();
       for(let i=0;i<pages;i++) {
         await expectWithinWindow(page,['#help-campaign-panel','#close-help'],'#help-dialog');
