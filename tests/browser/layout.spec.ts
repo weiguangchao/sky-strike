@@ -57,10 +57,16 @@ test('window resizing keeps the complete hangar and every combat dialog on scree
   for (const [width, height] of sizes) {
     await page.setViewportSize({ width, height });
     await settleFrame(page);
-    await expectWithinWindow(page, ['.site-header', '.briefing', '.game-section', '.loadout-panel', '.site-footer', '#start-button', '[data-craft]']);
+    await expectWithinWindow(page, ['.site-header', '.briefing', '.game-section', '.loadout-panel', '.site-footer', '#start-button', '[data-craft]', '.mission-open']);
     const aspect = await page.locator('#game-canvas').evaluate(canvas => canvas.clientWidth / canvas.clientHeight);
     expect(aspect).toBeCloseTo(480 / 760, 2);
     await captureLayout(page, 'hangar', width, height);
+    await page.locator('.mission-open:visible').click();
+    await expectWithinWindow(page, ['#mission-dialog', '#close-mission', '#chapter-select', '#mission-select', '#mission-progress', '#mission-history-note']);
+    expect(await page.locator('#mission-dialog').evaluate(element => element.scrollHeight)).toBeLessThanOrEqual(
+      await page.locator('#mission-dialog').evaluate(element => element.clientHeight),
+    );
+    await page.locator('#close-mission').click();
     await expectHandbook(page,width,height);
     await page.getByRole('button', { name: '开始出击' }).click();
     await expectWithinWindow(page, ['.game-section', '#pause-button', '#bomb-button']);

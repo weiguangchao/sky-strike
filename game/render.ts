@@ -142,7 +142,7 @@ export class Renderer {
     const pools = [this.islands, this.ships, this.aircraft, this.bullets, this.pickups, this.hostile];
     for (const pool of pools) pool.begin();
     for (const graphics of [this.wakes, this.surface, this.shadows, this.rotors, this.hitPoint]) graphics.clear();
-    this.sea.setTexture(game.wave > 5 && !menu ? 'sea-storm' : 'sea-day'); this.sea.tilePositionY = -this.time * 18;
+    this.sea.setTexture(game.missionWave > 5 && !menu ? 'sea-storm' : 'sea-day'); this.sea.tilePositionY = -this.time * 18;
     this.islands.draw('island', 'top', 15, (this.time * 18 + 260) % 1250 - 260, 46);
     this.islands.draw('island', 'top', 500, (this.time * 18 + 760) % 1500 - 300, 37);
     if (menu || (game.wave === 1 && game.time < 5)) {

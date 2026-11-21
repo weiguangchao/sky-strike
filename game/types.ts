@@ -3,13 +3,22 @@ import type { HistoricalShipId } from './naval-history.ts';
 export const CRAFT_IDS = ['falcon', 'swift', 'turtle'] as const;
 export type CraftId = typeof CRAFT_IDS[number];
 export const isCraftId = (input: unknown): input is CraftId => CRAFT_IDS.some(id => id === input);
-export const isDifficulty = (input: unknown): input is Difficulty => input === 'normal' || input === 'easy';
+export const isGameMode = (input: unknown): input is GameMode => input === 'campaign' || input === 'endless';
 export type EntityId = number & { readonly __brand: 'EntityId' };
 export const isEntityId = (input: number): input is EntityId => Number.isSafeInteger(input) && input >= 0;
-export type Difficulty = 'normal' | 'easy';
+export type GameMode = 'campaign' | 'endless';
 export type GameStatus = 'menu' | 'playing' | 'paused' | 'upgrade' | 'gameover' | 'victory';
 export type AirKind = 'scout' | 'gunship' | 'dart' | 'interceptor' | 'diver' | 'torpedo' | 'heavy-bomber';
 export type ShipKind = 'patrol-boat' | 'destroyer' | 'cruiser' | 'battleship' | 'fleet-carrier' | 'coastal-battery' | 'oil-depot' | 'transport';
+export interface WaveInfo { name: string; objective: string; air: AirKind[]; sea: ShipKind[] }
+export interface Mission { id: string; name: string; waves: readonly WaveInfo[] }
+export interface Chapter {
+  name: string;
+  craft: readonly [CraftId, CraftId, ...CraftId[]];
+  missions: readonly [Mission, Mission, ...Mission[]];
+}
+export interface CampaignStage { chapter: Chapter; mission: Mission }
+export type Sortie = { kind: 'campaign'; stage: CampaignStage } | { kind: 'endless'; chapter: Chapter };
 export type EnemyKind = AirKind | ShipKind | 'boss';
 export type PartId = 'aa-port' | 'aa-starboard' | 'bridge' | 'flight-deck';
 export type UpgradeId = 'spread' | 'rapid' | 'power' | 'drone' | 'missile' | 'repair' | 'armor' | 'magnet' | 'shield' | 'bomb' | 'critical' | 'speed';
@@ -50,7 +59,7 @@ export type Pickup = (PickupBase & { type: 'xp'; amount: number }) | (PickupBase
 export interface Wreck extends Point { hull: ShipKind; heading: number; age: number; scale: number; appearance?: HistoricalShipId | undefined }
 export interface SurfaceTorpedo extends Point { vx: number; vy: number; age: number; dead: boolean }
 export interface Convoy extends Point { hp: number; maxHp: number; saved: boolean; dead: boolean }
-export interface Result { victory: boolean; score: number; kills: number; wave: number; time: number }
+export interface Result { outcome: 'victory' | 'defeat' | 'timeout'; score: number; kills: number; wave: number; time: number }
 export type GameEvent =
   | { type: 'start' | 'pause' | 'resume' | 'menu' | 'shoot' | 'shieldHit' }
   | { type: 'wave'; wave: number }

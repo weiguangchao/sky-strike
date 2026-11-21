@@ -1,11 +1,11 @@
 import { archiveServiceCountries } from './archive-service-countries.ts';
 import { archiveServiceYears } from './archive-service-years.ts';
 import { element as $, canvas as canvasElement, button, select, dialog, anchor } from './dom.ts';
-import { isCraftId, isDifficulty } from './types.ts';
-import { readStorage, writeStorage, parsePreferences } from './storage.ts';
-import type { CraftId, Difficulty, Input, Result } from './types.ts';
+import { isCraftId, isGameMode } from './types.ts';
+import { readStorage, writeStorage, parseCampaignProgress, parsePreferences } from './storage.ts';
+import type { CraftId, GameMode, Input, Result, Sortie } from './types.ts';
 import { Game, CRAFTS, UPGRADES } from './engine.ts';
-import { UNIT_NAMES, WAVES, waveInfo } from './campaign.ts';
+import { CAMPAIGN_STAGES, CHAPTERS, UNIT_NAMES, WAVES_PER_MISSION, firstUnclearedStageIndex, isStageUnlocked, stageAt, waveInfo } from './campaign.ts';
 import { GameRuntime } from './runtime.ts';
 import { Sound } from './audio.ts';
 import { trackViewport } from './viewport.ts';
@@ -16,16 +16,33 @@ import { ARCHIVE_COUNTRIES, ARCHIVE_SURFACE_HULLS, archiveDisplayCategory, filte
 
 for (const [name, signal] of Object.entries(VISUAL_SIGNALS)) document.documentElement.style.setProperty(`--${name}`, signal.color);
 
-const preferences = parsePreferences({ craft: readStorage('craft'), difficulty: readStorage('difficulty'), best: readStorage('best'), flights: readStorage('flights'), fleet: readStorage('fleet'), sound: readStorage('sound') });
+const preferences = parsePreferences({
+  craft: readStorage('craft'),
+  mode: readStorage('mode'),
+  campaignCleared: readStorage('campaignCleared'),
+  campaignMission: readStorage('campaignMission'),
+  campaignProgress: readStorage('campaignProgress'),
+  campaignSelection: readStorage('campaignSelection'),
+  endlessChapter: readStorage('endlessChapter'),
+  best: readStorage('best'),
+  flights: readStorage('flights'),
+  fleet: readStorage('fleet'),
+  sound: readStorage('sound'),
+});
 let selectedCraft = preferences.craft;
-let difficulty = preferences.difficulty;
+let mode = preferences.mode;
+const campaignCleared = new Set(preferences.campaignCleared);
+let campaignSelection = CAMPAIGN_STAGES.findIndex(stage => stage.mission.id === preferences.campaignMission);
+let endlessChapter = preferences.endlessChapter;
+let nextMission: number | undefined;
 let bestScore = preferences.best;
 let flights = preferences.flights;
 const selectedFleet: FleetSelection = preferences.fleet;
 export const game = new Game();
 game.craft = selectedCraft;
 const sound = new Sound(preferences.sound);
-export const runtime = new GameRuntime({ canvas: canvasElement('game-canvas'), previewCanvas: canvasElement('craft-canvas'), archiveCanvas: canvasElement('archive-canvas'), combat: game, frame, keydown: handleKey, allowInput: () => !dialog('help-dialog').open, unlockSound: () => sound.unlock() });
+const modalOpen = () => dialog('help-dialog').open || dialog('mission-dialog').open;
+export const runtime = new GameRuntime({ canvas: canvasElement('game-canvas'), previewCanvas: canvasElement('craft-canvas'), archiveCanvas: canvasElement('archive-canvas'), combat: game, frame, keydown: handleKey, allowInput: () => !modalOpen(), unlockSound: () => sound.unlock() });
 let announcementTimer = 0;
 let announcementText = '';
 let healthKey = '';
@@ -41,8 +58,17 @@ function updateRecord() {
   $('best-score').textContent = pad(bestScore);
 }
 
+function selectedSortie(): Sortie {
+  return mode === 'endless'
+    ? { kind: 'endless', chapter: CHAPTERS[endlessChapter] ?? CHAPTERS[0] }
+    : { kind: 'campaign', stage: stageAt(campaignSelection) };
+}
+
 function selectCraft(id: CraftId) {
   if (game.status !== 'menu') return;
+  const sortie = selectedSortie();
+  const chapter = sortie.kind === 'campaign' ? sortie.stage.chapter : sortie.chapter;
+  if (!chapter.craft.includes(id)) return;
   selectedCraft = id;
   game.craft = id;
   writeStorage({ key: 'craft', value: id });
@@ -54,20 +80,73 @@ function selectCraft(id: CraftId) {
   runtime.selectCraft(id);
 }
 
-function setDifficulty(mode: Difficulty) {
-  if (game.status !== 'menu') return;
-  difficulty = mode;
-  writeStorage({ key: 'difficulty', value: mode });
-  document.querySelectorAll<HTMLButtonElement>('[data-difficulty]').forEach(button => { const active = button.dataset.difficulty === mode; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
+function syncMissionSelection() {
+  const sortie = selectedSortie();
+  const chapter = sortie.kind === 'campaign' ? sortie.stage.chapter : sortie.chapter;
+  const campaign = sortie.kind === 'campaign';
+  const mission = campaign ? sortie.stage.mission : chapter.missions[0];
+  $('mission-era').textContent = chapter.name;
+  $('mission-name').textContent = campaign ? mission.name : '无尽出击';
+  $('mission-meta').textContent = campaign ? `${WAVES_PER_MISSION} 波攻势 · 8–12 分钟` : `从${mission.name}开始 · 连续攻势`;
+  $('mission-open-label').textContent = campaign ? '选择战役' : '选择起始章节';
+  $('sector-label').textContent = campaign ? mission.name : `无尽 · ${mission.name}`;
+  for (const control of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) {
+    const active = control.dataset.mode === mode;
+    control.classList.toggle('active', active);
+    control.setAttribute('aria-pressed', String(active));
+  }
+  select('chapter-select').replaceChildren(...CHAPTERS.map((entry, index) => {
+    const first = CAMPAIGN_STAGES.findIndex(stage => stage.chapter === entry);
+    const locked = campaign && !isStageUnlocked(first, campaignCleared);
+    const option = new Option(entry.name + (locked ? '（未解锁）' : ''), String(index), false, entry === chapter);
+    option.disabled = locked;
+    return option;
+  }));
+  select('mission-select').replaceChildren(...CAMPAIGN_STAGES.flatMap((stage, index) => {
+    if (stage.chapter !== chapter) return [];
+    const locked = !isStageUnlocked(index, campaignCleared);
+    const label = campaignCleared.has(stage.mission.id) ? '（已通关）' : locked ? '（未解锁）' : '';
+    const option = new Option(stage.mission.name + label, String(index), false, index === campaignSelection);
+    option.disabled = locked;
+    return [option];
+  }));
+  $('mission-select-field').hidden = !campaign;
+  $('mission-progress').textContent = campaign
+    ? `已通关 ${campaignCleared.size} / ${CAMPAIGN_STAGES.length} · 每关 8–12 分钟`
+    : '从所选章节起飞，依序轮转，直至坠毁。';
+  for (const control of document.querySelectorAll<HTMLButtonElement>('[data-craft]')) {
+    const craft = control.dataset.craft;
+    control.hidden = !isCraftId(craft) || !chapter.craft.includes(craft);
+  }
+  selectCraft(chapter.craft.includes(selectedCraft) ? selectedCraft : chapter.craft[0]);
 }
 
-function start() {
+function setMode(next: GameMode) {
+  if (game.status !== 'menu') return;
+  mode = next;
+  writeStorage({ key: 'mode', value: mode });
+  syncMissionSelection();
+}
+
+function selectMission(index: number) {
+  campaignSelection = index;
+  writeStorage({ key: 'campaignMission', value: stageAt(index).mission.id });
+}
+
+function refreshCampaignClears() {
+  const saved = parseCampaignProgress(readStorage('campaignCleared'), readStorage('campaignProgress'));
+  for (const id of saved) campaignCleared.add(id);
+}
+
+function start(sortie = selectedSortie()) {
   if (initializationFailed) { location.reload(); return; }
   if (!runtime.isReady) return;
   sound.unlock();
   clearInput();
   game.fleetAppearance={...selectedFleet};
-  game.start({ craft: selectedCraft, difficulty });
+  game.start({ craft: selectedCraft, sortie });
+  selectedCraft = game.craft;
+  nextMission = undefined;
   $('build-list').textContent = '等待首次升级';
   $('run-build').hidden = false;
   healthKey = '';
@@ -83,11 +162,10 @@ async function goHome() {
     try { await document.exitFullscreen(); } catch { /* The browser may already be leaving fullscreen. */ }
   }
   game.menu();
-  $('sector-label').textContent = '破晓海域';
   announcementTimer = 0;
   $('wave-announcement').classList.remove('visible');
   $('run-build').hidden = true;
-  selectCraft(selectedCraft);
+  syncMissionSelection();
   processEvents(); syncState();
   $('start-button').focus({ preventScroll: true });
 }
@@ -136,8 +214,8 @@ function syncState() {
   $('upgrade-screen').hidden = state !== 'upgrade';
   $('result-screen').hidden = state !== 'gameover' && state !== 'victory';
   $('boss-hud').hidden = !game.boss || state === 'menu';
-  document.querySelectorAll<HTMLButtonElement>('[data-craft], [data-difficulty]').forEach(button => { button.disabled = inRun; });
   if (state !== previousStatus) {
+    document.querySelectorAll<HTMLButtonElement>('[data-craft], [data-mode], .mission-open').forEach(button => { button.disabled = inRun; });
     runtime.resize();
     if (state === 'paused') $('resume-button').focus({ preventScroll: true });
     if (state === 'upgrade') $('upgrade-options').querySelector('button')?.focus({ preventScroll: true });
@@ -149,6 +227,7 @@ function syncState() {
 function syncHud() {
   $('score').textContent = pad(game.score);
   $('wave').textContent = waveNum(game.wave);
+  $('wave-total').textContent = game.sortie.kind === 'campaign' ? `/ ${WAVES_PER_MISSION} 波` : '波';
   $('level').textContent = String(game.level);
   $('xp-fill').style.width = `${Math.min(100, game.xp / game.nextXp * 100)}%`;
   $('bomb-count').textContent = `× ${game.bombs}`;
@@ -161,12 +240,13 @@ function syncHud() {
   }
   const escort = game.convoy && !game.convoy.dead && !game.convoy.saved ? game.convoy : null;
   $('weapon-level').textContent = escort ? `护航 ${escort.hp}/${escort.maxHp} · 自动对舰` : '机炮对空 · 自动对舰';
-  $('sector-label').textContent = game.wave>5?'风暴防线':'破晓海域';
+  $('sector-label').textContent = game.activeStage.mission.name;
   $('boss-hud').hidden = !game.boss;
   if (game.boss) {
     const percent = Math.max(0, game.boss.hp / game.boss.maxHp * 100);
     $('boss-fill').style.width = `${percent}%`;
     $('boss-percent').textContent = `${Math.ceil(percent)}%`;
+    $('boss-timer').textContent = elapsed(Math.ceil(game.bossTimeLeft));
     const prototype=game.boss.appearance&&historicalShip(game.boss.appearance);
     $('boss-name').textContent = `${game.boss.final?'赤潮':'铁岳'}${prototype?' · '+prototype.name:''}`;
     const names = { 'aa-port':'左炮', 'aa-starboard':'右炮', bridge:'舰桥', 'flight-deck':'甲板' };
@@ -180,11 +260,24 @@ function showResults(event: Result) {
   writeStorage({ key: 'flights', value: flights });
   const isBest = event.score > bestScore;
   if (isBest) { bestScore = event.score; writeStorage({ key: 'best', value: bestScore }); }
-  $('result-title').textContent = event.victory ? '作战胜利' : '出击结束';
+  const sortie = game.sortie;
+  if (event.outcome === 'victory' && sortie.kind === 'campaign') {
+    const index = CAMPAIGN_STAGES.findIndex(stage => stage.mission === sortie.stage.mission);
+    refreshCampaignClears();
+    const previousFrontier = firstUnclearedStageIndex(campaignCleared);
+    if (index >= 0 && !campaignCleared.has(sortie.stage.mission.id)) {
+      campaignCleared.add(sortie.stage.mission.id);
+      writeStorage({ key: 'campaignCleared', value: [...campaignCleared] });
+    }
+    const following = index === previousFrontier ? firstUnclearedStageIndex(campaignCleared) : index + 1;
+    if (index >= 0 && isStageUnlocked(following, campaignCleared)) nextMission = following;
+  }
+  $('result-title').textContent = event.outcome === 'victory' ? '作战胜利' : event.outcome === 'timeout' ? '旗舰未击沉' : '出击结束';
+  $('retry-label').textContent = nextMission === undefined ? '再次出击' : '下一战役';
   $('result-score').textContent = pad(event.score);
   $('result-best').hidden = !isBest;
   $('result-kills').textContent = String(event.kills);
-  $('result-wave').textContent = `${waveNum(event.wave)}/10`;
+  $('result-wave').textContent = sortie.kind === 'campaign' ? `${waveNum(event.wave)}/${WAVES_PER_MISSION}` : waveNum(event.wave);
   $('result-time').textContent = elapsed(event.time);
   updateRecord();
 }
@@ -193,9 +286,12 @@ function processEvents() {
   for (const event of game.drainEvents()) {
     runtime.event(event); sound.play(event.type);
     if (event.type === 'wave') {
-      if (event.wave % 5 === 0) announce({ title: '敌方首领接近', boss: true, duration: 3.3 });
-      else if (event.wave === 6) announce({ title: '风暴防线 · 补给抵达', boss: false, duration: 3 });
-      else announce({ title: event.wave === 1 ? '友军航母 · 起飞' : event.wave === 2 ? '对准舰船 · 自动投弹' : waveInfo(event.wave).name });
+      const wave = game.missionWave;
+      if (wave % 5 === 0) announce({ title: '敌方首领接近', boss: true, duration: 3.3 });
+      else if (wave === 6) announce({ title: '舰队补给抵达', duration: 3 });
+      else if (event.wave === 1) announce({ title: '友军航母 · 起飞' });
+      else if (wave === 1) announce({ title: game.activeStage.mission.name });
+      else announce({ title: waveInfo(wave, game.activeStage.mission).name });
     }
     if (event.type === 'bossDefeated') announce({ title: event.final ? '赤潮已击沉' : '铁岳已击沉', boss: false, duration: 2.4 });
     if (event.type === 'upgrade') { clearInput(); upgradeChoices(); }
@@ -232,7 +328,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) autoP
 window.addEventListener('blur', autoPause);
 window.addEventListener('resize', () => runtime.resize());
 function handleKey(event: KeyboardEvent): void {
-  if (dialog('help-dialog').open || event.ctrlKey || event.metaKey || event.altKey) return;
+  if (modalOpen() || event.ctrlKey || event.metaKey || event.altKey) return;
   const key = event.key.toLowerCase();
   if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'w', 'a', 's', 'd', ' '].includes(key) && game.status === 'playing') event.preventDefault();
   if (event.repeat && [' ', 'b', 'p', 'escape', 'm'].includes(key)) return;
@@ -243,16 +339,55 @@ function handleKey(event: KeyboardEvent): void {
 }
 canvasElement('game-canvas').addEventListener('contextmenu', event => event.preventDefault());
 
-$('start-button').addEventListener('click', start);
-$('retry-button').addEventListener('click', start);
-$('pause-restart').addEventListener('click', start);
+$('start-button').addEventListener('click', () => start());
+$('retry-button').addEventListener('click', () => {
+  if (nextMission === undefined) start(game.sortie);
+  else {
+    selectMission(nextMission);
+    start({ kind: 'campaign', stage: stageAt(campaignSelection) });
+  }
+});
+$('pause-restart').addEventListener('click', () => start(game.sortie));
 $('pause-button').addEventListener('click', togglePause);
 $('resume-button').addEventListener('click', togglePause);
 $('quit-button').addEventListener('click', goHome);
 $('result-home').addEventListener('click', goHome);
 $('bomb-button').addEventListener('click', () => { sound.unlock(); game.bomb(); processEvents(); syncHud(); });
 document.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach(button => button.addEventListener('click', () => { if (isCraftId(button.dataset.craft)) selectCraft(button.dataset.craft); }));
-document.querySelectorAll<HTMLButtonElement>('[data-difficulty]').forEach(button => button.addEventListener('click', () => { if (isDifficulty(button.dataset.difficulty)) setDifficulty(button.dataset.difficulty); }));
+document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button => button.addEventListener('click', () => { if (isGameMode(button.dataset.mode)) setMode(button.dataset.mode); }));
+for (const id of ['mission-open', 'mission-open-compact']) {
+  $(id).addEventListener('click', () => {
+    if (game.status !== 'menu') return;
+    refreshCampaignClears();
+    syncMissionSelection();
+    dialog('mission-dialog').showModal();
+  });
+}
+$('close-mission').addEventListener('click', () => dialog('mission-dialog').close());
+$('chapter-select').addEventListener('change', () => {
+  const index = Number(select('chapter-select').value);
+  const chapter = CHAPTERS[index];
+  if (game.status !== 'menu' || !chapter) return;
+  if (mode === 'endless') {
+    endlessChapter = index;
+    writeStorage({ key: 'endlessChapter', value: index });
+  } else {
+    const frontier = firstUnclearedStageIndex(campaignCleared);
+    const unlocked = CAMPAIGN_STAGES[frontier]?.chapter === chapter
+      ? frontier
+      : CAMPAIGN_STAGES.reduce((latest, stage, index) =>
+        stage.chapter === chapter && campaignCleared.has(stage.mission.id) ? index : latest, -1);
+    if (unlocked < 0) return;
+    selectMission(unlocked);
+  }
+  syncMissionSelection();
+});
+$('mission-select').addEventListener('change', () => {
+  const index = Number(select('mission-select').value);
+  if (game.status !== 'menu' || !isStageUnlocked(index, campaignCleared)) return;
+  selectMission(index);
+  syncMissionSelection();
+});
 document.querySelectorAll<HTMLButtonElement>('.sound-button').forEach(button => button.addEventListener('click', toggleSound));
 function syncFullscreen() {
   const label=document.fullscreenElement?'退出全屏':'全屏游戏';
@@ -417,15 +552,19 @@ $('archive-next').addEventListener('click', () => { void showArchive(archiveInde
 $('archive-entry').addEventListener('change', () => { void showArchive(archiveEntries.findIndex(entry => entry.id === select('archive-entry').value)); });
 filterCenturyArchive();
 function showCampaign(index: number) {
-  campaignIndex=(index+WAVES.length)%WAVES.length;
-  const wave=waveInfo(campaignIndex + 1);
-  $('campaign-stage').textContent=campaignIndex===4||campaignIndex===9?'旗舰攻坚':'空海联合作战';
+  campaignIndex=(index+WAVES_PER_MISSION)%WAVES_PER_MISSION;
+  const sortie = selectedSortie();
+  const mission = game.status !== 'menu'
+    ? game.activeStage.mission
+    : sortie.kind === 'campaign' ? sortie.stage.mission : sortie.chapter.missions[0];
+  const wave=waveInfo(campaignIndex + 1, mission);
+  $('campaign-stage').textContent=mission.name;
   $('campaign-name').textContent=wave.name;
   $('campaign-objective').textContent=wave.objective;
   const ids=[...wave.air,...wave.sea];
   if(campaignIndex===2||campaignIndex===7) ids.push('heavy-bomber');
   $('campaign-roster').textContent=ids.map(id=>UNIT_NAMES[id]).join(' / ');
-  $('campaign-count').textContent=`${waveNum(campaignIndex+1)} / 10 波`;
+  $('campaign-count').textContent=`${waveNum(campaignIndex+1)} / ${WAVES_PER_MISSION} 波`;
 }
 function showHelpPanel(id: string) {
   activeHelp=id;
@@ -466,7 +605,7 @@ try {
     catch {selectedFleet[hull]=DEFAULT_FLEET[hull];}
   }));
   game.fleetAppearance={...selectedFleet};
-  selectCraft(selectedCraft); setDifficulty(difficulty); updateRecord(); syncSound(); syncState();
+  syncMissionSelection(); updateRecord(); syncSound(); syncState();
   button('start-button').disabled = false;
 } catch {
   initializationFailed = true;

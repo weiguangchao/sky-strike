@@ -1,5 +1,6 @@
 import { MODEL_IDS } from '../../game/models.ts';
 import { test, expect } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 test('legacy preferences load and new selections persist in versioned storage', async ({ page }) => {
   await page.addInitScript(() => {
@@ -9,17 +10,18 @@ test('legacy preferences load and new selections persist in versioned storage', 
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   await expect(page.locator('[data-craft="swift"]')).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('[data-difficulty="easy"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.briefing [data-mode="campaign"]')).toHaveAttribute('aria-pressed', 'true');
   await page.locator('[data-craft="turtle"]').click();
   expect(await page.evaluate(() => localStorage.getItem('sky-strike:craft'))).toBe('{"version":1,"value":"turtle"}');
   await page.locator('#start-button').click();
-  expect(await page.evaluate(async () => (await import('/main.ts')).game.player.maxHp)).toBe(9);
+  expect(await page.evaluate(async () => (await import('/main.ts')).game.player.maxHp)).toBe(7);
 });
 
 test('malformed and unsupported preferences fall back without blocking flight', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('sky-strike:craft', '{"version":2,"value":"swift"}');
-    localStorage.setItem('sky-strike:difficulty', '"invalid"');
+    localStorage.setItem('sky-strike:mode', '"invalid"');
+    localStorage.setItem('sky-strike:campaignSelection', '5');
     localStorage.setItem('sky-strike:best', '{');
     localStorage.setItem('sky-strike:sound', '"false"');
   });
@@ -27,7 +29,8 @@ test('malformed and unsupported preferences fall back without blocking flight', 
   await expect(page.locator('#start-button')).toBeEnabled();
   await expect(page.locator('#best-score')).toHaveText('000000');
   await expect(page.locator('[data-craft="falcon"]')).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('[data-difficulty="normal"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.briefing [data-mode="campaign"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#mission-name')).toHaveText('黑尔戈兰湾海战');
   await page.locator('#start-button').click();
   expect(await page.evaluate(async () => (await import('/main.ts')).game.player.maxHp)).toBe(5);
 });
@@ -41,10 +44,10 @@ test('desktop sortie: selection, keyboard, bomb, pause, upgrade, results and rec
   await page.screenshot({ path: 'test-results/desktop-hangar.png', fullPage: true });
   await page.getByRole('tab', { name: '雨燕' }).click();
   await expect(page.locator('#craft-name')).toHaveText('雨燕');
-  await page.getByRole('button', { name: '休闲', exact: true }).click();
+  await page.getByRole('button', { name: '无尽', exact: true }).click();
   await page.getByRole('button', { name: '开始出击' }).click();
   const initial = await page.evaluate(async () => { const { game } = await import('/main.ts'); return { x: game.player.x, hp: game.player.hp, craft: game.craft }; });
-  expect(initial.craft).toBe('swift'); expect(initial.hp).toBe(6);
+  expect(initial.craft).toBe('swift'); expect(initial.hp).toBe(4);
   await page.keyboard.down('ArrowLeft');
   await expect.poll(async () => page.evaluate(async () => (await import('/main.ts')).game.player.x)).toBeLessThan(initial.x - 20);
   await page.keyboard.up('ArrowLeft');
@@ -68,6 +71,7 @@ test('desktop sortie: selection, keyboard, bomb, pause, upgrade, results and rec
   await page.reload();
   await expect(page.locator('#best-score')).toHaveText('012345');
   await expect(page.locator('#craft-name')).toHaveText('雨燕');
+  await expect(page.locator('.briefing [data-mode="endless"]')).toHaveAttribute('aria-pressed', 'true');
   expect(errors).toEqual([]);
 });
 
@@ -129,12 +133,114 @@ test('boss HUD, stage resupply and final victory resolve correctly', async ({ pa
   await expect(page.locator('#boss-name')).toContainText('铁岳');
   await page.evaluate(async () => { const { required } = await import('/dom.ts');  const { game } = await import('/main.ts'); game.damageEnemy(required(game.boss), 99999); game.xp = 0; });
   await expect(page.locator('#wave')).toHaveText('06', { timeout: 6000 });
-  await expect(page.locator('#sector-label')).toContainText('风暴防线');
+  await expect(page.locator('#sector-label')).toHaveText('黑尔戈兰湾海战');
   await page.evaluate(async () => { const { game } = await import('/main.ts'); game.wave = 10; game.enemies = []; game.bossDefeated = false; });
   await expect(page.locator('#boss-name')).toContainText('赤潮');
   await page.evaluate(async () => { const { required } = await import('/dom.ts');  const { game } = await import('/main.ts'); game.damageEnemy(required(game.boss), 99999); });
   await expect(page.locator('#result-title')).toHaveText('作战胜利', { timeout: 6000 });
   await expect(page.locator('#result-wave')).toHaveText('10/10');
+});
+
+async function sinkFinalCarrier(page: Page): Promise<void> {
+  await page.evaluate(async () => {
+    const { game } = await import('/main.ts');
+    game.wave = 10;
+    game.waveTime = 0;
+    game.damageEnemy(game.spawnBoss(), 99999);
+    game.bossDelay = 0;
+  });
+}
+
+test('campaign victory unlocks the next mission and then the next chapter, with a different hangar roster', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#start-button')).toBeEnabled();
+  await page.getByRole('tab', { name: '雨燕' }).click();
+  await expect(page.locator('#mission-era')).toHaveText('第一次世界大战');
+  await page.getByRole('button', { name: '选择战役' }).click();
+  await expect(page.locator('#mission-history-note')).toHaveText('战役取名自历史，关卡为架空演绎。');
+  await expect(page.locator('#chapter-select option')).toHaveText([
+    '第一次世界大战', '第二次世界大战（未解锁）', '冷战（未解锁）', '现代（未解锁）',
+  ]);
+  await expect(page.locator('#mission-select option')).toHaveText(['黑尔戈兰湾海战', '多格尔沙洲海战（未解锁）', '日德兰海战（未解锁）', '奥特朗托海峡海战（未解锁）']);
+  await expect(page.locator('#mission-select option:disabled')).toHaveCount(3);
+  await expect(page.locator('#chapter-select option[value="1"]')).toBeDisabled();
+  await page.locator('#close-mission').click();
+  await page.locator('#start-button').click();
+  await sinkFinalCarrier(page);
+  await page.getByRole('button', { name: '下一战役' }).click();
+  await expect(page.locator('#sector-label')).toHaveText('多格尔沙洲海战');
+  await sinkFinalCarrier(page);
+  await page.getByRole('button', { name: '下一战役' }).click();
+  await expect(page.locator('#sector-label')).toHaveText('日德兰海战');
+  await sinkFinalCarrier(page);
+  await page.getByRole('button', { name: '下一战役' }).click();
+  await expect(page.locator('#sector-label')).toHaveText('奥特朗托海峡海战');
+  await sinkFinalCarrier(page);
+  await expect(page.locator('#result-title')).toHaveText('作战胜利');
+  await page.locator('#result-home').click();
+  await page.reload();
+  await expect(page.locator('#start-button')).toBeEnabled();
+  await page.getByRole('button', { name: '选择战役' }).click();
+  await expect(page.locator('#mission-select option')).toHaveText(['黑尔戈兰湾海战（已通关）', '多格尔沙洲海战（已通关）', '日德兰海战（已通关）', '奥特朗托海峡海战（已通关）']);
+  const picker = page.getByRole('dialog', { name: '游戏模式' });
+  await picker.getByRole('combobox', { name: '章节' }).selectOption('1');
+  await expect(page.locator('#chapter-select option[value="2"]')).toBeDisabled();
+  await expect(picker.getByRole('combobox', { name: '战役' })).toHaveValue('4');
+  await expect(page.locator('#mission-select option:disabled')).toHaveCount(3);
+  await page.locator('#close-mission').click();
+  await expect(page.getByRole('tab', { name: '雨燕' })).toBeHidden();
+  await expect(page.getByRole('tab', { name: '游隼' })).toHaveAttribute('aria-selected', 'true');
+  await page.locator('#start-button').click();
+  await expect(page.locator('#sector-label')).toHaveText('珊瑚海海战');
+});
+
+test('old campaign saves preserve completed sorties and point locked selections to the new frontier', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('sky-strike:campaignProgress', '{"version":1,"value":5}');
+    localStorage.setItem('sky-strike:campaignSelection', '{"version":1,"value":5}');
+  });
+  await page.goto('/');
+  await expect(page.locator('#start-button')).toBeEnabled();
+  await expect(page.locator('#mission-name')).toHaveText('日德兰海战');
+  await page.getByRole('button', { name: '选择战役' }).click();
+  await expect(page.locator('#mission-progress')).toContainText('5 / 16');
+  await expect(page.locator('#chapter-select option[value="3"]')).toBeDisabled();
+  await page.locator('#chapter-select').selectOption('2');
+  await expect(page.locator('#mission-select option')).toHaveText(['仁川登陆（已通关）', '塞得港登陆（未解锁）', '圣卡洛斯湾登陆（未解锁）', '祈祷螳螂行动（未解锁）']);
+  await page.locator('#chapter-select').selectOption('0');
+  await page.locator('#close-mission').click();
+  await page.locator('#start-button').click();
+  await sinkFinalCarrier(page);
+  await page.getByRole('button', { name: '下一战役' }).click();
+  await expect(page.locator('#sector-label')).toHaveText('奥特朗托海峡海战');
+  await sinkFinalCarrier(page);
+  await page.getByRole('button', { name: '下一战役' }).click();
+  await expect(page.locator('#sector-label')).toHaveText('菲律宾海海战');
+  await page.reload();
+  await expect(page.locator('#mission-name')).toHaveText('菲律宾海海战');
+});
+
+test('mobile can start endless from a locked campaign chapter and continues after its carrier', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await expect(page.locator('#start-button')).toBeEnabled();
+  await page.locator('#mission-open-compact').click();
+  const picker = page.getByRole('dialog', { name: '游戏模式' });
+  await expect(picker.getByLabel('章节').locator('option[value="3"]')).toBeDisabled();
+  await picker.getByRole('button', { name: '无尽' }).click();
+  await expect(picker.getByRole('option')).toHaveText(['第一次世界大战', '第二次世界大战', '冷战', '现代']);
+  await picker.getByLabel('章节').selectOption('3');
+  await expect(picker.getByLabel('战役', { exact: true })).toBeHidden();
+  await picker.getByRole('button', { name: '关闭游戏模式' }).click();
+  await expect(page.getByRole('tab', { name: '玄武' })).toBeHidden();
+  await page.locator('#start-button').click();
+  expect(await page.evaluate(async () => (await import('/main.ts')).game.activeStage.mission.name)).toBe('科索沃空中战役');
+  await sinkFinalCarrier(page);
+  await expect(page.locator('#wave')).toHaveText('11');
+  expect(await page.evaluate(async () => (await import('/main.ts')).game.activeStage.mission.name)).toBe('阿富汗空中战役');
+  await expect(page.locator('#wave-total')).toHaveText('波');
+  await expect(page.locator('#result-screen')).toBeHidden();
+  expect(await page.evaluate(() => localStorage.getItem('sky-strike:campaignCleared'))).toBeNull();
 });
 
 test('Phaser 4 loads local 2D sprites before takeoff without requesting GLB assets', async ({ page }) => {

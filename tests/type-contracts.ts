@@ -16,7 +16,7 @@ export function typeContracts({ entity, revision, preferences }: { entity: Entit
   const rawId: EntityId = 1;
   // @ts-expect-error A raw string cannot substitute for a verified model revision.
   const rawRevision: ModelRevision = 'revision';
-  // @ts-expect-error Parsed difficulty cannot contain arbitrary stored strings.
-  const difficulty: Preferences['difficulty'] = 'unknown';
-  void [boss, ordnance, pickup, event, rawId, rawRevision, difficulty, entity, revision, preferences];
+  // @ts-expect-error Parsed mode cannot contain arbitrary stored strings.
+  const mode: Preferences['mode'] = 'unknown';
+  void [boss, ordnance, pickup, event, rawId, rawRevision, mode, entity, revision, preferences];
 }

@@ -2,14 +2,49 @@
 
 ## 单局循环
 
-1. 在机库选择战机，选择标准或休闲难度后开始出击。
+1. 在机库选择「战役」或「无尽」，再从对应章节的可用名单中选择战机。
 2. 从友军航母起飞，机炮自动对空；横向对准舰船时自动投放对舰航弹。玩家控制移动并保留一个手动清弹按钮。
 3. 击破敌机、水面舰船和海岛设施，收集能量与补给；第 3 波可保护蓝旗运输船。
 4. 能量达到门槛时暂停战斗，从三项不同的随机强化中选择一项。
-5. 突破两个航区的 10 波攻势，击破第 5、10 波首领后获胜；装甲归零则本局结束。
-6. 结算后可以再次出击或返回机库。新一局重新构筑，等级、强化、分数和补给重置。
+5. 战役击沉第 10 波旗舰即通关；无尽每 10 波切换至下一个战役的遭遇表。装甲归零时立即结算。
+6. 结算后可以重新出击或返回机库。战役胜利后可以直接进入下一关。新一局重新构筑，等级、强化、分数和补给重置。
 
-## 战机与难度
+## 游戏模式
+
+| 章节 | 依序解锁的战役 | 默认战机 |
+| --- | --- | --- |
+| 第一次世界大战 | 黑尔戈兰湾海战 → 多格尔沙洲海战 → 日德兰海战 → 奥特朗托海峡海战 | 游隼、雨燕、玄武 |
+| 第二次世界大战 | 珊瑚海海战 → 中途岛海战 → 菲律宾海海战 → 吴港空袭 | 游隼、玄武 |
+| 冷战 | 仁川登陆 → 塞得港登陆 → 圣卡洛斯湾登陆 → 祈祷螳螂行动 | 雨燕、玄武 |
+| 现代 | 科索沃空中战役 → 阿富汗空中战役 → 法奥半岛登陆 → 统一保护者行动 | 游隼、雨燕 |
+
+- **战役**从「黑尔戈兰湾海战」开始。每章四个战役，共十六关。通关解锁同章下一关，通关章节最后一关解锁下一章。已通关的关卡可重玩。新增关卡各有五波独立编排，包含船队接应、港口突防或舰队拦截。章节按时间线排列，出战单位可跨年代混编。
+- **无尽**可选任一章节起飞，每 10 波切换至下一个战役的遭遇表。打完「现代」后回到「第一次世界大战」，波次持续累加，战机、装备和分数继承，坠毁时结算。无尽出击不解锁战役，敌军强度随完成的波组提高，到达上限后保持稳定。
+
+### 战役名称与史实原型
+
+战役名称取自真实交战或军事行动。科索沃、阿富汗和法奥半岛关卡采用地名与作战类型，表中的英文代号用于查找史料。下表年份是历史事件的起始年份。关卡中的战机、敌我编队、波次和任务目标均为架空演绎，沿用同一套街机规则。
+
+| 年份 | 游戏战役 | 历史名称与来源 |
+| --- | --- | --- |
+| 1914 | 黑尔戈兰湾海战 | [Battle of Heligoland Bight，新西兰皇家海军国家博物馆](https://navymuseum.co.nz/explore/by-themes/world-war-one/battle-of-heligoland-bight/) |
+| 1915 | 多格尔沙洲海战 | [Battle of the Dogger Bank，英国格林尼治皇家博物馆](https://www.rmg.co.uk/collections/archive/rmgc-object-492758) |
+| 1916 | 日德兰海战 | [Battle of Jutland 31 May 1916，比蒂档案 BTY/6](https://www.rmg.co.uk/collections/archive/rmgc-object-492769) |
+| 1917 | 奥特朗托海峡海战 | [奥特朗托海峡交战照片 NH 60197，美国海军历史与遗产司令部](https://www.history.navy.mil/our-collections/photography/numerical-list-of-images/nhhc-series/nh-series/NH-60000/NH-60197.html) |
+| 1942 | 珊瑚海海战 | [Battle of the Coral Sea，美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/world-war-ii/1942/battle-of-coral-sea.html) |
+| 1942 | 中途岛海战 | [Battle of Midway，美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/world-war-ii/1942/midway.html) |
+| 1944 | 菲律宾海海战 | [Battle of the Philippine Sea，美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/world-war-ii/1944/battle-philippine-sea.html) |
+| 1945 | 吴港空袭 | [Air attacks on Kure，美国海军历史与遗产司令部](https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-053/h-053-1.html) |
+| 1950 | 仁川登陆 | [Inchon Landing（Operation Chromite），美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/korean-war/korea-operations/inchon.html) |
+| 1956 | 塞得港登陆 | [Suez Crisis：Port Said landings，英国国家陆军博物馆](https://www.nam.ac.uk/explore/suez-crisis) |
+| 1982 | 圣卡洛斯湾登陆 | [San Carlos landings，英国皇家海军](https://www.royalnavy.mod.uk/news/2021/may/21/20210521-san-carlos) |
+| 1988 | 祈祷螳螂行动 | [Operation Praying Mantis，美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/middle-east/praying-mantis.html) |
+| 1999 | 科索沃空中战役 | [Operation Allied Force，北约](https://www.nato.int/en/what-we-do/operations-and-missions/kosovo-air-campaign-march-june-1999) |
+| 2001 | 阿富汗空中战役 | [Operation Enduring Freedom，美国海军历史与遗产司令部](https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/u/us-navy-operation-enduring-freedom-2001-2002.html) |
+| 2003 | 法奥半岛登陆 | [Al-Faw Peninsula landings，英国伊拉克调查报告第 7 卷](https://assets.publishing.service.gov.uk/media/5a7f968fe5274a2e8ab4d16a/The_Report_of_the_Iraq_Inquiry_-_Volume_VII.pdf#page=25) |
+| 2011 | 统一保护者行动 | [Operation Unified Protector，北约](https://www.nato.int/en/what-we-do/operations-and-missions/nato-and-libya-february-october-2011) |
+
+## 战机
 
 | 战机 | 定位 | 初始装甲 | 单发基础伤害 | 射击间隔 | 基础移动速度 |
 | --- | --- | --- | --- | --- | --- |
@@ -18,9 +53,6 @@
 | 玄武 H-03 | 重装型 | 7 | 13 | 0.28 秒 | 250 |
 
 移动速度以逻辑坐标单位／秒计算。所有战机初始装备双联机炮、3 枚高爆航弹，并获得 2.4 秒起飞保护。
-
-- 标准模式使用基础装甲和弹速。
-- 休闲模式额外增加 2 点装甲，敌方子弹速度为标准模式的 72%。
 
 ## 空海分层与武器
 
@@ -57,7 +89,7 @@
 | 港口油库 | 击破后对 140 范围内敌军造成 240 伤害，清除 150 范围内敌弹，可连锁引爆 |
 | 敌方运输船 | 货箱、吊杆与小型舰桥，无防空火力，击破保证掉落维修包 |
 
-普通敌机装甲随波次乘以 `1 + (波次 − 1) × 0.09`，普通水面单位舰体装甲乘以 `1 + 波次 × 0.035`。首领装甲固定。普通空中编队最多 17 架；航母放飞时另检查空中数量预算，每批仅 2 架。敌弹数量上限 520。
+普通敌机装甲乘以 `1 + (强度波次 − 1) × 0.09`，普通水面单位舰体装甲乘以 `1 + 强度波次 × 0.035`。战役的强度波次为关内波次；无尽再加已完成的十波组数，额外最多加 8。首领装甲固定。普通空中编队最多 17 架；航母放飞时另检查空中数量预算，每批仅 2 架。敌弹数量上限 520。
 
 ## 独立部件与损毁
 
@@ -71,7 +103,9 @@
 - 完好部件有角标和短装甲线，对齐部件显示琥珀色瞄准提示；摧毁后切换局部残骸、火焰与烟尘，首领栏标记对应部件已毁。
 - 击沉水面目标后，舰体倾斜并下沉约 3.2 秒，尾流逐步消失。模型和场景高度只负责表现，不改变判定。
 
-## 十波群岛战役
+## 关卡节奏与遭遇
+
+「黑尔戈兰湾海战」的遭遇如下。其他关卡在相同节奏下调整空海编队。
 
 | 波次 | 遭遇 | 内容 |
 | --- | --- | --- |
@@ -80,13 +114,15 @@
 | 3 | 运输船队 | 蓝旗友军运输船、鱼雷机、护航机和四发重型轰炸机精英 |
 | 4 | 驱逐舰防线 | 驱逐舰、截击机与俯冲轰炸机，学习部件压制 |
 | 5 | 铁岳决战 | 战列舰「铁岳」，击沉后清弹并给予 65 能量 |
-| 6 | 海岛补给站 | 回复 2 点装甲、补充 1 枚手动航弹；炮台、油库与运输船 |
+| 6 | 舰队补给 | 回复 2 点装甲、补充 1 枚手动航弹；炮台、油库与运输船 |
 | 7 | 交错火网 | 防空巡洋舰、错峰俯冲机与双发护航机 |
 | 8 | 舰载机群 | 鱼雷机、截击机、巡逻艇和六发重型轰炸机精英 |
 | 9 | 最后护卫线 | 驱逐舰、巡洋舰、岸防与混合空中单位 |
 | 10 | 赤潮终局 | 航母「赤潮」，舰载机增援与可破坏飞行甲板 |
 
-第 1–5 波属破晓海域，第 6–10 波属风暴防线。普通波次持续 `17 + 波次 × 0.6` 秒，停止新增编队后等待清场，最多再等 7 秒；在场敌人可跨普通波次继续行动。第 5／10 波须击沉首领才推进，沉没演出后进入下一波或胜利。
+每个战役包含八个普通波次与两场首领战。普通波次持续 60 秒，停止新增编队后等待清场，最多再等 7 秒；在场敌人可跨普通波次继续行动。首领各有 75 秒交战窗口，击沉后播放约 3 秒沉没演出。第 5 波首领到时撤离，战斗继续；第 10 波旗舰到时仍未击沉则挑战失败。无尽中两种首领到时都撤离，下一波照常开始。
+
+战役全程的有效战斗时间为 8–12 分钟。暂停、强化选择和作战手册不消耗战斗时间；战机提前坠毁会立即结算。
 
 第 3 波运输船有蓝旗与 3 点装甲，海面鱼雷命中会扣除装甲。运输船幸存至离开航线或该波结束，获得 600 分和 1 份航弹补给；运输船被击沉只失去该奖励，不新增游戏失败条件。玩家机炮、自动对舰航弹和手动航弹不会伤害友军。
 
