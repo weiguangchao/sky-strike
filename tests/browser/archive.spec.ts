@@ -72,7 +72,7 @@ test('new aircraft and submarine models load lazily, filter, wrap and expose rea
   await expect(page.locator('#archive-name')).toHaveText('没有符合条件的型号');
   await expect(page.locator('#archive-next')).toBeDisabled();
   await page.locator('#help-tab-campaign').click();
-  await expect(page.locator('#campaign-name')).toHaveText('舰队启航');
+  await expect(page.locator('#campaign-name')).toHaveText('黑尔戈兰湾海战');
   expect(errors).toEqual([]);
 });
 

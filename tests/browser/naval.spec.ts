@@ -1,23 +1,67 @@
 import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
-import {CAMPAIGN_STAGES, WAVES} from '../../game/campaign.ts';
+import {CAMPAIGN_STAGES, CHAPTERS, WAVES} from '../../game/campaign.ts';
+import {required} from '../support.ts';
 
-test('campaign shows all waves and wraps, with keyboard navigation back to controls', async({page})=>{
+test('campaign opens on the briefing, shows all waves and wraps, with keyboard navigation back to controls', async({page})=>{
+  const mission = required(CAMPAIGN_STAGES[0]).mission;
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#help-button').click();
   await page.locator('#help-tab-campaign').click();
+  await expect(page.locator('#campaign-stage')).toHaveText('第一次世界大战 · 可出击');
+  await expect(page.locator('#campaign-count')).toHaveText('1/8');
+  await expect(page.locator('#campaign-name')).toHaveText(mission.name);
+  await expect(page.locator('#campaign-objective')).toHaveText(`${mission.history.date} · ${mission.history.summary}`);
+  await expect(page.locator('#campaign-source')).toHaveAttribute('href', mission.history.source);
+  await expect(page.locator('#campaign-roster')).toBeHidden();
+  await page.locator('#campaign-next').click();
   await expect(page.locator('#campaign-roster')).toHaveText('轻型战斗机');
-  for(const wave of WAVES) {
+  await expect(page.locator('#campaign-source')).toBeHidden();
+  for(const wave of mission.waves) {
     await expect(page.locator('#campaign-name')).toHaveText(wave.name);
     await expect(page.locator('#campaign-objective')).toHaveText(wave.objective);
     await page.locator('#campaign-next').click();
   }
-  await expect(page.locator('#campaign-name')).toHaveText(WAVES[0].name);
+  await expect(page.locator('#campaign-name')).toHaveText(mission.name);
+  await page.locator('#campaign-prev').click();
+  await expect(page.locator('#campaign-name')).toHaveText(required(mission.waves.at(-1)).name);
   await page.locator('#help-tab-campaign').focus();
   await page.keyboard.press('ArrowLeft');
   await expect(page.locator('#help-tab-controls')).toBeFocused();
   await expect(page.locator('#help-controls-panel')).toBeVisible();
+});
+
+test('the handbook browses every chapter and mission, and archive links open the matching archive entry', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#start-button')).toBeEnabled();
+  await page.locator('#help-button').click();
+  await page.locator('#help-tab-campaign').click();
+  for (const [chapterIndex, chapter] of CHAPTERS.entries()) {
+    await page.locator('#campaign-chapter').selectOption(String(chapterIndex));
+    await expect(page.locator('#campaign-mission option')).toHaveText(chapter.missions.map(mission => `${mission.history.year} ${mission.name}`));
+    for (const mission of chapter.missions) {
+      await page.locator('#campaign-mission').selectOption(String(CAMPAIGN_STAGES.findIndex(stage => stage.mission === mission)));
+      await expect(page.locator('#campaign-name')).toHaveText(mission.name);
+      await expect(page.locator('#campaign-source')).toHaveAttribute('href', mission.history.source);
+      await expect(page.locator('#campaign-page option')).toHaveCount(WAVES.length + 1 + (mission.history.archive.length ? 1 : 0));
+    }
+  }
+  const leyte = required(CAMPAIGN_STAGES.find(stage => stage.mission.id === 'leyte-gulf'));
+  await page.locator('#campaign-chapter').selectOption('1');
+  await page.locator('#campaign-mission').selectOption(String(CAMPAIGN_STAGES.indexOf(leyte)));
+  await page.locator('#campaign-page').selectOption('1');
+  await expect(page.locator('#campaign-stage')).toHaveText('莱特湾海战 · 图鉴关联');
+  await expect(page.locator('#campaign-archive li')).toHaveText(['武藏', '大和', '长门', '金刚', '弗莱彻约翰斯顿号等', '卡萨布兰卡级甘比尔湾号等']);
+  await page.locator('#help-tab-archive').click();
+  await page.locator('#archive-country').selectOption('cn');
+  await page.locator('#help-tab-campaign').click();
+  await page.getByRole('button', { name: '在图鉴中查看卡萨布兰卡级，甘比尔湾号等' }).click();
+  await expect(page.locator('#help-archive-panel')).toBeVisible();
+  await expect(page.locator('#help-tab-archive')).toBeFocused();
+  await expect(page.locator('#archive-country')).toHaveValue('all');
+  await expect(page.locator('#archive-entry')).toHaveValue('casablanca');
+  await expect(page.locator('#archive-name')).toHaveText('卡萨布兰卡级');
 });
 
 test('the handbook shows the San Carlos landing briefing with bay and shore headings', async ({ page }) => {
@@ -30,6 +74,10 @@ test('the handbook shows the San Carlos landing briefing with bay and shore head
   await expect(page.locator('#start-button')).toBeEnabled();
   await page.locator('#help-button').click();
   await page.locator('#help-tab-campaign').click();
+  await expect(page.locator('#campaign-stage')).toHaveText('冷战 · 已通关');
+  await expect(page.locator('#campaign-count')).toHaveText('5/8');
+  await expect(page.locator('#campaign-name')).toHaveText('圣卡洛斯湾登陆');
+  await page.locator('#campaign-next').click();
   await expect(page.locator('#campaign-stage')).toHaveText('圣卡洛斯湾登陆');
   const headings = ['湾口巡线', '湾内航道', '运输船队', '近岸追击', '铁岳决战', '舰队补给', '锚地警戒', '舰载机群', '湾口突破', '赤潮终局'];
   for (const heading of headings) {

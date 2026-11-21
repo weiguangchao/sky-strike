@@ -3,6 +3,7 @@ import {test,expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
 import { HANDBOOK_ARCHIVE } from '../../game/historical-archive.ts';
+import { WAVES } from '../../game/campaign.ts';
 
 async function settle(page:Page) {
   await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
@@ -125,7 +126,7 @@ test.describe('phone visible viewport',()=>{
       },scenario);
       await viewport(page,{width:scenario.width,height:scenario.visibleHeight,offsetTop:scenario.offsetTop});
       await page.locator('#pause-button').click();await page.locator('#pause-help').click();
-      for(const [panel,pages] of [['controls',1],['campaign',10],['archive',HANDBOOK_ARCHIVE.length]] as const) {
+      for(const [panel,pages] of [['controls',1],['campaign',WAVES.length+1],['archive',HANDBOOK_ARCHIVE.length]] as const) {
         await page.locator(`#help-tab-${panel}`).click();
         for(let i=0;i<pages;i++) {
           if(panel==='archive') {

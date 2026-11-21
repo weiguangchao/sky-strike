@@ -103,12 +103,20 @@ test('campaign content fits small portrait and landscape windows without scrolli
     await page.setViewportSize({width,height}); await settleFrame(page);
     await page.locator('#help-button').click();
     await page.locator('#help-tab-campaign').click();
-    for(let i=0;i<10;i++) {
-      await expectWithinWindow(page,['#help-campaign-panel','#close-help'],'#help-dialog');
-      const bounds=await page.locator('#help-dialog').evaluate(element=>({h:element.clientHeight,sh:element.scrollHeight,w:element.clientWidth,sw:element.scrollWidth}));
-      expect(bounds.sh,`campaign page ${i+1} at ${width}×${height}`).toBeLessThanOrEqual(bounds.h);
-      expect(bounds.sw).toBeLessThanOrEqual(bounds.w);
-      await page.locator('#campaign-next').click();
+    // The opening mission and Leyte Gulf, whose briefing and five archive links are the longest, fit without scrolling the card.
+    for(const [chapter,mission] of [['0','0'],['1','14']] as const) {
+      await page.locator('#campaign-chapter').selectOption(chapter);
+      await page.locator('#campaign-mission').selectOption(mission);
+      const pages=await page.locator('#campaign-page option').count();
+      for(let i=0;i<pages;i++) {
+        await expectWithinWindow(page,['#help-campaign-panel','#close-help'],'#help-dialog');
+        const bounds=await page.locator('#help-dialog').evaluate(element=>({h:element.clientHeight,sh:element.scrollHeight,w:element.clientWidth,sw:element.scrollWidth}));
+        expect(bounds.sh,`campaign page ${i+1} at ${width}×${height}`).toBeLessThanOrEqual(bounds.h);
+        expect(bounds.sw).toBeLessThanOrEqual(bounds.w);
+        const card=await page.locator('#campaign-card').evaluate(element=>({h:element.clientHeight,sh:element.scrollHeight}));
+        expect(card.sh,`campaign card ${mission}/${i+1} at ${width}×${height}`).toBeLessThanOrEqual(card.h);
+        await page.locator('#campaign-next').click();
+      }
     }
     await page.screenshot({path:`.artifacts/visual-qa/campaign-${width}x${height}.png`});
     await page.locator('#close-help').click();

@@ -1,6 +1,6 @@
 import { isCraftId, isGameMode } from './types.ts';
 import { fleetSelection } from './naval-history.ts';
-import { CAMPAIGN_STAGES, CHAPTERS, firstUnclearedStageIndex, isStageUnlocked, stageAt } from './campaign.ts';
+import { CAMPAIGN_STAGES, CHAPTERS, firstUnclearedStageIndex, isStageUnlocked, sixteenMissionFrontier, stageAt } from './campaign.ts';
 
 // Version 1 stored a cleared count and a selected index in this fixed order.
 const LEGACY_MISSIONS = [
@@ -42,22 +42,31 @@ export function parseCampaignProgress(ids: unknown, legacyProgress: unknown): st
   return CAMPAIGN_STAGES.map(stage => stage.mission.id).filter(id => saved.has(id));
 }
 
-function parseCampaignSelection(id: unknown, legacySelection: unknown, cleared: ReadonlySet<string>): string {
+/** Saves written before this flag existed and holding progress came from the sixteen-mission release. */
+export function parseSixteenMissionSave(saved: unknown, cleared: readonly string[]): boolean {
+  return typeof saved === 'boolean' ? saved : cleared.length > 0;
+}
+
+function parseCampaignSelection(id: unknown, legacySelection: unknown, cleared: ReadonlySet<string>, sixteenMissionSave: boolean): string {
   const saved = id ?? LEGACY_MISSIONS[parseCounter(legacySelection)];
   const index = CAMPAIGN_STAGES.findIndex(stage => stage.mission.id === saved);
   if (index < 0) return stageAt(0).mission.id;
-  if (isStageUnlocked(index, cleared)) return stageAt(index).mission.id;
-  return stageAt(firstUnclearedStageIndex(cleared)).mission.id;
+  if (isStageUnlocked(index, cleared, sixteenMissionSave)) return stageAt(index).mission.id;
+  // A sixteen-mission save resumes where that release would have continued; others resume at the timeline frontier.
+  const resume = sixteenMissionSave ? sixteenMissionFrontier(cleared) : -1;
+  return stageAt(resume >= 0 ? resume : firstUnclearedStageIndex(cleared)).mission.id;
 }
 
 export function parsePreferences(input: PreferencesInput) {
   const campaignCleared = parseCampaignProgress(input.campaignCleared, input.campaignProgress);
+  const campaignSixteenOrder = parseSixteenMissionSave(input.campaignSixteenOrder, campaignCleared);
   const endlessChapter = parseCounter(input.endlessChapter);
   return {
     craft: isCraftId(input.craft) ? input.craft : 'falcon',
     mode: isGameMode(input.mode) ? input.mode : 'campaign',
     campaignCleared,
-    campaignMission: parseCampaignSelection(input.campaignMission, input.campaignSelection, new Set(campaignCleared)),
+    campaignSixteenOrder,
+    campaignMission: parseCampaignSelection(input.campaignMission, input.campaignSelection, new Set(campaignCleared), campaignSixteenOrder),
     endlessChapter: endlessChapter < CHAPTERS.length ? endlessChapter : 0,
     best: parseCounter(input.best),
     flights: parseCounter(input.flights),
@@ -66,5 +75,5 @@ export function parsePreferences(input: PreferencesInput) {
   };
 }
 
-type PreferencesInput = Record<'craft' | 'mode' | 'campaignCleared' | 'campaignMission' | 'campaignProgress' | 'campaignSelection' | 'endlessChapter' | 'best' | 'flights' | 'fleet' | 'sound', unknown>;
+type PreferencesInput = Record<'craft' | 'mode' | 'campaignCleared' | 'campaignSixteenOrder' | 'campaignMission' | 'campaignProgress' | 'campaignSelection' | 'endlessChapter' | 'best' | 'flights' | 'fleet' | 'sound', unknown>;
 export type Preferences = ReturnType<typeof parsePreferences>;
