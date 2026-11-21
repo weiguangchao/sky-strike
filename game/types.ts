@@ -11,7 +11,16 @@ export type GameStatus = 'menu' | 'playing' | 'paused' | 'upgrade' | 'gameover' 
 export type AirKind = 'scout' | 'gunship' | 'dart' | 'interceptor' | 'diver' | 'torpedo' | 'heavy-bomber';
 export type ShipKind = 'patrol-boat' | 'destroyer' | 'cruiser' | 'battleship' | 'fleet-carrier' | 'coastal-battery' | 'oil-depot' | 'transport';
 export interface WaveInfo { name: string; objective: string; air: AirKind[]; sea: ShipKind[] }
-export interface Mission { id: string; name: string; waves: readonly WaveInfo[] }
+/** Links a mission to a handbook archive entry; the note names the ship or variant when the entry is its class or family. */
+export interface ArchiveReference { id: string; note?: string }
+export interface MissionHistory {
+  year: number;
+  date: string;
+  summary: string;
+  source: string;
+  archive: readonly ArchiveReference[];
+}
+export interface Mission { id: string; name: string; history: MissionHistory; waves: readonly WaveInfo[] }
 export interface Chapter {
   name: string;
   craft: readonly [CraftId, CraftId, ...CraftId[]];

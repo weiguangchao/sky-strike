@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
+import { CAMPAIGN_STAGES, CHAPTERS } from '../../game/campaign.ts';
+import { required } from '../support.ts';
 
 async function settleFrame(page: Page): Promise<void> {
   await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
@@ -103,12 +105,23 @@ test('campaign content fits small portrait and landscape windows without scrolli
     await page.setViewportSize({width,height}); await settleFrame(page);
     await page.locator('#help-button').click();
     await page.locator('#help-tab-campaign').click();
-    for(let i=0;i<10;i++) {
-      await expectWithinWindow(page,['#help-campaign-panel','#close-help'],'#help-dialog');
-      const bounds=await page.locator('#help-dialog').evaluate(element=>({h:element.clientHeight,sh:element.scrollHeight,w:element.clientWidth,sw:element.scrollWidth}));
-      expect(bounds.sh,`campaign page ${i+1} at ${width}×${height}`).toBeLessThanOrEqual(bounds.h);
-      expect(bounds.sw).toBeLessThanOrEqual(bounds.w);
-      await page.locator('#campaign-next').click();
+    // The opening mission plus the longest briefings (Tondern, Earnest Will) and the fullest archive pages
+    // (Leyte Gulf's six links, Praying Mantis and Deliberate Force's longest notes) fit without scrolling the card.
+    for(const id of ['dawn-seas','tondern','leyte-gulf','earnest-will','relay-island','deliberate-force']) {
+      const index=CAMPAIGN_STAGES.findIndex(stage=>stage.mission.id===id);
+      await page.locator('#campaign-chapter').selectOption(String(CHAPTERS.indexOf(required(CAMPAIGN_STAGES[index]).chapter)));
+      await page.locator('#campaign-mission').selectOption(String(index));
+      const mission=id;
+      const pages=await page.locator('#campaign-page option').count();
+      for(let i=0;i<pages;i++) {
+        await expectWithinWindow(page,['#help-campaign-panel','#close-help'],'#help-dialog');
+        const bounds=await page.locator('#help-dialog').evaluate(element=>({h:element.clientHeight,sh:element.scrollHeight,w:element.clientWidth,sw:element.scrollWidth}));
+        expect(bounds.sh,`campaign page ${i+1} at ${width}×${height}`).toBeLessThanOrEqual(bounds.h);
+        expect(bounds.sw).toBeLessThanOrEqual(bounds.w);
+        const card=await page.locator('#campaign-card').evaluate(element=>({h:element.clientHeight,sh:element.scrollHeight}));
+        expect(card.sh,`campaign card ${mission}/${i+1} at ${width}×${height}`).toBeLessThanOrEqual(card.h);
+        await page.locator('#campaign-next').click();
+      }
     }
     await page.screenshot({path:`.artifacts/visual-qa/campaign-${width}x${height}.png`});
     await page.locator('#close-help').click();

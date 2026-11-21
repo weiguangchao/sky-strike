@@ -1,4 +1,6 @@
 import { MODEL_IDS } from '../../game/models.ts';
+import { CHAPTERS } from '../../game/campaign.ts';
+import { required } from '../support.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 
@@ -152,6 +154,8 @@ async function sinkFinalCarrier(page: Page): Promise<void> {
 }
 
 test('campaign victory unlocks the next mission and then the next chapter, with a different hangar roster', async ({ page }) => {
+  test.setTimeout(90_000);
+  const firstWar = CHAPTERS[0].missions.map(mission => mission.name);
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   await page.getByRole('tab', { name: '雨燕' }).click();
@@ -161,40 +165,37 @@ test('campaign victory unlocks the next mission and then the next chapter, with 
   await expect(page.locator('#chapter-select option')).toHaveText([
     '第一次世界大战', '第二次世界大战（未解锁）', '冷战（未解锁）', '现代（未解锁）',
   ]);
-  await expect(page.locator('#mission-select option')).toHaveText(['黑尔戈兰湾海战', '多格尔沙洲海战（未解锁）', '日德兰海战（未解锁）', '奥特朗托海峡海战（未解锁）']);
-  await expect(page.locator('#mission-select option:disabled')).toHaveCount(3);
+  await expect(page.locator('#mission-select option')).toHaveText(firstWar.map((name, index) => index ? `${name}（未解锁）` : name));
+  await expect(page.locator('#mission-select option:disabled')).toHaveCount(7);
   await expect(page.locator('#chapter-select option[value="1"]')).toBeDisabled();
   await page.locator('#close-mission').click();
   await page.locator('#start-button').click();
-  await sinkFinalCarrier(page);
-  await page.getByRole('button', { name: '下一战役' }).click();
-  await expect(page.locator('#sector-label')).toHaveText('多格尔沙洲海战');
-  await sinkFinalCarrier(page);
-  await page.getByRole('button', { name: '下一战役' }).click();
-  await expect(page.locator('#sector-label')).toHaveText('日德兰海战');
-  await sinkFinalCarrier(page);
-  await page.getByRole('button', { name: '下一战役' }).click();
-  await expect(page.locator('#sector-label')).toHaveText('奥特朗托海峡海战');
+  for (const name of firstWar.slice(1)) {
+    await sinkFinalCarrier(page);
+    await page.getByRole('button', { name: '下一战役' }).click();
+    await expect(page.locator('#sector-label')).toHaveText(name);
+  }
   await sinkFinalCarrier(page);
   await expect(page.locator('#result-title')).toHaveText('作战胜利');
   await page.locator('#result-home').click();
   await page.reload();
   await expect(page.locator('#start-button')).toBeEnabled();
   await page.getByRole('button', { name: '选择战役' }).click();
-  await expect(page.locator('#mission-select option')).toHaveText(['黑尔戈兰湾海战（已通关）', '多格尔沙洲海战（已通关）', '日德兰海战（已通关）', '奥特朗托海峡海战（已通关）']);
+  await expect(page.locator('#mission-select option')).toHaveText(firstWar.map(name => `${name}（已通关）`));
+  await expect(page.locator('#mission-progress')).toContainText('8 / 32');
   const picker = page.getByRole('dialog', { name: '游戏模式' });
   await picker.getByRole('combobox', { name: '章节' }).selectOption('1');
   await expect(page.locator('#chapter-select option[value="2"]')).toBeDisabled();
-  await expect(picker.getByRole('combobox', { name: '战役' })).toHaveValue('4');
-  await expect(page.locator('#mission-select option:disabled')).toHaveCount(3);
+  await expect(picker.getByRole('combobox', { name: '战役' })).toHaveValue('8');
+  await expect(page.locator('#mission-select option:disabled')).toHaveCount(7);
   await page.locator('#close-mission').click();
   await expect(page.getByRole('tab', { name: '雨燕' })).toBeHidden();
   await expect(page.getByRole('tab', { name: '游隼' })).toHaveAttribute('aria-selected', 'true');
   await page.locator('#start-button').click();
-  await expect(page.locator('#sector-label')).toHaveText('珊瑚海海战');
+  await expect(page.locator('#sector-label')).toHaveText('塔兰托空袭');
 });
 
-test('old campaign saves preserve completed sorties and point locked selections to the new frontier', async ({ page }) => {
+test('old campaign saves keep completed sorties and continue the old order while inserted battles unlock in order', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('sky-strike:campaignProgress', '{"version":1,"value":5}');
     localStorage.setItem('sky-strike:campaignSelection', '{"version":1,"value":5}');
@@ -202,14 +203,22 @@ test('old campaign saves preserve completed sorties and point locked selections 
   await page.goto('/');
   await expect(page.locator('#start-button')).toBeEnabled();
   await expect(page.locator('#mission-name')).toHaveText('日德兰海战');
+  expect(await page.evaluate(() => localStorage.getItem('sky-strike:campaignSixteenOrder'))).toBe('{"version":1,"value":true}');
   await page.getByRole('button', { name: '选择战役' }).click();
-  await expect(page.locator('#mission-progress')).toContainText('5 / 16');
+  await expect(page.locator('#mission-progress')).toContainText('5 / 32');
+  await expect(page.locator('#mission-select option')).toHaveText([
+    '黑尔戈兰湾海战（已通关）', '布罗德十四海战', '多格尔沙洲海战（已通关）', '达达尼尔海峡海战（未解锁）',
+    '日德兰海战', '奥特朗托海峡海战（未解锁）', '泽布吕赫突袭（未解锁）', '通德恩空袭（未解锁）',
+  ]);
   await expect(page.locator('#chapter-select option[value="3"]')).toBeDisabled();
   await page.locator('#chapter-select').selectOption('2');
-  await expect(page.locator('#mission-select option')).toHaveText(['仁川登陆（已通关）', '塞得港登陆（未解锁）', '圣卡洛斯湾登陆（未解锁）', '祈祷螳螂行动（未解锁）']);
+  await expect(page.locator('#mission-select option')).toHaveText(['仁川登陆（已通关）', ...required(CHAPTERS[2]).missions.slice(1).map(mission => `${mission.name}（未解锁）`)]);
   await page.locator('#chapter-select').selectOption('0');
+  await expect(page.locator('#mission-select')).toHaveValue('1');
+  await page.locator('#mission-select').selectOption('4');
   await page.locator('#close-mission').click();
   await page.locator('#start-button').click();
+  await expect(page.locator('#sector-label')).toHaveText('日德兰海战');
   await sinkFinalCarrier(page);
   await page.getByRole('button', { name: '下一战役' }).click();
   await expect(page.locator('#sector-label')).toHaveText('奥特朗托海峡海战');
@@ -234,10 +243,10 @@ test('mobile can start endless from a locked campaign chapter and continues afte
   await picker.getByRole('button', { name: '关闭游戏模式' }).click();
   await expect(page.getByRole('tab', { name: '玄武' })).toBeHidden();
   await page.locator('#start-button').click();
-  expect(await page.evaluate(async () => (await import('/main.ts')).game.activeStage.mission.name)).toBe('科索沃空中战役');
+  expect(await page.evaluate(async () => (await import('/main.ts')).game.activeStage.mission.name)).toBe('布比延海战');
   await sinkFinalCarrier(page);
   await expect(page.locator('#wave')).toHaveText('11');
-  expect(await page.evaluate(async () => (await import('/main.ts')).game.activeStage.mission.name)).toBe('阿富汗空中战役');
+  expect(await page.evaluate(async () => (await import('/main.ts')).game.activeStage.mission.name)).toBe('科威特外海炮击');
   await expect(page.locator('#wave-total')).toHaveText('波');
   await expect(page.locator('#result-screen')).toBeHidden();
   expect(await page.evaluate(() => localStorage.getItem('sky-strike:campaignCleared'))).toBeNull();

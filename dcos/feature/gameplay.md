@@ -13,35 +13,52 @@
 
 | 章节 | 依序解锁的战役 | 默认战机 |
 | --- | --- | --- |
-| 第一次世界大战 | 黑尔戈兰湾海战 → 多格尔沙洲海战 → 日德兰海战 → 奥特朗托海峡海战 | 游隼、雨燕、玄武 |
-| 第二次世界大战 | 珊瑚海海战 → 中途岛海战 → 菲律宾海海战 → 吴港空袭 | 游隼、玄武 |
-| 冷战 | 仁川登陆 → 塞得港登陆 → 圣卡洛斯湾登陆 → 祈祷螳螂行动 | 雨燕、玄武 |
-| 现代 | 科索沃空中战役 → 阿富汗空中战役 → 法奥半岛登陆 → 统一保护者行动 | 游隼、雨燕 |
+| 第一次世界大战 | 黑尔戈兰湾海战 → 布罗德十四海战 → 多格尔沙洲海战 → 达达尼尔海峡海战 → 日德兰海战 → 奥特朗托海峡海战 → 泽布吕赫突袭 → 通德恩空袭 | 游隼、雨燕、玄武 |
+| 第二次世界大战 | 塔兰托空袭 → 追击俾斯麦号 → 珊瑚海海战 → 中途岛海战 → 北角海战 → 菲律宾海海战 → 莱特湾海战 → 吴港空袭 | 游隼、玄武 |
+| 冷战 | 仁川登陆 → 塞得港登陆 → 特里登特行动 → 拉塔基亚海战 → 圣卡洛斯湾登陆 → 锡德拉湾之战 → 真诚意志行动 → 祈祷螳螂行动 | 雨燕、玄武 |
+| 现代 | 布比延海战 → 科威特外海炮击 → 慎重武力行动 → 科索沃空中战役 → 阿富汗空中战役 → 法奥半岛登陆 → 亚丁湾反海盗行动 → 统一保护者行动 | 游隼、雨燕 |
 
-- **战役**从「黑尔戈兰湾海战」开始。每章四个战役，共十六关。通关解锁同章下一关，通关章节最后一关解锁下一章。已通关的关卡可重玩。新增关卡各有五波独立编排，包含船队接应、港口突防或舰队拦截。章节按时间线排列，出战单位可跨年代混编。
+- **战役**从「黑尔戈兰湾海战」开始。每章八个战役，共三十二关，章内与章间均按历史年份排列。通关解锁时间线上的下一关，通关章节最后一关解锁下一章。已通关的关卡可重玩。每关在十波共用框架中替换五个共用波次，按该战役的史实情境编排（如雷区扫雷、船队护航、港口突防、岸防压制），全部战役的替换波次空海阵容互不重复。出战单位可跨年代混编。
+- 每关附带简报：日期、一段简短的史实概要和一条主要史料。有可靠对应关系的战役同时关联图鉴条目，只收录实际参战的舰机，或注明具体舰名的同级舰、同系改型（如「乔治五世 · 同级约克公爵号」「Camel F.1 · 舰载型 2F.1」）。一战图鉴以飞机、潜艇和厌战号等少数长期服役的战舰为主，缺少可对应型号的战役不强行关联。
 - **无尽**可选任一章节起飞，每 10 波切换至下一个战役的遭遇表。打完「现代」后回到「第一次世界大战」，波次持续累加，战机、装备和分数继承，坠毁时结算。无尽出击不解锁战役，敌军强度随完成的波组提高，到达上限后保持稳定。
 
 ### 战役名称与史实原型
 
-战役名称取自真实交战或军事行动。科索沃、阿富汗和法奥半岛关卡采用地名与作战类型，表中的英文代号用于查找史料。下表年份是历史事件的起始年份。关卡中的战机、敌我编队、波次和任务目标均为架空演绎，沿用同一套街机规则。
+战役名称取自真实交战或军事行动。科索沃、阿富汗、法奥半岛、科威特外海和亚丁湾关卡采用地名与作战类型，表中的英文名称用于查找史料。下表年份是历史事件的起始年份。关卡中的战机、敌我编队、波次和任务目标均为架空演绎，沿用同一套街机规则。
 
 | 年份 | 游戏战役 | 历史名称与来源 |
 | --- | --- | --- |
 | 1914 | 黑尔戈兰湾海战 | [Battle of Heligoland Bight，新西兰皇家海军国家博物馆](https://navymuseum.co.nz/explore/by-themes/world-war-one/battle-of-heligoland-bight/) |
+| 1914 | 布罗德十四海战 | [Loss of HMS Aboukir, Hogue and Cressy in the Broad Fourteens，英国格林尼治皇家博物馆](https://www.rmg.co.uk/collections/objects/rmgc-object-114092) |
 | 1915 | 多格尔沙洲海战 | [Battle of the Dogger Bank，英国格林尼治皇家博物馆](https://www.rmg.co.uk/collections/archive/rmgc-object-492758) |
+| 1915 | 达达尼尔海峡海战 | [A Short History of the Dardanelles Campaign，英国帝国战争博物馆](https://www.iwm.org.uk/history/a-short-history-of-the-dardanelles-campaign) |
 | 1916 | 日德兰海战 | [Battle of Jutland 31 May 1916，比蒂档案 BTY/6](https://www.rmg.co.uk/collections/archive/rmgc-object-492769) |
 | 1917 | 奥特朗托海峡海战 | [奥特朗托海峡交战照片 NH 60197，美国海军历史与遗产司令部](https://www.history.navy.mil/our-collections/photography/numerical-list-of-images/nhhc-series/nh-series/NH-60000/NH-60197.html) |
+| 1918 | 泽布吕赫突袭 | [Plan of the Zeebrugge Raid, 23 April 1918，英国格林尼治皇家博物馆](https://www.rmg.co.uk/collections/objects/rmgc-object-115165) |
+| 1918 | 通德恩空袭 | [The Tondern Raid，美国海军学会《会刊》](https://www.usni.org/magazines/proceedings/2018/september/tondern-raid-strike-fighter-centennial) |
+| 1940 | 塔兰托空袭 | [Strike on Taranto, November 1940，美国国家二战博物馆](https://www.nationalww2museum.org/war/articles/taranto-november-1940) |
+| 1941 | 追击俾斯麦号 | [The Sinking of the German Battleship Bismarck（德国潜艇司令部战时日志），美国海军历史与遗产司令部](https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/s/sinking-of-the-bismarck/the-sinking-of-the-german-battleship-bismarck-as-described-in-the-b-d-u-commander-u-boats-war-log-24-31-may-1941.html) |
 | 1942 | 珊瑚海海战 | [Battle of the Coral Sea，美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/world-war-ii/1942/battle-of-coral-sea.html) |
 | 1942 | 中途岛海战 | [Battle of Midway，美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/world-war-ii/1942/midway.html) |
+| 1943 | 北角海战 | [HMS Belfast and the Battle of North Cape，英国帝国战争博物馆](https://www.iwm.org.uk/history/hms-belfast-and-the-battle-of-north-cape) |
 | 1944 | 菲律宾海海战 | [Battle of the Philippine Sea，美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/world-war-ii/1944/battle-philippine-sea.html) |
+| 1944 | 莱特湾海战 | [The Battle of Leyte Gulf，美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/world-war-ii/1944/battle-of-leyte-gulf.html) |
 | 1945 | 吴港空袭 | [Air attacks on Kure，美国海军历史与遗产司令部](https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-053/h-053-1.html) |
 | 1950 | 仁川登陆 | [Inchon Landing（Operation Chromite），美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/korean-war/korea-operations/inchon.html) |
 | 1956 | 塞得港登陆 | [Suez Crisis：Port Said landings，英国国家陆军博物馆](https://www.nam.ac.uk/explore/suez-crisis) |
+| 1971 | 特里登特行动 | [Operation Trident，印度联合军种研究所](https://usiofindia.org/pdf/OperationTridentATriumphoftheIndianNavyinthe1971IndoPakWar.pdf) |
+| 1973 | 拉塔基亚海战 | [Naval Developments from the Yom Kippur War，国际海上安全中心](https://cimsec.org/the-impact-of-insignificance-naval-developments-from-the-yom-kippur-war/) |
 | 1982 | 圣卡洛斯湾登陆 | [San Carlos landings，英国皇家海军](https://www.royalnavy.mod.uk/news/2021/may/21/20210521-san-carlos) |
+| 1986 | 锡德拉湾之战 | [Moment of Impact, Operation Prairie Fire，美国海军历史与遗产司令部](https://www.history.navy.mil/our-collections/art/exhibits/communities/100th-anniversary-cno/admiral-james-d--watkins/moment-of-impact--operation-prairie-fire.html) |
+| 1987 | 真诚意志行动 | [Fighting Iran（Operation Earnest Will），美国中央情报局情报研究中心](https://www.cia.gov/resources/csi/static/Fighting-Iran.pdf) |
 | 1988 | 祈祷螳螂行动 | [Operation Praying Mantis，美国海军历史与遗产司令部](https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/middle-east/praying-mantis.html) |
+| 1991 | 布比延海战 | [Desert Storm Surface Warfare，美国海军历史与遗产司令部](https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/u/us-navy-in-desert-shield-desert-storm/appendix-h-surface-warfare.html) |
+| 1991 | 科威特外海炮击 | [USS Missouri under Attack by Iraqi Silkworm，美国海军历史与遗产司令部](https://www.history.navy.mil/our-collections/art/exhibits/conflicts-and-operations/the-gulf-war-1990-1991--operation-desert-shield--desert-storm-/uss-missouri-under-attack-by-iraqi-silkworm.html) |
+| 1995 | 慎重武力行动 | [Operation Deliberate Force，美国空军历史与博物馆项目](https://www.afhistory.af.mil/FAQs/Fact-Sheets/Article/459000/operation-deliberate-force) |
 | 1999 | 科索沃空中战役 | [Operation Allied Force，北约](https://www.nato.int/en/what-we-do/operations-and-missions/kosovo-air-campaign-march-june-1999) |
 | 2001 | 阿富汗空中战役 | [Operation Enduring Freedom，美国海军历史与遗产司令部](https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/u/us-navy-operation-enduring-freedom-2001-2002.html) |
 | 2003 | 法奥半岛登陆 | [Al-Faw Peninsula landings，英国伊拉克调查报告第 7 卷](https://assets.publishing.service.gov.uk/media/5a7f968fe5274a2e8ab4d16a/The_Report_of_the_Iraq_Inquiry_-_Volume_VII.pdf#page=25) |
+| 2009 | 亚丁湾反海盗行动 | [New Counter-Piracy Task Force Established（CTF 151），美国国防视觉信息分发服务](https://www.dvidshub.net/news/28588/new-counter-piracy-task-force-established-commander-combined-maritime-forces-public-affairs) |
 | 2011 | 统一保护者行动 | [Operation Unified Protector，北约](https://www.nato.int/en/what-we-do/operations-and-missions/nato-and-libya-february-october-2011) |
 
 ## 战机

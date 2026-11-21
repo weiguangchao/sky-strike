@@ -242,7 +242,7 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
 #archive-card { grid-template-rows: minmax(min-content, 1fr); }
 .fleet-card .fleet-illustration { align-self: stretch; min-height: 36px; }
 #archive-canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
-#help-campaign-panel .handbook-pager, #help-archive-panel .fleet-controls { flex: none; }
+#help-campaign-panel .fleet-controls, #help-archive-panel .fleet-controls { flex: none; }
 /* The copy column stretches to the sprite height so the feature list can fill it. */
 .fleet-card .fleet-copy { align-self: stretch; display: flex; flex-direction: column; }
 .fleet-description { flex: 1 0 auto; display: flex; flex-direction: column; }
@@ -297,6 +297,8 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
 }
 
 @container app-viewport (min-width: 560px) {
+  /* Wide handbooks keep the campaign pickers and pager on one row, leaving the card its full height. */
+  #help-campaign-panel .fleet-controls { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
   .handbook-signals { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .handbook-signals > span { gap: 6px; }
 }
@@ -353,6 +355,13 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
   #archive-count { font-size: 16px; }
   #archive-status { padding: 2px; font-size: 14px; line-height: 1.2; }
   .fleet-controls select { font-size: 14px; padding-inline: 3px; }
+  /* The campaign card follows the archive card's type scale, so a briefing fits beside two rows of pickers. */
+  .campaign-card { padding: 10px 12px; }
+  .campaign-card h3 { font-size: 18px; margin-block: 2px; }
+  .campaign-card p { font-size: 14px; line-height: 1.35; margin-block: 4px; }
+  #campaign-roster { font-size: 14px; margin-top: 4px; }
+  #campaign-count { font-size: 16px; }
+  #campaign-archive { column-gap: 10px; }
 }
 @container app-viewport (max-height: 370px) {
   #help-dialog { --help-height: 286px; --help-edge: 4px; --help-padding: 8px; --help-gap: 6px; }
@@ -370,15 +379,17 @@ h1 { font-size: clamp(28px, 2.5vw, 36px); }
   #help-dialog { --help-height: 244px; }
   .fleet-card { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); column-gap: 14px; }
   .fleet-controls { grid-template-columns: minmax(264px, 1fr) minmax(0, 1.3fr); }
+  #help-campaign-panel .fleet-controls { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
   .fleet-controls select { padding-inline: 3px; }
   .help-controls > div { display: flex; align-items: center; gap: 10px; }
   .help-controls > div > span { flex: none; }
   .help-controls p { margin: 0; }
   .campaign-card { display: grid; grid-template-columns: 1fr 2fr; align-content: safe center; gap: 4px 16px; }
-  .campaign-card > span { grid-area: 1 / 1; }
-  .campaign-card h3 { grid-area: 2 / 1; margin: 0; }
-  .campaign-card p { grid-area: 1 / 2 / 3 / 3; margin: 0; align-self: center; }
-  #campaign-roster { grid-area: 3 / 1 / 4 / 3; margin: 0; }
+  .campaign-meta { grid-area: 1 / 1 / 2 / 3; }
+  .campaign-title { grid-area: 2 / 1; flex-direction: column; align-items: flex-start; gap: 0; }
+  .campaign-card h3 { margin: 0; }
+  .campaign-card #campaign-objective { grid-area: 2 / 2; margin: 0; align-self: center; }
+  #campaign-roster, .campaign-card #campaign-archive { grid-area: 3 / 1 / 4 / 3; margin: 0; }
 }
 @container app-viewport (min-width: 480px) and (max-width: 550px) and (max-height: 370px) {
   .fleet-card { grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); }

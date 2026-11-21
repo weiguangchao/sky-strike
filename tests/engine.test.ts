@@ -76,21 +76,16 @@ test('defeat emits one result and restart clears all previous run state', () => 
   assert.equal(game.player.hp, 4); assert.equal(game.bombs, 3); assert.deepEqual(game.stacks, {});
 });
 
-test('the eight added sorties each introduce five distinct air and sea formations', () => {
-  const addedIds = ['fog-convoy', 'tide-break', 'carrier-screen', 'night-harbor', 'ice-passage', 'relay-island', 'strait-recovery', 'fleet-crossing'];
-  const added = CAMPAIGN_STAGES.filter(({ mission }) => addedIds.includes(mission.id));
-  assert.equal(added.length, addedIds.length);
+test('every sortie authors five air and sea formations that no other wave repeats', () => {
   const roster = ({ air, sea }: (typeof WAVES)[number]) => JSON.stringify([[...air].sort(), [...sea].sort()]);
-  const seen = new Set(CAMPAIGN_STAGES
-    .filter(({ mission }) => !addedIds.includes(mission.id))
-    .flatMap(({ mission }) => mission.waves.map(roster)));
-
-  for (const { mission } of added) {
+  const seen = new Set(WAVES.map(roster));
+  for (const { mission } of CAMPAIGN_STAGES) {
     const encounters = mission.waves.filter((wave, index) => wave !== WAVES[index]);
     assert.equal(encounters.length, 5, mission.name);
     for (const encounter of encounters) {
       const formation = roster(encounter);
       assert.ok(!seen.has(formation), `${mission.name} / ${encounter.name} repeats a formation`);
+      assert.equal(new Set(encounter.sea).size, encounter.sea.length, `${mission.name} / ${encounter.name}`);
       seen.add(formation);
     }
   }

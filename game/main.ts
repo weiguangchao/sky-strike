@@ -3,16 +3,16 @@ import { archiveServiceYears } from './archive-service-years.ts';
 import { element as $, canvas as canvasElement, button, select, dialog, anchor } from './dom.ts';
 import { isCraftId, isGameMode } from './types.ts';
 import { readStorage, writeStorage, parseCampaignProgress, parsePreferences } from './storage.ts';
-import type { CraftId, GameMode, Input, Result, Sortie } from './types.ts';
+import type { Chapter, CraftId, GameMode, Input, Mission, Result, Sortie } from './types.ts';
 import { Game, CRAFTS, UPGRADES } from './engine.ts';
-import { CAMPAIGN_STAGES, CHAPTERS, UNIT_NAMES, WAVES_PER_MISSION, firstUnclearedStageIndex, isStageUnlocked, stageAt, waveInfo } from './campaign.ts';
+import { CAMPAIGN_STAGES, CHAPTERS, UNIT_NAMES, WAVES_PER_MISSION, firstUnclearedStageIndex, isStageUnlocked, sixteenMissionFrontier, stageAt, waveInfo } from './campaign.ts';
 import { GameRuntime } from './runtime.ts';
 import { Sound } from './audio.ts';
 import { trackViewport } from './viewport.ts';
 import { VISUAL_SIGNALS } from './visual-style.ts';
 import { DEFAULT_FLEET, NAVAL_HULLS, historicalShip } from './naval-history.ts';
 import type { FleetSelection } from './naval-history.ts';
-import { ARCHIVE_COUNTRIES, ARCHIVE_SURFACE_HULLS, archiveDisplayCategory, filterArchive } from './historical-archive.ts';
+import { ARCHIVE_COUNTRIES, ARCHIVE_SURFACE_HULLS, HANDBOOK_ARCHIVE, archiveDisplayCategory, filterArchive } from './historical-archive.ts';
 
 for (const [name, signal] of Object.entries(VISUAL_SIGNALS)) document.documentElement.style.setProperty(`--${name}`, signal.color);
 
@@ -20,6 +20,7 @@ const preferences = parsePreferences({
   craft: readStorage('craft'),
   mode: readStorage('mode'),
   campaignCleared: readStorage('campaignCleared'),
+  campaignSixteenOrder: readStorage('campaignSixteenOrder'),
   campaignMission: readStorage('campaignMission'),
   campaignProgress: readStorage('campaignProgress'),
   campaignSelection: readStorage('campaignSelection'),
@@ -32,6 +33,11 @@ const preferences = parsePreferences({
 let selectedCraft = preferences.craft;
 let mode = preferences.mode;
 const campaignCleared = new Set(preferences.campaignCleared);
+const sixteenMissionSave = preferences.campaignSixteenOrder;
+// Recording the flag settles it, so a new save never adopts the old order after its first clear.
+writeStorage({ key: 'campaignSixteenOrder', value: sixteenMissionSave });
+const stageUnlocked = (index: number) => isStageUnlocked(index, campaignCleared, sixteenMissionSave);
+const openStages = (chapter: Chapter) => CAMPAIGN_STAGES.flatMap((stage, index) => stage.chapter === chapter && stageUnlocked(index) ? [index] : []);
 let campaignSelection = CAMPAIGN_STAGES.findIndex(stage => stage.mission.id === preferences.campaignMission);
 let endlessChapter = preferences.endlessChapter;
 let nextMission: number | undefined;
@@ -96,15 +102,14 @@ function syncMissionSelection() {
     control.setAttribute('aria-pressed', String(active));
   }
   select('chapter-select').replaceChildren(...CHAPTERS.map((entry, index) => {
-    const first = CAMPAIGN_STAGES.findIndex(stage => stage.chapter === entry);
-    const locked = campaign && !isStageUnlocked(first, campaignCleared);
+    const locked = campaign && openStages(entry).length === 0;
     const option = new Option(entry.name + (locked ? '（未解锁）' : ''), String(index), false, entry === chapter);
     option.disabled = locked;
     return option;
   }));
   select('mission-select').replaceChildren(...CAMPAIGN_STAGES.flatMap((stage, index) => {
     if (stage.chapter !== chapter) return [];
-    const locked = !isStageUnlocked(index, campaignCleared);
+    const locked = !stageUnlocked(index);
     const label = campaignCleared.has(stage.mission.id) ? '（已通关）' : locked ? '（未解锁）' : '';
     const option = new Option(stage.mission.name + label, String(index), false, index === campaignSelection);
     option.disabled = locked;
@@ -270,7 +275,10 @@ function showResults(event: Result) {
       writeStorage({ key: 'campaignCleared', value: [...campaignCleared] });
     }
     const following = index === previousFrontier ? firstUnclearedStageIndex(campaignCleared) : index + 1;
-    if (index >= 0 && isStageUnlocked(following, campaignCleared)) nextMission = following;
+    // A sixteen-mission save whose next timeline battle is still locked continues along that release's order.
+    const resume = sixteenMissionSave ? sixteenMissionFrontier(campaignCleared) : -1;
+    if (index >= 0 && stageUnlocked(following)) nextMission = following;
+    else if (index >= 0 && resume >= 0) nextMission = resume;
   }
   $('result-title').textContent = event.outcome === 'victory' ? '作战胜利' : event.outcome === 'timeout' ? '旗舰未击沉' : '出击结束';
   $('retry-label').textContent = nextMission === undefined ? '再次出击' : '下一战役';
@@ -372,19 +380,17 @@ $('chapter-select').addEventListener('change', () => {
     endlessChapter = index;
     writeStorage({ key: 'endlessChapter', value: index });
   } else {
-    const frontier = firstUnclearedStageIndex(campaignCleared);
-    const unlocked = CAMPAIGN_STAGES[frontier]?.chapter === chapter
-      ? frontier
-      : CAMPAIGN_STAGES.reduce((latest, stage, index) =>
-        stage.chapter === chapter && campaignCleared.has(stage.mission.id) ? index : latest, -1);
-    if (unlocked < 0) return;
-    selectMission(unlocked);
+    // Prefer the mission waiting to be cleared; a fully cleared chapter reopens on its last mission.
+    const open = openStages(chapter);
+    const target = open.find(index => !campaignCleared.has(stageAt(index).mission.id)) ?? open.at(-1);
+    if (target === undefined) return;
+    selectMission(target);
   }
   syncMissionSelection();
 });
 $('mission-select').addEventListener('change', () => {
   const index = Number(select('mission-select').value);
-  if (game.status !== 'menu' || !isStageUnlocked(index, campaignCleared)) return;
+  if (game.status !== 'menu' || !stageUnlocked(index)) return;
   selectMission(index);
   syncMissionSelection();
 });
@@ -404,7 +410,8 @@ document.querySelectorAll<HTMLButtonElement>('[data-fullscreen]').forEach(button
 }));
 document.addEventListener('fullscreenchange',syncFullscreen);
 syncFullscreen();
-let campaignIndex = 0;
+type HandbookPage = { kind: 'briefing' } | { kind: 'archive' } | { kind: 'wave'; wave: number };
+let handbookStage = 0, handbookPage = 0;
 let activeHelp='controls';
 let archiveEntries = filterArchive({});
 let archiveIndex = 0, archiveRequest = 0;
@@ -551,20 +558,104 @@ $('archive-prev').addEventListener('click', () => { void showArchive(archiveInde
 $('archive-next').addEventListener('click', () => { void showArchive(archiveIndex + 1); });
 $('archive-entry').addEventListener('change', () => { void showArchive(archiveEntries.findIndex(entry => entry.id === select('archive-entry').value)); });
 filterCenturyArchive();
-function showCampaign(index: number) {
-  campaignIndex=(index+WAVES_PER_MISSION)%WAVES_PER_MISSION;
+/** Each mission's handbook pages: its briefing, linked archive entries when it has any, then every wave. */
+function handbookPages(mission: Mission): HandbookPage[] {
+  return [
+    { kind: 'briefing' },
+    ...mission.history.archive.length ? [{ kind: 'archive' } as const] : [],
+    ...mission.waves.map((_, index) => ({ kind: 'wave', wave: index + 1 }) as const),
+  ];
+}
+/** The handbook opens on the wave being flown, or on the briefing for the mission or chapter chosen in the hangar. */
+function syncHandbookStage() {
+  if (game.status !== 'menu') {
+    handbookStage = CAMPAIGN_STAGES.indexOf(game.activeStage);
+    const wave = game.missionWave;
+    handbookPage = handbookPages(game.activeStage.mission).findIndex(page => page.kind === 'wave' && page.wave === wave);
+    return;
+  }
   const sortie = selectedSortie();
-  const mission = game.status !== 'menu'
-    ? game.activeStage.mission
-    : sortie.kind === 'campaign' ? sortie.stage.mission : sortie.chapter.missions[0];
-  const wave=waveInfo(campaignIndex + 1, mission);
-  $('campaign-stage').textContent=mission.name;
-  $('campaign-name').textContent=wave.name;
-  $('campaign-objective').textContent=wave.objective;
-  const ids=[...wave.air,...wave.sea];
-  if(campaignIndex===2||campaignIndex===7) ids.push('heavy-bomber');
-  $('campaign-roster').textContent=ids.map(id=>UNIT_NAMES[id]).join(' / ');
-  $('campaign-count').textContent=`${waveNum(campaignIndex+1)} / ${WAVES_PER_MISSION} 波`;
+  handbookStage = sortie.kind === 'campaign'
+    ? CAMPAIGN_STAGES.indexOf(sortie.stage)
+    : CAMPAIGN_STAGES.findIndex(stage => stage.chapter === sortie.chapter);
+  handbookPage = 0;
+}
+function campaignStatus(index: number): string {
+  if (campaignCleared.has(stageAt(index).mission.id)) return '已通关';
+  return stageUnlocked(index) ? '可出击' : '未解锁';
+}
+/** Archive entries open in the handbook's archive tab with the filters cleared, so every linked entry is reachable. */
+function openArchiveEntry(id: string) {
+  for (const filter of ['archive-country', 'archive-category', 'archive-era']) select(filter).value = 'all';
+  filterCenturyArchive();
+  archiveIndex = Math.max(0, archiveEntries.findIndex(entry => entry.id === id));
+  showHelpPanel('archive');
+  $('help-tab-archive').focus();
+}
+function showCampaignArchive(references: Mission['history']['archive']) {
+  $('campaign-archive').replaceChildren(...references.flatMap(({ id, note }) => {
+    const entry = HANDBOOK_ARCHIVE.find(candidate => candidate.id === id);
+    if (!entry) return [];
+    const item = document.createElement('li');
+    const link = document.createElement('button');
+    link.type = 'button'; link.className = 'campaign-archive-link';
+    link.textContent = entry.name;
+    link.setAttribute('aria-label', `在图鉴中查看${entry.name}${note ? `，${note}` : ''}`);
+    link.addEventListener('click', () => openArchiveEntry(id));
+    item.append(link);
+    if (note) {
+      const detail = document.createElement('span');
+      detail.textContent = note;
+      item.append(detail);
+    }
+    return [item];
+  }));
+}
+function showCampaign(page: number) {
+  const { chapter, mission } = stageAt(handbookStage);
+  const pages = handbookPages(mission);
+  handbookPage = (page + pages.length) % pages.length;
+  const current = pages[handbookPage] ?? { kind: 'briefing' };
+  select('campaign-chapter').value = String(CHAPTERS.indexOf(chapter));
+  select('campaign-mission').replaceChildren(...CAMPAIGN_STAGES.flatMap((stage, index) => stage.chapter === chapter
+    ? [new Option(`${stage.mission.history.year} ${stage.mission.name}`, String(index), false, index === handbookStage)]
+    : []));
+  select('campaign-page').replaceChildren(...pages.map((entry, index) => new Option(
+    entry.kind === 'briefing' ? '简报' : entry.kind === 'archive' ? '图鉴关联' : `${waveNum(entry.wave)} · ${waveInfo(entry.wave, mission).name}`,
+    String(index), false, index === handbookPage,
+  )));
+  $('campaign-card').dataset.page = current.kind;
+  const source = anchor('campaign-source');
+  source.hidden = current.kind !== 'briefing';
+  $('campaign-archive').hidden = current.kind !== 'archive';
+  $('campaign-roster').hidden = current.kind !== 'wave';
+  // The archive page gives its rows the title's space; the meta line names the mission and the page.
+  $('campaign-title').hidden = current.kind === 'archive';
+  $('campaign-objective').hidden = current.kind === 'archive';
+  if (current.kind === 'briefing') {
+    const { history } = mission;
+    $('campaign-stage').textContent = `${chapter.name} · ${campaignStatus(handbookStage)}`;
+    $('campaign-count').textContent = `${chapter.missions.indexOf(mission) + 1}/${chapter.missions.length}`;
+    $('campaign-name').textContent = mission.name;
+    $('campaign-objective').textContent = `${history.date} · ${history.summary}`;
+    source.href = history.source;
+    source.setAttribute('aria-label', `${mission.name}的历史资料，打开新标签页`);
+    return;
+  }
+  $('campaign-stage').textContent = mission.name;
+  if (current.kind === 'archive') {
+    $('campaign-stage').textContent = `${mission.name} · 图鉴关联`;
+    $('campaign-count').textContent = String(mission.history.year);
+    showCampaignArchive(mission.history.archive);
+    return;
+  }
+  const wave = waveInfo(current.wave, mission);
+  $('campaign-count').textContent = `${waveNum(current.wave)} / ${WAVES_PER_MISSION} 波`;
+  $('campaign-name').textContent = wave.name;
+  $('campaign-objective').textContent = wave.objective;
+  const ids = [...wave.air, ...wave.sea];
+  if (current.wave === 3 || current.wave === 8) ids.push('heavy-bomber');
+  $('campaign-roster').textContent = ids.map(id => UNIT_NAMES[id]).join(' / ');
 }
 function showHelpPanel(id: string) {
   activeHelp=id;
@@ -575,7 +666,7 @@ function showHelpPanel(id: string) {
     tab.tabIndex=active?0:-1;
     $(`help-${tab.dataset.help}-panel`).hidden=!active;
   }
-  if(id==='campaign') showCampaign(campaignIndex);
+  if(id==='campaign') showCampaign(handbookPage);
   if(id==='archive') void showArchive(archiveIndex);
 }
 const helpTabs=[...document.querySelectorAll<HTMLButtonElement>('[data-help]')];
@@ -589,9 +680,17 @@ helpTabs.forEach((tab,index)=>{
     if (tab) { showHelpPanel(tab.dataset.help ?? 'controls'); tab.focus(); }
   });
 });
-$('campaign-prev').addEventListener('click',()=>showCampaign(campaignIndex-1));
-$('campaign-next').addEventListener('click',()=>showCampaign(campaignIndex+1));
-document.querySelectorAll<HTMLButtonElement>('[data-open-help]').forEach(button=>button.addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); showHelpPanel('controls'); dialog('help-dialog').showModal(); }));
+$('campaign-prev').addEventListener('click',()=>showCampaign(handbookPage-1));
+$('campaign-next').addEventListener('click',()=>showCampaign(handbookPage+1));
+select('campaign-chapter').replaceChildren(...CHAPTERS.map((chapter, index) => new Option(chapter.name, String(index))));
+$('campaign-chapter').addEventListener('change', () => {
+  const chapter = CHAPTERS[Number(select('campaign-chapter').value)];
+  handbookStage = Math.max(0, CAMPAIGN_STAGES.findIndex(stage => stage.chapter === chapter));
+  showCampaign(0);
+});
+$('campaign-mission').addEventListener('change', () => { handbookStage = Number(select('campaign-mission').value); showCampaign(0); });
+$('campaign-page').addEventListener('change', () => showCampaign(Number(select('campaign-page').value)));
+document.querySelectorAll<HTMLButtonElement>('[data-open-help]').forEach(button=>button.addEventListener('click', () => { helpPaused = game.status === 'playing'; if (helpPaused) autoPause(); syncHandbookStage(); showHelpPanel('controls'); dialog('help-dialog').showModal(); }));
 $('close-help').addEventListener('click', () => dialog('help-dialog').close());
 dialog('help-dialog').addEventListener('close', () => { archiveRequest++; if (helpPaused && game.status === 'paused') { game.resume(); processEvents(); syncState(); } helpPaused = false; });
 

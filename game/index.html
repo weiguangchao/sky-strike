@@ -105,8 +105,20 @@
       <div class="help-notes"><p>机炮对空；对准舰船自动投弹，不消耗航弹。</p><p>空格航弹清弹；中央白点受击；升级三选一。</p></div>
     </section>
     <section class="handbook-panel" id="help-campaign-panel" role="tabpanel" aria-labelledby="help-tab-campaign" hidden>
-      <div class="campaign-card" tabindex="0"><span id="campaign-stage"></span><h3 id="campaign-name"></h3><p id="campaign-objective"></p><div id="campaign-roster"></div></div>
-      <div class="handbook-pager"><button class="secondary-button" id="campaign-prev" aria-label="上一波战役">←</button><span id="campaign-count" aria-live="polite"></span><button class="secondary-button" id="campaign-next" aria-label="下一波战役">→</button></div>
+      <div class="campaign-card" id="campaign-card" tabindex="0">
+        <div class="campaign-meta"><span id="campaign-stage"></span><span id="campaign-count" aria-live="polite"></span></div>
+        <div class="campaign-title" id="campaign-title"><h3 id="campaign-name"></h3><a id="campaign-source" target="_blank" rel="noopener noreferrer">史料 ↗</a></div>
+        <p id="campaign-objective"></p>
+        <div id="campaign-roster"></div>
+        <ul id="campaign-archive"></ul>
+      </div>
+      <div class="fleet-controls">
+        <div class="campaign-filters">
+          <select id="campaign-chapter" aria-label="选择手册中的章节"></select>
+          <select id="campaign-mission" aria-label="选择手册中的战役"></select>
+        </div>
+        <div class="handbook-pager fleet-pager"><button class="secondary-button" id="campaign-prev" aria-label="上一页战役资料">←</button><select id="campaign-page" aria-label="选择战役简报或波次"></select><button class="secondary-button" id="campaign-next" aria-label="下一页战役资料">→</button></div>
+      </div>
     </section>
     <section class="handbook-panel" id="help-archive-panel" role="tabpanel" aria-labelledby="help-tab-archive" hidden>
       <div class="fleet-card" id="archive-card">

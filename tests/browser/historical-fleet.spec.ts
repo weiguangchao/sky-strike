@@ -68,12 +68,12 @@ test('failed historical downloads can retry and stale requests cannot replace an
   await page.locator('#help-button').click();await page.locator('#help-tab-archive').click();
   await page.locator('#archive-category').selectOption('battleship');
   await expect(page.locator('#archive-status')).toHaveText('图像载入中');
-  await page.locator('#help-tab-campaign').click();await expect(page.locator('#campaign-name')).toHaveText('舰队启航');
+  await page.locator('#help-tab-campaign').click();await expect(page.locator('#campaign-name')).toHaveText('黑尔戈兰湾海战');
   const before=await page.locator('#archive-canvas').evaluate((canvas:HTMLCanvasElement)=>canvas.toDataURL());
   const response=page.waitForResponse('**/historic-iowa.png');release();await response;
   await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
   expect(await page.locator('#archive-canvas').evaluate((canvas:HTMLCanvasElement)=>canvas.toDataURL())).toBe(before);
-  await expect(page.locator('#campaign-name')).toHaveText('舰队启航');
+  await expect(page.locator('#campaign-name')).toHaveText('黑尔戈兰湾海战');
 });
 
 test('a saved prototype stays equipped while browsing and keeps its identity in battle and as a wreck',async({page})=>{
